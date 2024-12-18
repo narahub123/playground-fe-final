@@ -1,18 +1,20 @@
 import Text from "@shared/@common/ui/components/Text/Text";
 import styles from "./AuthPage.module.css";
+import { AuthButton } from "@shared/auth/ui/components";
+import { google, kakao, naver } from "@shared/@common/assets";
 
 const AuthPage = () => {
   const signinList = [
-    "구글로 회원 가입",
-    "네이버로 회원 가입",
-    "카카오로 회원 가입",
-    "이메일로 회원 가입",
+    { text: "구글로 회원 가입", img: google },
+    { text: "네이버로 회원 가입", img: naver },
+    { text: "카카오로 회원 가입", img: kakao },
+    { text: "이메일로 회원 가입" },
   ];
   const loginList = [
-    "구글로 로그인",
-    "네이버로 로그인",
-    "카카오로 로그인",
-    "이메일로 로그인",
+    { text: "구글로 로그인", img: google },
+    { text: "네이버로 로그인", img: naver },
+    { text: "카카오로 로그인", img: kakao },
+    { text: "이메일로 로그인" },
   ];
   return (
     <div className={styles[`auth-page`]}>
@@ -24,9 +26,7 @@ const AuthPage = () => {
           <Text text="처음이신가요?" type="heading3" />
           <ul className={styles.list}>
             {signinList.map((item, idx) => (
-              <li key={idx} className={styles.button}>
-                {item}
-              </li>
+              <AuthButton key={idx} item={item} />
             ))}
           </ul>
         </div>
@@ -34,9 +34,7 @@ const AuthPage = () => {
           <Text text="이미 가입하셨나요?" type="heading3" />
           <ul className={styles.list}>
             {loginList.map((item, idx) => (
-              <li key={idx} className={styles.button}>
-                {item}
-              </li>
+              <AuthButton key={idx} item={item} />
             ))}
           </ul>
         </div>
