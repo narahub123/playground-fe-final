@@ -1,5 +1,5 @@
 import styles from "./AuthButton.module.css";
-import Text from "@shared/@common/ui/components/Text/Text";
+import { Text } from "@shared/@common/ui/components";
 import { Link } from "react-router-dom";
 import { useAppDispatch } from "@app/store";
 import { useCallback } from "react";
