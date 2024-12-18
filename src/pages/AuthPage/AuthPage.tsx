@@ -1,3 +1,4 @@
+import Text from "@shared/@common/ui/components/Text/Text";
 import styles from "./AuthPage.module.css";
 
 const AuthPage = () => {
@@ -16,11 +17,11 @@ const AuthPage = () => {
   return (
     <div className={styles[`auth-page`]}>
       <header className={styles.header}>
-        안녕하세요. 여기는 PlayGround 입니다.
+        <Text text="안녕하세요. 여기는 PlayGround 입니다." />
       </header>
       <main className={styles.main}>
         <div className={styles.section}>
-          <h3 className={styles.heading}>처음이신가요?</h3>
+          <Text text="처음이신가요?" type="heading" />
           <ul className={styles.list}>
             {signinList.map((item, idx) => (
               <li key={idx} className={styles.button}>
@@ -30,7 +31,7 @@ const AuthPage = () => {
           </ul>
         </div>
         <div className={styles.section}>
-          <h3 className={styles.heading}>이미 가입하셨나요?</h3>
+          <Text text="이미 가입하셨나요?" type="heading" />
           <ul className={styles.list}>
             {loginList.map((item, idx) => (
               <li key={idx} className={styles.button}>
