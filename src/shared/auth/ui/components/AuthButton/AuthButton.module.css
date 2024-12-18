@@ -1,0 +1,19 @@
+.auth-button {
+  width: 100%;
+  cursor: pointer;
+}
+
+.auth-button-container {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.auth-button-img {
+  width: 20px;
+}
