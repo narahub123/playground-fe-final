@@ -1,0 +1,12 @@
+.heading {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.expl {
+  font-size: 14px;
+}
+
+.normal {
+  font-size: inherit;
+}
