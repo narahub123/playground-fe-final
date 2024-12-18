@@ -1,8 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
+import { loginSlice as login } from "@features/auth-setting/models/slices";
 
 const store = configureStore({
-  reducer: {},
+  reducer: {
+    login, // 로그인 상태
+  },
 
   // serializableCheck 옵션을 false로 설정하여
   // 직렬화 불가능한 데이터(예: 함수, class 인스턴스 등)의 상태 저장 검사를 비활성화
