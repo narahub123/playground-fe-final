@@ -21,7 +21,7 @@ const AuthPage = () => {
       </header>
       <main className={styles.main}>
         <div className={styles.section}>
-          <Text text="처음이신가요?" type="heading" />
+          <Text text="처음이신가요?" type="heading3" />
           <ul className={styles.list}>
             {signinList.map((item, idx) => (
               <li key={idx} className={styles.button}>
@@ -31,7 +31,7 @@ const AuthPage = () => {
           </ul>
         </div>
         <div className={styles.section}>
-          <Text text="이미 가입하셨나요?" type="heading" />
+          <Text text="이미 가입하셨나요?" type="heading3" />
           <ul className={styles.list}>
             {loginList.map((item, idx) => (
               <li key={idx} className={styles.button}>
