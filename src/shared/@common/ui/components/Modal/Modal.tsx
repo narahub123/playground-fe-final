@@ -2,6 +2,7 @@ import styles from "./Modal.module.css";
 import { ReactNode, useContext, useRef } from "react";
 import { ModalProvider } from "@shared/@common/models/providers";
 import { ModalContext } from "@shared/@common/models/contexts";
+import Icon from "../Icon/Icon";
 
 // 모달
 const ModalMain = ({
@@ -58,9 +59,12 @@ const ModalCloseButton = () => {
   const { onClose } = useContext(ModalContext);
 
   return (
-    <button className={styles.close} onClick={onClose}>
-      삭제
-    </button>
+    <Icon
+      iconName="close"
+      iconTitle="닫기"
+      onClick={onClose}
+      subClassName={styles.close}
+    />
   );
 };
 
