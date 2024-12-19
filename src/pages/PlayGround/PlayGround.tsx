@@ -3,13 +3,14 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { getLogin } from "@features/auth-setting/models/selectors";
 import { PagesLayout } from "@shared/pages/layouts";
-import AuthLayout from "@shared/auth/layouts/AuthLayout/AuthLayout";
+
 import {
   getBgTheme,
   getColorTheme,
   getFontSize,
 } from "@shared/@common/models/selectors";
 import { TextHeader } from "@test/ui/components";
+import { AuthLayout } from "@shared/auth/layouts";
 
 const PlayGround = () => {
   // 로그인 여부
