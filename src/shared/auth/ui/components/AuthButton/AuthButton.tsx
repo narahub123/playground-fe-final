@@ -28,7 +28,7 @@ const AuthButton = ({ item, handleClick, subClassName }: AuthButtonProps) => {
   // 컴포넌트 속성
   const compProps = path
     ? { to: path } // Link 속성
-    : { type: "button", onclick: clickHandler }; // button 속성
+    : { type: "button", onClick: clickHandler }; // button 속성
 
   return (
     <Comp className={styles[`auth-button`]} {...(compProps as any)}>
