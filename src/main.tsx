@@ -1,6 +1,7 @@
 import "@shared/@common/styles/reset.css";
 import "@shared/@common/styles/bgTheme.css";
 import "@shared/@common/styles/colorTheme.css";
+import "@shared/@common/styles/fontSize.css";
 import "@shared/@common/styles/globals.css";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";

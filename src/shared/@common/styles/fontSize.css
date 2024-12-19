@@ -1,0 +1,16 @@
+:root,
+html[data-font-size="xs"] {
+  --font-size-primary: 0.75rem;
+}
+html[data-font-size="s"] {
+  --font-size-primary: 0.875rem;
+}
+html[data-font-size="b"] {
+  --font-size-primary: 1rem;
+}
+html[data-font-size="l"] {
+  --font-size-primary: 1.25rem;
+}
+html[data-font-size="xl"] {
+  --font-size-primary: 1.5rem;
+}
