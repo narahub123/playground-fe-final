@@ -1,3 +1,3 @@
-import { BgThemeType } from "./slices";
+import { BgThemeType, colorThemeType } from "./slices";
 
-export type { BgThemeType };
+export type { BgThemeType, colorThemeType };

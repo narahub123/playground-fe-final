@@ -1,14 +1,16 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { BgThemeType } from "@shared/@common/types";
+import { BgThemeType, colorThemeType } from "@shared/@common/types";
 
 interface DisplayState {
   language: string;
   bgTheme: BgThemeType;
+  colorTheme: colorThemeType;
 }
 
 const initialState: DisplayState = {
   language: "ko-KR",
   bgTheme: "light",
+  colorTheme: "cornflowerblue",
 };
 
 const displaySlice = createSlice({
@@ -19,11 +21,14 @@ const displaySlice = createSlice({
       state.language = action.payload;
     },
     setBgTheme: (state, action: PayloadAction<BgThemeType>) => {
-      state.language = action.payload;
+      state.bgTheme = action.payload;
+    },
+    setColorTheme: (state, action: PayloadAction<colorThemeType>) => {
+      state.colorTheme = action.payload;
     },
   },
 });
 
 export default displaySlice.reducer;
 
-export const { setLanguage, setBgTheme } = displaySlice.actions;
+export const { setLanguage, setBgTheme, setColorTheme } = displaySlice.actions;

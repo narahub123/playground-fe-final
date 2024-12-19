@@ -1,3 +1,3 @@
-import { getLanguage, getBgTheme } from "./displaySelectors";
+import { getLanguage, getBgTheme, getColorTheme } from "./displaySelectors";
 
-export { getLanguage, getBgTheme };
+export { getLanguage, getBgTheme, getColorTheme };
