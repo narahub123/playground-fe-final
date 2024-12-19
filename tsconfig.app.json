@@ -13,7 +13,8 @@
       "@pages": ["src/pages/index.ts"],
       "@pages/*": ["src/pages/*"],
       "@features/*": ["src/features/*"],
-      "@shared/*": ["src/shared/*"]
+      "@shared/*": ["src/shared/*"],
+      "@test/*": ["src/test/*"]
     },
 
     /* Bundler mode */

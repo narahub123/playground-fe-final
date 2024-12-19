@@ -1,10 +1,11 @@
-import { useSelector } from "react-redux";
 import styles from "./PlayGround.module.css";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { getLogin } from "@features/auth-setting/models/selectors";
 import { PagesLayout } from "@shared/pages/layouts";
 import AuthLayout from "@shared/auth/layouts/AuthLayout/AuthLayout";
 import { getBgTheme, getColorTheme } from "@shared/@common/models/selectors";
-import { useEffect } from "react";
+import { TextHeader } from "@test/ui/components";
 
 const PlayGround = () => {
   // 로그인 여부
@@ -12,6 +13,8 @@ const PlayGround = () => {
 
   // 배경 테마
   const bgTheme = useSelector(getBgTheme);
+
+  console.log("색상 테마", bgTheme);
 
   // 색상 테마
   const colorTheme = useSelector(getColorTheme);
@@ -28,6 +31,7 @@ const PlayGround = () => {
 
   return (
     <div className={styles.playground}>
+      <TextHeader />
       {login ? <PagesLayout /> : <AuthLayout />}
     </div>
   );
