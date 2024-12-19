@@ -1,3 +1,10 @@
 import { BgThemeType, ColorThemeType, FontSizeType } from "./slices";
 
-export type { BgThemeType, ColorThemeType, FontSizeType };
+import { ModalContextValueType } from "./contexts";
+
+export type {
+  BgThemeType,
+  ColorThemeType,
+  FontSizeType,
+  ModalContextValueType,
+};
