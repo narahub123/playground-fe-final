@@ -1,3 +1,8 @@
-import { getLanguage, getBgTheme, getColorTheme } from "./displaySelectors";
+import {
+  getLanguage,
+  getBgTheme,
+  getColorTheme,
+  getFontSize,
+} from "./displaySelectors";
 
-export { getLanguage, getBgTheme, getColorTheme };
+export { getLanguage, getBgTheme, getColorTheme, getFontSize };

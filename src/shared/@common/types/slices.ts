@@ -7,4 +7,6 @@ type ColorThemeType =
   | "orange"
   | "yellow";
 
-export type { BgThemeType, ColorThemeType };
+type FontSizeType = "xs" | "s" | "b" | "l" | "xl";
+
+export type { BgThemeType, ColorThemeType, FontSizeType };
