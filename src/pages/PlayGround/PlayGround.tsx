@@ -4,7 +4,11 @@ import { useSelector } from "react-redux";
 import { getLogin } from "@features/auth-setting/models/selectors";
 import { PagesLayout } from "@shared/pages/layouts";
 import AuthLayout from "@shared/auth/layouts/AuthLayout/AuthLayout";
-import { getBgTheme, getColorTheme } from "@shared/@common/models/selectors";
+import {
+  getBgTheme,
+  getColorTheme,
+  getFontSize,
+} from "@shared/@common/models/selectors";
 import { TextHeader } from "@test/ui/components";
 
 const PlayGround = () => {
@@ -14,10 +18,11 @@ const PlayGround = () => {
   // 배경 테마
   const bgTheme = useSelector(getBgTheme);
 
-  console.log("색상 테마", bgTheme);
-
   // 색상 테마
   const colorTheme = useSelector(getColorTheme);
+
+  // 글꼴 크기
+  const fontSize = useSelector(getFontSize);
 
   // 배경 테마 적용하기
   useEffect(() => {
@@ -28,6 +33,11 @@ const PlayGround = () => {
   useEffect(() => {
     document.documentElement.dataset.colorTheme = colorTheme;
   }, [colorTheme]);
+
+  // 글꼴 적용하기
+  useEffect(() => {
+    document.documentElement.dataset.fontSize = fontSize;
+  }, [fontSize]);
 
   return (
     <div className={styles.playground}>
