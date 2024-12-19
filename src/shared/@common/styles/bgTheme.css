@@ -1,15 +1,27 @@
 :root,
 html[data-bg-theme="light"] {
   --bgTheme-color-primary: black;
+  --bgTheme-color-border: #ccc;
   --bgTheme-bgColor-primary: white;
+  --bgTheme-bgColor-hover: rgb(245, 245, 245);
+  --bgTheme-border-primary: 1px solid var(--bgTheme-color-border);
+  --bgTheme-outline-primary: 2px solid var(--bgTheme-color-primary);
 }
 
 html[data-bg-theme="dark"] {
   --bgTheme-color-primary: white;
+  --bgTheme-color-border: #ccc;
   --bgTheme-bgColor-primary: #202b38;
+  --bgTheme-bgColor-hover: rgb(230, 230, 230);
+  --bgTheme-border-primary: 1px solid var(--bgTheme-color-border);
+  --bgTheme-outline-primary: 2px solid var(--bgTheme-color-primary);
 }
 
 html[data-bg-theme="darkest"] {
   --bgTheme-color-primary: white;
+  --bgTheme-color-border: #ccc;
   --bgTheme-bgColor-primary: black;
+  --bgTheme-bgColor-hover: rgb(230, 230, 230);
+  --bgTheme-border-primary: 1px solid var(--bgTheme-color-border);
+  --bgTheme-outline-primary: 2px solid var(--bgTheme-color-primary);
 }

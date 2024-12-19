@@ -1,24 +1,48 @@
 :root,
 html[data-color-theme="cornflowerblue"] {
-  --colorTheme-primary-color: cornflowerblue;
+  --colorTheme-color-primary: cornflowerblue;
+  --colorTheme-color-outline: rgb(120, 169, 255);
+  --colorTheme-bgColor-hover: rgb(80, 129, 217);
+  --colorTheme-border-primary: 1px solid var(--colorTheme-color-primary);
+  --colorTheme-outline-primary: 2px solid var(--colorTheme-color-outline);
 }
 
 html[data-color-theme="red"] {
-  --colorTheme-primary-color: red;
+  --colorTheme-color-primary: red;
+  --colorTheme-color-outline: rgb(255, 20, 20);
+  --colorTheme-bgColor-hover: rgb(215, 0, 0);
+  --colorTheme-border-primary: 1px solid var(--colorTheme-color-primary);
+  --colorTheme-outline-primary: 2px solid var(--colorTheme-color-outline);
 }
 
 html[data-color-theme="green"] {
-  --colorTheme-primary-color: green;
+  --colorTheme-color-primary: green;
+  --colorTheme-color-outline: rgb(20, 148, 20);
+  --colorTheme-bgColor-hover: rgb(0, 108, 0);
+  --colorTheme-border-primary: 1px solid var(--colorTheme-color-primary);
+  --colorTheme-outline-primary: 2px solid var(--colorTheme-color-outline);
 }
 
 html[data-color-theme="purple"] {
-  --colorTheme-primary-color: purple;
+  --colorTheme-color-primary: purple;
+  --colorTheme-color-outline: rgb(148, 0, 148);
+  --colorTheme-bgColor-hover: rgb(108, 0, 108);
+  --colorTheme-border-primary: 1px solid var(--colorTheme-color-primary);
+  --colorTheme-outline-primary: 2px solid var(--colorTheme-color-outline);
 }
 
 html[data-color-theme="orange"] {
-  --colorTheme-primary-color: orange;
+  --colorTheme-color-primary: rgb(255, 165, 0);
+  --colorTheme-color-outline: rgb(255, 185, 20);
+  --colorTheme-bgColor-hover: rgb(235, 145, 0);
+  --colorTheme-border-primary: 1px solid var(--colorTheme-color-primary);
+  --colorTheme-outline-primary: 2px solid var(--colorTheme-color-outline);
 }
 
 html[data-color-theme="yellow"] {
-  --colorTheme-primary-color: yellow;
+  --colorTheme-color-primary: yellow;
+  --colorTheme-color-outline: rgb(255, 255, 20);
+  --colorTheme-bgColor-hover: rgb(215, 215, 0);
+  --colorTheme-border-primary: 1px solid var(--colorTheme-color-primary);
+  --colorTheme-outline-primary: 2px solid var(--colorTheme-color-outline);
 }

@@ -31,11 +31,16 @@ const AuthButton = ({ item, handleClick, subClassName }: AuthButtonProps) => {
     : { type: "button", onClick: clickHandler }; // button 속성
 
   return (
-    <Comp className={styles[`auth-button`]} {...(compProps as any)}>
+    <Comp
+      className={`${styles[`auth-button`]} ${
+        colorTheme
+          ? styles[`auth-button-color-theme`]
+          : styles[`auth-button-normal`]
+      } `}
+      {...(compProps as any)}
+    >
       <div
-        className={`${styles[`auth-button-container`]} ${
-          colorTheme ? styles[`auth-button-color-theme`] : ""
-        } ${subClassName || ""}`}
+        className={`${styles[`auth-button-container`]} ${subClassName || ""}`}
       >
         {img && (
           <img
@@ -44,10 +49,7 @@ const AuthButton = ({ item, handleClick, subClassName }: AuthButtonProps) => {
             className={styles[`auth-button-img`]}
           />
         )}
-        <Text
-          text={text}
-          style={`${colorTheme ? styles[`auth-button-color-theme`] : ""}`}
-        />
+        <Text text={text} />
       </div>
     </Comp>
   );

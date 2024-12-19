@@ -1,13 +1,28 @@
 .auth-button {
   width: 100%;
   cursor: pointer;
+  border-radius: 40px;
+}
+
+.auth-button-normal {
+  background-color: #fff;
+  color: #000000;
+  border: var(--bgTheme-border-primary);
+}
+
+/* tab focus */
+.auth-button-normal:focus-visible {
+  background-color: var(--bgTheme-bgColor-hover);
+  outline: var(--bgTheme-outline-primary);
+}
+
+.auth-button-normal:hover {
+  background-color: var(--bgTheme-bgColor-hover);
 }
 
 .auth-button-container {
   width: 100%;
   padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,7 +34,16 @@
 }
 
 .auth-button-color-theme {
-  background-color: var(--colorTheme-primary-color);
+  background-color: var(--colorTheme-color-primary);
   color: white;
   font-weight: bold;
+}
+
+.auth-button-color-theme:focus-visible {
+  background-color: var(--colorTheme-bgColor-hover);
+  outline: var(--colorTheme-outline-primary);
+}
+
+.auth-button-color-theme:hover {
+  background-color: var(--colorTheme-bgColor-hover);
 }
