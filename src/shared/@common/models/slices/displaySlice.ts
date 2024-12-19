@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { BgThemeType, colorThemeType } from "@shared/@common/types";
+import { BgThemeType, ColorThemeType } from "@shared/@common/types";
 
 interface DisplayState {
   language: string;
   bgTheme: BgThemeType;
-  colorTheme: colorThemeType;
+  colorTheme: ColorThemeType;
 }
 
 const initialState: DisplayState = {
@@ -23,7 +23,7 @@ const displaySlice = createSlice({
     setBgTheme: (state, action: PayloadAction<BgThemeType>) => {
       state.bgTheme = action.payload;
     },
-    setColorTheme: (state, action: PayloadAction<colorThemeType>) => {
+    setColorTheme: (state, action: PayloadAction<ColorThemeType>) => {
       state.colorTheme = action.payload;
     },
   },
