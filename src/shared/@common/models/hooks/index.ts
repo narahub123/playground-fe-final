@@ -1,4 +1,4 @@
 import useLanguageContent from "./useLanguageContent";
-import useDisClosure from "./useDisClosure";
+import useDisclosure from "./useDisClosure";
 
-export { useLanguageContent, useDisClosure };
+export { useLanguageContent, useDisclosure };

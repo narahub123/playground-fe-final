@@ -2,7 +2,7 @@ import styles from "./AuthPage.module.css";
 import Text from "@shared/@common/ui/components/Text/Text";
 import { AuthButton } from "@shared/auth/ui/components";
 import {
-  useDisClosure,
+  useDisclosure,
   useLanguageContent,
 } from "@shared/@common/models/hooks";
 import { AuthButtonItemType } from "@shared/auth/types";
@@ -13,7 +13,7 @@ const AuthPage = () => {
   const { title, heading1, signinList, heading2, loginList } =
     useLanguageContent(["pages", "AuthPage"]);
 
-  const { isOpen, onOpen, onClose } = useDisClosure();
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <div className={styles[`auth-page`]}>
