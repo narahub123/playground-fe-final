@@ -1,0 +1,15 @@
+:root,
+html[data-bgTheme="light"] {
+  --bgTheme-color-primary: black;
+  --bgTheme-bgColor-primary: white;
+}
+
+html[data-bgTheme="dark"] {
+  --bgTheme-color-primary: white;
+  --bgTheme-bgColor-primary: #202b38;
+}
+
+html[data-bgTheme="darkest"] {
+  --bgTheme-color-primary: white;
+  --bgTheme-bgColor-primary: black;
+}
