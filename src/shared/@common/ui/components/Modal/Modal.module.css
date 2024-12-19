@@ -26,6 +26,30 @@
   background-color: #fff;
 }
 
+.indicator {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  z-index: 1;
+}
+
+.item {
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  width: 5px;
+  height: 5px;
+  cursor: pointer;
+}
+
+.selected {
+  background-color: var(--colorTheme-color-primary);
+  border: var(--colorTheme-border-primary);
+}
+
 .close {
   position: absolute;
   right: 10px;

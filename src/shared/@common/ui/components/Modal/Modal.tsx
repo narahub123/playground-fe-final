@@ -1,5 +1,5 @@
 import styles from "./Modal.module.css";
-import { ReactNode, useContext, useEffect, useRef } from "react";
+import { ReactNode, useContext, useRef } from "react";
 import { ModalProvider } from "@shared/@common/models/providers";
 import { ModalContext } from "@shared/@common/models/contexts";
 
@@ -8,16 +8,24 @@ const ModalMain = ({
   children,
   isOpen,
   onClose,
+  lengthOfList,
+  curPage,
+  setCurPage,
 }: {
-  children: ReactNode;
-  isOpen: boolean;
-  onClose?: () => void;
+  children: ReactNode; // 자식 요소
+  isOpen: boolean; // 모달 상태
+  onClose?: () => void; // 닫기 함수
+  lengthOfList?: number; // 여러 페이지가 있는 경우
+  curPage?: number; // 현재 페이지
+  setCurPage?: React.Dispatch<React.SetStateAction<number>>; // 현재 페이지 지정
 }) => {
   if (!isOpen) return null;
 
   return (
     <div className={styles.modal}>
-      <ModalProvider value={{ onClose }}>{children}</ModalProvider>
+      <ModalProvider value={{ onClose, lengthOfList, curPage, setCurPage }}>
+        {children}
+      </ModalProvider>
     </div>
   );
 };
@@ -32,8 +40,6 @@ const ModalOverlay = () => {
       ref={overlayRef}
       onClick={(e) => {
         const target = e.currentTarget.className;
-
-        console.log(target);
         if (target.includes("overlay") && onClose) {
           onClose();
         }
@@ -55,6 +61,27 @@ const ModalCloseButton = () => {
     <button className={styles.close} onClick={onClose}>
       삭제
     </button>
+  );
+};
+
+// 페이지 표시
+const ModalIndicator = () => {
+  const { lengthOfList, curPage, setCurPage } = useContext(ModalContext);
+
+  if (!lengthOfList || !setCurPage) return;
+
+  return (
+    <ul className={styles.indicator}>
+      {Array.from({ length: lengthOfList }).map((_, idx) => (
+        <li
+          key={idx}
+          className={`${styles.item} ${
+            curPage !== undefined && curPage >= idx ? styles.selected : ""
+          }`}
+          onClick={setCurPage ? () => setCurPage(idx) : undefined}
+        />
+      ))}
+    </ul>
   );
 };
 
@@ -82,6 +109,7 @@ const Modal = Object.assign(ModalMain, {
   Overlay: ModalOverlay,
   Container: ModalContainer,
   CloseButton: ModalCloseButton,
+  Indicator: ModalIndicator,
   Content: ModalContent,
   Header: ModalHeader,
   Body: ModalBody,

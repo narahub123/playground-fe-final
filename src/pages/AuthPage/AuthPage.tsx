@@ -1,31 +1,47 @@
 import styles from "./AuthPage.module.css";
-import Text from "@shared/@common/ui/components/Text/Text";
+import { ReactNode } from "react";
+import { Modal, Text } from "@shared/@common/ui/components";
 import { AuthButton } from "@shared/auth/ui/components";
 import {
   useDisclosure,
   useLanguageContent,
 } from "@shared/@common/models/hooks";
 import { AuthButtonItemType } from "@shared/auth/types";
-import { Modal } from "@shared/@common/ui/components";
 
 const AuthPage = () => {
   // 언어 설정
   const { title, heading1, signinList, heading2, loginList } =
     useLanguageContent(["pages", "AuthPage"]);
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen, onOpen, onClose, curPage, setcurPage } = useDisclosure();
+
+  const pageList: ReactNode[] = [
+    <Modal.Content>
+      <Modal.Header>헤던</Modal.Header>
+      <Modal.Body>바디</Modal.Body>
+      <Modal.Footer>푸터</Modal.Footer>
+    </Modal.Content>,
+    <Modal.Content>
+      <Modal.Header>헤던2</Modal.Header>
+      <Modal.Body>바디2</Modal.Body>
+      <Modal.Footer>푸터2</Modal.Footer>
+    </Modal.Content>,
+  ];
 
   return (
     <div className={styles[`auth-page`]}>
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal
+        isOpen={isOpen}
+        onClose={onClose}
+        lengthOfList={pageList.length}
+        curPage={curPage}
+        setCurPage={setcurPage}
+      >
         <Modal.Overlay />
         <Modal.Container>
+          <Modal.Indicator />
           <Modal.CloseButton />
-          <Modal.Content>
-            <Modal.Header>헤던</Modal.Header>
-            <Modal.Body>바디</Modal.Body>
-            <Modal.Footer>푸터</Modal.Footer>
-          </Modal.Content>
+          {pageList[curPage]}
         </Modal.Container>
       </Modal>
       <header className={styles.header}>
