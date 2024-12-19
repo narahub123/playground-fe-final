@@ -1,5 +1,5 @@
 type BgThemeType = "light" | "dark" | "darkest";
-type colorThemeType =
+type ColorThemeType =
   | "cornflowerblue"
   | "red"
   | "green"
@@ -7,4 +7,4 @@ type colorThemeType =
   | "orange"
   | "yellow";
 
-export type { BgThemeType, colorThemeType };
+export type { BgThemeType, ColorThemeType };
