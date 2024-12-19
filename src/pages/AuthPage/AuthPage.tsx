@@ -1,39 +1,32 @@
-import Text from "@shared/@common/ui/components/Text/Text";
 import styles from "./AuthPage.module.css";
+import Text from "@shared/@common/ui/components/Text/Text";
 import { AuthButton } from "@shared/auth/ui/components";
-import { google, kakao, naver } from "@shared/@common/assets";
+import { useLanguageContent } from "@shared/@common/models/hooks";
+import { AuthButtonItemType } from "@shared/auth/types";
 
 const AuthPage = () => {
-  const signinList = [
-    { text: "구글로 회원 가입", img: google },
-    { text: "네이버로 회원 가입", img: naver },
-    { text: "카카오로 회원 가입", img: kakao },
-    { text: "이메일로 회원 가입" },
-  ];
-  const loginList = [
-    { text: "구글로 로그인", img: google },
-    { text: "네이버로 로그인", img: naver },
-    { text: "카카오로 로그인", img: kakao },
-    { text: "이메일로 로그인" },
-  ];
+  // 언어 설정
+  const { title, heading1, signinList, heading2, loginList } =
+    useLanguageContent(["pages", "AuthPage"]);
+
   return (
     <div className={styles[`auth-page`]}>
       <header className={styles.header}>
-        <Text text="안녕하세요. 여기는 PlayGround 입니다." />
+        <Text text={title} />
       </header>
       <main className={styles.main}>
         <div className={styles.section}>
-          <Text text="처음이신가요?" type="heading3" />
+          <Text text={heading1} type="heading3" />
           <ul className={styles.list}>
-            {signinList.map((item, idx) => (
+            {(signinList as AuthButtonItemType[]).map((item, idx) => (
               <AuthButton key={idx} item={item} />
             ))}
           </ul>
         </div>
         <div className={styles.section}>
-          <Text text="이미 가입하셨나요?" type="heading3" />
+          <Text text={heading2} type="heading3" />
           <ul className={styles.list}>
-            {loginList.map((item, idx) => (
+            {(loginList as AuthButtonItemType[]).map((item, idx) => (
               <AuthButton key={idx} item={item} />
             ))}
           </ul>
