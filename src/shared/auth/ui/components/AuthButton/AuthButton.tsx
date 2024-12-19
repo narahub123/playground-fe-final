@@ -33,9 +33,9 @@ const AuthButton = ({ item, handleClick, subClassName }: AuthButtonProps) => {
   return (
     <Comp className={styles[`auth-button`]} {...(compProps as any)}>
       <div
-        className={`${styles[`auth-button-container`]} ${colorTheme || ""} ${
-          subClassName || ""
-        }`}
+        className={`${styles[`auth-button-container`]} ${
+          colorTheme ? styles[`auth-button-color-theme`] : ""
+        } ${subClassName || ""}`}
       >
         {img && (
           <img
@@ -44,7 +44,10 @@ const AuthButton = ({ item, handleClick, subClassName }: AuthButtonProps) => {
             className={styles[`auth-button-img`]}
           />
         )}
-        <Text text={text} />
+        <Text
+          text={text}
+          style={`${colorTheme ? styles[`auth-button-color-theme`] : ""}`}
+        />
       </div>
     </Comp>
   );

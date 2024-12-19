@@ -17,3 +17,9 @@
 .auth-button-img {
   width: 20px;
 }
+
+.auth-button-color-theme {
+  background-color: var(--colorTheme-primary-color);
+  color: white;
+  font-weight: bold;
+}
