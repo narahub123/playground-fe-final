@@ -1,24 +1,24 @@
 :root,
-html[data-colorTheme="cornflowerblue"] {
+html[data-color-theme="cornflowerblue"] {
   --colorTheme-primary-color: cornflowerblue;
 }
 
-html[data-colorTheme="red"] {
+html[data-color-theme="red"] {
   --colorTheme-primary-color: red;
 }
 
-html[data-colorTheme="green"] {
+html[data-color-theme="green"] {
   --colorTheme-primary-color: green;
 }
 
-html[data-colorTheme="purple"] {
+html[data-color-theme="purple"] {
   --colorTheme-primary-color: purple;
 }
 
-html[data-colorTheme="orange"] {
+html[data-color-theme="orange"] {
   --colorTheme-primary-color: orange;
 }
 
-html[data-colorTheme="yellow"] {
+html[data-color-theme="yellow"] {
   --colorTheme-primary-color: yellow;
 }

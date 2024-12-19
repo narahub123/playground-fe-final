@@ -42,7 +42,7 @@ const TextHeader = () => {
         <option value="red">빨강</option>
         <option value="green">초록</option>
         <option value="purple">보라</option>
-        <option value="oranage">주홍</option>
+        <option value="orange">주홍</option>
         <option value="yellow">노랑</option>
       </select>
       <select onChange={(e) => handleChageLanguage(e)}>
