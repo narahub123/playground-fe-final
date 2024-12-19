@@ -1,0 +1,22 @@
+.icon {
+  padding: 5px;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+.btn:focus-visible {
+  outline: var(--bgTheme-outline-primary);
+  border-radius: 50%;
+  background-color: #eee;
+}
+
+.btn:hover {
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+.comp {
+  display: flex;
+}
