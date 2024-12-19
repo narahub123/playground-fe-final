@@ -1,15 +1,15 @@
 :root,
-html[data-bgTheme="light"] {
+html[data-bg-theme="light"] {
   --bgTheme-color-primary: black;
   --bgTheme-bgColor-primary: white;
 }
 
-html[data-bgTheme="dark"] {
+html[data-bg-theme="dark"] {
   --bgTheme-color-primary: white;
   --bgTheme-bgColor-primary: #202b38;
 }
 
-html[data-bgTheme="darkest"] {
+html[data-bg-theme="darkest"] {
   --bgTheme-color-primary: white;
   --bgTheme-bgColor-primary: black;
 }
