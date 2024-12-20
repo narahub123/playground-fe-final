@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import styles from "./Input.module.css";
 import { joinClassNames } from "@shared/@common/utils";
 import { Text, Icon } from "@shared/@common/ui/components";
@@ -29,9 +29,7 @@ const Input = ({
   const { regExp, defaultErrorMsg, errorList } = error;
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  const [isValid, setIsValid] = useState(
-    new RegExp(regExp).test(value as string)
-  );
+  const [isValid, setIsValid] = useState(true); // 처음에는 true 불러오는 경우에도 true만 저장되기 때문에 true
   const [isFocused, setIsFocused] = useState(false);
   const [isShown, setIsShown] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -46,6 +44,16 @@ const Input = ({
       input.focus();
     }
   }, [document.activeElement]);
+
+  // 유효성 검사 정규 표현식
+  const defaultErrorRegex = useMemo(
+    () => new RegExp(error.regExp),
+    [error.regExp]
+  );
+  const errorRegexList = useMemo(
+    () => (error.errorList || []).map((err) => new RegExp(err.regExp)),
+    [error.errorList]
+  );
 
   const validCond = isValid || (value === "" && !errorMessage); // 유효성 조건
   const focusCond = isFocused || value !== ""; // 포커스 조건
@@ -62,33 +70,31 @@ const Input = ({
 
     dispatch(setValue(typing));
 
+    if (typing === "" && error.empty) {
+      setErrorMessage(error.empty);
+      setIsValid(false);
+      return;
+    }
+
     // 유효성 검사
-    if (typeof typing === "string" && error) {
-      if (typing === "" && error.empty) {
-        setErrorMessage(error.empty);
+    for (const regex of errorRegexList) {
+      if (!error.errorList) return;
+      if (!regex.test(typing)) {
+        setErrorMessage(
+          error.errorList.find((err) => err.regExp === regex.source)
+            ?.errorMsg || ""
+        );
         setIsValid(false);
         return;
       }
-      if (errorList && typing !== "") {
-        for (let i = 0; i < errorList.length; i++) {
-          const error = errorList[i];
+    }
 
-          const isSubValid = new RegExp(error.regExp).test(typing);
-
-          setIsValid(isSubValid);
-          if (!isSubValid) {
-            setErrorMessage(error.errorMsg);
-            return;
-          }
-        }
-      }
-      const isdefaultValid = new RegExp(regExp).test(typing);
-      setIsValid(isdefaultValid);
-      if (!isdefaultValid) {
-        setErrorMessage(defaultErrorMsg);
-      } else {
-        setErrorMessage("");
-      }
+    if (!defaultErrorRegex) {
+      setErrorMessage(defaultErrorMsg);
+      setIsValid(false);
+    } else {
+      setErrorMessage("");
+      setIsValid(true);
     }
   };
 
