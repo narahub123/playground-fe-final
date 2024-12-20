@@ -56,7 +56,7 @@ const AuthPage = () => {
           <Text text={heading1} type="heading3" />
           <ul className={styles.list}>
             {(signinList as AuthButtonItemType[]).map((item, idx) => (
-              <AuthButton key={idx} item={item} />
+              <AuthButton key={idx} item={item} handleClick={onOpen} />
             ))}
           </ul>
         </div>
