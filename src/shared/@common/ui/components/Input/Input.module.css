@@ -1,0 +1,43 @@
+.input {
+}
+
+.input__wrapper {
+  border: var(--bgTheme-border-primary);
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.input__wrapper--valid {
+}
+
+.input__wrapper--invalid {
+}
+
+.input__header {
+}
+
+.input__label {
+}
+
+.input__counter {
+}
+
+.input__body {
+  position: relative;
+}
+
+.input__icon--left {
+}
+
+.input__field {
+  width: 100%;
+}
+
+.input__icon--right {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.input__error {
+}

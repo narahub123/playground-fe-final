@@ -1,6 +1,6 @@
 import styles from "./AuthPage.module.css";
 import { ReactNode } from "react";
-import { Modal, Text } from "@shared/@common/ui/components";
+import { Input, Modal, Text } from "@shared/@common/ui/components";
 import { AuthButton } from "@shared/auth/ui/components";
 import {
   useDisclosure,
@@ -18,7 +18,9 @@ const AuthPage = () => {
   const pageList: ReactNode[] = [
     <Modal.Content>
       <Modal.Header>헤던</Modal.Header>
-      <Modal.Body>바디</Modal.Body>
+      <Modal.Body>
+        <Input />
+      </Modal.Body>
       <Modal.Footer>푸터</Modal.Footer>
     </Modal.Content>,
     <Modal.Content>
@@ -36,6 +38,8 @@ const AuthPage = () => {
         lengthOfList={pageList.length}
         curPage={curPage}
         setCurPage={setcurPage}
+        width={70}
+        unit="%"
       >
         <Modal.Overlay />
         <Modal.Container>
