@@ -12,6 +12,7 @@ interface InputProps {
   setValue: (value: any) => { type: string; payload: any };
   maxLength?: number;
   error?: InputErrorType;
+  mode?: "default" | "dropdown";
 }
 
 const Input = ({
@@ -24,6 +25,7 @@ const Input = ({
     regExp: "",
     defaultErrorMsg: "",
   },
+  mode,
 }: InputProps) => {
   const dispatch = useDispatch();
   const { regExp, defaultErrorMsg, errorList } = error;
@@ -175,6 +177,17 @@ const Input = ({
             </div>
           </div>
         </div>
+        {mode === "dropdown" && (
+          <Icon
+            iconName="up"
+            subClassName={joinClassNames([
+              styles[`input__dropdown`],
+              isFocused
+                ? styles[`input__dropdown--open`]
+                : styles[`input__dropdown--close`],
+            ])}
+          />
+        )}
       </div>
       {error && (
         <div className={styles[`input__error`]}>
