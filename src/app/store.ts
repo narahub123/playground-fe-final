@@ -1,12 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
-import { loginSlice as login } from "@features/auth-setting/models/slices";
+import {
+  loginSlice as login,
+  signinSlice as signin,
+} from "@features/auth-setting/models/slices";
 import { displaySlice as display } from "@shared/@common/models/slices";
 
 const store = configureStore({
   reducer: {
     login, // 로그인 상태
     display, // 화면 표시 설정
+    signin, // 회원 가입
   },
 
   // serializableCheck 옵션을 false로 설정하여
