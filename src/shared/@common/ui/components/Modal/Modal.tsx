@@ -12,6 +12,8 @@ const ModalMain = ({
   lengthOfList,
   curPage,
   setCurPage,
+  width,
+  unit = "px",
 }: {
   children: ReactNode; // 자식 요소
   isOpen: boolean; // 모달 상태
@@ -19,12 +21,16 @@ const ModalMain = ({
   lengthOfList?: number; // 여러 페이지가 있는 경우
   curPage?: number; // 현재 페이지
   setCurPage?: React.Dispatch<React.SetStateAction<number>>; // 현재 페이지 지정
+  width?: number;
+  unit?: "px" | "%" | "rem";
 }) => {
   if (!isOpen) return null;
 
   return (
     <div className={styles.modal}>
-      <ModalProvider value={{ onClose, lengthOfList, curPage, setCurPage }}>
+      <ModalProvider
+        value={{ onClose, lengthOfList, curPage, setCurPage, width, unit }}
+      >
         {children}
       </ModalProvider>
     </div>
@@ -51,7 +57,12 @@ const ModalOverlay = () => {
 
 // 흰 바탕
 const ModalContainer = ({ children }: { children: ReactNode }) => {
-  return <div className={styles.container}>{children}</div>;
+  const { width, unit } = useContext(ModalContext);
+  return (
+    <div className={styles.container} style={{ width: `${width}${unit}` }}>
+      {children}
+    </div>
+  );
 };
 
 // 닫기 버튼

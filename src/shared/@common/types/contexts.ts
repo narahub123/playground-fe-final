@@ -3,6 +3,10 @@ interface ModalContextValueType {
   lengthOfList?: number;
   curPage?: number;
   setCurPage?: React.Dispatch<React.SetStateAction<number>>;
+  width?: number;
+  unit?: FontUnitType;
 }
 
-export type { ModalContextValueType };
+type FontUnitType = "px" | "%" | "rem";
+
+export type { ModalContextValueType, FontUnitType };
