@@ -21,3 +21,7 @@
 .normal {
   font-size: inherit;
 }
+
+.error {
+  color: var(--color-warning);
+}

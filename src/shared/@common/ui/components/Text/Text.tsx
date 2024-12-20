@@ -1,12 +1,19 @@
+import { joinClassNames } from "@shared/@common/utils";
 import styles from "./Text.module.css";
 
 interface TextProps {
   text: string | number; // 내용
   type?: "heading1" | "heading2" | "heading3" | "expl" | "normal"; // 타입
-  style?: string; // 스타일 추가
+  status?: "default" | "error"; // 상태
+  subClassName?: string; // 스타일 추가
 }
 
-const Text = ({ text, type = "normal", style }: TextProps) => {
+const Text = ({
+  text,
+  type = "normal",
+  status = "default",
+  subClassName,
+}: TextProps) => {
   //빈 텍스트 처리
   if (!(text as string).trim()) return null;
 
@@ -23,7 +30,15 @@ const Text = ({ text, type = "normal", style }: TextProps) => {
   // 스타일 결정
   const className = styles[type] || styles.normal;
 
-  return <Comp className={`${className} ${style || ""}`}>{text}</Comp>;
+  const statusClassName = status === "error" ? styles.error : undefined;
+
+  return (
+    <Comp
+      className={joinClassNames([className, statusClassName, subClassName])}
+    >
+      {text}
+    </Comp>
+  );
 };
 
 export default Text;

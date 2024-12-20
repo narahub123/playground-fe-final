@@ -1,5 +1,6 @@
 :root {
   --transition-primary: all 0.3s ease-in-out;
+  --color-warning: red;
 }
 
 html {
