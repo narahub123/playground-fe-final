@@ -46,13 +46,10 @@ const Input = ({
   }, [document.activeElement]);
 
   // 유효성 검사 정규 표현식
-  const defaultErrorRegex = useMemo(
-    () => new RegExp(error.regExp),
-    [error.regExp]
-  );
+  const defaultErrorRegex = useMemo(() => new RegExp(regExp), [regExp]);
   const errorRegexList = useMemo(
-    () => (error.errorList || []).map((err) => new RegExp(err.regExp)),
-    [error.errorList]
+    () => (errorList || []).map((err) => new RegExp(err.regExp)),
+    [errorList]
   );
 
   const validCond = isValid || (value === "" && !errorMessage); // 유효성 조건
