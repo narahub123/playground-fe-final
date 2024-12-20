@@ -9,7 +9,13 @@ import {
 import { AuthButtonItemType } from "@shared/auth/types";
 import { useSelector } from "react-redux";
 import { getUsernameInSignin } from "@features/auth-setting/models/selectors";
-import { setUsernameInSignIn } from "@features/auth-setting/models/slices/signinSlice";
+import { setUsernameInSignIn } from "@features/auth-setting/models/slices/reducers";
+import { PASSWORD_MAX, PASSWORD_REGEX } from "@shared/@common/constants";
+import {
+  PASSWORD_REGEX_FORMAT,
+  PASSWORD_REGEX_LENGTH,
+} from "@shared/@common/constants/regExps";
+import { InputErrorType } from "@shared/@common/types";
 
 const AuthPage = () => {
   // 언어 설정
@@ -20,17 +26,35 @@ const AuthPage = () => {
 
   const { isOpen, onOpen, onClose, curPage, setcurPage } = useDisclosure();
 
+  const error: InputErrorType = {
+    regExp: PASSWORD_REGEX,
+    defaultErrorMsg:
+      "비밀번호는 영문 대문자, 소문자, 숫자, 특수문자가 각각 하나 이상씩 필요합니다.",
+    errorList: [
+      {
+        regExp: PASSWORD_REGEX_FORMAT,
+        errorMsg:
+          "비밀번호는 영문 대문자, 소문자, 숫자, 특수문자만 허용됩니다.",
+      },
+      {
+        regExp: PASSWORD_REGEX_LENGTH,
+        errorMsg: "비밀번호는 8자 이상 30자 이내여야 합니다.",
+      },
+    ],
+    empty: "비밀번호를 입력해주세요.",
+  };
+
   const pageList: ReactNode[] = [
     <Modal.Content>
       <Modal.Header>헤던</Modal.Header>
       <Modal.Body>
         <Input
-          field={"password"}
-          fieldName={"라벨"}
-          maxLength={10}
+          field={"userid"}
+          fieldName={"유저 아이디"}
+          maxLength={PASSWORD_MAX}
           value={value}
           setValue={setUsernameInSignIn}
-          regExp={/^.{1,10}$/}
+          error={error}
         />
       </Modal.Body>
       <Modal.Footer>푸터</Modal.Footer>

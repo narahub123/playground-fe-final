@@ -3,6 +3,7 @@ import styles from "./Input.module.css";
 import { joinClassNames } from "@shared/@common/utils";
 import { Text, Icon } from "@shared/@common/ui/components";
 import { useDispatch } from "react-redux";
+import { InputErrorType } from "@shared/@common/types";
 
 interface InputProps {
   field: string;
@@ -10,7 +11,7 @@ interface InputProps {
   value: string | number;
   setValue: (value: any) => { type: string; payload: any };
   maxLength?: number;
-  regExp?: RegExp;
+  error?: InputErrorType;
 }
 
 const Input = ({
@@ -19,12 +20,18 @@ const Input = ({
   value = "",
   setValue,
   maxLength,
-  regExp,
+  error = {
+    regExp: "",
+    defaultErrorMsg: "",
+  },
 }: InputProps) => {
   const dispatch = useDispatch();
+  const { regExp, defaultErrorMsg, errorList } = error;
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  const [isValid, setIsValid] = useState(regExp?.test(value as string));
+  const [isValid, setIsValid] = useState(
+    new RegExp(regExp).test(value as string)
+  );
   const [isFocused, setIsFocused] = useState(false);
   const [isShown, setIsShown] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -40,24 +47,48 @@ const Input = ({
     }
   }, [document.activeElement]);
 
-  const validCond = isValid || value === ""; // 유효성 조건
+  const validCond = isValid || (value === "" && !errorMessage); // 유효성 조건
   const focusCond = isFocused || value !== ""; // 포커스 조건
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!setValue) return;
-    const value = e.target.value;
+    const typing = e.target.value;
 
     // 최대 길이 값이 있는 경우 값이 최대 길이 보다 긴 경우 중지
-    if (maxLength && value.length > maxLength) {
+    if (maxLength && typing.length > maxLength) {
       setErrorMessage(`${fieldName}은 최대 ${maxLength} 자까지 가능합니다.`);
       return;
     }
 
-    dispatch(setValue(value));
+    dispatch(setValue(typing));
 
     // 유효성 검사
-    if (typeof value === "string" && regExp) {
-      setIsValid(regExp.test(value));
+    if (typeof typing === "string" && error) {
+      if (typing === "" && error.empty) {
+        setErrorMessage(error.empty);
+        setIsValid(false);
+        return;
+      }
+      if (errorList && typing !== "") {
+        for (let i = 0; i < errorList.length; i++) {
+          const error = errorList[i];
+
+          const isSubValid = new RegExp(error.regExp).test(typing);
+
+          setIsValid(isSubValid);
+          if (!isSubValid) {
+            setErrorMessage(error.errorMsg);
+            return;
+          }
+        }
+      }
+      const isdefaultValid = new RegExp(regExp).test(typing);
+      setIsValid(isdefaultValid);
+      if (!isdefaultValid) {
+        setErrorMessage(defaultErrorMsg);
+      } else {
+        setErrorMessage("");
+      }
     }
   };
 
@@ -66,11 +97,9 @@ const Input = ({
       <div
         className={joinClassNames([
           styles[`input__container`],
-          isFocused
-            ? validCond
-              ? styles[`input__container--valid`]
-              : styles[`input__container--invalid`]
-            : undefined,
+          validCond
+            ? styles[`input__container--valid`]
+            : styles[`input__container--invalid`],
         ])}
         tabIndex={isFocused ? -1 : 0} // containerRef가 포커스이면 포커스 사라짐
         ref={containerRef}
@@ -87,7 +116,10 @@ const Input = ({
                   : styles[`input__label--unfocused`],
               ])}
             >
-              <Text text={fieldName} />
+              <Text
+                text={fieldName}
+                status={!focusCond || validCond ? "default" : "error"}
+              />
             </div>
             {maxLength && (
               <div
@@ -141,9 +173,11 @@ const Input = ({
           </div>
         </div>
       </div>
-      <div className={styles[`input__error`]}>
-        <Text text={errorMessage} type="expl" />
-      </div>
+      {error && (
+        <div className={styles[`input__error`]}>
+          <Text text={errorMessage} type="expl" status="error" />
+        </div>
+      )}
     </div>
   );
 };

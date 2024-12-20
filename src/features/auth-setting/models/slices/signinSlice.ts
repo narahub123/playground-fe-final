@@ -14,7 +14,7 @@ interface SigninState {
 }
 
 const initialState: SigninState = {
-  username: "dfjkjdf",
+  username: "",
   phone: "",
   email: "",
   birth: {
