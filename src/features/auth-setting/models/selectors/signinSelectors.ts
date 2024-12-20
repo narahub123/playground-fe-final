@@ -1,23 +1,24 @@
 import { RootState } from "@app/store";
 
-const getUsername = (state: RootState) => state.signin.username;
-const getPhone = (state: RootState) => state.signin.phone;
-const getEmail = (state: RootState) => state.signin.email;
-const getBirth = (state: RootState) => state.signin.birth;
-const getPassword = (state: RootState) => state.signin.password;
-const getUserId = (state: RootState) => state.signin.userId;
-const getProfileImage = (state: RootState) => state.signin.profileImage;
-const getNotifications = (state: RootState) => state.signin.notifications;
-const getLanguage = (state: RootState) => state.signin.language;
+const getUsernameInSignin = (state: RootState) => state.signin.username;
+const getPhoneInSignin = (state: RootState) => state.signin.phone;
+const getEmailInSignin = (state: RootState) => state.signin.email;
+const getBirthInSignin = (state: RootState) => state.signin.birth;
+const getPasswordInSignin = (state: RootState) => state.signin.password;
+const getUserIdInSignin = (state: RootState) => state.signin.userId;
+const getProfileImageInSignin = (state: RootState) => state.signin.profileImage;
+const getNotificationsInSignin = (state: RootState) =>
+  state.signin.notifications;
+const getLanguageInSignin = (state: RootState) => state.signin.language;
 
 export {
-  getUsername,
-  getPhone,
-  getEmail,
-  getBirth,
-  getPassword,
-  getUserId,
-  getProfileImage,
-  getNotifications,
-  getLanguage,
+  getUsernameInSignin,
+  getPhoneInSignin,
+  getEmailInSignin,
+  getBirthInSignin,
+  getPasswordInSignin,
+  getUserIdInSignin,
+  getProfileImageInSignin,
+  getNotificationsInSignin,
+  getLanguageInSignin,
 };

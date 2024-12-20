@@ -7,11 +7,16 @@ import {
   useLanguageContent,
 } from "@shared/@common/models/hooks";
 import { AuthButtonItemType } from "@shared/auth/types";
+import { useSelector } from "react-redux";
+import { getUsernameInSignin } from "@features/auth-setting/models/selectors";
+import { setUsernameInSignIn } from "@features/auth-setting/models/slices/signinSlice";
 
 const AuthPage = () => {
   // 언어 설정
   const { title, heading1, signinList, heading2, loginList } =
     useLanguageContent(["pages", "AuthPage"]);
+
+  const value = useSelector(getUsernameInSignin);
 
   const { isOpen, onOpen, onClose, curPage, setcurPage } = useDisclosure();
 
@@ -19,7 +24,14 @@ const AuthPage = () => {
     <Modal.Content>
       <Modal.Header>헤던</Modal.Header>
       <Modal.Body>
-        <Input />
+        <Input
+          field={"password"}
+          fieldName={"라벨"}
+          maxLength={10}
+          value={value}
+          setValue={setUsernameInSignIn}
+          regExp={/^.{1,10}$/}
+        />
       </Modal.Body>
       <Modal.Footer>푸터</Modal.Footer>
     </Modal.Content>,

@@ -14,7 +14,7 @@ interface SigninState {
 }
 
 const initialState: SigninState = {
-  username: "",
+  username: "dfjkjdf",
   phone: "",
   email: "",
   birth: {
@@ -33,31 +33,31 @@ const signinSlice = createSlice({
   name: "signin",
   initialState,
   reducers: {
-    setUsername: (state, action: PayloadAction<string>) => {
+    setUsernameInSignIn: (state, action: PayloadAction<string>) => {
       state.username = action.payload;
     },
-    setPhone: (state, action: PayloadAction<string>) => {
+    setPhoneInSignIn: (state, action: PayloadAction<string>) => {
       state.phone = action.payload;
     },
-    setEmail: (state, action: PayloadAction<string>) => {
+    setEmailInSignIn: (state, action: PayloadAction<string>) => {
       state.email = action.payload;
     },
-    setBirth: (state, action: PayloadAction<BirthType>) => {
+    setBirthInSignIn: (state, action: PayloadAction<BirthType>) => {
       state.birth = action.payload;
     },
-    setPassword: (state, action: PayloadAction<string>) => {
+    setPasswordInSignIn: (state, action: PayloadAction<string>) => {
       state.password = action.payload;
     },
-    setUserId: (state, action: PayloadAction<string>) => {
+    setUserIdInSignIn: (state, action: PayloadAction<string>) => {
       state.userId = action.payload;
     },
-    setProfileImage: (state, action: PayloadAction<string>) => {
+    setProfileImageInSignIn: (state, action: PayloadAction<string>) => {
       state.profileImage = action.payload;
     },
-    setNotifications: (state, action: PayloadAction<string>) => {
+    setNotificationsInSignIn: (state, action: PayloadAction<string>) => {
       state.notifications = action.payload;
     },
-    setLanguage: (state, action: PayloadAction<string>) => {
+    setLanguageInSignIn: (state, action: PayloadAction<string>) => {
       state.language = action.payload;
     },
   },
@@ -65,13 +65,13 @@ const signinSlice = createSlice({
 
 export default signinSlice.reducer;
 export const {
-  setUsername,
-  setPhone,
-  setEmail,
-  setBirth,
-  setPassword,
-  setUserId,
-  setProfileImage,
-  setNotifications,
-  setLanguage,
+  setUsernameInSignIn,
+  setPhoneInSignIn,
+  setEmailInSignIn,
+  setBirthInSignIn,
+  setPasswordInSignIn,
+  setUserIdInSignIn,
+  setProfileImageInSignIn,
+  setNotificationsInSignIn,
+  setLanguageInSignIn,
 } = signinSlice.actions;

@@ -1,14 +1,14 @@
 import { getLogin } from "./loginSelectors";
 import {
-  getUsername,
-  getPhone,
-  getEmail,
-  getBirth,
-  getPassword,
-  getUserId,
-  getProfileImage,
-  getNotifications,
-  getLanguage,
+  getUsernameInSignin,
+  getPhoneInSignin,
+  getEmailInSignin,
+  getBirthInSignin,
+  getPasswordInSignin,
+  getUserIdInSignin,
+  getProfileImageInSignin,
+  getNotificationsInSignin,
+  getLanguageInSignin,
 } from "./signinSelectors";
 
 export {
@@ -16,13 +16,13 @@ export {
   getLogin,
 
   // signin
-  getUsername,
-  getPhone,
-  getEmail,
-  getBirth,
-  getPassword,
-  getUserId,
-  getProfileImage,
-  getNotifications,
-  getLanguage,
+  getUsernameInSignin,
+  getPhoneInSignin,
+  getEmailInSignin,
+  getBirthInSignin,
+  getPasswordInSignin,
+  getUserIdInSignin,
+  getProfileImageInSignin,
+  getNotificationsInSignin,
+  getLanguageInSignin,
 };

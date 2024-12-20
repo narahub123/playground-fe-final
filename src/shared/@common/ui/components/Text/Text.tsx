@@ -1,14 +1,14 @@
 import styles from "./Text.module.css";
 
 interface TextProps {
-  text: string; // 내용
+  text: string | number; // 내용
   type?: "heading1" | "heading2" | "heading3" | "expl" | "normal"; // 타입
   style?: string; // 스타일 추가
 }
 
 const Text = ({ text, type = "normal", style }: TextProps) => {
   //빈 텍스트 처리
-  if (!text.trim()) return null;
+  if (!(text as string).trim()) return null;
 
   // 태그 결정
   const Comp =
