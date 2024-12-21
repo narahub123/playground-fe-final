@@ -58,7 +58,7 @@ const Input = ({
     [errorList]
   );
 
-  const {} = useFocusTrap({ containerRef, finalFocusRef: inputRef });
+  useFocusTrap({ containerRef, finalFocusRef: inputRef });
 
   const validCond = isValid || (value === "" && !errorMessage); // 유효성 조건
   const focusCond = isFocused || value !== ""; // 포커스 조건

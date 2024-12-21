@@ -90,7 +90,7 @@ const useFocusTrap = ({ containerRef, finalFocusRef }: useFocusTrapProps) => {
       container.removeEventListener("keydown", handleKeyDown);
     };
   }, [containerRef]);
-  return {};
+  return;
 };
 
 export default useFocusTrap;

@@ -23,7 +23,7 @@ const Dropdown = ({
   const dispatch = useAppDispatch();
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const {} = useFocusTrap({ containerRef });
+  useFocusTrap({ containerRef });
 
   // 선택 함수
   const handleSelection = (value: string | number) => {
