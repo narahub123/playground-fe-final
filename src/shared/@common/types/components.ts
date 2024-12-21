@@ -5,4 +5,9 @@ interface InputErrorType {
   empty?: string;
 }
 
-export type { InputErrorType };
+interface DropdownItemType {
+  text: string;
+  value: string | number;
+}
+
+export type { InputErrorType, DropdownItemType };

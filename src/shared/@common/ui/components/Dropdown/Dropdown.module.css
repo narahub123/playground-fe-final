@@ -1,0 +1,32 @@
+.dropdown {
+  position: absolute;
+  margin-top: 5px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: var(--bgTheme-bgColor-primary);
+  overflow: hidden;
+}
+
+.dropdown--open {
+  display: block;
+}
+
+.dropdown--close {
+  display: none;
+}
+
+.dropdown__item {
+  cursor: pointer;
+  padding: 8px;
+}
+
+.dropdown__item:hover {
+  background-color: var(--colorTheme-color-primary);
+  color: #fff;
+}
+
+.dropdown__item--selected {
+  background-color: var(--colorTheme-color-primary);
+  color: #fff;
+}

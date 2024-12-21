@@ -2,7 +2,7 @@ import { BgThemeType, ColorThemeType, FontSizeType } from "./slices";
 
 import { ModalContextValueType, FontUnitType } from "./contexts";
 
-import { InputErrorType } from "./components";
+import { InputErrorType, DropdownItemType } from "./components";
 
 export type {
   // slices
@@ -14,4 +14,5 @@ export type {
   FontUnitType,
   // components
   InputErrorType, // Input 에러
+  DropdownItemType, // dropdown item
 };
