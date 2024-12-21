@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import styles from "./Input.module.css";
 import { joinClassNames } from "@shared/@common/utils";
-import { Text, Icon } from "@shared/@common/ui/components";
+import { Text, Icon, Dropdown } from "@shared/@common/ui/components";
 import { useDispatch } from "react-redux";
-import { InputErrorType } from "@shared/@common/types";
+import { DropdownItemType, InputErrorType } from "@shared/@common/types";
 
 interface InputProps {
   field: string;
@@ -13,6 +13,7 @@ interface InputProps {
   maxLength?: number;
   error?: InputErrorType;
   mode?: "default" | "dropdown";
+  list?: DropdownItemType[];
 }
 
 const Input = ({
@@ -26,6 +27,7 @@ const Input = ({
     defaultErrorMsg: "",
   },
   mode,
+  list,
 }: InputProps) => {
   const dispatch = useDispatch();
   const { regExp, defaultErrorMsg, errorList } = error;
@@ -35,6 +37,7 @@ const Input = ({
   const [isFocused, setIsFocused] = useState(false);
   const [isShown, setIsShown] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
 
   // containerRef가 포커스가 되면 inputRef로 포커스 이동
   useEffect(() => {
@@ -98,7 +101,19 @@ const Input = ({
   };
 
   return (
-    <div className={joinClassNames([styles[`input`]])}>
+    <div
+      className={joinClassNames([styles[`input`]])}
+      tabIndex={isFocused ? -1 : 0} // containerRef가 포커스이면 포커스 사라짐
+      ref={containerRef}
+      onFocus={() => {
+        setIsFocused(true);
+        if (mode === "dropdown") setIsOpen(true);
+      }}
+      onBlur={() => {
+        setIsFocused(false);
+        if (mode === "dropdown") setIsOpen(false);
+      }}
+    >
       <div
         className={joinClassNames([
           styles[`input__container`],
@@ -106,10 +121,6 @@ const Input = ({
             ? styles[`input__container--valid`]
             : styles[`input__container--invalid`],
         ])}
-        tabIndex={isFocused ? -1 : 0} // containerRef가 포커스이면 포커스 사라짐
-        ref={containerRef}
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
       >
         <div className={joinClassNames([styles[`input__wrapper`]])}>
           <div className={joinClassNames([styles[`input__header`]])}>
@@ -152,7 +163,11 @@ const Input = ({
                 type={field === "password" && !isShown ? "password" : "text"}
                 className={joinClassNames([styles[`input__field`]])}
                 ref={inputRef}
-                value={value}
+                value={
+                  mode === "dropdown"
+                    ? list?.find((item) => item.value === value)?.text
+                    : value
+                }
                 onChange={(e) => onChange(e)}
               />
               {field === "password" ? (
@@ -193,6 +208,15 @@ const Input = ({
         <div className={styles[`input__error`]}>
           <Text text={errorMessage} type="expl" status="error" />
         </div>
+      )}
+      {list && (
+        <Dropdown
+          list={list}
+          selection={value as string}
+          setSelection={setValue}
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+        />
       )}
     </div>
   );

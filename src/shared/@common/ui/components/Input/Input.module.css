@@ -1,5 +1,6 @@
 .input {
   width: 100%;
+  position: relative;
 }
 
 .input__container {
@@ -108,7 +109,7 @@
   transition: var(--transition-primary);
 }
 
-.input__ .input__error {
+.input__error {
   margin-left: 8px;
   margin-top: 4px;
 }
