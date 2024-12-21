@@ -11,6 +11,7 @@ interface DropdownProps {
   setSelection: (value: any) => { type: string; payload: any };
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  isFocusTrapOn?: boolean; // 포커스 트랩 사용 여부
 }
 
 const Dropdown = ({
@@ -19,11 +20,12 @@ const Dropdown = ({
   setSelection,
   isOpen,
   setIsOpen,
+  isFocusTrapOn = true,
 }: DropdownProps) => {
   const dispatch = useAppDispatch();
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useFocusTrap({ containerRef });
+  useFocusTrap({ containerRef, isOn: isFocusTrapOn });
 
   // 선택 함수
   const handleSelection = (value: string | number) => {
@@ -62,7 +64,7 @@ const Dropdown = ({
                   handleClick(item.value);
                 }
               }}
-              tabIndex={0}
+              tabIndex={isFocusTrapOn ? 0 : -1}
             >
               {item.text}
             </li>
