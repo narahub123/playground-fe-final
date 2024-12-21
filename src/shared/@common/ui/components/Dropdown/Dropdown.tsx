@@ -2,6 +2,8 @@ import styles from "./Dropdown.module.css";
 import { joinClassNames } from "@shared/@common/utils";
 import { useAppDispatch } from "@app/store";
 import { DropdownItemType } from "@shared/@common/types";
+import { useFocusTrap } from "@shared/@common/models/hooks";
+import { useRef } from "react";
 
 interface DropdownProps {
   list: DropdownItemType[];
@@ -19,6 +21,9 @@ const Dropdown = ({
   setIsOpen,
 }: DropdownProps) => {
   const dispatch = useAppDispatch();
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const {} = useFocusTrap({ containerRef });
 
   // 선택 함수
   const handleSelection = (value: string | number) => {
@@ -37,6 +42,7 @@ const Dropdown = ({
         styles[`dropdown`],
         isOpen ? styles[`dropdown--open`] : styles[`dropdown--close`],
       ])}
+      ref={containerRef}
     >
       <ul className={joinClassNames([styles[`dropdown__list`]])}>
         {list.map((item, idx) => {
@@ -49,8 +55,14 @@ const Dropdown = ({
                 styles[`dropdown__item`],
                 selectionCond ? styles[`dropdown__item--selected`] : "",
               ])}
-              key={idx}
+              key={item.value || idx}
               onClick={() => handleClick(item.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  handleClick(item.value);
+                }
+              }}
+              tabIndex={0}
             >
               {item.text}
             </li>

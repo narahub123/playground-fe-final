@@ -26,6 +26,11 @@
   color: #fff;
 }
 
+.dropdown__item:focus {
+  background-color: var(--colorTheme-color-primary);
+  color: #fff;
+}
+
 .dropdown__item--selected {
   background-color: var(--colorTheme-color-primary);
   color: #fff;
