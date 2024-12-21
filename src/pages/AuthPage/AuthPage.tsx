@@ -17,6 +17,11 @@ import {
 } from "@shared/@common/constants/regExps";
 import { InputErrorType } from "@shared/@common/types";
 
+const list = [
+  { text: "텍스트", value: "값" },
+  { text: "예2", value: "test" },
+];
+
 const AuthPage = () => {
   // 언어 설정
   const { title, heading1, signinList, heading2, loginList } =
@@ -54,7 +59,9 @@ const AuthPage = () => {
           maxLength={PASSWORD_MAX}
           value={value}
           setValue={setUsernameInSignIn}
-          error={error}
+          // error={error}
+          mode="dropdown"
+          list={list}
         />
       </Modal.Body>
       <Modal.Footer>푸터</Modal.Footer>

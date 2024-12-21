@@ -4,6 +4,7 @@ import { joinClassNames } from "@shared/@common/utils";
 import { Text, Icon, Dropdown } from "@shared/@common/ui/components";
 import { useDispatch } from "react-redux";
 import { DropdownItemType, InputErrorType } from "@shared/@common/types";
+import { useFocusTrap } from "@shared/@common/models/hooks";
 
 interface InputProps {
   field: string;
@@ -56,6 +57,8 @@ const Input = ({
     () => (errorList || []).map((err) => new RegExp(err.regExp)),
     [errorList]
   );
+
+  const {} = useFocusTrap({ containerRef, finalFocusRef: inputRef });
 
   const validCond = isValid || (value === "" && !errorMessage); // 유효성 조건
   const focusCond = isFocused || value !== ""; // 포커스 조건
