@@ -15,6 +15,7 @@ interface InputProps {
   error?: InputErrorType;
   mode?: "default" | "dropdown";
   list?: DropdownItemType[];
+  moveFocusToDropdown?: boolean; // focus가 드롭다운으로 이동 가능
 }
 
 const Input = ({
@@ -28,7 +29,8 @@ const Input = ({
     defaultErrorMsg: "",
   },
   mode,
-  list,
+  list = [],
+  moveFocusToDropdown = false,
 }: InputProps) => {
   const dispatch = useDispatch();
   const { regExp, defaultErrorMsg, errorList } = error;
@@ -39,6 +41,12 @@ const Input = ({
   const [isShown, setIsShown] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+
+  useFocusTrap({
+    containerRef: containerRef,
+    finalFocusRef: inputRef,
+    isOn: moveFocusToDropdown,
+  });
 
   // containerRef가 포커스가 되면 inputRef로 포커스 이동
   useEffect(() => {
@@ -57,8 +65,6 @@ const Input = ({
     () => (errorList || []).map((err) => new RegExp(err.regExp)),
     [errorList]
   );
-
-  useFocusTrap({ containerRef, finalFocusRef: inputRef });
 
   const validCond = isValid || (value === "" && !errorMessage); // 유효성 조건
   const focusCond = isFocused || value !== ""; // 포커스 조건
@@ -179,6 +185,36 @@ const Input = ({
                     : value
                 }
                 onChange={(e) => onChange(e)}
+                onKeyDown={
+                  !moveFocusToDropdown && mode === "dropdown"
+                    ? (e) => {
+                        const curIndex = list?.findIndex(
+                          (el) => el.value === value
+                        );
+                        console.log("현재 index", curIndex);
+
+                        if (e.key === "ArrowDown") {
+                          const nextIndex =
+                            curIndex === undefined
+                              ? 0
+                              : curIndex === list.length - 1
+                              ? 0
+                              : curIndex + 1;
+                          dispatch(setValue(list?.[nextIndex].value));
+                        } else if (e.key === "ArrowUp") {
+                          const prevIndex =
+                            curIndex === undefined
+                              ? 0
+                              : curIndex === 0
+                              ? list.length - 1
+                              : curIndex - 1;
+                          dispatch(setValue(list?.[prevIndex].value));
+                        } else if (e.key === "Enter") {
+                          setIsOpen(!isOpen);
+                        }
+                      }
+                    : undefined
+                }
               />
               {field === "password" ? (
                 isShown ? (
@@ -226,6 +262,7 @@ const Input = ({
           setSelection={setValue}
           isOpen={isOpen}
           setIsOpen={setIsOpen}
+          isFocusTrapOn={moveFocusToDropdown}
         />
       )}
     </div>
