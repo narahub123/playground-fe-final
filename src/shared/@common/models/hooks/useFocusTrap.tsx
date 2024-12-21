@@ -3,6 +3,7 @@ import { useEffect } from "react";
 interface useFocusTrapProps {
   containerRef: React.RefObject<HTMLElement>; // 감싸는 요소
   finalFocusRef?: React.RefObject<HTMLElement>; // 마지막에 클릭했던 요소
+  isOn?: boolean; // 포커스 트랩 사용 여부
 }
 
 const getFocusableElems = (container: HTMLElement) => {
@@ -13,7 +14,13 @@ const getFocusableElems = (container: HTMLElement) => {
   ).filter((el) => !el.hasAttribute("disabled"));
 };
 
-const useFocusTrap = ({ containerRef, finalFocusRef }: useFocusTrapProps) => {
+const useFocusTrap = ({
+  containerRef,
+  finalFocusRef,
+  isOn = true,
+}: useFocusTrapProps) => {
+  if (!isOn) return;
+
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
