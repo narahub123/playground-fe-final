@@ -58,9 +58,17 @@ const useFocusTrap = ({ containerRef, finalFocusRef }: useFocusTrapProps) => {
     };
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      //   if (e.key !== "Tab") return;
-
-      if (e.key === "ArrowLeft" && finalFocusRef) {
+      if (e.key === "Tab") {
+        if (e.shiftKey && document.activeElement === firstElem) {
+          // Shift + Tab -> 마지막 요소로 이동
+          e.preventDefault();
+          lastElem.focus();
+        } else if (!e.shiftKey && document.activeElement === lastElem) {
+          // Tab -> 첫 번째 요소로 이동
+          e.preventDefault();
+          firstElem.focus();
+        }
+      } else if (e.key === "ArrowLeft" && finalFocusRef) {
         const finalFocus = finalFocusRef.current as HTMLElement;
         finalFocus.focus();
       } else if (e.key === "ArrowUp") {
@@ -71,14 +79,6 @@ const useFocusTrap = ({ containerRef, finalFocusRef }: useFocusTrapProps) => {
         e.preventDefault();
         e.stopPropagation();
         moveNextElem();
-      } else if (e.shiftKey && document.activeElement === firstElem) {
-        // Shift + Tab -> 마지막 요소로 이동
-        e.preventDefault();
-        lastElem.focus();
-      } else if (!e.shiftKey && document.activeElement === lastElem) {
-        // Tab -> 첫 번째 요소로 이동
-        e.preventDefault();
-        firstElem.focus();
       }
     };
 
