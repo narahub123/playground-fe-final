@@ -109,10 +109,17 @@ const Input = ({
       tabIndex={isFocused ? -1 : 0} // containerRef가 포커스이면 포커스 사라짐
       ref={containerRef}
       onFocus={() => {
-        setIsFocused(true);
-        if (mode === "dropdown") setIsOpen(true);
+        if (!isFocused) {
+          console.log("Input이 포커스됨");
+          setIsFocused(true);
+          if (mode === "dropdown") setIsOpen(true);
+        }
       }}
-      onBlur={() => {
+      onBlur={(e) => {
+        // 컨테이너 또는 자식 요소에 포커스가 남아 있는 경우 블러 처리하지 않음
+        if (containerRef.current?.contains(e.relatedTarget)) return;
+
+        console.log("Input이 블러됨");
         setIsFocused(false);
         if (mode === "dropdown") setIsOpen(false);
       }}
