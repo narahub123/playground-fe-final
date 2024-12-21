@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect } from "react";
+import { useEffect } from "react";
 
 interface useFocusTrapProps {
   containerRef: React.RefObject<HTMLElement>; // 감싸는 요소
