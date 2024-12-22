@@ -1,19 +1,19 @@
-import { useEffect, useMemo, useRef, useState } from "react";
 import styles from "./Input.module.css";
-import { joinClassNames } from "@shared/@common/utils";
-import { Text, Icon, Dropdown } from "@shared/@common/ui/components";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
+import { Text, Icon, Dropdown } from "@shared/@common/ui/components";
+import { joinClassNames } from "@shared/@common/utils";
 import { DropdownItemType, InputErrorType } from "@shared/@common/types";
 import { useFocusTrap } from "@shared/@common/models/hooks";
 
 interface InputProps {
   field: string;
   fieldName: string | number;
-  value: string | number;
-  setValue: (value: any) => { type: string; payload: any };
+  inputValue: string | number;
+  setInputValue: (value: any) => { type: string; payload: any };
   maxLength?: number;
   error?: InputErrorType;
-  mode?: "default" | "dropdown";
+  mode?: "default" | "dropdown" | "search";
   list?: DropdownItemType[];
   moveFocusToDropdown?: boolean; // focus가 드롭다운으로 이동 가능
 }
@@ -21,8 +21,8 @@ interface InputProps {
 const Input = ({
   field,
   fieldName,
-  value = "",
-  setValue,
+  inputValue = "",
+  setInputValue,
   maxLength,
   error = {
     regExp: "",
@@ -41,6 +41,7 @@ const Input = ({
   const [isShown, setIsShown] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const [search, setSearch] = useState(""); // 검색 기능 사용시
 
   useFocusTrap({
     containerRef: containerRef,
@@ -66,11 +67,11 @@ const Input = ({
     [errorList]
   );
 
-  const validCond = isValid || (value === "" && !errorMessage); // 유효성 조건
-  const focusCond = isFocused || value !== ""; // 포커스 조건
+  const validCond = isValid || (inputValue === "" && !errorMessage); // 유효성 조건
+  const focusCond = isFocused || inputValue !== ""; // 포커스 조건
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!setValue) return;
+    if (!setInputValue) return;
     const typing = e.target.value;
 
     // 최대 길이 값이 있는 경우 값이 최대 길이 보다 긴 경우 중지
@@ -79,7 +80,13 @@ const Input = ({
       return;
     }
 
-    dispatch(setValue(typing));
+    dispatch(setInputValue(typing));
+    if (mode === "search") {
+      setSearch(typing as string);
+      if (!isOpen) {
+        setIsOpen(true);
+      }
+    }
 
     if (typing === "" && error.empty) {
       setErrorMessage(error.empty);
@@ -109,6 +116,10 @@ const Input = ({
     }
   };
 
+  const filteredList = list.filter((el) =>
+    el.text.includes((search as string).trim())
+  );
+
   return (
     <div
       className={joinClassNames([styles[`input`]])}
@@ -118,7 +129,7 @@ const Input = ({
         if (!isFocused) {
           console.log("Input이 포커스됨");
           setIsFocused(true);
-          if (mode === "dropdown") setIsOpen(true);
+          if (mode === "dropdown" || mode === "search") setIsOpen(true);
         }
       }}
       onBlur={(e) => {
@@ -127,7 +138,7 @@ const Input = ({
 
         console.log("Input이 블러됨");
         setIsFocused(false);
-        if (mode === "dropdown") setIsOpen(false);
+        if (mode === "dropdown" || mode === "search") setIsOpen(false);
       }}
     >
       <div
@@ -162,7 +173,9 @@ const Input = ({
                     : styles[`input__counter--unfocused`],
                 ])}
               >
-                <Text text={`${(value as string).length} / ${maxLength}`} />
+                <Text
+                  text={`${(inputValue as string).length} / ${maxLength}`}
+                />
               </div>
             )}
           </div>
@@ -180,16 +193,18 @@ const Input = ({
                 className={joinClassNames([styles[`input__field`]])}
                 ref={inputRef}
                 value={
-                  mode === "dropdown"
-                    ? list?.find((item) => item.value === value)?.text
-                    : value
+                  mode === "dropdown" || mode === "search"
+                    ? list?.find((item) => item.value === inputValue)?.text ||
+                      inputValue
+                    : inputValue
                 }
                 onChange={(e) => onChange(e)}
+                disabled={mode === "dropdown"}
                 onKeyDown={
                   !moveFocusToDropdown && mode === "dropdown"
                     ? (e) => {
                         const curIndex = list?.findIndex(
-                          (el) => el.value === value
+                          (el) => el.value === inputValue
                         );
                         console.log("현재 index", curIndex);
 
@@ -200,7 +215,7 @@ const Input = ({
                               : curIndex === list.length - 1
                               ? 0
                               : curIndex + 1;
-                          dispatch(setValue(list?.[nextIndex].value));
+                          dispatch(setInputValue(list?.[nextIndex].value));
                         } else if (e.key === "ArrowUp") {
                           const prevIndex =
                             curIndex === undefined
@@ -208,7 +223,7 @@ const Input = ({
                               : curIndex === 0
                               ? list.length - 1
                               : curIndex - 1;
-                          dispatch(setValue(list?.[prevIndex].value));
+                          dispatch(setInputValue(list?.[prevIndex].value));
                         } else if (e.key === "Enter") {
                           setIsOpen(!isOpen);
                         }
@@ -255,14 +270,15 @@ const Input = ({
           <Text text={errorMessage} type="expl" status="error" />
         </div>
       )}
-      {list && (
+      {(mode === "dropdown" || mode === "search") && (
         <Dropdown
-          list={list}
-          selection={value as string}
-          setSelection={setValue}
+          list={filteredList}
+          selection={inputValue as string}
+          setSelection={setInputValue}
+          setSearch={setSearch}
           isOpen={isOpen}
           setIsOpen={setIsOpen}
-          isFocusTrapOn={moveFocusToDropdown}
+          isFocusTrapOn={mode === "search" ? true : moveFocusToDropdown}
         />
       )}
     </div>
