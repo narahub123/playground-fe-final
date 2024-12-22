@@ -3,6 +3,7 @@ import { ReactNode, useContext, useRef } from "react";
 import { ModalProvider } from "@shared/@common/models/providers";
 import { ModalContext } from "@shared/@common/models/contexts";
 import Icon from "../Icon/Icon";
+import { useFocusTrap } from "@shared/@common/models/hooks";
 
 // 모달
 const ModalMain = ({
@@ -57,9 +58,15 @@ const ModalOverlay = () => {
 
 // 흰 바탕
 const ModalContainer = ({ children }: { children: ReactNode }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
   const { width, unit } = useContext(ModalContext);
+  useFocusTrap({ containerRef });
   return (
-    <div className={styles.container} style={{ width: `${width}${unit}` }}>
+    <div
+      className={styles.container}
+      style={{ width: `${width}${unit}` }}
+      ref={containerRef}
+    >
       {children}
     </div>
   );

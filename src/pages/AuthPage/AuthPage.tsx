@@ -51,7 +51,7 @@ const AuthPage = () => {
 
   const pageList: ReactNode[] = [
     <Modal.Body>
-      <Input
+      {/* <Input
         field={"password"}
         fieldName={"유저 아이디"}
         maxLength={PASSWORD_MAX}
@@ -94,7 +94,8 @@ const AuthPage = () => {
         mode="search"
         list={list}
         moveFocusToDropdown={true}
-      />
+      /> */}
+      <input type="text" />
     </Modal.Body>,
     <Modal.Content>
       <Modal.Body>바디2</Modal.Body>
