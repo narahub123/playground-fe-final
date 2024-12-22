@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { Text, Icon, Dropdown } from "@shared/@common/ui/components";
 import { joinClassNames } from "@shared/@common/utils";
 import { DropdownItemType, InputErrorType } from "@shared/@common/types";
-import { useFocusTrap } from "@shared/@common/models/hooks";
+import { useFocusTrap, useLanguageContent } from "@shared/@common/models/hooks";
 
 interface InputProps {
   field: string;
@@ -42,6 +42,8 @@ const Input = ({
   const [errorMessage, setErrorMessage] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState(""); // 검색 기능 사용시
+
+  const { iconTitle } = useLanguageContent(["components", "Input"]);
 
   useFocusTrap({
     containerRef: containerRef,
@@ -248,7 +250,7 @@ const Input = ({
                 isShown ? (
                   <Icon
                     iconName="eyeoff"
-                    iconTitle="비밀번호 숨기기"
+                    iconTitle={iconTitle.password.eyeoff}
                     onClick={() => {
                       setIsShown(false);
                     }}
@@ -256,7 +258,7 @@ const Input = ({
                 ) : (
                   <Icon
                     iconName="eye"
-                    iconTitle="비밀번호 보이기"
+                    iconTitle={iconTitle.password.eye}
                     onClick={() => {
                       setIsShown(true);
                     }}

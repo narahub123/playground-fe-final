@@ -54,7 +54,7 @@ const AuthPage = () => {
       <Modal.Header>헤던</Modal.Header>
       <Modal.Body>
         <Input
-          field={"userid"}
+          field={"password"}
           fieldName={"유저 아이디"}
           maxLength={PASSWORD_MAX}
           inputValue={value}
