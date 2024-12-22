@@ -13,7 +13,7 @@ interface InputProps {
   setInputValue: (value: any) => { type: string; payload: any };
   maxLength?: number;
   error?: InputErrorType;
-  mode?: "default" | "dropdown" | "search";
+  mode?: "default" | "dropdown" | "search" | "disabled";
   list?: DropdownItemType[];
   moveFocusToDropdown?: boolean; // focus가 드롭다운으로 이동 가능
 }
@@ -127,31 +127,44 @@ const Input = ({
 
   return (
     <div
-      className={joinClassNames([styles[`input`]])}
-      tabIndex={isFocused ? -1 : 0} // containerRef가 포커스이면 포커스 사라짐
+      className={joinClassNames([
+        styles[`input`],
+        mode === "disabled" ? styles[`input--disabled`] : "",
+      ])}
+      tabIndex={isFocused || mode === "disabled" ? -1 : 0} // containerRef가 포커스이면 포커스 사라짐
       ref={containerRef}
-      onFocus={() => {
-        if (!isFocused) {
-          console.log("Input이 포커스됨");
-          setIsFocused(true);
-          if (mode === "dropdown" || mode === "search") setIsOpen(true);
-        }
-      }}
-      onBlur={(e) => {
-        // 컨테이너 또는 자식 요소에 포커스가 남아 있는 경우 블러 처리하지 않음
-        if (containerRef.current?.contains(e.relatedTarget)) return;
+      onFocus={
+        mode !== "disabled"
+          ? () => {
+              if (!isFocused) {
+                console.log("Input이 포커스됨");
+                setIsFocused(true);
+                if (mode === "dropdown" || mode === "search") setIsOpen(true);
+              }
+            }
+          : undefined
+      }
+      onBlur={
+        mode !== "disabled"
+          ? (e) => {
+              // 컨테이너 또는 자식 요소에 포커스가 남아 있는 경우 블러 처리하지 않음
+              if (containerRef.current?.contains(e.relatedTarget)) return;
 
-        console.log("Input이 블러됨");
-        setIsFocused(false);
-        if (mode === "dropdown" || mode === "search") setIsOpen(false);
-      }}
+              console.log("Input이 블러됨");
+              setIsFocused(false);
+              if (mode === "dropdown" || mode === "search") setIsOpen(false);
+            }
+          : undefined
+      }
     >
       <div
         className={joinClassNames([
           styles[`input__container`],
-          validCond
-            ? styles[`input__container--valid`]
-            : styles[`input__container--invalid`],
+          isFocused
+            ? validCond
+              ? styles[`input__container--valid`]
+              : styles[`input__container--invalid`]
+            : "",
         ])}
       >
         <div className={joinClassNames([styles[`input__wrapper`]])}>
@@ -169,7 +182,7 @@ const Input = ({
                 status={!focusCond || validCond ? "default" : "error"}
               />
             </div>
-            {maxLength && (
+            {maxLength && mode !== "disabled" && (
               <div
                 className={joinClassNames([
                   styles[`input__counter`],
@@ -199,7 +212,7 @@ const Input = ({
                 ref={inputRef}
                 value={selectedValue}
                 onChange={(e) => onChange(e)}
-                disabled={mode === "dropdown"}
+                disabled={mode === "dropdown" || mode === "disabled"}
                 onKeyDown={
                   !moveFocusToDropdown && mode === "dropdown"
                     ? (e) => {

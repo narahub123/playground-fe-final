@@ -3,6 +3,10 @@
   position: relative;
 }
 
+.input--disabled {
+  color: #ccc;
+}
+
 .input__container {
   position: relative;
   width: 100%;
@@ -35,6 +39,7 @@
 }
 
 .input__label {
+  user-select: none;
   transition: var(--transition-primary);
 }
 
@@ -49,6 +54,7 @@
 }
 
 .input__counter {
+  user-select: none;
   font-size: 12px;
   color: #999;
   transition: var(--transition-primary);
