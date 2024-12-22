@@ -34,7 +34,9 @@ const Dropdown = ({
   const handleSelection = (value: string | number) => {
     dispatch(setSelection(value));
     if (setSearch) {
-      setSearch(value as string);
+      setSearch(
+        list?.find((item) => item.value === value)?.text || (value as string)
+      );
     }
   };
 
