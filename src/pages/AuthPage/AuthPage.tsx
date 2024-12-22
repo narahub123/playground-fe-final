@@ -50,25 +50,53 @@ const AuthPage = () => {
   };
 
   const pageList: ReactNode[] = [
+    <Modal.Body>
+      <Input
+        field={"password"}
+        fieldName={"유저 아이디"}
+        maxLength={PASSWORD_MAX}
+        inputValue={value}
+        setInputValue={setUsernameInSignIn}
+        // error={error}
+        mode="search"
+        list={list}
+        moveFocusToDropdown={true}
+      />
+      <Input
+        field={"password"}
+        fieldName={"유저 아이디"}
+        maxLength={PASSWORD_MAX}
+        inputValue={value}
+        setInputValue={setUsernameInSignIn}
+        // error={error}
+        mode="search"
+        list={list}
+        moveFocusToDropdown={true}
+      />
+      <Input
+        field={"password"}
+        fieldName={"유저 아이디"}
+        maxLength={PASSWORD_MAX}
+        inputValue={value}
+        setInputValue={setUsernameInSignIn}
+        // error={error}
+        mode="search"
+        list={list}
+        moveFocusToDropdown={true}
+      />
+      <Input
+        field={"password"}
+        fieldName={"유저 아이디"}
+        maxLength={PASSWORD_MAX}
+        inputValue={value}
+        setInputValue={setUsernameInSignIn}
+        // error={error}
+        mode="search"
+        list={list}
+        moveFocusToDropdown={true}
+      />
+    </Modal.Body>,
     <Modal.Content>
-      <Modal.Header>헤던</Modal.Header>
-      <Modal.Body>
-        <Input
-          field={"password"}
-          fieldName={"유저 아이디"}
-          maxLength={PASSWORD_MAX}
-          inputValue={value}
-          setInputValue={setUsernameInSignIn}
-          // error={error}
-          mode="search"
-          list={list}
-          moveFocusToDropdown={true}
-        />
-      </Modal.Body>
-      <Modal.Footer>푸터</Modal.Footer>
-    </Modal.Content>,
-    <Modal.Content>
-      <Modal.Header>헤던2</Modal.Header>
       <Modal.Body>바디2</Modal.Body>
       <Modal.Footer>푸터2</Modal.Footer>
     </Modal.Content>,
@@ -87,9 +115,14 @@ const AuthPage = () => {
       >
         <Modal.Overlay />
         <Modal.Container>
-          <Modal.Indicator />
           <Modal.CloseButton />
-          {pageList[curPage]}
+          <Modal.Content>
+            <Modal.Header>
+              <Modal.Indicator />
+            </Modal.Header>
+            {pageList[curPage]}
+            <Modal.Footer>버튼</Modal.Footer>
+          </Modal.Content>
         </Modal.Container>
       </Modal>
       <header className={styles.header}>
