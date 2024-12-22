@@ -7,6 +7,9 @@ const components = {
       },
     },
   },
+  Dropdown: {
+    emtpyResult: "指定したキーワードで結果が見つかりません。",
+  },
 };
 
 export default components;

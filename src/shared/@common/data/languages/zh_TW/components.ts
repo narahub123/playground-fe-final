@@ -7,6 +7,9 @@ const components = {
       },
     },
   },
+  Dropdown: {
+    emptyResult: "未找到符合該關鍵詞的結果。",
+  },
 };
 
 export default components;

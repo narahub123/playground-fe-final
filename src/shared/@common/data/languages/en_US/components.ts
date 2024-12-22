@@ -7,6 +7,9 @@ const components = {
       },
     },
   },
+  Dropdown: {
+    emptyResult: "No results found for the given keyword.",
+  },
 };
 
 export default components;

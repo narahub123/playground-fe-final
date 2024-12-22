@@ -4,7 +4,7 @@ import { useAppDispatch } from "@app/store";
 import { Text } from "@shared/@common/ui/components";
 import { joinClassNames } from "@shared/@common/utils";
 import { DropdownItemType } from "@shared/@common/types";
-import { useFocusTrap } from "@shared/@common/models/hooks";
+import { useFocusTrap, useLanguageContent } from "@shared/@common/models/hooks";
 
 interface DropdownProps {
   list: DropdownItemType[];
@@ -27,6 +27,8 @@ const Dropdown = ({
 }: DropdownProps) => {
   const dispatch = useAppDispatch();
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const { emptyResult } = useLanguageContent(["components", "Dropdown"]);
 
   useFocusTrap({ containerRef, isOn: isFocusTrapOn });
 
@@ -56,10 +58,7 @@ const Dropdown = ({
     >
       <ul className={joinClassNames([styles[`dropdown__list`]])}>
         {list.length === 0 ? (
-          <Text
-            text={"검색어에 일치되는 결과가 없습니다."}
-            subClassName={styles[`dropdown__item`]}
-          />
+          <Text text={emptyResult} subClassName={styles[`dropdown__item`]} />
         ) : (
           list.map((item, idx) => {
             // 선택 조건
