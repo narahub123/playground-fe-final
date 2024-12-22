@@ -1,5 +1,5 @@
 const components = {
-  Icon: {
+  Input: {
     iconTitle: {
       password: {
         eyeoff: "パスワードを非表示",
