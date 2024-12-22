@@ -55,9 +55,6 @@ const TestModal = ({
         inputValue={value}
         setInputValue={setUsernameInSignIn}
         error={error}
-        mode="search"
-        list={list}
-        moveFocusToDropdown={true}
       />
 
       <input type="text" />

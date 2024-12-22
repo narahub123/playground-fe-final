@@ -1,8 +1,13 @@
 interface InputErrorType {
   regExp: string;
   defaultErrorMsg: string;
-  errorList?: { regExp: string; errorMsg: string }[];
+  errorList?: InputErrorListItem[];
   empty?: string;
+}
+
+interface InputErrorListItem {
+  regExp: string;
+  errorMsg: string;
 }
 
 interface DropdownItemType {
@@ -10,4 +15,4 @@ interface DropdownItemType {
   value: string | number;
 }
 
-export type { InputErrorType, DropdownItemType };
+export type { InputErrorType, InputErrorListItem, DropdownItemType };
