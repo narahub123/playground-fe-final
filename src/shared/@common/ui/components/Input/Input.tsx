@@ -116,6 +116,11 @@ const Input = ({
     }
   };
 
+  const selectedValue =
+    mode === "dropdown" || mode === "search"
+      ? list?.find((item) => item.value === inputValue)?.text || inputValue
+      : inputValue;
+
   const filteredList = list.filter((el) =>
     el.text.includes((search as string).trim())
   );
@@ -174,7 +179,7 @@ const Input = ({
                 ])}
               >
                 <Text
-                  text={`${(inputValue as string).length} / ${maxLength}`}
+                  text={`${(selectedValue as string).length} / ${maxLength}`}
                 />
               </div>
             )}
@@ -192,12 +197,7 @@ const Input = ({
                 type={field === "password" && !isShown ? "password" : "text"}
                 className={joinClassNames([styles[`input__field`]])}
                 ref={inputRef}
-                value={
-                  mode === "dropdown" || mode === "search"
-                    ? list?.find((item) => item.value === inputValue)?.text ||
-                      inputValue
-                    : inputValue
-                }
+                value={selectedValue}
                 onChange={(e) => onChange(e)}
                 disabled={mode === "dropdown"}
                 onKeyDown={

@@ -57,11 +57,12 @@ const AuthPage = () => {
           field={"userid"}
           fieldName={"유저 아이디"}
           maxLength={PASSWORD_MAX}
-          value={value}
-          setValue={setUsernameInSignIn}
+          inputValue={value}
+          setInputValue={setUsernameInSignIn}
           // error={error}
-          mode="dropdown"
+          mode="search"
           list={list}
+          moveFocusToDropdown={true}
         />
       </Modal.Body>
       <Modal.Footer>푸터</Modal.Footer>
