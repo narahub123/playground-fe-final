@@ -86,7 +86,9 @@ const useFocusTrap = ({
         e.preventDefault();
         e.stopPropagation();
         moveNextElem();
-      }
+      } else if (e.key === "Enter" && finalFocusRef) {
+        finalFocusRef.current?.focus();
+      } // enter 키를 누르면 포커스가 모달창 이전으로 돌아감
     };
 
     // 키보드 이벤트 리스너 추가
