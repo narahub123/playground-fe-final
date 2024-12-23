@@ -1,5 +1,5 @@
 import { getUsernameInSignin } from "@features/auth-setting/models/selectors";
-import { Input, Modal } from "@shared/@common/ui/components";
+import { Input, InputDropdown, Modal } from "@shared/@common/ui/components";
 import { ReactNode } from "react";
 import { useSelector } from "react-redux";
 import { PASSWORD_MAX, PASSWORD_REGEX } from "@shared/@common/constants";
@@ -56,8 +56,7 @@ const TestModal = ({
         setInputValue={setUsernameInSignIn}
         error={error}
       />
-
-      <input type="text" />
+      <InputDropdown list={list} />
     </Modal.Body>,
     <Modal.Content>
       <Modal.Body>바디2</Modal.Body>
