@@ -4,6 +4,7 @@ interface useFocusTrapProps {
   containerRef: React.RefObject<HTMLElement>; // 감싸는 요소
   finalFocusRef?: React.RefObject<HTMLElement>; // 마지막에 클릭했던 요소
   isOn?: boolean; // 포커스 트랩 사용 여부
+  firstFocus?: number; // 첫번째 포커스 요소의 인덱스
 }
 
 const getFocusableElems = (container: HTMLElement) => {
@@ -18,6 +19,7 @@ const useFocusTrap = ({
   containerRef,
   finalFocusRef,
   isOn = true,
+  firstFocus = 0,
 }: useFocusTrapProps) => {
   if (!isOn) return;
 
@@ -49,6 +51,9 @@ const useFocusTrap = ({
         finalFocusRef.current?.focus();
       } // enter 키를 누르면 포커스가 모달창 이전으로 돌아감
     };
+
+    // 첫번째 포커스 요소 설정하기
+    (focusableElems[firstFocus] as HTMLElement).focus();
 
     // 키보드 이벤트 리스너 추가
     container.addEventListener("keydown", handleKeyDown);
