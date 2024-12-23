@@ -34,36 +34,6 @@ const useFocusTrap = ({
     const lastElem = focusableElems[focusableElems.length - 1] as HTMLElement;
     console.log("마지막 요소", lastElem);
 
-    const moveNextElem = () => {
-      const curIndex = focusableElems.findIndex(
-        (el) => el === document.activeElement
-      );
-      // 다음 인덱스
-      const nextIndex =
-        curIndex + 1 >= focusableElems.length ? 0 : curIndex + 1;
-      console.log("다음 인덱스", nextIndex);
-      // 다음 요소
-      const nextElem = focusableElems[nextIndex] as HTMLElement;
-      console.log("다음 요소", nextElem);
-      nextElem.focus();
-    };
-
-    const movePrevElem = () => {
-      const curIndex = focusableElems.findIndex(
-        (el) => el === document.activeElement
-      );
-
-      // 이전 인덱스
-      const prevIndex =
-        curIndex - 1 < 0 ? focusableElems.length - 1 : curIndex - 1;
-      console.log("이전 인덱스", prevIndex);
-
-      // 이전 요소
-      const prevElem = focusableElems[prevIndex] as HTMLElement;
-      console.log("이전 요소", prevElem);
-      prevElem.focus();
-    };
-
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Tab") {
         if (e.shiftKey && document.activeElement === firstElem) {
@@ -75,17 +45,6 @@ const useFocusTrap = ({
           e.preventDefault();
           firstElem.focus();
         }
-      } else if (e.key === "ArrowLeft" && finalFocusRef) {
-        const finalFocus = finalFocusRef.current as HTMLElement;
-        finalFocus.focus();
-      } else if (e.key === "ArrowUp") {
-        e.preventDefault();
-        e.stopPropagation();
-        movePrevElem();
-      } else if (e.key === "ArrowDown") {
-        e.preventDefault();
-        e.stopPropagation();
-        moveNextElem();
       } else if (e.key === "Enter" && finalFocusRef) {
         finalFocusRef.current?.focus();
       } // enter 키를 누르면 포커스가 모달창 이전으로 돌아감
