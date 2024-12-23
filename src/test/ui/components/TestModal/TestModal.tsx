@@ -34,7 +34,7 @@ const error: InputErrorType = {
   empty: "비밀번호를 입력해주세요.",
 };
 
-const list = Array.from({ length: 8 }).map((_, index) => ({
+const list = Array.from({ length: 13 }).map((_, index) => ({
   text: `예시${index}`,
   value: `${index}`,
 }));

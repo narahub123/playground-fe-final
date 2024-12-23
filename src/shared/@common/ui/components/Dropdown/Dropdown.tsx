@@ -1,7 +1,7 @@
 import { joinClassNames } from "@shared/@common/utils";
 import styles from "./Dropdown.module.css";
 import { DropdownItemType } from "@shared/@common/types";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useAppDispatch } from "@app/store";
 
 interface DropdownProps {
@@ -22,6 +22,7 @@ const Dropdown = ({
   parentRef,
 }: DropdownProps) => {
   const dispatch = useAppDispatch();
+  const itemRefs = useRef<(HTMLLIElement | null)[]>([]);
   const [parentRect, setParentRect] = useState<{
     top: number;
     left: number;
@@ -80,6 +81,17 @@ const Dropdown = ({
       window.removeEventListener("resize", updateHeight);
     };
   }, []);
+  // 선택된 요소로 이동
+  useEffect(() => {
+    const curIndex = list.findIndex((item) => item.value === inputValue) || 0;
+
+    const selected = itemRefs.current[curIndex];
+
+    selected?.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
+  }, [inputValue]);
 
   return (
     <div
@@ -104,11 +116,12 @@ const Dropdown = ({
               key={index}
               className={joinClassNames([
                 styles[`dropdown__item`],
-                selectedCond ? styles[`dropdown__item`] : "",
+                selectedCond ? styles[`dropdown__item--selected`] : "",
               ])}
               onClick={() => {
                 dispatch(setInputValue(item.value));
               }}
+              ref={(el) => (itemRefs.current[index] = el)}
             >
               {item.text}
             </li>
