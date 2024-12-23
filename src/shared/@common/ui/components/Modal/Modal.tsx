@@ -67,7 +67,7 @@ const ModalOverlay = () => {
 const ModalContainer = ({ children }: { children: ReactNode }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { width, unit } = useContext(ModalContext);
-  useFocusTrap({ containerRef });
+  useFocusTrap({ containerRef, firstFocus: 1 });
   return (
     <div
       className={styles.container}
