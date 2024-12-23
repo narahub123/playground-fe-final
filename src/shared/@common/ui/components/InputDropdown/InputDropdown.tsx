@@ -8,25 +8,47 @@ import { setUsernameInSignIn } from "@features/auth-setting/models/slices/signin
 import { useRef, useState } from "react";
 import { DropdownItemType } from "@shared/@common/types";
 import { createPortal } from "react-dom";
+import { useAppDispatch } from "@app/store";
 
 interface InputDropdownProps {
   list: DropdownItemType[];
 }
 
 const InputDropdown = ({ list }: InputDropdownProps) => {
+  const dispatch = useAppDispatch();
   const inputValue = useSelector(getUsernameInSignin);
   const setInputValue = setUsernameInSignIn;
   const containerRef = useRef<HTMLDivElement>(null);
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
 
+  const focusCond = isFocused;
   return (
     <div
       className={joinClassNames([styles[`input-dropdown`]])}
       ref={containerRef}
     >
       <div
-        className={joinClassNames([styles[`input-dropdown-input-wrapper`]])}
+        className={joinClassNames([
+          styles[`input__wrapper`],
+          focusCond ? styles[`input__wrapper--focused`] : "",
+        ])}
         onClick={() => setIsOpen(!isOpen)}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
+        onKeyDown={(e) => {
+          const curIndex = list.findIndex((item) => item.value === inputValue);
+          if (e.key === "ArrowDown") {
+            const nextIndex = curIndex + 1 > list.length - 1 ? 0 : curIndex + 1;
+            dispatch(setInputValue(list[nextIndex].value as string));
+          } else if (e.key === "ArrowUp") {
+            const prevIndex = curIndex - 1 < 0 ? list.length - 1 : curIndex - 1;
+            dispatch(setInputValue(list[prevIndex].value as string));
+          } else if (e.key === "Enter") {
+            setIsOpen(!isOpen);
+          }
+        }}
+        tabIndex={0}
       >
         <Input
           field="username"

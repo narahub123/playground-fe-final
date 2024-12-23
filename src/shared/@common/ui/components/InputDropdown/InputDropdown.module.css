@@ -1,7 +1,12 @@
-.input-dropdown {
+.input__dropdown {
   position: relative;
   width: 100%;
 }
 
-.input-dropdown-input-wrapper {
+.input__wrapper {
+  border-radius: 10px;
+}
+
+.input__wrapper--focused {
+  outline: var(--colorTheme-outline-primary);
 }
