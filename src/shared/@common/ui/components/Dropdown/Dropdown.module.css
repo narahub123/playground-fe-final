@@ -18,6 +18,7 @@
 }
 
 .dropdown__list {
+  overflow: auto;
 }
 
 .dropdown__item {

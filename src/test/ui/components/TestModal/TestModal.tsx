@@ -34,10 +34,10 @@ const error: InputErrorType = {
   empty: "비밀번호를 입력해주세요.",
 };
 
-const list = [
-  { text: "텍스트", value: "값" },
-  { text: "예2", value: "test" },
-];
+const list = Array.from({ length: 8 }).map((_, index) => ({
+  text: `예시${index}`,
+  value: `${index}`,
+}));
 
 const TestModal = ({
   isOpen,

@@ -32,6 +32,8 @@ const Dropdown = ({
     width: 0,
   });
 
+  const [listHeight, setListHeight] = useState(0);
+
   const { top, left, width } = parentRect;
   // 부모 요소의 위치
   useEffect(() => {
@@ -47,6 +49,23 @@ const Dropdown = ({
       width: rect.width,
     });
   }, []);
+  // list 높이 동적 적용
+  useEffect(() => {
+    const updateHeight = () => {
+      const height = window.innerHeight - (top + 59.6);
+
+      setListHeight(height);
+    };
+
+    window.addEventListener("resize", updateHeight);
+
+    updateHeight();
+
+    return () => {
+      window.removeEventListener("resize", updateHeight);
+    };
+  }, []);
+
   return (
     <div
       className={joinClassNames([
@@ -59,7 +78,10 @@ const Dropdown = ({
         width: `${width}px`,
       }}
     >
-      <ul className={joinClassNames([styles[`dropdown__list`]])}>
+      <ul
+        className={joinClassNames([styles[`dropdown__list`]])}
+        style={{ height: listHeight }}
+      >
         {list.map((item, index) => {
           const selectedCond = item.value === inputValue;
           return (
