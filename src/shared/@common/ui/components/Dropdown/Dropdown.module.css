@@ -4,7 +4,7 @@
   border-radius: 10px;
   transition: var(--transition-primary);
   overflow: hidden;
-  background-color: #fff;
+  background-color: var(--bgTheme-bgColor-primary);
 }
 
 .dropdown--open {
