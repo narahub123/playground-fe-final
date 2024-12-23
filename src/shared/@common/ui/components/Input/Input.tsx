@@ -10,9 +10,9 @@ import { useLanguageContent } from "@shared/@common/models/hooks";
 interface InputProps {
   field: string;
   fieldName: string;
-  maxLength: number;
   inputValue: string;
   setInputValue: (value: any) => { type: string; payload: any };
+  maxLength?: number;
   error?: InputErrorType;
   disabled?: boolean;
 }
@@ -175,19 +175,23 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
                 ref={ref || inputRef} // 외부에서 ref가 전달된 경우 ref 전달 안된 경우 inputRef 적용
                 disabled={disabled}
               />
-              {field === "password" && showPassword ? (
-                <Icon
-                  iconName="eyeoff"
-                  iconTitle={iconTitle.password.eyeoff}
-                  onClick={disabled ? undefined : () => setShowPassword(false)}
-                />
-              ) : (
-                <Icon
-                  iconName="eye"
-                  iconTitle={iconTitle.password.eye}
-                  onClick={disabled ? undefined : () => setShowPassword(true)}
-                />
-              )}
+              {field === "password" ? (
+                showPassword ? (
+                  <Icon
+                    iconName="eyeoff"
+                    iconTitle={iconTitle.password.eyeoff}
+                    onClick={
+                      disabled ? undefined : () => setShowPassword(false)
+                    }
+                  />
+                ) : (
+                  <Icon
+                    iconName="eye"
+                    iconTitle={iconTitle.password.eye}
+                    onClick={disabled ? undefined : () => setShowPassword(true)}
+                  />
+                )
+              ) : undefined}
             </div>
           </div>
         </div>
