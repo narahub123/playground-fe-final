@@ -26,6 +26,7 @@ const InputDropdown = ({
 }: InputDropdownProps) => {
   const dispatch = useAppDispatch();
   const containerRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
 
@@ -47,7 +48,8 @@ const InputDropdown = ({
     };
   }, []);
 
-  const focusCond = isFocused;
+  // 드롭 다운 클릭시에도 focus 유지를 위해서 isOpen 추가
+  const focusCond = isFocused || isOpen;
   return (
     <div
       className={joinClassNames([styles[`input-dropdown`]])}
@@ -82,6 +84,7 @@ const InputDropdown = ({
               }
         }
         tabIndex={disabled ? -1 : 0}
+        ref={buttonRef}
       >
         <Input
           field={field}
@@ -102,6 +105,7 @@ const InputDropdown = ({
           setInputValue={setInputValue}
           list={list}
           parentRef={containerRef}
+          finalClickRef={buttonRef}
         />,
         document.getElementById("dropdown") as HTMLElement
       )}
