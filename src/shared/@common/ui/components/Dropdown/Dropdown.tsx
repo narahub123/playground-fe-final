@@ -11,6 +11,7 @@ interface DropdownProps {
   setInputValue: (value: any) => { type: string; payload: any };
   list: DropdownItemType[];
   parentRef?: React.RefObject<HTMLElement>; // 부모 요소
+  finalClickRef?: React.RefObject<HTMLElement>; // dropdown을 연 버튼
 }
 
 const Dropdown = ({
@@ -20,6 +21,7 @@ const Dropdown = ({
   setInputValue,
   list,
   parentRef,
+  finalClickRef,
 }: DropdownProps) => {
   const dispatch = useAppDispatch();
   const itemRefs = useRef<(HTMLLIElement | null)[]>([]);
@@ -122,6 +124,9 @@ const Dropdown = ({
               onClick={() => {
                 dispatch(setInputValue(item.value));
                 setIsOpen(false);
+                if (finalClickRef) {
+                  finalClickRef.current?.focus();
+                }
               }}
               ref={(el) => (itemRefs.current[index] = el)}
             >
