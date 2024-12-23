@@ -27,6 +27,13 @@ const ModalMain = ({
 }) => {
   if (!isOpen) return null;
 
+  // 배경 스크롤 방지
+  if (isOpen) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "auto";
+  }
+
   return (
     <div className={styles.modal}>
       <ModalProvider
