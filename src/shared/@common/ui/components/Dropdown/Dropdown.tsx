@@ -1,89 +1,82 @@
-import styles from "./Dropdown.module.css";
-import { useRef } from "react";
-import { useAppDispatch } from "@app/store";
-import { Text } from "@shared/@common/ui/components";
 import { joinClassNames } from "@shared/@common/utils";
+import styles from "./Dropdown.module.css";
 import { DropdownItemType } from "@shared/@common/types";
-import { useFocusTrap, useLanguageContent } from "@shared/@common/models/hooks";
+import React, { useEffect, useState } from "react";
+import { useAppDispatch } from "@app/store";
 
 interface DropdownProps {
-  list: DropdownItemType[];
-  selection: string | number;
-  setSelection: (value: any) => { type: string; payload: any };
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  isFocusTrapOn?: boolean; // 포커스 트랩 사용 여부
-  setSearch?: React.Dispatch<React.SetStateAction<string>>;
+  inputValue: string;
+  setInputValue: (value: any) => { type: string; payload: any };
+  list: DropdownItemType[];
+  parentRef?: React.RefObject<HTMLElement>; // 부모 요소
 }
 
 const Dropdown = ({
-  list,
-  selection, // inputValue
-  setSelection, // setInputValue
   isOpen,
   setIsOpen,
-  isFocusTrapOn = true,
-  setSearch,
+  inputValue,
+  setInputValue,
+  list,
+  parentRef,
 }: DropdownProps) => {
   const dispatch = useAppDispatch();
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [parentRect, setParentRect] = useState<{
+    top: number;
+    left: number;
+    width: number;
+  }>({
+    top: 0,
+    left: 0,
+    width: 0,
+  });
 
-  const { emptyResult } = useLanguageContent(["components", "Dropdown"]);
+  const { top, left, width } = parentRect;
+  // 부모 요소의 위치
+  useEffect(() => {
+    if (!parentRef) return;
 
-  useFocusTrap({ containerRef, isOn: isFocusTrapOn });
+    const parent = parentRef.current as HTMLElement;
 
-  // 선택 함수
-  const handleSelection = (value: string | number) => {
-    dispatch(setSelection(value));
-    if (setSearch) {
-      setSearch(
-        list?.find((item) => item.value === value)?.text || (value as string)
-      );
-    }
-  };
+    const rect = parent.getBoundingClientRect();
 
-  // 클릭 핸들러
-  const handleClick = (value: string | number) => {
-    handleSelection(value);
-    setIsOpen(false);
-  };
-
+    setParentRect({
+      top: rect.top,
+      left: rect.left,
+      width: rect.width,
+    });
+  }, []);
   return (
     <div
       className={joinClassNames([
         styles[`dropdown`],
         isOpen ? styles[`dropdown--open`] : styles[`dropdown--close`],
       ])}
-      ref={containerRef}
+      style={{
+        top: `${top + 59.6}px`,
+        left: `${left}px`,
+        width: `${width}px`,
+      }}
     >
       <ul className={joinClassNames([styles[`dropdown__list`]])}>
-        {list.length === 0 ? (
-          <Text text={emptyResult} subClassName={styles[`dropdown__item`]} />
-        ) : (
-          list.map((item, idx) => {
-            // 선택 조건
-            const selectionCond = selection === item.value;
-
-            return (
-              <li
-                className={joinClassNames([
-                  styles[`dropdown__item`],
-                  selectionCond ? styles[`dropdown__item--selected`] : "",
-                ])}
-                key={item.value || idx}
-                onClick={() => handleClick(item.value)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    handleClick(item.value);
-                  }
-                }}
-                tabIndex={isFocusTrapOn ? 0 : -1}
-              >
-                {item.text}
-              </li>
-            );
-          })
-        )}
+        {list.map((item, index) => {
+          const selectedCond = item.value === inputValue;
+          return (
+            <li
+              key={index}
+              className={joinClassNames([
+                styles[`dropdown__item`],
+                selectedCond ? styles[`dropdown__item`] : "",
+              ])}
+              onClick={() => {
+                dispatch(setInputValue(item.value));
+              }}
+            >
+              {item.text}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
