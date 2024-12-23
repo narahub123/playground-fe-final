@@ -217,6 +217,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
                 isOpen
                   ? styles[`input__icon--open`]
                   : styles[`input__icon--close`],
+                disabled ? styles[`input__label--disabled`] : "",
               ])}
             />
           ) : undefined}
