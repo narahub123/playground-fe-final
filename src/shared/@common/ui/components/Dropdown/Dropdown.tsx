@@ -39,15 +39,27 @@ const Dropdown = ({
   useEffect(() => {
     if (!parentRef) return;
 
-    const parent = parentRef.current as HTMLElement;
+    const updateParentPosition = () => {
+      const parent = parentRef.current as HTMLElement;
 
-    const rect = parent.getBoundingClientRect();
+      const rect = parent.getBoundingClientRect();
 
-    setParentRect({
-      top: rect.top,
-      left: rect.left,
-      width: rect.width,
-    });
+      setParentRect({
+        top: rect.top,
+        left: rect.left,
+        width: rect.width,
+      });
+    };
+
+    window.addEventListener("resize", updateParentPosition);
+    window.addEventListener("scroll", updateParentPosition);
+
+    updateParentPosition();
+
+    return () => {
+      window.removeEventListener("resize", updateParentPosition);
+      window.removeEventListener("scroll", updateParentPosition);
+    };
   }, []);
   // list 높이 동적 적용
   useEffect(() => {
