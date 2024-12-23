@@ -78,6 +78,8 @@ const Dropdown = ({
   }, []);
   // 선택된 요소로 이동
   useEffect(() => {
+    if (!isOpen || !parentRect) return;
+
     const curIndex = list.findIndex((item) => item.value === inputValue) || 0;
 
     const selected = itemRefs.current[curIndex];
@@ -86,7 +88,7 @@ const Dropdown = ({
       behavior: "smooth",
       block: "center",
     });
-  }, [inputValue]);
+  }, [inputValue, isOpen, parentRect]);
 
   if (!parentRect) return null;
 
@@ -119,6 +121,7 @@ const Dropdown = ({
               ])}
               onClick={() => {
                 dispatch(setInputValue(item.value));
+                setIsOpen(false);
               }}
               ref={(el) => (itemRefs.current[index] = el)}
             >
