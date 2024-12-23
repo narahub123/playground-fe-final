@@ -1,2 +1,7 @@
 .input-dropdown {
+  position: relative;
+  width: 100%;
+}
+
+.input-dropdown-input-wrapper {
 }
