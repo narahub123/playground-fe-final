@@ -52,7 +52,10 @@ const Dropdown = ({
   // list 높이 동적 적용
   useEffect(() => {
     const updateHeight = () => {
-      const height = window.innerHeight - (top + 59.6);
+      const parent = parentRef?.current;
+
+      const bottom = parent?.getBoundingClientRect().bottom || 0;
+      const height = window.innerHeight - bottom;
 
       setListHeight(height);
     };
