@@ -56,7 +56,7 @@ const TestModal = ({
         setInputValue={setUsernameInSignIn}
         error={error}
       />
-      <InputDropdown list={list} />
+      <InputDropdown list={list} disabled />
     </Modal.Body>,
     <Modal.Content>
       <Modal.Body>바디2</Modal.Body>

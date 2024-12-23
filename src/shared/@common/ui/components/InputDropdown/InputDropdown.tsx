@@ -12,9 +12,10 @@ import { useAppDispatch } from "@app/store";
 
 interface InputDropdownProps {
   list: DropdownItemType[];
+  disabled?: boolean;
 }
 
-const InputDropdown = ({ list }: InputDropdownProps) => {
+const InputDropdown = ({ list, disabled = false }: InputDropdownProps) => {
   const dispatch = useAppDispatch();
   const inputValue = useSelector(getUsernameInSignin);
   const setInputValue = setUsernameInSignIn;
@@ -51,22 +52,30 @@ const InputDropdown = ({ list }: InputDropdownProps) => {
           styles[`input__wrapper`],
           focusCond ? styles[`input__wrapper--focused`] : "",
         ])}
-        onClick={() => setIsOpen(!isOpen)}
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
-        onKeyDown={(e) => {
-          const curIndex = list.findIndex((item) => item.value === inputValue);
-          if (e.key === "ArrowDown") {
-            const nextIndex = curIndex + 1 > list.length - 1 ? 0 : curIndex + 1;
-            dispatch(setInputValue(list[nextIndex].value as string));
-          } else if (e.key === "ArrowUp") {
-            const prevIndex = curIndex - 1 < 0 ? list.length - 1 : curIndex - 1;
-            dispatch(setInputValue(list[prevIndex].value as string));
-          } else if (e.key === "Enter") {
-            setIsOpen(!isOpen);
-          }
-        }}
-        tabIndex={0}
+        onClick={disabled ? undefined : () => setIsOpen(!isOpen)}
+        onFocus={disabled ? undefined : () => setIsFocused(true)}
+        onBlur={disabled ? undefined : () => setIsFocused(false)}
+        onKeyDown={
+          disabled
+            ? undefined
+            : (e) => {
+                const curIndex = list.findIndex(
+                  (item) => item.value === inputValue
+                );
+                if (e.key === "ArrowDown") {
+                  const nextIndex =
+                    curIndex + 1 > list.length - 1 ? 0 : curIndex + 1;
+                  dispatch(setInputValue(list[nextIndex].value as string));
+                } else if (e.key === "ArrowUp") {
+                  const prevIndex =
+                    curIndex - 1 < 0 ? list.length - 1 : curIndex - 1;
+                  dispatch(setInputValue(list[prevIndex].value as string));
+                } else if (e.key === "Enter") {
+                  setIsOpen(!isOpen);
+                }
+              }
+        }
+        tabIndex={disabled ? -1 : 0}
       >
         <Input
           field="username"
@@ -76,6 +85,7 @@ const InputDropdown = ({ list }: InputDropdownProps) => {
           mode="dropdown"
           list={list}
           isOpen={isOpen}
+          disabled={disabled}
         />
       </div>
       {createPortal(
