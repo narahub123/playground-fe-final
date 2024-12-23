@@ -27,15 +27,10 @@ const Dropdown = ({
     top: number;
     left: number;
     width: number;
-  }>({
-    top: 0,
-    left: 0,
-    width: 0,
-  });
+  } | null>(null);
 
   const [listHeight, setListHeight] = useState(0);
 
-  const { top, left, width } = parentRect;
   // 부모 요소의 위치
   useEffect(() => {
     if (!parentRef) return;
@@ -92,6 +87,10 @@ const Dropdown = ({
       block: "center",
     });
   }, [inputValue]);
+
+  if (!parentRect) return null;
+
+  const { top, left, width } = parentRect;
 
   return (
     <div
