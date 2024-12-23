@@ -1,9 +1,15 @@
-import { getUsernameInSignin } from "@features/auth-setting/models/selectors";
+import {
+  getUserIdInSignin,
+  getUsernameInSignin,
+} from "@features/auth-setting/models/selectors";
 import { Input, InputDropdown, Modal } from "@shared/@common/ui/components";
 import { ReactNode } from "react";
 import { useSelector } from "react-redux";
 import { PASSWORD_MAX, PASSWORD_REGEX } from "@shared/@common/constants";
-import { setUsernameInSignIn } from "@features/auth-setting/models/slices/signinSlice";
+import {
+  setUserIdInSignIn,
+  setUsernameInSignIn,
+} from "@features/auth-setting/models/slices/signinSlice";
 import { InputErrorType } from "@shared/@common/types";
 import {
   PASSWORD_REGEX_FORMAT,
@@ -45,7 +51,9 @@ const TestModal = ({
   curPage,
   setCurPage,
 }: TestModalProps) => {
-  const value = useSelector(getUsernameInSignin);
+  const value = useSelector(getUserIdInSignin);
+  const inputValue = useSelector(getUsernameInSignin);
+  const setInputValue = setUsernameInSignIn;
   const pageList: ReactNode[] = [
     <Modal.Body>
       <Input
@@ -53,10 +61,16 @@ const TestModal = ({
         fieldName={"유저 아이디"}
         maxLength={PASSWORD_MAX}
         inputValue={value}
-        setInputValue={setUsernameInSignIn}
+        setInputValue={setUserIdInSignIn}
         error={error}
       />
-      <InputDropdown list={list} disabled />
+      <InputDropdown
+        list={list}
+        field="username"
+        fieldName="사용자 이름"
+        inputValue={inputValue}
+        setInputValue={setInputValue}
+      />
     </Modal.Body>,
     <Modal.Content>
       <Modal.Body>바디2</Modal.Body>

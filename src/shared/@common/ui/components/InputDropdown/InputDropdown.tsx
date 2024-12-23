@@ -2,23 +2,29 @@ import { joinClassNames } from "@shared/@common/utils";
 import styles from "./InputDropdown.module.css";
 import Input from "../Input/Input";
 import Dropdown from "../Dropdown/Dropdown";
-import { useSelector } from "react-redux";
-import { getUsernameInSignin } from "@features/auth-setting/models/selectors";
-import { setUsernameInSignIn } from "@features/auth-setting/models/slices/signinSlice";
 import { useEffect, useRef, useState } from "react";
 import { DropdownItemType } from "@shared/@common/types";
 import { createPortal } from "react-dom";
 import { useAppDispatch } from "@app/store";
 
 interface InputDropdownProps {
+  field: string;
+  fieldName: string;
+  inputValue: string;
+  setInputValue: (value: any) => { type: string; payload: any };
   list: DropdownItemType[];
   disabled?: boolean;
 }
 
-const InputDropdown = ({ list, disabled = false }: InputDropdownProps) => {
+const InputDropdown = ({
+  field,
+  fieldName,
+  inputValue,
+  setInputValue,
+  list,
+  disabled = false,
+}: InputDropdownProps) => {
   const dispatch = useAppDispatch();
-  const inputValue = useSelector(getUsernameInSignin);
-  const setInputValue = setUsernameInSignIn;
   const containerRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -78,8 +84,8 @@ const InputDropdown = ({ list, disabled = false }: InputDropdownProps) => {
         tabIndex={disabled ? -1 : 0}
       >
         <Input
-          field="username"
-          fieldName="사용자 이름"
+          field={field}
+          fieldName={fieldName}
           inputValue={inputValue}
           setInputValue={setInputValue}
           mode="dropdown"
