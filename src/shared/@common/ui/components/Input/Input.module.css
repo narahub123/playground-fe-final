@@ -104,6 +104,16 @@
   color: #aaa;
 }
 
+.input__icon {
+  transition: var(--transition-primary);
+}
+.input__icon--open {
+  transform: rotate(-180deg);
+}
+.input__icon--close {
+  transform: rotate(0deg);
+}
+
 .input__error {
   padding-left: 8px;
 }

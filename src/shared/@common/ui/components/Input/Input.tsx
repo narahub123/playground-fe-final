@@ -3,7 +3,7 @@ import styles from "./Input.module.css";
 import { forwardRef, useEffect, useMemo, useRef, useState } from "react";
 import Text from "../Text/Text";
 import Icon from "../Icon/Icon";
-import { InputErrorType } from "@shared/@common/types";
+import { DropdownItemType, InputErrorType } from "@shared/@common/types";
 import { useAppDispatch } from "@app/store";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 
@@ -15,6 +15,9 @@ interface InputProps {
   maxLength?: number;
   error?: InputErrorType;
   disabled?: boolean;
+  mode?: "default" | "dropdown"; // 모드
+  list?: DropdownItemType[];
+  isOpen?: boolean;
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
@@ -30,6 +33,9 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         defaultErrorMsg: "",
       },
       disabled = false,
+      mode = "default",
+      list,
+      isOpen,
     },
     ref
   ) => {
@@ -107,7 +113,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         <div
           className={joinClassNames([
             styles[`input__wrapper`],
-            focusCond && !disabled
+            focusCond && !disabled && mode !== "dropdown"
               ? validCond
                 ? styles[`input__wrapper--valid`]
                 : styles[`input__wrapper--invalid`]
@@ -119,7 +125,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           onBlur={() => {
             setIsFocused(false);
           }}
-          tabIndex={isFocused ? -1 : 0}
+          tabIndex={isFocused || mode === "dropdown" ? -1 : 0}
           ref={containerRef}
         >
           <div className={joinClassNames([styles[`input__container`]])}>
@@ -162,19 +168,27 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
                 disabled ? styles[`input__body--disabled`] : "",
               ])}
             >
-              <input
-                type={
-                  field === "password" && !showPassword ? "password" : "text"
-                }
-                className={joinClassNames([
-                  styles[`input__field`],
-                  disabled ? styles[`input__field--disabled`] : "",
-                ])}
-                value={inputValue}
-                onChange={(e) => onChange(e)}
-                ref={ref || inputRef} // 외부에서 ref가 전달된 경우 ref 전달 안된 경우 inputRef 적용
-                disabled={disabled}
-              />
+              {mode === "dropdown" ? (
+                <p>
+                  {list?.find((item) => item.value === inputValue)?.text ||
+                    inputValue}
+                </p>
+              ) : (
+                <input
+                  type={
+                    field === "password" && !showPassword ? "password" : "text"
+                  }
+                  className={joinClassNames([
+                    styles[`input__field`],
+                    disabled ? styles[`input__field--disabled`] : "",
+                  ])}
+                  value={inputValue}
+                  onChange={(e) => onChange(e)}
+                  ref={ref || inputRef} // 외부에서 ref가 전달된 경우 ref 전달 안된 경우 inputRef 적용
+                  disabled={disabled}
+                />
+              )}
+
               {field === "password" ? (
                 showPassword ? (
                   <Icon
@@ -194,6 +208,18 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
               ) : undefined}
             </div>
           </div>
+          {/* 드롭다운 아이콘 */}
+          {mode === "dropdown" ? (
+            <Icon
+              iconName="up"
+              subClassName={joinClassNames([
+                styles[`input__icon`],
+                isOpen
+                  ? styles[`input__icon--open`]
+                  : styles[`input__icon--close`],
+              ])}
+            />
+          ) : undefined}
         </div>
         {error && (
           <div className={styles[`input__error`]}>

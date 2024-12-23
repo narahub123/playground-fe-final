@@ -33,6 +33,9 @@ const InputDropdown = ({ list }: InputDropdownProps) => {
           fieldName="사용자 이름"
           inputValue={inputValue}
           setInputValue={setInputValue}
+          mode="dropdown"
+          list={list}
+          isOpen={isOpen}
         />
       </div>
       {createPortal(
