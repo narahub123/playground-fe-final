@@ -5,7 +5,7 @@ import Dropdown from "../Dropdown/Dropdown";
 import { useSelector } from "react-redux";
 import { getUsernameInSignin } from "@features/auth-setting/models/selectors";
 import { setUsernameInSignIn } from "@features/auth-setting/models/slices/signinSlice";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { DropdownItemType } from "@shared/@common/types";
 import { createPortal } from "react-dom";
 import { useAppDispatch } from "@app/store";
@@ -21,6 +21,24 @@ const InputDropdown = ({ list }: InputDropdownProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
+
+  useEffect(() => {
+    if (!containerRef) return;
+
+    const clickOutside = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+
+      if (!containerRef.current?.contains(target)) {
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener("click", (e) => clickOutside(e));
+
+    return () => {
+      window.removeEventListener("click", (e) => clickOutside(e));
+    };
+  }, []);
 
   const focusCond = isFocused;
   return (
