@@ -28,6 +28,7 @@ const Dropdown = ({
   const [parentRect, setParentRect] = useState<{
     top: number;
     left: number;
+    height: number;
     width: number;
   } | null>(null);
 
@@ -45,6 +46,7 @@ const Dropdown = ({
       setParentRect({
         top: rect.top,
         left: rect.left,
+        height: rect.height,
         width: rect.width,
       });
     };
@@ -61,6 +63,8 @@ const Dropdown = ({
   }, []);
   // list 높이 동적 적용
   useEffect(() => {
+    if (!parentRef) return;
+
     const updateHeight = () => {
       const parent = parentRef?.current;
 
@@ -94,7 +98,7 @@ const Dropdown = ({
 
   if (!parentRect) return null;
 
-  const { top, left, width } = parentRect;
+  const { top, left, width, height } = parentRect;
 
   return (
     <div
@@ -102,11 +106,15 @@ const Dropdown = ({
         styles[`dropdown`],
         isOpen ? styles[`dropdown--open`] : styles[`dropdown--close`],
       ])}
-      style={{
-        top: `${top + 59.6}px`,
-        left: `${left}px`,
-        width: `${width}px`,
-      }}
+      style={
+        parentRef
+          ? {
+              top: `${top + height + 2}px`,
+              left: `${left}px`,
+              width: `${width}px`,
+            }
+          : undefined
+      }
     >
       <ul
         className={joinClassNames([styles[`dropdown__list`]])}
