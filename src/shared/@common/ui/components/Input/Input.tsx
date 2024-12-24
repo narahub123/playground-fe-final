@@ -119,13 +119,23 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
                 : styles[`input__wrapper--invalid`]
               : "",
           ])}
-          onFocus={() => {
-            setIsFocused(true);
-          }}
-          onBlur={() => {
-            setIsFocused(false);
-          }}
-          tabIndex={isFocused || mode === "dropdown" ? -1 : 0}
+          onFocus={
+            mode === "dropdown" || disabled
+              ? undefined
+              : () => {
+                  setIsFocused(true);
+                }
+          }
+          onBlur={
+            mode === "dropdown" || disabled
+              ? undefined
+              : () => {
+                  setIsFocused(false);
+                }
+          }
+          tabIndex={
+            mode === "dropdown" || disabled ? undefined : isFocused ? -1 : 0
+          }
           ref={containerRef}
         >
           <div className={joinClassNames([styles[`input__container`]])}>
