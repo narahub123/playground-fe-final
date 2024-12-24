@@ -25,6 +25,28 @@ const PlayGround = () => {
   // 글꼴 크기
   const fontSize = useSelector(getFontSize);
 
+  // 현재 포커스 요소
+  useEffect(() => {
+    const handleFocusChange = () => {
+      console.log(
+        "현재 포커스 요소",
+        document.activeElement as HTMLElement | null
+      );
+    };
+
+    // 포커스 또는 블러 이벤트 감지
+    window.addEventListener("focus", handleFocusChange, true);
+    window.addEventListener("blur", handleFocusChange, true);
+
+    // 초기 포커스 설정
+    handleFocusChange();
+
+    return () => {
+      window.removeEventListener("focus", handleFocusChange, true);
+      window.removeEventListener("blur", handleFocusChange, true);
+    };
+  }, []);
+
   // 배경 테마 적용하기
   useEffect(() => {
     document.documentElement.dataset.bgTheme = bgTheme;
