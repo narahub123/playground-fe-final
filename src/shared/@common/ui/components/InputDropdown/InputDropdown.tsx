@@ -4,8 +4,8 @@ import Input from "../Input/Input";
 import Dropdown from "../Dropdown/Dropdown";
 import { useEffect, useRef, useState } from "react";
 import { DropdownItemType } from "@shared/@common/types";
-import { createPortal } from "react-dom";
 import { useAppDispatch } from "@app/store";
+import Portal from "../Portal/Portal";
 
 interface InputDropdownProps {
   field: string;
@@ -97,7 +97,7 @@ const InputDropdown = ({
           disabled={disabled}
         />
       </div>
-      {createPortal(
+      <Portal id="dropdown">
         <Dropdown
           isOpen={isOpen}
           setIsOpen={setIsOpen}
@@ -106,9 +106,8 @@ const InputDropdown = ({
           list={list}
           parentRef={containerRef}
           finalClickRef={buttonRef}
-        />,
-        document.getElementById("dropdown") as HTMLElement
-      )}
+        />
+      </Portal>
     </div>
   );
 };
