@@ -33,18 +33,27 @@ const InputDropdown = ({
   useEffect(() => {
     if (!containerRef) return;
 
+    const container = containerRef.current as HTMLElement;
+
     const clickOutside = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
 
-      if (!containerRef.current?.contains(target)) {
+      if (!container.contains(target)) {
         setIsOpen(false);
+        setIsFocused(false);
       }
     };
 
-    window.addEventListener("click", (e) => clickOutside(e));
+    const handleBlur = () => {
+      setIsOpen(false);
+    };
+
+    document.addEventListener("click", (e) => clickOutside(e));
+    window.addEventListener("blur", handleBlur);
 
     return () => {
-      window.removeEventListener("click", (e) => clickOutside(e));
+      document.removeEventListener("click", (e) => clickOutside(e));
+      window.removeEventListener("blur", handleBlur);
     };
   }, []);
 
@@ -60,9 +69,34 @@ const InputDropdown = ({
           styles[`input__wrapper`],
           focusCond ? styles[`input__wrapper--focused`] : "",
         ])}
-        onClick={disabled ? undefined : () => setIsOpen(!isOpen)}
-        onFocus={disabled ? undefined : () => setIsFocused(true)}
-        onBlur={disabled ? undefined : () => setIsFocused(false)}
+        onMouseDown={
+          disabled
+            ? undefined
+            : (e) => {
+                e.preventDefault();
+
+                setIsOpen(!isOpen);
+                setIsFocused(true);
+                // 포커스 주기
+                buttonRef.current?.focus();
+              }
+        }
+        onFocus={
+          disabled
+            ? undefined
+            : () => {
+                setIsFocused(true);
+                setIsOpen(true);
+              }
+        }
+        onBlur={
+          disabled
+            ? undefined
+            : () => {
+                setIsFocused(false);
+                setIsOpen(false);
+              }
+        }
         onKeyDown={
           disabled
             ? undefined
