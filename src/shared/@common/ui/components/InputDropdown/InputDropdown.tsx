@@ -139,7 +139,6 @@ const InputDropdown = ({
       <Portal id="dropdown">
         <Dropdown
           isOpen={isOpen}
-          setIsOpen={setIsOpen}
           inputValue={inputValue}
           setInputValue={setInputValue}
           list={list}
