@@ -129,11 +129,13 @@ const Dropdown = ({
                 styles[`dropdown__item`],
                 selectedCond ? styles[`dropdown__item--selected`] : "",
               ])}
-              onClick={() => {
+              onMouseDown={() => {
                 dispatch(setInputValue(item.value));
-                setIsOpen(false);
                 if (finalClickRef) {
-                  finalClickRef.current?.focus();
+                  setTimeout(() => {
+                    // inputdropdown의 mousedown과 충돌하는 것을 방지하기 위해서
+                    finalClickRef.current?.focus();
+                  }, 0);
                 }
               }}
               ref={(el) => (itemRefs.current[index] = el)}
