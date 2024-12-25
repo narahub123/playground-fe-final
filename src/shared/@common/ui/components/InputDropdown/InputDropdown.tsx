@@ -74,6 +74,7 @@ const InputDropdown = ({
             ? undefined
             : (e) => {
                 e.preventDefault();
+                console.log("클릭");
 
                 setIsOpen(!isOpen);
                 setIsFocused(true);
@@ -84,9 +85,13 @@ const InputDropdown = ({
         onFocus={
           disabled
             ? undefined
-            : () => {
-                setIsFocused(true);
-                setIsOpen(true);
+            : (e) => {
+                e.preventDefault();
+                setTimeout(() => {
+                  // mousedown 이후에 실행시키기 위해서
+                  setIsFocused(true);
+                  setIsOpen(true);
+                }, 100);
               }
         }
         onBlur={
