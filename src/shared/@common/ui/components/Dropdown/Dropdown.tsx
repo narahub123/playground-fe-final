@@ -6,7 +6,6 @@ import { useAppDispatch } from "@app/store";
 
 interface DropdownProps {
   isOpen: boolean;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   inputValue: string;
   setInputValue: (value: any) => { type: string; payload: any };
   list: DropdownItemType[];
@@ -16,7 +15,6 @@ interface DropdownProps {
 
 const Dropdown = ({
   isOpen,
-  setIsOpen,
   inputValue,
   setInputValue,
   list,
