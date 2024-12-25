@@ -8,12 +8,10 @@
 }
 
 .dropdown--open {
-  max-height: 800px;
   opacity: 1;
 }
 
 .dropdown--close {
-  max-height: 0px;
   opacity: 0;
 }
 
