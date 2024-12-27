@@ -57,7 +57,10 @@ const TestModal = ({
   const pageList: ReactNode[] = [
     <Modal.Body>
       <Input>
-        <>11</>
+        <Input.Main>
+          <Input.Error>하하</Input.Error>
+          <Input.Top>어디에?</Input.Top>
+        </Input.Main>
       </Input>
       {/* <Input
         field={"password"}
