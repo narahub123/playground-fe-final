@@ -56,11 +56,13 @@ const TestModal = ({
   const setInputValue = setUsernameInSignIn;
   const pageList: ReactNode[] = [
     <Modal.Body>
-      <Input>
-        <Input.Main>
-          <Input.Error>하하</Input.Error>
-          <Input.Top>어디에?</Input.Top>
-        </Input.Main>
+      <Input
+        label="사용자 이름"
+        field="username"
+        inputValue={inputValue}
+        setInputValue={setInputValue}
+      >
+        <Input.Main>df</Input.Main>
       </Input>
       {/* <Input
         field={"password"}
