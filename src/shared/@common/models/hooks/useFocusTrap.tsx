@@ -53,7 +53,11 @@ const useFocusTrap = ({
     };
 
     // 첫번째 포커스 요소 설정하기
-    (focusableElems[firstFocus] as HTMLElement).focus();
+    if (focusableElems[firstFocus] as HTMLElement) {
+      (focusableElems[firstFocus] as HTMLElement).focus();
+    } else {
+      firstElem.focus();
+    }
 
     // 키보드 이벤트 리스너 추가
     container.addEventListener("keydown", handleKeyDown);
