@@ -1,2 +1,3 @@
 import Input from "./ui";
-export { Input };
+
+export default Input;

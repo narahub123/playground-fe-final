@@ -2,7 +2,7 @@ import {
   getUserIdInSignin,
   getUsernameInSignin,
 } from "@features/auth-setting/models/selectors";
-import { Input, InputDropdown, Modal } from "@shared/@common/ui/components";
+import { Input, Modal } from "@shared/@common/ui/components";
 import { ReactNode } from "react";
 import { useSelector } from "react-redux";
 import { PASSWORD_MAX, PASSWORD_REGEX } from "@shared/@common/constants";
@@ -56,21 +56,17 @@ const TestModal = ({
   const setInputValue = setUsernameInSignIn;
   const pageList: ReactNode[] = [
     <Modal.Body>
-      <Input
+      <Input>
+        <>11</>
+      </Input>
+      {/* <Input
         field={"password"}
         fieldName={"유저 아이디"}
         maxLength={PASSWORD_MAX}
         inputValue={value}
         setInputValue={setUserIdInSignIn}
         error={error}
-      />
-      <InputDropdown
-        list={list}
-        field="username"
-        fieldName="사용자 이름"
-        inputValue={inputValue}
-        setInputValue={setInputValue}
-      />
+      /> */}
     </Modal.Body>,
     <Modal.Content>
       <Modal.Body>바디2</Modal.Body>

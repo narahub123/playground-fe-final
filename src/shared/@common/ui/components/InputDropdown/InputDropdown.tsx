@@ -1,6 +1,6 @@
 import { joinClassNames } from "@shared/@common/utils";
 import styles from "./InputDropdown.module.css";
-import Input from "../Input/Input";
+import Input from "../Input";
 import Dropdown from "../Dropdown/Dropdown";
 import { useEffect, useRef, useState } from "react";
 import { DropdownItemType } from "@shared/@common/types";
