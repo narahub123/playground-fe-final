@@ -1,10 +1,6 @@
 import { createContext } from "react";
 import { InputContextType } from "./Input.types";
 
-const InputContext = () => {
-  const context = createContext<InputContextType | null>(null);
-
-  return context;
-};
+const InputContext = createContext<InputContextType | null>(null);
 
 export default InputContext;
