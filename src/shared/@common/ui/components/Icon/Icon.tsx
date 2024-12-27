@@ -48,6 +48,7 @@ const Icon = ({
       aria-label={onClick ? iconTitle : undefined} // 버튼 설명을 aria-label로 제공
       aria-expanded={ariaExpanded} // 확장 상태를 나타냄 (모달 등과 관련된 경우)
       tabIndex={onClick ? 0 : undefined} // 클릭 가능한 경우에만 포커스 가능
+      aria-hidden={!onClick}
     >
       {/* 아이콘 컴포넌트를 렌더링 */}
       <Comp className={styles.comp} />
