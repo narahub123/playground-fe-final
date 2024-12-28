@@ -24,7 +24,10 @@ const InputWrapper = ({
   setInputValue,
   children,
   maxLength,
-  error,
+  error = {
+    regExp: "",
+    defaultErrorMsg: "",
+  },
 }: InputWrapperProps) => {
   const [isFocused, setIsFocused] = useState(false); // Input 컴포넌트의 포커스 상태 관리
   const [isValid, setIsValid] = useState(true); // inputValue의 유효성 상태 관리

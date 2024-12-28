@@ -17,7 +17,7 @@ interface InputContextType {
   errorMessage: string; // 현재 에러 메시지 상태
   setErrorMessage: React.Dispatch<React.SetStateAction<string>>; // 에러 메시지 업데이트하는 set 함수
   maxLength?: number; // 사용자가 input 필드에 입력할 수 있는 최대 글자 수를 제한: Constants로 관리할 것
-  error?: InputErrorType; // 에러 객체 : 정규 표현식과 에러 메시지를 가지고 있음
+  error: InputErrorType; // 에러 객체 : 정규 표현식과 에러 메시지를 가지고 있음
 }
 
 interface InputErrorType {
