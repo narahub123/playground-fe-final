@@ -58,7 +58,7 @@ const TestModal = ({
     <Modal.Body>
       <Input
         label="사용자 이름"
-        field="search"
+        field="password"
         inputValue={inputValue}
         setInputValue={setInputValue}
         maxLength={PASSWORD_MAX}
@@ -71,6 +71,7 @@ const TestModal = ({
           <Input.Bottom>
             <Input.Field />
             <Input.AdornmentIcon />
+            <Input.ActionIcon />
           </Input.Bottom>
         </Input.Main>
       </Input>
