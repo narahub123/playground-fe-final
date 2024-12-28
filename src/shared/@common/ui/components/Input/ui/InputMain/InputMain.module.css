@@ -1,0 +1,16 @@
+.input__main {
+  border: var(--bgTheme-border-primary);
+  border-radius: 15px;
+  transition: var(--transition-primary);
+  outline: 2px solid transparent; /* 자연스러운 변경을 위해 transparent로 변경 */
+}
+
+/* inputValue가 유효한 경우 */
+.input__main--valid {
+  outline: var(--colorTheme-outline-primary) !important;
+}
+
+/* inputValue가 유효하지 않은 경우 */
+.input__main--invalid {
+  border: var(--outline-warning);
+}
