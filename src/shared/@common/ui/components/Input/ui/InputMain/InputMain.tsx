@@ -12,13 +12,14 @@ interface InputMainProps {
 
 const InputMain = ({ children }: InputMainProps) => {
   // useInputContext 훅에서 상태 가져오기
-  const { isFocused, setIsFocused, isValid } = useInputContext();
+  const { isFocused, setIsFocused, isValid, inputRef, field } =
+    useInputContext();
 
   // InputError와 InputDropdown이 InputMain의 자식 요소로 오지 못하게 제한
   const validChildren = validateChildren(children, [InputError, InputDropdown]);
 
   return (
-    <div
+    <label
       className={joinClassNames([
         styles["input__main"],
         // 포커스인 상태에서 유효성 여부 표기
@@ -28,7 +29,8 @@ const InputMain = ({ children }: InputMainProps) => {
             : styles["input__main--invalid"]
           : "",
       ])}
-      tabIndex={0} // 실제 포커스는 input에 생기기 때문에 나중에 수정 예정
+      htmlFor={field}
+      tabIndex={-1} // 실제 포커스는 input에 생기기 때문에 나중에 수정 예정
       // 마우스다운 이벤트: onFocus와 onBlur와 사용할 때 이벤트 순서로 인한 충돌을 피하기 위해
       onMouseDown={() => {
         console.log("클릭");
@@ -46,7 +48,7 @@ const InputMain = ({ children }: InputMainProps) => {
       }}
     >
       <div className={styles[`input__container`]}>{validChildren}</div>
-    </div>
+    </label>
   );
 };
 
