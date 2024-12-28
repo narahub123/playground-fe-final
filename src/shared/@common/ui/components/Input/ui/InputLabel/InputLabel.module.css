@@ -1,0 +1,7 @@
+.input__label {
+    flex: 1;
+}
+
+.input__label--focused {
+  color: var(--colorTheme-color-primary);
+}

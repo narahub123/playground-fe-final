@@ -63,7 +63,9 @@ const TestModal = ({
         setInputValue={setInputValue}
       >
         <Input.Main>
-          <Input.Top>안녕</Input.Top>
+          <Input.Top>
+            <Input.Label />
+          </Input.Top>
         </Input.Main>
       </Input>
       {/* <Input
