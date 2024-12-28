@@ -1,0 +1,9 @@
+/* 유효성 성공 */
+.input__adornment--valid {
+  color: green;
+}
+
+/* 유효성 실패 */
+.input__adornment--invalid {
+  color: red;
+}
