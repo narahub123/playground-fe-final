@@ -1,7 +1,8 @@
+import styles from "./InputField.module.css";
+import { useEffect } from "react";
 import { useAppDispatch } from "@app/store";
 import { useInputContext } from "../../context";
-import styles from "./InputField.module.css";
-import { useEffect, useMemo } from "react";
+import { useCompiledInputError } from "../../hooks";
 
 interface InputFieldProps {}
 
@@ -17,18 +18,16 @@ const InputField = ({}: InputFieldProps) => {
     showPassword,
     maxLength,
     setErrorMessage,
-    error,
     setIsValid,
   } = useInputContext();
 
-  const { regExp, defaultErrorMsg, errorList, empty } = error;
-
-  // 문자열을 정규 표현식으로 변경
-  const defaultErrorRegex = useMemo(() => new RegExp(regExp), [regExp]);
-  const errorRegexList = useMemo(
-    () => (errorList || []).map((err) => new RegExp(err.regExp)),
-    [errorList]
-  );
+  const {
+    defaultErrorRegex,
+    defaultErrorMsg,
+    errorRegexList,
+    errorMsgList,
+    empty,
+  } = useCompiledInputError();
 
   // inputRef 업데이트
   useEffect(() => {
@@ -42,38 +41,44 @@ const InputField = ({}: InputFieldProps) => {
     const value = e.target.value;
 
     // value가 maxlength보다 긴 경우
-    if (maxLength && value.length > maxLength && errorList) {
-      setErrorMessage(errorList[1].errorMsg);
+    if (maxLength && value.length > maxLength && errorMsgList) {
+      if (!errorMsgList[1]) return;
+
+      setErrorMessage(errorMsgList[1]);
       return;
     }
 
     dispatch(setInputValue(value));
 
-    // 빈문자열인 경우
-    if (value === "" && empty) {
-      setErrorMessage(empty);
-      setIsValid(false);
-    }
-
-    // 유효성 검사: 최소 글자수 이전
-    for (const regex of errorRegexList) {
-      if (!errorList) return;
-      if (!regex.test(value)) {
-        setErrorMessage(
-          errorList.find((err) => err.regExp === regex.source)?.errorMsg || ""
-        );
+    // 정규 표현식이 제공되는 경우
+    if (typeof defaultErrorRegex !== "string") {
+      // 빈문자열인 경우
+      if (value === "" && empty) {
+        setErrorMessage(empty);
         setIsValid(false);
-        return;
       }
-    }
 
-    // 유효성 검사 : 최소 글자수 이후
-    if (!defaultErrorRegex.test(value)) {
-      setErrorMessage(defaultErrorMsg);
-      setIsValid(false);
-    } else {
-      setErrorMessage("");
-      setIsValid(true);
+      // 유효성 검사: 최소 글자수 이전
+      for (const regex of errorRegexList) {
+        if (!errorMsgList) return;
+        if (!regex.test(value)) {
+          const index = errorRegexList.findIndex(
+            (err) => err.source === regex.source
+          );
+          setErrorMessage(errorMsgList[index] || "");
+          setIsValid(false);
+          return;
+        }
+      }
+
+      // 유효성 검사 : 최소 글자수 이후
+      if (!defaultErrorRegex.test(value)) {
+        setErrorMessage(defaultErrorMsg);
+        setIsValid(false);
+      } else {
+        setErrorMessage("");
+        setIsValid(true);
+      }
     }
   };
 
