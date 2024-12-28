@@ -68,7 +68,9 @@ const TestModal = ({
             <Input.Label />
             <Input.Counter />
           </Input.Top>
-          <Input.Bottom>d</Input.Bottom>
+          <Input.Bottom>
+            <Input.Field />
+          </Input.Bottom>
         </Input.Main>
       </Input>
       {/* <Input
