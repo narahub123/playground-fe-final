@@ -59,7 +59,7 @@ const TestModal = ({
       <Input
         label="사용자 이름"
         field="username"
-        inputValue={""}
+        inputValue={inputValue}
         setInputValue={setInputValue}
         maxLength={PASSWORD_MAX}
       >

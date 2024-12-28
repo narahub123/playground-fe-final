@@ -1,11 +1,19 @@
 import { useInputContext } from "../../context";
 import styles from "./InputField.module.css";
+import { useEffect } from "react";
 
 interface InputFieldProps {}
 
 const InputField = ({}: InputFieldProps) => {
   // InputContext를 통해 필요한 값 불러오기
-  const { inputValue, inputRef, field } = useInputContext();
+  const { inputValue, inputRef, setInputRef, field } = useInputContext();
+
+  // inputRef 업데이트
+  useEffect(() => {
+    if (!inputRef) return;
+
+    setInputRef(inputRef);
+  }, [inputRef]);
 
   return (
     <input
