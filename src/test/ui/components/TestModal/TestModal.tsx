@@ -59,10 +59,12 @@ const TestModal = ({
       <Input
         label="사용자 이름"
         field="username"
-        inputValue={inputValue}
+        inputValue={""}
         setInputValue={setInputValue}
       >
-        <Input.Main>df</Input.Main>
+        <Input.Main>
+          <Input.Top>안녕</Input.Top>
+        </Input.Main>
       </Input>
       {/* <Input
         field={"password"}

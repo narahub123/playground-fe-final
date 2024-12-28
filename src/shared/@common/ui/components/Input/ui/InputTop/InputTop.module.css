@@ -1,0 +1,17 @@
+.input__top {
+  position: relative;
+  display: flex;
+  align-items: center;
+  transition: var(--transition-primary);
+}
+
+/* focus인 경우 */
+.input__top--focused {
+  font-size: 0.75rem; /* 폰트 크기 */
+  height: 1.125rem; /* 높이 */
+}
+
+/* blur인 경우 */
+.input__top--unfocused {
+  height: 100%; /* Main 전체를 차지함 */
+}
