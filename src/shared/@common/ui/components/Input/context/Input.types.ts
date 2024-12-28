@@ -14,7 +14,22 @@ interface InputContextType {
   >; // inputRef를 업데이트하는 set 함수
   showPassword: boolean; // 현재 비밀번호 표시 여부
   setShowPassword: React.Dispatch<React.SetStateAction<boolean>>; // 비밀번호 표시 여부 업데이트하는 set 함수
+  errorMessage: string; // 현재 에러 메시지 상태
+  setErrorMessage: React.Dispatch<React.SetStateAction<string>>; // 에러 메시지 업데이트하는 set 함수
   maxLength?: number; // 사용자가 input 필드에 입력할 수 있는 최대 글자 수를 제한: Constants로 관리할 것
+  error?: InputErrorType; // 에러 객체 : 정규 표현식과 에러 메시지를 가지고 있음
 }
 
-export type { InputContextType };
+interface InputErrorType {
+  regExp: string;
+  defaultErrorMsg: string;
+  errorList?: InputErrorListItemType[];
+  empty?: string;
+}
+
+interface InputErrorListItemType {
+  regExp: string;
+  errorMsg: string;
+}
+
+export type { InputContextType, InputErrorType, InputErrorListItemType };

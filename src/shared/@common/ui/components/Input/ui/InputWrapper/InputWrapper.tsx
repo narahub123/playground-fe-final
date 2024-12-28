@@ -1,6 +1,10 @@
 import { ReactNode, useState } from "react";
 import styles from "./InputWrapper.module.css";
-import { InputContextProvider, InputContextType } from "../../context";
+import {
+  InputContextProvider,
+  InputContextType,
+  InputErrorType,
+} from "../../context";
 
 // 외부에서 전달 받을 값
 interface InputWrapperProps {
@@ -10,6 +14,7 @@ interface InputWrapperProps {
   setInputValue: (value: any) => { type: string; payload: any }; // inputValue를 업데이트할 reducer
   children: ReactNode;
   maxLength?: number; // 사용자가 input 필드에 입력할 수 있는 최대 글자 수를 제한: Constants로 관리할 것
+  error?: InputErrorType; // 에러 객체 : 정규 표현식과 에러 메시지를 가지고 있음
 }
 
 const InputWrapper = ({
@@ -19,11 +24,13 @@ const InputWrapper = ({
   setInputValue,
   children,
   maxLength,
+  error,
 }: InputWrapperProps) => {
   const [isFocused, setIsFocused] = useState(false); // Input 컴포넌트의 포커스 상태 관리
   const [isValid, setIsValid] = useState(true); // inputValue의 유효성 상태 관리
   const [inputRef, setInputRef] = useState<React.RefObject<HTMLInputElement>>(); // input 요소를 참조하는 상태 관리
   const [showPassword, setShowPassword] = useState(false); // 비밀번호 표시 상태 관리
+  const [errorMessage, setErrorMessage] = useState(""); // 에러 메시지 상태 관리
 
   // context 값
   const value: InputContextType = {
@@ -43,6 +50,9 @@ const InputWrapper = ({
     setInputRef, // inputRef를 업데이트하는 set 함수
     showPassword, // 현재 비밀번호 표시 여부
     setShowPassword, // 비밀번호 표시 여부 업데이트하는 set 함수
+    errorMessage, // 현재 에러 메시지 상태
+    setErrorMessage, // 에러 메시지 업데이트하는 set 함수
+    error, // 에러 객체 : 정규 표현식과 에러 메시지를 가지고 있음
   };
   return (
     // Input 관련 데이터를 하위 컴포넌트에 전달하기 위한 Context Provider
