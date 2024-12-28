@@ -1,3 +1,4 @@
 .input_error {
-  text-rendering: red;
+  padding-left: 8px;
+  padding-top: 2px;
 }
