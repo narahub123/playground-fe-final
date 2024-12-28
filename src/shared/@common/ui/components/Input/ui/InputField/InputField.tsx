@@ -18,6 +18,7 @@ const InputField = ({}: InputFieldProps) => {
     showPassword,
     maxLength,
     setErrorMessage,
+    isValid,
     setIsValid,
   } = useInputContext();
 
@@ -90,6 +91,9 @@ const InputField = ({}: InputFieldProps) => {
       ref={inputRef} // input 참조
       id={field} // label과 연결
       onChange={(e) => handleChange(e)}
+      aria-required={true} // 필수 입력 필드
+      aria-invalid={!isValid} // 유효성 실패 여부
+      aria-describedby="error-message" // 에러 메시지를 포함한 추가적인 정보와 연결
     />
   );
 };
