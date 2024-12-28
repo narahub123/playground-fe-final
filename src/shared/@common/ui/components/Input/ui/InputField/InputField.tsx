@@ -8,8 +8,14 @@ interface InputFieldProps {}
 const InputField = ({}: InputFieldProps) => {
   const dispatch = useAppDispatch();
   // InputContext를 통해 필요한 값 불러오기
-  const { inputValue, setInputValue, inputRef, setInputRef, field } =
-    useInputContext();
+  const {
+    inputValue,
+    setInputValue,
+    inputRef,
+    setInputRef,
+    field,
+    showPassword,
+  } = useInputContext();
 
   // inputRef 업데이트
   useEffect(() => {
@@ -24,8 +30,10 @@ const InputField = ({}: InputFieldProps) => {
 
     dispatch(setInputValue(value));
   };
+
   return (
     <input
+      type={field === "password" && !showPassword ? "password" : "text"}
       className={styles["input__field"]}
       value={inputValue} // 기본 값
       ref={inputRef} // input 참조
