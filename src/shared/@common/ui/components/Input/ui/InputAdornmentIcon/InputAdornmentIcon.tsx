@@ -16,7 +16,7 @@ const InputAdornmentIcon = ({}: InputAdornmentIconProps) => {
       ? isValid
         ? "valid"
         : "invalid"
-      : "wrongName"; // 필드에 설정된 아이콘이 없는 경우
+      : undefined; // 필드에 설정된 아이콘이 없는 경우
 
   const subClassName =
     field === "userId" // 유저 아이디
@@ -25,6 +25,7 @@ const InputAdornmentIcon = ({}: InputAdornmentIconProps) => {
         : styles[`input__adornment--invalid`]
       : "";
 
+  if (!iconName) return null;
   return (
     <Icon iconName={iconName} subClassName={joinClassNames([subClassName])} />
   );
