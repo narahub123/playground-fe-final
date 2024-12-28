@@ -7,18 +7,16 @@ interface InputLabelProps {}
 
 const InputLabel = ({}: InputLabelProps) => {
   // InputContext에서 필요한 값 불러오기
-  const { label, field, isFocused } = useInputContext();
-  
+  const { label, isFocused } = useInputContext();
+
   return (
-    <label
-      className={joinClassNames([
+    <Text
+      text={label}
+      subClassName={joinClassNames([
         styles["input__label"],
         isFocused ? styles["input__label--focused"] : "",
       ])}
-      htmlFor={field} // input 요소와 연결하기 위해서 input의 id 값 적용
-    >
-      <Text text={label} />
-    </label>
+    />
   );
 };
 
