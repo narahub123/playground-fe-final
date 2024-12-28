@@ -61,10 +61,12 @@ const TestModal = ({
         field="username"
         inputValue={""}
         setInputValue={setInputValue}
+        maxLength={PASSWORD_MAX}
       >
         <Input.Main>
           <Input.Top>
             <Input.Label />
+            <Input.Counter />
           </Input.Top>
         </Input.Main>
       </Input>
