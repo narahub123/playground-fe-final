@@ -10,8 +10,8 @@ const useInputActionIconProps = () => {
   const { iconTitle } = useLanguageContent(["components", "Input"]);
 
   // 아이콘 이름
-  const iconName: keyof typeof Icons =
-    field === "password" ? (showPassword ? "eyeoff" : "eye") : "wrongName";
+  const iconName: keyof typeof Icons | undefined =
+    field === "password" ? (showPassword ? "eyeoff" : "eye") : undefined;
 
   // 아이콘 설명
   const icontitle =
