@@ -12,6 +12,8 @@ interface InputContextType {
   setInputRef: React.Dispatch<
     React.SetStateAction<React.RefObject<HTMLInputElement> | undefined>
   >; // inputRef를 업데이트하는 set 함수
+  showPassword: boolean; // 현재 비밀번호 표시 여부
+  setShowPassword: React.Dispatch<React.SetStateAction<boolean>>; // 비밀번호 표시 여부 업데이트하는 set 함수
   maxLength?: number; // 사용자가 input 필드에 입력할 수 있는 최대 글자 수를 제한: Constants로 관리할 것
 }
 
