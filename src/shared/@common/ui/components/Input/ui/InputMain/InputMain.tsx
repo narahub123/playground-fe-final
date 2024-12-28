@@ -45,7 +45,7 @@ const InputMain = ({ children }: InputMainProps) => {
         setIsFocused(false);
       }}
     >
-      {validChildren}
+      <div className={styles[`input__container`]}>{validChildren}</div>
     </div>
   );
 };

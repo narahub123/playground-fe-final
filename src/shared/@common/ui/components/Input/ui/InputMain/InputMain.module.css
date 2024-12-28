@@ -1,8 +1,10 @@
 .input__main {
+  display: flex;
   border: var(--bgTheme-border-primary);
-  border-radius: 15px;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
   transition: var(--transition-primary);
-  outline: 2px solid transparent; /* 자연스러운 변경을 위해 transparent로 변경 */
+  outline: 0.125rem solid transparent; /* 자연스러운 변경을 위해 transparent로 변경 */
 }
 
 /* inputValue가 유효한 경우 */
@@ -13,4 +15,12 @@
 /* inputValue가 유효하지 않은 경우 */
 .input__main--invalid {
   border: var(--outline-warning);
+}
+
+/* 스타일링 이유로 추가한 클래스 */
+.input__container {
+  position: relative;
+  flex: 1;
+  height: 2.625rem;
+  width: 100%;
 }
