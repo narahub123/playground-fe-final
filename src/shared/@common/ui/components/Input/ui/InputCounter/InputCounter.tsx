@@ -7,11 +7,16 @@ interface InputCounterProps {}
 
 const InputCounter = ({}: InputCounterProps) => {
   // InputContext에서 필요한 값 불러오기
-  const { maxLength, inputValue, isFocused } = useInputContext();
+  const { maxLength, inputValue, isFocused, list } = useInputContext();
+
+  // inputValue의 길이
+  const length =
+    list?.find((item) => item.value === inputValue)?.text.length ||
+    inputValue.length;
 
   return (
     <Text
-      text={`${inputValue.length} / ${maxLength}`}
+      text={`${length} / ${maxLength}`}
       subClassName={joinClassNames([
         styles["input__counter"],
         isFocused // 포커스 상태 변화
