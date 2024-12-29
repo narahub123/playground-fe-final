@@ -18,6 +18,7 @@
   overflow-y: auto;
   border: var(--bgTheme-border-primary);
   border-radius: 8px;
+  transition: var(--transition-primary);
 }
 
 .input__item {

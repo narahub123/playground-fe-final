@@ -16,6 +16,9 @@ const InputDropdown = () => {
     height: number;
   } | null>(null);
 
+  // 드롭다운의 높이를 저장할 상태
+  const [dropdownHeight, setDropdownHeight] = useState(0);
+
   // InputMain의 위치와 크기를 계산하여 상태에 저장
   useEffect(() => {
     // mainRef가 유효하지 않으면 함수 실행 중단
@@ -49,6 +52,31 @@ const InputDropdown = () => {
     };
   }, [mainRef, mainRef?.current]); // mainRef가 변경될 때마다 효과 실행
 
+  // InputMain의 위치를 통한 dropdown 높이 동적 적용
+  useEffect(() => {
+    if (!mainRef || !mainRef.current) return;
+
+    const updateDropdownHeight = () => {
+      const main = mainRef.current as HTMLElement;
+
+      const bottom = main.getBoundingClientRect().bottom || 0;
+      const height = window.innerHeight - bottom;
+
+      setDropdownHeight(height);
+    };
+
+    // 브라우저 창 크기 변경 또는 스크롤 이벤트 발생 시 높이 업데이트
+    window.addEventListener("resize", updateDropdownHeight); // 브라우저 창 크기 변화 감지
+    window.addEventListener("scroll", updateDropdownHeight); // 스크롤 이벤트 감지
+
+    updateDropdownHeight();
+
+    return () => {
+      window?.removeEventListener("resize", updateDropdownHeight); // resize 이벤트 제거
+      window?.removeEventListener("scroll", updateDropdownHeight); // scroll 이벤트 제거
+    };
+  }, [mainRef]);
+
   // 드롭다운에 사용할 리스트가 없으면 표시하지 않음
   if (!list) return;
 
@@ -73,7 +101,12 @@ const InputDropdown = () => {
           width, // 드롭다운의 너비: InputMain과 동일
         }}
       >
-        <ul className={styles[`input__list`]}>
+        <ul
+          className={styles[`input__list`]}
+          style={{
+            maxHeight: isDropdownOpen ? dropdownHeight : 0, // 드롭다운이 열릴 때 높이를 적용
+          }}
+        >
           {list?.map((item, index) => (
             <li key={index} className={styles[`input__item`]}>
               {item.text} {/* 리스트 항목 텍스트 표시 */}
