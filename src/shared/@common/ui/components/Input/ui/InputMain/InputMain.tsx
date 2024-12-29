@@ -37,7 +37,7 @@ const InputMain = ({ children }: InputMainProps) => {
           : "",
       ])}
       htmlFor={field}
-      tabIndex={-1} // 실제 포커스는 input에 생기기 때문에 나중에 수정 예정
+      tabIndex={list ? 0 : -1} // 실제 포커스는 input에 생기기 때문에 나중에 수정 예정
       // 마우스다운 이벤트: onFocus와 onBlur와 사용할 때 이벤트 순서로 인한 충돌을 피하기 위해
       onMouseDown={() => {
         console.log("클릭");
