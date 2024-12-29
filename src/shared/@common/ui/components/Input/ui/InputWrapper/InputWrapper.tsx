@@ -38,6 +38,7 @@ const InputWrapper = ({
   const [showPassword, setShowPassword] = useState(false); // 비밀번호 표시 상태 관리
   const [errorMessage, setErrorMessage] = useState(""); // 에러 메시지 상태 관리
   const [isDropdownOpen, setIsDropdownOpen] = useState(false); // 드롭다운 여닫기 상태 관리
+  const [mainRef, setMainRef] = useState<React.RefObject<HTMLDivElement>>(); // InputMain를 참조하는 상태 관리
 
   // context 값
   const value: InputContextType = {
@@ -63,6 +64,8 @@ const InputWrapper = ({
     setErrorMessage, // 에러 메시지 업데이트하는 set 함수
     isDropdownOpen, // 현재 드롭다운 열여 있는지 여부
     setIsDropdownOpen, // 드롭다운 여닫기 업데이트하는 set 함수
+    mainRef, // 현재 InputMain 참조하는 상태: 드롭다운의 위치, 크기에 영향
+    setMainRef, // mainRef를 업데이트 하는 set 함수
   };
   return (
     // Input 관련 데이터를 하위 컴포넌트에 전달하기 위한 Context Provider
