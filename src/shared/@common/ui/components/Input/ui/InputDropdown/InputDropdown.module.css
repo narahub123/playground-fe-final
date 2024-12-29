@@ -26,6 +26,11 @@
   cursor: pointer;
 }
 
+.input__item--selected {
+  background-color: var(--colorTheme-color-primary);
+  color: #fff;
+}
+
 .input__item:hover {
   background-color: var(--colorTheme-color-primary);
   color: #fff;

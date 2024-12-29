@@ -6,7 +6,12 @@ import { useEffect, useState } from "react";
 
 const InputDropdown = () => {
   // InpuContext를 통해 상태 및 참조 가져오기
-  const { list, isDropdownOpen, mainRef } = useInputContext();
+  const {
+    list, // 드롭다운 목록
+    isDropdownOpen, // 드롭다운 여닫기 상태
+    mainRef, // mainRef 가져오기
+    inputValue, // 선택 항목을 알기 위해서
+  } = useInputContext();
 
   // InputMain의 위치와 크기를 저장할 상태 정의
   const [mainRect, setMainRect] = useState<{
@@ -107,11 +112,20 @@ const InputDropdown = () => {
             maxHeight: isDropdownOpen ? dropdownHeight : 0, // 드롭다운이 열릴 때 높이를 적용
           }}
         >
-          {list?.map((item, index) => (
-            <li key={index} className={styles[`input__item`]}>
-              {item.text} {/* 리스트 항목 텍스트 표시 */}
-            </li>
-          ))}
+          {list?.map((item, index) => {
+            const selectedCond = inputValue === item.value;
+            return (
+              <li
+                key={index}
+                className={joinClassNames([
+                  styles[`input__item`],
+                  selectedCond ? styles[`input__item--selected`] : "",
+                ])}
+              >
+                {item.text} {/* 리스트 항목 텍스트 표시 */}
+              </li>
+            );
+          })}
         </ul>
       </div>
     </Portal>
