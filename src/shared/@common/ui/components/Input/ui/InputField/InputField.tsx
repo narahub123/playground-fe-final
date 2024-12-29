@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useAppDispatch } from "@app/store";
 import { useInputContext } from "../../context";
 import { useCompiledInputError } from "../../hooks";
+import Text from "../../../Text/Text";
 
 interface InputFieldProps {}
 
@@ -20,6 +21,7 @@ const InputField = ({}: InputFieldProps) => {
     setErrorMessage,
     isValid,
     setIsValid,
+    list, // 드롭다운 목록
   } = useInputContext();
 
   const {
@@ -84,17 +86,29 @@ const InputField = ({}: InputFieldProps) => {
   };
 
   return (
-    <input
-      type={field === "password" && !showPassword ? "password" : "text"}
-      className={styles["input__field"]}
-      value={inputValue} // 기본 값
-      ref={inputRef} // input 참조
-      id={field} // label과 연결
-      onChange={(e) => handleChange(e)}
-      aria-required={true} // 필수 입력 필드
-      aria-invalid={!isValid} // 유효성 실패 여부
-      aria-describedby="error-message" // 에러 메시지를 포함한 추가적인 정보와 연결
-    />
+    <>
+      {/* list 존재 여부로 드롭다운 존재 여부 판단 */}
+      {list ? (
+        // 드롭다운 존재하는 경우
+        <Text
+          text={
+            list.find((item) => item.value === inputValue)?.text || inputValue
+          }
+        />
+      ) : (
+        <input
+          type={field === "password" && !showPassword ? "password" : "text"}
+          className={styles["input__field"]}
+          value={inputValue} // 기본 값
+          ref={inputRef} // input 참조
+          id={field} // label과 연결
+          onChange={(e) => handleChange(e)}
+          aria-required={true} // 필수 입력 필드
+          aria-invalid={!isValid} // 유효성 실패 여부
+          aria-describedby="error-message" // 에러 메시지를 포함한 추가적인 정보와 연결
+        />
+      )}
+    </>
   );
 };
 
