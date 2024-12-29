@@ -4,6 +4,7 @@ import { useAppDispatch } from "@app/store";
 import { useInputContext } from "../../context";
 import { useCompiledInputError } from "../../hooks";
 import Text from "../../../Text/Text";
+import { joinClassNames } from "@shared/@common/utils";
 
 interface InputFieldProps {}
 
@@ -22,6 +23,7 @@ const InputField = ({}: InputFieldProps) => {
     isValid,
     setIsValid,
     list, // 드롭다운 목록
+    disabled, // disabled 모드
   } = useInputContext();
 
   const {
@@ -94,15 +96,22 @@ const InputField = ({}: InputFieldProps) => {
           text={
             list.find((item) => item.value === inputValue)?.text || inputValue
           }
+          subClassName={joinClassNames([
+            disabled ? styles[`input__field--disabled`] : "",
+          ])}
         />
       ) : (
         <input
           type={field === "password" && !showPassword ? "password" : "text"}
-          className={styles["input__field"]}
+          className={joinClassNames([
+            styles["input__field"],
+            disabled ? styles["input__field--disabled"] : "",
+          ])}
           value={inputValue} // 기본 값
           ref={inputRef} // input 참조
           id={field} // label과 연결
-          onChange={(e) => handleChange(e)}
+          onChange={disabled ? undefined : (e) => handleChange(e)}
+          disabled={disabled} // disabled 모드
           aria-required={true} // 필수 입력 필드
           aria-invalid={!isValid} // 유효성 실패 여부
           aria-describedby="error-message" // 에러 메시지를 포함한 추가적인 정보와 연결
