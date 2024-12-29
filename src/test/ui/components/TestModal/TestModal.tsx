@@ -64,6 +64,7 @@ const TestModal = ({
         maxLength={PASSWORD_MAX}
         error={error}
         list={list}
+        disabled={true}
       >
         <Input.Main>
           <Input.Top>

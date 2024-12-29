@@ -27,6 +27,7 @@ const InputMain = ({ children }: InputMainProps) => {
     setMainRef, // mainRef 업데이트
     inputValue, // input 값
     setInputValue, // inputValue 값 업데이트
+    disabled,
   } = useInputContext();
 
   // mainRef 업데이트
@@ -48,41 +49,56 @@ const InputMain = ({ children }: InputMainProps) => {
             ? styles["input__main--valid"]
             : styles["input__main--invalid"]
           : "",
+        disabled ? styles["input__main--disabled"] : "",
       ])}
       htmlFor={field}
-      tabIndex={list ? 0 : -1} // 실제 포커스는 input에 생기기 때문에 나중에 수정 예정
+      tabIndex={list && !disabled ? 0 : -1} // disabled 모드가 아니고 드롭다운 사용 하는 경우에는 탭 이동 가능
       // 마우스다운 이벤트: onFocus와 onBlur와 사용할 때 이벤트 순서로 인한 충돌을 피하기 위해
-      onMouseDown={() => {
-        console.log("클릭");
-        setIsFocused(true);
-        // list가 존재하는 경우
-        if (list) {
-          // 드롭다운 여닫기
-          setIsDropdownOpen(!isDropdownOpen);
-        }
-      }}
+      onMouseDown={
+        disabled
+          ? undefined
+          : () => {
+              console.log("클릭");
+              setIsFocused(true);
+              // list가 존재하는 경우
+              if (list) {
+                // 드롭다운 여닫기
+                setIsDropdownOpen(!isDropdownOpen);
+              }
+            }
+      }
       // 포커스
-      onFocus={() => {
-        console.log("포커스");
-        setIsFocused(true);
-        // list가 존재하는 경우
-        if (list) {
-          // 드롭다운 열기
-          setIsDropdownOpen(true);
-        }
-      }}
+      onFocus={
+        disabled
+          ? undefined
+          : () => {
+              console.log("포커스");
+              setIsFocused(true);
+              // list가 존재하는 경우
+              if (list) {
+                // 드롭다운 열기
+                setIsDropdownOpen(true);
+              }
+            }
+      }
       // 블러
-      onBlur={() => {
-        console.log("블러");
-        setIsFocused(false);
-        // list가 존재하는 경우
-        if (list) {
-          // 드롭다운 닫기
-          setIsDropdownOpen(false);
-        }
-      }}
+      onBlur={
+        disabled
+          ? undefined
+          : () => {
+              console.log("블러");
+              setIsFocused(false);
+              // list가 존재하는 경우
+              if (list) {
+                // 드롭다운 닫기
+                setIsDropdownOpen(false);
+              }
+            }
+      }
       onKeyDown={
-        list
+        disabled
+          ? undefined
+          : list
           ? (e) => {
               const curIndex =
                 list?.findIndex((item) => item.value === inputValue) || 0;
