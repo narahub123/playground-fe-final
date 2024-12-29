@@ -94,6 +94,8 @@ const InputMain = ({ children }: InputMainProps) => {
                 const prevIndex =
                   curIndex - 1 < 0 ? list.length - 1 : curIndex - 1;
                 dispatch(setInputValue(list[prevIndex].value));
+              } else if (e.key === "Enter") {
+                setIsDropdownOpen(!isDropdownOpen);
               }
             }
           : undefined
