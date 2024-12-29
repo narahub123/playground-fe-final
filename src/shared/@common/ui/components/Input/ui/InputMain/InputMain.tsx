@@ -1,5 +1,5 @@
 import styles from "./InputMain.module.css";
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useRef } from "react";
 import { useInputContext } from "../../context";
 import { joinClassNames } from "@shared/@common/utils";
 import { validateChildren } from "../../utils";
@@ -11,6 +11,8 @@ interface InputMainProps {
 }
 
 const InputMain = ({ children }: InputMainProps) => {
+  const mainRef = useRef<HTMLLabelElement>(null);
+
   // useInputContext 훅에서 상태 가져오기
   const {
     isFocused, // 현재 포커스 상태
@@ -20,7 +22,14 @@ const InputMain = ({ children }: InputMainProps) => {
     list, // 드롭다운 목록
     isDropdownOpen, // 현재 드롭다운 여닫기 상태
     setIsDropdownOpen, // 드롭다운 여닫기 업데이트
+    setMainRef, // mainRef 업데이트
   } = useInputContext();
+
+  // mainRef 업데이트
+  useEffect(() => {
+    if (!mainRef || !mainRef.current) return;
+    setMainRef(mainRef);
+  }, [mainRef]);
 
   // InputError와 InputDropdown이 InputMain의 자식 요소로 오지 못하게 제한
   const validChildren = validateChildren(children, [InputError, InputDropdown]);
@@ -68,6 +77,7 @@ const InputMain = ({ children }: InputMainProps) => {
           setIsDropdownOpen(false);
         }
       }}
+      ref={mainRef}
     >
       <div className={styles[`input__container`]}>{validChildren}</div>
     </label>
