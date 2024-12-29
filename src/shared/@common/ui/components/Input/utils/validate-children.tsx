@@ -2,7 +2,8 @@ import { Children, ComponentType, isValidElement, ReactNode } from "react";
 
 const validateChildren = (
   children: ReactNode,
-  invalidComponents: ComponentType[]
+  invalidComponents: ComponentType[], // 유효하지 않은 컴포넌트 배열
+  showErrorMessage: boolean = true // 에러 메시지 표시 여부 기본값은 true
 ) => {
   return Children.toArray(children).map((child, index) => {
     // 자식 요소가 유효한 React 요소인지 확인
@@ -19,12 +20,14 @@ const validateChildren = (
         const childTypeName =
           typeof child.type === "function" ? child.type.name : "Unknown";
 
-        return (
+        return showErrorMessage ? (
           <div key={index}>
             {/* 에러 메시지: 유효하지 않은 컴포넌트가 자식으로 사용됨 */}
-            <p>에러: {childTypeName}는 자식으로 사용할 수 없습니다.</p>
+            <p style={{ color: "red" }}>
+              에러: {childTypeName}는 자식으로 사용할 수 없습니다.
+            </p>
           </div>
-        );
+        ) : null;
       }
 
       // 유효한 자식 요소는 그대로 반환
