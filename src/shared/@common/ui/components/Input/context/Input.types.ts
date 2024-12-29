@@ -1,3 +1,5 @@
+import { DropdownItemType } from "@shared/@common/types";
+
 interface InputContextType {
   label: string; // input 필드의 목적을 설명하는 문자열
   field: string; // slice에서 상태를 식별하기 위한 필드 이름
@@ -16,8 +18,11 @@ interface InputContextType {
   setShowPassword: React.Dispatch<React.SetStateAction<boolean>>; // 비밀번호 표시 여부 업데이트하는 set 함수
   errorMessage: string; // 현재 에러 메시지 상태
   setErrorMessage: React.Dispatch<React.SetStateAction<string>>; // 에러 메시지 업데이트하는 set 함수
-  maxLength?: number; // 사용자가 input 필드에 입력할 수 있는 최대 글자 수를 제한: Constants로 관리할 것
   error: InputErrorType; // 에러 객체 : 정규 표현식과 에러 메시지를 가지고 있음
+  isDropdownOpen: boolean; // 현재 드롭다운 열여 있는지 여부
+  setIsDropdownOpen: React.Dispatch<React.SetStateAction<boolean>>; // 드롭다운 여닫기 업데이트하는 set 함수
+  maxLength?: number; // 사용자가 input 필드에 입력할 수 있는 최대 글자 수를 제한: Constants로 관리할 것
+  list?: DropdownItemType[]; // 드롭다운에 들어갈 아이템 배열
 }
 
 interface InputErrorType {

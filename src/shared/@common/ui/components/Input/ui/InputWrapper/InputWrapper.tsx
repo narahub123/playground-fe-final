@@ -5,6 +5,7 @@ import {
   InputContextType,
   InputErrorType,
 } from "../../context";
+import { DropdownItemType } from "@shared/@common/types";
 
 // 외부에서 전달 받을 값
 interface InputWrapperProps {
@@ -15,6 +16,7 @@ interface InputWrapperProps {
   children: ReactNode;
   maxLength?: number; // 사용자가 input 필드에 입력할 수 있는 최대 글자 수를 제한: Constants로 관리할 것
   error?: InputErrorType; // 에러 객체 : 정규 표현식과 에러 메시지를 가지고 있음
+  list?: DropdownItemType[]; // 드롭다운에 들어갈 아이템 배열
 }
 
 const InputWrapper = ({
@@ -28,12 +30,14 @@ const InputWrapper = ({
     regExp: "",
     defaultErrorMsg: "",
   },
+  list,
 }: InputWrapperProps) => {
   const [isFocused, setIsFocused] = useState(false); // Input 컴포넌트의 포커스 상태 관리
   const [isValid, setIsValid] = useState(true); // inputValue의 유효성 상태 관리
   const [inputRef, setInputRef] = useState<React.RefObject<HTMLInputElement>>(); // input 요소를 참조하는 상태 관리
   const [showPassword, setShowPassword] = useState(false); // 비밀번호 표시 상태 관리
   const [errorMessage, setErrorMessage] = useState(""); // 에러 메시지 상태 관리
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // 드롭다운 여닫기 상태 관리
 
   // context 값
   const value: InputContextType = {
@@ -43,6 +47,8 @@ const InputWrapper = ({
     inputValue, // Input의 value
     setInputValue, // inputValue를 업데이트할 reducer
     maxLength, // 사용자가 input 필드에 입력할 수 있는 최대 글자 수를 제한: Constants로 관리할 것
+    list, // 드롭다운에 들어갈 아이템 배열
+    error, // 에러 객체 : 정규 표현식과 에러 메시지를 가지고 있음
     // 내부에서 생성할 값
     isFocused, // 현재 Input 컴포넌트의 포커스 여부
     setIsFocused, // Input 컴포넌트의 포커스 상태 업데이트하는 set 함수
@@ -55,7 +61,8 @@ const InputWrapper = ({
     setShowPassword, // 비밀번호 표시 여부 업데이트하는 set 함수
     errorMessage, // 현재 에러 메시지 상태
     setErrorMessage, // 에러 메시지 업데이트하는 set 함수
-    error, // 에러 객체 : 정규 표현식과 에러 메시지를 가지고 있음
+    isDropdownOpen, // 현재 드롭다운 열여 있는지 여부
+    setIsDropdownOpen, // 드롭다운 여닫기 업데이트하는 set 함수
   };
   return (
     // Input 관련 데이터를 하위 컴포넌트에 전달하기 위한 Context Provider
