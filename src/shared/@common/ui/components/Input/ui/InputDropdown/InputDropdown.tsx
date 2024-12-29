@@ -2,7 +2,7 @@ import { joinClassNames } from "@shared/@common/utils";
 import { useInputContext } from "../../context";
 import styles from "./InputDropdown.module.css";
 import Portal from "../../../Portal/Portal";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useAppDispatch } from "@app/store";
 
 const InputDropdown = () => {
@@ -30,7 +30,7 @@ const InputDropdown = () => {
   const [dropdownHeight, setDropdownHeight] = useState(0);
 
   // InputMain의 위치와 크기를 계산하여 상태에 저장
-  useEffect(() => {
+  useLayoutEffect(() => {
     // mainRef가 유효하지 않으면 함수 실행 중단
     if (!mainRef || !mainRef.current) return;
 
@@ -63,8 +63,8 @@ const InputDropdown = () => {
   }, [mainRef, mainRef?.current]); // mainRef가 변경될 때마다 효과 실행
 
   // InputMain의 위치를 통한 dropdown 높이 동적 적용
-  useEffect(() => {
-    if (!mainRef || !mainRef.current) return;
+  useLayoutEffect(() => {
+    if (!mainRef || !mainRef.current || !mainRect) return;
 
     const updateDropdownHeight = () => {
       const main = mainRef.current as HTMLElement;
@@ -85,7 +85,7 @@ const InputDropdown = () => {
       window?.removeEventListener("resize", updateDropdownHeight); // resize 이벤트 제거
       window?.removeEventListener("scroll", updateDropdownHeight); // scroll 이벤트 제거
     };
-  }, [mainRef]);
+  }, [mainRef, mainRect]);
 
   // 선택 항목으로 스크롤 이동
   useEffect(() => {
@@ -112,7 +112,7 @@ const InputDropdown = () => {
   if (!list) return;
 
   // mainRect가 유효하지 않으면 표시하지 않음
-  if (!mainRect) return;
+  if (!mainRect) return null;
   const { top, left, width, height } = mainRect; // 위치와 크기 정보를 구조 분해 할당
 
   return (
