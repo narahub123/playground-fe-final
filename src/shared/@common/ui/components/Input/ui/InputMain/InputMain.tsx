@@ -5,12 +5,14 @@ import { joinClassNames } from "@shared/@common/utils";
 import { validateChildren } from "../../utils";
 import InputDropdown from "../InputDropdown/InputDropdown";
 import InputError from "../InputError/InputError";
+import { useAppDispatch } from "@app/store";
 
 interface InputMainProps {
   children: ReactNode; //type 에러 : 유효하지 않은 타입 제거
 }
 
 const InputMain = ({ children }: InputMainProps) => {
+  const dispatch = useAppDispatch();
   const mainRef = useRef<HTMLLabelElement>(null);
 
   // useInputContext 훅에서 상태 가져오기
@@ -23,6 +25,8 @@ const InputMain = ({ children }: InputMainProps) => {
     isDropdownOpen, // 현재 드롭다운 여닫기 상태
     setIsDropdownOpen, // 드롭다운 여닫기 업데이트
     setMainRef, // mainRef 업데이트
+    inputValue, // input 값
+    setInputValue, // inputValue 값 업데이트
   } = useInputContext();
 
   // mainRef 업데이트
@@ -77,6 +81,23 @@ const InputMain = ({ children }: InputMainProps) => {
           setIsDropdownOpen(false);
         }
       }}
+      onKeyDown={
+        list
+          ? (e) => {
+              const curIndex =
+                list?.findIndex((item) => item.value === inputValue) || 0;
+              if (e.key === "ArrowDown") {
+                const nextIndex =
+                  curIndex + 1 > list.length - 1 ? 0 : curIndex + 1;
+                dispatch(setInputValue(list[nextIndex].value));
+              } else if (e.key === "ArrowUp") {
+                const prevIndex =
+                  curIndex - 1 < 0 ? list.length - 1 : curIndex - 1;
+                dispatch(setInputValue(list[prevIndex].value));
+              }
+            }
+          : undefined
+      }
       ref={mainRef}
     >
       <div className={styles[`input__container`]}>{validChildren}</div>
