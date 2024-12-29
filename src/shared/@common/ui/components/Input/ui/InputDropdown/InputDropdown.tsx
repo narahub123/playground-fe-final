@@ -2,9 +2,10 @@ import { joinClassNames } from "@shared/@common/utils";
 import { useInputContext } from "../../context";
 import styles from "./InputDropdown.module.css";
 import Portal from "../../../Portal/Portal";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const InputDropdown = () => {
+  const itemsRef = useRef<(HTMLLIElement | null)[]>([]);
   // InpuContext를 통해 상태 및 참조 가져오기
   const {
     list, // 드롭다운 목록
@@ -82,12 +83,32 @@ const InputDropdown = () => {
     };
   }, [mainRef]);
 
+  // 선택 항목으로 스크롤 이동
+  useEffect(() => {
+    if (!isDropdownOpen) return; // 드롭다운이 열려있을 때만 실행
+
+    const timer = setTimeout(() => {
+      const curIndex =
+        list?.findIndex((item) => item.value === inputValue) || 0; // 선택 항목의 현재 위치
+
+      const selected = itemsRef.current[curIndex]; // 선택된 항목 가져오기
+
+      if (!selected) return; // 선택된 항목이 없다면 종료
+
+      selected?.scrollIntoView({
+        behavior: "smooth", // 부드러운 스크롤 효과
+        block: "center", // 항목을 화면 중앙에 위치하도록 스크롤
+      });
+    }, 0); // 렌더링 직후에 실행되도록 0ms 지연 후 호출
+
+    return () => clearTimeout(timer); // 컴포넌트 언마운트 시 타이머 제거
+  }, [inputValue, isDropdownOpen]); // inputValue나 isDropdownOpen이 변경될 때마다 실행
+
   // 드롭다운에 사용할 리스트가 없으면 표시하지 않음
   if (!list) return;
 
   // mainRect가 유효하지 않으면 표시하지 않음
   if (!mainRect) return;
-
   const { top, left, width, height } = mainRect; // 위치와 크기 정보를 구조 분해 할당
 
   return (
@@ -121,6 +142,7 @@ const InputDropdown = () => {
                   styles[`input__item`],
                   selectedCond ? styles[`input__item--selected`] : "",
                 ])}
+                ref={(el) => (itemsRef.current[index] = el)} // 각 항목에 Ref 설정
               >
                 {item.text} {/* 리스트 항목 텍스트 표시 */}
               </li>
