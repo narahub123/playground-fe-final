@@ -1,14 +1,29 @@
-import { ReactNode } from "react";
+import { ComponentType, ReactNode } from "react";
 import styles from "./InputTop.module.css";
 import { joinClassNames } from "@shared/@common/utils";
 import { useInputContext } from "../../context";
+import { validateChildren } from "../../utils";
+import InputCounter from "../InputCounter/InputCounter";
 
 interface InputTopProps {
   children: ReactNode;
 }
 
 const InputTop = ({ children }: InputTopProps) => {
-  const { focusCond } = useInputContext();
+  const { focusCond, list } = useInputContext();
+
+  // 유효하지 않은 컴포넌트
+  const invalidComponents: ComponentType[] = [];
+
+  // 드롭다운(list)가 있는 경우
+  if (list) {
+    // InputCounter를 InputTop안에서 사용 불가
+    invalidComponents.push(InputCounter);
+  }
+
+  // InputError와 InputDropdown이 InputMain의 자식 요소로 오지 못하게 제한
+  const validChildren = validateChildren(children, invalidComponents);
+
   return (
     <div
       className={joinClassNames([
@@ -18,7 +33,7 @@ const InputTop = ({ children }: InputTopProps) => {
           : styles["input__top--unfocused"],
       ])}
     >
-      {children}
+      {validChildren}
     </div>
   );
 };
