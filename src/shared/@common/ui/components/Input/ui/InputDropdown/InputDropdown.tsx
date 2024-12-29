@@ -3,8 +3,10 @@ import { useInputContext } from "../../context";
 import styles from "./InputDropdown.module.css";
 import Portal from "../../../Portal/Portal";
 import { useEffect, useRef, useState } from "react";
+import { useAppDispatch } from "@app/store";
 
 const InputDropdown = () => {
+  const dispatch = useAppDispatch();
   const itemsRef = useRef<(HTMLLIElement | null)[]>([]);
   // InpuContext를 통해 상태 및 참조 가져오기
   const {
@@ -12,6 +14,8 @@ const InputDropdown = () => {
     isDropdownOpen, // 드롭다운 여닫기 상태
     mainRef, // mainRef 가져오기
     inputValue, // 선택 항목을 알기 위해서
+    setInputValue, // 값 업데이트
+    setIsDropdownOpen, // 드롭다운 여닫기 상태 업데이트
   } = useInputContext();
 
   // InputMain의 위치와 크기를 저장할 상태 정의
@@ -142,6 +146,17 @@ const InputDropdown = () => {
                   styles[`input__item`],
                   selectedCond ? styles[`input__item--selected`] : "",
                 ])}
+                onMouseDown={(e) => {
+                  e.preventDefault(); // 포커스 이동을 위해서는 다른 이벤트 발생 방지
+                  console.log("항목 클릭");
+
+                  dispatch(setInputValue(item.value)); // inputValue 값 업데이트
+
+                  setIsDropdownOpen(false); // 드롭다운 닫기
+
+                  // 메인으로 포커스 이동
+                  mainRef?.current?.focus();
+                }}
                 ref={(el) => (itemsRef.current[index] = el)} // 각 항목에 Ref 설정
               >
                 {item.text} {/* 리스트 항목 텍스트 표시 */}
