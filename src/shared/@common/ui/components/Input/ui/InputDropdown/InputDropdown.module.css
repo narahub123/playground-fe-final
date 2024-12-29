@@ -1,0 +1,30 @@
+.input__dropdown {
+  overflow: hidden;
+}
+
+.input__dropdown--open {
+  opacity: 1;
+  z-index: 1;
+}
+
+.input__dropdown--close {
+  opacity: 1;
+  z-index: 1;
+}
+
+.input__list {
+  background-color: var(--bgTheme-bgColor-primary);
+  overflow-y: auto;
+  border: var(--bgTheme-border-primary);
+  border-radius: 8px;
+}
+
+.input__item {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.input__item:hover {
+  background-color: var(--colorTheme-color-primary);
+  color: #fff;
+}
