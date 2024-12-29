@@ -6,6 +6,7 @@ import {
   InputErrorType,
 } from "../../context";
 import { DropdownItemType } from "@shared/@common/types";
+import { joinClassNames } from "@shared/@common/utils";
 
 // 외부에서 전달 받을 값
 interface InputWrapperProps {
@@ -17,6 +18,7 @@ interface InputWrapperProps {
   maxLength?: number; // 사용자가 input 필드에 입력할 수 있는 최대 글자 수를 제한: Constants로 관리할 것
   error?: InputErrorType; // 에러 객체 : 정규 표현식과 에러 메시지를 가지고 있음
   list?: DropdownItemType[]; // 드롭다운에 들어갈 아이템 배열
+  disabled?: boolean; // disabled 모드 적용
 }
 
 const InputWrapper = ({
@@ -31,6 +33,7 @@ const InputWrapper = ({
     defaultErrorMsg: "",
   },
   list,
+  disabled = false, // 값을 적용하지 않으면 false
 }: InputWrapperProps) => {
   const [isFocused, setIsFocused] = useState(false); // Input 컴포넌트의 포커스 상태 관리
   const [isValid, setIsValid] = useState(true); // inputValue의 유효성 상태 관리
@@ -50,6 +53,7 @@ const InputWrapper = ({
     maxLength, // 사용자가 input 필드에 입력할 수 있는 최대 글자 수를 제한: Constants로 관리할 것
     list, // 드롭다운에 들어갈 아이템 배열
     error, // 에러 객체 : 정규 표현식과 에러 메시지를 가지고 있음
+    disabled, // disabled 모드 추가
     // 내부에서 생성할 값
     isFocused, // 현재 Input 컴포넌트의 포커스 여부
     setIsFocused, // Input 컴포넌트의 포커스 상태 업데이트하는 set 함수
@@ -70,7 +74,14 @@ const InputWrapper = ({
   return (
     // Input 관련 데이터를 하위 컴포넌트에 전달하기 위한 Context Provider
     <InputContextProvider value={value}>
-      <div className={styles[`input__wrapper`]}>{children}</div>
+      <div
+        className={joinClassNames([
+          styles[`input__wrapper`],
+          disabled ? styles[`input__wrapper--disabled`] : "",
+        ])}
+      >
+        {children}
+      </div>
     </InputContextProvider>
   );
 };

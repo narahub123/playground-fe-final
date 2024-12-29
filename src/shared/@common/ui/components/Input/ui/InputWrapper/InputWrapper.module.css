@@ -1,3 +1,7 @@
 .input__wrapper {
   width: 100%;
 }
+
+.input__wrapper--disabled {
+  color: #ccc;
+}

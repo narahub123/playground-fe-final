@@ -25,6 +25,7 @@ interface InputContextType {
   setMainRef: React.Dispatch<
     React.SetStateAction<React.RefObject<HTMLLabelElement> | undefined>
   >; // mainRef를 업데이트 하는 set 함수
+  disabled?: boolean; // disabled 모드 적용
   maxLength?: number; // 사용자가 input 필드에 입력할 수 있는 최대 글자 수를 제한: Constants로 관리할 것
   list?: DropdownItemType[]; // 드롭다운에 들어갈 아이템 배열
 }
