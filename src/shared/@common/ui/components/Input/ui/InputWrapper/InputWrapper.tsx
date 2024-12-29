@@ -38,7 +38,7 @@ const InputWrapper = ({
   const [showPassword, setShowPassword] = useState(false); // 비밀번호 표시 상태 관리
   const [errorMessage, setErrorMessage] = useState(""); // 에러 메시지 상태 관리
   const [isDropdownOpen, setIsDropdownOpen] = useState(false); // 드롭다운 여닫기 상태 관리
-  const [mainRef, setMainRef] = useState<React.RefObject<HTMLDivElement>>(); // InputMain를 참조하는 상태 관리
+  const [mainRef, setMainRef] = useState<React.RefObject<HTMLLabelElement>>(); // InputMain를 참조하는 상태 관리
 
   // context 값
   const value: InputContextType = {

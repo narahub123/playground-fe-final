@@ -21,9 +21,9 @@ interface InputContextType {
   error: InputErrorType; // 에러 객체 : 정규 표현식과 에러 메시지를 가지고 있음
   isDropdownOpen: boolean; // 현재 드롭다운 열여 있는지 여부
   setIsDropdownOpen: React.Dispatch<React.SetStateAction<boolean>>; // 드롭다운 여닫기 업데이트하는 set 함수
-  mainRef: React.RefObject<HTMLDivElement> | undefined; // 현재 InputMain 참조하는 상태: 드롭다운의 위치, 크기에 영향
+  mainRef: React.RefObject<HTMLLabelElement> | undefined; // 현재 InputMain 참조하는 상태: 드롭다운의 위치, 크기에 영향
   setMainRef: React.Dispatch<
-    React.SetStateAction<React.RefObject<HTMLDivElement> | undefined>
+    React.SetStateAction<React.RefObject<HTMLLabelElement> | undefined>
   >; // mainRef를 업데이트 하는 set 함수
   maxLength?: number; // 사용자가 input 필드에 입력할 수 있는 최대 글자 수를 제한: Constants로 관리할 것
   list?: DropdownItemType[]; // 드롭다운에 들어갈 아이템 배열
