@@ -5,7 +5,8 @@ import {
   InputContextType,
   InputErrorType,
   InputErrorListItemType,
+  CompiledInputErrorType
 } from "./Input.types";
 
 export { InputContext, InputContextProvider, useInputContext };
-export type { InputContextType, InputErrorType, InputErrorListItemType };
+export type { InputContextType, InputErrorType, InputErrorListItemType, CompiledInputErrorType };

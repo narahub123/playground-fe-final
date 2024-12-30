@@ -80,4 +80,45 @@ interface InputErrorListItemType {
   errorMsg: string;
 }
 
-export type { InputContextType, InputErrorType, InputErrorListItemType };
+/**
+ * 에러 정보를 정규 표현식 및 메시지로 반환하는 인터페이스
+ */
+interface CompiledInputErrorType {
+  /**
+   * 기본 에러 정규 표현식
+   * - `regExp` 값을 컴파일한 정규 표현식입니다.
+   * - 입력 값이 기본 조건을 충족하지 않을 경우 이 정규 표현식으로 검사됩니다.
+   */
+  defaultErrorRegex: RegExp | string;
+
+  /**
+   * 기본 에러 메시지
+   * - 기본 정규 표현식(`defaultErrorRegex`)에 맞지 않을 경우 표시됩니다.
+   */
+  defaultErrorMsg: string;
+
+  /**
+   * 에러 목록의 정규 표현식 배열
+   * - 추가로 정의된 에러 조건들을 정규 표현식으로 변환한 배열입니다.
+   */
+  errorRegexList: RegExp[];
+
+  /**
+   * 에러 목록의 메시지 배열
+   * - `errorRegexList`와 동일한 순서로 에러 메시지를 저장한 배열입니다.
+   */
+  errorMsgList: string[];
+
+  /**
+   * 입력 값이 비어 있을 경우 표시되는 에러 메시지
+   * - 입력 필드가 필수인 경우 비어 있을 때 나타나는 메시지입니다.
+   */
+  empty: string | undefined;
+}
+
+export type {
+  InputContextType,
+  InputErrorType,
+  InputErrorListItemType,
+  CompiledInputErrorType,
+};
