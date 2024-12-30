@@ -85,6 +85,8 @@ const InputMain = ({ children }: InputMainProps) => {
       dispatch(setInputValue(list[prevIndex].value));
     } else if (e.key === "Enter") {
       setIsDropdownOpen(!isDropdownOpen);
+    } else if (e.key === "Escape") {
+      setIsDropdownOpen(false);
     }
   };
 
