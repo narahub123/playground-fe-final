@@ -1,5 +1,5 @@
 import styles from "./InputMain.module.css";
-import { ReactNode, useEffect, useRef } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import { useInputContext } from "../../context";
 import { joinClassNames } from "@shared/@common/utils";
 import { validateChildren } from "../../utils";
@@ -14,6 +14,7 @@ interface InputMainProps {
 const InputMain = ({ children }: InputMainProps) => {
   const dispatch = useAppDispatch();
   const mainRef = useRef<HTMLLabelElement>(null);
+  const [skipMouseDown, setSkipMouseDown] = useState(false);
 
   // useInputContext 훅에서 상태 가져오기
   const {
@@ -58,6 +59,7 @@ const InputMain = ({ children }: InputMainProps) => {
         disabled
           ? undefined
           : () => {
+              if (skipMouseDown) return;
               console.log("클릭");
               setIsFocused(true);
               // list가 존재하는 경우
@@ -73,12 +75,14 @@ const InputMain = ({ children }: InputMainProps) => {
           ? undefined
           : () => {
               console.log("포커스");
+              setSkipMouseDown(true);
               setIsFocused(true);
               // list가 존재하는 경우
               if (list) {
                 // 드롭다운 열기
                 setIsDropdownOpen(true);
               }
+              setTimeout(() => setSkipMouseDown(false), 0); // 다음 이벤트 루프에서 플래그 초기화
             }
       }
       // 블러
