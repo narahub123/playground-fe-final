@@ -114,6 +114,11 @@ const InputMain = ({ children }: InputMainProps) => {
       ref={mainRef}
       aria-expanded={list ? (isDropdownOpen ? "true" : "false") : undefined} // 드롭다운 열림 여부
       aria-controls={list ? `${field}-dropdown` : undefined} // 드롭다운 id
+      aria-haspopup={list ? "listbox" : undefined} // 화면 읽기 프로그램에 드롭다운 관련 메뉴가 있다는 정보 제공
+      aria-activedescendant={
+        list && isDropdownOpen ? `${field}-option-${inputValue}` : undefined
+      } // 현재 선택된 항목
+      aria-describedby={list ? `${field}-description` : undefined} // 추가 설명 제공
     >
       <div className={styles[`input__container`]}>{validChildren}</div>
     </label>
