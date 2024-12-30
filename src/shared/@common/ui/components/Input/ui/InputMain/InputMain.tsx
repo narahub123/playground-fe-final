@@ -112,6 +112,8 @@ const InputMain = ({ children }: InputMainProps) => {
       onBlur={disabled ? undefined : handleBlur}
       onKeyDown={disabled || !list ? undefined : handleKeyDown}
       ref={mainRef}
+      aria-expanded={list ? (isDropdownOpen ? "true" : "false") : undefined} // 드롭다운 열림 여부
+      aria-controls={list ? `${field}-dropdown` : undefined} // 드롭다운 id
     >
       <div className={styles[`input__container`]}>{validChildren}</div>
     </label>
