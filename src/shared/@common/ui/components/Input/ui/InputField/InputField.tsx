@@ -124,19 +124,7 @@ const InputField = () => {
   };
 
   /**
-   * 드롭다운이 있을 때 사용될 클래스 이름입니다.
-   *
-   * `joinClassNames` 유틸리티를 사용하여 동적으로 클래스 이름을 결합합니다.
-   * - `input__field--disabled`: 비활성화 상태일 때 적용
-   *
-   * @type {string}
-   */
-  const subClassName = joinClassNames([
-    disabled ? styles[`input__field--disabled`] : "",
-  ]);
-
-  /**
-   * 일반 input 필드에 사용될 클래스 이름입니다.
+   * InputField에 사용될 클래스 이름입니다.
    *
    * `joinClassNames` 유틸리티를 사용하여 동적으로 클래스 이름을 결합합니다.
    * - `input__field--disabled`: 비활성화 상태일 때 적용
@@ -156,13 +144,13 @@ const InputField = () => {
          * 드롭다운이 존재하는 경우, 선택된 항목의 텍스트를 표시합니다.
          * @component Text
          * @prop {string} text - 드롭다운 항목 중 선택된 항목의 텍스트. 값이 없으면 inputValue를 표시.
-         * @prop {string} subClassName - 추가적인 클래스 이름
+         * @prop {string} className - 추가적인 클래스 이름
          */
         <Text
           text={
             list.find((item) => item.value === inputValue)?.text || inputValue
           }
-          subClassName={subClassName}
+          subClassName={className}
         />
       ) : (
         /**
