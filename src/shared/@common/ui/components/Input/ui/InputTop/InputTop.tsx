@@ -4,6 +4,7 @@ import { joinClassNames } from "@shared/@common/utils";
 import { useInputContext } from "../../context";
 import { validateChildren } from "../../utils";
 import InputCounter from "../InputCounter/InputCounter";
+import InputBottom from "../InputBottom/InputBottom";
 
 interface InputTopProps {
   children: ReactNode;
@@ -13,7 +14,7 @@ const InputTop = ({ children }: InputTopProps) => {
   const { focusCond, list } = useInputContext();
 
   // 유효하지 않은 컴포넌트
-  const invalidComponents: ComponentType[] = [];
+  const invalidComponents: ComponentType<any>[] = [InputBottom];
 
   // 드롭다운(list)가 있는 경우
   if (list) {
