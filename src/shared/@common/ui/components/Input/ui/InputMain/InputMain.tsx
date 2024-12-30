@@ -40,86 +40,77 @@ const InputMain = ({ children }: InputMainProps) => {
   // InputError와 InputDropdown이 InputMain의 자식 요소로 오지 못하게 제한
   const validChildren = validateChildren(children, [InputError, InputDropdown]);
 
+  // mousedown 핸들러
+  const handleMouseDown = () => {
+    if (skipMouseDown) return;
+    setIsFocused(true);
+    // list가 존재하는 경우
+    if (list) {
+      // 드롭다운 여닫기
+      setIsDropdownOpen(!isDropdownOpen);
+    }
+  };
+
+  // focus 핸들러
+  const handleFocus = () => {
+    setSkipMouseDown(true);
+    setIsFocused(true);
+    // list가 존재하는 경우
+    if (list) {
+      // 드롭다운 열기
+      setIsDropdownOpen(true);
+    }
+    setTimeout(() => setSkipMouseDown(false), 0); // 다음 이벤트 루프에서 플래그 초기화
+  };
+
+  // blur 핸들러
+  const handleBlur = () => {
+    setIsFocused(false);
+    // list가 존재하는 경우
+    if (list) {
+      // 드롭다운 닫기
+      setIsDropdownOpen(false);
+    }
+  };
+
+  // keydown 핸들러
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLLabelElement>) => {
+    if (!list) return;
+    const curIndex = list?.findIndex((item) => item.value === inputValue) || 0;
+    if (e.key === "ArrowDown") {
+      const nextIndex = curIndex + 1 > list.length - 1 ? 0 : curIndex + 1;
+      dispatch(setInputValue(list[nextIndex].value));
+    } else if (e.key === "ArrowUp") {
+      const prevIndex = curIndex - 1 < 0 ? list.length - 1 : curIndex - 1;
+      dispatch(setInputValue(list[prevIndex].value));
+    } else if (e.key === "Enter") {
+      setIsDropdownOpen(!isDropdownOpen);
+    }
+  };
+
+  const className = joinClassNames([
+    styles["input__main"],
+    // 포커스인 상태에서 유효성 여부 표기
+    isFocused //포커스 상태 확인
+      ? isValid // 유효성 여부 확인
+        ? styles["input__main--valid"]
+        : styles["input__main--invalid"]
+      : "",
+    disabled ? styles["input__main--disabled"] : "",
+  ]);
+
   return (
     <label
-      className={joinClassNames([
-        styles["input__main"],
-        // 포커스인 상태에서 유효성 여부 표기
-        isFocused //포커스 상태 확인
-          ? isValid // 유효성 여부 확인
-            ? styles["input__main--valid"]
-            : styles["input__main--invalid"]
-          : "",
-        disabled ? styles["input__main--disabled"] : "",
-      ])}
+      className={className}
       htmlFor={field}
       tabIndex={list && !disabled ? 0 : -1} // disabled 모드가 아니고 드롭다운 사용 하는 경우에는 탭 이동 가능
       // 마우스다운 이벤트: onFocus와 onBlur와 사용할 때 이벤트 순서로 인한 충돌을 피하기 위해
-      onMouseDown={
-        disabled
-          ? undefined
-          : () => {
-              if (skipMouseDown) return;
-              console.log("클릭");
-              setIsFocused(true);
-              // list가 존재하는 경우
-              if (list) {
-                // 드롭다운 여닫기
-                setIsDropdownOpen(!isDropdownOpen);
-              }
-            }
-      }
+      onMouseDown={disabled ? undefined : handleMouseDown}
       // 포커스
-      onFocus={
-        disabled
-          ? undefined
-          : () => {
-              console.log("포커스");
-              setSkipMouseDown(true);
-              setIsFocused(true);
-              // list가 존재하는 경우
-              if (list) {
-                // 드롭다운 열기
-                setIsDropdownOpen(true);
-              }
-              setTimeout(() => setSkipMouseDown(false), 0); // 다음 이벤트 루프에서 플래그 초기화
-            }
-      }
+      onFocus={disabled ? undefined : handleFocus}
       // 블러
-      onBlur={
-        disabled
-          ? undefined
-          : () => {
-              console.log("블러");
-              setIsFocused(false);
-              // list가 존재하는 경우
-              if (list) {
-                // 드롭다운 닫기
-                setIsDropdownOpen(false);
-              }
-            }
-      }
-      onKeyDown={
-        disabled
-          ? undefined
-          : list
-          ? (e) => {
-              const curIndex =
-                list?.findIndex((item) => item.value === inputValue) || 0;
-              if (e.key === "ArrowDown") {
-                const nextIndex =
-                  curIndex + 1 > list.length - 1 ? 0 : curIndex + 1;
-                dispatch(setInputValue(list[nextIndex].value));
-              } else if (e.key === "ArrowUp") {
-                const prevIndex =
-                  curIndex - 1 < 0 ? list.length - 1 : curIndex - 1;
-                dispatch(setInputValue(list[prevIndex].value));
-              } else if (e.key === "Enter") {
-                setIsDropdownOpen(!isDropdownOpen);
-              }
-            }
-          : undefined
-      }
+      onBlur={disabled ? undefined : handleBlur}
+      onKeyDown={disabled || !list ? undefined : handleKeyDown}
       ref={mainRef}
     >
       <div className={styles[`input__container`]}>{validChildren}</div>
