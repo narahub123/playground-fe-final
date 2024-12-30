@@ -1,14 +1,22 @@
-import { joinClassNames } from "@shared/@common/utils";
-import { useInputContext } from "../../context";
 import styles from "./InputDropdown.module.css";
-import Portal from "../../../Portal/Portal";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { joinClassNames } from "@shared/@common/utils";
+import { useInputContext } from "@shared/@common/ui/components/Input/context";
+import { Portal } from "@shared/@common/ui/components";
 import { useAppDispatch } from "@app/store";
 
+/**
+ * `InputDropdown` 컴포넌트
+ * - 사용자가 입력 필드와 연동하여 동적으로 드롭다운을 표시합니다.
+ * - 드롭다운의 위치, 크기, 동작을 제어하며, Portal을 통해 DOM 외부에 렌더링됩니다.
+ *
+ * @returns {JSX.Element | null} 드롭다운 UI 요소. 목록이 없거나 위치 정보가 없는 경우 null 반환.
+ */
 const InputDropdown = () => {
   const dispatch = useAppDispatch();
   const itemsRef = useRef<(HTMLLIElement | null)[]>([]);
-  // InpuContext를 통해 상태 및 참조 가져오기
+
+  // InputContext에서 필요한 상태 및 함수 가져오기
   const {
     list, // 드롭다운 목록
     isDropdownOpen, // 드롭다운 여닫기 상태
@@ -16,6 +24,7 @@ const InputDropdown = () => {
     inputValue, // 선택 항목을 알기 위해서
     setInputValue, // 값 업데이트
     setIsDropdownOpen, // 드롭다운 여닫기 상태 업데이트
+    field, // 필드 이름
   } = useInputContext();
 
   // InputMain의 위치와 크기를 저장할 상태 정의
@@ -29,7 +38,9 @@ const InputDropdown = () => {
   // 드롭다운의 높이를 저장할 상태
   const [dropdownHeight, setDropdownHeight] = useState(0);
 
-  // InputMain의 위치와 크기를 계산하여 상태에 저장
+  /**
+   * InputMain의 위치와 크기를 업데이트합니다.
+   */
   useLayoutEffect(() => {
     // mainRef가 유효하지 않으면 함수 실행 중단
     if (!mainRef || !mainRef.current) return;
@@ -62,7 +73,9 @@ const InputDropdown = () => {
     };
   }, [mainRef, mainRef?.current]); // mainRef가 변경될 때마다 효과 실행
 
-  // InputMain의 위치를 통한 dropdown 높이 동적 적용
+  /**
+   * 드롭다운의 최대 높이를 계산합니다.
+   */
   useLayoutEffect(() => {
     if (!mainRef || !mainRef.current || !mainRect) return;
 
@@ -87,7 +100,9 @@ const InputDropdown = () => {
     };
   }, [mainRef, mainRect]);
 
-  // 선택 항목으로 스크롤 이동
+  /**
+   * 현재 선택된 항목으로 스크롤합니다.
+   */
   useEffect(() => {
     if (!isDropdownOpen) return; // 드롭다운이 열려있을 때만 실행
 
@@ -113,11 +128,12 @@ const InputDropdown = () => {
 
   // mainRect가 유효하지 않으면 표시하지 않음
   if (!mainRect) return null;
+
   const { top, left, width, height } = mainRect; // 위치와 크기 정보를 구조 분해 할당
 
   return (
     // Portal을 통해 드롭다운을 외부 DOM에 렌더링
-    <Portal id="dropdown">
+    <Portal id={`${field}-dropdown`}>
       <div
         className={joinClassNames([
           styles["input__dropdown"], // 기본 드롭다운 스타일
@@ -136,6 +152,11 @@ const InputDropdown = () => {
           style={{
             maxHeight: isDropdownOpen ? dropdownHeight : 0, // 드롭다운이 열릴 때 높이를 적용
           }}
+          role="listbox" // 드롭다운이 리스트 박스임을 나타냄
+          aria-expanded={isDropdownOpen} // 드롭다운의 열림/ 닫힘 상태를 나타냄
+          aria-activedescendant={
+            list.find((item) => item.value === inputValue)?.value as string
+          } // 현재 활성화된 항목의 id를 지정하여 스크린 리더가 현재 선택된 항목을 읽을 수 있도록 함
         >
           {list?.map((item, index) => {
             const selectedCond = inputValue === item.value;
@@ -146,9 +167,10 @@ const InputDropdown = () => {
                   styles[`input__item`],
                   selectedCond ? styles[`input__item--selected`] : "",
                 ])}
+                role="option" // 드롭다운의 각 항목이 선택 가능한 옵션임을 나타냄
+                aria-selected={selectedCond} // 현재 선택된 항목임을 나타냄
                 onMouseDown={(e) => {
                   e.preventDefault(); // 포커스 이동을 위해서는 다른 이벤트 발생 방지
-                  console.log("항목 클릭");
 
                   dispatch(setInputValue(item.value)); // inputValue 값 업데이트
 
