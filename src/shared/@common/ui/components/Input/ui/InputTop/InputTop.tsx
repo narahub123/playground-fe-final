@@ -1,8 +1,7 @@
 import styles from "./InputTop.module.css";
 import { ComponentType, ReactNode } from "react";
-import { joinClassNames } from "@shared/@common/utils";
+import { joinClassNames, validateChildren } from "@shared/@common/utils";
 import { useInputContext } from "@shared/@common/ui/components/Input/context";
-import { validateChildren } from "@shared/@common/ui/components/Input/utils";
 import InputCounter from "../InputCounter/InputCounter";
 import InputBottom from "../InputBottom/InputBottom";
 

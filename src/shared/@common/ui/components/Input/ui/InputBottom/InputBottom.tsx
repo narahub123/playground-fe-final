@@ -1,9 +1,8 @@
-import { ComponentType, ReactNode } from "react";
 import styles from "./InputBottom.module.css";
-import { useInputContext } from "../../context";
-import { joinClassNames } from "@shared/@common/utils";
+import { ComponentType, ReactNode } from "react";
+import { useInputContext } from "@shared/@common/ui/components/Input/context";
+import { joinClassNames, validateChildren } from "@shared/@common/utils";
 import InputTop from "../InputTop/InputTop";
-import { validateChildren } from "../../utils";
 
 /**
  * `InputBottom` 컴포넌트에 전달되는 props를 정의하는 인터페이스입니다.

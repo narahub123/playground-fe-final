@@ -1,10 +1,10 @@
 import styles from "./InputField.module.css";
 import { useEffect } from "react";
 import { useAppDispatch } from "@app/store";
-import { useInputContext } from "../../context";
-import { useCompiledInputError } from "../../hooks";
-import Text from "../../../Text/Text";
 import { joinClassNames } from "@shared/@common/utils";
+import { useInputContext } from "@shared/@common/ui/components/Input/context";
+import { useCompiledInputError } from "@shared/@common/ui/components/Input/hooks";
+import { Text } from "@shared/@common/ui/components";
 
 /**
  * `InputField` 컴포넌트는 입력 필드를 렌더링하고, 입력값과 유효성 검사, 에러 메시지 처리를 담당합니다.

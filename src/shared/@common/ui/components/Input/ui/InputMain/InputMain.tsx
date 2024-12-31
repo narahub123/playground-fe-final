@@ -1,11 +1,10 @@
 import styles from "./InputMain.module.css";
 import { ReactNode, useEffect, useRef, useState } from "react";
-import { useInputContext } from "../../context";
-import { joinClassNames } from "@shared/@common/utils";
-import { validateChildren } from "../../utils";
+import { useInputContext } from "@shared/@common/ui/components/Input/context";
+import { joinClassNames, validateChildren } from "@shared/@common/utils";
+import { useAppDispatch } from "@app/store";
 import InputDropdown from "../InputDropdown/InputDropdown";
 import InputError from "../InputError/InputError";
-import { useAppDispatch } from "@app/store";
 
 /**
  * InputMainProps 인터페이스
