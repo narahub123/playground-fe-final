@@ -7,16 +7,28 @@ import InputDropdown from "../InputDropdown/InputDropdown";
 import InputError from "../InputError/InputError";
 import { useAppDispatch } from "@app/store";
 
+/**
+ * InputMainProps 인터페이스
+ * @property {ReactNode} children - InputMain 내에서 렌더링할 유효한 자식 컴포넌트
+ */
 interface InputMainProps {
-  children: ReactNode; //type 에러 : 유효하지 않은 타입 제거
+  children: ReactNode;
 }
 
+/**
+ * InputMain 컴포넌트
+ * - Input의 메인 영역을 담당하며, 상태 관리와 이벤트 핸들링을 포함.
+ * - 드롭다운, 에러 메시지 등을 포함한 추가 UI를 제공.
+ *
+ * @param {InputMainProps} props - 컴포넌트 props
+ * @returns {JSX.Element} InputMain 컴포넌트
+ */
 const InputMain = ({ children }: InputMainProps) => {
   const dispatch = useAppDispatch();
   const mainRef = useRef<HTMLLabelElement>(null);
   const [skipMouseDown, setSkipMouseDown] = useState(false);
 
-  // useInputContext 훅에서 상태 가져오기
+  // useInputContext 훅에서 필요한 상태 및 함수 가져오기
   const {
     isFocused, // 현재 포커스 상태
     setIsFocused, // 포커스 상태 업데이트
@@ -31,16 +43,23 @@ const InputMain = ({ children }: InputMainProps) => {
     disabled,
   } = useInputContext();
 
-  // mainRef 업데이트
+  /**
+   * mainRef를 Context로 업데이트.
+   */
   useEffect(() => {
     if (!mainRef || !mainRef.current) return;
     setMainRef(mainRef);
   }, [mainRef]);
 
-  // InputError와 InputDropdown이 InputMain의 자식 요소로 오지 못하게 제한
+  /**
+   * 유효하지 않은 자식 컴포넌트 필터링 - InputError와 InputDropdown이 InputMain의 자식 요소로 오지 못하게 제한
+   */
   const validChildren = validateChildren(children, [InputError, InputDropdown]);
 
-  // mousedown 핸들러
+  /**
+   * 마우스다운 핸들러
+   * - 드롭다운 열림 상태를 토글
+   */
   const handleMouseDown = () => {
     if (skipMouseDown) return;
     setIsFocused(true);
@@ -51,7 +70,10 @@ const InputMain = ({ children }: InputMainProps) => {
     }
   };
 
-  // focus 핸들러
+  /**
+   * 포커스 핸들러
+   * - Input에 포커스가 들어왔을 때 호출
+   */
   const handleFocus = () => {
     setSkipMouseDown(true);
     setIsFocused(true);
@@ -63,7 +85,10 @@ const InputMain = ({ children }: InputMainProps) => {
     setTimeout(() => setSkipMouseDown(false), 0); // 다음 이벤트 루프에서 플래그 초기화
   };
 
-  // blur 핸들러
+  /**
+   * 블러 핸들러
+   * - Input에서 포커스가 나갔을 때 호출
+   */
   const handleBlur = () => {
     setIsFocused(false);
     // list가 존재하는 경우
@@ -73,7 +98,12 @@ const InputMain = ({ children }: InputMainProps) => {
     }
   };
 
-  // keydown 핸들러
+  /**
+   * 키다운 핸들러
+   * - 키보드 입력에 따라 드롭다운 항목 탐색
+   *
+   * @param {React.KeyboardEvent<HTMLLabelElement>} e - 키보드 이벤트
+   */
   const handleKeyDown = (e: React.KeyboardEvent<HTMLLabelElement>) => {
     if (!list) return;
     const curIndex = list?.findIndex((item) => item.value === inputValue) || 0;
@@ -90,6 +120,13 @@ const InputMain = ({ children }: InputMainProps) => {
     }
   };
 
+  /**
+   * 컴포넌트의 클래스 이름을 생성
+   * - 포커스 상태 및 유효성 여부에 따라 클래스 이름이 변경됩니다.
+   * - disabled 상태에서는 추가적으로 비활성화 스타일을 적용합니다.
+   *
+   * @type {string} - 최종적으로 적용될 클래스 이름 문자열
+   */
   const className = joinClassNames([
     styles["input__main"],
     // 포커스인 상태에서 유효성 여부 표기
