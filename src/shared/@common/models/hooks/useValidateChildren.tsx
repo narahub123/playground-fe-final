@@ -1,4 +1,5 @@
 import { Children, ComponentType, isValidElement, ReactNode } from "react";
+import useLanguageContent from "./useLanguageContent";
 
 interface UseValidateChildrenProps {
   children: ReactNode;
@@ -11,6 +12,7 @@ const useValidateChildren = ({
   invalidComponents,
   showErrorMessage = true,
 }: UseValidateChildrenProps) => {
+  const { error } = useLanguageContent(["hooks", "useValidateChildren"]);
   return Children.toArray(children).map((child, index) => {
     // 자식 요소가 유효한 React 요소인지 확인
     if (isValidElement(child)) {
@@ -26,9 +28,7 @@ const useValidateChildren = ({
 
         return showErrorMessage ? (
           <div key={index}>
-            <p style={{ color: "red" }}>
-              에러: {childTypeName}는 자식으로 사용할 수 없습니다.
-            </p>
+            <p style={{ color: "red" }}>{error(childTypeName)}</p>
           </div>
         ) : null;
       }
