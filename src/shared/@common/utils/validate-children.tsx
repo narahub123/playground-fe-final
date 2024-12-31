@@ -1,5 +1,21 @@
 import { Children, ComponentType, isValidElement, ReactNode } from "react";
 
+/**
+ * 자식 요소들이 유효한지 검사하고, 유효하지 않은 컴포넌트가 있을 경우 에러 메시지를 반환합니다.
+ *
+ * @param {ReactNode} children - 검사할 자식 요소들.
+ * @param {ComponentType[]} invalidComponents - 유효하지 않은 컴포넌트 타입 배열.
+ * @param {boolean} [showErrorMessage=true] - 유효하지 않은 컴포넌트가 있을 경우 에러 메시지를 표시할지 여부.
+ * @returns {ReactNode[]} 자식 요소들 중 유효하지 않은 컴포넌트가 있을 경우 에러 메시지를 포함한 배열.
+ *
+ * @example
+ * // 사용 예시
+ * validateChildren(
+ *   <div><MyComponent /></div>,
+ *   [MyInvalidComponent],
+ *   true
+ * );
+ */
 const validateChildren = (
   children: ReactNode,
   invalidComponents: ComponentType[], // 유효하지 않은 컴포넌트 배열
