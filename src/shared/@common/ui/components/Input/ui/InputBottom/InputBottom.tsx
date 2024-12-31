@@ -1,8 +1,9 @@
 import styles from "./InputBottom.module.css";
 import { ComponentType, ReactNode } from "react";
 import { useInputContext } from "@shared/@common/ui/components/Input/context";
-import { joinClassNames, validateChildren } from "@shared/@common/utils";
+import { joinClassNames } from "@shared/@common/utils";
 import InputTop from "../InputTop/InputTop";
+import { useValidateChildren } from "@shared/@common/models/hooks";
 
 /**
  * `InputBottom` 컴포넌트에 전달되는 props를 정의하는 인터페이스입니다.
@@ -38,7 +39,7 @@ const InputBottom = ({ children }: InputBottomProps) => {
    * `validateChildren` 함수는 전달된 `children`에서
    * 유효하지 않은 컴포넌트를 필터링하여 반환한 유효한 자식 컴포넌트
    */
-  const filteredChildren = validateChildren(children, invalidComponents);
+  const filteredChildren = useValidateChildren({ children, invalidComponents });
 
   return (
     /**

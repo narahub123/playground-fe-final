@@ -1,10 +1,11 @@
 import styles from "./InputMain.module.css";
 import { ReactNode, useEffect, useRef, useState } from "react";
 import { useInputContext } from "@shared/@common/ui/components/Input/context";
-import { joinClassNames, validateChildren } from "@shared/@common/utils";
+import { joinClassNames } from "@shared/@common/utils";
 import { useAppDispatch } from "@app/store";
 import InputDropdown from "../InputDropdown/InputDropdown";
 import InputError from "../InputError/InputError";
+import { useValidateChildren } from "@shared/@common/models/hooks";
 
 /**
  * InputMainProps 인터페이스
@@ -51,9 +52,14 @@ const InputMain = ({ children }: InputMainProps) => {
   }, [mainRef]);
 
   /**
+   * 현재 컴포넌트에서 자식 컴포넌트로 유효하지 않는 컴포넌트 배열
+   */
+  const invalidComponents = [InputError, InputDropdown];
+
+  /**
    * 유효하지 않은 자식 컴포넌트 필터링 - InputError와 InputDropdown이 InputMain의 자식 요소로 오지 못하게 제한
    */
-  const validChildren = validateChildren(children, [InputError, InputDropdown]);
+  const filteredChildren = useValidateChildren({ children, invalidComponents });
 
   /**
    * 마우스다운 핸들러
@@ -158,7 +164,7 @@ const InputMain = ({ children }: InputMainProps) => {
       } // 현재 선택된 항목
       aria-describedby={list ? `${field}-description` : undefined} // 추가 설명 제공
     >
-      <div className={styles[`input__container`]}>{validChildren}</div>
+      <div className={styles[`input__container`]}>{filteredChildren}</div>
     </label>
   );
 };

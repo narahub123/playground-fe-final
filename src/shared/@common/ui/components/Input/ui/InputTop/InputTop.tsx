@@ -1,9 +1,10 @@
 import styles from "./InputTop.module.css";
 import { ComponentType, ReactNode } from "react";
-import { joinClassNames, validateChildren } from "@shared/@common/utils";
+import { joinClassNames } from "@shared/@common/utils";
 import { useInputContext } from "@shared/@common/ui/components/Input/context";
 import InputCounter from "../InputCounter/InputCounter";
 import InputBottom from "../InputBottom/InputBottom";
+import { useValidateChildren } from "@shared/@common/models/hooks";
 
 /**
  * `InputTop` 컴포넌트에 전달되는 props를 정의하는 인터페이스입니다.
@@ -34,7 +35,7 @@ const InputTop = ({ children }: InputTopProps) => {
 
   // 유효하지 않은 컴포넌트
   /**
-   * 현재 컴포넌트에서 자식 컴포넌트로 유효하지 않는 컴포넌트 배열
+   * 현재 컴포넌트에서 자식 컴포넌트로 유효하지 않는 컴포넌트 배열 - InputBottom
    */
   const invalidComponents: ComponentType<any>[] = [InputBottom];
 
@@ -48,7 +49,7 @@ const InputTop = ({ children }: InputTopProps) => {
    * `validateChildren` 함수는 전달된 `children`에서
    * 유효하지 않은 컴포넌트를 필터링하여 반환한 유효한 자식 컴포넌트
    */
-  const filteredChildren = validateChildren(children, invalidComponents);
+  const filteredChildren = useValidateChildren({ children, invalidComponents });
 
   /**
    * `joinClassNames` 유틸리티를 사용하여 동적으로 클래스 이름을 결합합니다.
