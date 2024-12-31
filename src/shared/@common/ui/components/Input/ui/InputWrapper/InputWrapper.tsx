@@ -4,7 +4,7 @@ import {
   InputContextProvider,
   InputContextType,
   InputErrorType,
-} from "../../context";
+} from "@shared/@common/ui/components/Input/context";
 import { DropdownItemType } from "@shared/@common/types";
 import { joinClassNames } from "@shared/@common/utils";
 
@@ -21,6 +21,14 @@ interface InputWrapperProps {
   disabled?: boolean; // disabled 모드 적용
 }
 
+/**
+ * InputWrapper 컴포넌트
+ * - Input 필드와 관련된 데이터를 컨텍스트로 제공
+ * - 상태 관리 및 스타일링을 적용
+ *
+ * @param {InputWrapperProps} props - 컴포넌트에 전달되는 props
+ * @returns {JSX.Element} InputWrapper 컴포넌트
+ */
 const InputWrapper = ({
   label,
   field,
@@ -35,13 +43,26 @@ const InputWrapper = ({
   list,
   disabled = false, // 값을 적용하지 않으면 false
 }: InputWrapperProps) => {
-  const [isFocused, setIsFocused] = useState(false); // Input 컴포넌트의 포커스 상태 관리
-  const [isValid, setIsValid] = useState(true); // inputValue의 유효성 상태 관리
-  const [inputRef, setInputRef] = useState<React.RefObject<HTMLInputElement>>(); // input 요소를 참조하는 상태 관리
-  const [showPassword, setShowPassword] = useState(false); // 비밀번호 표시 상태 관리
-  const [errorMessage, setErrorMessage] = useState(""); // 에러 메시지 상태 관리
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // 드롭다운 여닫기 상태 관리
-  const [mainRef, setMainRef] = useState<React.RefObject<HTMLLabelElement>>(); // InputMain를 참조하는 상태 관리
+  /** @type {boolean} Input의 포커스 상태 */
+  const [isFocused, setIsFocused] = useState(false);
+  /** @type {boolean} inputValue의 유효성 상태 */
+  const [isValid, setIsValid] = useState(true);
+  /**
+   * @type {React.RefObject<HTMLInputElement> | undefined}
+   * input 요소의 참조 상태
+   */
+  const [inputRef, setInputRef] = useState<React.RefObject<HTMLInputElement>>();
+  /** @type {boolean} 비밀번호 표시 상태 */
+  const [showPassword, setShowPassword] = useState(false);
+  /** @type {string} 에러 메시지 상태 */
+  const [errorMessage, setErrorMessage] = useState("");
+  /** @type {boolean} 드롭다운 여닫기 상태 */
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  /**
+   * @type {React.RefObject<HTMLLabelElement> | undefined}
+   * InputMain 요소의 참조 상태
+   */
+  const [mainRef, setMainRef] = useState<React.RefObject<HTMLLabelElement>>();
 
   // context 값
   const value: InputContextType = {
