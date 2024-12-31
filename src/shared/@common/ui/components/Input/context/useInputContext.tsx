@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import InputContext from "./InputContext";
+import { useLanguageContent } from "@shared/@common/models/hooks";
 
 /**
  * InputContext에 안전하게 접근하기 위한 커스텀 훅
@@ -9,9 +10,10 @@ import InputContext from "./InputContext";
  */
 const useInputContext = () => {
   const context = useContext(InputContext);
+  const { error } = useLanguageContent(["hooks", "useInputContext"]);
 
   if (!context) {
-    throw new Error(`InputContext가 제공되지 않았습니다.`);
+    throw new Error(error);
   }
   return context;
 };
