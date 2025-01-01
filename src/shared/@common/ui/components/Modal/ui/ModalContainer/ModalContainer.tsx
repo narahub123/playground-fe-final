@@ -5,18 +5,23 @@ import { useFocusTrap } from "@shared/@common/models/hooks";
 
 interface ModalContainerProps {
   children: ReactNode;
+  width?: number;
+  widthUnit?: "px" | "%" | "rem";
 }
 
-const ModalContainer = ({ children }: ModalContainerProps) => {
+const ModalContainer = ({
+  width = 70,
+  widthUnit = "%",
+  children,
+}: ModalContainerProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { width, unit } = useModalContext();
 
   useFocusTrap({ containerRef, firstFocus: 1 });
 
   return (
     <div
       className={styles["modal__container"]}
-      style={{ width: `${width}${unit}` }}
+      style={{ width: `${width}${widthUnit}` }}
       ref={containerRef}
       role="dialog"
       aria-modal="true"
