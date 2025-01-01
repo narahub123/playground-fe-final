@@ -8,7 +8,7 @@
   min-height: 200px;
   max-width: 700px;
   max-height: 90vh; /* 뷰포트 높이의 90%로 제한 */
-  background-color: #fff;
+  background-color: var(--bgTheme-bgColor-primary);
   display: flex; /* 내부에 스크롤 생성을 위해서 */
   flex-direction: column; /* 내부 스크롤 생성을 위해서*/
 }
