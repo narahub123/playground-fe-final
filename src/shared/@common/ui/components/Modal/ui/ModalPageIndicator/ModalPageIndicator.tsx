@@ -19,6 +19,14 @@ const ModalPageIndicator = () => {
               : "",
           ])}
           onClick={setCurPage ? () => setCurPage(index) : undefined}
+          role="button"
+          aria-current={curPage === index ? "page" : undefined} // 현재 페이지 표시
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              setCurPage(index);
+            }
+          }}
         ></li>
       ))}
     </ul>
