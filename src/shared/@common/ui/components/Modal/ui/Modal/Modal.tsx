@@ -24,14 +24,14 @@ import ModalOverlay from "../ModalOverlay/ModalOverlay";
  *
  */
 const Modal = Object.assign(ModalMain, {
-  ModalOverlay, // 오버레이
-  ModalContainer, // 모달 컨테이너
-  ModalCloseButton, // 모달 닫기 버튼
-  ModalContent, // 모달 내용
-  ModalHeader, // 모달 헤더 : body, footer가 들어갈 수 없음
-  ModalIndicator, // 모달 페이지 지시자
-  ModalBody, // 모달 바디 : header, footer가 들어갈 수 없음
-  ModalFooter, // 모달 푸터 : header, body가 들어갈 수 없음
+  Overlay: ModalOverlay, // 오버레이
+  Container: ModalContainer, // 모달 컨테이너
+  CloseButton: ModalCloseButton, // 모달 닫기 버튼
+  Content: ModalContent, // 모달 내용
+  Header: ModalHeader, // 모달 헤더 : body, footer가 들어갈 수 없음
+  Indicator: ModalIndicator, // 모달 페이지 지시자
+  Body: ModalBody, // 모달 바디 : header, footer가 들어갈 수 없음
+  Footer: ModalFooter, // 모달 푸터 : header, body가 들어갈 수 없음
 });
 
 export default Modal;

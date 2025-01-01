@@ -104,8 +104,8 @@ const TestModal = ({
       width={70}
       unit="%"
     >
-      {/* <Modal.Overlay />
-      <Modal.Container>
+      <Modal.Overlay />
+      {/* <Modal.Container>
         <Modal.CloseButton />
         <Modal.Content>
           <Modal.Header>
@@ -115,7 +115,6 @@ const TestModal = ({
           <Modal.Footer>버튼</Modal.Footer>
         </Modal.Content>
       </Modal.Container> */}
-      k
     </Modal>
   );
 };
