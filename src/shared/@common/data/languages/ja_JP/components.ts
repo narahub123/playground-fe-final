@@ -10,6 +10,11 @@ const components = {
   Dropdown: {
     emtpyResult: "指定したキーワードで結果が見つかりません。",
   },
+  Modal: {
+    ModalCloseButton: {
+      iconTitle: "閉じる",
+    },
+  },
 };
 
 export default components;

@@ -10,6 +10,11 @@ const components = {
   Dropdown: {
     emptyResult: "未找到符合该关键词的结果。",
   },
+  Modal: {
+    ModalCloseButton: {
+      iconTitle: "关闭",
+    },
+  },
 };
 
 export default components;

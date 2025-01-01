@@ -10,6 +10,11 @@ const components = {
   Dropdown: {
     emptyResult: "해당 키워드로 검색된 결과가 없습니다.",
   },
+  Modal: {
+    ModalCloseButton: {
+      iconTitle: "닫기",
+    },
+  },
 };
 
 export default components;
