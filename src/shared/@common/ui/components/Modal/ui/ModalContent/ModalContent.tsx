@@ -1,9 +1,12 @@
+import { ReactNode } from "react";
 import styles from "./ModalContent.module.css";
 
-interface ModalContentProps {}
+interface ModalContentProps {
+  children: ReactNode;
+}
 
-const ModalContent = ({}: ModalContentProps) => {
-  return <div className={styles["modal__content"]}>ModalContent</div>;
+const ModalContent = ({ children }: ModalContentProps) => {
+  return <div className={styles["modal__content"]}>{children}</div>;
 };
 
 export default ModalContent;
