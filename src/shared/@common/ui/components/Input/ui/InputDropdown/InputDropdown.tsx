@@ -118,7 +118,7 @@ const InputDropdown = () => {
         behavior: "smooth", // 부드러운 스크롤 효과
         block: "center", // 항목을 화면 중앙에 위치하도록 스크롤
       });
-    }, 300); // 렌더링 직후에 실행되도록 0ms 지연 후 호출
+    }, 0); // 렌더링 직후에 실행되도록 0ms 지연 후 호출
 
     return () => clearTimeout(timer); // 컴포넌트 언마운트 시 타이머 제거
   }, [inputValue, isDropdownOpen]); // inputValue나 isDropdownOpen이 변경될 때마다 실행
