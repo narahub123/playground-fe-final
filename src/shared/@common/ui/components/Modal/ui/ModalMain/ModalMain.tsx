@@ -65,7 +65,15 @@ const ModalMain = ({
   return (
     <Portal id="modal">
       <ModalContextProvider value={value}>
-        <div className={styles["modal"]}>{children}</div>
+        <div
+          className={styles["modal"]}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="modal-title" // 요소에 이름을 제공하기 위해 사용 : 다른 요소의 id 값을 참조함
+          aria-describedby="modal-description" // 요소에 추가 설명을 제공하기 위해 사용 : 다른 요소의 id 값 참조함
+        >
+          {children}
+        </div>
       </ModalContextProvider>
     </Portal>
   );
