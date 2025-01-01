@@ -13,6 +13,8 @@ const ModalOverlay = ({
     <div
       className={styles["modal__overlay"]}
       style={{ backgroundColor, opacity }}
+      role="presentation" // 스크린 리더가 읽지 않도록 설정
+      aria-hidden={true} // 접근성 트리에서 제외
     />
   );
 };
