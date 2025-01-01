@@ -93,8 +93,6 @@ const TestModal = ({
       lengthOfList={pageList.length}
       curPage={curPage}
       setCurPage={setCurPage}
-      width={70}
-      unit="%"
     >
       <Modal.Overlay />
       <Modal.Container>

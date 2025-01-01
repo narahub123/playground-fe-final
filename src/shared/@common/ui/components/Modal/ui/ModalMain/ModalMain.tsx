@@ -11,8 +11,6 @@ interface ModalMainProps {
   lengthOfList?: number; // 여러 페이지가 있는 경우
   curPage?: number; // 현재 페이지
   setCurPage?: React.Dispatch<React.SetStateAction<number>>; // 현재 페이지 지정
-  width?: number;
-  unit?: "px" | "%" | "rem";
 }
 
 /**
@@ -25,8 +23,6 @@ interface ModalMainProps {
  * @param lengthOfList 여러 페이지가 있을 경우, 페이지 수를 나타내는 값입니다.
  * @param curPage 현재 페이지를 나타내는 값입니다.
  * @param setCurPage 현재 페이지를 설정하는 함수입니다.
- * @param width 모달의 너비를 설정하는 값입니다.
- * @param unit 모달의 너비 단위를 설정합니다. 기본값은 `rem`이며, `px` 또는 `%`도 사용 가능합니다.
  *
  * @returns 모달이 열리면 모달의 내용이 렌더링되고, 닫히면 아무 것도 렌더링하지 않습니다.
  *
@@ -38,8 +34,6 @@ const ModalMain = ({
   lengthOfList,
   curPage,
   setCurPage,
-  width,
-  unit = "rem",
 }: ModalMainProps) => {
   // 모달 창 열기 상태가 false이면 반환
   if (!isOpen) return null;
@@ -58,8 +52,6 @@ const ModalMain = ({
     lengthOfList,
     curPage,
     setCurPage,
-    width,
-    unit,
   };
 
   return (

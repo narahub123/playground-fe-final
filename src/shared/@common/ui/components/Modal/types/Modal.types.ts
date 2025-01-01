@@ -21,16 +21,6 @@ interface ModalContextType {
    * 현재 페이지 번호를 설정하는 함수 (옵션).
    */
   setCurPage?: React.Dispatch<React.SetStateAction<number>>;
-
-  /**
-   * 모달의 너비 (옵션).
-   */
-  width?: number;
-
-  /**
-   * 모달 너비의 크기의 단위를 나타내는 타입 (옵션).
-   */
-  unit?: FontUnitType;
 }
 
 /**
