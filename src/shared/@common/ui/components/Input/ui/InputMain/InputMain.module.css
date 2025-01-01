@@ -5,6 +5,7 @@
   padding: 0.5rem;
   transition: var(--transition-primary);
   outline: 0.125rem solid transparent; /* 자연스러운 변경을 위해 transparent로 변경 */
+  background-color: var(--bgTheme-bgColor-primary); /* 배경 테마 */
 }
 
 /* inputValue가 유효한 경우 */
