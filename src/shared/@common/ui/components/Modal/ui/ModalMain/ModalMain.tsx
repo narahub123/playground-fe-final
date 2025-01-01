@@ -44,6 +44,13 @@ const ModalMain = ({
   // 모달 창 열기 상태가 false이면 반환
   if (!isOpen) return null;
 
+  // 배경 스크롤 방지
+  if (isOpen) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "auto";
+  }
+
   const value: ModalContextType = {
     onClose,
     lengthOfList,
