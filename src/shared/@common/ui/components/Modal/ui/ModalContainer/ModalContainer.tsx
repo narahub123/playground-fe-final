@@ -1,6 +1,5 @@
 import styles from "./ModalContainer.module.css";
 import { ReactNode, useRef } from "react";
-import { useModalContext } from "@shared/@common/ui/components/Modal/hooks";
 import { useFocusTrap } from "@shared/@common/models/hooks";
 
 interface ModalContainerProps {
