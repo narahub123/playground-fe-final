@@ -18,6 +18,8 @@ const ModalContainer = ({ children }: ModalContainerProps) => {
       className={styles["modal__container"]}
       style={{ width: `${width}${unit}` }}
       ref={containerRef}
+      role="dialog"
+      aria-modal="true"
     >
       {children}
     </div>
