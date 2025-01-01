@@ -1,8 +1,8 @@
 import { joinClassNames } from "@shared/@common/utils";
 import { useModalContext } from "../../hooks";
-import styles from "./ModalIndicator.module.css";
+import styles from "./ModalPageIndicator.module.css";
 
-const ModalIndicator = () => {
+const ModalPageIndicator = () => {
   const { lengthOfList, curPage, setCurPage } = useModalContext();
 
   if (!lengthOfList || !setCurPage) return;
@@ -25,4 +25,4 @@ const ModalIndicator = () => {
   );
 };
 
-export default ModalIndicator;
+export default ModalPageIndicator;

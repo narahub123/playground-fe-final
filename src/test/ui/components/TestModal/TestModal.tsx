@@ -99,7 +99,7 @@ const TestModal = ({
         <Modal.CloseButton />
         <Modal.Content>
           <Modal.Header>
-            <Modal.Indicator />
+            <Modal.PageIndicator />
           </Modal.Header>
           {pageList[curPage]}
           <Modal.Footer>버튼</Modal.Footer>
