@@ -1,4 +1,4 @@
-import { ReactNode, useEffect } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
 /**
@@ -25,27 +25,31 @@ interface PortalProps {
  * - 특정 DOM 요소에 React 자식을 렌더링하거나, 해당 요소가 없으면 생성합니다.
  */
 const Portal = ({ children, id }: PortalProps) => {
-  // 대상 DOM 요소 가져오기
-  let targetNode = document.getElementById(id);
+  const [targetNode, setTargetNode] = useState<HTMLElement | null>(null);
 
-  // 대상 DOM 요소가 없을 경우 새로 생성
-  if (!targetNode) {
-    targetNode = document.createElement("div");
-    targetNode.id = id; // ID 설정
-    document.body.appendChild(targetNode); // body에 추가
-  }
-
-  // 컴포넌트 언마운트 시 DOM 정리 : 동적으로 생성된 DOM 노드가 필요 없을 때 자동으로 제거
-  // 메모리 누수와 불필요한 DOM 요소의 축적을 방지
   useEffect(() => {
+    // targetNode가 없으면 새로 생성
+    let targetElement = document.getElementById(id);
+    if (!targetElement) {
+      targetElement = document.createElement("div");
+      targetElement.id = id;
+      document.body.appendChild(targetElement);
+      console.log("targetNode 생성", targetElement);
+    }
+    setTargetNode(targetElement); // targetNode 설정
+
+    // 컴포넌트 언마운트 시 targetNode 제거
     return () => {
-      if (targetNode?.parentNode) {
-        targetNode.parentNode.removeChild(targetNode);
+      if (targetElement?.parentNode) {
+        targetElement.parentNode.removeChild(targetElement);
+        console.log("targetNode 제거", targetElement);
       }
     };
-  }, [targetNode]);
+  }, [id]); // id만 의존성 배열에 포함시키기
 
-  // React Portal 생성
+  // targetNode가 아직 준비되지 않았으면, 로딩 중일 때 렌더링하지 않음
+  if (!targetNode) return null;
+
   return createPortal(children, targetNode);
 };
 
