@@ -55,44 +55,44 @@ const TestModal = ({
   const inputValue = useSelector(getUsernameInSignin);
   const setInputValue = setUsernameInSignIn;
   const pageList: ReactNode[] = [
-    <Modal.Body>
-      <Input
-        label="사용자 이름"
-        field="username"
-        inputValue={inputValue}
-        setInputValue={setInputValue}
-        maxLength={PASSWORD_MAX}
-        error={error}
-        list={list}
-        // disabled={true}
-      >
-        <Input.Main>
-          <Input.Top>
-            <Input.Label />
-            <Input.Counter />
-          </Input.Top>
-          <Input.Bottom>
-            <Input.Field />
-            <Input.AdornmentIcon />
-            <Input.ActionIcon />
-          </Input.Bottom>
-        </Input.Main>
-        <Input.Dropdown />
-        <Input.Error />
-      </Input>
-      {/* <Input
-        field={"password"}
-        fieldName={"유저 아이디"}
-        maxLength={PASSWORD_MAX}
-        inputValue={value}
-        setInputValue={setUserIdInSignIn}
-        error={error}
-      /> */}
-    </Modal.Body>,
-    <Modal.Content>
-      <Modal.Body>바디2</Modal.Body>
-      <Modal.Footer>푸터2</Modal.Footer>
-    </Modal.Content>,
+    // <Modal.Body>
+    //   <Input
+    //     label="사용자 이름"
+    //     field="username"
+    //     inputValue={inputValue}
+    //     setInputValue={setInputValue}
+    //     maxLength={PASSWORD_MAX}
+    //     error={error}
+    //     list={list}
+    //     // disabled={true}
+    //   >
+    //     <Input.Main>
+    //       <Input.Top>
+    //         <Input.Label />
+    //         <Input.Counter />
+    //       </Input.Top>
+    //       <Input.Bottom>
+    //         <Input.Field />
+    //         <Input.AdornmentIcon />
+    //         <Input.ActionIcon />
+    //       </Input.Bottom>
+    //     </Input.Main>
+    //     <Input.Dropdown />
+    //     <Input.Error />
+    //   </Input>
+    //   {/* <Input
+    //     field={"password"}
+    //     fieldName={"유저 아이디"}
+    //     maxLength={PASSWORD_MAX}
+    //     inputValue={value}
+    //     setInputValue={setUserIdInSignIn}
+    //     error={error}
+    //   /> */}
+    // </Modal.Body>,
+    // <Modal.Content>
+    //   <Modal.Body>바디2</Modal.Body>
+    //   <Modal.Footer>푸터2</Modal.Footer>
+    // </Modal.Content>,
   ];
   return (
     <Modal
@@ -104,7 +104,7 @@ const TestModal = ({
       width={70}
       unit="%"
     >
-      <Modal.Overlay />
+      {/* <Modal.Overlay />
       <Modal.Container>
         <Modal.CloseButton />
         <Modal.Content>
@@ -114,7 +114,7 @@ const TestModal = ({
           {pageList[curPage]}
           <Modal.Footer>버튼</Modal.Footer>
         </Modal.Content>
-      </Modal.Container>
+      </Modal.Container> */}
     </Modal>
   );
 };
