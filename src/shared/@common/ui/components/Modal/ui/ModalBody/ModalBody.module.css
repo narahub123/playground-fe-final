@@ -1,2 +1,8 @@
 .modal__body {
+  position: relative;
+  flex: 1;
+  padding: 0 50px;
+  display: flex;
+  flex-direction: column;
+  overflow: auto; /* 높이가 줄어들면 내부 스크롤 생성 */
 }

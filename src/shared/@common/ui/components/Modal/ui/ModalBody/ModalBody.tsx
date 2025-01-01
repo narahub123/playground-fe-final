@@ -1,9 +1,12 @@
+import { ReactNode } from "react";
 import styles from "./ModalBody.module.css";
 
-interface ModalBodyProps {}
+interface ModalBodyProps {
+  children: ReactNode;
+}
 
-const ModalBody = ({}: ModalBodyProps) => {
-  return <div className={styles["modal__body"]}>ModalBody</div>;
+const ModalBody = ({ children }: ModalBodyProps) => {
+  return <div className={styles["modal__body"]}>{children}</div>;
 };
 
 export default ModalBody;
