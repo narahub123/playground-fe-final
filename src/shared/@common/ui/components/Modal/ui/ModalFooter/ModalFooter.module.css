@@ -1,2 +1,5 @@
 .modal__footer {
+  position: relative;
+  padding: 15px 50px;
+  flex-shrink: 0; /* 존재한다면 크기 고정 */
 }
