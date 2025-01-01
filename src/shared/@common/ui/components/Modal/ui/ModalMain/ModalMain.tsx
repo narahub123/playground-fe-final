@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 import Portal from "../../../Portal/Portal";
 import { ModalContextProvider } from "../../context";
 import styles from "./ModalMain.module.css";
@@ -45,11 +45,13 @@ const ModalMain = ({
   if (!isOpen) return null;
 
   // 배경 스크롤 방지
-  if (isOpen) {
-    document.body.style.overflow = "hidden";
-  } else {
-    document.body.style.overflow = "auto";
-  }
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "auto";
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen]);
 
   const value: ModalContextType = {
     onClose,
