@@ -106,9 +106,8 @@ const TestModal = ({
     >
       <Modal.Overlay />
       <Modal.Container>
-        df
-        {/* <Modal.CloseButton />
-        <Modal.Content>
+        <Modal.CloseButton />
+        {/* <Modal.Content>
           <Modal.Header>
             <Modal.Indicator />
           </Modal.Header>
