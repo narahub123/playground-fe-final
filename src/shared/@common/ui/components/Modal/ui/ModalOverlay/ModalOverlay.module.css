@@ -1,2 +1,6 @@
 .modal__overlay {
+  position: fixed; /* 뷰포트를 기준으로 고정 */
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
 }
