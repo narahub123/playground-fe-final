@@ -105,16 +105,17 @@ const TestModal = ({
       unit="%"
     >
       <Modal.Overlay />
-      {/* <Modal.Container>
-        <Modal.CloseButton />
+      <Modal.Container>
+        df
+        {/* <Modal.CloseButton />
         <Modal.Content>
           <Modal.Header>
             <Modal.Indicator />
           </Modal.Header>
           {pageList[curPage]}
           <Modal.Footer>버튼</Modal.Footer>
-        </Modal.Content>
-      </Modal.Container> */}
+        </Modal.Content> */}
+      </Modal.Container>
     </Modal>
   );
 };
