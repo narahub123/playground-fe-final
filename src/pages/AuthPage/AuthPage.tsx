@@ -6,7 +6,7 @@ import {
   useLanguageContent,
 } from "@shared/@common/models/hooks";
 import { AuthButtonItemType } from "@shared/auth/types";
-import TestModal from "@test/ui/components/TestModal/TestModal";
+import { AuthModal } from "@features/auth-email/ui/components";
 
 const AuthPage = () => {
   // 언어 설정
@@ -17,7 +17,7 @@ const AuthPage = () => {
 
   return (
     <div className={styles[`auth-page`]}>
-      <TestModal
+      <AuthModal
         isOpen={isOpen}
         onClose={onClose}
         curPage={curPage}
