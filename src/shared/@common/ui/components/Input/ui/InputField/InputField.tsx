@@ -31,13 +31,8 @@ const InputField = () => {
     disabled, // disabled 모드
   } = useInputContext();
 
-  const {
-    defaultErrorRegex,
-    defaultErrorMsg,
-    errorRegexList,
-    errorMsgList,
-    empty,
-  } = useCompiledInputError();
+  const { EMPTY, FORBIDDEN, UNDER_MINIMUM, INCOMPLETE, EXCEED, FORMAT } =
+    useCompiledInputError();
 
   /**
    * `inputRef`가 변경될 때마다, 이를 `setInputRef`로 설정합니다.
@@ -60,66 +55,52 @@ const InputField = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
 
-    // maxlength가 설정되어 있고, 입력값이 maxlength를 초과한 경우
-    if (maxLength && value.length > maxLength && errorMsgList) {
-      // 에러 메시지가 존재하지 않으면 종료
-      if (!errorMsgList[1]) return;
-
-      // 에러 메시지가 변경되었는지 확인 후 변경되었으면 에러 메시지 설정
-      if (errorMessage !== errorMsgList[1]) {
-        setErrorMessage(errorMsgList[1]);
-        return;
+    // 최대 길이를 초과하면 EXCEED 에러를 설정
+    if (maxLength && value.length > maxLength && EXCEED) {
+      if (errorMessage !== EXCEED.errorMessage) {
+        setErrorMessage(EXCEED.errorMessage);
       }
+      return;
     }
 
     // 입력값이 변경되면 상태를 업데이트
     dispatch(setInputValue(value));
 
-    // 정규 표현식이 제공된 경우에만 유효성 검사 진행
-    if (typeof defaultErrorRegex !== "string") {
-      // 빈 문자열인 경우 처리
-      if (value === "" && empty) {
-        // 에러 메시지가 변경되었는지 확인 후 변경되었으면 에러 메시지 설정
-        if (errorMessage !== empty) {
-          setErrorMessage(empty);
-          setIsValid(false); // 유효성 실패
-        }
-        return;
+    // 각 규칙에 맞는 유효성 검사를 차례대로 수행
+    if (EMPTY && !value.match(EMPTY.regExp)) {
+      if (errorMessage !== EMPTY.errorMessage) {
+        setErrorMessage(EMPTY.errorMessage);
+        setIsValid(true);
       }
-
-      // 유효성 검사: 각 정규 표현식을 통해 유효성 체크
-      for (const regex of errorRegexList) {
-        if (!errorMsgList) return; // errorMsgList가 없으면 종료
-        if (!regex.test(value)) {
-          // 유효성 검사 실패 시 해당 에러 메시지를 가져오고, 설정하기
-          const index = errorRegexList.findIndex(
-            (err) => err.source === regex.source
-          );
-          const errorMsg = errorMsgList[index] || "";
-
-          // 에러 메시지가 변경되었는지 확인 후 변경되었으면 에러 메시지 설정
-          if (errorMessage !== errorMsg) {
-            setErrorMessage(errorMsg);
-            setIsValid(false); // 유효성 실패
-            return;
-          }
-        }
+      return;
+    } else if (FORBIDDEN && !value.match(FORBIDDEN.regExp)) {
+      if (errorMessage !== FORBIDDEN.errorMessage) {
+        setErrorMessage(FORBIDDEN.errorMessage);
+        setIsValid(false);
       }
-
-      // 유효성 검사: 최소 글자수 이후 검사
-      if (!defaultErrorRegex.test(value)) {
-        // 기본 정규식에 맞지 않으면 에러 메시지 설정
-        if (errorMessage !== defaultErrorMsg) {
-          setErrorMessage(defaultErrorMsg);
-          setIsValid(false); // 유효성 실패
-        }
-      } else {
-        // 유효성 검사 성공 시 에러 메시지를 지우고 유효성 성공
-        if (errorMessage !== "") {
-          setErrorMessage(""); // 에러 메시지를 리셋
-          setIsValid(true); // 유효성 성공
-        }
+      return;
+    } else if (UNDER_MINIMUM && !value.match(UNDER_MINIMUM.regExp)) {
+      if (errorMessage !== UNDER_MINIMUM.errorMessage) {
+        setErrorMessage(UNDER_MINIMUM.errorMessage);
+        setIsValid(false);
       }
+      return;
+    } else if (INCOMPLETE && !value.match(INCOMPLETE.regExp)) {
+      if (errorMessage !== INCOMPLETE.errorMessage) {
+        setErrorMessage(INCOMPLETE.errorMessage);
+        setIsValid(false);
+      }
+      return;
+    } else if (FORMAT && !value.match(FORMAT.regExp)) {
+      if (errorMessage !== FORMAT.errorMessage) {
+        setErrorMessage(FORMAT.errorMessage);
+        setIsValid(false);
+      }
+      return;
+    } else {
+      // 모든 유효성 검사를 통과하면 에러 메시지와 유효성 상태를 초기화
+      setErrorMessage("");
+      setIsValid(true);
     }
   };
 
