@@ -1,3 +1,3 @@
-import { birthYearList, birthMonthList } from "./dates";
+import { birthYearList, birthMonthList, birthDateList } from "./dates";
 
-export { birthYearList, birthMonthList };
+export { birthYearList, birthMonthList, birthDateList };

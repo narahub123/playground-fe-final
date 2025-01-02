@@ -15,8 +15,8 @@ const thisMonth = today.getMonth(); // 월
  */
 const birthYearList = Array.from({ length: thisYear - BASE_YAER + 1 })
   .map((_, index) => ({
-    value: (BASE_YAER + index).toString(),
     text: (BASE_YAER + index).toString() + "년",
+    value: (BASE_YAER + index).toString(),
   }))
   .reverse();
 
@@ -64,7 +64,7 @@ const birthDateList = (
 
   return Array.from({ length: lastDate }).map((_, index) => ({
     text: index + 1 + "일",
-    value: index + 1,
+    value: (index + 1).toString(),
   }));
 };
 
