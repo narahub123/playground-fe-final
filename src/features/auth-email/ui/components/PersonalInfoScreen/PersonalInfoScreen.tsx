@@ -1,6 +1,9 @@
 import styles from "./PersonalInfoScreen.module.css";
 import { Input, Modal, Text } from "@shared/@common/ui/components";
 import {
+  setBirthDateSignIn,
+  setBirthMonthSignIn,
+  setBirthYearSignIn,
   setEmailInSignIn,
   setUsernameInSignIn,
 } from "@features/auth-setting/models/slices/signinSlice";
@@ -79,7 +82,7 @@ const PersonalInfoScreen = () => {
               field="year"
               label="년"
               inputValue={birth.year as string}
-              setInputValue={setEmailInSignIn}
+              setInputValue={setBirthYearSignIn}
               list={[]}
             >
               <Input.Main>
@@ -97,7 +100,7 @@ const PersonalInfoScreen = () => {
               field="month"
               label="월"
               inputValue={birth.month as string}
-              setInputValue={setEmailInSignIn}
+              setInputValue={setBirthMonthSignIn}
               list={[]}
             >
               <Input.Main>
@@ -115,7 +118,7 @@ const PersonalInfoScreen = () => {
               field="date"
               label="일"
               inputValue={birth.date as string}
-              setInputValue={setEmailInSignIn}
+              setInputValue={setBirthDateSignIn}
               list={[]}
             >
               <Input.Main>
