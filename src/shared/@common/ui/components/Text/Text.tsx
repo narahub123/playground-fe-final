@@ -4,7 +4,7 @@ import styles from "./Text.module.css";
 interface TextProps {
   text: string | number; // 내용
   type?: "heading1" | "heading2" | "heading3" | "expl" | "normal"; // 타입
-  status?: "default" | "error"; // 상태
+  status?: "default" | "error" | "bold"; // 상태
   subClassName?: string; // 스타일 추가
 }
 
@@ -30,7 +30,12 @@ const Text = ({
   // 스타일 결정
   const className = styles[type] || styles.normal;
 
-  const statusClassName = status === "error" ? styles.error : undefined;
+  const statusClassName =
+    status === "error"
+      ? styles.error
+      : status === "bold"
+      ? styles.bold
+      : undefined;
 
   return (
     <Comp
