@@ -63,13 +63,15 @@ const PersonalInfoScreen = () => {
           <Input.Error />
         </Input>
         <div className={styles[`personal__info__screen__birth__container`]}>
-          <Text text={"생년월일"} />
-          <Text
-            text={
-              "이 정보는 공개적으로 표시되지 않습니다. 비즈니스, 반려동물 등 계정 주제에 상관없이 나의 연령을 확인하세요."
-            }
-            type="expl"
-          />
+          <div>
+            <Text text={"생년월일"} status="bold" />
+            <Text
+              text={
+                "이 정보는 공개적으로 표시되지 않습니다. 비즈니스, 반려동물 등 계정 주제에 상관없이 나의 연령을 확인하세요."
+              }
+              type="expl"
+            />
+          </div>
           <div className={styles[`personal__info__screen__birth`]}>
             {/* 생년월일 */}
             {/* 년 */}
