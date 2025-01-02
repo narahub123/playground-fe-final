@@ -48,6 +48,7 @@ const AuthModal = ({
       setCurPage={setCurPage}
       onClose={onClose}
       lengthOfList={pages.length}
+      domId="auth-modal"
     >
       <Modal.Overlay />
       <Modal.Container>
