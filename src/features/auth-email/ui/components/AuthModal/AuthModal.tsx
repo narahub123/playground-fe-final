@@ -1,4 +1,5 @@
 import { Modal } from "@shared/@common/ui/components";
+import PersonalInfoScreen from "../PersonalInfoScreen/PersonalInfoScreen";
 
 /**
  * AuthModalPros는 AuthModal 컴포넌트에 전달되는 속성들을 정의함
@@ -36,17 +37,17 @@ interface AuthModalProps {
 const AuthModal = ({
   isOpen,
   onClose,
-  curPage,
+  curPage = 0,
   setCurPage,
 }: AuthModalProps) => {
-  const pages = [];
+  const screens = [<PersonalInfoScreen />];
   return (
     <Modal
       isOpen={isOpen}
       curPage={curPage}
       setCurPage={setCurPage}
       onClose={onClose}
-      lengthOfList={pages.length}
+      lengthOfList={screens.length}
       domId="auth-modal"
     >
       <Modal.Overlay />
@@ -56,8 +57,7 @@ const AuthModal = ({
           <Modal.Header>
             <Modal.PageIndicator />
           </Modal.Header>
-          <Modal.Body>바디</Modal.Body>
-          <Modal.Footer>푸터</Modal.Footer>
+          {screens[curPage]}
         </Modal.Content>
       </Modal.Container>
     </Modal>
