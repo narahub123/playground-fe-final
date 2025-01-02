@@ -1,8 +1,9 @@
-import { ReactNode, useEffect } from "react";
-import Portal from "../../../Portal/Portal";
-import { ModalContextProvider } from "../../context";
 import styles from "./ModalMain.module.css";
-import { ModalContextType } from "../../types";
+import { ReactNode, useEffect } from "react";
+import { joinClassNames } from "@shared/@common/utils";
+import { Portal } from "@shared/@common/ui/components";
+import { ModalContextProvider } from "@shared/@common/ui/components/Modal/context";
+import { ModalContextType } from "@shared/@common/ui/components/Modal/types";
 
 /**
  * ModalMainProps는 ModalMain 컴포넌트에 전달되는 속성들을 정의합니다.
@@ -50,6 +51,12 @@ interface ModalMainProps {
    * @type {React.Dispatch<React.SetStateAction<number>>}
    */
   setCurPage?: React.Dispatch<React.SetStateAction<number>>;
+
+  /**
+   * 추가적인 클래스명을 지정할 수 있는 프로퍼티. 기존 className에 덧붙여짐
+   * @type {string}
+   */
+  className?: string;
 }
 
 /**
@@ -67,6 +74,7 @@ const ModalMain = ({
   curPage,
   setCurPage,
   domId = "modal",
+  className,
 }: ModalMainProps) => {
   // 모달 창 열기 상태가 false이면 반환
   if (!isOpen) return null;
@@ -91,7 +99,7 @@ const ModalMain = ({
     <Portal id={domId}>
       <ModalContextProvider value={value}>
         <div
-          className={styles["modal"]}
+          className={joinClassNames([styles[`modal`], className])}
           role="dialog"
           aria-modal="true"
           aria-labelledby="modal-title" // 요소에 이름을 제공하기 위해 사용 : 다른 요소의 id 값을 참조함

@@ -3,6 +3,7 @@ import { ComponentType, ReactNode } from "react";
 import { useValidateChildren } from "@shared/@common/models/hooks";
 import ModalBody from "../ModalBody/ModalBody";
 import ModalFooter from "../ModalFooter/ModalFooter";
+import { joinClassNames } from "@shared/@common/utils";
 
 /**
  * `ModalHeader` 컴포넌트에 전달되는 props입니다.
@@ -19,9 +20,12 @@ interface ModalHeaderProps {
    * @type {ReactNode}
    */
   children: ReactNode;
-}
-interface ModalHeaderProps {
-  children: ReactNode;
+
+  /**
+   * 추가적인 클래스명을 지정할 수 있는 프로퍼티. 기존 className에 덧붙여짐
+   * @type {string}
+   */
+  className?: string;
 }
 
 /**
@@ -40,7 +44,7 @@ interface ModalHeaderProps {
  *   <h1>모달 제목</h1>
  * </ModalHeader>
  */
-const ModalHeader = ({ children }: ModalHeaderProps) => {
+const ModalHeader = ({ children, className }: ModalHeaderProps) => {
   /**
    * `ModalBody`와 `ModalFooter` 컴포넌트는 `ModalHeader` 내에서 사용할 수 없습니다.
    * 이를 처리하기 위해 `useValidateChildren` 훅을 사용하여 자식 요소들을 검증합니다.
@@ -59,7 +63,11 @@ const ModalHeader = ({ children }: ModalHeaderProps) => {
    */
   const filteredChildren = useValidateChildren({ children, invalidComponents });
 
-  return <div className={styles["modal__header"]}>{filteredChildren}</div>;
+  return (
+    <div className={joinClassNames([styles["modal__header"], className])}>
+      {filteredChildren}
+    </div>
+  );
 };
 
 export default ModalHeader;

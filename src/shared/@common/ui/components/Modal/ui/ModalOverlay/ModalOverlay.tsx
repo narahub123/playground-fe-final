@@ -1,3 +1,4 @@
+import { joinClassNames } from "@shared/@common/utils";
 import { useModalContext } from "../../hooks";
 import styles from "./ModalOverlay.module.css";
 
@@ -20,6 +21,12 @@ interface ModalOverlayProps {
    * @default 0.6
    */
   opacity?: number;
+
+  /**
+   * 추가적인 클래스명을 지정할 수 있는 프로퍼티. 기존 className에 덧붙여짐
+   * @type {string}
+   */
+  className?: string;
 }
 
 /**
@@ -44,12 +51,13 @@ interface ModalOverlayProps {
 const ModalOverlay = ({
   backgroundColor = "rgb(0, 0, 0)",
   opacity = 0.6,
+  className,
 }: ModalOverlayProps) => {
   const { onClose } = useModalContext();
 
   return (
     <div
-      className={styles["modal__overlay"]}
+      className={joinClassNames([styles["modal__overlay"], className])}
       style={{ backgroundColor, opacity }}
       role="presentation" // 스크린 리더가 읽지 않도록 설정
       aria-hidden={true} // 접근성 트리에서 제외

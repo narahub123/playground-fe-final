@@ -1,6 +1,7 @@
 import styles from "./ModalContainer.module.css";
 import { ReactNode, useRef } from "react";
 import { useFocusTrap } from "@shared/@common/models/hooks";
+import { joinClassNames } from "@shared/@common/utils";
 
 /**
  * ModalContainerProps는 ModalContainer 컴포넌트에 전달되는 속성들을 정의합니다.
@@ -27,6 +28,12 @@ interface ModalContainerProps {
    * @default "%"
    */
   widthUnit?: "px" | "%" | "rem";
+
+  /**
+   * 추가적인 클래스명을 지정할 수 있는 프로퍼티. 기존 className에 덧붙여짐
+   * @type {string}
+   */
+  className?: string;
 }
 
 /**
@@ -57,6 +64,7 @@ const ModalContainer = ({
   width = 70,
   widthUnit = "%",
   children,
+  className,
 }: ModalContainerProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -64,7 +72,7 @@ const ModalContainer = ({
 
   return (
     <div
-      className={styles["modal__container"]}
+      className={joinClassNames([styles["modal__container"], className])}
       style={{ width: `${width}${widthUnit}` }}
       ref={containerRef}
       role="dialog"

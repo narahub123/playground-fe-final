@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import styles from "./ModalContent.module.css";
+import { joinClassNames } from "@shared/@common/utils";
 
 /**
  * ModalContentProps는 ModalContent 컴포넌트에 전달되는 속성들을 정의합니다.
@@ -10,6 +11,11 @@ interface ModalContentProps {
    * @type {ReactNode}
    */
   children: ReactNode;
+  /**
+   * 추가적인 클래스명을 지정할 수 있는 프로퍼티. 기존 className에 덧붙여짐
+   * @type {string}
+   */
+  className?: string;
 }
 
 /**
@@ -27,9 +33,13 @@ interface ModalContentProps {
  *   <p>모달 내용이 여기에 표시됩니다.</p>
  * </ModalContent>
  */
-const ModalContent = ({ children }: ModalContentProps) => {
+const ModalContent = ({ children, className }: ModalContentProps) => {
   // 모달 콘텐츠를 감싸는 div 요소를 렌더링합니다.
-  return <div className={styles["modal__content"]}>{children}</div>;
+  return (
+    <div className={joinClassNames([styles["modal__content"], className])}>
+      {children}
+    </div>
+  );
 };
 
 export default ModalContent;
