@@ -48,7 +48,7 @@ const birthMonthList = [
  *
  * @param {string | number} [year=thisYear] - 대상 년도 (기본값: 현재 년도)
  * @param {string | number} [month=thisMonth] - 대상 월 (기본값: 현재 월)
- * @returns {Array<{text: string, value: number}>} 일 목록
+ * @returns {Array<{text: string, value: string}>} 일 목록
  * @description
  * - 지정된 년도와 월에 맞는 일 목록을 생성합니다.
  * - 월별 마지막 날짜를 기준으로 일 목록을 생성합니다.
