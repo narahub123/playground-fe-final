@@ -45,6 +45,15 @@ const signinSlice = createSlice({
     setBirthInSignIn: (state, action: PayloadAction<BirthType>) => {
       state.birth = action.payload;
     },
+    setBirthYearSignIn: (state, action: PayloadAction<string>) => {
+      state.birth.year = action.payload;
+    },
+    setBirthMonthSignIn: (state, action: PayloadAction<string>) => {
+      state.birth.month = action.payload;
+    },
+    setBirthDateSignIn: (state, action: PayloadAction<string>) => {
+      state.birth.date = action.payload;
+    },
     setPasswordInSignIn: (state, action: PayloadAction<string>) => {
       state.password = action.payload;
     },
@@ -69,6 +78,9 @@ export const {
   setPhoneInSignIn,
   setEmailInSignIn,
   setBirthInSignIn,
+  setBirthYearSignIn,
+  setBirthMonthSignIn,
+  setBirthDateSignIn,
   setPasswordInSignIn,
   setUserIdInSignIn,
   setProfileImageInSignIn,
