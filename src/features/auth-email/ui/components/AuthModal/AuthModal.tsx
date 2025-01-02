@@ -1,4 +1,3 @@
-import styles from "./AuthModal.module.css";
 import { Modal } from "@shared/@common/ui/components";
 
 /**
