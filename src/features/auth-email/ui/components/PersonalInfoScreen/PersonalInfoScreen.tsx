@@ -1,5 +1,5 @@
 import styles from "./PersonalInfoScreen.module.css";
-import { Input, Modal } from "@shared/@common/ui/components";
+import { Input, Modal, Text } from "@shared/@common/ui/components";
 import {
   setEmailInSignIn,
   setUsernameInSignIn,
@@ -24,7 +24,8 @@ const PersonalInfoScreen = () => {
 
   return (
     <div className={styles["personal__info__screen"]}>
-      <Modal.Body>
+      <Modal.Body className={styles[`personal__info__screen__body`]}>
+        <Text text={"계정을 생성하세요."} type="heading2" />
         {/* 사용자 이름 */}
         <Input
           field="username"
@@ -61,62 +62,71 @@ const PersonalInfoScreen = () => {
           </Input.Main>
           <Input.Error />
         </Input>
-        <div className={styles[`personal__info__screen__birth`]}>
-          {/* 생년월일 */}
-          {/* 년 */}
-          <Input
-            field="year"
-            label="년"
-            inputValue={birth.year as string}
-            setInputValue={setEmailInSignIn}
-            list={[]}
-          >
-            <Input.Main>
-              <Input.Top>
-                <Input.Label />
-              </Input.Top>
-              <Input.Bottom>
-                <Input.Field />
-              </Input.Bottom>
-            </Input.Main>
-            <Input.Error />
-          </Input>
-          {/* 월 */}
-          <Input
-            field="month"
-            label="월"
-            inputValue={birth.month as string}
-            setInputValue={setEmailInSignIn}
-            list={[]}
-          >
-            <Input.Main>
-              <Input.Top>
-                <Input.Label />
-              </Input.Top>
-              <Input.Bottom>
-                <Input.Field />
-              </Input.Bottom>
-            </Input.Main>
-            <Input.Error />
-          </Input>
-          {/* 일 */}
-          <Input
-            field="date"
-            label="일"
-            inputValue={birth.date as string}
-            setInputValue={setEmailInSignIn}
-            list={[]}
-          >
-            <Input.Main>
-              <Input.Top>
-                <Input.Label />
-              </Input.Top>
-              <Input.Bottom>
-                <Input.Field />
-              </Input.Bottom>
-            </Input.Main>
-            <Input.Error />
-          </Input>
+        <div className={styles[`personal__info__screen__birth__container`]}>
+          <Text text={"생년월일"} />
+          <Text
+            text={
+              "이 정보는 공개적으로 표시되지 않습니다. 비즈니스, 반려동물 등 계정 주제에 상관없이 나의 연령을 확인하세요."
+            }
+            type="expl"
+          />
+          <div className={styles[`personal__info__screen__birth`]}>
+            {/* 생년월일 */}
+            {/* 년 */}
+            <Input
+              field="year"
+              label="년"
+              inputValue={birth.year as string}
+              setInputValue={setEmailInSignIn}
+              list={[]}
+            >
+              <Input.Main>
+                <Input.Top>
+                  <Input.Label />
+                </Input.Top>
+                <Input.Bottom>
+                  <Input.Field />
+                </Input.Bottom>
+              </Input.Main>
+              <Input.Error />
+            </Input>
+            {/* 월 */}
+            <Input
+              field="month"
+              label="월"
+              inputValue={birth.month as string}
+              setInputValue={setEmailInSignIn}
+              list={[]}
+            >
+              <Input.Main>
+                <Input.Top>
+                  <Input.Label />
+                </Input.Top>
+                <Input.Bottom>
+                  <Input.Field />
+                </Input.Bottom>
+              </Input.Main>
+              <Input.Error />
+            </Input>
+            {/* 일 */}
+            <Input
+              field="date"
+              label="일"
+              inputValue={birth.date as string}
+              setInputValue={setEmailInSignIn}
+              list={[]}
+            >
+              <Input.Main>
+                <Input.Top>
+                  <Input.Label />
+                </Input.Top>
+                <Input.Bottom>
+                  <Input.Field />
+                </Input.Bottom>
+              </Input.Main>
+              <Input.Error />
+            </Input>
+          </div>
         </div>
       </Modal.Body>
       <Modal.Footer>버튼</Modal.Footer>

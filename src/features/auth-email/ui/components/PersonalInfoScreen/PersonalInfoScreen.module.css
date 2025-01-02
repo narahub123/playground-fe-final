@@ -1,3 +1,15 @@
+.personal__info__screen__body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.personal__info__screen__birth__container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
 .personal__info__screen__birth {
   display: flex;
+  gap: 5px;
 }
