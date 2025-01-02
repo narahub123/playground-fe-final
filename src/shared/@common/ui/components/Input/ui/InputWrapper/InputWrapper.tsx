@@ -3,6 +3,7 @@ import styles from "./InputWrapper.module.css";
 import {
   InputContextProvider,
   InputContextType,
+  InputErrorKeyType,
   InputErrorType,
 } from "@shared/@common/ui/components/Input/context";
 import { DropdownItemType } from "@shared/@common/types";
@@ -16,7 +17,7 @@ interface InputWrapperProps {
   setInputValue: (value: any) => { type: string; payload: any }; // inputValue를 업데이트할 reducer
   children: ReactNode;
   maxLength?: number; // 사용자가 input 필드에 입력할 수 있는 최대 글자 수를 제한: Constants로 관리할 것
-  error?: InputErrorType; // 에러 객체 : 정규 표현식과 에러 메시지를 가지고 있음
+  error?: Partial<Record<InputErrorKeyType, InputErrorType>>;
   list?: DropdownItemType[]; // 드롭다운에 들어갈 아이템 배열
   disabled?: boolean; // disabled 모드 적용
 }
@@ -36,10 +37,7 @@ const InputWrapper = ({
   setInputValue,
   children,
   maxLength,
-  error = {
-    regExp: "",
-    defaultErrorMsg: "",
-  },
+  error,
   list,
   disabled = false, // 값을 적용하지 않으면 false
 }: InputWrapperProps) => {

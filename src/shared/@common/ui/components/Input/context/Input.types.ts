@@ -34,10 +34,34 @@ interface InputContextType {
   setShowPassword: React.Dispatch<React.SetStateAction<boolean>>;
   /** 현재 에러 메시지 상태 */
   errorMessage: string;
+
   /** 에러 메시지를 업데이트하는 set 함수 */
   setErrorMessage: React.Dispatch<React.SetStateAction<string>>;
-  /** 에러 객체 : 정규 표현식과 에러 메시지를 포함 */
-  error: InputErrorType;
+  /**
+   * `error` 객체는 `InputErrorKeyType` 값을 키로 사용하며, 각 키에 대해
+   * 해당하는 `InputErrorType` 객체를 값으로 가집니다. 이 객체는 다양한 입력 오류를 처리하기 위한 정보를 저장합니다.
+   *
+   * 각 `InputErrorKeyType` 값은 다음과 같은 에러 유형을 나타냅니다:
+   * - `EMPTY`: 입력값이 비어있을 때 발생하는 에러.
+   * - `FORBIDDEN`: 허용되지 않는 값이 입력된 경우 발생하는 에러.
+   * - `UNDER_MINIMUM`: 입력값이 최소 조건을 만족하지 못한 경우 발생하는 에러.
+   * - `INCOMPLETE`: 필수 입력 항목이 부족한 경우 발생하는 에러.
+   * - `EXCEED`: 입력값이 최대 조건을 초과한 경우 발생하는 에러.
+   * - `FORMAT`: 입력값의 형식이 올바르지 않은 경우 발생하는 에러.
+   *
+   * 각 키에 대한 `InputErrorType` 구조는 다음과 같습니다:
+   * - `regExp`: 해당 오류를 검출하기 위한 정규 표현식.
+   * - `errorMessage`: 오류가 발생했을 때 사용자에게 보여줄 에러 메시지.
+   *
+   * `error` 객체는 `InputErrorKeyType` 값을 키로 하고, 각 키에 대응하는 `InputErrorType` 값을 값으로 가집니다.
+   * 이 객체는 `Partial`로 정의되어 있어, 각 에러 키에 대해 `InputErrorType`의 일부 필드만 포함될 수도 있습니다.
+   * 예를 들어, `regExp`만 포함되어 있거나 `errorMessage`만 포함되어 있을 수 있습니다.
+   *
+   * @type {Partial<Record<InputErrorKeyType, InputErrorType>>}
+   * - `error` 객체는 `InputErrorKeyType` 값을 키로 사용하며, 각 키에 대해 선택적으로 `InputErrorType`을 가질 수 있습니다.
+   */
+  error: Partial<Record<InputErrorKeyType, InputErrorType>> | undefined;
+
   /** 현재 드롭다운이 열려 있는지 여부 */
   isDropdownOpen: boolean;
   /** 드롭다운 상태를 업데이트하는 set 함수 */
@@ -57,68 +81,76 @@ interface InputContextType {
 }
 
 /**
- * InputErrorType 인터페이스는 입력값 유효성 검사에 필요한 에러 정보를 정의합니다.
+ * `InputErrorType`은 각 입력 오류를 정의하는 타입입니다. 이 타입은 오류를 검출하기 위한
+ * 정규 표현식과 사용자에게 보여줄 에러 메시지를 포함합니다.
  */
 interface InputErrorType {
-  /** 유효성 검사에 사용할 정규 표현식 */
+  /**
+   * 오류를 검출하기 위한 정규 표현식. 문자열 형태로 입력됩니다.
+   * 이 정규 표현식을 사용하여 입력값의 유효성을 검사합니다.
+   *
+   * @example
+   * "^\\d+$" // 숫자만 허용
+   */
   regExp: string;
-  /** 기본 에러 메시지 */
-  defaultErrorMsg: string;
-  /** 추가적인 에러 메시지 및 정규 표현식 리스트 */
-  errorList?: InputErrorListItemType[];
-  /** 빈 입력값에 대한 에러 메시지 */
-  empty?: string;
+
+  /**
+   * 오류 발생 시 사용자에게 보여줄 에러 메시지.
+   * 오류 발생 시 유저 인터페이스에서 표시되는 텍스트로 사용됩니다.
+   *
+   * @example
+   * "숫자만 입력해주세요."
+   */
+  errorMessage: string;
 }
 
 /**
- * InputErrorListItemType 인터페이스는 개별 유효성 검사 항목과 관련된 정보를 정의합니다.
+ * `CompileErrorType`은 `InputErrorType`과 유사하지만, `regExp` 필드를 정규 표현식 객체로
+ * 정의한 타입입니다. 이 타입은 정규 표현식 객체를 사용하여 검증을 수행할 수 있습니다.
  */
-interface InputErrorListItemType {
-  /** 유효성 검사에 사용할 정규 표현식 */
-  regExp: string;
-  /** 정규 표현식에 해당하는 에러 메시지 */
-  errorMsg: string;
+interface CompileErrorType {
+  /**
+   * 오류를 검출하기 위한 정규 표현식 객체.
+   * 이 정규 표현식을 사용하여 입력값을 검사합니다.
+   *
+   * @example
+   * /\\d+/ // 숫자만 허용하는 정규 표현식
+   */
+  regExp: RegExp;
+
+  /**
+   * 오류 발생 시 사용자에게 보여줄 에러 메시지.
+   * `InputErrorType`의 `errorMessage`와 동일하게 동작하지만,
+   * 정규 표현식이 `RegExp` 객체로 제공됩니다.
+   *
+   * @example
+   * "숫자만 입력해주세요."
+   */
+  errorMessage: string;
 }
 
 /**
- * 에러 정보를 정규 표현식 및 메시지로 반환하는 인터페이스
+ * `InputErrorKeyType`은 여러 종류의 입력 오류를 나타내는 문자열 리터럴 타입입니다.
+ * 각 키는 특정 오류 유형을 나타내며, 이는 `InputErrorType`이나 `CompileErrorType`과 매핑됩니다.
+ *
+ * - `EMPTY`: 입력값이 비어 있을 때 발생하는 오류.
+ * - `FORBIDDEN`: 허용되지 않는 값이 입력된 경우 발생하는 오류.
+ * - `UNDER_MINIMUM`: 입력값이 최소 조건을 만족하지 못한 경우 발생하는 오류.
+ * - `INCOMPLETE`: 필수 입력 항목이 부족한 경우 발생하는 오류.
+ * - `EXCEED`: 입력값이 최대 조건을 초과한 경우 발생하는 오류.
+ * - `FORMAT`: 입력값의 형식이 올바르지 않은 경우 발생하는 오류.
  */
-interface CompiledInputErrorType {
-  /**
-   * 기본 에러 정규 표현식
-   * - `regExp` 값을 컴파일한 정규 표현식입니다.
-   * - 입력 값이 기본 조건을 충족하지 않을 경우 이 정규 표현식으로 검사됩니다.
-   */
-  defaultErrorRegex: RegExp | string;
-
-  /**
-   * 기본 에러 메시지
-   * - 기본 정규 표현식(`defaultErrorRegex`)에 맞지 않을 경우 표시됩니다.
-   */
-  defaultErrorMsg: string;
-
-  /**
-   * 에러 목록의 정규 표현식 배열
-   * - 추가로 정의된 에러 조건들을 정규 표현식으로 변환한 배열입니다.
-   */
-  errorRegexList: RegExp[];
-
-  /**
-   * 에러 목록의 메시지 배열
-   * - `errorRegexList`와 동일한 순서로 에러 메시지를 저장한 배열입니다.
-   */
-  errorMsgList: string[];
-
-  /**
-   * 입력 값이 비어 있을 경우 표시되는 에러 메시지
-   * - 입력 필드가 필수인 경우 비어 있을 때 나타나는 메시지입니다.
-   */
-  empty: string | undefined;
-}
+type InputErrorKeyType =
+  | "EMPTY" // 비어있는 입력
+  | "FORBIDDEN" // 허용되지 않는 값
+  | "UNDER_MINIMUM" // 최소 조건 미만
+  | "INCOMPLETE" // 필수 항목 부족
+  | "EXCEED" // 최대 조건 초과
+  | "FORMAT"; // 잘못된 형식
 
 export type {
   InputContextType,
   InputErrorType,
-  InputErrorListItemType,
-  CompiledInputErrorType,
+  CompileErrorType,
+  InputErrorKeyType,
 };
