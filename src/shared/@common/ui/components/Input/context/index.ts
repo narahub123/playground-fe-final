@@ -4,9 +4,14 @@ import useInputContext from "./useInputContext";
 import {
   InputContextType,
   InputErrorType,
-  InputErrorListItemType,
-  CompiledInputErrorType
+  CompileErrorType,
+  InputErrorKeyType,
 } from "./Input.types";
 
 export { InputContext, InputContextProvider, useInputContext };
-export type { InputContextType, InputErrorType, InputErrorListItemType, CompiledInputErrorType };
+export type {
+  InputContextType,
+  InputErrorType,
+  CompileErrorType,
+  InputErrorKeyType,
+};
