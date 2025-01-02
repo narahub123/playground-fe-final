@@ -14,6 +14,7 @@ import {
 } from "@features/auth-setting/models/selectors";
 import { useSelector } from "react-redux";
 import { useLanguageContent } from "@shared/@common/models/hooks";
+import { USERNAME_MAX } from "@shared/@common/constants";
 
 /**
  * PersonalInfoScreen 컴포넌트
@@ -41,6 +42,7 @@ const PersonalInfoScreen = () => {
     birthYearUnit,
     birthMonthUnit,
     birthDateUnit,
+    usernameError,
   } = useLanguageContent(["components", "PersonalInfoScreen"]);
 
   return (
@@ -53,7 +55,8 @@ const PersonalInfoScreen = () => {
           label={usernameLabel}
           inputValue={username}
           setInputValue={setUsernameInSignIn}
-          maxLength={50}
+          maxLength={USERNAME_MAX}
+          error={usernameError}
         >
           <Input.Main>
             <Input.Top>

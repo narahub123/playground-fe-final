@@ -3,6 +3,12 @@ import {
   birthMonthList,
   birthYearList,
 } from "@features/auth-email/data";
+import {
+  EMPTY,
+  USERNAME_MAX,
+  USERNAME_MIN,
+  USERNAME_UNDER_MINIMUM,
+} from "@shared/@common/constants";
 
 const components = {
   Input: {
@@ -24,6 +30,17 @@ const components = {
   PersonalInfoScreen: {
     title: "Create an account.",
     usernameLabel: "Username",
+    usernameError: {
+      EMPTY: { regExp: EMPTY, errorMessage: "Please enter a username." },
+      UNDER_MINIMUM: {
+        regExp: USERNAME_UNDER_MINIMUM,
+        errorMessage: `The username must be at least ${USERNAME_MIN} characters and at most ${USERNAME_MAX} characters.`,
+      },
+      EXCEED: {
+        regExp: "",
+        errorMessage: `The username can be up to ${USERNAME_MAX} characters.`,
+      },
+    },
     emailLabel: "Email",
     birthHeading: "Date of Birth",
     birthExpl:

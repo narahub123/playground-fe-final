@@ -3,6 +3,12 @@ import {
   birthMonthList,
   birthYearList,
 } from "@features/auth-email/data";
+import {
+  EMPTY,
+  USERNAME_MAX,
+  USERNAME_MIN,
+  USERNAME_UNDER_MINIMUM,
+} from "@shared/@common/constants";
 
 const components = {
   Input: {
@@ -24,6 +30,17 @@ const components = {
   PersonalInfoScreen: {
     title: "계정을 생성하세요.",
     usernameLabel: "사용자 이름",
+    usernameError: {
+      EMPTY: { regExp: EMPTY, errorMessage: "사용자 이름을 입력해주세요." },
+      UNDER_MINIMUM: {
+        regExp: USERNAME_UNDER_MINIMUM,
+        errorMessage: `사용자 이름은 최소 ${USERNAME_MIN}자에서 최대 ${USERNAME_MAX}자까지 가능합니다.`,
+      },
+      EXCEED: {
+        regExp: "",
+        errorMessage: `사용자 이름은 최대 ${USERNAME_MAX}까지 가능합니다.`,
+      },
+    },
     emailLabel: "이메일",
     birthHeading: "생년월일",
     birthExpl:

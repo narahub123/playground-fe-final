@@ -3,6 +3,12 @@ import {
   birthMonthList,
   birthYearList,
 } from "@features/auth-email/data";
+import {
+  EMPTY,
+  USERNAME_MAX,
+  USERNAME_MIN,
+  USERNAME_UNDER_MINIMUM,
+} from "@shared/@common/constants";
 
 const components = {
   Input: {
@@ -24,6 +30,17 @@ const components = {
   PersonalInfoScreen: {
     title: "創建帳戶。",
     usernameLabel: "用戶名",
+    usernameError: {
+      EMPTY: { regExp: EMPTY, errorMessage: "請輸入用戶名。" },
+      UNDER_MINIMUM: {
+        regExp: USERNAME_UNDER_MINIMUM,
+        errorMessage: `用戶名最少 ${USERNAME_MIN} 個字元，最多 ${USERNAME_MAX} 個字元。`,
+      },
+      EXCEED: {
+        regExp: "",
+        errorMessage: `用戶名最多可以包含 ${USERNAME_MAX} 個字元。`,
+      },
+    },
     emailLabel: "電子郵件",
     birthHeading: "出生日期",
     birthExpl: "此信息不會公開顯示。無論帳戶主題如何，請確認您的年齡。",
