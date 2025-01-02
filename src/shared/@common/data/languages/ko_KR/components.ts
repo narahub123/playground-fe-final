@@ -1,3 +1,9 @@
+import {
+  birthDateList,
+  birthMonthList,
+  birthYearList,
+} from "@features/auth-email/data";
+
 const components = {
   Input: {
     iconTitle: {
@@ -14,6 +20,23 @@ const components = {
     ModalCloseButton: {
       iconTitle: "닫기",
     },
+  },
+  PersonalInfoScreen: {
+    title: "계정을 생성하세요.",
+    usernameLabel: "사용자 이름",
+    emailLabel: "이메일",
+    birthHeading: "생년월일",
+    birthExpl:
+      "이 정보는 공개적으로 표시되지 않습니다. 비즈니스, 반려동물 등 계정 주제에 상관없이 나의 연령을 확인하세요.",
+    birthYearLabel: "년",
+    birthMonthLabel: "월",
+    birthDateLabel: "일",
+    birthYearList: birthYearList,
+    birthMonthList: birthMonthList,
+    birthDateList: birthDateList,
+    birthYearUnit: "년",
+    birthMonthUnit: "월",
+    birthDateUnit: "일",
   },
 };
 

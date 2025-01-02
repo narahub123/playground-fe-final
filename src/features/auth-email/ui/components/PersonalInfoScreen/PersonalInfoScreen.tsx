@@ -13,6 +13,7 @@ import {
   getUsernameInSignin,
 } from "@features/auth-setting/models/selectors";
 import { useSelector } from "react-redux";
+import { useLanguageContent } from "@shared/@common/models/hooks";
 
 /**
  * PersonalInfoScreen 컴포넌트
@@ -25,14 +26,31 @@ const PersonalInfoScreen = () => {
   const email = useSelector(getEmailInSignin);
   const birth = useSelector(getBirthInSignin);
 
+  const {
+    title,
+    usernameLabel,
+    emailLabel,
+    birthHeading,
+    birthExpl,
+    birthYearLabel,
+    birthMonthLabel,
+    birthDateLabel,
+    birthYearList,
+    birthMonthList,
+    birthDateList,
+    birthYearUnit,
+    birthMonthUnit,
+    birthDateUnit,
+  } = useLanguageContent(["components", "PersonalInfoScreen"]);
+
   return (
     <div className={styles["personal__info__screen"]}>
       <Modal.Body className={styles[`personal__info__screen__body`]}>
-        <Text text={"계정을 생성하세요."} type="heading2" />
+        <Text text={title} type="heading2" />
         {/* 사용자 이름 */}
         <Input
           field="username"
-          label="사용자 이름"
+          label={usernameLabel}
           inputValue={username}
           setInputValue={setUsernameInSignIn}
           maxLength={50}
@@ -51,7 +69,7 @@ const PersonalInfoScreen = () => {
         {/* 이메일 */}
         <Input
           field="email"
-          label="이메일"
+          label={emailLabel}
           inputValue={email}
           setInputValue={setEmailInSignIn}
         >
@@ -67,23 +85,18 @@ const PersonalInfoScreen = () => {
         </Input>
         <div className={styles[`personal__info__screen__birth__container`]}>
           <div>
-            <Text text={"생년월일"} status="bold" />
-            <Text
-              text={
-                "이 정보는 공개적으로 표시되지 않습니다. 비즈니스, 반려동물 등 계정 주제에 상관없이 나의 연령을 확인하세요."
-              }
-              type="expl"
-            />
+            <Text text={birthHeading} status="bold" />
+            <Text text={birthExpl} type="expl" />
           </div>
           <div className={styles[`personal__info__screen__birth`]}>
             {/* 생년월일 */}
             {/* 년 */}
             <Input
               field="year"
-              label="년"
+              label={birthYearLabel}
               inputValue={birth.year as string}
               setInputValue={setBirthYearSignIn}
-              list={[]}
+              list={birthYearList(birthYearUnit)}
             >
               <Input.Main>
                 <Input.Top>
@@ -93,15 +106,15 @@ const PersonalInfoScreen = () => {
                   <Input.Field />
                 </Input.Bottom>
               </Input.Main>
-              <Input.Error />
+              <Input.Dropdown />
             </Input>
             {/* 월 */}
             <Input
               field="month"
-              label="월"
+              label={birthMonthLabel}
               inputValue={birth.month as string}
               setInputValue={setBirthMonthSignIn}
-              list={[]}
+              list={birthMonthList(birthMonthUnit)}
             >
               <Input.Main>
                 <Input.Top>
@@ -111,15 +124,15 @@ const PersonalInfoScreen = () => {
                   <Input.Field />
                 </Input.Bottom>
               </Input.Main>
-              <Input.Error />
+              <Input.Dropdown />
             </Input>
             {/* 일 */}
             <Input
               field="date"
-              label="일"
+              label={birthDateLabel}
               inputValue={birth.date as string}
               setInputValue={setBirthDateSignIn}
-              list={[]}
+              list={birthDateList(birth.year, birth.month, birthDateUnit)}
             >
               <Input.Main>
                 <Input.Top>
@@ -129,7 +142,7 @@ const PersonalInfoScreen = () => {
                   <Input.Field />
                 </Input.Bottom>
               </Input.Main>
-              <Input.Error />
+              <Input.Dropdown />
             </Input>
           </div>
         </div>
