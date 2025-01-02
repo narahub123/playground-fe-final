@@ -4,28 +4,60 @@ import { ModalContextProvider } from "../../context";
 import styles from "./ModalMain.module.css";
 import { ModalContextType } from "../../types";
 
+/**
+ * ModalMainProps는 ModalMain 컴포넌트에 전달되는 속성들을 정의합니다.
+ */
 interface ModalMainProps {
-  children: ReactNode; // 자식 요소
-  isOpen: boolean; // 모달 상태
-  onClose?: () => void; // 닫기 함수
-  lengthOfList?: number; // 여러 페이지가 있는 경우
-  curPage?: number; // 현재 페이지
-  setCurPage?: React.Dispatch<React.SetStateAction<number>>; // 현재 페이지 지정
+  /**
+   * 자식 요소들로, 모달의 내용이나 구성 요소들이 포함됩니다.
+   * @type {ReactNode}
+   */
+  children: ReactNode;
+
+  /**
+   * 모달이 열려 있는지 여부를 결정하는 상태입니다. `true`이면 모달이 열리고, `false`이면 모달이 닫힙니다.
+   * @type {boolean}
+   */
+  isOpen: boolean;
+
+  /**
+   * 모달이 생성될 DOM의 id를 나타내는 값입니다. 기본값은 "modal"입니다.
+   * @type {string}
+   * @default "modal"
+   */
+  domId?: string;
+
+  /**
+   * 모달을 닫는 함수입니다. 모달이 닫힐 때 호출됩니다.
+   * @type {() => void}
+   */
+  onClose?: () => void;
+
+  /**
+   * 여러 페이지가 있을 경우, 페이지 수를 나타내는 값입니다.
+   * @type {number}
+   */
+  lengthOfList?: number;
+
+  /**
+   * 현재 페이지를 나타내는 값입니다.
+   * @type {number}
+   */
+  curPage?: number;
+
+  /**
+   * 현재 페이지를 설정하는 함수입니다.
+   * @type {React.Dispatch<React.SetStateAction<number>>}
+   */
+  setCurPage?: React.Dispatch<React.SetStateAction<number>>;
 }
 
 /**
  * 모달의 메인 컴포넌트입니다. 모달의 열림/닫힘 상태를 관리하고,
  * 모달 관련 상태를 제공하는 context를 제공합니다.
  *
- * @param children 자식 요소들로, 모달의 내용이나 구성 요소들이 포함됩니다.
- * @param isOpen 모달이 열려 있는지 여부를 결정하는 상태입니다. `true`이면 모달이 열리고, `false`이면 모달이 닫힙니다.
- * @param onClose 모달을 닫는 함수입니다. 모달이 닫힐 때 호출됩니다.
- * @param lengthOfList 여러 페이지가 있을 경우, 페이지 수를 나타내는 값입니다.
- * @param curPage 현재 페이지를 나타내는 값입니다.
- * @param setCurPage 현재 페이지를 설정하는 함수입니다.
- *
- * @returns 모달이 열리면 모달의 내용이 렌더링되고, 닫히면 아무 것도 렌더링하지 않습니다.
- *
+ * @param {ModalMainProps} props - ModalMain 컴포넌트에 전달되는 속성들입니다.
+ * @returns {JSX.Element | null} 모달이 열리면 모달의 내용이 렌더링되고, 닫히면 아무 것도 렌더링하지 않습니다.
  */
 const ModalMain = ({
   children,
@@ -34,6 +66,7 @@ const ModalMain = ({
   lengthOfList,
   curPage,
   setCurPage,
+  domId = "modal",
 }: ModalMainProps) => {
   // 모달 창 열기 상태가 false이면 반환
   if (!isOpen) return null;
@@ -55,7 +88,7 @@ const ModalMain = ({
   };
 
   return (
-    <Portal id="modal">
+    <Portal id={domId}>
       <ModalContextProvider value={value}>
         <div
           className={styles["modal"]}
