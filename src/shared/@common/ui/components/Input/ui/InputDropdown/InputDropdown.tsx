@@ -9,6 +9,8 @@ import { useAppDispatch } from "@app/store";
  * `InputDropdown` 컴포넌트
  * - 사용자가 입력 필드와 연동하여 동적으로 드롭다운을 표시합니다.
  * - 드롭다운의 위치, 크기, 동작을 제어하며, Portal을 통해 DOM 외부에 렌더링됩니다.
+ * - 드롭다운의 스크롤 이벤트를 처리하기 위해, `.scroll` 클래스를 가진 가장 가까운 요소를 참조합니다.
+ * - 스크롤 이벤트를 위해 window가 아닌 특정 요소를 참조하기 위해서는 해당 요소에 .scroll을 추가해야 합니다.
  *
  * @returns {JSX.Element | null} 드롭다운 UI 요소. 목록이 없거나 위치 정보가 없는 경우 null 반환.
  */
@@ -25,6 +27,7 @@ const InputDropdown = () => {
     setInputValue, // 값 업데이트
     setIsDropdownOpen, // 드롭다운 여닫기 상태 업데이트
     field, // 필드 이름
+    scroll, // 스크롤 이벤트를 참조할 요소
   } = useInputContext();
 
   // InputMain의 위치와 크기를 저장할 상태 정의
@@ -46,9 +49,6 @@ const InputDropdown = () => {
     // mainRef가 유효하지 않으면 함수 실행 중단
     if (!mainRef || !mainRef.current) return;
 
-    // modal body
-    const modalBody = document.getElementById(`modal-body`) as HTMLElement;
-
     // InputMain의 위치와 크기를 갱신하는 함수
     const updateMainPosition = () => {
       const main = mainRef.current as HTMLElement; // mainRef에서 DOM 노드 가져오기
@@ -68,17 +68,15 @@ const InputDropdown = () => {
 
     // 브라우저 창 크기 변경 또는 스크롤 이벤트 발생 시 위치와 크기를 업데이트
     window.addEventListener("resize", updateMainPosition); // 브라우저 창 크기 변화 감지
-    window.addEventListener("scroll", updateMainPosition); // 스크롤 이벤트 감지
-    modalBody.addEventListener("scroll", updateMainPosition); // 스크롤 이벤트 감지
+    scroll?.addEventListener("scroll", updateMainPosition); // 스크롤 이벤트 감지
 
     // 초기 위치와 크기를 계산
     updateMainPosition();
 
     // 컴포넌트 언마운트 시 이벤트 리스너 제거
     return () => {
-      window?.removeEventListener("resize", updateMainPosition); // resize 이벤트 제거
-      window?.removeEventListener("scroll", updateMainPosition); // scroll 이벤트 제거
-      modalBody?.removeEventListener("scroll", updateMainPosition); // scroll 이벤트 제거
+      window.removeEventListener("resize", updateMainPosition); // resize 이벤트 제거
+      scroll?.removeEventListener("scroll", updateMainPosition); // scroll 이벤트 제거
     };
   }, [mainRef, mainRef?.current]); // mainRef가 변경될 때마다 효과 실행
 
@@ -103,13 +101,13 @@ const InputDropdown = () => {
 
     // 브라우저 창 크기 변경 또는 스크롤 이벤트 발생 시 높이 업데이트
     window.addEventListener("resize", updateDropdownHeight); // 브라우저 창 크기 변화 감지
-    window.addEventListener("scroll", updateDropdownHeight); // 스크롤 이벤트 감지
+    scroll.addEventListener("scroll", updateDropdownHeight); // 스크롤 이벤트 감지
 
     updateDropdownHeight();
 
     return () => {
-      window?.removeEventListener("resize", updateDropdownHeight); // resize 이벤트 제거
-      window?.removeEventListener("scroll", updateDropdownHeight); // scroll 이벤트 제거
+      window.removeEventListener("resize", updateDropdownHeight); // resize 이벤트 제거
+      scroll.removeEventListener("scroll", updateDropdownHeight); // scroll 이벤트 제거
     };
   }, [mainRef, mainRect]);
 

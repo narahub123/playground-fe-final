@@ -62,8 +62,7 @@ const ModalBody = ({ children, className }: ModalBodyProps) => {
 
   return (
     <div
-      className={joinClassNames([styles["modal__body"], className])}
-      id="modal-body"
+      className={joinClassNames([styles["modal__body"], "scroll", className])}
     >
       {filteredChildren}
     </div>
