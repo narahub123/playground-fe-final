@@ -50,6 +50,15 @@ const components = {
         errorMessage:
           "Please enter a valid email address format. \nExample: username@example.com",
       },
+      DUPLICATE: {
+        regExp: "",
+        errorMessage: "This email is already registered.",
+      },
+      DISCONNECT: {
+        regExp: "",
+        errorMessage:
+          "Unable to connect to the server. Please try again later.",
+      },
     },
     birthHeading: "Date of Birth",
     birthExpl:

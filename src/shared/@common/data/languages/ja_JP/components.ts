@@ -53,6 +53,15 @@ const components = {
         errorMessage:
           "メールアドレスの形式を正しく入力してください。 \n例) username@example.com",
       },
+      DUPLICATE: {
+        regExp: "",
+        errorMessage: "このメールアドレスは既に登録されています。",
+      },
+      DISCONNECT: {
+        regExp: "",
+        errorMessage:
+          "現在サーバーに接続できません。しばらくしてから再試行してください。",
+      },
     },
     birthHeading: "生年月日",
     birthExpl:

@@ -18,6 +18,8 @@ import {
  * - `INCOMPLETE`: 필수 정보가 부족할 때 발생하는 에러
  * - `EXCEED`: 값이 너무 길어서 조건을 초과할 때 발생하는 에러
  * - `FORMAT`: 형식이 올바르지 않을 때 발생하는 에러
+ * - `DUPLICATE`: 이미 동일한 값으로 저장된 값이 있는 경우 발생하는 오류.
+ * - `DISCONNECT`: 서버와 연결이 되지 않는 경우 발생하는 에러.
  *
  * @returns {Partial<Record<InputErrorKeyType, CompileErrorType>>}
  * - 에러 키(`InputErrorKeyType`)를 기반으로 각 에러의 정규 표현식과 메시지를 포함한 객체를 반환합니다.

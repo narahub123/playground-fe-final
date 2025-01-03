@@ -48,7 +48,8 @@ interface InputContextType {
    * - `INCOMPLETE`: 필수 입력 항목이 부족한 경우 발생하는 에러.
    * - `EXCEED`: 입력값이 최대 조건을 초과한 경우 발생하는 에러.
    * - `FORMAT`: 입력값의 형식이 올바르지 않은 경우 발생하는 에러.
-   *
+   * - `DUPLICATE`: 이미 동일한 값으로 저장된 값이 있는 경우 발생하는 에러.
+   * - `DISCONNECT`: 서버와 연결이 되지 않는 경우 발생하는 에러.
    * 각 키에 대한 `InputErrorType` 구조는 다음과 같습니다:
    * - `regExp`: 해당 오류를 검출하기 위한 정규 표현식.
    * - `errorMessage`: 오류가 발생했을 때 사용자에게 보여줄 에러 메시지.
@@ -139,6 +140,8 @@ interface CompileErrorType {
  * - `INCOMPLETE`: 필수 입력 항목이 부족한 경우 발생하는 오류.
  * - `EXCEED`: 입력값이 최대 조건을 초과한 경우 발생하는 오류.
  * - `FORMAT`: 입력값의 형식이 올바르지 않은 경우 발생하는 오류.
+ * - `DUPLICATE`: 이미 동일한 값으로 저장된 값이 있는 경우 발생하는 오류.
+ * - `DISCONNECT`: 서버와 연결이 되지 않는 경우 발생하는 오류.
  */
 type InputErrorKeyType =
   | "EMPTY" // 비어있는 입력
@@ -146,7 +149,9 @@ type InputErrorKeyType =
   | "UNDER_MINIMUM" // 최소 조건 미만
   | "INCOMPLETE" // 필수 항목 부족
   | "EXCEED" // 최대 조건 초과
-  | "FORMAT"; // 잘못된 형식
+  | "FORMAT" // 잘못된 형식
+  | "DUPLICATE" // 중복
+  | "DISCONNECT"; // 서버와 연결 안됨
 
 export type {
   InputContextType,

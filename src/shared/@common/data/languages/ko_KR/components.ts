@@ -50,6 +50,14 @@ const components = {
         errorMessage:
           "이메일 형식에 맞게 입력해주세요. \n예시) username@example.com",
       },
+      DUPLICATE: {
+        regExp: "",
+        errorMessage: `은 이미 가입한 이메일입니다.`,
+      },
+      DISCONNECT: {
+        regExp: "",
+        errorMessage: `현재 서버와 연결이 되지 않습니다. 잠시 후 다시 시도해주세요.`,
+      },
     },
     birthHeading: "생년월일",
     birthExpl:

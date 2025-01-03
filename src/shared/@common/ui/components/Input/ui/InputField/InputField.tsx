@@ -5,6 +5,7 @@ import { joinClassNames } from "@shared/@common/utils";
 import { useInputContext } from "@shared/@common/ui/components/Input/context";
 import { useCompiledInputError } from "@shared/@common/ui/components/Input/hooks";
 import { Text } from "@shared/@common/ui/components";
+import { checkEmailDuplicateInSignupAPI } from "@shared/auth/apis";
 
 /**
  * `InputField` 컴포넌트는 입력 필드를 렌더링하고, 입력값과 유효성 검사, 에러 메시지 처리를 담당합니다.
@@ -31,8 +32,16 @@ const InputField = () => {
     disabled, // disabled 모드
   } = useInputContext();
 
-  const { EMPTY, FORBIDDEN, UNDER_MINIMUM, INCOMPLETE, EXCEED, FORMAT } =
-    useCompiledInputError();
+  const {
+    EMPTY,
+    FORBIDDEN,
+    UNDER_MINIMUM,
+    INCOMPLETE,
+    EXCEED,
+    FORMAT,
+    DUPLICATE,
+    DISCONNECT,
+  } = useCompiledInputError();
 
   /**
    * `inputRef`가 변경될 때마다, 이를 `setInputRef`로 설정합니다.
@@ -52,7 +61,7 @@ const InputField = () => {
    *
    * @returns {void} - 반환값 없음
    */
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
 
     // 최대 길이를 초과하면 EXCEED 에러를 설정
@@ -98,6 +107,24 @@ const InputField = () => {
       }
       return;
     } else {
+      // 모든 유효성 검사를 통과하면 API를 통해서 중복 검사를 함
+      if (field === "email") {
+        const { isDuplicate, type } = await checkEmailDuplicateInSignupAPI(
+          value
+        );
+
+        if (isDuplicate) {
+          if (type === "duplicate") {
+            setErrorMessage(value + DUPLICATE?.errorMessage || "");
+            setIsValid(false);
+            return;
+          } else if (type === "disconnect") {
+            setErrorMessage(DISCONNECT?.errorMessage || "");
+            setIsValid(false);
+            return;
+          }
+        }
+      }
       // 모든 유효성 검사를 통과하면 에러 메시지와 유효성 상태를 초기화
       setErrorMessage("");
       setIsValid(true);

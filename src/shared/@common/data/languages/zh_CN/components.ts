@@ -49,6 +49,14 @@ const components = {
         regExp: EMAIL_FORMAT,
         errorMessage: "请输入有效的电子邮件格式。 \n示例: username@example.com",
       },
+      DUPLICATE: {
+        regExp: "",
+        errorMessage: "此电子邮件已注册。",
+      },
+      DISCONNECT: {
+        regExp: "",
+        errorMessage: "当前无法连接到服务器。请稍后再试。",
+      },
     },
     birthHeading: "出生日期",
     birthExpl: "此信息不会公开显示。无论账户主题如何，请验证您的年龄。",
