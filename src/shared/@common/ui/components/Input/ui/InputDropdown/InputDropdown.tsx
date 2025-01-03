@@ -46,6 +46,9 @@ const InputDropdown = () => {
     // mainRef가 유효하지 않으면 함수 실행 중단
     if (!mainRef || !mainRef.current) return;
 
+    // modal body
+    const modalBody = document.getElementById(`modal-body`) as HTMLElement;
+
     // InputMain의 위치와 크기를 갱신하는 함수
     const updateMainPosition = () => {
       const main = mainRef.current as HTMLElement; // mainRef에서 DOM 노드 가져오기
@@ -66,6 +69,7 @@ const InputDropdown = () => {
     // 브라우저 창 크기 변경 또는 스크롤 이벤트 발생 시 위치와 크기를 업데이트
     window.addEventListener("resize", updateMainPosition); // 브라우저 창 크기 변화 감지
     window.addEventListener("scroll", updateMainPosition); // 스크롤 이벤트 감지
+    modalBody.addEventListener("scroll", updateMainPosition); // 스크롤 이벤트 감지
 
     // 초기 위치와 크기를 계산
     updateMainPosition();
@@ -74,6 +78,7 @@ const InputDropdown = () => {
     return () => {
       window?.removeEventListener("resize", updateMainPosition); // resize 이벤트 제거
       window?.removeEventListener("scroll", updateMainPosition); // scroll 이벤트 제거
+      modalBody?.removeEventListener("scroll", updateMainPosition); // scroll 이벤트 제거
     };
   }, [mainRef, mainRef?.current]); // mainRef가 변경될 때마다 효과 실행
 
