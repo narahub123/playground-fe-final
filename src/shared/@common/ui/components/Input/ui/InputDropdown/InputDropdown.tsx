@@ -32,6 +32,7 @@ const InputDropdown = () => {
     top: number;
     left: number;
     width: number;
+    // bottom: number | undefined;
     height: number;
   } | null>(null);
 
@@ -50,9 +51,12 @@ const InputDropdown = () => {
       const main = mainRef.current as HTMLElement; // mainRef에서 DOM 노드 가져오기
       const mainRect = main.getBoundingClientRect(); // DOM 위치와 크기 계산
 
-      // 계산된 위치와 크기를 상태에 저장
+      // 개발자 도구의 여닫음에 화면의 위쪽 기준 위치가 달라짐
+      const isDevToolOpen = window.outerHeight - window.innerHeight > 100;
+
+      // 계산된 위치와 크기를 상태에 저장: 개발자도구가 여닫음에 따라 top과 bottom이 다르게 적용됨
       setMainRect({
-        top: mainRect.top, // 화면의 위쪽 기준 위치
+        top: isDevToolOpen ? -2 : mainRect.top + mainRect.height + 2, // 화면의 위쪽 기준 위치
         left: mainRect.left, // 화면의 왼쪽 기준 위치
         width: mainRect.width, // 요소의 너비
         height: mainRect.height, // 요소의 높이
@@ -82,8 +86,12 @@ const InputDropdown = () => {
     const updateDropdownHeight = () => {
       const main = mainRef.current as HTMLElement;
 
+      // 개발자 도구의 여닫음에 따라서 높이를 측정하는 방법이 달라짐
+      const isDevToolOpen = window.outerHeight - window.innerHeight > 100;
+
+      const top = main.getBoundingClientRect().top || 0;
       const bottom = main.getBoundingClientRect().bottom || 0;
-      const height = window.innerHeight - bottom;
+      const height = isDevToolOpen ? top : window.innerHeight - bottom;
 
       setDropdownHeight(height);
     };
@@ -129,7 +137,7 @@ const InputDropdown = () => {
   // mainRect가 유효하지 않으면 표시하지 않음
   if (!mainRect) return null;
 
-  const { top, left, width, height } = mainRect; // 위치와 크기 정보를 구조 분해 할당
+  const { top, left, width } = mainRect; // 위치와 크기 정보를 구조 분해 할당
 
   return (
     // Portal을 통해 드롭다운을 외부 DOM에 렌더링
@@ -142,7 +150,7 @@ const InputDropdown = () => {
             : styles["input__dropdown--close"], // 드롭다운 닫힘 상태
         ])}
         style={{
-          top: top + height + 2, // 드롭다운의 Y 위치: InputMain 바로 아래
+          top, // 드롭다운의 y 위치 : 개발자도구가 열렸는지 여부에 따라 달라짐
           left, // 드롭다운의 X 위치: InputMain과 동일
           width, // 드롭다운의 너비: InputMain과 동일
         }}
