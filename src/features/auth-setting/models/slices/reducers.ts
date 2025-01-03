@@ -1,28 +1,28 @@
 import {
-  setUsernameInSignIn,
-  setPhoneInSignIn,
-  setEmailInSignIn,
-  setBirthInSignIn,
-  setPasswordInSignIn,
-  setUserIdInSignIn,
-  setProfileImageInSignIn,
-  setNotificationsInSignIn,
-  setLanguageInSignIn,
-} from "./signinSlice";
+  setUsernameInSignup,
+  setPhoneInSignup,
+  setEmailInSignup,
+  setBirthInSignup,
+  setPasswordInSignup,
+  setUserIdInSignup,
+  setProfileImageInSignup,
+  setNotificationsInSignup,
+  setLanguageInSignup,
+} from "./signupSlice";
 
 import { loginRequset, loginSuccess, loginFailure } from "./loginSlice";
 
 export {
-  // signin
-  setUsernameInSignIn,
-  setPhoneInSignIn,
-  setEmailInSignIn,
-  setBirthInSignIn,
-  setPasswordInSignIn,
-  setUserIdInSignIn,
-  setProfileImageInSignIn,
-  setNotificationsInSignIn,
-  setLanguageInSignIn,
+  // signup
+  setUsernameInSignup,
+  setPhoneInSignup,
+  setEmailInSignup,
+  setBirthInSignup,
+  setPasswordInSignup,
+  setUserIdInSignup,
+  setProfileImageInSignup,
+  setNotificationsInSignup,
+  setLanguageInSignup,
 
   // login
   loginRequset,

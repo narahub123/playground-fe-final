@@ -1,16 +1,16 @@
 import styles from "./PersonalInfoScreen.module.css";
 import { Input, Modal, Text } from "@shared/@common/ui/components";
 import {
-  setBirthDateSignIn,
-  setBirthMonthSignIn,
-  setBirthYearSignIn,
-  setEmailInSignIn,
-  setUsernameInSignIn,
-} from "@features/auth-setting/models/slices/signinSlice";
+  setBirthDateSignup,
+  setBirthMonthSignup,
+  setBirthYearSignup,
+  setEmailInSignup,
+  setUsernameInSignup,
+} from "@features/auth-setting/models/slices/signupSlice";
 import {
-  getBirthInSignin,
-  getEmailInSignin,
-  getUsernameInSignin,
+  getBirthInSignup,
+  getEmailInSignup,
+  getUsernameInSignup,
 } from "@features/auth-setting/models/selectors";
 import { useSelector } from "react-redux";
 import { useLanguageContent } from "@shared/@common/models/hooks";
@@ -23,9 +23,9 @@ import { USERNAME_MAX } from "@shared/@common/constants";
  * @returns {JSX.Element} PersonalInfoScreen 컴포넌트 렌더링 결과
  */
 const PersonalInfoScreen = () => {
-  const username = useSelector(getUsernameInSignin);
-  const email = useSelector(getEmailInSignin);
-  const birth = useSelector(getBirthInSignin);
+  const username = useSelector(getUsernameInSignup);
+  const email = useSelector(getEmailInSignup);
+  const birth = useSelector(getBirthInSignup);
 
   const {
     title,
@@ -55,7 +55,7 @@ const PersonalInfoScreen = () => {
           field="username"
           label={usernameLabel}
           inputValue={username}
-          setInputValue={setUsernameInSignIn}
+          setInputValue={setUsernameInSignup}
           maxLength={USERNAME_MAX}
           error={usernameError}
         >
@@ -75,7 +75,7 @@ const PersonalInfoScreen = () => {
           field="email"
           label={emailLabel}
           inputValue={email}
-          setInputValue={setEmailInSignIn}
+          setInputValue={setEmailInSignup}
           error={emailError}
         >
           <Input.Main>
@@ -100,7 +100,7 @@ const PersonalInfoScreen = () => {
               field="year"
               label={birthYearLabel}
               inputValue={birth.year as string}
-              setInputValue={setBirthYearSignIn}
+              setInputValue={setBirthYearSignup}
               list={birthYearList(birthYearUnit)}
             >
               <Input.Main>
@@ -118,7 +118,7 @@ const PersonalInfoScreen = () => {
               field="month"
               label={birthMonthLabel}
               inputValue={birth.month as string}
-              setInputValue={setBirthMonthSignIn}
+              setInputValue={setBirthMonthSignup}
               list={birthMonthList(birthMonthUnit)}
             >
               <Input.Main>
@@ -136,7 +136,7 @@ const PersonalInfoScreen = () => {
               field="date"
               label={birthDateLabel}
               inputValue={birth.date as string}
-              setInputValue={setBirthDateSignIn}
+              setInputValue={setBirthDateSignup}
               list={birthDateList(birth.year, birth.month, birthDateUnit)}
             >
               <Input.Main>

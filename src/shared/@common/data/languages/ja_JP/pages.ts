@@ -4,7 +4,7 @@ const pages = {
   AuthPage: {
     title: "こんにちは。こちらはPlayGroundです。",
     heading1: "初めてですか？",
-    signinList: [
+    signupList: [
       { text: "Googleでサインアップ", img: google },
       { text: "Naverでサインアップ", img: naver },
       { text: "Kakaoでサインアップ", img: kakao },

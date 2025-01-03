@@ -1,4 +1,4 @@
 import loginSlice from "./loginSlice";
-import signinSlice from "./signinSlice";
+import signupSlice from "./signupSlice";
 
-export { loginSlice, signinSlice };
+export { loginSlice, signupSlice };

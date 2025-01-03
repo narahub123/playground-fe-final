@@ -10,7 +10,7 @@ import { AuthModal } from "@features/auth-email/ui/components";
 
 const AuthPage = () => {
   // 언어 설정
-  const { title, heading1, signinList, heading2, loginList } =
+  const { title, heading1, signupList, heading2, loginList } =
     useLanguageContent(["pages", "AuthPage"]);
 
   const { isOpen, onOpen, onClose, curPage, setCurPage } = useDisclosure();
@@ -30,7 +30,7 @@ const AuthPage = () => {
         <div className={styles.section}>
           <Text text={heading1} type="heading3" />
           <ul className={styles.list}>
-            {(signinList as AuthButtonItemType[]).map((item, idx) => (
+            {(signupList as AuthButtonItemType[]).map((item, idx) => (
               <AuthButton key={idx} item={item} handleClick={onOpen} />
             ))}
           </ul>
