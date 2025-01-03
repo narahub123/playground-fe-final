@@ -4,6 +4,7 @@ import {
   birthYearList,
 } from "@features/auth-email/data";
 import {
+  EMAIL_FORMAT,
   EMPTY,
   USERNAME_MAX,
   USERNAME_MIN,
@@ -42,6 +43,14 @@ const components = {
       },
     },
     emailLabel: "이메일",
+    emailError: {
+      EMPTY: { regExp: EMPTY, errorMessage: "이메일을 입력해주세요." },
+      FORMAT: {
+        regExp: EMAIL_FORMAT,
+        errorMessage:
+          "이메일 형식에 맞게 입력해주세요. \n예시) username@example.com",
+      },
+    },
     birthHeading: "생년월일",
     birthExpl:
       "이 정보는 공개적으로 표시되지 않습니다. 비즈니스, 반려동물 등 계정 주제에 상관없이 나의 연령을 확인하세요.",

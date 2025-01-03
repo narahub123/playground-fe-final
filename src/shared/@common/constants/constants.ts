@@ -42,3 +42,25 @@ export const USERNAME_MIN = 1; // 사용자 이름 최소 길이
  * @type {number}
  */
 export const USERNAME_MAX = 30; // 사용자 이름 최대 길이
+
+/**
+ * 이메일 로컬 부분에서 허용되는 특수문자 집합입니다.
+ *
+ * @constant {string} EMAIL_SPECIAL_CHARACTERS
+ * @description
+ * - 이 상수는 RFC 5322 표준에 따라 이메일 로컬 부분(도메인 앞부분)에서 사용할 수 있는 특수문자를 정의합니다.
+ * - 이 특수문자들은 로컬 부분에 올바르게 포함될 경우 유효한 이메일 주소로 간주됩니다.
+ * - 단, 점(`.`)은 이 집합에 포함되지 않으며, 별도의 규칙(연속 금지, 시작/끝 금지)에 따라 처리됩니다.
+ *
+ * @example
+ * const specialChars = EMAIL_SPECIALCHARACTERS.split('');
+ * console.log(specialChars.includes('!')); // true
+ * console.log(specialChars.includes('.')); // false
+ *
+ * @example
+ * const isValidChar = (char) => EMAIL_SPECIALCHARACTERS.includes(char);
+ * console.log(isValidChar('#')); // true
+ * console.log(isValidChar('.')); // false
+ */
+export const EMAIL_SPECIAL_CHARACTERS =
+  "\\!\\#\\$\\%\\&\\'*\\+\\/\\=?\\^_\\`\\{\\|\\}\\~";

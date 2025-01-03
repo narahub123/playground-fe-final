@@ -4,6 +4,7 @@ import {
   birthYearList,
 } from "@features/auth-email/data";
 import {
+  EMAIL_FORMAT,
   EMPTY,
   USERNAME_MAX,
   USERNAME_MIN,
@@ -42,6 +43,14 @@ const components = {
       },
     },
     emailLabel: "Email",
+    emailError: {
+      EMPTY: { regExp: EMPTY, errorMessage: "Please enter an email address." },
+      FORMAT: {
+        regExp: EMAIL_FORMAT,
+        errorMessage:
+          "Please enter a valid email address format. \nExample: username@example.com",
+      },
+    },
     birthHeading: "Date of Birth",
     birthExpl:
       "This information will not be publicly displayed. Verify your age regardless of your account's topic, whether it's business, pets, etc.",

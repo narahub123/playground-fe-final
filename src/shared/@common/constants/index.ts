@@ -4,6 +4,7 @@ import {
   PASSWORD_UNDER_MINIMUM,
   PASSWORD_INCOMPLETE,
   USERNAME_UNDER_MINIMUM,
+  EMAIL_FORMAT,
 } from "./regExps"; // 정규 표현식
 import {
   PASSWORD_MAX,
@@ -11,6 +12,7 @@ import {
   PASSWORD_SPECIAL_CHARECTERS,
   USERNAME_MAX,
   USERNAME_MIN,
+  EMAIL_SPECIAL_CHARACTERS,
 } from "./constants"; // 상수
 
 export {
@@ -20,6 +22,7 @@ export {
   PASSWORD_UNDER_MINIMUM,
   PASSWORD_INCOMPLETE,
   USERNAME_UNDER_MINIMUM,
+  EMAIL_FORMAT,
 
   // 상수
   PASSWORD_MAX, // 비밀번호 최대 길이
@@ -27,4 +30,5 @@ export {
   PASSWORD_SPECIAL_CHARECTERS,
   USERNAME_MAX,
   USERNAME_MIN,
+  EMAIL_SPECIAL_CHARACTERS, // 이메일 로컬에서 사용 가능한 특수문자
 };

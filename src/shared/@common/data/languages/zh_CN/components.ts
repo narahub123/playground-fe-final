@@ -4,6 +4,7 @@ import {
   birthYearList,
 } from "@features/auth-email/data";
 import {
+  EMAIL_FORMAT,
   EMPTY,
   USERNAME_MAX,
   USERNAME_MIN,
@@ -42,6 +43,13 @@ const components = {
       },
     },
     emailLabel: "电子邮件",
+    emailError: {
+      EMPTY: { regExp: EMPTY, errorMessage: "请输入电子邮件地址。" },
+      FORMAT: {
+        regExp: EMAIL_FORMAT,
+        errorMessage: "请输入有效的电子邮件格式。 \n示例: username@example.com",
+      },
+    },
     birthHeading: "出生日期",
     birthExpl: "此信息不会公开显示。无论账户主题如何，请验证您的年龄。",
     birthYearLabel: "年",

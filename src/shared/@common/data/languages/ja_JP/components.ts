@@ -4,6 +4,7 @@ import {
   birthYearList,
 } from "@features/auth-email/data";
 import {
+  EMAIL_FORMAT,
   EMPTY,
   USERNAME_MAX,
   USERNAME_MIN,
@@ -30,7 +31,6 @@ const components = {
   PersonalInfoScreen: {
     title: "アカウントを作成してください。",
     usernameLabel: "ユーザー名",
-    emailLabel: "メールアドレス",
     usernameError: {
       EMPTY: { regExp: EMPTY, errorMessage: "ユーザー名を入力してください。" },
       UNDER_MINIMUM: {
@@ -40,6 +40,18 @@ const components = {
       EXCEED: {
         regExp: "",
         errorMessage: `ユーザー名は最大 ${USERNAME_MAX} 文字までです。`,
+      },
+    },
+    emailLabel: "メールアドレス",
+    emailError: {
+      EMPTY: {
+        regExp: EMPTY,
+        errorMessage: "メールアドレスを入力してください。",
+      },
+      FORMAT: {
+        regExp: EMAIL_FORMAT,
+        errorMessage:
+          "メールアドレスの形式を正しく入力してください。 \n例) username@example.com",
       },
     },
     birthHeading: "生年月日",

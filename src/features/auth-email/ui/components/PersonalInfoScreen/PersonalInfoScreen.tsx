@@ -43,6 +43,7 @@ const PersonalInfoScreen = () => {
     birthMonthUnit,
     birthDateUnit,
     usernameError,
+    emailError,
   } = useLanguageContent(["components", "PersonalInfoScreen"]);
 
   return (
@@ -75,6 +76,7 @@ const PersonalInfoScreen = () => {
           label={emailLabel}
           inputValue={email}
           setInputValue={setEmailInSignIn}
+          error={emailError}
         >
           <Input.Main>
             <Input.Top>
