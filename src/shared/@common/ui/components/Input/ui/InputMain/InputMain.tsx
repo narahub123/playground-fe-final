@@ -193,8 +193,10 @@ const InputMain = ({ children }: InputMainProps) => {
    */
   const handleKeyDown = (e: React.KeyboardEvent<HTMLLabelElement>) => {
     if (!list) return;
+
     const curIndex = list?.findIndex((item) => item.value === inputValue) || 0;
     if (e.key === "ArrowDown") {
+      e.preventDefault(); // 스크롤 이동 방지를 위함
       const nextIndex = curIndex + 1 > list.length - 1 ? 0 : curIndex + 1;
       dispatch(setInputValue(list[nextIndex].value));
       // 유효성 업데이트 : 드롭다운의 값을 적용하면 무조건 true
@@ -212,6 +214,7 @@ const InputMain = ({ children }: InputMainProps) => {
           return true;
         });
     } else if (e.key === "ArrowUp") {
+      e.preventDefault(); // 스크롤 이동 방지를 위함
       const prevIndex = curIndex - 1 < 0 ? list.length - 1 : curIndex - 1;
       dispatch(setInputValue(list[prevIndex].value));
       // 유효성 업데이트 : 드롭다운의 값을 적용하면 무조건 true
