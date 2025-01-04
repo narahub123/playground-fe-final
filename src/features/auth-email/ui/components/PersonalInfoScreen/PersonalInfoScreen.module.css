@@ -1,3 +1,9 @@
+.personal__info__screen {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
 .personal__info__screen__body {
   display: flex;
   flex-direction: column;

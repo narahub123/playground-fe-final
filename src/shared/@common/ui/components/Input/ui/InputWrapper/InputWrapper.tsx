@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import styles from "./InputWrapper.module.css";
 import {
   InputContextProvider,
@@ -26,6 +26,8 @@ interface InputWrapperProps {
  * InputWrapper 컴포넌트
  * - Input 필드와 관련된 데이터를 컨텍스트로 제공
  * - 상태 관리 및 스타일링을 적용
+ * - 드롭다운을 사용하는 경우 드롭다운의 스크롤 이벤트를 처리하기 위해, `.scroll` 클래스를 가진 가장 가까운 요소를 참조합니다.
+ * - window가 아닌 특정 요소의 스크롤 이벤트를 참조하기 위해서는 참조하기 원하는 요소에 .scroll을 추가해야 합니다.
  *
  * @param {InputWrapperProps} props - 컴포넌트에 전달되는 props
  * @returns {JSX.Element} InputWrapper 컴포넌트
@@ -41,6 +43,7 @@ const InputWrapper = ({
   list,
   disabled = false, // 값을 적용하지 않으면 false
 }: InputWrapperProps) => {
+  const wrapperRef = useRef<HTMLDivElement>(null);
   /** @type {boolean} Input의 포커스 상태 */
   const [isFocused, setIsFocused] = useState(false);
   /** @type {boolean} inputValue의 유효성 상태 */
@@ -61,6 +64,27 @@ const InputWrapper = ({
    * InputMain 요소의 참조 상태
    */
   const [mainRef, setMainRef] = useState<React.RefObject<HTMLLabelElement>>();
+
+  /**
+   * 드롭다운에서 `.scroll` 클래스를 가진 가장 가까운 요소를 추적하는 상태입니다.
+   *
+   * 초기 값으로 `window` 객체를 사용하여, `scroll` 클래스를 가진 DOM 요소가 없을 경우
+   * 브라우저의 `window` 객체에서 스크롤 이벤트를 감지합니다.
+   *
+   * - `HTMLElement`일 경우, `scroll` 클래스를 가진 DOM 요소입니다.
+   * - `Window`일 경우, 브라우저의 `window` 객체입니다.
+   *
+   * @type {HTMLElement | Window}
+   */
+  const [scroll, setScroll] = useState<HTMLElement | Window>(window);
+
+  useEffect(() => {
+    if (!wrapperRef.current) return;
+
+    const scroll = wrapperRef.current.closest(".scroll") as HTMLElement;
+
+    setScroll(scroll);
+  }, [wrapperRef.current]);
 
   // context 값
   const value: InputContextType = {
@@ -89,7 +113,9 @@ const InputWrapper = ({
     setIsDropdownOpen, // 드롭다운 여닫기 업데이트하는 set 함수
     mainRef, // 현재 InputMain 참조하는 상태: 드롭다운의 위치, 크기에 영향
     setMainRef, // mainRef를 업데이트 하는 set 함수
+    scroll, // 드롭다운의 위치와 높이를 조정하기 위해서 스크롤 이벤트를 참조할 요소
   };
+
   return (
     // Input 관련 데이터를 하위 컴포넌트에 전달하기 위한 Context Provider
     <InputContextProvider value={value}>
@@ -98,6 +124,7 @@ const InputWrapper = ({
           styles[`input__wrapper`],
           disabled ? styles[`input__wrapper--disabled`] : "",
         ])}
+        ref={wrapperRef}
       >
         {children}
       </div>

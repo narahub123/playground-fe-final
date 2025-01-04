@@ -73,6 +73,16 @@ interface InputContextType {
   setMainRef: React.Dispatch<
     React.SetStateAction<React.RefObject<HTMLLabelElement> | undefined>
   >;
+  /**
+   * 드롭다운에서 `.scroll` 클래스를 가진 가장 가까운 요소
+   *
+   * - `HTMLElement`일 경우, `scroll` 클래스를 가진 DOM 요소를 나타냅니다.
+   * - `Window`일 경우, 브라우저의 `window` 객체를 나타냅니다.
+   *
+   * `scroll`는 스크롤 이벤트를 다루기 위해서 사용되는 클래스로 해당 클래스가 적용된 가장 가까운 클래스를 찾고,
+   * 해당 요소에서 스크롤 이벤트를 감지하여 드롭다운의 위치 및 높이를 조정합니다.
+   */
+  scroll: HTMLElement | Window;
   /** disabled 모드 적용 여부 */
   disabled?: boolean;
   /** 사용자가 입력할 수 있는 최대 글자 수 제한 */

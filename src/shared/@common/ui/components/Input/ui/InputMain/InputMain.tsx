@@ -1,5 +1,5 @@
 import styles from "./InputMain.module.css";
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { ReactNode, useCallback, useEffect, useRef, useState } from "react";
 import { useInputContext } from "@shared/@common/ui/components/Input/context";
 import { joinClassNames } from "@shared/@common/utils";
 import { useAppDispatch } from "@app/store";
@@ -41,7 +41,14 @@ const InputMain = ({ children }: InputMainProps) => {
     inputValue, // input 값
     setInputValue, // inputValue 값 업데이트
     disabled,
+    scroll, // .scroll을 가진 부모 요소 없다면 window
   } = useInputContext();
+
+  /**
+   * `isVisible` 상태 변수
+   * - 요소가 화면에 보이는지 여부를 추적합니다.
+   */
+  const [isVisible, setIsVisible] = useState(false);
 
   /**
    * mainRef를 Context로 업데이트.
@@ -50,6 +57,80 @@ const InputMain = ({ children }: InputMainProps) => {
     if (!mainRef || !mainRef.current) return;
     setMainRef(mainRef);
   }, [mainRef]);
+
+  /**
+   * Input이 스크롤 요소 안에서 보이는지 여부를 확인하고,
+   * 드롭다운 열기/닫기 상태를 제어하는 효과
+   */
+  useEffect(() => {
+    // mainRef가 설정되지 않았거나, scroll이 HTMLElement가 아니면 종료
+    if (!mainRef.current || !(scroll instanceof HTMLElement)) return;
+
+    // IntersectionObserver를 설정하여 요소의 가시성 여부를 감지
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const isVisible = entry.isIntersecting; // 요소가 뷰포트에 보이는지 여부
+
+        setIsVisible(isVisible); // 가시성 상태 업데이트
+
+        // 목록이 있는 경우(드롭다운 설정이 되어 있는 경우)에만 드롭다운을 여닫음
+        if (list) {
+          // 요소가 보이지 않으면 드롭다운을 닫음
+          if (!isVisible) {
+            setIsDropdownOpen(false);
+          }
+          // 요소가 보이고 포커스가 맞으면 드롭다운을 열음
+          else if (isVisible && isFocused) {
+            setIsDropdownOpen(true);
+          }
+        }
+      },
+      {
+        root: scroll, // 스크롤 컨테이너
+        rootMargin: "0px", // root margin 설정
+        threshold: 0, // 요소가 뷰포트에 들어왔을 때 바로 트리거
+      }
+    );
+
+    // mainRef 요소를 관찰하기 시작
+    observer.observe(mainRef.current);
+
+    // cleanup 함수: 컴포넌트가 언마운트될 때 observer를 disconnect
+    return () => {
+      observer.disconnect();
+    };
+  }, [scroll, isFocused]); // scroll과 isFocused 변경 시 효과 실행
+
+  /**
+   * 스크롤 이동 핸들러
+   * - input 클릭 시 해당 요소가 뷰포트 내에서 부드럽게 중앙으로 스크롤되도록 처리
+   */
+  const handleScroll = useCallback(() => {
+    // mainRef가 존재하지 않으면 종료
+    if (!mainRef.current) return;
+
+    // 스크롤을 부드럽게 중앙으로 이동
+    mainRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+  }, []); // 빈 배열로 최적화하여 최초 한번만 생성
+
+  /**
+   * input 클릭 시 스크롤 이동 이벤트 핸들러 등록
+   * - isVisible이 true일 때만 click 이벤트를 추가하여 스크롤 이동 실행
+   */
+  useEffect(() => {
+    // mainRef나 isVisible이 없으면 이벤트를 추가하지 않음
+    if (!mainRef.current || !isVisible) return;
+
+    const main = mainRef.current;
+
+    // 클릭 시 handleScroll 함수 실행
+    main.addEventListener("click", handleScroll);
+
+    // cleanup 함수: 클릭 이벤트 리스너 제거
+    return () => {
+      main.removeEventListener("click", handleScroll);
+    };
+  }, [isVisible, handleScroll]); // isVisible과 handleScroll 변경 시 효과 실행
 
   /**
    * 현재 컴포넌트에서 자식 컴포넌트로 유효하지 않는 컴포넌트 배열

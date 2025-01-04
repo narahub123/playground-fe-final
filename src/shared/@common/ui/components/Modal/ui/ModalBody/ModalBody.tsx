@@ -61,7 +61,9 @@ const ModalBody = ({ children, className }: ModalBodyProps) => {
   const filteredChildren = useValidateChildren({ children, invalidComponents });
 
   return (
-    <div className={joinClassNames([styles["modal__body"], className])}>
+    <div
+      className={joinClassNames([styles["modal__body"], "scroll", className])}
+    >
       {filteredChildren}
     </div>
   );
