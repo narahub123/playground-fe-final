@@ -42,6 +42,7 @@ const InputMain = ({ children }: InputMainProps) => {
     setInputValue, // inputValue 값 업데이트
     disabled,
     scroll, // .scroll을 가진 부모 요소 없다면 window
+    setIsValid, // 유효성 업데이트
   } = useInputContext();
 
   /**
@@ -196,9 +197,37 @@ const InputMain = ({ children }: InputMainProps) => {
     if (e.key === "ArrowDown") {
       const nextIndex = curIndex + 1 > list.length - 1 ? 0 : curIndex + 1;
       dispatch(setInputValue(list[nextIndex].value));
+      // 유효성 업데이트 : 드롭다운의 값을 적용하면 무조건 true
+      setIsValid &&
+        setIsValid((prev) => {
+          // typeof null도 "object"로 나오기 때문에, null을 체크하는 조건을 추가하여 예기치 않은 상황을 방지
+          if (typeof prev === "object" && prev !== null) {
+            // 기존 값과 동일한지 확인 후 값이 다르면 업데이트
+            if (prev[field] !== true) {
+              return { ...prev, [field]: true };
+            }
+            return prev; // 값이 같으면 기존 객체 그대로 반환
+          }
+          // 객체가 아니면 true로 설정
+          return true;
+        });
     } else if (e.key === "ArrowUp") {
       const prevIndex = curIndex - 1 < 0 ? list.length - 1 : curIndex - 1;
       dispatch(setInputValue(list[prevIndex].value));
+      // 유효성 업데이트 : 드롭다운의 값을 적용하면 무조건 true
+      setIsValid &&
+        setIsValid((prev) => {
+          // typeof null도 "object"로 나오기 때문에, null을 체크하는 조건을 추가하여 예기치 않은 상황을 방지
+          if (typeof prev === "object" && prev !== null) {
+            // 기존 값과 동일한지 확인 후 값이 다르면 업데이트
+            if (prev[field] !== true) {
+              return { ...prev, [field]: true };
+            }
+            return prev; // 값이 같으면 기존 객체 그대로 반환
+          }
+          // 객체가 아니면 true로 설정
+          return true;
+        });
     } else if (e.key === "Enter") {
       setIsDropdownOpen(!isDropdownOpen);
     } else if (e.key === "Escape") {
@@ -217,7 +246,7 @@ const InputMain = ({ children }: InputMainProps) => {
     styles["input__main"],
     // 포커스인 상태에서 유효성 여부 표기
     isFocused //포커스 상태 확인
-      ? isValid // 유효성 여부 확인
+      ? isValid || inputValue === "" // 유효성 여부 확인
         ? styles["input__main--valid"]
         : styles["input__main--invalid"]
       : "",

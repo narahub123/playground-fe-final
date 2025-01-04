@@ -18,7 +18,7 @@ const InputLabel = () => {
    * - `isFocused`: 입력 필드가 포커스 상태인지 여부
    * - `isValid`: inputValue의 값이 유효한지 여부
    */
-  const { label, isFocused, isValid } = useInputContext();
+  const { label, isFocused, isValid, inputValue } = useInputContext();
 
   return (
     /**
@@ -31,7 +31,7 @@ const InputLabel = () => {
       subClassName={joinClassNames([
         styles["input__label"],
         isFocused
-          ? isValid
+          ? isValid || inputValue === ""
             ? styles["input__label--focused"]
             : styles[`input__label--error`]
           : "",

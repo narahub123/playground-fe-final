@@ -16,6 +16,20 @@ interface InputWrapperProps {
   inputValue: string; // Input의 value
   setInputValue: (value: any) => { type: string; payload: any }; // inputValue를 업데이트할 reducer
   children: ReactNode;
+  isValid?:
+    | {
+        [key: string]: boolean; // 각 필드에 대한 유효성 상태를 객체 형태로 저장. 필드 이름을 키로 하고, 유효성 상태(boolean)를 값으로 저장합니다.
+      }
+    | boolean; // 전체 유효성 상태를 나타내는 boolean 값. 모든 입력 필드에 대해 유효성 검사를 한 번에 처리하고자 할 때 사용됩니다.
+
+  setIsValid?: React.Dispatch<
+    React.SetStateAction<
+      | {
+          [key: string]: boolean; // 각 필드에 대한 유효성 상태를 업데이트하는 함수입니다. 필드 이름을 키로 하고, boolean 값을 업데이트합니다.
+        }
+      | boolean // 전체 유효성 상태를 업데이트하는 함수입니다. 모든 입력 필드에 대한 유효성 상태를 한 번에 업데이트할 수 있습니다.
+    >
+  >; // `isValid`의 값을 업데이트하는 함수입니다. 객체일 경우, 각 필드의 유효성 상태를 개별적으로 업데이트하거나, boolean 값일 경우 전체 유효성 상태를 한 번에 업데이트할 수 있습니다.
   maxLength?: number; // 사용자가 input 필드에 입력할 수 있는 최대 글자 수를 제한: Constants로 관리할 것
   error?: Partial<Record<InputErrorKeyType, InputErrorType>>;
   list?: DropdownItemType[]; // 드롭다운에 들어갈 아이템 배열
@@ -37,6 +51,8 @@ const InputWrapper = ({
   field,
   inputValue,
   setInputValue,
+  isValid,
+  setIsValid,
   children,
   maxLength,
   error,
@@ -46,8 +62,6 @@ const InputWrapper = ({
   const wrapperRef = useRef<HTMLDivElement>(null);
   /** @type {boolean} Input의 포커스 상태 */
   const [isFocused, setIsFocused] = useState(false);
-  /** @type {boolean} inputValue의 유효성 상태 */
-  const [isValid, setIsValid] = useState(true);
   /**
    * @type {React.RefObject<HTMLInputElement> | undefined}
    * input 요소의 참조 상태
@@ -101,8 +115,14 @@ const InputWrapper = ({
     isFocused, // 현재 Input 컴포넌트의 포커스 여부
     setIsFocused, // Input 컴포넌트의 포커스 상태 업데이트하는 set 함수
     focusCond: isFocused || inputValue !== "", // focus 표시 조건: focuse 상태거나 inputValue에 값이 있는 경우
-    isValid, // 현재 inputValue의 유효성 여부: 지금은 내부에서 생성하는데 다른 컴포넌트과 유효성을 통합해서 상태 확인할 때는 외부에서 가져와야 할 수도 있음
-    setIsValid, // inputValue의 유효성을 업데이트 하는 set 함수
+    // 현재 inputValue의 유효성 여부
+    isValid:
+      isValid !== undefined
+        ? typeof isValid === "object"
+          ? isValid[field] ?? false // 객체일 경우, field에 해당하는 값이 없으면 false
+          : isValid // 객체가 아니면 그대로 사용
+        : true, // isValid가 undefined일 경우 true
+    setIsValid, // inputValue의 유효성을 업데이트하는 set 함수
     inputRef, // input 요소를 참조하는 상태: 포커스 이동에 사용, 포커스 시 커서 위치 지정에 사용
     setInputRef, // inputRef를 업데이트하는 set 함수
     showPassword, // 현재 비밀번호 표시 여부

@@ -18,10 +18,6 @@ interface InputContextType {
   setIsFocused: React.Dispatch<React.SetStateAction<boolean>>;
   /** focus 표시 조건: focus 상태거나 inputValue에 값이 있는 경우 */
   focusCond: boolean;
-  /** 현재 inputValue의 유효성 여부 */
-  isValid: boolean;
-  /** inputValue의 유효성을 업데이트하는 set 함수 */
-  setIsValid: React.Dispatch<React.SetStateAction<boolean>>;
   /** input 요소를 참조하는 상태: 포커스 이동에 사용 */
   inputRef: React.RefObject<HTMLInputElement> | undefined;
   /** inputRef를 업데이트하는 set 함수 */
@@ -83,6 +79,30 @@ interface InputContextType {
    * 해당 요소에서 스크롤 이벤트를 감지하여 드롭다운의 위치 및 높이를 조정합니다.
    */
   scroll: HTMLElement | Window;
+  /**
+   * 현재 inputValue의 유효성 여부.
+   * - `true`: 유효한 값.
+   * - `false`: 유효하지 않은 값.
+   * - 이 값은 현재 입력 필드의 유효성 검사를 수행하고, 해당 값에 따라 유효성 상태를 나타냅니다.
+   */
+  isValid: boolean;
+
+  /**
+   * inputValue의 유효성을 업데이트하는 함수.
+   * - `isValid`가 객체일 경우 각 필드에 대한 유효성 상태를 개별적으로 업데이트할 수 있습니다.
+   * - `isValid`가 `boolean`일 경우, 전체 입력 필드에 대한 유효성 상태를 한 번에 업데이트할 수 있습니다.
+   *
+   * 이 함수는 유효성 상태를 업데이트하기 위해 `useState`와 같은 상태 관리 훅에서 전달되며,
+   * 입력 필드의 유효성 여부를 조정하는 데 사용됩니다.
+   */
+  setIsValid?: React.Dispatch<
+    React.SetStateAction<
+      | {
+          [key: string]: boolean; // 각 필드에 대한 유효성 상태를 객체로 나타내며, 필드 이름을 키로, 유효성 여부(boolean)를 값으로 설정합니다.
+        }
+      | boolean // 전체 유효성 상태를 나타내는 `boolean` 값으로, 모든 입력 필드에 대해 유효성 검사를 한 번에 처리할 수 있습니다.
+    >
+  >;
   /** disabled 모드 적용 여부 */
   disabled?: boolean;
   /** 사용자가 입력할 수 있는 최대 글자 수 제한 */

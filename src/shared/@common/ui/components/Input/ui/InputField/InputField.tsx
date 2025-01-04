@@ -79,31 +79,91 @@ const InputField = () => {
     if (EMPTY && !value.match(EMPTY.regExp)) {
       if (errorMessage !== EMPTY.errorMessage) {
         setErrorMessage(EMPTY.errorMessage);
-        setIsValid(true);
+        setIsValid &&
+          setIsValid((prev) => {
+            // typeof null도 "object"로 나오기 때문에, null을 체크하는 조건을 추가하여 예기치 않은 상황을 방지
+            if (typeof prev === "object" && prev !== null) {
+              // 기존 값과 동일한지 확인 후 값이 다르면 업데이트
+              if (prev[field] !== false) {
+                return { ...prev, [field]: false };
+              }
+              return prev; // 값이 같으면 기존 객체 그대로 반환
+            }
+            // 객체가 아니면 false로 설정
+            return false;
+          });
       }
       return;
     } else if (FORBIDDEN && !value.match(FORBIDDEN.regExp)) {
       if (errorMessage !== FORBIDDEN.errorMessage) {
         setErrorMessage(FORBIDDEN.errorMessage);
-        setIsValid(false);
+        setIsValid &&
+          setIsValid((prev) => {
+            // typeof null도 "object"로 나오기 때문에, null을 체크하는 조건을 추가하여 예기치 않은 상황을 방지
+            if (typeof prev === "object" && prev !== null) {
+              // 기존 값과 동일한지 확인 후 값이 다르면 업데이트
+              if (prev[field] !== false) {
+                return { ...prev, [field]: false };
+              }
+              return prev; // 값이 같으면 기존 객체 그대로 반환
+            }
+            // 객체가 아니면 false로 설정
+            return false;
+          });
       }
       return;
     } else if (UNDER_MINIMUM && !value.match(UNDER_MINIMUM.regExp)) {
       if (errorMessage !== UNDER_MINIMUM.errorMessage) {
         setErrorMessage(UNDER_MINIMUM.errorMessage);
-        setIsValid(false);
+        setIsValid &&
+          setIsValid((prev) => {
+            // typeof null도 "object"로 나오기 때문에, null을 체크하는 조건을 추가하여 예기치 않은 상황을 방지
+            if (typeof prev === "object" && prev !== null) {
+              // 기존 값과 동일한지 확인 후 값이 다르면 업데이트
+              if (prev[field] !== false) {
+                return { ...prev, [field]: false };
+              }
+              return prev; // 값이 같으면 기존 객체 그대로 반환
+            }
+            // 객체가 아니면 false로 설정
+            return false;
+          });
       }
       return;
     } else if (INCOMPLETE && !value.match(INCOMPLETE.regExp)) {
       if (errorMessage !== INCOMPLETE.errorMessage) {
         setErrorMessage(INCOMPLETE.errorMessage);
-        setIsValid(false);
+        setIsValid &&
+          setIsValid((prev) => {
+            // typeof null도 "object"로 나오기 때문에, null을 체크하는 조건을 추가하여 예기치 않은 상황을 방지
+            if (typeof prev === "object" && prev !== null) {
+              // 기존 값과 동일한지 확인 후 값이 다르면 업데이트
+              if (prev[field] !== false) {
+                return { ...prev, [field]: false };
+              }
+              return prev; // 값이 같으면 기존 객체 그대로 반환
+            }
+            // 객체가 아니면 false로 설정
+            return false;
+          });
       }
       return;
     } else if (FORMAT && !value.match(FORMAT.regExp)) {
       if (errorMessage !== FORMAT.errorMessage) {
         setErrorMessage(FORMAT.errorMessage);
-        setIsValid(false);
+        setIsValid &&
+          setIsValid((prev) => {
+            // typeof null도 "object"로 나오기 때문에, null을 체크하는 조건을 추가하여 예기치 않은 상황을 방지
+            if (typeof prev === "object" && prev !== null) {
+              // 기존 값과 동일한지 확인 후 값이 다르면 업데이트
+              if (prev[field] !== false) {
+                return { ...prev, [field]: false };
+              }
+              return prev; // 값이 같으면 기존 객체 그대로 반환
+            }
+            // 객체가 아니면 false로 설정
+            return false;
+          });
       }
       return;
     } else {
@@ -116,18 +176,54 @@ const InputField = () => {
         if (isDuplicate) {
           if (type === "duplicate") {
             setErrorMessage(value + DUPLICATE?.errorMessage || "");
-            setIsValid(false);
+            setIsValid &&
+              setIsValid((prev) => {
+                // typeof null도 "object"로 나오기 때문에, null을 체크하는 조건을 추가하여 예기치 않은 상황을 방지
+                if (typeof prev === "object" && prev !== null) {
+                  // 기존 값과 동일한지 확인 후 값이 다르면 업데이트
+                  if (prev[field] !== false) {
+                    return { ...prev, [field]: false };
+                  }
+                  return prev; // 값이 같으면 기존 객체 그대로 반환
+                }
+                // 객체가 아니면 false로 설정
+                return false;
+              });
             return;
           } else if (type === "disconnect") {
             setErrorMessage(DISCONNECT?.errorMessage || "");
-            setIsValid(false);
+            setIsValid &&
+              setIsValid((prev) => {
+                // typeof null도 "object"로 나오기 때문에, null을 체크하는 조건을 추가하여 예기치 않은 상황을 방지
+                if (typeof prev === "object" && prev !== null) {
+                  // 기존 값과 동일한지 확인 후 값이 다르면 업데이트
+                  if (prev[field] !== false) {
+                    return { ...prev, [field]: false };
+                  }
+                  return prev; // 값이 같으면 기존 객체 그대로 반환
+                }
+                // 객체가 아니면 false로 설정
+                return false;
+              });
             return;
           }
         }
       }
       // 모든 유효성 검사를 통과하면 에러 메시지와 유효성 상태를 초기화
       setErrorMessage("");
-      setIsValid(true);
+      setIsValid &&
+        setIsValid((prev) => {
+          // typeof null도 "object"로 나오기 때문에, null을 체크하는 조건을 추가하여 예기치 않은 상황을 방지
+          if (typeof prev === "object" && prev !== null) {
+            // 기존 값과 동일한지 확인 후 값이 다르면 업데이트
+            if (prev[field] !== true) {
+              return { ...prev, [field]: true };
+            }
+            return prev; // 값이 같으면 기존 객체 그대로 반환
+          }
+          // 객체가 아니면 true로 설정
+          return true;
+        });
     }
   };
 

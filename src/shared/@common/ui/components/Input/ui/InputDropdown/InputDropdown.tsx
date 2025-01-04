@@ -34,6 +34,7 @@ const InputDropdown = () => {
     setIsDropdownOpen, // 드롭다운 여닫기 상태 업데이트
     field, // 필드 이름
     scroll, // 스크롤 이벤트를 참조할 요소
+    setIsValid, // 유효성 상태 업데이트
   } = useInputContext();
 
   // InputMain의 위치와 크기를 저장할 상태 정의
@@ -226,6 +227,21 @@ const InputDropdown = () => {
                   e.preventDefault(); // 포커스 이동을 위해서는 다른 이벤트 발생 방지
 
                   dispatch(setInputValue(item.value)); // inputValue 값 업데이트
+
+                  // 유효성 업데이트 : 드롭다운의 값을 적용하면 무조건 true
+                  setIsValid &&
+                    setIsValid((prev) => {
+                      // typeof null도 "object"로 나오기 때문에, null을 체크하는 조건을 추가하여 예기치 않은 상황을 방지
+                      if (typeof prev === "object" && prev !== null) {
+                        // 기존 값과 동일한지 확인 후 값이 다르면 업데이트
+                        if (prev[field] !== true) {
+                          return { ...prev, [field]: true };
+                        }
+                        return prev; // 값이 같으면 기존 객체 그대로 반환
+                      }
+                      // 객체가 아니면 true로 설정
+                      return true;
+                    });
 
                   setIsDropdownOpen(false); // 드롭다운 닫기
 

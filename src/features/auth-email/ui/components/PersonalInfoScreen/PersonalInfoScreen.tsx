@@ -15,6 +15,7 @@ import {
 import { useSelector } from "react-redux";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { USERNAME_MAX } from "@shared/@common/constants";
+import { useState } from "react";
 
 /**
  * PersonalInfoScreen 컴포넌트
@@ -26,6 +27,9 @@ const PersonalInfoScreen = () => {
   const username = useSelector(getUsernameInSignup);
   const email = useSelector(getEmailInSignup);
   const birth = useSelector(getBirthInSignup);
+  const [isValid, setIsValid] = useState<boolean | { [key: string]: boolean }>(
+    {}
+  );
 
   const {
     title,
@@ -58,6 +62,8 @@ const PersonalInfoScreen = () => {
           setInputValue={setUsernameInSignup}
           maxLength={USERNAME_MAX}
           error={usernameError}
+          isValid={isValid}
+          setIsValid={setIsValid}
         >
           <Input.Main>
             <Input.Top>
@@ -77,6 +83,8 @@ const PersonalInfoScreen = () => {
           inputValue={email}
           setInputValue={setEmailInSignup}
           error={emailError}
+          isValid={isValid}
+          setIsValid={setIsValid}
         >
           <Input.Main>
             <Input.Top>
@@ -102,6 +110,8 @@ const PersonalInfoScreen = () => {
               inputValue={birth.year as string}
               setInputValue={setBirthYearSignup}
               list={birthYearList(birthYearUnit)}
+              isValid={isValid}
+              setIsValid={setIsValid}
             >
               <Input.Main>
                 <Input.Top>
@@ -120,6 +130,8 @@ const PersonalInfoScreen = () => {
               inputValue={birth.month as string}
               setInputValue={setBirthMonthSignup}
               list={birthMonthList(birthMonthUnit)}
+              isValid={isValid}
+              setIsValid={setIsValid}
             >
               <Input.Main>
                 <Input.Top>
@@ -138,6 +150,8 @@ const PersonalInfoScreen = () => {
               inputValue={birth.date as string}
               setInputValue={setBirthDateSignup}
               list={birthDateList(birth.year, birth.month, birthDateUnit)}
+              isValid={isValid}
+              setIsValid={setIsValid}
             >
               <Input.Main>
                 <Input.Top>
