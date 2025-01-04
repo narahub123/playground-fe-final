@@ -76,9 +76,6 @@ const ModalMain = ({
   domId = "modal",
   className,
 }: ModalMainProps) => {
-  // 모달 창 열기 상태가 false이면 반환
-  if (!isOpen) return null;
-
   // 배경 스크롤 방지
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "auto";
@@ -95,6 +92,9 @@ const ModalMain = ({
     setCurPage,
   };
 
+  // 모달 창 열기 상태가 false이면 반환
+  if (!isOpen) return null;
+  
   return (
     <Portal id={domId}>
       <ModalContextProvider value={value}>
