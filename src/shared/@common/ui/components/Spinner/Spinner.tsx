@@ -49,7 +49,7 @@ const Spinner = ({
   size = 1, // 기본 크기: 1rem
   spinnerWidth = size / 6, // 기본 두께: 0.25rem
   unit = "rem", // 기본 단위: rem
-  color = "red", // 기본 색상: 상속
+  color = "currentColor", // 기본 색상: 현재 색상
   loadingText = "로딩 중", // 기본 로딩 텍스트
 }: SpinnerProps) => {
   // 크기 및 두께 변환
