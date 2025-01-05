@@ -5,15 +5,29 @@ import { ReactNode } from "react";
 interface ButtonProps {
   children: ReactNode;
   onClick: (value?: any) => void;
+  colorPalette?: "gray" | "colorTheme";
   isValid?: boolean;
 }
 
-const Button = ({ children, onClick, isValid }: ButtonProps) => {
+const Button = ({
+  children,
+  onClick,
+  isValid = true,
+  colorPalette = "gray",
+}: ButtonProps) => {
   /**
    * 클래스 이름을 결합하여 하나의 문자열로 반환합니다.
    * @type {string} 결합된 클래스 이름
    */
-  const classNames = joinClassNames([styles["button"]]);
+  const classNames = joinClassNames([
+    styles["button"],
+    // 색상
+    colorPalette === "gray"
+      ? styles["button--gray"]
+      : colorPalette === "colorTheme"
+      ? styles["button--colorTheme"]
+      : "",
+  ]);
 
   return (
     <button className={classNames} disabled={!isValid} onClick={onClick}>

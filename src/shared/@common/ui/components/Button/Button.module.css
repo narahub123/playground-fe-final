@@ -1,10 +1,28 @@
 .button {
   width: 100%;
-  border: var(--bgTheme-border-primary);
   border-radius: 2rem;
   display: flex;
   justify-content: center;
   padding: 0.75rem;
+}
+
+.button--gray {
+  background-color: hsl(0, 0%, 93.3%);
+  border: 1px solid #ddd;
+  color: #000;
+}
+
+.button--gray:hover {
+  background-color: #ddd;
+}
+
+.button--colorTheme {
+  background-color: var(--colorTheme-color-primary);
+  color: #ffffff; /* 흰색 텍스트 */
+}
+
+.button--colorTheme:hover {
+  background-color: var(--colorTheme-bgColor-hover);
 }
 
 .button--valid {
