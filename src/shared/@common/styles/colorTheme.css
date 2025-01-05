@@ -1,6 +1,7 @@
 :root,
 html[data-color-theme="cornflowerblue"] {
   --colorTheme-color-primary: hsl(219, 79%, 66%);
+  --colorTheme-color-invalid: hsl(219, 30%, 66%);
   --colorTheme-color-dark: hsl(235, 79%, 66%); /* 버튼 폰트 색 */
   --colorTheme-color-light: hsl(219, 79%, 80%); /* 버튼 보더 색 */
   --colorTheme-bgColor-light: hsl(219, 79%, 90%); /* 버튼 배경색 */
@@ -13,6 +14,7 @@ html[data-color-theme="cornflowerblue"] {
 
 html[data-color-theme="red"] {
   --colorTheme-color-primary: hsl(0, 100%, 50%);
+  --colorTheme-color-invalid: hsl(0, 50%, 50%);
   --colorTheme-color-dark: hsl(0, 70%, 50%); /* 버튼 폰트 색 */
   --colorTheme-color-light: hsl(0, 100%, 83%); /* 버튼 보더 색 */
   --colorTheme-bgColor-light: hsl(0, 100%, 90%); /* 버튼 배경색 */
@@ -25,6 +27,7 @@ html[data-color-theme="red"] {
 
 html[data-color-theme="green"] {
   --colorTheme-color-primary: hsl(120, 50%, 50%);
+  --colorTheme-color-invalid: hsl(120, 20%, 50%);
   --colorTheme-color-dark: hsl(120, 70%, 50%); /* 버튼 폰트 색 */
   --colorTheme-color-light: hsl(120, 50%, 83%); /* 버튼 보더 색 */
   --colorTheme-bgColor-light: hsl(120, 50%, 90%); /* 버튼 배경색 */
@@ -37,6 +40,7 @@ html[data-color-theme="green"] {
 
 html[data-color-theme="purple"] {
   --colorTheme-color-primary: hsl(300, 100%, 25%);
+  --colorTheme-color-invalid: hsl(300, 30%, 25%);
   --colorTheme-color-dark: hsl(300, 70%, 50%); /* 버튼 폰트 색 */
   --colorTheme-color-light: hsl(300, 50%, 83%); /* 버튼 보더 색 */
   --colorTheme-bgColor-light: hsl(300, 50%, 90%); /* 버튼 배경색 */
@@ -49,6 +53,7 @@ html[data-color-theme="purple"] {
 
 html[data-color-theme="orange"] {
   --colorTheme-color-primary: hsl(39, 100%, 50%);
+  --colorTheme-color-invalid: hsl(39, 30%, 50%);
   --colorTheme-color-dark: hsl(39, 70%, 50%); /* 버튼 폰트 색 */
   --colorTheme-color-light: hsl(39, 100%, 83%); /* 버튼 보더 색 */
   --colorTheme-bgColor-light: hsl(39, 100%, 90%); /* 버튼 배경색 */
@@ -61,6 +66,7 @@ html[data-color-theme="orange"] {
 
 html[data-color-theme="yellow"] {
   --colorTheme-color-primary: hsl(60, 90%, 50%);
+  --colorTheme-color-invalid: hsl(60, 30%, 50%);
   --colorTheme-color-dark: hsl(60, 70%, 50%); /* 버튼 폰트 색 */
   --colorTheme-color-light: hsl(60, 90%, 80%); /* 버튼 보더 색 */
   --colorTheme-bgColor-light: hsl(60, 90%, 90%); /* 버튼 배경색 */

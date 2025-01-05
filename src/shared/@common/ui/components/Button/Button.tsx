@@ -17,7 +17,7 @@ interface ButtonProps {
 const Button = ({
   children,
   onClick,
-  isValid = true,
+  isValid = false,
   variant = "solid",
   colorPalette = "default",
   loading = false,
@@ -30,7 +30,10 @@ const Button = ({
   const classNames = joinClassNames([
     styles["button"],
     // variant + colorPalette
-    styles[`button--${variant}--${colorPalette}`],
+    isValid
+      ? styles[`button--${variant}--${colorPalette}`]
+      : styles[`button--${variant}--${colorPalette}--invalid`],
+    isValid ? styles[`button--valid`] : "",
   ]);
 
   return (
