@@ -1,0 +1,14 @@
+.spinner {
+  animation: 1s linear infinite loading;
+  /* stroke-dasharray: 35.265, 15; */
+  transform-origin: center; /* 원의 중심을 기준으로 회전 */
+}
+
+@keyframes loading {
+  0% {
+    rotate: 0deg;
+  }
+  100% {
+    rotate: 360deg;
+  }
+}
