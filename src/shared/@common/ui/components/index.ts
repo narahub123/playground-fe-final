@@ -5,5 +5,7 @@ import Input from "./Input";
 import Dropdown from "./Dropdown/Dropdown";
 import Portal from "./Portal/Portal";
 import Button from "./Button/Button";
+import SVG from "./SVG/SVG";
+import Spinner from "./Spinner/Spinner";
 
-export { Text, Modal, Icon, Input, Dropdown, Portal, Button };
+export { Text, Modal, Icon, Input, Dropdown, Portal, Button, SVG, Spinner };
