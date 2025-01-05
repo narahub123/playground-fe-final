@@ -4,25 +4,112 @@
   display: flex;
   justify-content: center;
   padding: 0.75rem;
+  margin-bottom: 1px;
+  font-weight: bold;
 }
 
-.button--gray {
-  background-color: hsl(0, 0%, 93.3%);
-  border: 1px solid #ddd;
+.button--solid--colorTheme {
+  background-color: var(--colorTheme-color-primary);
+  color: #fff;
+}
+
+.button--solid--colorTheme:hover {
+  background-color: var(--colorTheme-bgColor-hover);
+}
+
+.button--subtle--colorTheme {
+  background-color: var(--colorTheme-bgColor-light);
+  color: var(--colorTheme-color-dark);
+}
+
+.button--subtle--colorTheme:hover {
+  background-color: var(--colorTheme-color-light);
+}
+
+.button--surface--colorTheme {
+  background-color: var(--colorTheme-bgColor-light);
+  color: var(--colorTheme-color-dark);
+  border: var(--colorTheme-border-light);
+}
+
+.button--surface--colorTheme:hover {
+  background-color: var(--colorTheme-color-light);
+}
+
+.button--outline--colorTheme {
+  background-color: #fff;
+  color: var(--colorTheme-color-dark);
+  border: var(--colorTheme-border-light);
+}
+
+.button--outline--colorTheme:hover {
+  background-color: var(--colorTheme-bgColor-light);
+}
+
+.button--ghost--colorTheme {
+  background-color: #fff;
+  color: var(--colorTheme-color-dark);
+}
+
+.button--ghost--colorTheme:hover {
+  background-color: var(--colorTheme-bgColor-light);
+}
+
+.button--plain--colorTheme {
+  color: var(--colorTheme-color-dark);
+  font-weight: normal;
+}
+
+.button--solid--default {
+  background-color: #000;
+  color: #fff;
+}
+
+.button--solid--default:hover {
+  background-color: hsl(0, 0%, 10%);
+}
+
+.button--subtle--default {
+  background-color: #ddd;
   color: #000;
 }
 
-.button--gray:hover {
+.button--subtle--default:hover {
+  background-color: #ccc;
+}
+
+.button--surface--default {
+  background-color: #ddd;
+  color: #000;
+  border: 1px solid #ccc;
+}
+
+.button--surface--default:hover {
+  background-color: #ccc;
+}
+
+.button--outline--default {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #ccc;
+}
+
+.button--outline--default:hover {
   background-color: #ddd;
 }
 
-.button--colorTheme {
-  background-color: var(--colorTheme-color-primary);
-  color: #ffffff; /* 흰색 텍스트 */
+.button--ghost--default {
+  background-color: #fff;
+  color: #000;
 }
 
-.button--colorTheme:hover {
-  background-color: var(--colorTheme-bgColor-hover);
+.button--ghost--default:hover {
+  background-color: #ddd;
+}
+
+.button--plain--default {
+  color: #000;
+  font-weight: normal;
 }
 
 .button--valid {

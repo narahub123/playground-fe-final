@@ -5,7 +5,8 @@ import { ReactNode } from "react";
 interface ButtonProps {
   children: ReactNode;
   onClick: (value?: any) => void;
-  colorPalette?: "gray" | "colorTheme";
+  variant?: "solid" | "subtle" | "surface" | "outline" | "ghost" | "plain";
+  colorPalette?: "default" | "colorTheme";
   isValid?: boolean;
 }
 
@@ -13,7 +14,8 @@ const Button = ({
   children,
   onClick,
   isValid = true,
-  colorPalette = "gray",
+  variant = "solid",
+  colorPalette = "default",
 }: ButtonProps) => {
   /**
    * 클래스 이름을 결합하여 하나의 문자열로 반환합니다.
@@ -21,12 +23,8 @@ const Button = ({
    */
   const classNames = joinClassNames([
     styles["button"],
-    // 색상
-    colorPalette === "gray"
-      ? styles["button--gray"]
-      : colorPalette === "colorTheme"
-      ? styles["button--colorTheme"]
-      : "",
+    // variant + colorPalette
+    styles[`button--${variant}--${colorPalette}`],
   ]);
 
   return (
