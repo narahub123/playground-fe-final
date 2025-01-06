@@ -186,7 +186,7 @@
   background-color: var(--colorPalette-bgColor-hover);
 }
 
-.button--solid--colorTheme:focus-visible {
+.button--solid--colorPalette:focus-visible {
   background-color: var(--colorPalette-color-dark);
 }
 

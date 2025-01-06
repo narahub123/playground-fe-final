@@ -70,7 +70,9 @@ const Button = ({
       onClick={onClick}
       aria-disabled={!isValid || disabled} // 비활성화 상태
       aria-label={loading ? loadingText || ariaLabel.loading : ariaLabel.button}
-      data-color-palette={colorPalette} 
+      data-color-palette={
+        colorPalette === "colorTheme" ? undefined : colorPalette
+      }
     >
       {loading ? (
         <div
