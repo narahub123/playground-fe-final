@@ -13,10 +13,13 @@ import {
   getUsernameInSignup,
 } from "@features/auth-setting/models/selectors";
 import { useSelector } from "react-redux";
-import { useLanguageContent } from "@shared/@common/models/hooks";
+import {
+  useLanguageContent,
+  useValidationChecker,
+} from "@shared/@common/models/hooks";
 import { USERNAME_MAX } from "@shared/@common/constants";
-import { useState } from "react";
 import { useModalContext } from "@shared/@common/ui/components/Modal/hooks";
+import { getUserInSignup } from "@features/auth-setting/models/selectors/signupSelectors";
 
 /**
  * PersonalInfoScreen 컴포넌트
@@ -28,11 +31,14 @@ const PersonalInfoScreen = () => {
   const username = useSelector(getUsernameInSignup);
   const email = useSelector(getEmailInSignup);
   const birth = useSelector(getBirthInSignup);
-  const [isValid, setIsValid] = useState<boolean | { [key: string]: boolean }>(
-    {}
-  );
+  const user = useSelector(getUserInSignup);
 
   const { setCurPage, curPage, lengthOfList } = useModalContext();
+
+  const { isValid, setIsValid, validationResult } = useValidationChecker({
+    fields: ["username", "email", "year", "date", "month"],
+    sliceState: user,
+  });
 
   const {
     title,
@@ -178,7 +184,11 @@ const PersonalInfoScreen = () => {
         </div>
       </Modal.Body>
       <Modal.Footer>
-        <Button colorPalette="colorTheme" onClick={handleClick} isValid>
+        <Button
+          colorPalette="colorTheme"
+          onClick={handleClick}
+          isValid={validationResult}
+        >
           버튼
         </Button>
       </Modal.Footer>

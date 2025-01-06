@@ -3,6 +3,7 @@ import {
   PASSWORD_MAX,
   PASSWORD_MIN,
   PASSWORD_SPECIAL_CHARECTERS,
+  USERNAME_MAX,
   USERNAME_MIN,
 } from "./constants";
 
@@ -34,6 +35,21 @@ export const EMPTY = `^.+$`;
  * console.log(regex.test("ab")); // false, 최소 길이 미만
  */
 export const USERNAME_UNDER_MINIMUM = `^.{${USERNAME_MIN},}$`;
+
+/**
+ * 사용자 이름에 대한 유효성 검사 정규 표현식입니다.
+ *
+ * 이 정규 표현식은 최소 `USERNAME_MIN` 글자에서 최대 `USERNAME_MAX` 글자 사이의 문자열을 검사합니다.
+ * 예를 들어, 사용자 이름의 최소 길이가 5이고 최대 길이가 15인 경우,
+ * 정규 표현식은 5에서 15 글자 사이의 문자열만 유효한 것으로 간주됩니다.
+ *
+ * @constant {string} USERNAME_INCOMPLETE
+ * @example
+ * // 최소 5자, 최대 15자의 문자열을 검증하는 정규식
+ * const regex = new RegExp(USERNAME_INCOMPLETE);
+ * const isValid = regex.test('username');
+ */
+export const USERNAME_INCOMPLETE = `^.{${USERNAME_MIN},${USERNAME_MAX}}$`;
 
 /**
  * 비밀번호가 최소 길이를 충족하는지 확인하는 정규 표현식입니다.

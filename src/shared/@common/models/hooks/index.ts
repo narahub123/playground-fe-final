@@ -2,7 +2,7 @@ import useLanguageContent from "./useLanguageContent";
 import useDisclosure from "./useDisClosure";
 import useFocusTrap from "./useFocusTrap";
 import useValidateChildren from "./useValidateChildren";
-import useValidationChecker from "./useValidationChecker";
+import useValidationChecker from "./useValidationChecker/useValidationChecker";
 
 export {
   useLanguageContent,

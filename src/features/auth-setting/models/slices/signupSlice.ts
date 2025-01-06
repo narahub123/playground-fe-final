@@ -2,7 +2,7 @@ import { BirthType } from "@features/auth-setting/types";
 import { validateDate } from "@features/auth-setting/utils";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface SignupState {
+export interface SignupState {
   username: string; // 사용자 이름
   phone: string; // 휴대폰
   email: string; // 이메일
