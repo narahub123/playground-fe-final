@@ -8,6 +8,69 @@
   font-weight: bold;
 }
 
+.button[data-color-palette="default"] {
+  --colorPalette-color-primary: hsl(0, 0%, 0%);
+  --colorPalette-color-invalid: hsl(0, 0%, 70%);
+  --colorPalette-color-dark: #000; /* 버튼 폰트 색 */
+  --colorPalette-color-light: #ccc; /* 버튼 보더 색 */
+  --colorPalette-bgColor-light: #ddd; /* 버튼 배경색 */
+  --colorPalette-bgColor-hover: hsl(0, 0%, 10%);
+}
+
+.button[data-color-palette="cornflowerblue"] {
+  --colorPalette-color-primary: hsl(219, 79%, 66%);
+  --colorPalette-color-invalid: hsl(219, 30%, 66%);
+  --colorPalette-color-dark: hsl(235, 79%, 66%); /* 버튼 폰트 색 */
+  --colorPalette-color-light: hsl(219, 79%, 80%); /* 버튼 보더 색 */
+  --colorPalette-bgColor-light: hsl(219, 79%, 90%); /* 버튼 배경색 */
+  --colorPalette-bgColor-hover: hsl(219, 79%, 68%);
+}
+
+.button[data-color-palette="red"] {
+  --colorPalette-color-primary: hsl(0, 100%, 50%);
+  --colorPalette-color-invalid: hsl(0, 50%, 50%);
+  --colorPalette-color-dark: hsl(0, 70%, 50%); /* 버튼 폰트 색 */
+  --colorPalette-color-light: hsl(0, 100%, 83%); /* 버튼 보더 색 */
+  --colorPalette-bgColor-light: hsl(0, 100%, 90%); /* 버튼 배경색 */
+  --colorPalette-bgColor-hover: hsl(0, 100%, 60%);
+}
+
+.button[data-color-palette="green"] {
+  --colorPalette-color-primary: hsl(120, 50%, 50%);
+  --colorPalette-color-invalid: hsl(120, 20%, 50%);
+  --colorPalette-color-dark: hsl(120, 70%, 50%); /* 버튼 폰트 색 */
+  --colorPalette-color-light: hsl(120, 50%, 83%); /* 버튼 보더 색 */
+  --colorPalette-bgColor-light: hsl(120, 50%, 90%); /* 버튼 배경색 */
+  --colorPalette-bgColor-hover: hsl(120, 50%, 52%);
+}
+
+.button[data-color-palette="purple"] {
+  --colorPalette-color-primary: hsl(300, 100%, 25%);
+  --colorPalette-color-invalid: hsl(300, 30%, 25%);
+  --colorPalette-color-dark: hsl(300, 70%, 50%); /* 버튼 폰트 색 */
+  --colorPalette-color-light: hsl(300, 50%, 83%); /* 버튼 보더 색 */
+  --colorPalette-bgColor-light: hsl(300, 50%, 90%); /* 버튼 배경색 */
+  --colorPalette-bgColor-hover: hsl(300, 100%, 27%);
+}
+
+.button[data-color-palette="orange"] {
+  --colorPalette-color-primary: hsl(39, 100%, 50%);
+  --colorPalette-color-invalid: hsl(39, 30%, 50%);
+  --colorPalette-color-dark: hsl(39, 70%, 50%); /* 버튼 폰트 색 */
+  --colorPalette-color-light: hsl(39, 100%, 83%); /* 버튼 보더 색 */
+  --colorPalette-bgColor-light: hsl(39, 100%, 90%); /* 버튼 배경색 */
+  --colorPalette-bgColor-hover: hsl(39, 100%, 52%);
+}
+
+.button[data-color-palette="yellow"] {
+  --colorPalette-color-primary: hsl(60, 90%, 50%);
+  --colorPalette-color-invalid: hsl(60, 30%, 50%);
+  --colorPalette-color-dark: hsl(60, 70%, 50%); /* 버튼 폰트 색 */
+  --colorPalette-color-light: hsl(60, 90%, 80%); /* 버튼 보더 색 */
+  --colorPalette-bgColor-light: hsl(60, 90%, 90%); /* 버튼 배경색 */
+  --colorPalette-bgColor-hover: hsl(60, 90%, 60%);
+}
+
 /* 색상 테마 */
 .button--solid--colorTheme {
   background-color: var(--colorTheme-color-primary);
@@ -109,105 +172,109 @@
   color: var(--colorTheme-color-invalid);
 }
 
-/* 기본  */
-.button--solid--default {
-  background-color: #000;
+.button--valid {
+  cursor: pointer;
+}
+
+/* 색상 선택 */
+.button--solid--colorPalette {
+  background-color: var(--colorPalette-color-primary);
   color: #fff;
 }
 
-.button--solid--default:hover {
-  background-color: hsl(0, 0%, 10%);
+.button--solid--colorPalette:hover {
+  background-color: var(--colorPalette-bgColor-hover);
 }
 
-.button--solid--default:focus-visible {
-  background-color: #ddd;
+.button--solid--colorTheme:focus-visible {
+  background-color: var(--colorPalette-color-dark);
 }
 
-.button--solid--default--invalid {
-  background-color: hsl(0, 0%, 70%);
-  color: #fff;
+.button--subtle--colorPalette {
+  background-color: var(--colorPalette-bgColor-light);
+  color: var(--colorPalette-color-dark);
 }
 
-.button--subtle--default {
-  background-color: #ddd;
-  color: #000;
+.button--subtle--colorPalette:hover {
+  background-color: var(--colorPalette-color-light);
 }
 
-.button--subtle--default:hover {
-  background-color: #ccc;
+.button--subtle--colorPalette:focus-visible {
+  background-color: var(--colorPalette-color-dark);
 }
 
-.button--subtle--default:focus-visible {
-  background-color: #ccc;
+.button--surface--colorPalette {
+  background-color: var(--colorPalette-bgColor-light);
+  color: var(--colorPalette-color-dark);
+  border: var(--colorPalette-border-light);
 }
 
-.button--subtle--default--invalid {
-  background-color: hsl(0, 0%, 70%);
-  color: #fff;
+.button--surface--colorPalette:hover {
+  background-color: var(--colorPalette-color-light);
 }
 
-.button--surface--default {
-  background-color: #ddd;
-  color: #000;
-  border: 1px solid #ccc;
+.button--surface--colorPalette:focus-visible {
+  background-color: var(--colorPalette-color-dark);
 }
 
-.button--surface--default:hover {
-  background-color: #ccc;
-}
-
-.button--surface--default:focus-visible {
-  background-color: #ccc;
-}
-
-.button--surface--default--invalid {
-  background-color: hsl(0, 0%, 70%);
-  color: #fff;
-}
-
-.button--outline--default {
+.button--outline--colorPalette {
   background-color: #fff;
-  color: #000;
-  border: 1px solid #ccc;
+  color: var(--colorPalette-color-dark);
+  border: var(--colorPalette-border-light);
 }
 
-.button--outline--default:hover {
-  background-color: #ddd;
+.button--outline--colorPalette:hover {
+  background-color: var(--colorPalette-bgColor-light);
 }
 
-.button--outline--default:focus-visible {
-  background-color: #ddd;
+.button--outline--colorPalette:focus-visible {
+  background-color: var(--colorPalette-bgColor-light);
 }
 
-.button--outline--default--invalid {
-  color: hsl(0, 0%, 70%);
-  border: 1px solid hsl(0, 0%, 70%);
-}
-
-.button--ghost--default {
+.button--ghost--colorPalette {
   background-color: #fff;
-  color: #000;
+  color: var(--colorPalette-color-dark);
 }
 
-.button--ghost--default:hover {
-  background-color: #ddd;
+.button--ghost--colorPalette:hover {
+  background-color: var(--colorPalette-bgColor-light);
 }
 
-.button--ghost--default:focus-visible {
-  background-color: #ddd;
+.button--ghoset--colorPalette:focus-visible {
+  border: var(--colorPalette-border-light);
 }
 
-.button--ghost--default--invalid {
-  color: hsl(0, 0%, 70%);
-}
-
-.button--plain--default {
-  color: #000;
+.button--plain--colorPalette {
+  color: var(--colorPalette-color-dark);
   font-weight: normal;
 }
 
-.button--plain--default--invalid {
-  color: hsl(0, 0%, 70%);
+.button--solid--colorPalette--invalid {
+  background-color: var(--colorPalette-color-invalid);
+  color: #fff;
+}
+
+.button--subtle--colorPalette--invalid {
+  background-color: var(--colorPalette-color-invalid);
+  color: #fff;
+}
+
+.button--surface--colorPalette--invalid {
+  background-color: var(--colorPalette-color-invalid);
+  color: #fff;
+}
+
+.button--outline--colorPalette--invalid {
+  color: var(--colorPalette-color-invalid);
+  border: 1px solid var(--colorPalette-color-invalid);
+}
+
+.button--ghost--colorPalette--invalid {
+  color: var(--colorPalette-color-invalid);
+}
+
+.button--plain--colorPalette--invalid {
+  color: var(--colorPalette-color-invalid);
 }
 
 .button--valid {

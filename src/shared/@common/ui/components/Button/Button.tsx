@@ -9,7 +9,15 @@ interface ButtonProps {
   children: ReactNode;
   onClick: (value?: any) => void;
   variant?: "solid" | "subtle" | "surface" | "outline" | "ghost" | "plain";
-  colorPalette?: "default" | "colorTheme";
+  colorPalette?:
+    | "colorTheme"
+    | "default"
+    | "cornflowerblue"
+    | "green"
+    | "red"
+    | "purple"
+    | "orange"
+    | "yellow";
   isValid?: boolean;
   loading?: boolean;
   loadingText?: string;
@@ -39,10 +47,18 @@ const Button = ({
     styles["button"],
     // variant + colorPalette
     !isValid || disabled
-      ? styles[`button--${variant}--${colorPalette}--invalid`]
-      : `${styles[`button--${variant}--${colorPalette}`]} ${
-          styles[`button--valid`]
-        }`,
+      ? styles[
+          `button--${variant}--${
+            colorPalette === "colorTheme" ? colorPalette : "colorPalette"
+          }--invalid`
+        ]
+      : `${
+          styles[
+            `button--${variant}--${
+              colorPalette === "colorTheme" ? colorPalette : "colorPalette"
+            }`
+          ]
+        } ${styles[`button--valid`]}`,
     className,
   ]);
 
@@ -54,6 +70,7 @@ const Button = ({
       onClick={onClick}
       aria-disabled={!isValid || disabled} // 비활성화 상태
       aria-label={loading ? loadingText || ariaLabel.loading : ariaLabel.button}
+      data-color-palette={colorPalette} 
     >
       {loading ? (
         <div
