@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 interface useFocusTrapProps {
   containerRef: React.RefObject<HTMLElement>; // 감싸는 요소
@@ -21,15 +21,48 @@ const useFocusTrap = ({
   isOn = true,
   firstFocus = 0,
 }: useFocusTrapProps) => {
-  if (!isOn) return;
+  const [focusableElems, setFocusableElems] = useState<Element[]>([]);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+    const focusableElems = getFocusableElems(container);
+
+    setFocusableElems(focusableElems);
+
+    // MutationObserver 추가 (disabled 속성 변화 감지)
+    const observer = new MutationObserver(() => {
+      const updatedFocusableElems = getFocusableElems(container);
+      if (updatedFocusableElems.length === 0) return;
+
+      setFocusableElems((prevFocusableElems) => {
+        if (prevFocusableElems === updatedFocusableElems) {
+          return prevFocusableElems;
+        }
+
+        return updatedFocusableElems;
+      });
+    });
+
+    observer.observe(container, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ["disabled"],
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [containerRef.current]);
 
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
-    const focusableElems = getFocusableElems(container);
     if (focusableElems.length === 0) return;
     console.log("포커스 가능한 요소들", focusableElems);
+
     const firstElem = focusableElems[0] as HTMLElement;
     console.log("첫 요소", firstElem);
 
@@ -52,8 +85,11 @@ const useFocusTrap = ({
       } // enter 키를 누르면 포커스가 모달창 이전으로 돌아감
     };
 
-    // 첫번째 포커스 요소 설정하기
-    if (focusableElems[firstFocus] as HTMLElement) {
+    // 현재 포커스 요소가 focusableElem에 포함되어 있다면 포커스 유지 아니면 첫번째 포커스 요소로 이동
+    if (focusableElems.includes(document.activeElement as HTMLElement)) {
+      (document.activeElement as HTMLElement).focus();
+    } else if (focusableElems[firstFocus] as HTMLElement) {
+      // 첫번째 포커스 요소 설정하기
       (focusableElems[firstFocus] as HTMLElement).focus();
     } else {
       firstElem.focus();
@@ -66,7 +102,9 @@ const useFocusTrap = ({
       // 클린업: 이벤트 리스너 제거
       container.removeEventListener("keydown", handleKeyDown);
     };
-  }, [containerRef]);
+  }, [focusableElems]);
+
+  if (!isOn) return;
   return;
 };
 
