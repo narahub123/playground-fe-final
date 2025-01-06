@@ -70,6 +70,13 @@ const components = {
     birthMonthUnit: "月",
     birthDateUnit: "日",
   },
+  Button: {
+    empty: "請添加文字或圖示。",
+    ariaLabel: {
+      loading: "加載中",
+      button: "點擊按鈕",
+    },
+  },
 };
 
 export default components;

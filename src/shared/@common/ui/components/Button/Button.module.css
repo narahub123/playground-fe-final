@@ -8,6 +8,7 @@
   font-weight: bold;
 }
 
+/* 색상 테마 */
 .button--solid--colorTheme {
   background-color: var(--colorTheme-color-primary);
   color: #fff;
@@ -17,6 +18,10 @@
   background-color: var(--colorTheme-bgColor-hover);
 }
 
+.button--solid--colorTheme:focus-visible {
+  background-color: var(--colorTheme-color-dark);
+}
+
 .button--subtle--colorTheme {
   background-color: var(--colorTheme-bgColor-light);
   color: var(--colorTheme-color-dark);
@@ -24,6 +29,10 @@
 
 .button--subtle--colorTheme:hover {
   background-color: var(--colorTheme-color-light);
+}
+
+.button--subtle--colorTheme:focus-visible {
+  background-color: var(--colorTheme-color-dark);
 }
 
 .button--surface--colorTheme {
@@ -36,6 +45,10 @@
   background-color: var(--colorTheme-color-light);
 }
 
+.button--surface--colorTheme:focus-visible {
+  background-color: var(--colorTheme-color-dark);
+}
+
 .button--outline--colorTheme {
   background-color: #fff;
   color: var(--colorTheme-color-dark);
@@ -46,6 +59,10 @@
   background-color: var(--colorTheme-bgColor-light);
 }
 
+.button--outline--colorTheme:focus-visible {
+  background-color: var(--colorTheme-bgColor-light);
+}
+
 .button--ghost--colorTheme {
   background-color: #fff;
   color: var(--colorTheme-color-dark);
@@ -53,6 +70,10 @@
 
 .button--ghost--colorTheme:hover {
   background-color: var(--colorTheme-bgColor-light);
+}
+
+.button--ghoset--colorTheme:focus-visible {
+  border: var(--colorTheme-border-light);
 }
 
 .button--plain--colorTheme {
@@ -88,13 +109,9 @@
   color: var(--colorTheme-color-invalid);
 }
 
+/* 기본  */
 .button--solid--default {
   background-color: #000;
-  color: #fff;
-}
-
-.button--solid--default--invalid {
-  background-color: hsl(0, 0%, 70%);
   color: #fff;
 }
 
@@ -102,18 +119,31 @@
   background-color: hsl(0, 0%, 10%);
 }
 
+.button--solid--default:focus-visible {
+  background-color: #ddd;
+}
+
+.button--solid--default--invalid {
+  background-color: hsl(0, 0%, 70%);
+  color: #fff;
+}
+
 .button--subtle--default {
   background-color: #ddd;
   color: #000;
 }
 
+.button--subtle--default:hover {
+  background-color: #ccc;
+}
+
+.button--subtle--default:focus-visible {
+  background-color: #ccc;
+}
+
 .button--subtle--default--invalid {
   background-color: hsl(0, 0%, 70%);
   color: #fff;
-}
-
-.button--subtle--default:hover {
-  background-color: #ccc;
 }
 
 .button--surface--default {
@@ -122,13 +152,17 @@
   border: 1px solid #ccc;
 }
 
+.button--surface--default:hover {
+  background-color: #ccc;
+}
+
+.button--surface--default:focus-visible {
+  background-color: #ccc;
+}
+
 .button--surface--default--invalid {
   background-color: hsl(0, 0%, 70%);
   color: #fff;
-}
-
-.button--surface--default:hover {
-  background-color: #ccc;
 }
 
 .button--outline--default {
@@ -137,13 +171,17 @@
   border: 1px solid #ccc;
 }
 
+.button--outline--default:hover {
+  background-color: #ddd;
+}
+
+.button--outline--default:focus-visible {
+  background-color: #ddd;
+}
+
 .button--outline--default--invalid {
   color: hsl(0, 0%, 70%);
   border: 1px solid hsl(0, 0%, 70%);
-}
-
-.button--outline--default:hover {
-  background-color: #ddd;
 }
 
 .button--ghost--default {
@@ -151,12 +189,16 @@
   color: #000;
 }
 
-.button--ghost--default--invalid {
-  color: hsl(0, 0%, 70%);
-}
-
 .button--ghost--default:hover {
   background-color: #ddd;
+}
+
+.button--ghost--default:focus-visible {
+  background-color: #ddd;
+}
+
+.button--ghost--default--invalid {
+  color: hsl(0, 0%, 70%);
 }
 
 .button--plain--default {

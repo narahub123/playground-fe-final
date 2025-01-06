@@ -72,6 +72,13 @@ const components = {
     birthMonthUnit: "월",
     birthDateUnit: "일",
   },
+  Button: {
+    empty: "문자열 혹은 아이콘을 넣어주세요.",
+    ariaLabel: {
+      loading: "로딩 중",
+      button: "버튼 클릭",
+    },
+  },
 };
 
 export default components;

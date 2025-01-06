@@ -76,6 +76,13 @@ const components = {
     birthMonthUnit: "月",
     birthDateUnit: "日",
   },
+  Button: {
+    empty: "文字列またはアイコンを追加してください。",
+    ariaLabel: {
+      loading: "読み込み中",
+      button: "ボタンをクリック",
+    },
+  },
 };
 
 export default components;

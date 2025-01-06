@@ -73,6 +73,13 @@ const components = {
     birthMonthUnit: "",
     birthDateUnit: "",
   },
+  Button: {
+    empty: "Please add text or an icon.",
+    ariaLabel: {
+      loading: "Loading",
+      button: "Click the button",
+    },
+  },
 };
 
 export default components;

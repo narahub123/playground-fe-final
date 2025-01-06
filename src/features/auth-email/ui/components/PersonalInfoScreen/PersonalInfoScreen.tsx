@@ -1,5 +1,5 @@
 import styles from "./PersonalInfoScreen.module.css";
-import { Input, Modal, Text } from "@shared/@common/ui/components";
+import { Button, Input, Modal, Text } from "@shared/@common/ui/components";
 import {
   setBirthDateSignup,
   setBirthMonthSignup,
@@ -16,6 +16,7 @@ import { useSelector } from "react-redux";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { USERNAME_MAX } from "@shared/@common/constants";
 import { useState } from "react";
+import { useModalContext } from "@shared/@common/ui/components/Modal/hooks";
 
 /**
  * PersonalInfoScreen 컴포넌트
@@ -30,6 +31,8 @@ const PersonalInfoScreen = () => {
   const [isValid, setIsValid] = useState<boolean | { [key: string]: boolean }>(
     {}
   );
+
+  const { setCurPage, curPage, lengthOfList } = useModalContext();
 
   const {
     title,
@@ -49,6 +52,14 @@ const PersonalInfoScreen = () => {
     usernameError,
     emailError,
   } = useLanguageContent(["components", "PersonalInfoScreen"]);
+
+  const handleClick = () => {
+    console.log("클릭됨 ");
+    if (!setCurPage || !curPage || !lengthOfList) return;
+
+    if (curPage + 1 > lengthOfList) return;
+    setCurPage((prev) => prev + 1);
+  };
 
   return (
     <div className={styles["personal__info__screen"]}>
@@ -166,7 +177,11 @@ const PersonalInfoScreen = () => {
           </div>
         </div>
       </Modal.Body>
-      <Modal.Footer>버튼</Modal.Footer>
+      <Modal.Footer>
+        <Button colorPalette="colorTheme" onClick={handleClick} isValid>
+          버튼
+        </Button>
+      </Modal.Footer>
     </div>
   );
 };
