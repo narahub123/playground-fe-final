@@ -1,3 +1,4 @@
 import displaySlice from "./displaySlice";
+import userSlice from "./userSlice";
 
-export { displaySlice };
+export { displaySlice, userSlice };

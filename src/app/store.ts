@@ -4,13 +4,17 @@ import {
   loginSlice as login,
   signupSlice as signup,
 } from "@features/auth-setting/models/slices";
-import { displaySlice as display } from "@shared/@common/models/slices";
+import {
+  displaySlice as display,
+  userSlice as user,
+} from "@shared/@common/models/slices";
 
 const store = configureStore({
   reducer: {
     login, // 로그인 상태
     display, // 화면 표시 설정
     signup, // 회원 가입
+    user, // 사용자 정보
   },
 
   // serializableCheck 옵션을 false로 설정하여
