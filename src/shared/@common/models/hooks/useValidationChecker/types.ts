@@ -1,5 +1,6 @@
 import { SignupState } from "@features/auth-setting/models/slices/signupSlice";
 import { BirthType } from "@features/auth-setting/types";
+import { UserState } from "../../slices/userSlice";
 
 /**
  * `SignupState`의 키에서 "birth"를 제외한 키와 `BirthType`의 키를 포함하는 타입입니다.
@@ -10,7 +11,11 @@ import { BirthType } from "@features/auth-setting/types";
  *
  * @typedef {string} FieldType
  */
-export type FieldType = Exclude<keyof SignupState, "birth"> | keyof BirthType;
+export type FieldType =
+  | Exclude<keyof SignupState, "birth">
+  | keyof BirthType
+  | keyof UserState
+  | "password_confirm";
 
 /**
  * 버튼의 유효성 상태를 나타내는 타입입니다.
