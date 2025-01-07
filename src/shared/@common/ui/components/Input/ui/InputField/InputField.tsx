@@ -119,6 +119,26 @@ const InputField = () => {
       return; // 유효성 검사 진행 중단
     }
 
+    // password_check 유효성 검사를 하지 않음
+    if (field === "password_check") {
+      // 값이 존재한다면 true 없다면 false
+      setIsValid &&
+        setIsValid((prev) => {
+          // 현재 상태가 객체이고, null이 아닌 경우에만 처리
+          if (prev && typeof prev === "object") {
+            // 기존 상태 값과 비교하여 변경이 필요한 경우에만 업데이트
+            if (prev[field] !== Boolean(value)) {
+              return { ...prev, [field]: Boolean(value) };
+            }
+            return prev; // 값이 동일하면 기존 상태 반환
+          }
+          // 현재 상태가 객체가 아닌 경우 isMatching 값을 반환
+          return Boolean(value);
+        });
+
+      return; // 유효성 검사 진행 중단
+    }
+
     // 각 규칙에 맞는 유효성 검사를 차례대로 수행
     if (EMPTY && !value.match(EMPTY.regExp)) {
       if (errorMessage !== EMPTY.errorMessage) {
