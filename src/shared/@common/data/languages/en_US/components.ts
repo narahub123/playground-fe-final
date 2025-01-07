@@ -93,7 +93,11 @@ const components = {
     button: "Next",
   },
   InputPassword: {
-    passwordLabel: "Password",
+    passwordLabel: {
+      password: "Password",
+      confirm: "Confirm Password",
+      current: "Current Password",
+    },
     passwordError: {
       EMPTY: {
         regExp: EMPTY,

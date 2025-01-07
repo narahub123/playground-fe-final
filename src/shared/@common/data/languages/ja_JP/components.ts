@@ -96,7 +96,11 @@ const components = {
     button: "次",
   },
   InputPassword: {
-    passwordLabel: "パスワード",
+    passwordLabel: {
+      password: "パスワード",
+      confirm: "パスワード確認",
+      current: "現在のパスワード",
+    },
     passwordError: {
       EMPTY: {
         regExp: EMPTY,

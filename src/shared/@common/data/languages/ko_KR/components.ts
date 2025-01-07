@@ -92,7 +92,11 @@ const components = {
     button: "다음",
   },
   InputPassword: {
-    passwordLabel: "비밀번호",
+    passwordLabel: {
+      password: "비밀번호",
+      confirm: "비밀번호 확인",
+      current: "현재 비밀번호",
+    },
     passwordError: {
       EMPTY: {
         regExp: EMPTY,

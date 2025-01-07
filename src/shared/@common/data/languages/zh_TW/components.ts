@@ -90,7 +90,11 @@ const components = {
     button: "下一個",
   },
   InputPassword: {
-    passwordLabel: "密碼",
+    passwordLabel: {
+      password: "密碼",
+      confirm: "確認密碼",
+      current: "當前密碼",
+    },
     passwordError: {
       EMPTY: {
         regExp: EMPTY,
