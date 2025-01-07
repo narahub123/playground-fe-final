@@ -5,7 +5,7 @@ import {
   getFontSize,
 } from "./displaySelectors";
 
-import { getPassword, getPasswordCheck } from "./userSelectors";
+import { getUser, getPassword, getPasswordCheck } from "./userSelectors";
 
 export {
   // display
@@ -15,6 +15,7 @@ export {
   getFontSize,
 
   // user
+  getUser,
   getPassword,
   getPasswordCheck,
 };
