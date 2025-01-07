@@ -17,7 +17,7 @@ const PasswordScreen = () => {
   const user = useSelector(getUserInSignup);
 
   const { isValid, setIsValid, validationResult } = useValidationChecker({
-    fields: ["password"],
+    fields: ["password", "password_check", "password_confirm"],
     sliceState: user,
   });
 
@@ -27,6 +27,8 @@ const PasswordScreen = () => {
     "components",
     "PasswordScreen",
   ]);
+
+  console.log(isValid);
 
   const handleClick = () => {
     if (!setCurPage || !curPage || !lengthOfList) return;
@@ -40,7 +42,26 @@ const PasswordScreen = () => {
       <Modal.Body className={styles[`password__screen__body`]}>
         <Text text={title} type="heading2" />
         <Text text={expl} type="expl" />
-        <InputPassword isValid={isValid} setIsValid={setIsValid} />
+        <InputPassword
+          isValid={isValid}
+          setIsValid={setIsValid}
+          field="password"
+          label="password"
+          usedIn="signup"
+        />
+        <InputPassword
+          isValid={isValid}
+          setIsValid={setIsValid}
+          field="password_confirm"
+          label="confirm"
+          usedIn="signup"
+        />
+        <InputPassword
+          isValid={isValid}
+          setIsValid={setIsValid}
+          field="password_check"
+          label="current"
+        />
       </Modal.Body>
       <Modal.Footer>
         <Button

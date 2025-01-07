@@ -34,7 +34,7 @@ const useInputActionIconProps = (
    */
   const iconName: keyof typeof Icons | undefined = icon
     ? icon
-    : field === "password"
+    : field.includes("password")
     ? showPassword
       ? "eyeoff"
       : "eye"
@@ -46,10 +46,10 @@ const useInputActionIconProps = (
    */
   const icontitle = title
     ? title
-    : field === "password"
+    : field.includes("password")
     ? showPassword
-      ? iconTitle[field].eyeoff
-      : iconTitle[field].eye
+      ? iconTitle["password"].eyeoff
+      : iconTitle["password"].eye
     : undefined;
 
   /**
@@ -58,7 +58,7 @@ const useInputActionIconProps = (
    */
   const onClick = handleClick
     ? handleClick
-    : field === "password"
+    : field.includes("password")
     ? () => {
         // 클릭 전 커서 위치 저장
         const cursorPosition = inputRef?.current?.selectionStart ?? 0;
