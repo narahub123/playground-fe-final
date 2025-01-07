@@ -96,6 +96,14 @@ const components = {
       current: "当前密码",
     },
     passwordError: {
+      REQUIRED: {
+        regExp: "",
+        errorMessage: "请先设置密码。",
+      },
+      MISMATCH: {
+        regExp: "",
+        errorMessage: "密码与设置的密码不一致。",
+      },
       EMPTY: {
         regExp: EMPTY,
         errorMessage: "请输入密码。",

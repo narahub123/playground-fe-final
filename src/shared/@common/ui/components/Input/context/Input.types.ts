@@ -172,6 +172,8 @@ interface CompileErrorType {
  * - `FORMAT`: 입력값의 형식이 올바르지 않은 경우 발생하는 오류.
  * - `DUPLICATE`: 이미 동일한 값으로 저장된 값이 있는 경우 발생하는 오류.
  * - `DISCONNECT`: 서버와 연결이 되지 않는 경우 발생하는 오류.
+ * - `REQUIRED`: 다른 필드의 정보가 먼저 입력되어야 할 때 발생하는 오류. 예를 들어, 비밀번호 확인 필드가 비어 있을 때, 비밀번호 필드가 먼저 입력되어야 한다는 경우.
+ * - `MISMATCH`: 다른 필드의 정보와 일치하지 않을 때 발생하는 오류. 예를 들어, 비밀번호와 비밀번호 확인이 일치하지 않는 경우.
  */
 type InputErrorKeyType =
   | "EMPTY" // 비어있는 입력
@@ -181,7 +183,9 @@ type InputErrorKeyType =
   | "EXCEED" // 최대 조건 초과
   | "FORMAT" // 잘못된 형식
   | "DUPLICATE" // 중복
-  | "DISCONNECT"; // 서버와 연결 안됨
+  | "DISCONNECT" // 서버와 연결 안됨
+  | "REQUIRED" // 다른 필드의 정보가 먼저 입력되어야 하는 경우
+  | "MISMATCH"; // 다른 필드의 정보와 일치하지 않는 경우
 
 export type {
   InputContextType,

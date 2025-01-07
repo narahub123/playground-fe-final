@@ -102,6 +102,14 @@ const components = {
       current: "現在のパスワード",
     },
     passwordError: {
+      REQUIRED: {
+        regExp: "",
+        errorMessage: "パスワードを先に設定してください。",
+      },
+      MISMATCH: {
+        regExp: "",
+        errorMessage: "設定したパスワードと一致しません。",
+      },
       EMPTY: {
         regExp: EMPTY,
         errorMessage: "パスワードを入力してください。",

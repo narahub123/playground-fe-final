@@ -1,5 +1,5 @@
 import styles from "./InputField.module.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAppDispatch } from "@app/store";
 import { joinClassNames } from "@shared/@common/utils";
 import { useInputContext } from "@shared/@common/ui/components/Input/context";
@@ -15,6 +15,12 @@ import { checkEmailDuplicateInSignupAPI } from "@shared/auth/apis";
  */
 const InputField = () => {
   const dispatch = useAppDispatch();
+
+  /**
+   * 상태: 비밀번호 확인 입력 값을 관리합니다.
+   */
+  const [passwordConfirmValue, setPasswordConfirmValue] = useState("");
+
   // InputContext를 통해 필요한 값 불러오기
   const {
     inputValue,
@@ -41,6 +47,8 @@ const InputField = () => {
     FORMAT,
     DUPLICATE,
     DISCONNECT,
+    REQUIRED,
+    MISMATCH,
   } = useCompiledInputError();
 
   /**
@@ -64,6 +72,12 @@ const InputField = () => {
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
 
+    // password_confirm 필드이고 password 필드의 값이 없을 때
+    if (field === "password_confirm" && !inputValue && REQUIRED) {
+      setErrorMessage(REQUIRED.errorMessage);
+      return; // 입력을 진행하지 않음
+    }
+
     // 최대 길이를 초과하면 EXCEED 에러를 설정
     if (maxLength && value.length > maxLength && EXCEED) {
       if (errorMessage !== EXCEED.errorMessage) {
@@ -73,7 +87,37 @@ const InputField = () => {
     }
 
     // 입력값이 변경되면 상태를 업데이트
-    dispatch(setInputValue(value));
+    // password_confirm은 내부 상태를 업데이트
+    if (field === "password_confirm") setPasswordConfirmValue(value);
+    // 그외는 전달 받은 reducer를 통해서 외부 상태를 업데이트
+    else dispatch(setInputValue(value));
+
+    // "password_confirm" 필드인 경우 유효성 검사를 진행하지 않고 입력 값과 password 필드의 값을 비교
+    if (field === "password_confirm" && inputValue !== "" && MISMATCH) {
+      const isMatching = value === inputValue; // 입력 값과 password 값이 일치하는지 확인
+
+      const msg = isMatching ? "" : MISMATCH.errorMessage; // 일치 여부에 따른 에러 메시지 설정
+
+      if (errorMessage === msg) return; // 기존 에러 메시지와 동일하면 상태 업데이트 생략
+
+      setErrorMessage(msg); // 새로운 에러 메시지 설정
+
+      setIsValid &&
+        setIsValid((prev) => {
+          // 현재 상태가 객체이고, null이 아닌 경우에만 처리
+          if (prev && typeof prev === "object") {
+            // 기존 상태 값과 비교하여 변경이 필요한 경우에만 업데이트
+            if (prev[field] !== isMatching) {
+              return { ...prev, [field]: isMatching };
+            }
+            return prev; // 값이 동일하면 기존 상태 반환
+          }
+          // 현재 상태가 객체가 아닌 경우 isMatching 값을 반환
+          return isMatching;
+        });
+
+      return; // 유효성 검사 진행 중단
+    }
 
     // 각 규칙에 맞는 유효성 검사를 차례대로 수행
     if (EMPTY && !value.match(EMPTY.regExp)) {
@@ -272,9 +316,13 @@ const InputField = () => {
          * @prop {string} aria-describedby - 에러 메시지와 연결된 설명 요소의 id
          */
         <input
-          type={field === "password" && !showPassword ? "password" : "text"}
+          type={
+            field.includes("password") && !showPassword ? "password" : "text"
+          }
           className={className}
-          value={inputValue} // 기본 값
+          value={
+            field === "password_confirm" ? passwordConfirmValue : inputValue
+          } // 기본 값
           ref={inputRef} // input 참조
           id={field} // label과 연결
           onChange={disabled ? undefined : (e) => handleChange(e)}

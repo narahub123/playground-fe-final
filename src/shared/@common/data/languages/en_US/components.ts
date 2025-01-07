@@ -99,6 +99,14 @@ const components = {
       current: "Current Password",
     },
     passwordError: {
+      REQUIRED: {
+        regExp: "",
+        errorMessage: "Please set the password first.",
+      },
+      MISMATCH: {
+        regExp: "",
+        errorMessage: "The password does not match the one you set.",
+      },
       EMPTY: {
         regExp: EMPTY,
         errorMessage: "Please enter a password.",

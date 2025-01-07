@@ -26,6 +26,9 @@ const components = {
       },
     },
   },
+  InputField: {
+    passwordConfirm: {},
+  },
   Dropdown: {
     emptyResult: "해당 키워드로 검색된 결과가 없습니다.",
   },
@@ -98,6 +101,14 @@ const components = {
       current: "현재 비밀번호",
     },
     passwordError: {
+      REQUIRED: {
+        regExp: "",
+        errorMessage: "비밀번호를 먼저 설정해주세요.",
+      },
+      MISMATCH: {
+        regExp: "",
+        errorMessage: "설정한 비밀번호와 일치하지 않습니다.",
+      },
       EMPTY: {
         regExp: EMPTY,
         errorMessage: "비밀번호를 입력해주세요.",
