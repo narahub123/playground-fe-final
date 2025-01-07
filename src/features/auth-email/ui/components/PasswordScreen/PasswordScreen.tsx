@@ -47,14 +47,14 @@ const PasswordScreen = () => {
           setIsValid={setIsValid}
           field="password"
           label="password"
-          usedIn="signup"
+          isSignup
         />
         <InputPassword
           isValid={isValid}
           setIsValid={setIsValid}
           field="password_confirm"
           label="confirm"
-          usedIn="signup"
+          isSignup
         />
         <InputPassword
           isValid={isValid}
