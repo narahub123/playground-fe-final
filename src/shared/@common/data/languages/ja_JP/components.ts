@@ -93,6 +93,7 @@ const components = {
   PasswordScreen: {
     title: "パスワードが必要です。",
     expl: "8文字以上である必要があります。",
+    button: "次",
   },
   InputPassword: {
     passwordLabel: "パスワード",

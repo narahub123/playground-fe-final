@@ -87,6 +87,7 @@ const components = {
   PasswordScreen: {
     title: "需要密码。",
     expl: "必须至少包含8个字符。",
+    button: "下一个",
   },
   InputPassword: {
     passwordLabel: "密码",
