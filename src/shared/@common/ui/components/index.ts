@@ -7,5 +7,17 @@ import Portal from "./Portal/Portal";
 import Button from "./Button/Button";
 import SVG from "./SVG/SVG";
 import Spinner from "./Spinner/Spinner";
+import InputPassword from "./InputPassword/InputPassword";
 
-export { Text, Modal, Icon, Input, Dropdown, Portal, Button, SVG, Spinner };
+export {
+  Text,
+  Modal,
+  Icon,
+  Input,
+  Dropdown,
+  Portal,
+  Button,
+  SVG,
+  Spinner,
+  InputPassword,
+};

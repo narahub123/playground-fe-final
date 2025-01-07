@@ -6,6 +6,12 @@ import {
 import {
   EMAIL_FORMAT,
   EMPTY,
+  PASSWORD_FORBIDDEN,
+  PASSWORD_INCOMPLETE,
+  PASSWORD_MAX,
+  PASSWORD_MIN,
+  PASSWORD_SPECIAL_CHARECTERS,
+  PASSWORD_UNDER_MINIMUM,
   USERNAME_MAX,
   USERNAME_MIN,
   USERNAME_UNDER_MINIMUM,
@@ -84,6 +90,31 @@ const components = {
   PasswordScreen: {
     title: "Password is required.",
     expl: "It must be at least 8 characters long.",
+  },
+  InputPassword: {
+    passwordLabel: "Password",
+    passwordError: {
+      EMPTY: {
+        regExp: EMPTY,
+        errorMessage: "Please enter a password.",
+      },
+      FORBIDDEN: {
+        regExp: PASSWORD_FORBIDDEN,
+        errorMessage: `The password must consist of lowercase letters, uppercase letters, numbers, and special characters (${PASSWORD_SPECIAL_CHARECTERS}).`,
+      },
+      UNDER_MINIMUM: {
+        regExp: PASSWORD_UNDER_MINIMUM,
+        errorMessage: `The password must be between ${PASSWORD_MIN} and ${PASSWORD_MAX} characters.`,
+      },
+      INCOMPLETE: {
+        regExp: PASSWORD_INCOMPLETE,
+        errorMessage: `The password must include at least one lowercase letter, one uppercase letter, one number, and one special character (${PASSWORD_SPECIAL_CHARECTERS}).`,
+      },
+      EXCEED: {
+        regExp: "",
+        errorMessage: `The password cannot exceed ${PASSWORD_MAX} characters.`,
+      },
+    },
   },
 };
 

@@ -6,6 +6,12 @@ import {
 import {
   EMAIL_FORMAT,
   EMPTY,
+  PASSWORD_FORBIDDEN,
+  PASSWORD_INCOMPLETE,
+  PASSWORD_MAX,
+  PASSWORD_MIN,
+  PASSWORD_SPECIAL_CHARECTERS,
+  PASSWORD_UNDER_MINIMUM,
   USERNAME_MAX,
   USERNAME_MIN,
   USERNAME_UNDER_MINIMUM,
@@ -83,6 +89,31 @@ const components = {
   PasswordScreen: {
     title: "비밀번호가 필요합니다.",
     expl: "8자 이상이어야 합니다.",
+  },
+  InputPassword: {
+    passwordLabel: "비밀번호",
+    passwordError: {
+      EMPTY: {
+        regExp: EMPTY,
+        errorMessage: "비밀번호를 입력해주세요.",
+      },
+      FORBIDDEN: {
+        regExp: PASSWORD_FORBIDDEN,
+        errorMessage: `비밀번호는 영문 소문자, 영문 대문자, 숫자, 특수문자(${PASSWORD_SPECIAL_CHARECTERS})로 작성되야 합니다.`,
+      },
+      UNDER_MINIMUM: {
+        regExp: PASSWORD_UNDER_MINIMUM,
+        errorMessage: `비밀번호를 최소 ${PASSWORD_MIN}자에서 최대 ${PASSWORD_MAX}로 작성되어야 합니다.`,
+      },
+      INCOMPLETE: {
+        regExp: PASSWORD_INCOMPLETE,
+        errorMessage: `비밀번호는 영문 소문자, 영문 대문자, 숫자, 특수문자(${PASSWORD_SPECIAL_CHARECTERS})가 각각 적어도 1자 이상 필요합니다.`,
+      },
+      EXCEED: {
+        regExp: "",
+        errorMessage: `비밀번호는 최대 ${PASSWORD_MAX}까지 가능합니다.`,
+      },
+    },
   },
 };
 

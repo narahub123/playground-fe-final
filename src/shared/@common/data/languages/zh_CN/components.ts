@@ -6,6 +6,12 @@ import {
 import {
   EMAIL_FORMAT,
   EMPTY,
+  PASSWORD_FORBIDDEN,
+  PASSWORD_INCOMPLETE,
+  PASSWORD_MAX,
+  PASSWORD_MIN,
+  PASSWORD_SPECIAL_CHARECTERS,
+  PASSWORD_UNDER_MINIMUM,
   USERNAME_MAX,
   USERNAME_MIN,
   USERNAME_UNDER_MINIMUM,
@@ -81,6 +87,31 @@ const components = {
   PasswordScreen: {
     title: "需要密码。",
     expl: "必须至少包含8个字符。",
+  },
+  InputPassword: {
+    passwordLabel: "密码",
+    passwordError: {
+      EMPTY: {
+        regExp: EMPTY,
+        errorMessage: "请输入密码。",
+      },
+      FORBIDDEN: {
+        regExp: PASSWORD_FORBIDDEN,
+        errorMessage: `密码必须由小写字母、大写字母、数字和特殊字符(${PASSWORD_SPECIAL_CHARECTERS})组成。`,
+      },
+      UNDER_MINIMUM: {
+        regExp: PASSWORD_UNDER_MINIMUM,
+        errorMessage: `密码长度必须在${PASSWORD_MIN}到${PASSWORD_MAX}字符之间。`,
+      },
+      INCOMPLETE: {
+        regExp: PASSWORD_INCOMPLETE,
+        errorMessage: `密码必须至少包含一个小写字母、一个大写字母、一个数字和一个特殊字符(${PASSWORD_SPECIAL_CHARECTERS})。`,
+      },
+      EXCEED: {
+        regExp: "",
+        errorMessage: `密码最多不能超过${PASSWORD_MAX}个字符。`,
+      },
+    },
   },
 };
 

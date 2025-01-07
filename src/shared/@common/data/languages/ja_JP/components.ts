@@ -6,6 +6,12 @@ import {
 import {
   EMAIL_FORMAT,
   EMPTY,
+  PASSWORD_FORBIDDEN,
+  PASSWORD_INCOMPLETE,
+  PASSWORD_MAX,
+  PASSWORD_MIN,
+  PASSWORD_SPECIAL_CHARECTERS,
+  PASSWORD_UNDER_MINIMUM,
   USERNAME_MAX,
   USERNAME_MIN,
   USERNAME_UNDER_MINIMUM,
@@ -87,6 +93,31 @@ const components = {
   PasswordScreen: {
     title: "パスワードが必要です。",
     expl: "8文字以上である必要があります。",
+  },
+  InputPassword: {
+    passwordLabel: "パスワード",
+    passwordError: {
+      EMPTY: {
+        regExp: EMPTY,
+        errorMessage: "パスワードを入力してください。",
+      },
+      FORBIDDEN: {
+        regExp: PASSWORD_FORBIDDEN,
+        errorMessage: `パスワードは、小文字、大文字、数字、特殊文字(${PASSWORD_SPECIAL_CHARECTERS})で構成する必要があります。`,
+      },
+      UNDER_MINIMUM: {
+        regExp: PASSWORD_UNDER_MINIMUM,
+        errorMessage: `パスワードは${PASSWORD_MIN}文字以上${PASSWORD_MAX}文字以内である必要があります。`,
+      },
+      INCOMPLETE: {
+        regExp: PASSWORD_INCOMPLETE,
+        errorMessage: `パスワードには、小文字、大文字、数字、特殊文字(${PASSWORD_SPECIAL_CHARECTERS})がそれぞれ少なくとも1文字必要です。`,
+      },
+      EXCEED: {
+        regExp: "",
+        errorMessage: `パスワードは最大${PASSWORD_MAX}文字までです。`,
+      },
+    },
   },
 };
 
