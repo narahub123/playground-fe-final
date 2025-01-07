@@ -69,6 +69,7 @@ const components = {
     birthYearUnit: "年",
     birthMonthUnit: "月",
     birthDateUnit: "日",
+    button: "下一個",
   },
   Button: {
     empty: "請添加文字或圖示。",

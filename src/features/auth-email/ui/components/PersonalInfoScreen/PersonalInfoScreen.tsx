@@ -57,10 +57,10 @@ const PersonalInfoScreen = () => {
     birthDateUnit,
     usernameError,
     emailError,
+    button,
   } = useLanguageContent(["components", "PersonalInfoScreen"]);
 
   const handleClick = () => {
-    console.log("클릭됨 ");
     if (!setCurPage || !curPage || !lengthOfList) return;
 
     if (curPage + 1 > lengthOfList) return;
@@ -189,7 +189,7 @@ const PersonalInfoScreen = () => {
           onClick={handleClick}
           isValid={validationResult}
         >
-          버튼
+          {button}
         </Button>
       </Modal.Footer>
     </div>

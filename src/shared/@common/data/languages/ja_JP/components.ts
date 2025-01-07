@@ -75,6 +75,7 @@ const components = {
     birthYearUnit: "年",
     birthMonthUnit: "月",
     birthDateUnit: "日",
+    button: "次",
   },
   Button: {
     empty: "文字列またはアイコンを追加してください。",

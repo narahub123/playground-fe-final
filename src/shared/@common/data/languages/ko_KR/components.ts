@@ -71,6 +71,7 @@ const components = {
     birthYearUnit: "년",
     birthMonthUnit: "월",
     birthDateUnit: "일",
+    button: "다음",
   },
   Button: {
     empty: "문자열 혹은 아이콘을 넣어주세요.",

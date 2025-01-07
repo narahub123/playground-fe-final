@@ -72,6 +72,7 @@ const components = {
     birthYearUnit: "",
     birthMonthUnit: "",
     birthDateUnit: "",
+    button: "Next",
   },
   Button: {
     empty: "Please add text or an icon.",
