@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { ButtonIsValidType, FieldType } from "./types";
 import ButtonRegExp from "./regExps";
 import { SignupState } from "@features/auth-setting/models/slices/signupSlice";
+import { UserState } from "../../slices/userSlice";
 
 /**
  * 유효성 검사 객체의 값을 확인하는 함수입니다.
@@ -49,7 +50,7 @@ interface useValidationCheckerProps {
   /**
    * 유효성 검사를 위한 사용자 데이터
    */
-  sliceState: SignupState;
+  sliceState: SignupState | UserState;
 }
 
 /**
