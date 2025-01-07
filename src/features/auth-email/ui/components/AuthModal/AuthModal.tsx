@@ -1,5 +1,6 @@
 import { Modal } from "@shared/@common/ui/components";
 import PersonalInfoScreen from "../PersonalInfoScreen/PersonalInfoScreen";
+import PasswordScreen from "../PasswordScreen/PasswordScreen";
 
 /**
  * AuthModalPros는 AuthModal 컴포넌트에 전달되는 속성들을 정의함
@@ -40,7 +41,7 @@ const AuthModal = ({
   curPage = 0,
   setCurPage,
 }: AuthModalProps) => {
-  const screens = [<PersonalInfoScreen />];
+  const screens = [<PersonalInfoScreen />, <PasswordScreen />];
   return (
     <Modal
       isOpen={isOpen}

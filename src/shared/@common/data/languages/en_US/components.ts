@@ -81,6 +81,10 @@ const components = {
       button: "Click the button",
     },
   },
+  PasswordScreen: {
+    title: "Password is required.",
+    expl: "It must be at least 8 characters long.",
+  },
 };
 
 export default components;

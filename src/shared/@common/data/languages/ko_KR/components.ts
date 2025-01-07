@@ -80,6 +80,10 @@ const components = {
       button: "버튼 클릭",
     },
   },
+  PasswordScreen: {
+    title: "비밀번호가 필요합니다.",
+    expl: "8자 이상이어야 합니다.",
+  },
 };
 
 export default components;

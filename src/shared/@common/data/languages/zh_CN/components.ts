@@ -78,6 +78,10 @@ const components = {
       button: "点击按钮",
     },
   },
+  PasswordScreen: {
+    title: "需要密码。",
+    expl: "必须至少包含8个字符。",
+  },
 };
 
 export default components;

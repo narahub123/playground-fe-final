@@ -78,6 +78,10 @@ const components = {
       button: "點擊按鈕",
     },
   },
+  PasswordScreen: {
+    title: "需要密碼。",
+    expl: "必須至少包含8個字元。",
+  },
 };
 
 export default components;
