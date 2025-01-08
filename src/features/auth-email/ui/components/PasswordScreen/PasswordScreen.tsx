@@ -17,7 +17,7 @@ const PasswordScreen = () => {
   const user = useSelector(getUserInSignup);
 
   const { isValid, setIsValid, validationResult } = useValidationChecker({
-    fields: ["password", "password_check", "password_confirm"],
+    fields: ["password"],
     sliceState: user,
   });
 
@@ -48,19 +48,6 @@ const PasswordScreen = () => {
           field="password"
           label="password"
           isSignup
-        />
-        <InputPassword
-          isValid={isValid}
-          setIsValid={setIsValid}
-          field="password_confirm"
-          label="confirm"
-          isSignup
-        />
-        <InputPassword
-          isValid={isValid}
-          setIsValid={setIsValid}
-          field="password_check"
-          label="current"
         />
       </Modal.Body>
       <Modal.Footer>
