@@ -1,12 +1,12 @@
 import { joinClassNames } from "@shared/@common/utils";
 import { useModalContext } from "../../hooks";
-import styles from "./ModalPageIndicator.module.css";
+import styles from "./ModalPagination.module.css";
 import { useCallback } from "react";
 
 /**
- * ModalPageIndicatorProps는 ModalPageIndicator 컴포넌트에 전달되는 속성들을 정의합니다.
+ * ModalPaginationProps는 ModalPagination 컴포넌트에 전달되는 속성들을 정의합니다.
  */
-interface ModalPageIndicatorProps {
+interface ModalPaginationProps {
   /**
    * 추가적인 클래스명을 지정할 수 있는 프로퍼티. 기존 className에 덧붙여짐
    * @type {string}
@@ -21,7 +21,7 @@ interface ModalPageIndicatorProps {
  *
  * @returns {JSX.Element | null} 페이지 인디케이터를 렌더링하는 JSX 요소. `lengthOfList` 또는 `setCurPage`가 없으면 렌더링되지 않습니다.
  */
-const ModalPageIndicator = ({ className }: ModalPageIndicatorProps) => {
+const ModalPagination = ({ className }: ModalPaginationProps) => {
   const { lengthOfList, curPage, setCurPage } = useModalContext();
 
   // lengthOfList가 없거나 0일 경우, 또는 setCurPage가 정의되지 않으면 아무 것도 렌더링하지 않음
@@ -41,14 +41,14 @@ const ModalPageIndicator = ({ className }: ModalPageIndicatorProps) => {
   );
 
   return (
-    <ul className={joinClassNames([styles[`modal__indicator`], className])}>
+    <ul className={joinClassNames([styles[`modal__pagination`], className])}>
       {Array.from({ length: lengthOfList }).map((_, index) => (
         <li
           key={index}
           className={joinClassNames([
-            styles[`modal__indicator__item`],
+            styles[`modal__pagination__item`],
             curPage !== undefined && curPage >= index
-              ? styles[`modal__indicator__item--selected`]
+              ? styles[`modal__pagination__item--selected`]
               : "",
           ])}
           onClick={() => handlePageChange(index)}
@@ -66,4 +66,4 @@ const ModalPageIndicator = ({ className }: ModalPageIndicatorProps) => {
   );
 };
 
-export default ModalPageIndicator;
+export default ModalPagination;
