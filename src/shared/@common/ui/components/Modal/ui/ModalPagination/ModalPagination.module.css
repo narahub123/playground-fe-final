@@ -1,4 +1,4 @@
-.modal__indicator {
+.modal__pagination {
   position: relative;
   width: 100%;
   display: flex;
@@ -9,7 +9,7 @@
   z-index: 1;
 }
 
-.modal__indicator__item {
+.modal__pagination__item {
   border: 1px solid #ccc;
   border-radius: 50%;
   width: 5px;
@@ -17,7 +17,7 @@
   cursor: pointer;
 }
 
-.modal__indicator__item--selected {
+.modal__pagination__item--selected {
   background-color: var(--colorTheme-color-primary);
   border: var(--colorTheme-border-primary);
 }

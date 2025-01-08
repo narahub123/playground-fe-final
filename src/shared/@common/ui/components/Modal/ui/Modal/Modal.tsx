@@ -4,7 +4,7 @@ import ModalContainer from "../ModalContainer/ModalContainer";
 import ModalContent from "../ModalContent/ModalContent";
 import ModalFooter from "../ModalFooter/ModalFooter";
 import ModalHeader from "../ModalHeader/ModalHeader";
-import ModalPageIndicator from "../ModalPageIndicator/ModalPageIndicator";
+import ModalPagination from "../ModalPagination/ModalPagination";
 import ModalMain from "../ModalMain/ModalMain";
 import ModalOverlay from "../ModalOverlay/ModalOverlay";
 
@@ -18,7 +18,7 @@ import ModalOverlay from "../ModalOverlay/ModalOverlay";
  * - `CloseButton`: 모달을 닫는 버튼
  * - `Content`: 모달의 내용
  * - `Header`: 모달의 헤더 부분
- * - `PageIndicator`: 모달의 페이지 지시자
+ * - `Pagination`: 모달의 페이지 지시자
  * - `Body`: 모달의 본문
  * - `Footer`: 모달의 푸터
  *
@@ -29,7 +29,7 @@ const Modal = Object.assign(ModalMain, {
   CloseButton: ModalCloseButton, // 모달 닫기 버튼
   Content: ModalContent, // 모달 내용
   Header: ModalHeader, // 모달 헤더 : body, footer가 들어갈 수 없음
-  PageIndicator: ModalPageIndicator, // 모달 페이지 지시자
+  Pagination: ModalPagination, // 모달 페이지 지시자
   Body: ModalBody, // 모달 바디 : header, footer가 들어갈 수 없음
   Footer: ModalFooter, // 모달 푸터 : header, body가 들어갈 수 없음
 });
