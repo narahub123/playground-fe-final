@@ -18,7 +18,7 @@ import {
   useValidationChecker,
 } from "@shared/@common/models/hooks";
 import { USERNAME_MAX } from "@shared/@common/constants";
-import { useModalContext } from "@shared/@common/ui/components/Modal/hooks";
+import { useModalPagination } from "@shared/@common/ui/components/Modal/hooks";
 import { getUserInSignup } from "@features/auth-setting/models/selectors/signupSelectors";
 
 /**
@@ -33,7 +33,7 @@ const PersonalInfoScreen = () => {
   const birth = useSelector(getBirthInSignup);
   const user = useSelector(getUserInSignup);
 
-  const { setCurPage, curPage, lengthOfList } = useModalContext();
+  const { moveNext } = useModalPagination();
 
   const { isValid, setIsValid, validationResult } = useValidationChecker({
     fields: ["username", "email", "year", "date", "month"],
@@ -59,14 +59,6 @@ const PersonalInfoScreen = () => {
     emailError,
     button,
   } = useLanguageContent(["components", "PersonalInfoScreen"]);
-
-  const handleClick = () => {
-    if (!setCurPage || curPage === undefined || !lengthOfList) return;
-
-    if (curPage + 1 > lengthOfList - 1) return;
-
-    setCurPage((prev) => prev + 1);
-  };
 
   return (
     <div className={styles["personal__info__screen"]}>
@@ -187,7 +179,7 @@ const PersonalInfoScreen = () => {
       <Modal.Footer>
         <Button
           colorPalette="colorTheme"
-          onClick={handleClick}
+          onClick={moveNext}
           isValid={validationResult}
         >
           {button}

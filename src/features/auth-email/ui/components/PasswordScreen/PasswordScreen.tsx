@@ -11,7 +11,7 @@ import {
 } from "@shared/@common/models/hooks";
 import { useSelector } from "react-redux";
 import { getUserInSignup } from "@features/auth-setting/models/selectors/signupSelectors";
-import { useModalContext } from "@shared/@common/ui/components/Modal/hooks";
+import { useModalPagination } from "@shared/@common/ui/components/Modal/hooks";
 
 const PasswordScreen = () => {
   const user = useSelector(getUserInSignup);
@@ -21,22 +21,12 @@ const PasswordScreen = () => {
     sliceState: user,
   });
 
-  const { setCurPage, curPage, lengthOfList } = useModalContext();
+  const { moveNext } = useModalPagination();
 
   const { title, expl, button } = useLanguageContent([
     "components",
     "PasswordScreen",
   ]);
-
-  console.log(isValid);
-
-  const handleClick = () => {
-    if (!setCurPage || curPage === undefined || !lengthOfList) return;
-
-    if (curPage + 1 > lengthOfList - 1) return;
-
-    setCurPage((prev) => prev + 1);
-  };
 
   return (
     <div className={styles["password__screen"]}>
@@ -58,7 +48,7 @@ const PasswordScreen = () => {
       <Modal.Footer>
         <Button
           colorPalette="colorTheme"
-          onClick={handleClick}
+          onClick={moveNext}
           isValid={validationResult}
         >
           {button}
