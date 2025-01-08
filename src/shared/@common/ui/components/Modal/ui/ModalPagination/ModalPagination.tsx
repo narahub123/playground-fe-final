@@ -42,26 +42,29 @@ const ModalPagination = ({ className }: ModalPaginationProps) => {
 
   return (
     <ul className={joinClassNames([styles[`modal__pagination`], className])}>
-      {Array.from({ length: lengthOfList }).map((_, index) => (
-        <li
-          key={index}
-          className={joinClassNames([
-            styles[`modal__pagination__item`],
-            curPage !== undefined && curPage >= index
-              ? styles[`modal__pagination__item--selected`]
-              : "",
-          ])}
-          onClick={() => handlePageChange(index)}
-          role="button"
-          aria-current={curPage === index ? "page" : undefined} // 현재 페이지 표시
-          tabIndex={0}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              setCurPage(index);
-            }
-          }}
-        ></li>
-      ))}
+      {/* legnthOfList가 존재하고 1보다 큰 경우에만 렌더링 */}
+      {lengthOfList && lengthOfList > 1
+        ? Array.from({ length: lengthOfList }).map((_, index) => (
+            <li
+              key={index}
+              className={joinClassNames([
+                styles[`modal__pagination__item`],
+                curPage !== undefined && curPage >= index
+                  ? styles[`modal__pagination__item--selected`]
+                  : "",
+              ])}
+              onClick={() => handlePageChange(index)}
+              role="button"
+              aria-current={curPage === index ? "page" : undefined} // 현재 페이지 표시
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  setCurPage(index);
+                }
+              }}
+            ></li>
+          ))
+        : null}
     </ul>
   );
 };
