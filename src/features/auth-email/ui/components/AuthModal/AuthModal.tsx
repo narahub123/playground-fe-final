@@ -1,6 +1,7 @@
 import { Modal } from "@shared/@common/ui/components";
 import PersonalInfoScreen from "../PersonalInfoScreen/PersonalInfoScreen";
 import PasswordScreen from "../PasswordScreen/PasswordScreen";
+import { useState } from "react";
 
 /**
  * AuthModalPros는 AuthModal 컴포넌트에 전달되는 속성들을 정의함
@@ -20,12 +21,6 @@ interface AuthModalProps {
    * 현재 페이지를 나타내는 값입니다.
    * @type {number}
    */
-  curPage?: number;
-  /**
-   * 현재 페이지를 설정하는 함수입니다.
-   * @type {function}
-   */
-  setCurPage?: React.Dispatch<React.SetStateAction<number>>;
 }
 
 /**
@@ -35,12 +30,8 @@ interface AuthModalProps {
  * @param {AuthModalProps} props - AuthModal 컴포넌트에 전달되는 속성들.
  * @returns {JSX.Element} AuthModal 컴포넌트 렌더링 결과.
  */
-const AuthModal = ({
-  isOpen,
-  onClose,
-  curPage = 0,
-  setCurPage,
-}: AuthModalProps) => {
+const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
+  const [curPage, setCurPage] = useState(0);
   const screens = [<PersonalInfoScreen />, <PasswordScreen />];
   return (
     <Modal

@@ -13,16 +13,11 @@ const AuthPage = () => {
   const { title, heading1, signupList, heading2, loginList } =
     useLanguageContent(["pages", "AuthPage"]);
 
-  const { isOpen, onOpen, onClose, curPage, setCurPage } = useDisclosure();
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <div className={styles[`auth-page`]}>
-      <AuthModal
-        isOpen={isOpen}
-        onClose={onClose}
-        curPage={curPage}
-        setCurPage={setCurPage}
-      />
+      <AuthModal isOpen={isOpen} onClose={onClose} />
       <header className={styles.header}>
         <Text text={title} />
       </header>
