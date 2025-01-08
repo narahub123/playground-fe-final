@@ -31,9 +31,10 @@ const PasswordScreen = () => {
   console.log(isValid);
 
   const handleClick = () => {
-    if (!setCurPage || !curPage || !lengthOfList) return;
+    if (!setCurPage || curPage === undefined || !lengthOfList) return;
 
-    if (curPage + 1 > lengthOfList) return;
+    if (curPage + 1 > lengthOfList - 1) return;
+
     setCurPage((prev) => prev + 1);
   };
 
