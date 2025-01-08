@@ -1,3 +1,4 @@
 import useModalContext from "./useModalContext/useModalContext";
+import useModalPagination from "./useModalPagination/useModalPagination";
 
-export { useModalContext };
+export { useModalContext, useModalPagination };
