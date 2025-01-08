@@ -40,15 +40,19 @@ const PasswordScreen = () => {
   return (
     <div className={styles["password__screen"]}>
       <Modal.Body className={styles[`password__screen__body`]}>
-        <Text text={title} type="heading2" />
-        <Text text={expl} type="expl" />
-        <InputPassword
-          isValid={isValid}
-          setIsValid={setIsValid}
-          field="password"
-          label="password"
-          isSignup
-        />
+        <div className={styles[`password__screen__body__header`]}>
+          <Text text={title} type="heading2" />
+          <Text text={expl} type="expl" />
+        </div>
+        <div className={styles[`password__screen__body__content`]}>
+          <InputPassword
+            isValid={isValid}
+            setIsValid={setIsValid}
+            field="password"
+            label="password"
+            isSignup
+          />
+        </div>
       </Modal.Body>
       <Modal.Footer>
         <Button
