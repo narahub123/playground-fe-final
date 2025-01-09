@@ -64,3 +64,39 @@ export const USERNAME_MAX = 30; // 사용자 이름 최대 길이
  */
 export const EMAIL_SPECIAL_CHARACTERS =
   "\\!\\#\\$\\%\\&\\'*\\+\\/\\=?\\^_\\`\\{\\|\\}\\~";
+
+/**
+ * @constant USERID_SPECIAL_CHARACTERS
+ * @description 유저 아이디에서 허용되는 특수 문자를 정의합니다.
+ * 현재는 밑줄(`_`)만 허용하도록 설정되어 있습니다.
+ * 이 값을 변경하여 추가적인 특수 문자를 허용할 수 있습니다.
+ *
+ * @example
+ * const regex = new RegExp(`^[A-Za-z0-9${USERID_SPECIAL_CHARACTERS}]+$`);
+ * regex.test("user_name"); // true
+ */
+export const USERID_SPECIAL_CHARACTERS = "_";
+
+/**
+ * @constant USERID_MIN
+ * @description 유저 아이디의 최소 길이를 정의합니다.
+ * 최소 길이는 4글자로 설정되어 있으며, 이를 변경하여 더 작은 값 또는 큰 값으로 설정할 수 있습니다.
+ *
+ * @example
+ * const regex = new RegExp(`^[A-Za-z\\d${USERID_SPECIAL_CHARACTERS}]{${USERID_MIN},}$`);
+ * regex.test("abc"); // false (4글자 미만이면 유효하지 않음)
+ * regex.test("abcd"); // true (4글자로 유효)
+ */
+export const USERID_MIN = 4;
+
+/**
+ * @constant USERID_MAX
+ * @description 유저 아이디의 최대 길이를 정의합니다.
+ * 최대 길이는 30글자로 설정되어 있으며, 이를 변경하여 길이 제한을 조정할 수 있습니다.
+ *
+ * @example
+ * const regex = new RegExp(`^[A-Za-z\\d${USERID_SPECIAL_CHARACTERS}]{${USERID_MIN},${USERID_MAX}}$`);
+ * regex.test("a".repeat(31)); // false (길이가 31이면 유효하지 않음)
+ * regex.test("valid_id_123"); // true (길이가 17글자로 유효)
+ */
+export const USERID_MAX = 30;

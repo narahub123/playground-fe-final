@@ -12,6 +12,12 @@ import {
   PASSWORD_MIN,
   PASSWORD_SPECIAL_CHARECTERS,
   PASSWORD_UNDER_MINIMUM,
+  USERID_FORBIDDEN,
+  USERID_INCOMPLETE,
+  USERID_MAX,
+  USERID_MIN,
+  USERID_SPECIAL_CHARACTERS,
+  USERID_UNDER_MINIMUM,
   USERNAME_MAX,
   USERNAME_MIN,
   USERNAME_UNDER_MINIMUM,
@@ -136,6 +142,39 @@ const components = {
     title: "ユーザーIDを設定してください。",
     expl: "@ユーザーIDはあなただけのユニークなIDです。後からいつでも変更できます。",
     button: "次へ",
+  },
+  InputUserId: {
+    label: "ユーザーID",
+    userIdError: {
+      EMPTY: {
+        regExp: EMPTY,
+        errorMessage: "ユーザーIDを入力してください。",
+      },
+      FORBIDDEN: {
+        regExp: USERID_FORBIDDEN,
+        errorMessage: `ユーザーIDは、小文字、大文字、数字、特殊文字(${USERID_SPECIAL_CHARACTERS})で構成する必要があります。`,
+      },
+      UNDER_MINIMUM: {
+        regExp: USERID_UNDER_MINIMUM,
+        errorMessage: `ユーザーIDは${USERID_MIN}文字以上${USERID_MAX}文字以内である必要があります。`,
+      },
+      INCOMPLETE: {
+        regExp: USERID_INCOMPLETE,
+        errorMessage: `ユーザーIDには、小文字、大文字、数字、特殊文字(${USERID_SPECIAL_CHARACTERS})がそれぞれ1文字以上含まれている必要があります。`,
+      },
+      EXCEED: {
+        regExp: "",
+        errorMessage: `ユーザーIDは最大${USERID_MAX}文字まで可能です。`,
+      },
+      DUPLICATE: {
+        regExp: "",
+        errorMessage: `このユーザーIDは既に存在しています。`,
+      },
+      DISCONNECT: {
+        regExp: "",
+        errorMessage: `現在、サーバーに接続できません。しばらくしてから再試行してください。`,
+      },
+    },
   },
 };
 

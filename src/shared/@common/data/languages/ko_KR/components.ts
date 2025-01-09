@@ -12,6 +12,12 @@ import {
   PASSWORD_MIN,
   PASSWORD_SPECIAL_CHARECTERS,
   PASSWORD_UNDER_MINIMUM,
+  USERID_FORBIDDEN,
+  USERID_INCOMPLETE,
+  USERID_MAX,
+  USERID_MIN,
+  USERID_SPECIAL_CHARACTERS,
+  USERID_UNDER_MINIMUM,
   USERNAME_MAX,
   USERNAME_MIN,
   USERNAME_UNDER_MINIMUM,
@@ -135,6 +141,39 @@ const components = {
     title: "아이디를 설정해주세요.",
     expl: "@사용자 아이디는 고유한 나만의 아이디입니다. 나중에 언제든지 바꿀 수 있습니다.",
     button: "다음",
+  },
+  InputUserId: {
+    label: "사용자 아이디",
+    userIdError: {
+      EMPTY: {
+        regExp: EMPTY,
+        errorMessage: "사용자 아이디를 입력해주세요.",
+      },
+      FORBIDDEN: {
+        regExp: USERID_FORBIDDEN,
+        errorMessage: `사용자 아이디는 영문 소문자, 영문 대문자, 숫자, 특수문자(${USERID_SPECIAL_CHARACTERS})로 작성되야 합니다.`,
+      },
+      UNDER_MINIMUM: {
+        regExp: USERID_UNDER_MINIMUM,
+        errorMessage: `사용자 아이디는 최소 ${USERID_MIN}자에서 최대 ${USERID_MAX}로 작성되어야 합니다.`,
+      },
+      INCOMPLETE: {
+        regExp: USERID_INCOMPLETE,
+        errorMessage: `사용자 아이디는 영문 소문자, 영문 대문자, 숫자, 특수문자(${USERID_SPECIAL_CHARACTERS})가 각각 적어도 1자 이상 필요합니다.`,
+      },
+      EXCEED: {
+        regExp: "",
+        errorMessage: `사용자 아이디는 최대 ${USERID_MAX}까지 가능합니다.`,
+      },
+      DUPLICATE: {
+        regExp: "",
+        errorMessage: `해당 아이디는 이미 존재하는 아이디입니다.`,
+      },
+      DISCONNECT: {
+        regExp: "",
+        errorMessage: `현재 서버와 연결이 되지 않습니다. 잠시 후 다시 시도해주세요.`,
+      },
+    },
   },
 };
 

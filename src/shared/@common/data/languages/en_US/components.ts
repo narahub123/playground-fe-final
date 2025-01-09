@@ -12,6 +12,12 @@ import {
   PASSWORD_MIN,
   PASSWORD_SPECIAL_CHARECTERS,
   PASSWORD_UNDER_MINIMUM,
+  USERID_FORBIDDEN,
+  USERID_INCOMPLETE,
+  USERID_MAX,
+  USERID_MIN,
+  USERID_SPECIAL_CHARACTERS,
+  USERID_UNDER_MINIMUM,
   USERNAME_MAX,
   USERNAME_MIN,
   USERNAME_UNDER_MINIMUM,
@@ -133,6 +139,39 @@ const components = {
     title: "Please set your ID.",
     expl: "@Your user ID is a unique ID just for you. You can change it anytime later.",
     button: "Next",
+  },
+  InputUserId: {
+    label: "User ID",
+    userIdError: {
+      EMPTY: {
+        regExp: EMPTY,
+        errorMessage: "Please enter your user ID.",
+      },
+      FORBIDDEN: {
+        regExp: USERID_FORBIDDEN,
+        errorMessage: `User ID must consist of lowercase letters, uppercase letters, numbers, and special characters (${USERID_SPECIAL_CHARACTERS}).`,
+      },
+      UNDER_MINIMUM: {
+        regExp: USERID_UNDER_MINIMUM,
+        errorMessage: `User ID must be between ${USERID_MIN} and ${USERID_MAX} characters.`,
+      },
+      INCOMPLETE: {
+        regExp: USERID_INCOMPLETE,
+        errorMessage: `User ID must contain at least one of each: lowercase letters, uppercase letters, numbers, and special characters (${USERID_SPECIAL_CHARACTERS}).`,
+      },
+      EXCEED: {
+        regExp: "",
+        errorMessage: `User ID cannot exceed ${USERID_MAX} characters.`,
+      },
+      DUPLICATE: {
+        regExp: "",
+        errorMessage: `This user ID already exists.`,
+      },
+      DISCONNECT: {
+        regExp: "",
+        errorMessage: `The server is currently disconnected. Please try again later.`,
+      },
+    },
   },
 };
 

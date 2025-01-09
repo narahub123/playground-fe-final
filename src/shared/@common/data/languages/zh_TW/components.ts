@@ -12,6 +12,12 @@ import {
   PASSWORD_MIN,
   PASSWORD_SPECIAL_CHARECTERS,
   PASSWORD_UNDER_MINIMUM,
+  USERID_FORBIDDEN,
+  USERID_INCOMPLETE,
+  USERID_MAX,
+  USERID_MIN,
+  USERID_SPECIAL_CHARACTERS,
+  USERID_UNDER_MINIMUM,
   USERNAME_MAX,
   USERNAME_MIN,
   USERNAME_UNDER_MINIMUM,
@@ -130,6 +136,39 @@ const components = {
     title: "請設定您的用戶ID。",
     expl: "@用戶ID是您獨有的ID。以後隨時可以更改。",
     button: "下一步",
+  },
+  InputUserId: {
+    label: "用戶ID",
+    userIdError: {
+      EMPTY: {
+        regExp: EMPTY,
+        errorMessage: "請輸入用戶ID。",
+      },
+      FORBIDDEN: {
+        regExp: USERID_FORBIDDEN,
+        errorMessage: `用戶ID必須由小寫字母、大寫字母、數字和特殊字符(${USERID_SPECIAL_CHARACTERS})組成。`,
+      },
+      UNDER_MINIMUM: {
+        regExp: USERID_UNDER_MINIMUM,
+        errorMessage: `用戶ID必須在${USERID_MIN}到${USERID_MAX}個字符之間。`,
+      },
+      INCOMPLETE: {
+        regExp: USERID_INCOMPLETE,
+        errorMessage: `用戶ID必須至少包含一個小寫字母、大寫字母、數字和特殊字符(${USERID_SPECIAL_CHARACTERS})。`,
+      },
+      EXCEED: {
+        regExp: "",
+        errorMessage: `用戶ID最多只能有${USERID_MAX}個字符。`,
+      },
+      DUPLICATE: {
+        regExp: "",
+        errorMessage: `該用戶ID已存在。`,
+      },
+      DISCONNECT: {
+        regExp: "",
+        errorMessage: `目前無法連接到伺服器，請稍後再試。`,
+      },
+    },
   },
 };
 
