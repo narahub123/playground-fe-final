@@ -1,3 +1,6 @@
-import { checkEmailDuplicateInSignupAPI } from "./signup";
+import {
+  checkEmailDuplicateInSignupAPI,
+  checkUseIdDuplicateInSignupAPI,
+} from "./signup";
 
-export { checkEmailDuplicateInSignupAPI };
+export { checkEmailDuplicateInSignupAPI, checkUseIdDuplicateInSignupAPI };
