@@ -1,7 +1,7 @@
 import { Modal } from "@shared/@common/ui/components";
 import PersonalInfoScreen from "../PersonalInfoScreen/PersonalInfoScreen";
 import PasswordScreen from "../PasswordScreen/PasswordScreen";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ScreenValidationType } from "@shared/@common/ui/components/Modal/types";
 import ScreenUserId from "../ScreenUserId/ScreenUserId";
 
@@ -34,32 +34,6 @@ interface AuthModalProps {
  */
 const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
   const [curPage, setCurPage] = useState(2);
-  const screens = [
-    <PersonalInfoScreen />,
-    <PasswordScreen />,
-    <ScreenUserId />,
-  ];
-
-  /**
-   * 초기 화면 유효성 검사를 설정하기 위한 객체를 생성합니다.
-   * 화면 배열(`screens`)의 각 화면 타입의 이름을 키로 하여,
-   * 기본적으로 모든 화면의 유효성 상태를 `false`로 설정합니다.
-   *
-   * @template Screen
-   * @param {Array<Screen>} screens - 유효성 검사를 수행해야 하는 화면 정보 배열
-   * @returns {Record<string, boolean>} 컴포넌트 이름을 키로 하고 기본값으로 `false`를 가지는 객체
-   */
-  const defaultValidations = screens.reduce<Record<string, boolean>>(
-    (acc, screen) => {
-      // 화면 타입과 타입 이름이 있는 경우만 처리
-      if (screen.type && screen.type.name) {
-        acc[screen.type.name] = false; // 컴포넌트 이름을 키로 설정
-      }
-      return acc;
-    },
-    {}
-  );
-
   // 유효성 상태를 관리하는 상태 훅 정의
   /**
    * 화면별 유효성 상태를 관리합니다.
@@ -68,7 +42,28 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
    * @type {ScreenValidationType} 화면별 유효성 상태를 나타내는 객체 타입
    */
   const [screenValidations, setScreenValidations] =
-    useState<ScreenValidationType>(defaultValidations);
+    useState<ScreenValidationType>({});
+
+  const screens = [
+    <PersonalInfoScreen />,
+    <PasswordScreen />,
+    <ScreenUserId />,
+  ];
+
+  useEffect(() => {
+    const defaultValidations = screens.reduce<Record<string, boolean>>(
+      (acc, screen) => {
+        // 화면 타입과 타입 이름이 있는 경우만 처리
+        if (screen.type && screen.type.name) {
+          acc[screen.type.name] = false; // 컴포넌트 이름을 키로 설정
+        }
+        return acc;
+      },
+      {}
+    );
+
+    setScreenValidations(defaultValidations);
+  }, []);
 
   return (
     <Modal
