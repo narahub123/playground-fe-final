@@ -13,6 +13,11 @@ import { useValidateChildren } from "@shared/@common/models/hooks";
  */
 interface InputMainProps {
   children: ReactNode;
+  /**
+   * 추가적인 클래스명을 지정할 수 있는 프로퍼티. 기존 className에 덧붙여짐
+   * @type {string}
+   */
+  className?: string;
 }
 
 /**
@@ -23,7 +28,7 @@ interface InputMainProps {
  * @param {InputMainProps} props - 컴포넌트 props
  * @returns {JSX.Element} InputMain 컴포넌트
  */
-const InputMain = ({ children }: InputMainProps) => {
+const InputMain = ({ children, className }: InputMainProps) => {
   const dispatch = useAppDispatch();
   const mainRef = useRef<HTMLLabelElement>(null);
   const [skipMouseDown, setSkipMouseDown] = useState(false);
@@ -245,7 +250,7 @@ const InputMain = ({ children }: InputMainProps) => {
    *
    * @type {string} - 최종적으로 적용될 클래스 이름 문자열
    */
-  const className = joinClassNames([
+  const classNames = joinClassNames([
     styles["input__main"],
     // 포커스인 상태에서 유효성 여부 표기
     isFocused //포커스 상태 확인
@@ -254,11 +259,12 @@ const InputMain = ({ children }: InputMainProps) => {
         : styles["input__main--invalid"]
       : "",
     disabled ? styles["input__main--disabled"] : "",
+    className,
   ]);
 
   return (
     <label
-      className={className}
+      className={classNames}
       htmlFor={field}
       tabIndex={list && !disabled ? 0 : -1} // disabled 모드가 아니고 드롭다운 사용 하는 경우에는 탭 이동 가능
       // 마우스다운 이벤트: onFocus와 onBlur와 사용할 때 이벤트 순서로 인한 충돌을 피하기 위해

@@ -11,6 +11,14 @@ import { useInputContext } from "@shared/@common/ui/components/Input/context";
 import { Portal } from "@shared/@common/ui/components";
 import { useAppDispatch } from "@app/store";
 
+interface InputDropdownProps {
+  /**
+   * 추가적인 클래스명을 지정할 수 있는 프로퍼티. 기존 className에 덧붙여짐
+   * @type {string}
+   */
+  className?: string;
+}
+
 /**
  * `InputDropdown` 컴포넌트
  * - 사용자가 입력 필드와 연동하여 동적으로 드롭다운을 표시합니다.
@@ -20,7 +28,7 @@ import { useAppDispatch } from "@app/store";
  *
  * @returns {JSX.Element | null} 드롭다운 UI 요소. 목록이 없거나 위치 정보가 없는 경우 null 반환.
  */
-const InputDropdown = () => {
+const InputDropdown = ({ className }: InputDropdownProps) => {
   const dispatch = useAppDispatch();
   const itemsRef = useRef<(HTMLLIElement | null)[]>([]);
 
@@ -194,6 +202,7 @@ const InputDropdown = () => {
           isDropdownOpen
             ? styles["input__dropdown--open"] // 드롭다운 열림 상태
             : styles["input__dropdown--close"], // 드롭다운 닫힘 상태
+          className,
         ])}
         style={{
           top, // 드롭다운의 y 위치 : 개발자도구가 열렸는지 여부에 따라 달라짐

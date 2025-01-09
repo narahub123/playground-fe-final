@@ -13,6 +13,11 @@ interface InputBottomProps {
    * `InputBottom` 내부에 렌더링될 자식 노드입니다.
    */
   children: ReactNode;
+  /**
+   * 추가적인 클래스명을 지정할 수 있는 프로퍼티. 기존 className에 덧붙여짐
+   * @type {string}
+   */
+  className?: string;
 }
 
 /**
@@ -23,7 +28,7 @@ interface InputBottomProps {
  * @param {InputBottomProps} props - 컴포넌트에 전달되는 props
  * @returns {JSX.Element} - 렌더링된 `InputBottom` 컴포넌트
  */
-const InputBottom = ({ children }: InputBottomProps) => {
+const InputBottom = ({ children, className }: InputBottomProps) => {
   /**
    * `useInputContext` 훅을 통해 입력 필드의 상태와 관련된 데이터를 가져옵니다.
    * - `focusCond`: 현재 입력 필드가 포커스 상태로 인지되는 조건
@@ -52,6 +57,7 @@ const InputBottom = ({ children }: InputBottomProps) => {
         focusCond // 포커스 상태 변화
           ? styles["input__bottom--focused"]
           : styles["input__bottom--unfocused"],
+        className,
       ])}
     >
       {filteredChildren}

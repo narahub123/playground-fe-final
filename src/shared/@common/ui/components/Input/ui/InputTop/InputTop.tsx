@@ -14,6 +14,11 @@ interface InputTopProps {
    * `InputTop` 내부에 렌더링될 자식 노드입니다.
    */
   children: ReactNode;
+  /**
+   * 추가적인 클래스명을 지정할 수 있는 프로퍼티. 기존 className에 덧붙여짐
+   * @type {string}
+   */
+  className?: string;
 }
 
 /**
@@ -25,7 +30,7 @@ interface InputTopProps {
  * @param {InputTopProps} props - 컴포넌트에 전달되는 props
  * @returns {JSX.Element} - 렌더링된 `InputTop` 컴포넌트
  */
-const InputTop = ({ children }: InputTopProps) => {
+const InputTop = ({ children, className }: InputTopProps) => {
   /**
    * `useInputContext` 훅을 통해 입력 필드의 상태와 관련된 데이터를 가져옵니다.
    * - `focusCond`: 현재 입력 필드가 포커스 상태로 인지되는 조건
@@ -56,18 +61,19 @@ const InputTop = ({ children }: InputTopProps) => {
    * - `input__top--focused`: 포커스 상태일 때 적용
    * - `input__top--unfocused`: 포커스가 없을 때 적용
    */
-  const className = joinClassNames([
+  const classNames = joinClassNames([
     styles["input__top"],
     focusCond // isFocused 가 true 이거나 inputValue 가 빈문자열이 아닐 때
       ? styles["input__top--focused"]
       : styles["input__top--unfocused"],
+    className,
   ]);
   return (
     /**
      * 렌더링된 상위 div는 동적으로 클래스 이름을 할당받고,
      * 필터링된 자식 요소를 포함합니다.
      */
-    <div className={className}>{filteredChildren}</div>
+    <div className={classNames}>{filteredChildren}</div>
   );
 };
 

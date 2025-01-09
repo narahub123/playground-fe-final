@@ -7,13 +7,20 @@ import { useCompiledInputError } from "@shared/@common/ui/components/Input/hooks
 import { Text } from "@shared/@common/ui/components";
 import { checkEmailDuplicateInSignupAPI } from "@shared/auth/apis";
 
+interface InputFieldProps {
+  /**
+   * 추가적인 클래스명을 지정할 수 있는 프로퍼티. 기존 className에 덧붙여짐
+   * @type {string}
+   */
+  className?: string;
+}
 /**
  * `InputField` 컴포넌트는 입력 필드를 렌더링하고, 입력값과 유효성 검사, 에러 메시지 처리를 담당합니다.
  * 이 컴포넌트는 텍스트 필드 혹은 드롭다운을 렌더링할 수 있으며, 유효성 검사와 관련된 로직을 처리합니다.
  *
  * @returns {JSX.Element} - 렌더링된 `Text` 또는 `input` 요소
  */
-const InputField = () => {
+const InputField = ({ className }: InputFieldProps) => {
   const dispatch = useAppDispatch();
 
   /**
@@ -299,9 +306,10 @@ const InputField = () => {
    *
    * @type {string}
    */
-  const className = joinClassNames([
+  const classNames = joinClassNames([
     styles["input__field"],
     disabled ? styles["input__field--disabled"] : "",
+    className,
   ]);
 
   return (
@@ -318,7 +326,7 @@ const InputField = () => {
           text={
             list.find((item) => item.value === inputValue)?.text || inputValue
           }
-          subClassName={className}
+          subClassName={classNames}
         />
       ) : (
         /**
@@ -339,7 +347,7 @@ const InputField = () => {
           type={
             field.includes("password") && !showPassword ? "password" : "text"
           }
-          className={className}
+          className={classNames}
           value={
             field === "password_confirm" ? passwordConfirmValue : inputValue
           } // 기본 값
