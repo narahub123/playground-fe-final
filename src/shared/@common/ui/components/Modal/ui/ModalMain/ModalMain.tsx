@@ -3,7 +3,10 @@ import { ReactNode, useEffect } from "react";
 import { joinClassNames } from "@shared/@common/utils";
 import { Portal } from "@shared/@common/ui/components";
 import { ModalContextProvider } from "@shared/@common/ui/components/Modal/context";
-import { ModalContextType } from "@shared/@common/ui/components/Modal/types";
+import {
+  ModalContextType,
+  ScreenValidationType,
+} from "@shared/@common/ui/components/Modal/types";
 
 /**
  * ModalMainProps는 ModalMain 컴포넌트에 전달되는 속성들을 정의합니다.
@@ -35,10 +38,22 @@ interface ModalMainProps {
   onClose?: () => void;
 
   /**
-   * 여러 페이지가 있을 경우, 페이지 수를 나타내는 값입니다.
-   * @type {number}
+   * 화면 유효성 상태를 나타내는 선택적 필드.
+   * 각 화면 이름을 키로 하여 유효성 상태를 저장합니다.
+   *
+   * @property {ScreenValidationType} [screenValidations] - 화면별 유효성 상태 객체 (선택적).
    */
-  lengthOfList?: number;
+  screenValidations?: ScreenValidationType;
+
+  /**
+   * 화면 유효성 상태를 업데이트하는 선택적 상태 디스패치 함수.
+   * `screenValidations` 상태를 업데이트하는 데 사용됩니다.
+   *
+   * @property {React.Dispatch<React.SetStateAction<ScreenValidationType>>} [setScreenValidations] - 유효성 상태를 업데이트하는 디스패치 함수 (선택적).
+   */
+  setScreenValidations?: React.Dispatch<
+    React.SetStateAction<ScreenValidationType>
+  >;
 
   /**
    * 현재 페이지를 나타내는 값입니다.
@@ -70,9 +85,10 @@ const ModalMain = ({
   children,
   isOpen,
   onClose,
-  lengthOfList,
   curPage,
   setCurPage,
+  screenValidations,
+  setScreenValidations,
   domId = "modal",
   className,
 }: ModalMainProps) => {
@@ -87,14 +103,15 @@ const ModalMain = ({
 
   const value: ModalContextType = {
     onClose,
-    lengthOfList,
+    screenValidations,
+    setScreenValidations,
     curPage,
     setCurPage,
   };
 
   // 모달 창 열기 상태가 false이면 반환
   if (!isOpen) return null;
-  
+
   return (
     <Portal id={domId}>
       <ModalContextProvider value={value}>

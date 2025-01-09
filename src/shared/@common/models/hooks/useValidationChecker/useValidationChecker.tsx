@@ -3,17 +3,50 @@ import { ButtonIsValidType, FieldType } from "./types";
 import ButtonRegExp from "./regExps";
 import { SignupState } from "@features/auth-setting/models/slices/signupSlice";
 import { UserState } from "../../slices/userSlice";
+import { ScreenValidationType } from "@shared/@common/ui/components/Modal/types";
 
 /**
- * 유효성 검사 객체의 값을 확인하는 함수입니다.
+ * 주어진 유효성 객체를 검사하고 화면 유효성 상태를 업데이트합니다.
  *
- * @param validObj 유효성 검사 결과를 나타내는 객체 혹은 boolean 값
- * @returns 유효성 검사 결과
+ * @param {boolean | { [key: string]: boolean }} validObj - 유효성 정보.
+ *   - `boolean`이면 단일 유효성 값.
+ *   - 객체면 각 필드의 유효성 값으로 구성.
+ * @param {React.Dispatch<React.SetStateAction<ScreenValidationType>>} [setScreenValidations] -
+ *   화면 유효성 상태를 업데이트하는 함수 (선택적).
+ * @param {string} [screenName] - 업데이트 대상 화면의 이름 (선택적).
+ * @returns {boolean} 계산된 유효성 값.
+ *   - 모든 값이 `true`인 경우 `true`, 그렇지 않으면 `false`.
  */
-const validationChecker = (validObj: boolean | { [key: string]: boolean }) =>
-  typeof validObj === "boolean"
-    ? validObj
-    : Object.values(validObj).every(Boolean);
+const validationChecker = (
+  validObj: boolean | { [key: string]: boolean },
+  setScreenValidations?: React.Dispatch<
+    React.SetStateAction<ScreenValidationType>
+  >,
+  screenName?: string
+) => {
+  // 유효성 값을 계산
+  const result =
+    typeof validObj === "boolean"
+      ? validObj // `boolean` 값 그대로 사용
+      : Object.values(validObj).every(Boolean); // 모든 필드가 `true`인지 확인
+
+  // 스크린 유효성 상태를 업데이트할 필요가 있는 경우
+  if (setScreenValidations && screenName && result !== undefined) {
+    setScreenValidations((prev) => {
+      // 기존 값과 동일하면 업데이트하지 않음
+      if (prev[screenName] === result) return prev;
+
+      // 기존 값을 복사하고 새로운 값을 반영
+      return {
+        ...prev,
+        [screenName]: result,
+      };
+    });
+  }
+
+  // 계산된 유효성 결과 반환
+  return result;
+};
 
 /**
  * 각 필드의 유효성을 검사하는 함수입니다.
@@ -51,6 +84,21 @@ interface useValidationCheckerProps {
    * 유효성 검사를 위한 사용자 데이터
    */
   sliceState: SignupState | UserState;
+
+  /**
+   * 화면 유효성 상태를 업데이트하는 선택적 상태 디스패치 함수.
+   * `screenValidations` 상태를 업데이트하는 데 사용됩니다.
+   *
+   * @property {React.Dispatch<React.SetStateAction<ScreenValidationType>>} [setScreenValidations] - 유효성 상태를 업데이트하는 디스패치 함수 (선택적).
+   */
+  setScreenValidations?: React.Dispatch<
+    React.SetStateAction<ScreenValidationType>
+  >;
+
+  /**
+   * 스크린 이름
+   */
+  screenName?: string;
 }
 
 /**
@@ -63,6 +111,8 @@ interface useValidationCheckerProps {
 const useValidationChecker = ({
   fields,
   sliceState,
+  setScreenValidations,
+  screenName,
 }: useValidationCheckerProps) => {
   const [isValid, setIsValid] = useState<ButtonIsValidType>(false);
 
@@ -89,7 +139,10 @@ const useValidationChecker = ({
   /**
    * 유효성 검사 결과를 반환하는 메모이제이션된 값
    */
-  const validationResult = useMemo(() => validationChecker(isValid), [isValid]);
+  const validationResult = useMemo(
+    () => validationChecker(isValid, setScreenValidations, screenName),
+    [isValid]
+  );
 
   return {
     isValid, // 각 필드의 유효성 결과

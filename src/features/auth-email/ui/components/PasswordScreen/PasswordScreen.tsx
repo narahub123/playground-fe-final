@@ -11,17 +11,23 @@ import {
 } from "@shared/@common/models/hooks";
 import { useSelector } from "react-redux";
 import { getUserInSignup } from "@features/auth-setting/models/selectors/signupSelectors";
-import { useModalPagination } from "@shared/@common/ui/components/Modal/hooks";
+import {
+  useModalContext,
+  useModalPagination,
+} from "@shared/@common/ui/components/Modal/hooks";
 
 const PasswordScreen = () => {
   const user = useSelector(getUserInSignup);
 
+  const { setScreenValidations } = useModalContext();
+  const { moveNext } = useModalPagination();
+
   const { isValid, setIsValid, validationResult } = useValidationChecker({
     fields: ["password"],
     sliceState: user,
+    setScreenValidations,
+    screenName: "PasswordScreen",
   });
-
-  const { moveNext } = useModalPagination();
 
   const { title, expl, button } = useLanguageContent([
     "components",

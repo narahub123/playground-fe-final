@@ -1,3 +1,7 @@
-import { ModalContextType, FontUnitType } from "./Modal.types";
+import {
+  ModalContextType,
+  FontUnitType,
+  ScreenValidationType,
+} from "./Modal.types";
 
-export type { ModalContextType, FontUnitType };
+export type { ModalContextType, FontUnitType, ScreenValidationType };

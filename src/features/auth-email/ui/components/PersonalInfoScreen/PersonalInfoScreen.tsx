@@ -18,7 +18,10 @@ import {
   useValidationChecker,
 } from "@shared/@common/models/hooks";
 import { USERNAME_MAX } from "@shared/@common/constants";
-import { useModalPagination } from "@shared/@common/ui/components/Modal/hooks";
+import {
+  useModalContext,
+  useModalPagination,
+} from "@shared/@common/ui/components/Modal/hooks";
 import { getUserInSignup } from "@features/auth-setting/models/selectors/signupSelectors";
 
 /**
@@ -33,11 +36,14 @@ const PersonalInfoScreen = () => {
   const birth = useSelector(getBirthInSignup);
   const user = useSelector(getUserInSignup);
 
+  const { setScreenValidations } = useModalContext();
   const { moveNext } = useModalPagination();
 
   const { isValid, setIsValid, validationResult } = useValidationChecker({
     fields: ["username", "email", "year", "date", "month"],
     sliceState: user,
+    setScreenValidations,
+    screenName: "PersonalInfoScreen",
   });
 
   const {

@@ -10,7 +10,11 @@ import useModalContext from "../useModalContext/useModalContext";
  * @returns {function} moveTo - 특정 페이지로 이동하는 함수
  */
 const useModalPagination = () => {
-  const { curPage, setCurPage, lengthOfList } = useModalContext();
+  const { curPage, setCurPage, screenValidations } = useModalContext();
+
+  const lengthOfList = screenValidations
+    ? Object.values(screenValidations).length
+    : undefined;
 
   const isValidateState =
     setCurPage && curPage !== undefined && lengthOfList !== undefined;
