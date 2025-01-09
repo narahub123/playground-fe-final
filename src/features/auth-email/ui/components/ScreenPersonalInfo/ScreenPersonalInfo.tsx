@@ -1,4 +1,4 @@
-import styles from "./PersonalInfoScreen.module.css";
+import styles from "./ScreenPersonalInfo.module.css";
 import { Button, Input, Modal, Text } from "@shared/@common/ui/components";
 import {
   setBirthDateSignup,
@@ -25,12 +25,12 @@ import {
 import { getUserInSignup } from "@features/auth-setting/models/selectors/signupSelectors";
 
 /**
- * PersonalInfoScreen 컴포넌트
+ * ScreenPersonalInfo 컴포넌트
  * AuthModal 내 사용자 이름, 이메일, 생년월일 등록과 관련된 컴포넌트로, 각 항목에 대한 유효성을 관리합니다.
  *
- * @returns {JSX.Element} PersonalInfoScreen 컴포넌트 렌더링 결과
+ * @returns {JSX.Element} ScreenPersonalInfo 컴포넌트 렌더링 결과
  */
-const PersonalInfoScreen = () => {
+const ScreenPersonalInfo = () => {
   const username = useSelector(getUsernameInSignup);
   const email = useSelector(getEmailInSignup);
   const birth = useSelector(getBirthInSignup);
@@ -43,7 +43,7 @@ const PersonalInfoScreen = () => {
     fields: ["username", "email", "year", "date", "month"],
     sliceState: user,
     setScreenValidations,
-    screenName: "PersonalInfoScreen",
+    screenName: "ScreenPersonalInfo",
   });
 
   const {
@@ -64,7 +64,7 @@ const PersonalInfoScreen = () => {
     usernameError,
     emailError,
     button,
-  } = useLanguageContent(["components", "PersonalInfoScreen"]);
+  } = useLanguageContent(["components", "ScreenPersonalInfo"]);
 
   return (
     <div className={styles["personal__info__screen"]}>
@@ -195,4 +195,4 @@ const PersonalInfoScreen = () => {
   );
 };
 
-export default PersonalInfoScreen;
+export default ScreenPersonalInfo;

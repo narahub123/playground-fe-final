@@ -1,6 +1,6 @@
 import { Modal } from "@shared/@common/ui/components";
-import PersonalInfoScreen from "../PersonalInfoScreen/PersonalInfoScreen";
-import PasswordScreen from "../PasswordScreen/PasswordScreen";
+import ScreenPersonalInfo from "../ScreenPersonalInfo/ScreenPersonalInfo";
+import ScreenPassword from "../ScreenPassword/ScreenPassword";
 import { useEffect, useState } from "react";
 import { ScreenValidationType } from "@shared/@common/ui/components/Modal/types";
 import ScreenUserId from "../ScreenUserId/ScreenUserId";
@@ -45,8 +45,8 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
     useState<ScreenValidationType>({});
 
   const screens = [
-    <PersonalInfoScreen />,
-    <PasswordScreen />,
+    <ScreenPersonalInfo />,
+    <ScreenPassword />,
     <ScreenUserId />,
   ];
 

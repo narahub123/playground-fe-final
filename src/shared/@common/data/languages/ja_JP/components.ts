@@ -40,7 +40,7 @@ const components = {
       iconTitle: "閉じる",
     },
   },
-  PersonalInfoScreen: {
+  ScreenPersonalInfo: {
     title: "アカウントを作成してください。",
     usernameLabel: "ユーザー名",
     usernameError: {
@@ -96,7 +96,7 @@ const components = {
       button: "ボタンをクリック",
     },
   },
-  PasswordScreen: {
+  ScreenPassword: {
     title: "パスワードが必要です。",
     expl: "8文字以上である必要があります。",
     button: "次",

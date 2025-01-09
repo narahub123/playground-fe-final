@@ -40,7 +40,7 @@ const components = {
       iconTitle: "Close",
     },
   },
-  PersonalInfoScreen: {
+  ScreenPersonalInfo: {
     title: "Create an account.",
     usernameLabel: "Username",
     usernameError: {
@@ -93,7 +93,7 @@ const components = {
       button: "Click the button",
     },
   },
-  PasswordScreen: {
+  ScreenPassword: {
     title: "Password is required.",
     expl: "It must be at least 8 characters long.",
     button: "Next",

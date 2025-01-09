@@ -40,7 +40,7 @@ const components = {
       iconTitle: "關閉",
     },
   },
-  PersonalInfoScreen: {
+  ScreenPersonalInfo: {
     title: "創建帳戶。",
     usernameLabel: "用戶名",
     usernameError: {
@@ -90,7 +90,7 @@ const components = {
       button: "點擊按鈕",
     },
   },
-  PasswordScreen: {
+  ScreenPassword: {
     title: "需要密碼。",
     expl: "必須至少包含8個字元。",
     button: "下一個",

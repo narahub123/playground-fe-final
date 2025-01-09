@@ -1,4 +1,4 @@
-import styles from "./PasswordScreen.module.css";
+import styles from "./ScreenPassword.module.css";
 import {
   Button,
   InputPassword,
@@ -16,7 +16,7 @@ import {
   useModalPagination,
 } from "@shared/@common/ui/components/Modal/hooks";
 
-const PasswordScreen = () => {
+const ScreenPassword = () => {
   const user = useSelector(getUserInSignup);
 
   const { setScreenValidations } = useModalContext();
@@ -26,12 +26,12 @@ const PasswordScreen = () => {
     fields: ["password"],
     sliceState: user,
     setScreenValidations,
-    screenName: "PasswordScreen",
+    screenName: "ScreenPassword",
   });
 
   const { title, expl, button } = useLanguageContent([
     "components",
-    "PasswordScreen",
+    "ScreenPassword",
   ]);
 
   return (
@@ -64,4 +64,4 @@ const PasswordScreen = () => {
   );
 };
 
-export default PasswordScreen;
+export default ScreenPassword;

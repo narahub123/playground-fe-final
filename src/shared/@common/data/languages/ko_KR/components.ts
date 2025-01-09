@@ -43,7 +43,7 @@ const components = {
       iconTitle: "닫기",
     },
   },
-  PersonalInfoScreen: {
+  ScreenPersonalInfo: {
     title: "계정을 생성하세요.",
     usernameLabel: "사용자 이름",
     usernameError: {
@@ -95,7 +95,7 @@ const components = {
       button: "버튼 클릭",
     },
   },
-  PasswordScreen: {
+  ScreenPassword: {
     title: "비밀번호가 필요합니다.",
     expl: "8자 이상이어야 합니다.",
     button: "다음",
