@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { InputContextType } from "./Input.types";
+import { InputContextType } from "@shared/@common/ui/components/Input/types";
 
 /**
  * Input 관련 상태와 함수들을 제공하는 Context.

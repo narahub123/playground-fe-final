@@ -1,10 +1,10 @@
 import { useMemo } from "react";
+import { useInputContext } from "../context";
 import {
   CompileErrorType,
   InputErrorKeyType,
   InputErrorType,
-  useInputContext,
-} from "../context";
+} from "@shared/@common/ui/components/Input/types";
 
 /**
  * `useCompiledInputError` 훅은 `useInputContext`에서 받아온 `error` 객체를 처리하여,
