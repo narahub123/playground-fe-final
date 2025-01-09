@@ -8,6 +8,7 @@ import Button from "./Button/Button";
 import SVG from "./SVG/SVG";
 import Spinner from "./Spinner/Spinner";
 import InputPassword from "./InputPassword/InputPassword";
+import InputUserIds from "./InputUserId/InputUserId";
 
 export {
   Text,
@@ -20,4 +21,5 @@ export {
   SVG,
   Spinner,
   InputPassword,
+  InputUserIds,
 };

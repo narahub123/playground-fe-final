@@ -11,6 +11,7 @@ import {
   useModalPagination,
 } from "@shared/@common/ui/components/Modal/hooks";
 import { joinClassNames } from "@shared/@common/utils";
+import InputUserId from "@shared/@common/ui/components/InputUserId/InputUserId";
 
 interface ScreenUserIdProps {
   className?: string;
@@ -57,6 +58,7 @@ const ScreenUserId = ({ className, disabled = false }: ScreenUserIdProps) => {
       <Modal.Body>
         <Text text={title} type="heading2" />
         <Text text={expl} type="expl" />
+        <InputUserId isValid={isValid} setIsValid={setIsValid} />
       </Modal.Body>
       <Modal.Footer>
         <Button

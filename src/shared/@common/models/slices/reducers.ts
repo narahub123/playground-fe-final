@@ -5,7 +5,7 @@ import {
   setFontSize,
 } from "./displaySlice";
 
-import { setPassword, setPasswordCheck } from "./userSlice";
+import { setPassword, setPasswordCheck, setUserId } from "./userSlice";
 
 export {
   // display
@@ -17,4 +17,5 @@ export {
   // user
   setPassword,
   setPasswordCheck,
+  setUserId,
 };
