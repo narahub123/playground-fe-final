@@ -2,6 +2,14 @@ import styles from "./InputError.module.css";
 import { useInputContext } from "@shared/@common/ui/components/Input/context";
 import { Text } from "@shared/@common/ui/components";
 
+interface InputErrorProps {
+  /**
+   * 추가적인 클래스명을 지정할 수 있는 프로퍼티. 기존 className에 덧붙여짐
+   * @type {string}
+   */
+  className?: string;
+}
+
 /**
  * `InputError` 컴포넌트
  * - 현재 Input 컴포넌트의 에러 메시지를 표시합니다.
@@ -9,7 +17,7 @@ import { Text } from "@shared/@common/ui/components";
  *
  * @returns {JSX.Element | null} 에러 메시지를 렌더링하는 JSX 요소. 에러 메시지가 없으면 `null` 반환.
  */
-const InputError = () => {
+const InputError = ({ className }: InputErrorProps) => {
   // 컨텍스트에서 에러 메시지 가져오기
   const { errorMessage } = useInputContext();
 
@@ -21,6 +29,7 @@ const InputError = () => {
       id="error-message"
       role="alert" // 에러 메시지임을 스크린 리더에 알림
       aria-live="polite" // 에러 메시지가 업데이트될 때 읽어줌
+      className={className}
     >
       <Text
         text={errorMessage} // 에러 메시지 텍스트

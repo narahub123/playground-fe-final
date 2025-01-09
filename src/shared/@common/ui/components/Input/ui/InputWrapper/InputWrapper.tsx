@@ -34,6 +34,11 @@ interface InputWrapperProps {
   error?: Partial<Record<InputErrorKeyType, InputErrorType>>;
   list?: DropdownItemType[]; // 드롭다운에 들어갈 아이템 배열
   disabled?: boolean; // disabled 모드 적용
+  /**
+   * 추가적인 클래스명을 지정할 수 있는 프로퍼티. 기존 className에 덧붙여짐
+   * @type {string}
+   */
+  className?: string;
 }
 
 /**
@@ -58,6 +63,7 @@ const InputWrapper = ({
   error,
   list,
   disabled = false, // 값을 적용하지 않으면 false
+  className,
 }: InputWrapperProps) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   /** @type {boolean} Input의 포커스 상태 */
@@ -143,6 +149,7 @@ const InputWrapper = ({
         className={joinClassNames([
           styles[`input__wrapper`],
           disabled ? styles[`input__wrapper--disabled`] : "",
+          className,
         ])}
         ref={wrapperRef}
       >

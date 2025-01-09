@@ -3,6 +3,13 @@ import { useInputContext } from "@shared/@common/ui/components/Input/context";
 import { joinClassNames } from "@shared/@common/utils";
 import { Text } from "@shared/@common/ui/components";
 
+interface InputCounterProps {
+  /**
+   * 추가적인 클래스명을 지정할 수 있는 프로퍼티. 기존 className에 덧붙여짐
+   * @type {string}
+   */
+  className?: string;
+}
 /**
  * `InputCounter` 컴포넌트는 입력된 텍스트의 길이와 최대 길이를 표시합니다.
  * 포커스 상태에 따라 다른 스타일을 적용하며, 드롭다운이 있을 경우 그에 맞춰 길이를 계산합니다.
@@ -10,7 +17,7 @@ import { Text } from "@shared/@common/ui/components";
  * @component
  * @returns {JSX.Element} - 렌더링된 `InputCounter` 컴포넌트
  */
-const InputCounter = () => {
+const InputCounter = ({ className }: InputCounterProps) => {
   /**
    * `useInputContext` 훅을 통해 입력 필드의 상태와 관련된 데이터를 가져옵니다.
    * - `maxLength`: 입력 필드에 입력될 값의 최대 길이
@@ -46,6 +53,7 @@ const InputCounter = () => {
     isFocused // 포커스 상태 변화
       ? styles["input__counter--focused"] // 포커스 인 경우 보임
       : styles["input__counter--unfocused"], // 블러스인 경우 안 보임
+    className,
   ]);
 
   return (
