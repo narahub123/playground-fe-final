@@ -56,7 +56,7 @@ const AuthModal = ({
         <Modal.CloseButton />
         <Modal.Content>
           <Modal.Header>
-            <Modal.PageIndicator />
+            <Modal.Pagination />
           </Modal.Header>
           {screens[curPage]}
         </Modal.Content>
