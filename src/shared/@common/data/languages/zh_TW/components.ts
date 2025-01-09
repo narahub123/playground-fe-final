@@ -126,6 +126,11 @@ const components = {
       },
     },
   },
+  ScreenUserId: {
+    title: "請設定您的用戶ID。",
+    expl: "@用戶ID是您獨有的ID。以後隨時可以更改。",
+    button: "下一步",
+  },
 };
 
 export default components;

@@ -9,6 +9,7 @@ import {
   getProfileImageInSignup,
   getNotificationsInSignup,
   getLanguageInSignup,
+  getUserInSignup,
 } from "./signupSelectors";
 
 export {
@@ -16,6 +17,7 @@ export {
   getLogin,
 
   // signup
+  getUserInSignup,
   getUsernameInSignup,
   getPhoneInSignup,
   getEmailInSignup,

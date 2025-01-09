@@ -3,6 +3,7 @@ import PersonalInfoScreen from "../PersonalInfoScreen/PersonalInfoScreen";
 import PasswordScreen from "../PasswordScreen/PasswordScreen";
 import { useState } from "react";
 import { ScreenValidationType } from "@shared/@common/ui/components/Modal/types";
+import ScreenUserId from "../ScreenUserId/ScreenUserId";
 
 /**
  * AuthModalPros는 AuthModal 컴포넌트에 전달되는 속성들을 정의함
@@ -32,8 +33,12 @@ interface AuthModalProps {
  * @returns {JSX.Element} AuthModal 컴포넌트 렌더링 결과.
  */
 const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
-  const [curPage, setCurPage] = useState(0);
-  const screens = [<PersonalInfoScreen />, <PasswordScreen />];
+  const [curPage, setCurPage] = useState(2);
+  const screens = [
+    <PersonalInfoScreen />,
+    <PasswordScreen />,
+    <ScreenUserId />,
+  ];
 
   /**
    * 초기 화면 유효성 검사를 설정하기 위한 객체를 생성합니다.
