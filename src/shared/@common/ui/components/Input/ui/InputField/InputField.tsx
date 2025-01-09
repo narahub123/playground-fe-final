@@ -5,7 +5,10 @@ import { joinClassNames } from "@shared/@common/utils";
 import { useInputContext } from "@shared/@common/ui/components/Input/context";
 import { useCompiledInputError } from "@shared/@common/ui/components/Input/hooks";
 import { Text } from "@shared/@common/ui/components";
-import { checkEmailDuplicateInSignupAPI } from "@shared/auth/apis";
+import {
+  checkEmailDuplicateInSignupAPI,
+  checkUserIdDuplicateInSignupAPI,
+} from "@shared/auth/apis";
 
 interface InputFieldProps {
   /**
@@ -239,11 +242,15 @@ const InputField = ({ className }: InputFieldProps) => {
       }
       return;
     } else {
+      const signupAPI =
+        field === "email"
+          ? checkEmailDuplicateInSignupAPI
+          : field === "userId"
+          ? checkUserIdDuplicateInSignupAPI
+          : undefined;
       // 모든 유효성 검사를 통과하면 API를 통해서 중복 검사를 함
-      if (field === "email") {
-        const { isDuplicate, type } = await checkEmailDuplicateInSignupAPI(
-          value
-        );
+      if (signupAPI) {
+        const { isDuplicate, type } = await signupAPI(value);
 
         if (isDuplicate) {
           if (type === "duplicate") {

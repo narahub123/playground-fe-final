@@ -1,6 +1,6 @@
 import {
   checkEmailDuplicateInSignupAPI,
-  checkUseIdDuplicateInSignupAPI,
+  checkUserIdDuplicateInSignupAPI,
 } from "./signup";
 
-export { checkEmailDuplicateInSignupAPI, checkUseIdDuplicateInSignupAPI };
+export { checkEmailDuplicateInSignupAPI, checkUserIdDuplicateInSignupAPI };

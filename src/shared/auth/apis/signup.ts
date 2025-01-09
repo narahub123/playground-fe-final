@@ -49,7 +49,7 @@ const checkEmailDuplicateInSignupAPI = async (email: string) => {
  *
  * @throws {Error} - 네트워크 오류 또는 응답 오류 발생 시 에러를 던집니다.
  */
-const checkUseIdDuplicateInSignupAPI = async (userId: string) => {
+const checkUserIdDuplicateInSignupAPI = async (userId: string) => {
   try {
     // API 호출
     const response = await fetch(`${BASE_URL}/signup/checkUserIdDuplicate`, {
@@ -96,4 +96,4 @@ const checkUseIdDuplicateInSignupAPI = async (userId: string) => {
   }
 };
 
-export { checkEmailDuplicateInSignupAPI, checkUseIdDuplicateInSignupAPI };
+export { checkEmailDuplicateInSignupAPI, checkUserIdDuplicateInSignupAPI };
