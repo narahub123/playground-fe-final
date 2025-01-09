@@ -15,10 +15,10 @@ import InputUserId from "@shared/@common/ui/components/InputUserId/InputUserId";
 
 interface ScreenUserIdProps {
   className?: string;
-  disabled?: boolean;
+  disabled?: boolean; // 사용할 지 안할지 아직 모름
 }
 
-const ScreenUserId = ({ className, disabled = false }: ScreenUserIdProps) => {
+const ScreenUserId = ({ className }: ScreenUserIdProps) => {
   // 데이터 저장 slice
   const user = useSelector(getUserInSignup);
 
@@ -55,9 +55,11 @@ const ScreenUserId = ({ className, disabled = false }: ScreenUserIdProps) => {
 
   return (
     <div className={classNames}>
-      <Modal.Body>
-        <Text text={title} type="heading2" />
-        <Text text={expl} type="expl" />
+      <Modal.Body className={styles["screen__userId__body"]}>
+        <div className={styles[`screen__userId__body__header`]}>
+          <Text text={title} type="heading2" />
+          <Text text={expl} type="expl" />
+        </div>
         <InputUserId isValid={isValid} setIsValid={setIsValid} />
       </Modal.Body>
       <Modal.Footer>

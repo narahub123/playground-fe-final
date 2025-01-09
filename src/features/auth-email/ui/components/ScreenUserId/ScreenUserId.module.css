@@ -1,2 +1,15 @@
 .screen__userId {
+  display: flex;
+  flex-direction: column;
+  height: 27rem;
+}
+
+.screen__userId__body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.screen__userId__body__header {
+  width: 100%;
 }
