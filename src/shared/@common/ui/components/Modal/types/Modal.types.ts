@@ -34,6 +34,11 @@ interface ModalContextType {
   setScreenValidations?: React.Dispatch<
     React.SetStateAction<ScreenValidationType>
   >;
+
+  /**
+   * 모달을 열었을 때 포커스가 될 요소의 인덱스
+   */
+  firstFocusIndex?: number;
 }
 
 /**

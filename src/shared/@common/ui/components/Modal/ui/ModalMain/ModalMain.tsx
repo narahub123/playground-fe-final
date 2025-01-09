@@ -72,6 +72,11 @@ interface ModalMainProps {
    * @type {string}
    */
   className?: string;
+
+  /**
+   * 모달을 열었을 때 포커스가 될 요소의 인덱스
+   */
+  firstFocusIndex?: number;
 }
 
 /**
@@ -91,6 +96,7 @@ const ModalMain = ({
   setScreenValidations,
   domId = "modal",
   className,
+  firstFocusIndex,
 }: ModalMainProps) => {
   // 배경 스크롤 방지
   useEffect(() => {
@@ -107,6 +113,7 @@ const ModalMain = ({
     setScreenValidations,
     curPage,
     setCurPage,
+    firstFocusIndex,
   };
 
   // 모달 창 열기 상태가 false이면 반환

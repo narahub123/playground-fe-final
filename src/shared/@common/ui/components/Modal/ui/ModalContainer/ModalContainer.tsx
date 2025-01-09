@@ -2,6 +2,7 @@ import styles from "./ModalContainer.module.css";
 import { ReactNode, useRef } from "react";
 import { useFocusTrap } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
+import { useModalContext } from "../../hooks";
 
 /**
  * ModalContainerProps는 ModalContainer 컴포넌트에 전달되는 속성들을 정의합니다.
@@ -68,7 +69,39 @@ const ModalContainer = ({
 }: ModalContainerProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useFocusTrap({ containerRef, firstFocus: 1 });
+  // 모달 컨텍스트에서 필요한 값 추출
+  const { firstFocusIndex, screenValidations } = useModalContext();
+
+  // `screenValidations`의 값 개수 계산
+  /**
+   * `screenValidations`가 존재하면 유효성 객체의 값 개수를 가져옵니다.
+   * 그렇지 않으면 `undefined`를 반환합니다.
+   *
+   * @type {number | undefined}
+   */
+  const lengthOfList = screenValidations
+    ? Object.values(screenValidations).length
+    : undefined;
+
+  // 첫 번째 포커스를 설정
+  /**
+   * 첫 번째 포커스 위치를 계산합니다.
+   * - `firstFocusIndex`가 존재하면 해당 값을 사용.
+   * - 그렇지 않으면, `screenValidations`의 길이에 1을 더한 값을 사용.
+   * - 모든 값이 없으면 기본값으로 `1`을 사용.
+   *
+   * @type {number}
+   */
+  const firstFocus = firstFocusIndex
+    ? firstFocusIndex
+    : lengthOfList
+    ? 1 + lengthOfList
+    : 1;
+
+  useFocusTrap({
+    containerRef,
+    firstFocus,
+  });
 
   return (
     <div
