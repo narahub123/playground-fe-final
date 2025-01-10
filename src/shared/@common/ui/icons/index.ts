@@ -2,6 +2,9 @@ import {
   LuX as close,
   LuChevronUp as up,
   LuSearch as search,
+  LuChevronsLeft as displayPost,
+  LuArrowRight as arrowRight,
+  LuArrowLeft as arrowLeft,
 } from "react-icons/lu";
 import { RiEyeLine as eye, RiEyeOffLine as eyeoff } from "react-icons/ri";
 import {
@@ -18,6 +21,9 @@ const Icons = {
   search, // 검색 아이콘
   valid, // 유효성 통과
   invalid, // 유효성 실패
+  displayPost, // 이미지가 포함된 포스트 표기
+  arrowRight, // 다음 사진
+  arrowLeft, // 이전 사진
 };
 
 export default Icons;

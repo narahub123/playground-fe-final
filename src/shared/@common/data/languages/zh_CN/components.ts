@@ -169,6 +169,18 @@ const components = {
       register: "下一步",
     },
   },
+  LightboxCloseButton: {
+    iconTitle: "关闭",
+  },
+  LightboxDisplayButton: {
+    iconTitle: "显示",
+  },
+  LightboxNextButton: {
+    iconTitle: "下一步",
+  },
+  LightboxPrevButton: {
+    iconTitle: "上一步",
+  },
 };
 
 export default components;

@@ -1,0 +1,14 @@
+.lightbox__close__button__wrapper {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.lightbox__close__button {
+  font-size: 23px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

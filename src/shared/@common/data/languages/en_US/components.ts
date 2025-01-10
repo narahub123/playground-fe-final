@@ -172,6 +172,18 @@ const components = {
       register: "Next",
     },
   },
+  LightboxCloseButton: {
+    iconTitle: "Close",
+  },
+  LightboxDisplayButton: {
+    iconTitle: "Display",
+  },
+  LightboxNextButton: {
+    iconTitle: "Next",
+  },
+  LightboxPrevButton: {
+    iconTitle: "Previous",
+  },
 };
 
 export default components;

@@ -174,6 +174,18 @@ const components = {
       register: "다음",
     },
   },
+  LightboxCloseButton: {
+    iconTitle: "닫기",
+  },
+  LightboxDisplayButton: {
+    iconTitle: "표기",
+  },
+  LightboxNextButton: {
+    iconTitle: "다음",
+  },
+  LIghtboxPrevButton: {
+    iconTitle: "이전",
+  },
 };
 
 export default components;

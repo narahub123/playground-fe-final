@@ -175,6 +175,18 @@ const components = {
       register: "次へ",
     },
   },
+  LightboxCloseButton: {
+    iconTitle: "閉じる",
+  },
+  LightboxDisplayButton: {
+    iconTitle: "表示",
+  },
+  LightboxNextButton: {
+    iconTitle: "次へ",
+  },
+  LightboxPrevButton: {
+    iconTitle: "前へ",
+  },
 };
 
 export default components;

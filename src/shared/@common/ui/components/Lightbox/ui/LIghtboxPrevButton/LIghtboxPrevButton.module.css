@@ -1,0 +1,15 @@
+.lightbox__prev__button__wrapper {
+  padding: 10px;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.lightbox__prev__button {
+  font-size: 23px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
