@@ -164,6 +164,14 @@ const components = {
       },
     },
   },
+  ScreenProfileImage: {
+    title: "Select Profile Picture",
+    expl: "Do you have a favorite selfie? Upload it now.",
+    button: {
+      ignore: "Skip for now",
+      register: "Next",
+    },
+  },
 };
 
 export default components;

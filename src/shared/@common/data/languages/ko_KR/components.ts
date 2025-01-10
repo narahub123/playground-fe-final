@@ -166,6 +166,14 @@ const components = {
       },
     },
   },
+  ScreenProfileImage: {
+    title: "프로필 사진 선택하기",
+    expl: "마음에 드는 셀카 사진이 있나요? 지금 업로드하세요.",
+    button: {
+      ignore: "지금은 넘어가기",
+      register: "다음",
+    },
+  },
 };
 
 export default components;

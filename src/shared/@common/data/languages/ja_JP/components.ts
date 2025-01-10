@@ -167,6 +167,14 @@ const components = {
       },
     },
   },
+  ScreenProfileImage: {
+    title: "プロフィール写真を選択",
+    expl: "お気に入りのセルフィーはありますか？ 今すぐアップロードしてください。",
+    button: {
+      ignore: "今はスキップ",
+      register: "次へ",
+    },
+  },
 };
 
 export default components;

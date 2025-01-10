@@ -161,6 +161,14 @@ const components = {
       },
     },
   },
+  ScreenProfileImage: {
+    title: "選擇頭像",
+    expl: "有喜歡的自拍照嗎？ 現在上傳吧。",
+    button: {
+      ignore: "暫時跳過",
+      register: "下一步",
+    },
+  },
 };
 
 export default components;

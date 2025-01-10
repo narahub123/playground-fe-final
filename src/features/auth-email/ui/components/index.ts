@@ -1,5 +1,13 @@
 import AuthModal from "./AuthModal/AuthModal";
-import PersonInfoScreen from "./ScreenPersonalInfo/ScreenPersonalInfo";
+import ScreenPersonalInfo from "./ScreenPersonalInfo/ScreenPersonalInfo";
+import ScreenPassword from "./ScreenPassword/ScreenPassword";
 import ScreenUserId from "./ScreenUserId/ScreenUserId";
+import ScreenProfileImage from "./ScreenProfileImage/ScreenProfileImage";
 
-export { AuthModal, PersonInfoScreen, ScreenUserId };
+export {
+  AuthModal,
+  ScreenPersonalInfo,
+  ScreenPassword,
+  ScreenUserId,
+  ScreenProfileImage,
+};
