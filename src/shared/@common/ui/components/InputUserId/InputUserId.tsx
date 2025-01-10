@@ -61,7 +61,7 @@ const InputUserId = ({
         </Input.Top>
         <Input.Bottom>
           <Input.Field />
-          <Input.ActionIcon />
+          <Input.AdornmentIcon />
         </Input.Bottom>
       </Input.Main>
       <Input.Error />
