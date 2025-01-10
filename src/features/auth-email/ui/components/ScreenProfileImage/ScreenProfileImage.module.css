@@ -3,3 +3,9 @@
   flex-direction: column;
   height: 430px;
 }
+
+.screen__profile__image__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}

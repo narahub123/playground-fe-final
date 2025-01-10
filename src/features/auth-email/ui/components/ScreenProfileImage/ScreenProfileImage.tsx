@@ -12,10 +12,7 @@ interface ScreenProfileImageProps {
   disabled?: boolean;
 }
 
-const ScreenProfileImage = ({
-  className,
-  disabled = false,
-}: ScreenProfileImageProps) => {
+const ScreenProfileImage = ({ className }: ScreenProfileImageProps) => {
   const { setScreenValidations } = useModalContext();
   const { moveNext } = useModalPagination();
 
@@ -33,15 +30,19 @@ const ScreenProfileImage = ({
    * @param {string[]} classNames - 결합할 클래스 이름들의 배열.
    * @returns {string} - 결합된 클래스 이름.
    */
-  const classNames = joinClassNames([styles["screen__profile__image"], className]);
+  const classNames = joinClassNames([
+    styles["screen__profile__image"],
+    className,
+  ]);
 
   return (
     <div className={classNames}>
-      <Modal.Body>
-        <div>
+      <Modal.Body className={styles[`screen__profile__image__body`]}>
+        <div className={styles[`screen__prifile__image__body__header`]}>
           <Text text={title} type="heading2" />
           <Text text={expl} type="expl" />
         </div>
+        djdkj
       </Modal.Body>
       <Modal.Footer>
         <Button colorPalette="colorTheme" onClick={moveNext}>
