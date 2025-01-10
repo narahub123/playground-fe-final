@@ -9,6 +9,7 @@ import SVG from "./SVG/SVG";
 import Spinner from "./Spinner/Spinner";
 import InputPassword from "./InputPassword/InputPassword";
 import InputUserIds from "./InputUserId/InputUserId";
+import Image from "./Image/Image";
 
 export {
   Text,
@@ -22,4 +23,5 @@ export {
   Spinner,
   InputPassword,
   InputUserIds,
+  Image,
 };
