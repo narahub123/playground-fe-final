@@ -1,0 +1,4 @@
+.lightbox__images {
+  width: 100%;
+  flex-shrink: 1; /* 줄어듦 */
+}
