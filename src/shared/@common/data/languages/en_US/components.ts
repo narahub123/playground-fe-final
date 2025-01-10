@@ -50,7 +50,6 @@ const components = {
         errorMessage: `The username must be at least ${USERNAME_MIN} characters and at most ${USERNAME_MAX} characters.`,
       },
       EXCEED: {
-        regExp: "",
         errorMessage: `The username can be up to ${USERNAME_MAX} characters.`,
       },
     },
@@ -63,11 +62,9 @@ const components = {
           "Please enter a valid email address format. \nExample: username@example.com",
       },
       DUPLICATE: {
-        regExp: "",
         errorMessage: "This email is already registered.",
       },
       DISCONNECT: {
-        regExp: "",
         errorMessage:
           "Unable to connect to the server. Please try again later.",
       },
@@ -106,11 +103,9 @@ const components = {
     },
     passwordError: {
       REQUIRED: {
-        regExp: "",
         errorMessage: "Please set the password first.",
       },
       MISMATCH: {
-        regExp: "",
         errorMessage: "The password does not match the one you set.",
       },
       EMPTY: {
@@ -130,7 +125,6 @@ const components = {
         errorMessage: `The password must include at least one lowercase letter, one uppercase letter, one number, and one special character (${PASSWORD_SPECIAL_CHARECTERS}).`,
       },
       EXCEED: {
-        regExp: "",
         errorMessage: `The password cannot exceed ${PASSWORD_MAX} characters.`,
       },
     },
@@ -160,15 +154,12 @@ const components = {
         errorMessage: `User ID must contain at least one of each: lowercase letters, uppercase letters, numbers, and special characters (${USERID_SPECIAL_CHARACTERS}).`,
       },
       EXCEED: {
-        regExp: "",
         errorMessage: `User ID cannot exceed ${USERID_MAX} characters.`,
       },
       DUPLICATE: {
-        regExp: "",
         errorMessage: `This user ID already exists.`,
       },
       DISCONNECT: {
-        regExp: "",
         errorMessage: `The server is currently disconnected. Please try again later.`,
       },
     },

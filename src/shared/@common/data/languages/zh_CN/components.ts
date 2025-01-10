@@ -50,7 +50,6 @@ const components = {
         errorMessage: `用户名必须至少 ${USERNAME_MIN} 个字符，最多 ${USERNAME_MAX} 个字符。`,
       },
       EXCEED: {
-        regExp: "",
         errorMessage: `用户名最多可以包含 ${USERNAME_MAX} 个字符。`,
       },
     },
@@ -62,11 +61,9 @@ const components = {
         errorMessage: "请输入有效的电子邮件格式。 \n示例: username@example.com",
       },
       DUPLICATE: {
-        regExp: "",
         errorMessage: "此电子邮件已注册。",
       },
       DISCONNECT: {
-        regExp: "",
         errorMessage: "当前无法连接到服务器。请稍后再试。",
       },
     },
@@ -103,11 +100,9 @@ const components = {
     },
     passwordError: {
       REQUIRED: {
-        regExp: "",
         errorMessage: "请先设置密码。",
       },
       MISMATCH: {
-        regExp: "",
         errorMessage: "密码与设置的密码不一致。",
       },
       EMPTY: {
@@ -127,7 +122,6 @@ const components = {
         errorMessage: `密码必须至少包含一个小写字母、一个大写字母、一个数字和一个特殊字符(${PASSWORD_SPECIAL_CHARECTERS})。`,
       },
       EXCEED: {
-        regExp: "",
         errorMessage: `密码最多不能超过${PASSWORD_MAX}个字符。`,
       },
     },
@@ -157,15 +151,12 @@ const components = {
         errorMessage: `用户ID必须至少包含一个小写字母、大写字母、数字和特殊字符(${USERID_SPECIAL_CHARACTERS})。`,
       },
       EXCEED: {
-        regExp: "",
         errorMessage: `用户ID最多只能有${USERID_MAX}个字符。`,
       },
       DUPLICATE: {
-        regExp: "",
         errorMessage: `该用户ID已存在。`,
       },
       DISCONNECT: {
-        regExp: "",
         errorMessage: `目前无法连接到服务器，请稍后重试。`,
       },
     },

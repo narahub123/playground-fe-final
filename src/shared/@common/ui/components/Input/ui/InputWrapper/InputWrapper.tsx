@@ -31,7 +31,21 @@ interface InputWrapperProps {
     >
   >; // `isValid`의 값을 업데이트하는 함수입니다. 객체일 경우, 각 필드의 유효성 상태를 개별적으로 업데이트하거나, boolean 값일 경우 전체 유효성 상태를 한 번에 업데이트할 수 있습니다.
   maxLength?: number; // 사용자가 input 필드에 입력할 수 있는 최대 글자 수를 제한: Constants로 관리할 것
-  error?: Partial<Record<InputErrorKeyType, InputErrorType>>;
+  /**
+   * `error`는 선택적인 객체로, `InputErrorKeyType` 타입을 키로 가지며, 각 키에 대해
+   * 해당하는 에러 메시지와 선택적으로 정규 표현식을 포함하는 `InputErrorType<K>` 타입의 값을 가집니다.
+   * `error` 자체가 `undefined`일 수도 있음을 나타냅니다.
+   *
+   * - `InputErrorKeyType`은 여러 종류의 에러 키를 정의한 타입으로, 각 에러에 대한 고유한 키 값입니다.
+   * - `InputErrorType<K>`은 각 에러 키에 해당하는 에러 메시지와, 필요시 정규 표현식을 포함하는 타입입니다.
+   *
+   * 예시:
+   * - `error: { EMPTY: { errorMessage: "이 필드는 비어 있을 수 없습니다.", regExp: "^.*$" } }`
+   * - `error: undefined`일 수도 있습니다. (에러가 없는 경우)
+   */
+  error?: {
+    [K in InputErrorKeyType]?: InputErrorType<K>;
+  };
   list?: DropdownItemType[]; // 드롭다운에 들어갈 아이템 배열
   disabled?: boolean; // disabled 모드 적용
   /**

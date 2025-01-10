@@ -33,7 +33,7 @@ interface AuthModalProps {
  * @returns {JSX.Element} AuthModal 컴포넌트 렌더링 결과.
  */
 const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
-  const [curPage, setCurPage] = useState(2);
+  const [curPage, setCurPage] = useState(0);
   // 유효성 상태를 관리하는 상태 훅 정의
   /**
    * 화면별 유효성 상태를 관리합니다.

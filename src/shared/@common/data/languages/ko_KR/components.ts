@@ -53,7 +53,6 @@ const components = {
         errorMessage: `사용자 이름은 최소 ${USERNAME_MIN}자에서 최대 ${USERNAME_MAX}자까지 가능합니다.`,
       },
       EXCEED: {
-        regExp: "",
         errorMessage: `사용자 이름은 최대 ${USERNAME_MAX}까지 가능합니다.`,
       },
     },
@@ -66,11 +65,9 @@ const components = {
           "이메일 형식에 맞게 입력해주세요. \n예시) username@example.com",
       },
       DUPLICATE: {
-        regExp: "",
         errorMessage: `은 이미 가입한 이메일입니다.`,
       },
       DISCONNECT: {
-        regExp: "",
         errorMessage: `현재 서버와 연결이 되지 않습니다. 잠시 후 다시 시도해주세요.`,
       },
     },
@@ -108,11 +105,9 @@ const components = {
     },
     passwordError: {
       REQUIRED: {
-        regExp: "",
         errorMessage: "비밀번호를 먼저 설정해주세요.",
       },
       MISMATCH: {
-        regExp: "",
         errorMessage: "설정한 비밀번호와 일치하지 않습니다.",
       },
       EMPTY: {
@@ -132,7 +127,6 @@ const components = {
         errorMessage: `비밀번호는 영문 소문자, 영문 대문자, 숫자, 특수문자(${PASSWORD_SPECIAL_CHARECTERS})가 각각 적어도 1자 이상 필요합니다.`,
       },
       EXCEED: {
-        regExp: "",
         errorMessage: `비밀번호는 최대 ${PASSWORD_MAX}까지 가능합니다.`,
       },
     },
@@ -162,15 +156,12 @@ const components = {
         errorMessage: `사용자 아이디는 영문 소문자, 영문 대문자, 숫자, 특수문자(${USERID_SPECIAL_CHARACTERS})가 각각 적어도 1자 이상 필요합니다.`,
       },
       EXCEED: {
-        regExp: "",
         errorMessage: `사용자 아이디는 최대 ${USERID_MAX}까지 가능합니다.`,
       },
       DUPLICATE: {
-        regExp: "",
         errorMessage: `해당 아이디는 이미 존재하는 아이디입니다.`,
       },
       DISCONNECT: {
-        regExp: "",
         errorMessage: `현재 서버와 연결이 되지 않습니다. 잠시 후 다시 시도해주세요.`,
       },
     },

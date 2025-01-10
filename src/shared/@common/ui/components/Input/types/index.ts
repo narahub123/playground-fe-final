@@ -3,6 +3,8 @@ import {
   InputErrorType,
   CompileErrorType,
   InputErrorKeyType,
+  InputErrorKeyWithRegExp,
+  InputErrorKeyWithoutRegExp,
 } from "./Input.types";
 
 export type {
@@ -10,4 +12,6 @@ export type {
   InputErrorType,
   CompileErrorType,
   InputErrorKeyType,
+  InputErrorKeyWithRegExp,
+  InputErrorKeyWithoutRegExp,
 };

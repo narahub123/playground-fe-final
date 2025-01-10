@@ -50,7 +50,6 @@ const components = {
         errorMessage: `ユーザー名は最低 ${USERNAME_MIN} 文字、最大 ${USERNAME_MAX} 文字までです。`,
       },
       EXCEED: {
-        regExp: "",
         errorMessage: `ユーザー名は最大 ${USERNAME_MAX} 文字までです。`,
       },
     },
@@ -66,11 +65,9 @@ const components = {
           "メールアドレスの形式を正しく入力してください。 \n例) username@example.com",
       },
       DUPLICATE: {
-        regExp: "",
         errorMessage: "このメールアドレスは既に登録されています。",
       },
       DISCONNECT: {
-        regExp: "",
         errorMessage:
           "現在サーバーに接続できません。しばらくしてから再試行してください。",
       },
@@ -109,11 +106,9 @@ const components = {
     },
     passwordError: {
       REQUIRED: {
-        regExp: "",
         errorMessage: "パスワードを先に設定してください。",
       },
       MISMATCH: {
-        regExp: "",
         errorMessage: "設定したパスワードと一致しません。",
       },
       EMPTY: {
@@ -133,7 +128,6 @@ const components = {
         errorMessage: `パスワードには、小文字、大文字、数字、特殊文字(${PASSWORD_SPECIAL_CHARECTERS})がそれぞれ少なくとも1文字必要です。`,
       },
       EXCEED: {
-        regExp: "",
         errorMessage: `パスワードは最大${PASSWORD_MAX}文字までです。`,
       },
     },
@@ -163,15 +157,12 @@ const components = {
         errorMessage: `ユーザーIDには、小文字、大文字、数字、特殊文字(${USERID_SPECIAL_CHARACTERS})がそれぞれ1文字以上含まれている必要があります。`,
       },
       EXCEED: {
-        regExp: "",
         errorMessage: `ユーザーIDは最大${USERID_MAX}文字まで可能です。`,
       },
       DUPLICATE: {
-        regExp: "",
         errorMessage: `このユーザーIDは既に存在しています。`,
       },
       DISCONNECT: {
-        regExp: "",
         errorMessage: `現在、サーバーに接続できません。しばらくしてから再試行してください。`,
       },
     },
