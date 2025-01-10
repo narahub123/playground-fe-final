@@ -11,6 +11,7 @@ interface CustomImageProps {
   rounded?: RoundedType | string;
   className?: string;
   disabled?: boolean;
+  onClick?: Function;
 }
 
 type ImageProps = CustomImageProps & React.ImgHTMLAttributes<HTMLImageElement>;
@@ -23,10 +24,9 @@ const Image = ({
   fit = "fill",
   className,
   disabled = false,
+  onClick,
   ...imgProps
 }: ImageProps) => {
-  // 언어 설정
-
   const classNames = joinClassNames([styles["image"], className]);
 
   return (
@@ -40,9 +40,11 @@ const Image = ({
           rounded ? roundedValues[rounded as RoundedType] || rounded : undefined
         }`,
         objectFit: `${fit}`,
+        cursor: `${disabled || !onClick ? undefined : "pointer"}`,
         ...imgProps.style,
       }}
       {...imgProps}
+      onClick={disabled || !onClick ? undefined : onClick}
     />
   );
 };
