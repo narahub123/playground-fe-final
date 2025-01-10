@@ -10,6 +10,7 @@ import Spinner from "./Spinner/Spinner";
 import InputPassword from "./InputPassword/InputPassword";
 import InputUserIds from "./InputUserId/InputUserId";
 import Image from "./Image/Image";
+import Lightbox from "./Lightbox";
 
 export {
   Text,
@@ -24,4 +25,5 @@ export {
   InputPassword,
   InputUserIds,
   Image,
+  Lightbox,
 };
