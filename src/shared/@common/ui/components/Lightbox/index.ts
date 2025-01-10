@@ -1,12 +1,12 @@
-import LightboxWrapper from "./ui/LightboxWrapper/LightboxWrapper";
-import LightboxMain from "./ui/LightboxMain/LightboxMain";
-import LightboxSide from "./ui/LightboxSide/LightboxSide";
-import LightboxImages from "./ui/LightboxImages/LightboxImages";
-import LightboxBottom from "./ui/LightboxBottom/LightboxBottom";
-import LightboxCloseButton from "./ui/LightboxCloseButton/LightboxCloseButton";
-import LightboxDisplayButton from "./ui/LightboxDisplayButton/LightboxDisplayButton";
-import LightboxNextButton from "./ui/LightboxNextButton/LightboxNextButton";
-import LIghtboxPrevButton from "./ui/LIghtboxPrevButton/LIghtboxPrevButton";
+import LightboxBottom from "./ui/Lightbox/LightboxBottom/LightboxBottom";
+import LightboxCloseButton from "./ui/Lightbox/LightboxCloseButton/LightboxCloseButton";
+import LightboxDisplayButton from "./ui/Lightbox/LightboxDisplayButton/LightboxDisplayButton";
+import LightboxImages from "./ui/Lightbox/LightboxImages/LightboxImages";
+import LightboxMain from "./ui/Lightbox/LightboxMain/LightboxMain";
+import LightboxNextButton from "./ui/Lightbox/LightboxNextButton/LightboxNextButton";
+import LIghtboxPrevButton from "./ui/Lightbox/LIghtboxPrevButton/LIghtboxPrevButton";
+import LightboxSide from "./ui/Lightbox/LightboxSide/LightboxSide";
+import LightboxWrapper from "./ui/Lightbox/LightboxWrapper/LightboxWrapper";
 
 const Lightbox = Object.assign(LightboxWrapper, {
   Main: LightboxMain,
