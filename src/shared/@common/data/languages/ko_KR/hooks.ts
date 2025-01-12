@@ -2,6 +2,9 @@ const hooks = {
   useInputContext: {
     error: `InputContext가 제공되지 않았습니다.`,
   },
+  useLightboxContext: {
+    error: `LightboxContext가 제공되지 않았습니다.`,
+  },
   useContext: {
     error: (context: string) =>
       `use${context}는 반드시 ${context}Provider 내에서 사용되어야 합니다.`,

@@ -2,6 +2,9 @@ const hooks = {
   useInputContext: {
     error: `未提供InputContext。`,
   },
+  useLightboxContext: {
+    error: `LightboxContext未提供。`,
+  },
   useContext: {
     error: (context: string) => `use${context}必須在${context}Provider內使用。`,
   },
