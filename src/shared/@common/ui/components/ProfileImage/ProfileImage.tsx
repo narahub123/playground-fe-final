@@ -4,9 +4,15 @@ import { joinClassNames } from "@shared/@common/utils";
 import Image from "../Image/Image";
 import { RoundedType } from "../Image/types";
 import ImageUploader from "../ImageUploader/ImageUploader";
+import { useSelector } from "react-redux";
+import { getProfileImageInSignup } from "@features/auth-setting/models/selectors";
+import { defaultProfileImage } from "@shared/@common/assets";
+import { setProfileImageInSignup } from "@features/auth-setting/models/slices/signupSlice";
+import { getProfileImage } from "@shared/@common/models/selectors";
+import { setProfileImage } from "@shared/@common/models/slices/userSlice";
 
 interface CustomProfileImageProps {
-  src: string;
+  isSignup?: boolean;
   width?: string;
   rounded?: RoundedType;
   className?: string;
@@ -16,19 +22,23 @@ type ProfileImageProps = CustomProfileImageProps &
   React.ImgHTMLAttributes<HTMLImageElement>;
 
 const ProfileImage = ({
-  src,
+  isSignup = false,
   width,
   rounded,
   className,
 }: ProfileImageProps) => {
-  const [images, setImages] = useState([src]);
+  const selector = isSignup ? getProfileImageInSignup : getProfileImage;
+
+  const reducer = isSignup ? setProfileImageInSignup : setProfileImage;
+
+  const image = useSelector(selector);
   const classNames = joinClassNames([styles["profile__image"], className]);
 
   return (
     <div className={classNames}>
-      <ImageUploader setImages={setImages} />
+      <ImageUploader setImages={reducer} />
       <Image
-        src={images[0]}
+        src={image || defaultProfileImage}
         width={width}
         height={width}
         rounded={rounded}

@@ -3,9 +3,10 @@ import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
 import { useRef } from "react";
 import Icon from "../Icon/Icon";
+import { useAppDispatch } from "@app/store";
 
 interface ImageUploaderProps {
-  setImages: React.Dispatch<React.SetStateAction<string[]>>;
+  setImages: (value: any) => { type: string; payload: any };
   multiple?: boolean;
   className?: string;
 }
@@ -15,6 +16,7 @@ const ImageUploader = ({
   className,
   multiple,
 }: ImageUploaderProps) => {
+  const dispatch = useAppDispatch();
   const inputRef = useRef<HTMLInputElement>(null);
 
   // 언어 설정
@@ -58,7 +60,7 @@ const ImageUploader = ({
 
     Promise.all(readers)
       .then((images) => {
-        setImages(images); // 다중 이미지 배열로 상태 업데이트
+        dispatch(setImages(images)); // 다중 이미지 배열로 상태 업데이트
       })
       .catch((error) => {
         console.error("이미지 처리 중 에러:", error);

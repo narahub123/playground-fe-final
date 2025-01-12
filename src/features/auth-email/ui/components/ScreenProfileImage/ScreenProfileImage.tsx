@@ -40,7 +40,7 @@ const ScreenProfileImage = ({ className }: ScreenProfileImageProps) => {
           <Text text={title} type="heading2" />
           <Text text={expl} type="expl" />
         </div>
-        <ProfileImage src={defaultProfileImage} width="10rem" rounded="full" />
+        <ProfileImage width="10rem" rounded="full" isSignup />
       </Modal.Body>
       <Modal.Footer>
         <Button colorPalette="colorTheme" onClick={moveNext}>

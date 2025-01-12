@@ -4,12 +4,14 @@ export interface UserState {
   password: string;
   password_check: string;
   userId: string;
+  profileImage: string;
 }
 
 const initialState: UserState = {
   password: "",
   password_check: "",
   userId: "",
+  profileImage: "",
 };
 
 const userSlice = createSlice({
@@ -25,10 +27,13 @@ const userSlice = createSlice({
     setUserId: (state, action: PayloadAction<string>) => {
       state.userId = action.payload;
     },
+    setProfileImage: (state, action: PayloadAction<string>) => {
+      state.profileImage = action.payload;
+    },
   },
 });
 
 export default userSlice.reducer;
 
-export const { setPassword, setPasswordCheck, setUserId } = userSlice.actions;
-
+export const { setPassword, setPasswordCheck, setUserId, setProfileImage } =
+  userSlice.actions;

@@ -10,6 +10,7 @@ import {
   getUserId,
   getPassword,
   getPasswordCheck,
+  getProfileImage,
 } from "./userSelectors";
 
 export {
@@ -24,4 +25,5 @@ export {
   getUserId,
   getPassword,
   getPasswordCheck,
+  getProfileImage,
 };
