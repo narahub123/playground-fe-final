@@ -1,3 +1,4 @@
 import useLightboxDisclosure from "./useLightboxDisclosure";
+import useLightboxPagination from "./useLightboxPagination";
 
-export { useLightboxDisclosure };
+export { useLightboxDisclosure, useLightboxPagination };
