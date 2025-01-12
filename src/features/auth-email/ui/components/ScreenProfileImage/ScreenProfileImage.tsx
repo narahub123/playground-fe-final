@@ -1,17 +1,11 @@
-import { defaultProfileImage, google } from "@shared/@common/assets";
 import styles from "./ScreenProfileImage.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
-import { Button, Lightbox, Modal, Text } from "@shared/@common/ui/components";
+import { Button, Modal, Text } from "@shared/@common/ui/components";
 import {
   useModalContext,
   useModalPagination,
 } from "@shared/@common/ui/components/Modal/hooks";
 import { joinClassNames } from "@shared/@common/utils";
-import {
-  useLightboxDisclosure,
-  useLightboxPagination,
-  useLightboxPostDisclosure,
-} from "@shared/@common/ui/components/Lightbox/hooks";
 
 interface ScreenProfileImageProps {
   className?: string;
@@ -41,35 +35,8 @@ const ScreenProfileImage = ({ className }: ScreenProfileImageProps) => {
     className,
   ]);
 
-  const { isLightboxOpen, onCloseLightbox } = useLightboxDisclosure();
-
-  const { isLightboxPostOpen, onOpenLightboxPost, onCloseLightboxPost } =
-    useLightboxPostDisclosure();
-
-  console.log(isLightboxPostOpen);
-
   return (
     <div className={classNames}>
-      <Lightbox
-        images={[defaultProfileImage, google]}
-        isLightboxOpen={isLightboxOpen}
-        onClose={onCloseLightbox}
-        isLightboxPostOpen={isLightboxPostOpen}
-        onOpenLightboxPost={onOpenLightboxPost}
-        onCloseLightboxPost={onCloseLightboxPost}
-      >
-        <Lightbox.Main>
-          <Lightbox.Top>
-            <Lightbox.CloseButton />
-            <Lightbox.PrevButton />
-            <Lightbox.Images />
-            <Lightbox.DisplayButton />
-            <Lightbox.NextButton />
-          </Lightbox.Top>
-          <Lightbox.Bottom>하이</Lightbox.Bottom>
-        </Lightbox.Main>
-        <Lightbox.Side>옆</Lightbox.Side>
-      </Lightbox>
       <Modal.Body className={styles[`screen__profile__image__body`]}>
         <div className={styles[`screen__prifile__image__body__header`]}>
           <Text text={title} type="heading2" />
