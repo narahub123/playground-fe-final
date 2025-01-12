@@ -1,17 +1,17 @@
 import { defaultProfileImage } from "@shared/@common/assets";
 import styles from "./ScreenProfileImage.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
-import {
-  Button,
-  Modal,
-  ProfileImage,
-  Text,
-} from "@shared/@common/ui/components";
+import { Button, Lightbox, Modal, Text } from "@shared/@common/ui/components";
 import {
   useModalContext,
   useModalPagination,
 } from "@shared/@common/ui/components/Modal/hooks";
 import { joinClassNames } from "@shared/@common/utils";
+import {
+  useLightboxDisclosure,
+  useLightboxPagination,
+  useLightboxPostDisclosure,
+} from "@shared/@common/ui/components/Lightbox/hooks";
 
 interface ScreenProfileImageProps {
   className?: string;
@@ -40,7 +40,7 @@ const ScreenProfileImage = ({ className }: ScreenProfileImageProps) => {
           <Text text={title} type="heading2" />
           <Text text={expl} type="expl" />
         </div>
-        <ProfileImage width="10rem" rounded="full" isSignup />
+        djdkj
       </Modal.Body>
       <Modal.Footer>
         <Button colorPalette="colorTheme" onClick={moveNext}>
