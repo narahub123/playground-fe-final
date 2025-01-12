@@ -1,28 +1,25 @@
 import styles from "./LightboxImages.module.css";
 import { joinClassNames } from "@shared/@common/utils";
 import { Image } from "@shared/@common/ui/components";
+import useLightboxContext from "../../../hooks/useLightboxContext";
 
 interface LightboxImagesProps {
-  curImage: number;
-  images: string[];
   className?: string;
 }
 
-const LightboxImages = ({
-  curImage = 0,
-  images,
-  className,
-}: LightboxImagesProps) => {
+const LightboxImages = ({ className }: LightboxImagesProps) => {
   const classNames = joinClassNames([
     styles["lightbox__image__wrapper"],
     className,
   ]);
 
+  const { images, curImageIndex } = useLightboxContext();
+
   return (
     <div className={classNames}>
       <div className={styles["lightbox__image__container"]}>
         <Image
-          src={images[curImage]}
+          src={images[curImageIndex]}
           className={styles[`lightbox__image`]}
           fit="contain"
         />

@@ -2,6 +2,7 @@ import styles from "./LightboxNextButton.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
 import { Icon } from "@shared/@common/ui/components";
+import useLightboxContext from "../../../hooks/useLightboxContext";
 
 interface LightboxNextButtonProps {
   className?: string;
@@ -19,12 +20,14 @@ const LightboxNextButton = ({ className }: LightboxNextButtonProps) => {
     className,
   ]);
 
+  const { moveNextImage } = useLightboxContext();
+
   return (
     <div className={styles[`lightbox__next__button__wrapper`]}>
       <Icon
         iconName="arrowRight"
         iconTitle={iconTitle}
-        onClick={() => {}}
+        onClick={moveNextImage}
         subClassName={classNames}
       />
     </div>
