@@ -1,5 +1,5 @@
 import styles from "./LightboxWrapper.module.css";
-import { ReactNode, useState } from "react";
+import { ReactNode } from "react";
 import { joinClassNames } from "@shared/@common/utils";
 import { Portal } from "@shared/@common/ui/components";
 import { LightboxContextProvider } from "../../../contexts";
@@ -9,6 +9,9 @@ interface LightboxWrapperProps {
   children: ReactNode;
   images: string[];
   onClose: () => void;
+  isLightboxPostOpen?: boolean;
+  onOpenLightboxPost?: () => void;
+  onCloseLightboxPost?: () => void;
   className?: string;
 }
 
@@ -16,6 +19,9 @@ const LightboxWrapper = ({
   className,
   images,
   onClose,
+  isLightboxPostOpen,
+  onOpenLightboxPost,
+  onCloseLightboxPost,
   children,
 }: LightboxWrapperProps) => {
   const { curImage, moveNextImage, movePrevImage } = useLightboxPagination({
@@ -30,6 +36,9 @@ const LightboxWrapper = ({
     moveNextImage,
     movePrevImage,
     onClose,
+    isLightboxPostOpen,
+    onOpenLightboxPost,
+    onCloseLightboxPost,
   };
 
   return (

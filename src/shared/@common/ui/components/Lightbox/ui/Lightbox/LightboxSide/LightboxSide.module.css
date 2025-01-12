@@ -1,3 +1,11 @@
 .lightbox__side {
+  position: relative;
+}
+
+.lightbox__side--open {
   width: 300px;
+}
+
+.lightbox__side--close {
+  width: 0px;
 }

@@ -4,6 +4,9 @@ interface LightboxContextType {
   moveNextImage: () => void;
   movePrevImage: () => void;
   onClose: () => void;
+  isLightboxPostOpen?: boolean;
+  onOpenLightboxPost?: () => void;
+  onCloseLightboxPost?: () => void;
 }
 
 export type { LightboxContextType };

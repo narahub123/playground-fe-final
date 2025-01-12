@@ -3,6 +3,7 @@ import {
   LuChevronUp as up,
   LuSearch as search,
   LuChevronsLeft as displayPost,
+  LuChevronsRight as closePost,
   LuArrowRight as arrowRight,
   LuArrowLeft as arrowLeft,
 } from "react-icons/lu";
@@ -22,6 +23,7 @@ const Icons = {
   valid, // 유효성 통과
   invalid, // 유효성 실패
   displayPost, // 이미지가 포함된 포스트 표기
+  closePost, // 이미지가 포함된 포스트 닫기
   arrowRight, // 다음 사진
   arrowLeft, // 이전 사진
 };
