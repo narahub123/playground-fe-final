@@ -1,3 +1,6 @@
 .lightbox__main {
   width: 100%;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  height: 100vh;
 }

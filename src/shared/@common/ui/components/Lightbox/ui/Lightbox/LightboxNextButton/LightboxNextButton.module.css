@@ -1,6 +1,6 @@
 .lightbox__next__button__wrapper {
   padding: 10px;
-  height: 100vh;
+  height: 100%;
   display: flex;
   align-items: center;
 }

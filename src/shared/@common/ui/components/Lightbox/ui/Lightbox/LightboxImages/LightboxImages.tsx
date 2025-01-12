@@ -13,11 +13,20 @@ const LightboxImages = ({
   images,
   className,
 }: LightboxImagesProps) => {
-  const classNames = joinClassNames([styles["lightbox__images"], className]);
+  const classNames = joinClassNames([
+    styles["lightbox__image__wrapper"],
+    className,
+  ]);
 
   return (
     <div className={classNames}>
-      <Image src={images[curImage]} />
+      <div className={styles["lightbox__image__container"]}>
+        <Image
+          src={images[curImage]}
+          className={styles[`lightbox__image`]}
+          fit="contain"
+        />
+      </div>
     </div>
   );
 };

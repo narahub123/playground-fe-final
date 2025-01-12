@@ -1,3 +1,4 @@
 .lightbox__top {
   position: relative;
+  display: flex;
 }
