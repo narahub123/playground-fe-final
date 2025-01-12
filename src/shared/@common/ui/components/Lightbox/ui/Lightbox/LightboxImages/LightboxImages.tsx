@@ -1,7 +1,7 @@
 import styles from "./LightboxImages.module.css";
 import { joinClassNames } from "@shared/@common/utils";
 import { Image } from "@shared/@common/ui/components";
-import useLightboxContext from "../../../hooks/useLightboxContext";
+import { useLightboxContext } from "@shared/@common/ui/components/Lightbox/hooks";
 
 interface LightboxImagesProps {
   className?: string;

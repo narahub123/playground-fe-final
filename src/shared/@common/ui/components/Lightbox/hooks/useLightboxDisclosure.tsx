@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const useLightboxDisclosure = () => {
-  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(true);
 
   const onOpenLightbox = () => {
     setIsLightboxOpen(true);

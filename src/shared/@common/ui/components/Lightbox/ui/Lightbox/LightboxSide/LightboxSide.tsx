@@ -1,7 +1,7 @@
 import styles from "./LightboxSide.module.css";
 import { ReactNode } from "react";
 import { joinClassNames } from "@shared/@common/utils";
-import { useLightboxContext } from "../../../hooks";
+import { useLightboxContext } from "@shared/@common/ui/components/Lightbox/hooks";
 
 interface LightboxSideProps {
   children: ReactNode;

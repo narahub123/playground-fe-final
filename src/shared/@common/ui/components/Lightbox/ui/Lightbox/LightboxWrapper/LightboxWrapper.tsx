@@ -2,13 +2,14 @@ import styles from "./LightboxWrapper.module.css";
 import { ReactNode } from "react";
 import { joinClassNames } from "@shared/@common/utils";
 import { Portal } from "@shared/@common/ui/components";
-import { LightboxContextProvider } from "../../../contexts";
-import { useLightboxPagination } from "../../../hooks";
+import { LightboxContextProvider } from "@shared/@common/ui/components/Lightbox/contexts";
+import { useLightboxPagination } from "@shared/@common/ui/components/Lightbox/hooks";
 
 interface LightboxWrapperProps {
   children: ReactNode;
   images: string[];
   onClose: () => void;
+  isLightboxOpen: boolean;
   isLightboxPostOpen?: boolean;
   onOpenLightboxPost?: () => void;
   onCloseLightboxPost?: () => void;
@@ -19,6 +20,7 @@ const LightboxWrapper = ({
   className,
   images,
   onClose,
+  isLightboxOpen,
   isLightboxPostOpen,
   onOpenLightboxPost,
   onCloseLightboxPost,
@@ -40,6 +42,8 @@ const LightboxWrapper = ({
     onOpenLightboxPost,
     onCloseLightboxPost,
   };
+
+  if (!isLightboxOpen) return null;
 
   return (
     <Portal id="lightbox">

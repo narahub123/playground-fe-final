@@ -2,7 +2,7 @@ import styles from "./LightboxCloseButton.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
 import { Icon } from "@shared/@common/ui/components";
-import useLightboxContext from "../../../hooks/useLightboxContext";
+import { useLightboxContext } from "@shared/@common/ui/components/Lightbox/hooks";
 
 interface LightboxCloseButtonProps {
   className?: string;

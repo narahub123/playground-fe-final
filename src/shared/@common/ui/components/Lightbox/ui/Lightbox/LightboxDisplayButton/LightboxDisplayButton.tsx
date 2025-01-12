@@ -2,7 +2,7 @@ import styles from "./LightboxDisplayButton.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
 import { Icon } from "@shared/@common/ui/components";
-import { useLightboxContext, useLightboxPostDisclosure } from "../../../hooks";
+import { useLightboxContext } from "@shared/@common/ui/components/Lightbox/hooks";
 
 interface LightboxDisplayButtonProps {
   className?: string;
