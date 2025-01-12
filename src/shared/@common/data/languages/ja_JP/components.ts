@@ -187,6 +187,9 @@ const components = {
   LightboxPrevButton: {
     iconTitle: "前へ",
   },
+  ImageUploader: {
+    iconTitle: "画像を追加",
+  },
 };
 
 export default components;

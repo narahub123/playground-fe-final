@@ -186,6 +186,9 @@ const components = {
   LIghtboxPrevButton: {
     iconTitle: "이전",
   },
+  ImageUploader: {
+    iconTitle: "이미지 추가",
+  },
 };
 
 export default components;

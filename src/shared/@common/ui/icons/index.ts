@@ -12,6 +12,7 @@ import {
   FaCircleCheck as valid,
   FaCircleXmark as invalid,
 } from "react-icons/fa6";
+import { TbCameraPlus as uploadImage } from "react-icons/tb";
 
 const Icons = {
   close, // 창닫기
@@ -26,6 +27,7 @@ const Icons = {
   closePost, // 이미지가 포함된 포스트 닫기
   arrowRight, // 다음 사진
   arrowLeft, // 이전 사진
+  uploadImage, // 이미지 업로드
 };
 
 export default Icons;

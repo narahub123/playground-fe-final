@@ -11,6 +11,8 @@ import InputPassword from "./InputPassword/InputPassword";
 import InputUserIds from "./InputUserId/InputUserId";
 import Image from "./Image/Image";
 import Lightbox from "./Lightbox";
+import ProfileImage from "./ProfileImage/ProfileImage";
+import ImageUploader from "./ImageUploader/ImageUploader";
 
 export {
   Text,
@@ -26,4 +28,6 @@ export {
   InputUserIds,
   Image,
   Lightbox,
+  ImageUploader,
+  ProfileImage,
 };

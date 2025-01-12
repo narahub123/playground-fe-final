@@ -184,6 +184,9 @@ const components = {
   LightboxPrevButton: {
     iconTitle: "Previous",
   },
+  ImageUploader: {
+    iconTitle: "Add Image",
+  },
 };
 
 export default components;

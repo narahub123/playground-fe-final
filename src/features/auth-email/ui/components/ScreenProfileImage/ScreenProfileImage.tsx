@@ -1,6 +1,12 @@
+import { defaultProfileImage } from "@shared/@common/assets";
 import styles from "./ScreenProfileImage.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
-import { Button, Modal, Text } from "@shared/@common/ui/components";
+import {
+  Button,
+  Modal,
+  ProfileImage,
+  Text,
+} from "@shared/@common/ui/components";
 import {
   useModalContext,
   useModalPagination,
@@ -22,14 +28,6 @@ const ScreenProfileImage = ({ className }: ScreenProfileImageProps) => {
     "ScreenProfileImage",
   ]);
 
-  /**
-   * `joinClassNames` 함수는 `styles["ScreenProfileImage]"`와 `className`을 결합하여
-   * 최종적인 클래스 이름을 반환합니다. 이를 통해 여러 CSS 클래스를 결합하고,
-   * 최종적으로 하나의 `className` 값으로 전달됩니다.
-   *
-   * @param {string[]} classNames - 결합할 클래스 이름들의 배열.
-   * @returns {string} - 결합된 클래스 이름.
-   */
   const classNames = joinClassNames([
     styles["screen__profile__image"],
     className,
@@ -42,7 +40,7 @@ const ScreenProfileImage = ({ className }: ScreenProfileImageProps) => {
           <Text text={title} type="heading2" />
           <Text text={expl} type="expl" />
         </div>
-        djdkj
+        <ProfileImage src={defaultProfileImage} width="10rem" rounded="full" />
       </Modal.Body>
       <Modal.Footer>
         <Button colorPalette="colorTheme" onClick={moveNext}>
