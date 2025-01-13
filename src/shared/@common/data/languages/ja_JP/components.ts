@@ -190,6 +190,13 @@ const components = {
   ImageUploader: {
     iconTitle: "画像を追加",
   },
+  ScreenNotifications: {
+    title: "通知をオンにする",
+    expl: "今起きていることを把握して、PlayGroundを最大限に活用しましょう。",
+    button: {
+      skip: "今はスキップ",
+    },
+  },
 };
 
 export default components;

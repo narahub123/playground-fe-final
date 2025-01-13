@@ -187,6 +187,13 @@ const components = {
   ImageUploader: {
     iconTitle: "Add Image",
   },
+  ScreenNotifications: {
+    title: "Turn on Notifications",
+    expl: "Stay updated with what's happening and make the most out of PlayGround.",
+    button: {
+      skip: "Skip for now",
+    },
+  },
 };
 
 export default components;

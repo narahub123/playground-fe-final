@@ -184,6 +184,13 @@ const components = {
   ImageUploader: {
     iconTitle: "添加图片",
   },
+  ScreenNotifications: {
+    title: "打开通知",
+    expl: "随时了解最新动态，充分利用 PlayGround。",
+    button: {
+      skip: "暂时跳过",
+    },
+  },
 };
 
 export default components;

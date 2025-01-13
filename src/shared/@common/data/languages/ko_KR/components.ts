@@ -189,6 +189,13 @@ const components = {
   ImageUploader: {
     iconTitle: "이미지 추가",
   },
+  ScreenNotifications: {
+    title: "알림 켜기",
+    expl: "지금 일어나는 일에 대한 소식을 받고 PlayGround을 최대한 활용해보세요.",
+    button: {
+      skip: "지금은 넘어가기",
+    },
+  },
 };
 
 export default components;

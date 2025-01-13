@@ -5,6 +5,7 @@ import ScreenPersonalInfo from "../ScreenPersonalInfo/ScreenPersonalInfo";
 import ScreenPassword from "../ScreenPassword/ScreenPassword";
 import ScreenUserId from "../ScreenUserId/ScreenUserId";
 import ScreenProfileImage from "../ScreenProfileImage/ScreenProfileImage";
+import ScreenNotifications from "../ScreenNotifications/ScreenNotifications";
 
 /**
  * AuthModalPros는 AuthModal 컴포넌트에 전달되는 속성들을 정의함
@@ -34,7 +35,7 @@ interface AuthModalProps {
  * @returns {JSX.Element} AuthModal 컴포넌트 렌더링 결과.
  */
 const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
-  const [curPage, setCurPage] = useState(3);
+  const [curPage, setCurPage] = useState(4);
   // 유효성 상태를 관리하는 상태 훅 정의
   /**
    * 화면별 유효성 상태를 관리합니다.
@@ -50,6 +51,7 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
     <ScreenPassword />,
     <ScreenUserId />,
     <ScreenProfileImage />,
+    <ScreenNotifications />,
   ];
 
   useEffect(() => {
