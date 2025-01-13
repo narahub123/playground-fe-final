@@ -38,8 +38,8 @@ const ScreenPassword = () => {
     <div className={styles["password__screen"]}>
       <Modal.Body className={styles[`password__screen__body`]}>
         <div className={styles[`password__screen__body__header`]}>
-          <Text text={title} type="heading2" />
-          <Text text={expl} type="expl" />
+          <Text type="heading2">{title}</Text>
+          <Text type="expl">{expl}</Text>
         </div>
         <div className={styles[`password__screen__body__content`]}>
           <InputPassword
