@@ -24,7 +24,11 @@ const Checkbox = ({
   // 언어 설정
   //   const {} = useLanguageContent(["components", "Checkbox"]);
 
-  const classNames = joinClassNames([styles["checkbox"], className]);
+  const classNames = joinClassNames([
+    styles["checkbox"],
+    disabled ? styles["checkbox--disabled"] : "",
+    className,
+  ]);
 
   const handleClick = () => {
     if (typeof inputValue) dispatch(setInputValue(!inputValue));
@@ -33,20 +37,36 @@ const Checkbox = ({
 
   return (
     <div className={classNames}>
-      <div className={styles[`checkbox__textarea`]}>
+      <div className={joinClassNames([styles[`checkbox__textarea`]])}>
         <Text text={"아이템"} />
-        <Text text={"설명"} type="expl" />
+        <Text
+          text={"설명"}
+          type="expl"
+          subClassName={joinClassNames([disabled ? styles["disabled"] : ""])}
+        />
       </div>
       {typeof inputValue === "boolean" ? (
         inputValue ? (
-          <Icon iconName="rectCheckboxFill" onClick={handleClick} />
+          <Icon
+            iconName="rectCheckboxFill"
+            onClick={disabled ? undefined : handleClick}
+          />
         ) : (
-          <Icon iconName="rectCheckboxBlank" onClick={handleClick} />
+          <Icon
+            iconName="rectCheckboxBlank"
+            onClick={disabled ? undefined : handleClick}
+          />
         )
       ) : value && inputValue === value ? (
-        <Icon iconName="roundCheckboxFill" onClick={handleClick} />
+        <Icon
+          iconName="roundCheckboxFill"
+          onClick={disabled ? undefined : handleClick}
+        />
       ) : (
-        <Icon iconName="roundCheckboxBlank" onClick={handleClick} />
+        <Icon
+          iconName="roundCheckboxBlank"
+          onClick={disabled ? undefined : handleClick}
+        />
       )}
     </div>
   );
