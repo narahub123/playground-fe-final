@@ -4,6 +4,7 @@ import ButtonRegExp from "./regExps";
 import { SignupState } from "@features/auth-setting/models/slices/signupSlice";
 import { UserState } from "../../slices/userSlice";
 import { ScreenValidationType } from "@shared/@common/ui/components/Modal/types";
+import { DisplayState } from "../../slices/displaySlice";
 
 /**
  * 주어진 유효성 객체를 검사하고 화면 유효성 상태를 업데이트합니다.
@@ -83,7 +84,7 @@ interface useValidationCheckerProps {
   /**
    * 유효성 검사를 위한 사용자 데이터
    */
-  sliceState: SignupState | UserState;
+  sliceState: SignupState | UserState | DisplayState;
 
   /**
    * 화면 유효성 상태를 업데이트하는 선택적 상태 디스패치 함수.
