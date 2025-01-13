@@ -7,7 +7,14 @@ import {
   LuArrowRight as arrowRight,
   LuArrowLeft as arrowLeft,
 } from "react-icons/lu";
-import { RiEyeLine as eye, RiEyeOffLine as eyeoff } from "react-icons/ri";
+import {
+  RiEyeLine as eye,
+  RiEyeOffLine as eyeoff,
+  RiCheckboxBlankLine as rectCheckboxBlank,
+  RiCheckboxFill as rectCheckboxFill,
+  RiCheckboxBlankCircleLine as roundCheckboxBlank,
+  RiCheckboxCircleFill as roundCheckboxFill,
+} from "react-icons/ri";
 import {
   FaCircleCheck as valid,
   FaCircleXmark as invalid,
@@ -28,6 +35,10 @@ const Icons = {
   arrowRight, // 다음 사진
   arrowLeft, // 이전 사진
   uploadImage, // 이미지 업로드
+  rectCheckboxBlank,
+  rectCheckboxFill,
+  roundCheckboxBlank,
+  roundCheckboxFill,
 };
 
 export default Icons;
