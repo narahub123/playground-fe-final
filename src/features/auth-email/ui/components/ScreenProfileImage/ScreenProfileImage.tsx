@@ -54,8 +54,8 @@ const ScreenProfileImage = ({ className }: ScreenProfileImageProps) => {
     <div className={classNames}>
       <Modal.Body className={styles[`screen__profile__image__body`]}>
         <div className={styles[`screen__prifile__image__body__header`]}>
-          <Text text={title} type="heading2" />
-          <Text text={expl} type="expl" />
+          <Text type="heading2">{title}</Text>
+          <Text type="expl">{expl}</Text>
         </div>
         <ProfileImage width="10rem" rounded="full" isSignup />
       </Modal.Body>
