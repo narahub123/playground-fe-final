@@ -6,14 +6,18 @@ import styles from "./Checkbox.module.css";
 import { joinClassNames } from "@shared/@common/utils";
 
 interface CheckboxProps {
+  text: string;
   inputValue: boolean | string;
   setInputValue: (value: any) => { type: string; payload: any };
+  expl?: string;
   value?: string;
   className?: string;
   disabled?: boolean;
 }
 
 const Checkbox = ({
+  text,
+  expl,
   inputValue,
   setInputValue,
   value,
@@ -38,12 +42,14 @@ const Checkbox = ({
   return (
     <div className={classNames}>
       <div className={joinClassNames([styles[`checkbox__textarea`]])}>
-        <Text text={"아이템"} />
-        <Text
-          text={"설명"}
-          type="expl"
-          subClassName={joinClassNames([disabled ? styles["disabled"] : ""])}
-        />
+        <Text text={text} />
+        {expl && (
+          <Text
+            text={expl}
+            type="expl"
+            subClassName={joinClassNames([disabled ? styles["disabled"] : ""])}
+          />
+        )}
       </div>
       {typeof inputValue === "boolean" ? (
         inputValue ? (
