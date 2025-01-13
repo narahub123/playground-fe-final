@@ -19,11 +19,11 @@ const AuthPage = () => {
     <div className={styles[`auth-page`]}>
       <AuthModal isOpen={isOpen} onClose={onClose} />
       <header className={styles.header}>
-        <Text text={title} />
+        <Text type="heading1">{title}</Text>
       </header>
       <main className={styles.main}>
         <div className={styles.section}>
-          <Text text={heading1} type="heading3" />
+          <Text type="heading3">{heading1}</Text>
           <ul className={styles.list}>
             {(signupList as AuthButtonItemType[]).map((item, idx) => (
               <AuthButton key={idx} item={item} handleClick={onOpen} />
@@ -31,7 +31,7 @@ const AuthPage = () => {
           </ul>
         </div>
         <div className={styles.section}>
-          <Text text={heading2} type="heading3" />
+          <Text type="heading3">{heading2}</Text>
           <ul className={styles.list}>
             {(loginList as AuthButtonItemType[]).map((item, idx) => (
               <AuthButton key={idx} item={item} handleClick={onOpen} />
