@@ -59,8 +59,8 @@ const ScreenLanguage = ({ className }: ScreenLanguageProps) => {
     <div className={classNames}>
       <Modal.Body className={styles[`screen__language__body`]}>
         <div className={styles[`screen__language__body__header`]}>
-          <Text text={title} type="heading2" />
-          <Text text={expl} type="expl" />
+          <Text type="heading2">{title}</Text>
+          <Text type="expl">{expl}</Text>
           <Input
             field="language"
             label={label}
