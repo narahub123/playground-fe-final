@@ -69,7 +69,7 @@ const ScreenPersonalInfo = () => {
   return (
     <div className={styles["personal__info__screen"]}>
       <Modal.Body className={styles[`personal__info__screen__body`]}>
-        <Text text={title} type="heading2" />
+        <Text type="heading2">{title}</Text>
         {/* 사용자 이름 */}
         <Input
           field="username"
@@ -114,8 +114,8 @@ const ScreenPersonalInfo = () => {
         </Input>
         <div className={styles[`personal__info__screen__birth__container`]}>
           <div>
-            <Text text={birthHeading} status="bold" />
-            <Text text={birthExpl} type="expl" />
+            <Text status="bold">{birthHeading}</Text>
+            <Text type="expl">{birthExpl}</Text>
           </div>
           <div className={styles[`personal__info__screen__birth`]}>
             {/* 생년월일 */}
