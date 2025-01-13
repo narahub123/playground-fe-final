@@ -1,4 +1,7 @@
-import { BirthType } from "@features/auth-setting/types";
+import {
+  BirthType,
+  NotificationInSignupType,
+} from "@features/auth-setting/types";
 import { validateDate } from "@features/auth-setting/utils";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
@@ -10,7 +13,7 @@ export interface SignupState {
   password: string; // 비밀번호
   userId: string; // 사용자 아이디
   profileImage: string; // 프로필 사진
-  notifications: string; // 알림
+  notifications: NotificationInSignupType; // 알림
   language: string; // 언어
 }
 
@@ -26,7 +29,12 @@ const initialState: SignupState = {
   password: "",
   userId: "",
   profileImage: "",
-  notifications: "",
+  notifications: {
+    message: false,
+    comment: false,
+    following: false,
+    newPost: false,
+  },
   language: "",
 };
 
@@ -112,8 +120,15 @@ const signupSlice = createSlice({
     setProfileImageInSignup: (state, action: PayloadAction<string>) => {
       state.profileImage = action.payload;
     },
-    setNotificationsInSignup: (state, action: PayloadAction<string>) => {
-      state.notifications = action.payload;
+    setNotificationsInSignup: (
+      state,
+      action: PayloadAction<keyof NotificationInSignupType>
+    ) => {
+      const key = action.payload;
+
+      if (key in state.notifications)
+        state.notifications[key] = !state.notifications[key];
+      else console.warn("키가 유효하지 않습니다.");
     },
     setLanguageInSignup: (state, action: PayloadAction<string>) => {
       state.language = action.payload;

@@ -4,4 +4,11 @@ type BirthType = {
   date: string | number;
 };
 
-export type { BirthType };
+type NotificationInSignupType = {
+  message: boolean;
+  comment: boolean;
+  following: boolean;
+  newPost: boolean;
+};
+
+export type { BirthType, NotificationInSignupType };

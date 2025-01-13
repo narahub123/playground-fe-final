@@ -1,3 +1,3 @@
-import { BirthType } from "./slices";
+import { BirthType, NotificationInSignupType } from "./slices";
 
-export type { BirthType };
+export type { BirthType, NotificationInSignupType };
