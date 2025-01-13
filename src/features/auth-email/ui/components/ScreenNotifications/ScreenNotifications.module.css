@@ -1,5 +1,4 @@
 .screen__notifications {
-  width: 100%;
   height: 430px;
   display: flex;
   flex-direction: column;
@@ -9,9 +8,6 @@
   display: flex;
   flex-direction: column;
   gap: 30px;
-}
-
-.screen__notifications__body__header {
 }
 
 .screen__notifications__body__main {

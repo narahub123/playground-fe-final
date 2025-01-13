@@ -7,13 +7,17 @@ import {
 import { Button, Checkbox, Modal, Text } from "@shared/@common/ui/components";
 import { joinClassNames } from "@shared/@common/utils";
 import { useSelector } from "react-redux";
-import { useModalContext } from "@shared/@common/ui/components/Modal/hooks";
+import {
+  useModalContext,
+  useModalPagination,
+} from "@shared/@common/ui/components/Modal/hooks";
 import {
   setNotificationCommentInSignup,
   setNotificationFollowingInSignup,
   setNotificationMessageInSignup,
   setNotificationNewPostInSignup,
 } from "@features/auth-setting/models/slices/signupSlice";
+import { useEffect } from "react";
 
 interface ScreenNotificationsProps {
   className?: string;
@@ -23,6 +27,7 @@ const ScreenNotifications = ({ className }: ScreenNotificationsProps) => {
   const user = useSelector(getUserInSignup);
 
   const { setScreenValidations } = useModalContext();
+  const { moveNext } = useModalPagination();
 
   // 언어 설정
   const { title, expl, button } = useLanguageContent([
@@ -35,12 +40,16 @@ const ScreenNotifications = ({ className }: ScreenNotificationsProps) => {
     className,
   ]);
 
-  const {} = useValidationChecker({
+  const { setIsValid, validationResult } = useValidationChecker({
     fields: ["notifications"],
     sliceState: user,
     setScreenValidations,
     screenName: "ScreenNotifications",
   });
+
+  useEffect(() => {
+    setIsValid(true);
+  }, []);
 
   return (
     <div className={classNames}>
@@ -78,9 +87,9 @@ const ScreenNotifications = ({ className }: ScreenNotificationsProps) => {
       </Modal.Body>
       <Modal.Footer>
         <Button
-          onClick={() => {}}
+          onClick={moveNext}
           variant="outline"
-          isValid
+          isValid={validationResult}
           colorPalette="default"
         >
           {button.skip}
