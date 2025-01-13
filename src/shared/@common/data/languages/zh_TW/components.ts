@@ -191,6 +191,19 @@ const components = {
       skip: "暫時跳過",
     },
   },
+  ScreenLanguage: {
+    title: "您使用的語言是什麼？",
+    expl: "選擇您偏好的語言以查看帖子、用戶和趨勢。",
+    label: "語言",
+    button: "註冊",
+    langList: [
+      { text: "韓語 : Korean", value: "ko-KR" },
+      { text: "英語 : English", value: "en-US" },
+      { text: "日語 : Japanese", value: "ja-JP" },
+      { text: "中文 - 簡體 : Chinese - Simplified", value: "zh-CN" },
+      { text: "中文 - 繁體 : Chinese - Traditional", value: "zh-TW" },
+    ],
+  },
 };
 
 export default components;

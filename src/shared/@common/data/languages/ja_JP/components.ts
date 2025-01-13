@@ -197,6 +197,19 @@ const components = {
       skip: "今はスキップ",
     },
   },
+  ScreenLanguage: {
+    title: "ご利用の言語は何ですか？",
+    expl: "お好きな言語を選択して、投稿や人、トレンドをご覧ください。",
+    label: "言語",
+    button: "登録する",
+    langList: [
+      { text: "韓国語 : Korean", value: "ko-KR" },
+      { text: "英語 : English", value: "en-US" },
+      { text: "日本語 : Japanese", value: "ja-JP" },
+      { text: "中国語 - 簡体 : Chinese - Simplified", value: "zh-CN" },
+      { text: "中国語 - 繁体 : Chinese - Traditional", value: "zh-TW" },
+    ],
+  },
 };
 
 export default components;
