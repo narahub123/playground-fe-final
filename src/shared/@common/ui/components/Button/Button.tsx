@@ -80,7 +80,7 @@ const Button = ({
           aria-live="polite" // 상태 변화시 사용자에게 알림
         >
           <Spinner loadingText={loadingText} />
-          {loadingText && <Text text={loadingText} />}
+          {loadingText && <Text>{loadingText}</Text>}
         </div>
       ) : (
         children || empty
