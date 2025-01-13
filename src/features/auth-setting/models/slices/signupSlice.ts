@@ -130,6 +130,22 @@ const signupSlice = createSlice({
         state.notifications[key] = !state.notifications[key];
       else console.warn("키가 유효하지 않습니다.");
     },
+    setNotificationMessageInSignup: (state, action: PayloadAction<boolean>) => {
+      state.notifications.message = action.payload;
+    },
+    setNotificationCommentInSignup: (state, action: PayloadAction<boolean>) => {
+      state.notifications.comment = action.payload;
+    },
+    setNotificationFollowingInSignup: (
+      state,
+      action: PayloadAction<boolean>
+    ) => {
+      state.notifications.following = action.payload;
+    },
+    setNotificationNewPostInSignup: (state, action: PayloadAction<boolean>) => {
+      state.notifications.newPost = action.payload;
+    },
+
     setLanguageInSignup: (state, action: PayloadAction<string>) => {
       state.language = action.payload;
     },
@@ -150,4 +166,8 @@ export const {
   setProfileImageInSignup,
   setNotificationsInSignup,
   setLanguageInSignup,
+  setNotificationMessageInSignup,
+  setNotificationCommentInSignup,
+  setNotificationFollowingInSignup,
+  setNotificationNewPostInSignup,
 } = signupSlice.actions;

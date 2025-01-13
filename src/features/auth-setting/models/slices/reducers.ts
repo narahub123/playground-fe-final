@@ -8,6 +8,10 @@ import {
   setProfileImageInSignup,
   setNotificationsInSignup,
   setLanguageInSignup,
+  setNotificationMessageInSignup,
+  setNotificationCommentInSignup,
+  setNotificationFollowingInSignup,
+  setNotificationNewPostInSignup,
 } from "./signupSlice";
 
 import { loginRequset, loginSuccess, loginFailure } from "./loginSlice";
@@ -23,6 +27,10 @@ export {
   setProfileImageInSignup,
   setNotificationsInSignup,
   setLanguageInSignup,
+  setNotificationMessageInSignup,
+  setNotificationCommentInSignup,
+  setNotificationFollowingInSignup,
+  setNotificationNewPostInSignup,
 
   // login
   loginRequset,
