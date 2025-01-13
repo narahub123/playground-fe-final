@@ -49,7 +49,7 @@ const AuthButton = ({ item, handleClick, subClassName }: AuthButtonProps) => {
             className={styles[`auth-button-img`]}
           />
         )}
-        <Text text={text} />
+        <Text>{text}</Text>
       </div>
     </Comp>
   );
