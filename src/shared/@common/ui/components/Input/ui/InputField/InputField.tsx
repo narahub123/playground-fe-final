@@ -330,12 +330,9 @@ const InputField = ({ className }: InputFieldProps) => {
          * @prop {string} text - 드롭다운 항목 중 선택된 항목의 텍스트. 값이 없으면 inputValue를 표시.
          * @prop {string} className - 추가적인 클래스 이름
          */
-        <Text
-          text={
-            list.find((item) => item.value === inputValue)?.text || inputValue
-          }
-          subClassName={classNames}
-        />
+        <Text className={classNames}>
+          {list.find((item) => item.value === inputValue)?.text || inputValue}
+        </Text>
       ) : (
         /**
          * 드롭다운이 존재하지 않는 경우, 기본 input 필드를 렌더링합니다.

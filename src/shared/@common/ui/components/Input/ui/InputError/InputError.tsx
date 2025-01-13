@@ -32,11 +32,12 @@ const InputError = ({ className }: InputErrorProps) => {
       className={className}
     >
       <Text
-        text={errorMessage} // 에러 메시지 텍스트
-        subClassName={styles["input__error"]} // 에러 스타일 클래스
+        className={styles["input__error"]} // 에러 스타일 클래스
         type="expl" // Text 컴포넌트에서 설명 유형으로 표시
         status="error" // 에러 상태로 표시
-      />
+      >
+        {errorMessage}
+      </Text>
     </div>
   );
 };

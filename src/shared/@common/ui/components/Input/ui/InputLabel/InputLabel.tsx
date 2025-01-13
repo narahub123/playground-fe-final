@@ -34,8 +34,7 @@ const InputLabel = ({ className }: InputLabelProps) => {
      * - `subClassName`: 포커스 상태와 inputValue의 유효성 상태에 따라 스타일을 동적으로 적용
      */
     <Text
-      text={label}
-      subClassName={joinClassNames([
+      className={joinClassNames([
         styles["input__label"],
         isFocused
           ? isValid || inputValue === ""
@@ -44,7 +43,9 @@ const InputLabel = ({ className }: InputLabelProps) => {
           : "",
         className,
       ])}
-    />
+    >
+      {label}
+    </Text>
   );
 };
 

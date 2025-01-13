@@ -66,7 +66,7 @@ const InputCounter = ({ className }: InputCounterProps) => {
      * 포커스된 상태에서 스타일을 적용하고, 그렇지 않으면 포커스되지 않은 상태에서 다른 스타일을 적용합니다.
      *
      */
-    <Text text={`${length} / ${maxLength}`} subClassName={subClassName} />
+    <Text className={subClassName}>{`${length} / ${maxLength}`}</Text>
   );
 };
 
