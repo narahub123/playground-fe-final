@@ -1,4 +1,5 @@
 import {
+  getDisplay,
   getLanguage,
   getBgTheme,
   getColorTheme,
@@ -15,6 +16,7 @@ import {
 
 export {
   // display
+  getDisplay,
   getLanguage,
   getBgTheme,
   getColorTheme,

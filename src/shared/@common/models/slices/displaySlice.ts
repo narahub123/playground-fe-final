@@ -5,7 +5,7 @@ import {
   FontSizeType,
 } from "@shared/@common/types";
 
-interface DisplayState {
+export interface DisplayState {
   language: string;
   bgTheme: BgThemeType;
   colorTheme: ColorThemeType;
