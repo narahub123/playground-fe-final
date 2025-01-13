@@ -40,7 +40,7 @@ const ScreenUserId = ({ className }: ScreenUserIdProps) => {
     fields: ["userId"],
     sliceState: user,
     setScreenValidations,
-    screenName: "ScreenPersonalInfo",
+    screenName: "ScreenUserId",
   });
 
   /**
