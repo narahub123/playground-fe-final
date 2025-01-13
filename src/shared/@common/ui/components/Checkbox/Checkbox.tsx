@@ -42,13 +42,14 @@ const Checkbox = ({
   return (
     <div className={classNames}>
       <div className={joinClassNames([styles[`checkbox__textarea`]])}>
-        <Text text={text} />
+        <Text>{text}</Text>
         {expl && (
           <Text
-            text={expl}
             type="expl"
-            subClassName={joinClassNames([disabled ? styles["disabled"] : ""])}
-          />
+            className={joinClassNames([disabled ? styles["disabled"] : ""])}
+          >
+            {expl}
+          </Text>
         )}
       </div>
       {typeof inputValue === "boolean" ? (
