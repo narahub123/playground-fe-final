@@ -1,5 +1,5 @@
 import { useAppDispatch } from "@app/store";
-import Icon from "../Icon/Icon";
+import { Icon } from "@shared/@common/ui/icons";
 import Text from "../Text/Text";
 import styles from "./Checkbox.module.css";
 // import { useLanguageContent } from "@shared/@common/models/hooks";
