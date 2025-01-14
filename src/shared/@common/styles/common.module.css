@@ -1,0 +1,333 @@
+/* font */
+.fontsize--xs {
+  font-size: 0.75rem; /* 12px */
+}
+
+.fontsize--sm {
+  font-size: 0.875rem; /* 14px */
+}
+
+.fontsize--md {
+  font-size: 1rem; /* 16px */
+}
+
+.fontsize--lg {
+  font-size: 1.125rem; /* 18px */
+}
+
+.fontsize--xl {
+  font-size: 1.25rem; /* 20px */
+}
+
+.fontsize--2xl {
+  font-size: 1.5rem; /* 24px */
+}
+
+.fontsize--3xl {
+  font-size: 1.875rem; /* 30px */
+}
+
+.fontsize--4xl {
+  font-size: 2.25rem; /* 36px */
+}
+
+.fontsize--5xl {
+  font-size: 3rem; /* 48px */
+}
+
+.fontsize--6xl {
+  font-size: 3.75rem; /* 60px */
+}
+
+.fontsize--7xl {
+  font-size: 4.5rem; /* 72px */
+}
+
+/* color */
+.color--red {
+  color: red;
+}
+
+.color--cornflowerblue {
+  color: cornflowerblue;
+}
+
+.color--green {
+  color: green;
+}
+
+.color--purple {
+  color: purple;
+}
+
+.color--yellow {
+  color: yellow;
+}
+
+.color--orange {
+  color: orange;
+}
+
+.color--gray {
+  color: gray;
+}
+
+.color--black {
+  color: black;
+}
+
+.color--white {
+  color: white;
+}
+
+.color--inherit {
+  color: inherit;
+}
+
+/* background size */
+.background--size--xs {
+  width: 1.5rem; /* 12px */
+  height: 1.5rem; /* 12px */
+}
+
+.background--size--sm {
+  width: 1.75rem; /* 14px */
+  height: 1.75rem; /* 14px */
+}
+
+.background--size--md {
+  width: 2rem; /* 16px */
+  height: 2rem; /* 16px */
+}
+
+.background--size--lg {
+  width: 2.25rem; /* 18px */
+  height: 2.25rem; /* 18px */
+}
+
+.background--size--xl {
+  width: 2.5rem; /* 20px */
+  height: 2.5rem; /* 20px */
+}
+
+.background--size--2xl {
+  width: 3rem; /* 24px */
+  height: 3rem; /* 24px */
+}
+
+.background--size--3xl {
+  width: 3.75rem; /* 30px */
+  height: 3.75rem; /* 30px */
+}
+
+.background--size--4xl {
+  width: 4.5rem; /* 36px */
+  height: 4.5rem; /* 36px */
+}
+
+.background--size--5xl {
+  width: 6rem; /* 48px */
+  height: 6rem; /* 48px */
+}
+
+.background--size--6xl {
+  width: 7.5rem; /* 60px */
+  height: 7.5rem; /* 60px */
+}
+
+.background--size--7xl {
+  width: 9rem; /* 72px */
+  height: 9rem; /* 72px */
+}
+
+/* background color */
+.background--color--red {
+  background-color: red;
+}
+.background--color--red:hover {
+  background-color: hsl(0, 100%, 65%);
+}
+
+.background--color--cornflowerblue {
+  background-color: cornflowerblue;
+}
+.background--color--cornflowerblue:hover {
+  background-color: hsl(219, 79%, 70%);
+}
+
+.background--color--green {
+  background-color: green;
+}
+.background--color--green:hover {
+  background-color: hsl(120, 100%, 30%);
+}
+
+.background--color--purple {
+  background-color: purple;
+}
+.background--color--purple:hover {
+  background-color: hsl(270, 50%, 40%);
+}
+
+.background--color--yellow {
+  background-color: yellow;
+}
+.background--color--yellow:hover {
+  background-color: hsl(60, 100%, 75%);
+}
+
+.background--color--orange {
+  background-color: orange;
+}
+.background--color--orange:hover {
+  background-color: hsl(39, 100%, 60%);
+}
+
+.background--color--gray {
+  background-color: gray;
+}
+
+.background--color--gray:hover {
+  background-color: hsl(0, 0%, 60%);
+}
+
+.background--color--black {
+  background-color: black;
+}
+.background--color--black:hover {
+  background-color: hsl(0, 0%, 20%);
+}
+
+.background--color--white {
+  background-color: white;
+}
+.background--color--white:hover {
+  background-color: hsl(0, 0%, 98%);
+}
+
+.background--color--white {
+  background-color: white;
+}
+
+/* border width */
+.border--width--xs {
+  border-width: 0.0625rem; /* 1px */
+}
+
+.border--width--sm {
+  border-width: 0.125rem; /* 2px */
+}
+
+.border--width--md {
+  border-width: 0.1875rem; /* 3px */
+}
+
+.border--width--lg {
+  border-width: 0.25rem; /* 4px */
+}
+
+.border--width--xl {
+  border-width: 0.3125rem; /* 5px */
+}
+
+/* border style */
+.border--style--none {
+  border-style: none;
+}
+
+.border--style--hidden {
+  border-style: hidden;
+}
+
+.border--style--dotted {
+  border-style: dotted;
+}
+
+.border--style--dashed {
+  border-style: dashed;
+}
+
+.border--style--solid {
+  border-style: solid;
+}
+
+.border--style--double {
+  border-style: double;
+}
+
+.border--style--groove {
+  border-style: groove;
+}
+
+.border--style--ridge {
+  border-style: ridge;
+}
+
+.border--style--inset {
+  border-style: inset;
+}
+
+.border--style--outset {
+  border-style: outset;
+}
+
+/* border color */
+.border--color--red {
+  border-color: red;
+}
+
+.border--color--cornflowerblue {
+  border-color: cornflowerblue;
+}
+
+.border--color--green {
+  border-color: green;
+}
+
+.border--color--purple {
+  border-color: purple;
+}
+
+.border--color--yellow {
+  border-color: yellow;
+}
+
+.border--color--orange {
+  border-color: orange;
+}
+
+.border--color--gray {
+  border-color: gray;
+}
+
+.border--color--black {
+  border-color: black;
+}
+
+.border--color--white {
+  border-color: white;
+}
+
+.rounded--xs {
+  border-radius: 0.75rem; /* 12px */
+}
+
+.rounded--sm {
+  border-radius: 0.875rem; /* 14px */
+}
+
+.rounded--md {
+  border-radius: 1rem; /* 16px */
+}
+
+.rounded--lg {
+  border-radius: 1.125rem; /* 18px */
+}
+
+.rounded--xl {
+  border-radius: 1.25rem; /* 20px */
+}
+
+.rounded--full {
+  border-radius: 50%;
+}

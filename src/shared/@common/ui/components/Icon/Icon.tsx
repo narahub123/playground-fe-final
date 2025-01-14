@@ -1,5 +1,5 @@
 import styles from "./Icon.module.css";
-import Icons from "@shared/@common/ui/icons";
+import { Icons } from "@shared/@common/ui/icons";
 
 interface IconProps {
   iconName: keyof typeof Icons; // react-icons의 아이콘 이름 (Icons 객체의 키 중 하나)
