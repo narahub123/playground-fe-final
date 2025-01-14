@@ -33,6 +33,8 @@ const ModalCloseButton = ({ className }: ModalCloseButtonProps) => {
   return (
     <Icon
       iconName="close"
+      iconColor="black"
+      bgColor="white"
       title={iconTitle}
       onClick={onClose}
       className={joinClassNames([styles["modal__close__button"], className])}
