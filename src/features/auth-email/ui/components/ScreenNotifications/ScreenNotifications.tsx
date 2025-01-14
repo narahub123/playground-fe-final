@@ -55,8 +55,8 @@ const ScreenNotifications = ({ className }: ScreenNotificationsProps) => {
     <div className={classNames}>
       <Modal.Body className={styles[`screen__notifications__body`]}>
         <div className={styles[`screen__notifications__body__header`]}>
-          <Text text={title} type="heading2" />
-          <Text text={expl} type="expl" />
+          <Text type="heading2">{title}</Text>
+          <Text type="expl">{expl}</Text>
         </div>
         <div className={styles[`screen__notifications__body__main`]}>
           <Checkbox

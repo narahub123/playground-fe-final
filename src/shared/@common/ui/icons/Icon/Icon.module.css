@@ -1,0 +1,48 @@
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.icon--background--color--red {
+  background-color: red;
+}
+
+.icon--background--color--cornflowerblue {
+  background-color: cornflowerblue;
+}
+
+.icon--background--color--green {
+  background-color: green;
+}
+
+.icon--background--color--purple {
+  background-color: purple;
+}
+
+.icon--background--color--yellow {
+  background-color: yellow;
+}
+
+.icon--background--color--orange {
+  background-color: orange;
+}
+
+.icon--background--color--gray {
+  background-color: gray;
+}
+
+.icon--background--color--black {
+  background-color: black;
+}
+
+.icon--background--color--white {
+  background-color: white;
+}
