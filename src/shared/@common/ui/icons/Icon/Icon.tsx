@@ -1,8 +1,7 @@
 import styles from "./Icon.module.css";
 import common from "@shared/@common/styles/common.module.css";
-import { Icons } from "..";
+import { Icons } from "@shared/@common/ui/icons";
 import { joinClassNames } from "@shared/@common/utils";
-import { useRef } from "react";
 import {
   ColorBasic,
   ColorBasicWithInherit,
@@ -44,8 +43,6 @@ const Icon = ({
   disabled = false,
   ...props
 }: IconProps) => {
-  const iconRef = useRef<HTMLButtonElement>(null);
-
   const classNames = joinClassNames([
     onClick ? styles["button"] : styles["icon"],
     iconSize && common[`fontsize--${iconSize}`],
@@ -73,7 +70,6 @@ const Icon = ({
         ...props.style,
       }}
       onClick={onClick}
-      ref={iconRef}
     >
       <Comp />
     </button>
