@@ -1,6 +1,14 @@
 import { BgThemeType, ColorThemeType, FontSizeType } from "./slices";
 
-import { DropdownItemType } from "./components";
+import {
+  DropdownItemType,
+  ColorBasic,
+  ColorBasicWithInherit,
+  SizeBasic,
+  SizeBasicWithFull,
+  SizeExtended,
+  BorderStyle,
+} from "./components";
 
 export type {
   // slices
@@ -10,4 +18,10 @@ export type {
 
   // components
   DropdownItemType, // dropdown item
+  ColorBasic,
+  ColorBasicWithInherit,
+  SizeBasic,
+  SizeBasicWithFull,
+  SizeExtended,
+  BorderStyle,
 };

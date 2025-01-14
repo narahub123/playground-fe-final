@@ -3,37 +3,14 @@ import common from "@shared/@common/styles/common.module.css";
 import { Icons } from "..";
 import { joinClassNames } from "@shared/@common/utils";
 import { useRef } from "react";
-
-type SizeBasic = "xs" | "sm" | "md" | "lg" | "xl";
-
-type SizeBasicWithFull = SizeBasic | "full";
-
-type SizeExtended = SizeBasic | "2xl" | "3xl" | "4xl" | "5xl" | "6xl" | "7xl";
-
-type ColorBasic =
-  | "red"
-  | "cornflowerblue"
-  | "green"
-  | "purple"
-  | "yellow"
-  | "orange"
-  | "gray"
-  | "black"
-  | "white";
-
-type ColorBasicWithInherit = ColorBasic | "inherit";
-
-type IconBorderStyle =
-  | "none"
-  | "hidden"
-  | "dotted"
-  | "dashed"
-  | "solid"
-  | "double"
-  | "groove"
-  | "ridge"
-  | "inset"
-  | "outset";
+import {
+  ColorBasic,
+  ColorBasicWithInherit,
+  SizeBasic,
+  SizeBasicWithFull,
+  SizeExtended,
+  BorderStyle,
+} from "@shared/@common/types";
 
 interface IconCustomProps {
   iconName: keyof typeof Icons;
@@ -43,7 +20,7 @@ interface IconCustomProps {
   bgSize?: SizeExtended;
   bgColor?: ColorBasic;
   borderWidth?: SizeBasic;
-  borderStyle?: IconBorderStyle;
+  borderStyle?: BorderStyle;
   borderColor?: ColorBasic;
   rounded?: SizeBasicWithFull;
   className?: string;
