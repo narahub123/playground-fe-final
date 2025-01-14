@@ -1,6 +1,6 @@
 import styles from "./ModalCloseButton.module.css";
 import { useModalContext } from "@shared/@common/ui/components/Modal/hooks";
-import { Icon } from "@shared/@common/ui/components";
+import { Icon } from "@shared/@common/ui/icons";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
 
@@ -33,9 +33,9 @@ const ModalCloseButton = ({ className }: ModalCloseButtonProps) => {
   return (
     <Icon
       iconName="close"
-      iconTitle={iconTitle}
+      title={iconTitle}
       onClick={onClose}
-      subClassName={joinClassNames([styles["modal__close__button"], className])}
+      className={joinClassNames([styles["modal__close__button"], className])}
     />
   );
 };
