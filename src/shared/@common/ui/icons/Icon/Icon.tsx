@@ -10,6 +10,7 @@ import {
   SizeExtended,
   BorderStyle,
 } from "@shared/@common/types";
+import { Spinner } from "../../components";
 
 interface IconCustomProps {
   iconName: keyof typeof Icons;
@@ -24,6 +25,7 @@ interface IconCustomProps {
   rounded?: SizeBasicWithFull;
   className?: string;
   disabled?: boolean;
+  loading?: boolean;
 }
 
 type IconProps = IconCustomProps & React.HTMLAttributes<HTMLElement>;
@@ -41,11 +43,12 @@ const Icon = ({
   borderColor,
   rounded = "full",
   disabled = false,
+  loading = false,
   ...props
 }: IconProps) => {
   const classNames = joinClassNames([
     onClick ? styles["button"] : styles["icon"],
-    disabled ? common[`disabled`] : "",
+    disabled || loading ? common[`disabled`] : "",
     iconSize && common[`fontsize--${iconSize}`],
     iconColor && common[`color--${iconColor}`],
     bgSize && common[`background--size--${bgSize}`],
@@ -71,11 +74,12 @@ const Icon = ({
       style={{
         ...props.style,
       }}
-      onClick={disabled ? undefined : onClick}
+      onClick={disabled || loading ? undefined : onClick}
       disabled={disabled}
-      aria-disabled={disabled}
+      aria-disabled={disabled || loading}
+      aria-busy={loading} // 현재 업데이트 중임을 나타냄
     >
-      <Comp />
+      {loading ? <Spinner color={iconColor} /> : <Comp />}
     </button>
   ) : (
     <span
