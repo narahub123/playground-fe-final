@@ -1,53 +1,10 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { ButtonIsValidType, FieldType } from "./types";
 import ButtonRegExp from "./regExps";
 import { SignupState } from "@features/auth-setting/models/slices/signupSlice";
 import { UserState } from "../../slices/userSlice";
 import { ScreenValidationType } from "@shared/@common/ui/components/Modal/types";
 import { DisplayState } from "../../slices/displaySlice";
-
-/**
- * 주어진 유효성 객체를 검사하고 화면 유효성 상태를 업데이트합니다.
- *
- * @param {boolean | { [key: string]: boolean }} validObj - 유효성 정보.
- *   - `boolean`이면 단일 유효성 값.
- *   - 객체면 각 필드의 유효성 값으로 구성.
- * @param {React.Dispatch<React.SetStateAction<ScreenValidationType>>} [setScreenValidations] -
- *   화면 유효성 상태를 업데이트하는 함수 (선택적).
- * @param {string} [screenName] - 업데이트 대상 화면의 이름 (선택적).
- * @returns {boolean} 계산된 유효성 값.
- *   - 모든 값이 `true`인 경우 `true`, 그렇지 않으면 `false`.
- */
-const validationChecker = (
-  validObj: boolean | { [key: string]: boolean },
-  setScreenValidations?: React.Dispatch<
-    React.SetStateAction<ScreenValidationType>
-  >,
-  screenName?: string
-) => {
-  // 유효성 값을 계산
-  const result =
-    typeof validObj === "boolean"
-      ? validObj // `boolean` 값 그대로 사용
-      : Object.values(validObj).every(Boolean); // 모든 필드가 `true`인지 확인
-
-  // 스크린 유효성 상태를 업데이트할 필요가 있는 경우
-  if (setScreenValidations && screenName && result !== undefined) {
-    setScreenValidations((prev) => {
-      // 기존 값과 동일하면 업데이트하지 않음
-      if (prev[screenName] === result) return prev;
-
-      // 기존 값을 복사하고 새로운 값을 반영
-      return {
-        ...prev,
-        [screenName]: result,
-      };
-    });
-  }
-
-  // 계산된 유효성 결과 반환
-  return result;
-};
 
 /**
  * 각 필드의 유효성을 검사하는 함수입니다.
@@ -116,6 +73,7 @@ const useValidationChecker = ({
   screenName,
 }: useValidationCheckerProps) => {
   const [isValid, setIsValid] = useState<ButtonIsValidType>(false);
+  const [validationResult, setValidationResult] = useState(false);
 
   // 유효성 초기값 설정: 한번만 실행됨
   useEffect(() => {
@@ -137,13 +95,29 @@ const useValidationChecker = ({
     }
   }, []); // 의존성 배열에 상태 변경이 없으므로 한번만 실행됨
 
-  /**
-   * 유효성 검사 결과를 반환하는 메모이제이션된 값
-   */
-  const validationResult = useMemo(
-    () => validationChecker(isValid, setScreenValidations, screenName),
-    [isValid]
-  );
+  useEffect(() => {
+    // 유효성 값을 계산
+    const result =
+      typeof isValid === "boolean"
+        ? isValid // `boolean` 값 그대로 사용
+        : Object.values(isValid).every(Boolean); // 모든 필드가 `true`인지 확인
+
+    // 스크린 유효성 상태를 업데이트할 필요가 있는 경우
+    if (setScreenValidations && screenName && result !== undefined) {
+      setScreenValidations((prev) => {
+        // 기존 값과 동일하면 업데이트하지 않음
+        if (prev[screenName] === result) return prev;
+
+        // 기존 값을 복사하고 새로운 값을 반영
+        return {
+          ...prev,
+          [screenName]: result,
+        };
+      });
+    }
+
+    setValidationResult(result);
+  }, [isValid]);
 
   return {
     isValid, // 각 필드의 유효성 결과
