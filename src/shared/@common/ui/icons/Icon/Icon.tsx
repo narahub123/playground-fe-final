@@ -45,6 +45,7 @@ const Icon = ({
 }: IconProps) => {
   const classNames = joinClassNames([
     onClick ? styles["button"] : styles["icon"],
+    disabled ? common[`disabled`] : "",
     iconSize && common[`fontsize--${iconSize}`],
     iconColor && common[`color--${iconColor}`],
     bgSize && common[`background--size--${bgSize}`],
@@ -64,12 +65,15 @@ const Icon = ({
 
   return onClick ? (
     <button
+      type="button"
       className={classNames}
       {...props}
       style={{
         ...props.style,
       }}
-      onClick={onClick}
+      onClick={disabled ? undefined : onClick}
+      disabled={disabled}
+      aria-disabled={disabled}
     >
       <Comp />
     </button>
