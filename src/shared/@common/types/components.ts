@@ -18,7 +18,8 @@ type ColorBasic =
   | "orange"
   | "gray"
   | "black"
-  | "white";
+  | "white"
+  | "colorTheme";
 
 type ColorBasicWithInherit = ColorBasic | "inherit";
 

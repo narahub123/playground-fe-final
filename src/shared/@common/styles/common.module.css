@@ -89,6 +89,10 @@
   color: inherit;
 }
 
+.color--colorTheme {
+  color: var(--colorTheme-color-primary);
+}
+
 /* background size */
 .background--size--xs {
   width: 1.5rem; /* 12px */
@@ -210,8 +214,11 @@
   background-color: hsl(0, 0%, 90%);
 }
 
-.background--color--white {
-  background-color: white;
+.background--color--colorTheme {
+  background-color: var(--colorTheme-color-primary);
+}
+.background--color--colorTheme:hover {
+  background-color: var(--colorTheme-bgColor-hover);
 }
 
 /* border width */
