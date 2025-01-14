@@ -2,7 +2,7 @@ import styles from "./ImageUploader.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
 import { useRef } from "react";
-import Icon from "../Icon/Icon";
+import { Icon } from "@shared/@common/ui/icons";
 import { useAppDispatch } from "@app/store";
 
 interface ImageUploaderProps {
@@ -79,9 +79,9 @@ const ImageUploader = ({
       />
       <Icon
         iconName="uploadImage"
-        iconTitle={iconTitle}
+        title={iconTitle}
         onClick={() => inputRef.current?.click()}
-        subClassName={styles[`image__uploader__icon`]}
+        className={styles[`image__uploader__icon`]}
       />
     </div>
   );
