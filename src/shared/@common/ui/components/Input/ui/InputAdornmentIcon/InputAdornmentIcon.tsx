@@ -1,8 +1,7 @@
 import styles from "./InputAdornmentIcon.module.css";
 import { joinClassNames } from "@shared/@common/utils";
-import { Icon } from "@shared/@common/ui/components";
 import { useInputContext } from "@shared/@common/ui/components/Input/context";
-import Icons from "@shared/@common/ui/icons";
+import { Icons, Icon } from "@shared/@common/ui/icons";
 
 interface InputAdornmentIconProps {
   /**
@@ -67,7 +66,7 @@ const InputAdornmentIcon = ({
    * 아이콘 컴포넌트 렌더링
    * - 지정된 아이콘 이름(`iconName`)과 스타일(`style`)을 사용하여 렌더링합니다.
    */
-  return <Icon iconName={iconName} subClassName={style} />;
+  return <Icon iconName={iconName} className={style} />;
 };
 
 export default InputAdornmentIcon;

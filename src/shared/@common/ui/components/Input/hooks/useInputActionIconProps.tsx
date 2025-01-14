@@ -2,7 +2,7 @@ import styles from "../ui/InputActionIcon/InputActionIcon.module.css";
 import { joinClassNames } from "@shared/@common/utils";
 import { useInputContext } from "../context";
 import { useLanguageContent } from "@shared/@common/models/hooks";
-import Icons from "@shared/@common/ui/icons";
+import { Icons } from "@shared/@common/ui/icons";
 
 /**
  * `useInputActionIconProps` 커스텀 훅

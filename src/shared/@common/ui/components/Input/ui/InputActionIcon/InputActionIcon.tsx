@@ -1,6 +1,5 @@
-import { Icon } from "@shared/@common/ui/components/";
 import { useInputActionIconProps } from "@shared/@common/ui/components/Input/hooks";
-import Icons from "@shared/@common/ui/icons";
+import { Icons, Icon } from "@shared/@common/ui/icons";
 
 interface InputActionIconProps {
   /**
@@ -61,9 +60,9 @@ const InputActionIcon = ({
   return (
     <Icon
       iconName={iconName}
-      iconTitle={iconTitle}
+      title={iconTitle}
       onClick={onClick}
-      subClassName={className}
+      className={className}
     />
   );
 };
