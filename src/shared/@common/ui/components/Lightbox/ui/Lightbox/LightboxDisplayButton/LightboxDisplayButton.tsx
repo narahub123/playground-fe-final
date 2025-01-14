@@ -1,7 +1,7 @@
 import styles from "./LightboxDisplayButton.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
-import { Icon } from "@shared/@common/ui/components";
+import { Icon } from "@shared/@common/ui/icons";
 import { useLightboxContext } from "@shared/@common/ui/components/Lightbox/hooks";
 
 interface LightboxDisplayButtonProps {
@@ -31,9 +31,9 @@ const LightboxDisplayButton = ({ className }: LightboxDisplayButtonProps) => {
     <div className={styles["lightbox__display__button__wrapper"]}>
       <Icon
         iconName={iconName}
-        iconTitle={iconTitle}
+        title={iconTitle}
         onClick={isLightboxPostOpen ? onCloseLightboxPost : onOpenLightboxPost}
-        subClassName={classNames}
+        className={classNames}
       />
     </div>
   );

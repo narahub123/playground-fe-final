@@ -1,7 +1,7 @@
 import styles from "./LIghtboxPrevButton.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
-import { Icon } from "@shared/@common/ui/components";
+import { Icon } from "@shared/@common/ui/icons";
 import { useLightboxContext } from "@shared/@common/ui/components/Lightbox/hooks";
 
 interface LIghtboxPrevButtonProps {
@@ -26,9 +26,9 @@ const LIghtboxPrevButton = ({ className }: LIghtboxPrevButtonProps) => {
     <div className={styles[`lightbox__prev__button__wrapper`]}>
       <Icon
         iconName="arrowLeft"
-        iconTitle={iconTitle}
+        title={iconTitle}
         onClick={movePrevImage}
-        subClassName={classNames}
+        className={classNames}
       />
     </div>
   );

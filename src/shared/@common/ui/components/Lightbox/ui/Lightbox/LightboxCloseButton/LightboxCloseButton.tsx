@@ -1,7 +1,7 @@
 import styles from "./LightboxCloseButton.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
-import { Icon } from "@shared/@common/ui/components";
+import { Icon } from "@shared/@common/ui/icons";
 import { useLightboxContext } from "@shared/@common/ui/components/Lightbox/hooks";
 
 interface LightboxCloseButtonProps {
@@ -26,9 +26,9 @@ const LightboxCloseButton = ({ className }: LightboxCloseButtonProps) => {
     <div className={styles[`lightbox__close__button__wrapper`]}>
       <Icon
         iconName="close"
-        iconTitle={iconTitle}
+        title={iconTitle}
         onClick={onClose}
-        subClassName={classNames}
+        className={classNames}
       />
     </div>
   );
