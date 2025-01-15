@@ -1,4 +1,12 @@
-import { BgThemeType, ColorThemeType, FontSizeType } from "./slices";
+import {
+  BgThemeType,
+  ColorThemeType,
+  FontSizeType,
+  DeviceInfoType,
+  DeviceType,
+  OSType,
+  BrowserType,
+} from "./slices";
 
 import {
   DropdownItemType,
@@ -17,6 +25,10 @@ export type {
   BgThemeType,
   ColorThemeType,
   FontSizeType,
+  DeviceInfoType,
+  DeviceType,
+  OSType,
+  BrowserType,
 
   // components
   DropdownItemType, // dropdown item

@@ -4,6 +4,7 @@ import {
 } from "@features/auth-setting/types";
 import { validateDate } from "@features/auth-setting/utils";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { DeviceInfoType } from "@shared/@common/types";
 
 export interface SignupState {
   username: string; // 사용자 이름
@@ -15,6 +16,7 @@ export interface SignupState {
   profileImage: string; // 프로필 사진
   notifications: NotificationInSignupType; // 알림
   language: string; // 언어
+  device: DeviceInfoType; // 기기 정보
 }
 
 const initialState: SignupState = {
@@ -36,6 +38,11 @@ const initialState: SignupState = {
     newPost: false,
   },
   language: "",
+  device: {
+    type: "pc",
+    os: "windows",
+    browser: "chrome",
+  },
 };
 
 const signupSlice = createSlice({
@@ -149,6 +156,16 @@ const signupSlice = createSlice({
     setLanguageInSignup: (state, action: PayloadAction<string>) => {
       state.language = action.payload;
     },
+    /**
+     * Redux 스토어의 `signup` 상태에서 `device` 정보를 설정합니다.
+     *
+     * @function
+     * @param {SignupState} state - `signup` 상태를 나타내는 Redux 슬라이스의 상태.
+     * @param {PayloadAction<DeviceInfoType>} action - 새로운 `device` 정보를 포함한 액션 객체.
+     */
+    setDeviceInSignup: (state, action: PayloadAction<DeviceInfoType>) => {
+      state.device = action.payload;
+    },
   },
 });
 
@@ -170,4 +187,5 @@ export const {
   setNotificationCommentInSignup,
   setNotificationFollowingInSignup,
   setNotificationNewPostInSignup,
+  setDeviceInSignup,
 } = signupSlice.actions;

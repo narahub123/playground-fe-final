@@ -1,4 +1,5 @@
 import { RootState } from "@app/store";
+import { DeviceInfoType } from "@shared/@common/types";
 
 /**
  * `RootState`에서 `signup` 상태를 가져오는 selector 함수입니다.
@@ -81,6 +82,15 @@ const getNotificationsInSignup = (state: RootState) =>
  */
 const getLanguageInSignup = (state: RootState) => state.signup.language;
 
+/**
+ * `RootState`에서 `signup` 상태의 `device` 속성을 가져옵니다.
+ *
+ * @function
+ * @param {RootState} state - Redux 상태 객체.
+ * @returns {DeviceInfoType} `device` 속성 값.
+ */
+const getDeviceInSignup = (state: RootState) => state.signup.device;
+
 export {
   getUserInSignup,
   getUsernameInSignup,
@@ -92,4 +102,5 @@ export {
   getProfileImageInSignup,
   getNotificationsInSignup,
   getLanguageInSignup,
+  getDeviceInSignup,
 };
