@@ -88,9 +88,11 @@ const ScreenNotifications = ({ className }: ScreenNotificationsProps) => {
       <Modal.Footer>
         <Button
           onClick={moveNext}
-          variant="outline"
           isValid={validationResult}
-          colorPalette="default"
+          variant="solid"
+          width="100%"
+          rounded="2xl"
+          bgColor="colorTheme"
         >
           {button.skip}
         </Button>
