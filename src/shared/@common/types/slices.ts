@@ -9,9 +9,15 @@ type ColorThemeType =
 
 type FontSizeType = "xs" | "s" | "b" | "l" | "xl";
 
-type DeviceType = "web" | "mobile" | "tablet"; // PC, 모바일, 태블릿
-type OSType = "windows" | "macOS" | "linux" | "android" | "iOS"; // 운영 체제
-type BrowserType = "chrome" | "firefox" | "safari" | "edge" | "opera"; // 브라우저
+type DeviceType = "Web" | "Mobile" | "Tablet"; // PC, 모바일, 태블릿
+type OSType = "Windows" | "MacOS" | "Linux" | "Android" | "iOS" | "Unknown"; // 운영 체제
+type BrowserType =
+  | "Chrome"
+  | "Firefox"
+  | "Safari"
+  | "Edge"
+  | "Opera"
+  | "Unknown"; // 브라우저
 
 type DeviceInfoType = {
   type: DeviceType;
