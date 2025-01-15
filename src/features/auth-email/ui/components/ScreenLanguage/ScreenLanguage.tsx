@@ -88,6 +88,7 @@ const ScreenLanguage = ({ className }: ScreenLanguageProps) => {
           bgColor="colorTheme"
           width="100%"
           rounded="2xl"
+          type="submit"
         >
           {button}
         </Button>
