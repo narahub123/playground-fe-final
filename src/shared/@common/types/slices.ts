@@ -25,6 +25,13 @@ type DeviceInfoType = {
   browser: BrowserType;
 };
 
+type AddressType = {
+  country: string;
+  state: string;
+  city: string;
+  county: string;
+};
+
 export type {
   BgThemeType,
   ColorThemeType,
@@ -33,4 +40,5 @@ export type {
   DeviceType,
   OSType,
   BrowserType,
+  AddressType,
 };

@@ -4,7 +4,7 @@ import {
 } from "@features/auth-setting/types";
 import { validateDate } from "@features/auth-setting/utils";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { DeviceInfoType } from "@shared/@common/types";
+import { AddressType, DeviceInfoType } from "@shared/@common/types";
 
 export interface SignupState {
   username: string; // 사용자 이름
@@ -18,6 +18,7 @@ export interface SignupState {
   language: string; // 언어
   device: DeviceInfoType; // 기기 정보
   ip: string;
+  address: AddressType;
 }
 
 const initialState: SignupState = {
@@ -45,6 +46,12 @@ const initialState: SignupState = {
     browser: "Chrome",
   },
   ip: "",
+  address: {
+    country: "",
+    state: "",
+    city: "",
+    county: "",
+  },
 };
 
 const signupSlice = createSlice({
@@ -171,6 +178,9 @@ const signupSlice = createSlice({
     setIpInSignup: (state, action: PayloadAction<string>) => {
       state.ip = action.payload;
     },
+    setAddressInSignup: (state, action: PayloadAction<AddressType>) => {
+      state.address = action.payload;
+    },
   },
 });
 
@@ -194,4 +204,5 @@ export const {
   setNotificationNewPostInSignup,
   setDeviceInSignup,
   setIpInSignup,
+  setAddressInSignup,
 } = signupSlice.actions;

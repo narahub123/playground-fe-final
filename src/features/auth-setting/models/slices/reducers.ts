@@ -14,6 +14,7 @@ import {
   setNotificationNewPostInSignup,
   setDeviceInSignup,
   setIpInSignup,
+  setAddressInSignup,
 } from "./signupSlice";
 
 import { loginRequset, loginSuccess, loginFailure } from "./loginSlice";
@@ -35,6 +36,7 @@ export {
   setNotificationNewPostInSignup,
   setDeviceInSignup,
   setIpInSignup,
+  setAddressInSignup,
 
   // login
   loginRequset,

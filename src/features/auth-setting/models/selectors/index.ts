@@ -12,6 +12,7 @@ import {
   getUserInSignup,
   getDeviceInSignup,
   getIpInSignup,
+  getAddressInSignup,
 } from "./signupSelectors";
 
 export {
@@ -31,4 +32,5 @@ export {
   getLanguageInSignup,
   getDeviceInSignup,
   getIpInSignup,
+  getAddressInSignup,
 };

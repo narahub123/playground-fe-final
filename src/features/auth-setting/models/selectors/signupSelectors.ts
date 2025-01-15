@@ -98,6 +98,8 @@ const getDeviceInSignup = (state: RootState) => state.signup.device;
  */
 const getIpInSignup = (state: RootState) => state.signup.ip;
 
+const getAddressInSignup = (state: RootState) => state.signup.address;
+
 export {
   getUserInSignup,
   getUsernameInSignup,
@@ -111,4 +113,5 @@ export {
   getLanguageInSignup,
   getDeviceInSignup,
   getIpInSignup,
+  getAddressInSignup,
 };
