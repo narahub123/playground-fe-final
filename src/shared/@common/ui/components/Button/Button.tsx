@@ -1,23 +1,32 @@
 import styles from "./Button.module.css";
+import common from "@shared/@common/styles/common.module.css";
 import { joinClassNames } from "@shared/@common/utils";
 import { ReactNode } from "react";
 import Spinner from "../Spinner/Spinner";
 import Text from "../Text/Text";
 import { useLanguageContent } from "@shared/@common/models/hooks";
+import {
+  BorderStyle,
+  ColorBasic,
+  ColorBasicWithInherit,
+  SizeBasic,
+  SizeExtended,
+  SizeExtendedWithFull,
+} from "@shared/@common/types";
 
-interface ButtonProps {
+interface ButtonCustomProps {
   children: ReactNode;
   onClick: (value?: any) => void;
+  fontColor?: ColorBasicWithInherit;
+  fontSize?: SizeExtended;
+  bgColor?: ColorBasic;
+  width?: string;
+  height?: string;
+  borderWidth?: SizeBasic;
+  borderStyle?: BorderStyle;
+  borderColor?: ColorBasic;
+  rounded?: SizeExtendedWithFull;
   variant?: "solid" | "subtle" | "surface" | "outline" | "ghost" | "plain";
-  colorPalette?:
-    | "colorTheme"
-    | "default"
-    | "cornflowerblue"
-    | "green"
-    | "red"
-    | "purple"
-    | "orange"
-    | "yellow";
   isValid?: boolean;
   loading?: boolean;
   loadingText?: string;
@@ -25,16 +34,27 @@ interface ButtonProps {
   disabled?: boolean;
 }
 
+type ButtonProps = ButtonCustomProps & React.HTMLAttributes<HTMLButtonElement>;
+
 const Button = ({
   children,
   onClick,
+  borderWidth,
+  borderStyle,
+  borderColor,
+  rounded,
+  bgColor,
+  fontColor,
+  fontSize,
+  width,
+  height,
   isValid = false,
   variant = "solid",
-  colorPalette = "default",
   loading = false,
   loadingText,
   className, // 추가 스타일링을 위한 className 추가
   disabled = false, // isValid와 관계 없이 강제 disabled
+  ...props
 }: ButtonProps) => {
   // 언어 설정
   const { empty, ariaLabel } = useLanguageContent(["components", "Button"]);
@@ -45,20 +65,28 @@ const Button = ({
    */
   const classNames = joinClassNames([
     styles["button"],
+    rounded && common[`rounded--${rounded}`],
+    borderWidth && common[`border--width--${borderWidth}`],
+    borderStyle && common[`border--style--${borderStyle}`],
+    borderColor && common[`border--color--${borderColor}`],
+    bgColor && common[`background--color--${bgColor}`],
+    fontColor && common[`color--${fontColor}`],
+    fontSize && common[`fontsize--${fontSize}`],
+    disabled ? common[`disabled`] : "",
     // variant + colorPalette
-    !isValid || disabled
-      ? styles[
-          `button--${variant}--${
-            colorPalette === "colorTheme" ? colorPalette : "colorPalette"
-          }--invalid`
-        ]
-      : `${
-          styles[
-            `button--${variant}--${
-              colorPalette === "colorTheme" ? colorPalette : "colorPalette"
-            }`
-          ]
-        } ${styles[`button--valid`]}`,
+    // !isValid || disabled
+    //   ? styles[
+    //       `button--${variant}--${
+    //         colorPalette === "colorTheme" ? colorPalette : "colorPalette"
+    //       }--invalid`
+    //     ]
+    //   : `${
+    //       styles[
+    //         `button--${variant}--${
+    //           colorPalette === "colorTheme" ? colorPalette : "colorPalette"
+    //         }`
+    //       ]
+    //     } ${styles[`button--valid`]}`,
     className,
   ]);
 
@@ -67,12 +95,11 @@ const Button = ({
       type="button"
       className={classNames}
       disabled={!isValid || disabled || loading}
+      style={{ width: `${width}`, height: `${height}`, ...props.style }}
       onClick={onClick}
       aria-disabled={!isValid || disabled} // 비활성화 상태
       aria-label={loading ? loadingText || ariaLabel.loading : ariaLabel.button}
-      data-color-palette={
-        colorPalette === "colorTheme" ? undefined : colorPalette
-      }
+      {...props}
     >
       {loading ? (
         <div

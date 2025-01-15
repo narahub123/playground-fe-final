@@ -9,6 +9,8 @@ type SizeBasicWithFull = SizeBasic | "full";
 
 type SizeExtended = SizeBasic | "2xl" | "3xl" | "4xl" | "5xl" | "6xl" | "7xl";
 
+type SizeExtendedWithFull = SizeExtended | "full";
+
 type ColorBasic =
   | "red"
   | "cornflowerblue"
@@ -19,6 +21,7 @@ type ColorBasic =
   | "gray"
   | "black"
   | "white"
+  | "transparent"
   | "colorTheme";
 
 type ColorBasicWithInherit = ColorBasic | "inherit";
@@ -42,5 +45,6 @@ export type {
   SizeBasic,
   SizeBasicWithFull,
   SizeExtended,
+  SizeExtendedWithFull,
   BorderStyle,
 };

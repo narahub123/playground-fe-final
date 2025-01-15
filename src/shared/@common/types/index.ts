@@ -7,6 +7,7 @@ import {
   SizeBasic,
   SizeBasicWithFull,
   SizeExtended,
+  SizeExtendedWithFull,
   BorderStyle,
 } from "./components";
 
@@ -23,5 +24,6 @@ export type {
   SizeBasic,
   SizeBasicWithFull,
   SizeExtended,
+  SizeExtendedWithFull,
   BorderStyle,
 };
