@@ -12,6 +12,7 @@ import {
   SizeBasic,
   SizeExtended,
   SizeExtendedWithFull,
+  VariantType,
 } from "@shared/@common/types";
 
 interface ButtonCustomProps {
@@ -26,7 +27,7 @@ interface ButtonCustomProps {
   borderStyle?: BorderStyle;
   borderColor?: ColorBasic;
   rounded?: SizeExtendedWithFull;
-  variant?: "solid" | "subtle" | "surface" | "outline" | "ghost" | "plain";
+  variant?: VariantType;
   isValid?: boolean;
   loading?: boolean;
   loadingText?: string;
@@ -64,7 +65,8 @@ const Button = ({
    * @type {string} 결합된 클래스 이름
    */
   const classNames = joinClassNames([
-    styles["button"],
+    variant !== "plain" ? styles["button"] : styles[`text`],
+    variant && common[`variant--${variant}`],
     rounded && common[`rounded--${rounded}`],
     borderWidth && common[`border--width--${borderWidth}`],
     borderStyle && common[`border--style--${borderStyle}`],
@@ -73,46 +75,50 @@ const Button = ({
     fontColor && common[`color--${fontColor}`],
     fontSize && common[`fontsize--${fontSize}`],
     disabled ? common[`disabled`] : "",
-    // variant + colorPalette
-    // !isValid || disabled
-    //   ? styles[
-    //       `button--${variant}--${
-    //         colorPalette === "colorTheme" ? colorPalette : "colorPalette"
-    //       }--invalid`
-    //     ]
-    //   : `${
-    //       styles[
-    //         `button--${variant}--${
-    //           colorPalette === "colorTheme" ? colorPalette : "colorPalette"
-    //         }`
-    //       ]
-    //     } ${styles[`button--valid`]}`,
+    isValid && variant !== "plain" ? styles[`button--valid`] : "",
     className,
   ]);
 
   return (
-    <button
-      type="button"
-      className={classNames}
-      disabled={!isValid || disabled || loading}
-      style={{ width: `${width}`, height: `${height}`, ...props.style }}
-      onClick={onClick}
-      aria-disabled={!isValid || disabled} // 비활성화 상태
-      aria-label={loading ? loadingText || ariaLabel.loading : ariaLabel.button}
-      {...props}
-    >
-      {loading ? (
-        <div
-          className={styles[`button__loading`]}
-          aria-live="polite" // 상태 변화시 사용자에게 알림
+    <>
+      {variant !== "plain" ? (
+        <button
+          type="button"
+          className={classNames}
+          disabled={!isValid || disabled || loading}
+          onClick={onClick}
+          aria-disabled={!isValid || disabled} // 비활성화 상태
+          aria-label={
+            loading ? loadingText || ariaLabel.loading : ariaLabel.button
+          }
+          style={{ width: `${width}`, height: `${height}`, ...props.style }}
+          {...props}
         >
-          <Spinner loadingText={loadingText} />
-          {loadingText && <Text>{loadingText}</Text>}
-        </div>
+          {loading ? (
+            <div
+              className={styles[`button__loading`]}
+              aria-live="polite" // 상태 변화시 사용자에게 알림
+            >
+              <Spinner loadingText={loadingText} />
+              {loadingText && <Text>{loadingText}</Text>}
+            </div>
+          ) : (
+            children || empty
+          )}
+        </button>
       ) : (
-        children || empty
+        <p
+          className={joinClassNames([
+            styles[`text`],
+            common[`variant--plain`],
+            disabled ? common[`disabled`] : "",
+          ])}
+          style={{ ...props.style }}
+        >
+          {children || empty}
+        </p>
       )}
-    </button>
+    </>
   );
 };
 

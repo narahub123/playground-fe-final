@@ -38,6 +38,14 @@ type BorderStyle =
   | "inset"
   | "outset";
 
+type VariantType =
+  | "solid"
+  | "subtle"
+  | "surface"
+  | "outline"
+  | "ghost"
+  | "plain";
+
 export type {
   DropdownItemType,
   ColorBasic,
@@ -47,4 +55,5 @@ export type {
   SizeExtended,
   SizeExtendedWithFull,
   BorderStyle,
+  VariantType,
 };

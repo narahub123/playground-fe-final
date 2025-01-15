@@ -9,6 +9,7 @@ import {
   SizeExtended,
   SizeExtendedWithFull,
   BorderStyle,
+  VariantType,
 } from "./components";
 
 export type {
@@ -26,4 +27,5 @@ export type {
   SizeExtended,
   SizeExtendedWithFull,
   BorderStyle,
+  VariantType,
 };

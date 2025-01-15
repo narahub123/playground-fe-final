@@ -3,6 +3,77 @@
   opacity: 0.5;
 }
 
+.variant--solid {
+  background-color: black;
+  color: #fff;
+}
+
+.variant--solid:hover {
+  background-color: hsl(0, 0%, 20%);
+}
+
+.variant--solid:focus-visible {
+  background-color: hsl(0, 0%, 20%);
+}
+
+.variant--subtle {
+  background-color: #eee;
+  color: inherit;
+}
+
+.variant--subtle:hover {
+  background-color: #ddd;
+}
+
+.variant--subtle:focus-visible {
+  background-color: #ddd;
+}
+
+.variant--surface {
+  border: 1px solid #ccc;
+  background-color: #eee;
+  color: inherit;
+}
+
+.variant--surface:hover {
+  background-color: #ddd;
+}
+
+.variant--surface:focus-visible {
+  background-color: #ddd;
+}
+
+.variant--outline {
+  border: 1px solid #ccc;
+  color: inherit;
+}
+
+.variant--outline:hover {
+  background-color: #eee;
+}
+
+.variant--outline:focus-visible {
+  background-color: #eee;
+}
+
+.variant--ghost {
+  color: inherit;
+}
+
+.variant--ghost:hover {
+  background-color: #eee;
+}
+
+.variant--ghost:focus-visible {
+  background-color: #eee;
+}
+
+.variant--plain {
+  color: inherit;
+  padding: 0;
+  cursor: text;
+}
+
 /* font */
 .fontsize--xs {
   font-size: 0.75rem; /* 12px */
