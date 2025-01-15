@@ -4,6 +4,7 @@ import useFocusTrap from "./useFocusTrap";
 import useValidateChildren from "./useValidateChildren";
 import useValidationChecker from "./useValidationChecker/useValidationChecker";
 import useDeviceInfo from "./useDeviceInfo";
+import useIpInfo from "./useIpInfo";
 
 export {
   useLanguageContent,
@@ -12,4 +13,5 @@ export {
   useValidateChildren,
   useValidationChecker,
   useDeviceInfo,
+  useIpInfo,
 };
