@@ -7,8 +7,11 @@ import ScreenUserId from "../ScreenUserId/ScreenUserId";
 import ScreenProfileImage from "../ScreenProfileImage/ScreenProfileImage";
 import ScreenNotifications from "../ScreenNotifications/ScreenNotifications";
 import ScreenLanguage from "../ScreenLanguage/ScreenLanguage";
-import { useDeviceInfo } from "@shared/@common/models/hooks";
-import { setDeviceInSignup } from "@features/auth-setting/models/slices/signupSlice";
+import { useDeviceInfo, useIpInfo } from "@shared/@common/models/hooks";
+import {
+  setDeviceInSignup,
+  setIpInSignup,
+} from "@features/auth-setting/models/slices/signupSlice";
 
 /**
  * AuthModalPros는 AuthModal 컴포넌트에 전달되는 속성들을 정의함
@@ -75,6 +78,9 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
 
   // 기기 정보 저장
   useDeviceInfo(setDeviceInSignup);
+
+  // 사용자 ip 주소 저장
+  useIpInfo(setIpInSignup);
 
   return (
     <Modal
