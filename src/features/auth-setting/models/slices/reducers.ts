@@ -13,6 +13,7 @@ import {
   setNotificationFollowingInSignup,
   setNotificationNewPostInSignup,
   setDeviceInSignup,
+  setIpInSignup,
 } from "./signupSlice";
 
 import { loginRequset, loginSuccess, loginFailure } from "./loginSlice";
@@ -33,6 +34,7 @@ export {
   setNotificationFollowingInSignup,
   setNotificationNewPostInSignup,
   setDeviceInSignup,
+  setIpInSignup,
 
   // login
   loginRequset,

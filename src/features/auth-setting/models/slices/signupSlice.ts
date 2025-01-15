@@ -17,6 +17,7 @@ export interface SignupState {
   notifications: NotificationInSignupType; // 알림
   language: string; // 언어
   device: DeviceInfoType; // 기기 정보
+  ip: string;
 }
 
 const initialState: SignupState = {
@@ -43,6 +44,7 @@ const initialState: SignupState = {
     os: "Windows",
     browser: "Chrome",
   },
+  ip: "",
 };
 
 const signupSlice = createSlice({
@@ -166,6 +168,9 @@ const signupSlice = createSlice({
     setDeviceInSignup: (state, action: PayloadAction<DeviceInfoType>) => {
       state.device = action.payload;
     },
+    setIpInSignup: (state, action: PayloadAction<string>) => {
+      state.ip = action.payload;
+    },
   },
 });
 
@@ -188,4 +193,5 @@ export const {
   setNotificationFollowingInSignup,
   setNotificationNewPostInSignup,
   setDeviceInSignup,
+  setIpInSignup,
 } = signupSlice.actions;

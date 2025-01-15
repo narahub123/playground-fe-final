@@ -1,5 +1,4 @@
 import { RootState } from "@app/store";
-import { DeviceInfoType } from "@shared/@common/types";
 
 /**
  * `RootState`에서 `signup` 상태를 가져오는 selector 함수입니다.
@@ -91,6 +90,14 @@ const getLanguageInSignup = (state: RootState) => state.signup.language;
  */
 const getDeviceInSignup = (state: RootState) => state.signup.device;
 
+/**
+ * `RootState`에서 `signup` 상태의 IP 주소를 반환합니다.
+ *
+ * @param {RootState} state - Redux 상태 객체입니다.
+ * @returns {string} 회원가입 상태에서 IP 주소를 반환합니다.
+ */
+const getIpInSignup = (state: RootState) => state.signup.ip;
+
 export {
   getUserInSignup,
   getUsernameInSignup,
@@ -103,4 +110,5 @@ export {
   getNotificationsInSignup,
   getLanguageInSignup,
   getDeviceInSignup,
+  getIpInSignup,
 };
