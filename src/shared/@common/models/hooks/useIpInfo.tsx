@@ -11,7 +11,6 @@ const useIpInfo = (
   const getIpInfo = async () => {
     try {
       const ip = await fetchIPAPI();
-      console.log(ip);
       dispatch(reducer(ip)); // IP 정보 dispatch
     } catch (error) {
       console.error("IP 정보 가져오기 실패", error);
