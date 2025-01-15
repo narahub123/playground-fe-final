@@ -64,9 +64,11 @@ const ScreenUserId = ({ className }: ScreenUserIdProps) => {
       </Modal.Body>
       <Modal.Footer>
         <Button
-          colorPalette="colorTheme"
           onClick={moveNext}
           isValid={validationResult}
+          width="100%"
+          bgColor="colorTheme"
+          rounded="2xl"
         >
           {button}
         </Button>
