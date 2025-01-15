@@ -74,7 +74,7 @@ const Button = ({
     bgColor && common[`background--color--${bgColor}`],
     fontColor && common[`color--${fontColor}`],
     fontSize && common[`fontsize--${fontSize}`],
-    disabled ? common[`disabled`] : "",
+    disabled || !isValid || loading ? common[`disabled`] : "",
     isValid && variant !== "plain" ? styles[`button--valid`] : "",
     className,
   ]);
