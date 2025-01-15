@@ -184,9 +184,11 @@ const ScreenPersonalInfo = () => {
       </Modal.Body>
       <Modal.Footer>
         <Button
-          colorPalette="colorTheme"
           onClick={moveNext}
           isValid={validationResult}
+          bgColor="colorTheme"
+          width="100%"
+          rounded="2xl"
         >
           {button}
         </Button>
