@@ -60,7 +60,7 @@ const ScreenUserId = ({ className }: ScreenUserIdProps) => {
           <Text type="heading2">{title}</Text>
           <Text type="expl">{expl}</Text>
         </div>
-        <InputUserId isValid={isValid} setIsValid={setIsValid} />
+        <InputUserId isValid={isValid} setIsValid={setIsValid} isSignup />
       </Modal.Body>
       <Modal.Footer>
         <Button
