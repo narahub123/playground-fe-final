@@ -7,8 +7,13 @@ import ScreenUserId from "../ScreenUserId/ScreenUserId";
 import ScreenProfileImage from "../ScreenProfileImage/ScreenProfileImage";
 import ScreenNotifications from "../ScreenNotifications/ScreenNotifications";
 import ScreenLanguage from "../ScreenLanguage/ScreenLanguage";
-import { useDeviceInfo, useIpInfo } from "@shared/@common/models/hooks";
 import {
+  useAddressInfo,
+  useDeviceInfo,
+  useIpInfo,
+} from "@shared/@common/models/hooks";
+import {
+  setAddressInSignup,
   setDeviceInSignup,
   setIpInSignup,
 } from "@features/auth-setting/models/slices/signupSlice";
@@ -81,6 +86,9 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
 
   // 사용자 ip 주소 저장
   useIpInfo(setIpInSignup);
+
+  // 사용자 주소 저장
+  useAddressInfo(setAddressInSignup);
 
   return (
     <Modal
