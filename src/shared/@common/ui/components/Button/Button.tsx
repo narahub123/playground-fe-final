@@ -35,7 +35,8 @@ interface ButtonCustomProps {
   disabled?: boolean;
 }
 
-type ButtonProps = ButtonCustomProps & React.HTMLAttributes<HTMLButtonElement>;
+type ButtonProps = ButtonCustomProps &
+  React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const Button = ({
   children,
