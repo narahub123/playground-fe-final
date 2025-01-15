@@ -81,7 +81,14 @@ const ScreenLanguage = ({ className }: ScreenLanguageProps) => {
         </div>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={handleSubmit} isValid={canSubmit}>
+        <Button
+          onClick={handleSubmit}
+          isValid={canSubmit}
+          variant="solid"
+          bgColor="colorTheme"
+          width="100%"
+          rounded="2xl"
+        >
           {button}
         </Button>
       </Modal.Footer>
