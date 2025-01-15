@@ -39,7 +39,7 @@ const initialState: SignupState = {
   },
   language: "",
   device: {
-    type: "pc",
+    type: "web",
     os: "windows",
     browser: "chrome",
   },

@@ -9,7 +9,7 @@ type ColorThemeType =
 
 type FontSizeType = "xs" | "s" | "b" | "l" | "xl";
 
-type DeviceType = "pc" | "mobile" | "tablet"; // PC, 모바일, 태블릿
+type DeviceType = "web" | "mobile" | "tablet"; // PC, 모바일, 태블릿
 type OSType = "windows" | "macOS" | "linux" | "android" | "iOS"; // 운영 체제
 type BrowserType = "chrome" | "firefox" | "safari" | "edge" | "opera"; // 브라우저
 
