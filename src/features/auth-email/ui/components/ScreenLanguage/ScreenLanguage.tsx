@@ -12,14 +12,12 @@ import { useModalContext } from "@shared/@common/ui/components/Modal/hooks";
 import { useEffect, useState } from "react";
 import { getUserInSignup } from "@features/auth-setting/models/selectors";
 import { registerUserAPI } from "@shared/auth/apis/signup";
-import { useNavigate } from "react-router-dom";
 
 interface ScreenLanguageProps {
   className?: string;
 }
 
 const ScreenLanguage = ({ className }: ScreenLanguageProps) => {
-  const navigate = useNavigate();
   const [canSubmit, setCanSubmit] = useState(false);
   const display = useSelector(getDisplay);
   const user = useSelector(getUserInSignup);
