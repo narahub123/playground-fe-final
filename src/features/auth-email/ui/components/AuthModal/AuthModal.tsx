@@ -8,15 +8,17 @@ import ScreenProfileImage from "../ScreenProfileImage/ScreenProfileImage";
 import ScreenNotifications from "../ScreenNotifications/ScreenNotifications";
 import ScreenLanguage from "../ScreenLanguage/ScreenLanguage";
 import {
-  useAddressInfo,
+  useLocationInfo,
   useDeviceInfo,
   useIpInfo,
 } from "@shared/@common/models/hooks";
 import {
-  setAddressInSignup,
+  setLocationInSignup,
   setDeviceInSignup,
   setIpInSignup,
 } from "@features/auth-setting/models/slices/signupSlice";
+import { useSelector } from "react-redux";
+import { getUserInSignup } from "@features/auth-setting/models/selectors";
 
 /**
  * AuthModalPros는 AuthModal 컴포넌트에 전달되는 속성들을 정의함
@@ -46,6 +48,9 @@ interface AuthModalProps {
  * @returns {JSX.Element} AuthModal 컴포넌트 렌더링 결과.
  */
 const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
+  const user = useSelector(getUserInSignup);
+  console.log(user);
+
   const [curPage, setCurPage] = useState(0);
   // 유효성 상태를 관리하는 상태 훅 정의
   /**
@@ -88,7 +93,7 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
   useIpInfo(setIpInSignup);
 
   // 사용자 주소 저장
-  useAddressInfo(setAddressInSignup);
+  useLocationInfo(setLocationInSignup);
 
   return (
     <Modal

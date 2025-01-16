@@ -6,7 +6,7 @@ import {
   DeviceType,
   OSType,
   BrowserType,
-  AddressType,
+  LocationType,
 } from "./slices";
 
 import {
@@ -30,7 +30,7 @@ export type {
   DeviceType,
   OSType,
   BrowserType,
-  AddressType,
+  LocationType,
 
   // components
   DropdownItemType, // dropdown item

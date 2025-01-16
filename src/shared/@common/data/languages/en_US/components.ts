@@ -55,11 +55,11 @@ const components = {
     },
     emailLabel: "Email",
     emailError: {
-      EMPTY: { regExp: EMPTY, errorMessage: "Please enter an email address." },
+      EMPTY: { regExp: EMPTY, errorMessage: "Please enter an email location." },
       FORMAT: {
         regExp: EMAIL_FORMAT,
         errorMessage:
-          "Please enter a valid email address format. \nExample: username@example.com",
+          "Please enter a valid email location format. \nExample: username@example.com",
       },
       DUPLICATE: {
         errorMessage: "This email is already registered.",

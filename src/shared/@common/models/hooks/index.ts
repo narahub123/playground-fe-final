@@ -5,7 +5,7 @@ import useValidateChildren from "./useValidateChildren";
 import useValidationChecker from "./useValidationChecker/useValidationChecker";
 import useDeviceInfo from "./useDeviceInfo";
 import useIpInfo from "./useIpInfo";
-import useAddressInfo from "./useAddressInfo";
+import useLocationInfo from "./useLocationInfo";
 
 export {
   useLanguageContent,
@@ -15,5 +15,5 @@ export {
   useValidationChecker,
   useDeviceInfo,
   useIpInfo,
-  useAddressInfo,
+  useLocationInfo,
 };

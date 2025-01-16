@@ -1,4 +1,4 @@
 import fetchIPAPI from "./ip";
-import fetchAddressAPI from "./address";
+import fetchLocationAPI from "./location";
 
-export { fetchIPAPI, fetchAddressAPI };
+export { fetchIPAPI, fetchLocationAPI };

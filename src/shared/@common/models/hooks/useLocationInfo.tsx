@@ -1,8 +1,8 @@
 import { useAppDispatch } from "@app/store";
-import { fetchAddressAPI } from "@shared/@common/apis";
+import { fetchLocationAPI } from "@shared/@common/apis";
 import { useEffect, useState } from "react";
 
-const useAddressInfo = (
+const useLocationInfo = (
   reducer: (value?: any) => { type: string; payload: any }
 ) => {
   const dispatch = useAppDispatch();
@@ -14,7 +14,7 @@ const useAddressInfo = (
     const geolocation = window.navigator.geolocation;
 
     const success = async (pos: GeolocationPosition) => {
-      const address = {
+      const location = {
         county: "",
         city: "",
         state: "",
@@ -23,16 +23,16 @@ const useAddressInfo = (
       const { latitude, longitude } = pos.coords;
 
       try {
-        const data = await fetchAddressAPI(latitude, longitude);
+        const data = await fetchLocationAPI(latitude, longitude);
 
         const { country, county, city, state, suburb, borough } = data.address;
 
-        address.country = country || "";
-        address.state = state || city || "";
-        address.city = city || "";
-        address.county = county || borough || suburb || "";
+        location.country = country || "";
+        location.state = state || city || "";
+        location.city = city || "";
+        location.county = county || borough || suburb || "";
 
-        dispatch(reducer(address));
+        dispatch(reducer(location));
         setLoaded(true); // 요청 완료 상태 갱신
       } catch (error) {
         console.error("위치정보 취득 실패", error);
@@ -55,4 +55,4 @@ const useAddressInfo = (
   }, [dispatch, reducer, loaded]); // 의존성에 따라 재실행 여부 결정
 };
 
-export default useAddressInfo;
+export default useLocationInfo;
