@@ -11,12 +11,15 @@ import { getDisplay } from "@shared/@common/models/selectors";
 import { useModalContext } from "@shared/@common/ui/components/Modal/hooks";
 import { useEffect, useState } from "react";
 import { getUserInSignup } from "@features/auth-setting/models/selectors";
+import { registerUserAPI } from "@shared/auth/apis/signup";
+import { useNavigate } from "react-router-dom";
 
 interface ScreenLanguageProps {
   className?: string;
 }
 
 const ScreenLanguage = ({ className }: ScreenLanguageProps) => {
+  const navigate = useNavigate();
   const [canSubmit, setCanSubmit] = useState(false);
   const display = useSelector(getDisplay);
   const user = useSelector(getUserInSignup);
@@ -49,10 +52,17 @@ const ScreenLanguage = ({ className }: ScreenLanguageProps) => {
 
   const classNames = joinClassNames([styles["screen__language"], className]);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const submit = { ...user, language: display.language };
 
     console.log(submit);
+
+    await registerUserAPI(submit).then((response) => {
+      if (response.success) {
+        // slice를 비우기 위해서 리프레시가 되면서 이동되는 location.href 사용
+        window.location.href = "/";
+      }
+    });
   };
 
   return (
