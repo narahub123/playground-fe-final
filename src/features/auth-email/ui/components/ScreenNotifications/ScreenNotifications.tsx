@@ -12,10 +12,10 @@ import {
   useModalPagination,
 } from "@shared/@common/ui/components/Modal/hooks";
 import {
-  setNotificationCommentInSignup,
-  setNotificationFollowingInSignup,
-  setNotificationMessageInSignup,
-  setNotificationNewPostInSignup,
+  setNotificationsRepliesInSignup,
+  setNotificationsNewFollowerInSignup,
+  setNotificationsMessagesInSignup,
+  setNotificationsPostsInSignup,
 } from "@features/auth-setting/models/slices/signupSlice";
 import { useEffect } from "react";
 
@@ -62,26 +62,26 @@ const ScreenNotifications = ({ className }: ScreenNotificationsProps) => {
           <Checkbox
             text="메시지"
             expl="새로운 메시지를 받은 경우 알림을 받습니다."
-            inputValue={user.notifications.message}
-            setInputValue={setNotificationMessageInSignup}
+            inputValue={user.notifications.messages}
+            setInputValue={setNotificationsMessagesInSignup}
           />
           <Checkbox
             text="댓글"
             expl="새로운 댓글를 받은 경우 알림을 받습니다."
-            inputValue={user.notifications.comment}
-            setInputValue={setNotificationCommentInSignup}
+            inputValue={user.notifications.replies}
+            setInputValue={setNotificationsRepliesInSignup}
           />
           <Checkbox
             text="팔로우"
             expl="새로운 팔로우가 있는 경우 알림을 받습니다."
-            inputValue={user.notifications.following}
-            setInputValue={setNotificationFollowingInSignup}
+            inputValue={user.notifications.newFollower}
+            setInputValue={setNotificationsNewFollowerInSignup}
           />
           <Checkbox
             text="새 글"
             expl="팔로우 중 새 글이 있는 경우 알림을 받습니다."
-            inputValue={user.notifications.newPost}
-            setInputValue={setNotificationNewPostInSignup}
+            inputValue={user.notifications.posts}
+            setInputValue={setNotificationsPostsInSignup}
           />
         </div>
       </Modal.Body>

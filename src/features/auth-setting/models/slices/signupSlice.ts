@@ -34,10 +34,10 @@ const initialState: SignupState = {
   userId: "",
   profileImage: "",
   notifications: {
-    message: false,
-    comment: false,
-    following: false,
-    newPost: false,
+    messages: false,
+    replies: false,
+    newFollower: false,
+    posts: false,
   },
   language: "",
   device: {
@@ -146,20 +146,26 @@ const signupSlice = createSlice({
         state.notifications[key] = !state.notifications[key];
       else console.warn("키가 유효하지 않습니다.");
     },
-    setNotificationMessageInSignup: (state, action: PayloadAction<boolean>) => {
-      state.notifications.message = action.payload;
-    },
-    setNotificationCommentInSignup: (state, action: PayloadAction<boolean>) => {
-      state.notifications.comment = action.payload;
-    },
-    setNotificationFollowingInSignup: (
+    setNotificationsMessagesInSignup: (
       state,
       action: PayloadAction<boolean>
     ) => {
-      state.notifications.following = action.payload;
+      state.notifications.messages = action.payload;
     },
-    setNotificationNewPostInSignup: (state, action: PayloadAction<boolean>) => {
-      state.notifications.newPost = action.payload;
+    setNotificationsRepliesInSignup: (
+      state,
+      action: PayloadAction<boolean>
+    ) => {
+      state.notifications.replies = action.payload;
+    },
+    setNotificationsNewFollowerInSignup: (
+      state,
+      action: PayloadAction<boolean>
+    ) => {
+      state.notifications.newFollower = action.payload;
+    },
+    setNotificationsPostsInSignup: (state, action: PayloadAction<boolean>) => {
+      state.notifications.posts = action.payload;
     },
 
     setLanguageInSignup: (state, action: PayloadAction<string>) => {
@@ -198,10 +204,10 @@ export const {
   setProfileImageInSignup,
   setNotificationsInSignup,
   setLanguageInSignup,
-  setNotificationMessageInSignup,
-  setNotificationCommentInSignup,
-  setNotificationFollowingInSignup,
-  setNotificationNewPostInSignup,
+  setNotificationsMessagesInSignup,
+  setNotificationsRepliesInSignup,
+  setNotificationsNewFollowerInSignup,
+  setNotificationsPostsInSignup,
   setDeviceInSignup,
   setIpInSignup,
   setLocationInSignup,

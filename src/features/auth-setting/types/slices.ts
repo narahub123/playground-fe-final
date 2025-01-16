@@ -5,10 +5,10 @@ type BirthType = {
 };
 
 type NotificationInSignupType = {
-  message: boolean;
-  comment: boolean;
-  following: boolean;
-  newPost: boolean;
+  messages: boolean;
+  replies: boolean;
+  newFollower: boolean;
+  posts: boolean;
 };
 
 export type { BirthType, NotificationInSignupType };
