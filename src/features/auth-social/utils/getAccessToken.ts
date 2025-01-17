@@ -5,12 +5,6 @@ import {
 } from "@shared/@common/constants";
 import { OauthType } from "@shared/auth/types";
 
-// 액세스 토큰 응답 형식 정의
-interface AccessTokenResponse {
-  accessToken: string;
-  type: OauthType;
-}
-
 /**
  * OAuth 제공자로부터 액세스 토큰을 발급받는 함수
  *
@@ -19,13 +13,13 @@ interface AccessTokenResponse {
  *
  * @param code - OAuth 인증을 완료한 후 제공받은 authorization code
  * @param type - OAuth 제공자의 타입 (예: 'google', 'facebook', 등)
- * @returns AccessTokenResponse | undefined - 액세스 토큰과 해당 OAuth 타입을 포함한 객체 반환
+ * @returns string | undefined - 발급된 액세스 토큰을 반환하거나 실패 시 undefined
  * @throws 엑세스 토큰 발급 실패 시 에러를 발생시킴
  */
 const getAccessToken = async (
   code: string | null,
   type: OauthType | null
-): Promise<AccessTokenResponse | undefined> => {
+): Promise<string | undefined> => {
   // code와 type이 유효하지 않으면 함수 종료
   if (!code || !type) return;
 
@@ -75,8 +69,8 @@ const getAccessToken = async (
       throw new Error("엑세스 토큰 취득 실패");
     }
 
-    // 액세스 토큰과 해당 OAuth 타입 반환
-    return { accessToken: res.access_token, type };
+    // 액세스 토큰만 반환
+    return res.access_token;
   } catch (error) {
     // 에러 발생 시 콘솔에 로그 출력하고 에러를 호출 측으로 재발생시킴
     console.error("엑세스 토큰 발급 중 에러:", error);
