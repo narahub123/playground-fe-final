@@ -1,3 +1,4 @@
 import generateSocialAuthUrl from "./generateSocialAuthUrl";
+import getAccessToken from "./getAccessToken";
 
-export { generateSocialAuthUrl };
+export { generateSocialAuthUrl, getAccessToken };
