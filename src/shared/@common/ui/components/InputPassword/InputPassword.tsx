@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 import { Input } from "@shared/@common/ui/components";
 import { useLanguageContent } from "@shared/@common/models/hooks";
-import { getPasswordInSignup } from "@features/auth-setting/models/selectors";
-import { setPasswordInSignup } from "@features/auth-setting/models/slices/signupSlice";
+import { getPasswordInSignup } from "@shared/auth/models/selectors";
+import { setPasswordInSignup } from "@shared/auth/models/slices/signupSlice";
 import { PASSWORD_MAX } from "@shared/@common/constants";
 import {
   getPassword,

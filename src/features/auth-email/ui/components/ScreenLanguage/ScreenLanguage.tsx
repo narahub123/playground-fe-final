@@ -10,7 +10,7 @@ import { setLanguage } from "@shared/@common/models/slices/displaySlice";
 import { getDisplay } from "@shared/@common/models/selectors";
 import { useModalContext } from "@shared/@common/ui/components/Modal/hooks";
 import { useEffect, useState } from "react";
-import { getUserInSignup } from "@features/auth-setting/models/selectors";
+import { getUserInSignup } from "@shared/auth/models/selectors";
 import { registerUserAPI } from "@shared/auth/apis/signup";
 
 interface ScreenLanguageProps {

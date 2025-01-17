@@ -1,7 +1,7 @@
 import styles from "./PlayGround.module.css";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { getLogin } from "@features/auth-setting/models/selectors";
+import { getLogin } from "@shared/auth/models/selectors";
 import { PagesLayout } from "@shared/pages/layouts";
 
 import {

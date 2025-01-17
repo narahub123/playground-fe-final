@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ButtonIsValidType, FieldType } from "./types";
 import ButtonRegExp from "./regExps";
-import { SignupState } from "@features/auth-setting/models/slices/signupSlice";
+import { SignupState } from "@shared/auth/models/slices/signupSlice";
 import { UserState } from "../../slices/userSlice";
 import { ScreenValidationType } from "@shared/@common/ui/components/Modal/types";
 import { DisplayState } from "../../slices/displaySlice";

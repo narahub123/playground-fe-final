@@ -1,6 +1,6 @@
 import styles from "./ScreenUserId.module.css";
 import { useSelector } from "react-redux";
-import { getUserInSignup } from "@features/auth-setting/models/selectors";
+import { getUserInSignup } from "@shared/auth/models/selectors";
 import {
   useLanguageContent,
   useValidationChecker,

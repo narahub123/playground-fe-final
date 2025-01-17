@@ -1,9 +1,9 @@
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import Input from "../Input/ui";
-import { getUserIdInSignup } from "@features/auth-setting/models/selectors";
+import { getUserIdInSignup } from "@shared/auth/models/selectors";
 import { getUserId } from "@shared/@common/models/selectors";
 import { useSelector } from "react-redux";
-import { setUserIdInSignup } from "@features/auth-setting/models/slices/signupSlice";
+import { setUserIdInSignup } from "@shared/auth/models/slices/signupSlice";
 import { setUserId } from "@shared/@common/models/slices/userSlice";
 
 interface InputUserIdProps {

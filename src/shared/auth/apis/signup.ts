@@ -1,4 +1,4 @@
-import { SignupState } from "@features/auth-setting/models/slices/signupSlice";
+import { SignupState } from "@shared/auth/models/slices/signupSlice";
 
 const BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
 

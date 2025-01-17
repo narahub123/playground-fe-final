@@ -1,5 +1,5 @@
-import { SignupState } from "@features/auth-setting/models/slices/signupSlice";
-import { BirthType } from "@features/auth-setting/types";
+import { SignupState } from "@shared/auth/models/slices/signupSlice";
+import { BirthType } from "@shared/auth/types";
 import { UserState } from "../../slices/userSlice";
 
 /**

@@ -6,12 +6,12 @@ import {
   setBirthYearSignup,
   setEmailInSignup,
   setUsernameInSignup,
-} from "@features/auth-setting/models/slices/signupSlice";
+} from "@shared/auth/models/slices/signupSlice";
 import {
   getBirthInSignup,
   getEmailInSignup,
   getUsernameInSignup,
-} from "@features/auth-setting/models/selectors";
+} from "@shared/auth/models/selectors";
 import { useSelector } from "react-redux";
 import {
   useLanguageContent,
@@ -22,7 +22,7 @@ import {
   useModalContext,
   useModalPagination,
 } from "@shared/@common/ui/components/Modal/hooks";
-import { getUserInSignup } from "@features/auth-setting/models/selectors/signupSelectors";
+import { getUserInSignup } from "@shared/auth/models/selectors/signupSelectors";
 
 /**
  * ScreenPersonalInfo 컴포넌트

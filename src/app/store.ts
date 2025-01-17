@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import {
   loginSlice as login,
   signupSlice as signup,
-} from "@features/auth-setting/models/slices";
+} from "@shared/auth/models/slices";
 import {
   displaySlice as display,
   userSlice as user,

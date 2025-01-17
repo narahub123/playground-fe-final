@@ -15,7 +15,7 @@ import {
 } from "@shared/@common/ui/components/Modal/hooks";
 import { joinClassNames } from "@shared/@common/utils";
 import { useSelector } from "react-redux";
-import { getUserInSignup } from "@features/auth-setting/models/selectors";
+import { getUserInSignup } from "@shared/auth/models/selectors";
 import { useEffect } from "react";
 
 interface ScreenProfileImageProps {

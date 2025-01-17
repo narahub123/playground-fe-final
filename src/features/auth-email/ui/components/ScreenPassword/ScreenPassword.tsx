@@ -10,7 +10,7 @@ import {
   useValidationChecker,
 } from "@shared/@common/models/hooks";
 import { useSelector } from "react-redux";
-import { getUserInSignup } from "@features/auth-setting/models/selectors/signupSelectors";
+import { getUserInSignup } from "@shared/auth/models/selectors/signupSelectors";
 import {
   useModalContext,
   useModalPagination,

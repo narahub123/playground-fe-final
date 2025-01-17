@@ -1,4 +1,4 @@
-import { getUserInSignup } from "@features/auth-setting/models/selectors";
+import { getUserInSignup } from "@shared/auth/models/selectors";
 import styles from "./ScreenNotifications.module.css";
 import {
   useLanguageContent,
@@ -16,7 +16,7 @@ import {
   setNotificationsNewFollowerInSignup,
   setNotificationsMessagesInSignup,
   setNotificationsPostsInSignup,
-} from "@features/auth-setting/models/slices/signupSlice";
+} from "@shared/auth/models/slices/signupSlice";
 import { useEffect } from "react";
 
 interface ScreenNotificationsProps {

@@ -16,9 +16,9 @@ import {
   setLocationInSignup,
   setDeviceInSignup,
   setIpInSignup,
-} from "@features/auth-setting/models/slices/signupSlice";
+} from "@shared/auth/models/slices/signupSlice";
 import { useSelector } from "react-redux";
-import { getUserInSignup } from "@features/auth-setting/models/selectors";
+import { getUserInSignup } from "@shared/auth/models/selectors";
 
 /**
  * AuthModalPros는 AuthModal 컴포넌트에 전달되는 속성들을 정의함

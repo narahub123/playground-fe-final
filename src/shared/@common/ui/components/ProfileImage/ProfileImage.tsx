@@ -5,9 +5,9 @@ import Image from "../Image/Image";
 import { RoundedType } from "../Image/types";
 import ImageUploader from "../ImageUploader/ImageUploader";
 import { useSelector } from "react-redux";
-import { getProfileImageInSignup } from "@features/auth-setting/models/selectors";
+import { getProfileImageInSignup } from "@shared/auth/models/selectors";
 import { defaultProfileImage } from "@shared/@common/assets";
-import { setProfileImageInSignup } from "@features/auth-setting/models/slices/signupSlice";
+import { setProfileImageInSignup } from "@shared/auth/models/slices/signupSlice";
 import { getProfileImage } from "@shared/@common/models/selectors";
 import { setProfileImage } from "@shared/@common/models/slices/userSlice";
 

@@ -1,8 +1,5 @@
-import {
-  BirthType,
-  NotificationInSignupType,
-} from "@features/auth-setting/types";
-import { validateDate } from "@features/auth-setting/utils";
+import { BirthType, NotificationInSignupType } from "@shared/auth/types";
+import { validateDate } from "@shared/auth/utils";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { LocationType, DeviceInfoType } from "@shared/@common/types";
 
