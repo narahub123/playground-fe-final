@@ -5,7 +5,7 @@ import {
   useDisclosure,
   useLanguageContent,
 } from "@shared/@common/models/hooks";
-import { AuthButtonItemType } from "@shared/auth/types";
+import { AuthButtonItemType, OauthType } from "@shared/auth/types";
 import { AuthModal } from "@features/auth-email/ui/components";
 
 const AuthPage = () => {
@@ -14,6 +14,18 @@ const AuthPage = () => {
     useLanguageContent(["pages", "AuthPage"]);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const handleOauth = (type: OauthType) => {
+    const url = "oauth/callback";
+
+    if (url) {
+      window.open(
+        url,
+        "_blank",
+        "noopener,noreferrer,width=800,height=600,top=100,left=100"
+      );
+    }
+  };
 
   return (
     <div className={styles[`auth-page`]}>
@@ -26,7 +38,13 @@ const AuthPage = () => {
           <Text type="heading3">{heading1}</Text>
           <ul className={styles.list}>
             {(signupList as AuthButtonItemType[]).map((item, idx) => (
-              <AuthButton key={idx} item={item} handleClick={onOpen} />
+              <AuthButton
+                key={idx}
+                item={item}
+                handleClick={
+                  item.type ? () => handleOauth(item.type as OauthType) : onOpen
+                }
+              />
             ))}
           </ul>
         </div>
