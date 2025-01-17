@@ -1,4 +1,4 @@
-import { AuthPage, PlayGround } from "@pages";
+import { AuthPage, OauthCallback, PlayGround } from "@pages";
 import { createBrowserRouter } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -11,6 +11,10 @@ const router = createBrowserRouter([
         element: <AuthPage />,
       },
     ],
+  },
+  {
+    path: "/oauth/callback",
+    element: <OauthCallback />,
   },
 ]);
 
