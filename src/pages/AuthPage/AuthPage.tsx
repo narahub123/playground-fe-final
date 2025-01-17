@@ -7,6 +7,7 @@ import {
 } from "@shared/@common/models/hooks";
 import { AuthButtonItemType, OauthType } from "@shared/auth/types";
 import { AuthModal } from "@features/auth-email/ui/components";
+import { generateSocialAuthUrl } from "@features/auth-social/utils";
 
 const AuthPage = () => {
   // 언어 설정
@@ -16,7 +17,7 @@ const AuthPage = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const handleOauth = (type: OauthType) => {
-    const url = "oauth/callback";
+    const url = generateSocialAuthUrl(type);
 
     if (url) {
       window.open(

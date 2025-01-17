@@ -102,3 +102,21 @@ export const USERID_MIN = 4;
 export const USERID_MAX = 30;
 
 export const BASE_YAER = 1900;
+
+/**
+ * @constant {string} GOOGLE_CLIENT_ID
+ * Google OAuth 2.0 클라이언트 ID. Google Cloud Console에서 생성된 OAuth 2.0 자격 증명으로 설정됩니다.
+ */
+export const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+
+/**
+ * @constant {string} GOOGLE_CLIENT_SECRET
+ * Google OAuth 2.0 클라이언트 시크릿. 인증 요청 시 클라이언트 시크릿이 필요합니다.
+ */
+export const GOOGLE_CLIENT_SECRET = import.meta.env.VITE_GOOGLE_CLIENT_SECRET;
+
+/**
+ * @constant {string} GOOGLE_REDIRECT_URI
+ * Google OAuth 2.0 리디렉션 URI. 인증 후 Google이 사용자를 리디렉션할 URL을 지정합니다.
+ */
+export const GOOGLE_REDIRECT_URI = import.meta.env.VITE_GOOGLE_REDIRECT_URI;
