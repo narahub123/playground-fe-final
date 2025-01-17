@@ -100,3 +100,5 @@ export const USERID_MIN = 4;
  * regex.test("valid_id_123"); // true (길이가 17글자로 유효)
  */
 export const USERID_MAX = 30;
+
+export const BASE_YAER = 1900;

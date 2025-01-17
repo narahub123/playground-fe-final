@@ -19,6 +19,7 @@ import {
   USERID_MIN,
   USERID_MAX,
   USERID_SPECIAL_CHARACTERS,
+  BASE_YAER,
 } from "./constants"; // 상수
 
 export {
@@ -43,4 +44,5 @@ export {
   USERID_MIN,
   USERID_MAX,
   USERID_SPECIAL_CHARACTERS,
+  BASE_YAER,
 };

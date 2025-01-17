@@ -1,4 +1,4 @@
-import { BASE_YAER } from "@features/constants";
+import { BASE_YAER } from "@shared/@common/constants";
 
 const today = new Date();
 
