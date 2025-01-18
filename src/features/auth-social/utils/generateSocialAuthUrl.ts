@@ -4,6 +4,8 @@ import {
   GOOGLE_REDIRECT_URI,
   KAKAO_REDIRECT_URI,
   KAKAO_REST_API_KEY,
+  NAVER_CLIENT_ID,
+  NAVER_REDIRECT_URI,
 } from "@shared/@common/constants";
 
 /**
@@ -24,6 +26,8 @@ const generateSocialAuthUrl = (type: OauthType): string | undefined => {
     authorizationUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${GOOGLE_CLIENT_ID}&redirect_uri=${GOOGLE_REDIRECT_URI}&response_type=code&scope=email profile&state=${type}`;
   } else if (type === "kakao") {
     authorizationUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${KAKAO_REST_API_KEY}&redirect_uri=${KAKAO_REDIRECT_URI}&response_type=code&state=${type}`;
+  } else if (type === "naver") {
+    authorizationUrl = `https://nid.naver.com/oauth2.0/authorize?client_id=${NAVER_CLIENT_ID}&redirect_uri=${NAVER_REDIRECT_URI}&response_type=code&state=${type}`;
   }
 
   return authorizationUrl;
