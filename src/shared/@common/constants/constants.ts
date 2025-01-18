@@ -120,3 +120,6 @@ export const GOOGLE_CLIENT_SECRET = import.meta.env.VITE_GOOGLE_CLIENT_SECRET;
  * Google OAuth 2.0 리디렉션 URI. 인증 후 Google이 사용자를 리디렉션할 URL을 지정합니다.
  */
 export const GOOGLE_REDIRECT_URI = import.meta.env.VITE_GOOGLE_REDIRECT_URI;
+
+export const KAKAO_REST_API_KEY = import.meta.env.VITE_KAKAO_REST_API_KEY;
+export const KAKAO_REDIRECT_URI = import.meta.env.VITE_KAKAO_REDIRECT_URI;
