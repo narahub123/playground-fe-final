@@ -2,6 +2,8 @@ import {
   GOOGLE_CLIENT_ID,
   GOOGLE_CLIENT_SECRET,
   GOOGLE_REDIRECT_URI,
+  KAKAO_REDIRECT_URI,
+  KAKAO_REST_API_KEY,
 } from "@shared/@common/constants";
 import { OauthType } from "@shared/auth/types";
 
@@ -38,6 +40,17 @@ const getAccessToken = async (
         client_id: GOOGLE_CLIENT_ID, // Google OAuth 클라이언트 ID
         client_secret: GOOGLE_CLIENT_SECRET, // Google OAuth 클라이언트 비밀
         redirect_uri: GOOGLE_REDIRECT_URI, // 리디렉션 URI
+        code, // 인증 코드
+      };
+    } else if (type === "kakao") {
+      // kakao OAuth 토큰 요청 URL
+      requestUrl = "https://kauth.kakao.com/oauth/token";
+
+      // 요청 본문에 필요한 파라미터 설정
+      requestBody = {
+        grant_type: "authorization_code", // 인증 코드 요청
+        client_id: KAKAO_REST_API_KEY, // kakao OAuth 클라이언트 ID
+        redirect_uri: KAKAO_REDIRECT_URI, // 리디렉션 URI
         code, // 인증 코드
       };
     } else {
