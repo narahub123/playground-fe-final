@@ -4,6 +4,9 @@ import {
   GOOGLE_REDIRECT_URI,
   KAKAO_REDIRECT_URI,
   KAKAO_REST_API_KEY,
+  NAVER_CLIENT_ID,
+  NAVER_CLIENT_SECRET,
+  NAVER_REDIRECT_URI,
 } from "@shared/@common/constants";
 import { OauthType } from "@shared/auth/types";
 
@@ -28,6 +31,9 @@ const getAccessToken = async (
   try {
     let requestUrl = ""; // 요청할 URL을 저장할 변수
     let requestBody: Record<string, string>; // 요청 본문을 저장할 변수
+    let header = {
+      "Content-Type": "application/x-www-form-urlencoded",
+    };
 
     // 'google' 타입에 대해서만 처리
     if (type === "google") {
@@ -53,6 +59,31 @@ const getAccessToken = async (
         redirect_uri: KAKAO_REDIRECT_URI, // 리디렉션 URI
         code, // 인증 코드
       };
+    } else if (type === "naver") {
+      // Naver OAuth 토큰 요청 URL
+      requestUrl = "https://nid.naver.com/oauth2.0/token";
+
+      // 요청 본문에 필요한 파라미터 설정
+      requestBody = {
+        grant_type: "authorization_code", // 인증 코드 요청
+        client_id: NAVER_CLIENT_ID, // Naver OAuth 클라이언트 ID
+        client_secret: NAVER_CLIENT_SECRET, // Naver OAuth 클라이언트 비밀
+        redirect_uri: NAVER_REDIRECT_URI, // 리디렉션 URI
+        code, // 인증 코드
+        state: type,
+      };
+
+      interface CustomHeaders {
+        "Content-Type": string;
+        "X-Naver-Client-Id"?: string;
+        "X-Naver-Client-Secret"?: string;
+      }
+
+      header = {
+        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+        "X-Naver-Client-Id": NAVER_CLIENT_ID,
+        "X-Naver-Client-Secret": NAVER_CLIENT_SECRET,
+      } as CustomHeaders;
     } else {
       // 지원되지 않는 OAuth 타입일 경우 에러 발생
       throw new Error("지원되지 않는 OAuth 타입입니다.");
@@ -61,9 +92,7 @@ const getAccessToken = async (
     // 액세스 토큰 요청
     const response = await fetch(requestUrl, {
       method: "POST", // POST 요청
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded", // URL 인코딩된 폼 데이터
-      },
+      headers: header,
       body: new URLSearchParams(requestBody).toString(), // 요청 본문을 URLSearchParams로 인코딩하여 전송
     });
 
