@@ -121,5 +121,37 @@ export const GOOGLE_CLIENT_SECRET = import.meta.env.VITE_GOOGLE_CLIENT_SECRET;
  */
 export const GOOGLE_REDIRECT_URI = import.meta.env.VITE_GOOGLE_REDIRECT_URI;
 
+/**
+ * Kakao 및 Naver API 통합 환경 변수를 정의합니다.
+ * 해당 환경 변수는 Vite의 `import.meta.env`를 통해 로드됩니다.
+ */
+
+/**
+ * Kakao REST API 키입니다.
+ * @constant {string}
+ */
 export const KAKAO_REST_API_KEY = import.meta.env.VITE_KAKAO_REST_API_KEY;
+
+/**
+ * Kakao 로그인 Redirect URI입니다.
+ * @constant {string}
+ */
 export const KAKAO_REDIRECT_URI = import.meta.env.VITE_KAKAO_REDIRECT_URI;
+
+/**
+ * Naver 클라이언트 ID입니다.
+ * @constant {string}
+ */
+export const NAVER_CLIENT_ID = import.meta.env.VITE_NAVER_CLIENT_ID;
+
+/**
+ * Naver 클라이언트 Secret입니다.
+ * @constant {string}
+ */
+export const NAVER_CLIENT_SECRET = import.meta.env.VITE_NAVER_CLIENT_SECRET;
+
+/**
+ * Naver 로그인 Redirect URI입니다.
+ * @constant {string}
+ */
+export const NAVER_REDIRECT_URI = import.meta.env.VITE_NAVER_REDIRECT_URI;
