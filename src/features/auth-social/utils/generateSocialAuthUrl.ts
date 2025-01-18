@@ -2,6 +2,8 @@ import { OauthType } from "@shared/auth/types";
 import {
   GOOGLE_CLIENT_ID,
   GOOGLE_REDIRECT_URI,
+  KAKAO_REDIRECT_URI,
+  KAKAO_REST_API_KEY,
 } from "@shared/@common/constants";
 
 /**
@@ -19,7 +21,9 @@ const generateSocialAuthUrl = (type: OauthType): string | undefined => {
   let authorizationUrl = "";
 
   if (type === "google") {
-    authorizationUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${GOOGLE_CLIENT_ID}&redirect_uri=${GOOGLE_REDIRECT_URI}&response_type=code&scope=email profile&state=google`;
+    authorizationUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${GOOGLE_CLIENT_ID}&redirect_uri=${GOOGLE_REDIRECT_URI}&response_type=code&scope=email profile&state=${type}`;
+  } else if (type === "kakao") {
+    authorizationUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${KAKAO_REST_API_KEY}&redirect_uri=${KAKAO_REDIRECT_URI}&response_type=code&state=${type}`;
   }
 
   return authorizationUrl;
