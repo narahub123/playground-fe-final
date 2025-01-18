@@ -7,8 +7,15 @@ interface GoogleUserData {
   profileImage: string; // 사용자의 프로필 이미지 URL
 }
 
+// Kakao OAuth 사용자 데이터 타입 정의
+interface KakaoUserData {
+  email: string; // 사용자의 이메일 주소
+  username: string; // 사용자의 이름
+  profileImage: string; // 사용자의 프로필 이미지 URL
+}
+
 // UserData 타입을 설정 (다른 서비스에 대해서는 추가 가능)
-type UserData = GoogleUserData; // 현재는 Google만 처리, 다른 OAuth 서비스 추가 가능
+type UserData = GoogleUserData | KakaoUserData;
 
 /**
  * OAuth 제공자로부터 사용자 정보를 가져오는 함수
@@ -32,9 +39,11 @@ const getOauthUserInfo = async (
     let requestUrl = ""; // 요청할 URL을 저장할 변수
     let userData: UserData | undefined; // 사용자 정보를 저장할 변수
 
-    // 'google' 타입에 대해서만 처리
+    // 'google' 타입에 대해서 처리
     if (type === "google") {
       requestUrl = "https://www.googleapis.com/userinfo/v2/me"; // Google API의 사용자 정보 요청 URL
+    } else if (type === "kakao") {
+      requestUrl = "https://kapi.kakao.com/v2/user/me"; // kakao API의 사용자 정보 요청 URL
     } else {
       throw new Error("지원되지 않는 OAuth 타입입니다.");
     }
@@ -65,6 +74,16 @@ const getOauthUserInfo = async (
         email, // 이메일
         username: name, // 사용자명
         profileImage: picture, // 프로필 이미지
+      };
+    } else if (type === "kakao") {
+      const { kakao_account } = res;
+      const { email, profile } = kakao_account;
+      const { nickname, profile_image_url } = profile;
+
+      userData = {
+        email,
+        username: nickname,
+        profileImage: profile_image_url,
       };
     }
 
