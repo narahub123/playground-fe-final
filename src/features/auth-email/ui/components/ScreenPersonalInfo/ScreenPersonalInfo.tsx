@@ -1,5 +1,11 @@
 import styles from "./ScreenPersonalInfo.module.css";
-import { Button, Input, Modal, Text } from "@shared/@common/ui/components";
+import {
+  Button,
+  Input,
+  InputGender,
+  Modal,
+  Text,
+} from "@shared/@common/ui/components";
 import {
   setBirthDateSignup,
   setBirthMonthSignup,
@@ -40,7 +46,7 @@ const ScreenPersonalInfo = () => {
   const { moveNext } = useModalPagination();
 
   const { isValid, setIsValid, validationResult } = useValidationChecker({
-    fields: ["username", "email", "year", "date", "month"],
+    fields: ["username", "email", "gender", "year", "date", "month"],
     sliceState: user,
     setScreenValidations,
     screenName: "ScreenPersonalInfo",
@@ -112,6 +118,7 @@ const ScreenPersonalInfo = () => {
           </Input.Main>
           <Input.Error />
         </Input>
+        <InputGender isSignup isValid={isValid} setIsValid={setIsValid} />
         <div className={styles[`personal__info__screen__birth__container`]}>
           <div>
             <Text status="bold">{birthHeading}</Text>

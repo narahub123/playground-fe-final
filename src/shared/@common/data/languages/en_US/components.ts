@@ -83,6 +83,15 @@ const components = {
     birthDateUnit: "",
     button: "Next",
   },
+  InputGender: {
+    label: "Gender",
+    list: [
+      { text: "Male", value: "m" },
+      { text: "Female", value: "f" },
+      { text: "Bisexual", value: "b" },
+      { text: "Neutral", value: "n" },
+    ],
+  },
   Button: {
     empty: "Please add text or an icon.",
     ariaLabel: {

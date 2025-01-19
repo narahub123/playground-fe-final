@@ -13,6 +13,7 @@ import Lightbox from "./Lightbox";
 import ProfileImage from "./ProfileImage/ProfileImage";
 import ImageUploader from "./ImageUploader/ImageUploader";
 import Checkbox from "./Checkbox/Checkbox";
+import InputGender from "./InputGender/InputGender";
 
 export {
   Text,
@@ -30,4 +31,5 @@ export {
   ImageUploader,
   ProfileImage,
   Checkbox,
+  InputGender,
 };

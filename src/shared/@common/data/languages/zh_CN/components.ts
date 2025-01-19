@@ -80,6 +80,15 @@ const components = {
     birthDateUnit: "日",
     button: "下一个",
   },
+  InputGender: {
+    label: "性别",
+    list: [
+      { text: "男", value: "m" },
+      { text: "女", value: "f" },
+      { text: "双性", value: "b" },
+      { text: "中性", value: "n" },
+    ],
+  },
   Button: {
     empty: "请添加文字或图标。",
     ariaLabel: {

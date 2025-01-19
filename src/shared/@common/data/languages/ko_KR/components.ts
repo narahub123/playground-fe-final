@@ -85,6 +85,15 @@ const components = {
     birthDateUnit: "일",
     button: "다음",
   },
+  InputGender: {
+    label: "성별",
+    list: [
+      { text: "남자", value: "m" },
+      { text: "여자", value: "f" },
+      { text: "양성", value: "b" },
+      { text: "중성", value: "n" },
+    ],
+  },
   Button: {
     empty: "문자열 혹은 아이콘을 넣어주세요.",
     ariaLabel: {
