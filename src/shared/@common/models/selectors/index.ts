@@ -12,6 +12,13 @@ import {
   getPassword,
   getPasswordCheck,
   getProfileImage,
+  getBirth,
+  getEmail,
+  getGender,
+  getIp,
+  getLocation,
+  getPhone,
+  getUsername,
 } from "./userSelectors";
 
 export {
@@ -28,4 +35,11 @@ export {
   getPassword,
   getPasswordCheck,
   getProfileImage,
+  getBirth,
+  getEmail,
+  getGender,
+  getIp,
+  getLocation,
+  getPhone,
+  getUsername,
 };

@@ -5,7 +5,18 @@ import {
   setFontSize,
 } from "./displaySlice";
 
-import { setPassword, setPasswordCheck, setUserId } from "./userSlice";
+import {
+  setPassword,
+  setPasswordCheck,
+  setUserId,
+  setBirth,
+  setEmail,
+  setGender,
+  setIp,
+  setLocation,
+  setPhone,
+  setUsername,
+} from "./userSlice";
 
 export {
   // display
@@ -18,4 +29,11 @@ export {
   setPassword,
   setPasswordCheck,
   setUserId,
+  setBirth,
+  setEmail,
+  setGender,
+  setIp,
+  setLocation,
+  setPhone,
+  setUsername,
 };
