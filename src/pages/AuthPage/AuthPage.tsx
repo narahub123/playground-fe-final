@@ -12,6 +12,7 @@ import { useAppDispatch } from "@app/store";
 import {
   setBirthInSignup,
   setEmailInSignup,
+  setGenderInSignup,
   setPhoneInSignup,
   setProfileImageInSignup,
   setUsernameInSignup,
@@ -38,6 +39,9 @@ const AuthPage = () => {
       dispatch(setEmailInSignup(email)); // 이메일 저장
       dispatch(setUsernameInSignup(username)); // 사용자 이름 저장
       dispatch(setProfileImageInSignup(profileImage)); // 프로필 이미지 저장
+
+      // 성별이 있으면 저장
+      if (gender) dispatch(setGenderInSignup(gender));
 
       // 전화번호가 있으면 저장
       if (phone) dispatch(setPhoneInSignup(phone));
