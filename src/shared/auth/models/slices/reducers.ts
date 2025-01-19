@@ -15,6 +15,7 @@ import {
   setDeviceInSignup,
   setIpInSignup,
   setLocationInSignup,
+  setGenderInSignup,
 } from "./signupSlice";
 
 import { loginRequset, loginSuccess, loginFailure } from "./loginSlice";
@@ -37,6 +38,7 @@ export {
   setDeviceInSignup,
   setIpInSignup,
   setLocationInSignup,
+  setGenderInSignup,
 
   // login
   loginRequset,

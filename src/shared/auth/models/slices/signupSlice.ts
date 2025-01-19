@@ -1,4 +1,8 @@
-import { BirthType, NotificationInSignupType } from "@shared/auth/types";
+import {
+  BirthType,
+  GenderType,
+  NotificationInSignupType,
+} from "@shared/auth/types";
 import { validateDate } from "@shared/auth/utils";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { LocationType, DeviceInfoType } from "@shared/@common/types";
@@ -16,6 +20,7 @@ export interface SignupState {
   device: DeviceInfoType; // 기기 정보
   ip: string;
   location: LocationType;
+  gender: GenderType;
 }
 
 const initialState: SignupState = {
@@ -49,6 +54,7 @@ const initialState: SignupState = {
     city: "",
     county: "",
   },
+  gender: "",
 };
 
 const signupSlice = createSlice({
@@ -184,6 +190,9 @@ const signupSlice = createSlice({
     setLocationInSignup: (state, action: PayloadAction<LocationType>) => {
       state.location = action.payload;
     },
+    setGenderInSignup: (state, action: PayloadAction<GenderType>) => {
+      state.gender = action.payload;
+    },
   },
 });
 
@@ -208,4 +217,5 @@ export const {
   setDeviceInSignup,
   setIpInSignup,
   setLocationInSignup,
+  setGenderInSignup,
 } = signupSlice.actions;

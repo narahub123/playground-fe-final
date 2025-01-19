@@ -13,6 +13,7 @@ import {
   getDeviceInSignup,
   getIpInSignup,
   getLocationInSignup,
+  getGenderInSignup,
 } from "./signupSelectors";
 
 export {
@@ -33,4 +34,5 @@ export {
   getDeviceInSignup,
   getIpInSignup,
   getLocationInSignup,
+  getGenderInSignup,
 };

@@ -11,4 +11,6 @@ type NotificationInSignupType = {
   posts: boolean;
 };
 
-export type { BirthType, NotificationInSignupType };
+type GenderType = "f" | "m" | "b" | "n" | "";
+
+export type { BirthType, NotificationInSignupType, GenderType };

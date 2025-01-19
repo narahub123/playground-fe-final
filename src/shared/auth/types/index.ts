@@ -1,5 +1,5 @@
 import { AuthButtonItemType } from "./components";
-import { BirthType, NotificationInSignupType } from "./slices";
+import { BirthType, NotificationInSignupType, GenderType } from "./slices";
 import { OauthType } from "./pages";
 
 export type {
@@ -7,4 +7,5 @@ export type {
   BirthType,
   NotificationInSignupType,
   OauthType,
+  GenderType,
 };
