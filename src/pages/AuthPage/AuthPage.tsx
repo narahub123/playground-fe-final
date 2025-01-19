@@ -8,8 +8,68 @@ import {
 import { AuthButtonItemType, OauthType } from "@shared/auth/types";
 import { AuthModal } from "@features/auth-email/ui/components";
 import { generateSocialAuthUrl } from "@features/auth-social/utils";
+import { useSelector } from "react-redux";
+import { getUserInSignup } from "@shared/auth/models/selectors";
+import { useAppDispatch } from "@app/store";
+import {
+  setBirthInSignup,
+  setEmailInSignup,
+  setPhoneInSignup,
+  setProfileImageInSignup,
+  setUsernameInSignup,
+} from "@shared/auth/models/slices/signupSlice";
+import { useEffect } from "react";
 
 const AuthPage = () => {
+  const user = useSelector(getUserInSignup);
+
+  console.log(user);
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    // 부모 페이지에서 전달된 메시지를 처리하는 함수
+    const handleMessage = (e: MessageEvent) => {
+      // 메시지의 출처가 현재 페이지와 동일한지 확인 (보안 체크)
+      if (e.origin !== window.origin) return;
+
+      // 메시지에서 전달된 데이터 구조 추출
+      const { email, username, profileImage, gender, phone, birth } = e.data;
+
+      // 전달된 데이터가 존재할 경우 리덕스 상태 업데이트
+      dispatch(setEmailInSignup(email)); // 이메일 저장
+      dispatch(setUsernameInSignup(username)); // 사용자 이름 저장
+      dispatch(setProfileImageInSignup(profileImage)); // 프로필 이미지 저장
+
+      // 전화번호가 있으면 저장
+      if (phone) dispatch(setPhoneInSignup(phone));
+
+      // 생일이 있으면 날짜 정보를 파싱하여 저장
+      if (birth) {
+        const year = (birth as string).slice(0, 4); // 연도
+        const month = (birth as string).slice(4, 6); // 월
+        const date = (birth as string).slice(6, 8); // 일
+
+        // 파싱한 생일을 리덕스 상태에 저장
+        dispatch(
+          setBirthInSignup({
+            year,
+            month,
+            date,
+          })
+        );
+      }
+    };
+
+    // 부모 페이지에서 메시지가 오면 `handleMessage`를 실행
+    window.addEventListener("message", handleMessage);
+
+    // 컴포넌트 언마운트 시 메시지 리스너를 제거하여 메모리 누수 방지
+    return () => {
+      window.removeEventListener("message", handleMessage);
+    };
+  }, []);
+
   // 언어 설정
   const { title, heading1, signupList, heading2, loginList } =
     useLanguageContent(["pages", "AuthPage"]);
@@ -20,11 +80,7 @@ const AuthPage = () => {
     const url = generateSocialAuthUrl(type);
 
     if (url) {
-      window.open(
-        url,
-        "_blank",
-        "noopener,noreferrer,width=800,height=600,top=100,left=100"
-      );
+      window.open(url, "_blank", "width=800,height=600,top=100,left=100");
     }
   };
 
