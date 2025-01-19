@@ -8,8 +8,6 @@ import {
 import { AuthButtonItemType, OauthType } from "@shared/auth/types";
 import { AuthModal } from "@features/auth-email/ui/components";
 import { generateSocialAuthUrl } from "@features/auth-social/utils";
-import { useSelector } from "react-redux";
-import { getUserInSignup } from "@shared/auth/models/selectors";
 import { useAppDispatch } from "@app/store";
 import {
   setBirthInSignup,
@@ -21,11 +19,8 @@ import {
 import { useEffect } from "react";
 
 const AuthPage = () => {
-  const user = useSelector(getUserInSignup);
-
-  console.log(user);
-
   const dispatch = useAppDispatch();
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
     // 부모 페이지에서 전달된 메시지를 처리하는 함수
@@ -35,6 +30,9 @@ const AuthPage = () => {
 
       // 메시지에서 전달된 데이터 구조 추출
       const { email, username, profileImage, gender, phone, birth } = e.data;
+
+      // email과 username이 없으면 처리를 중단
+      if (!email || !username) return;
 
       // 전달된 데이터가 존재할 경우 리덕스 상태 업데이트
       dispatch(setEmailInSignup(email)); // 이메일 저장
@@ -46,35 +44,36 @@ const AuthPage = () => {
 
       // 생일이 있으면 날짜 정보를 파싱하여 저장
       if (birth) {
-        const year = (birth as string).slice(0, 4); // 연도
-        const month = (birth as string).slice(4, 6); // 월
-        const date = (birth as string).slice(6, 8); // 일
+        const year = (birth as string).slice(0, 4); // 연도 추출
+        const month = (birth as string).slice(4, 6); // 월 추출
+        const date = (birth as string).slice(6, 8); // 일 추출
 
-        // 파싱한 생일을 리덕스 상태에 저장
+        // 파싱된 생일 정보를 리덕스 상태에 저장
         dispatch(
           setBirthInSignup({
-            year,
-            month,
-            date,
+            year, // 연도 저장
+            month, // 월 저장
+            date, // 일 저장
           })
         );
       }
+
+      // 유효한 데이터가 확인되면 모달을 열기 위해 onOpen 호출
+      onOpen();
     };
 
-    // 부모 페이지에서 메시지가 오면 `handleMessage`를 실행
+    // 부모 페이지에서 메시지가 오면 handleMessage를 실행
     window.addEventListener("message", handleMessage);
 
-    // 컴포넌트 언마운트 시 메시지 리스너를 제거하여 메모리 누수 방지
+    // 컴포넌트 언마운트 시 메시지 리스너를 제거하여 메모리 누수를 방지
     return () => {
       window.removeEventListener("message", handleMessage);
     };
-  }, []);
+  }, []); // 의존성 배열을 빈 배열로 설정하여 컴포넌트가 처음 렌더링될 때만 실행
 
   // 언어 설정
   const { title, heading1, signupList, heading2, loginList } =
     useLanguageContent(["pages", "AuthPage"]);
-
-  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const handleOauth = (type: OauthType) => {
     const url = generateSocialAuthUrl(type);
