@@ -1,3 +1,4 @@
 import { validateDate } from "./dates";
+import getUserInfoFromCookie from "./getUserInfoFromCookie";
 
-export { validateDate };
+export { validateDate, getUserInfoFromCookie };
