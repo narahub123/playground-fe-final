@@ -173,3 +173,5 @@ export const USERID_UNDER_MINIMUM = `^[A-Za-z\\d${USERID_SPECIAL_CHARACTERS}]{${
  * regex.test("abc12345678"); // false (글자 수 초과)
  */
 export const USERID_INCOMPLETE = `^(?=(.*[A-Za-z]))[A-Za-z\\d${USERID_SPECIAL_CHARACTERS}]{${USERID_MIN},${USERID_MAX}}$`;
+
+export const PHONE_FORMAT_KR = `^(?:\\+82|82)(10|11|16|17|18|19)\\d{3,4}\\d{4}$|^(010|011|016|017|018|019)\\d{3,4}\\d{4}$`;

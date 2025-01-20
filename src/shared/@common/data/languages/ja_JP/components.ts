@@ -12,6 +12,7 @@ import {
   PASSWORD_MIN,
   PASSWORD_SPECIAL_CHARECTERS,
   PASSWORD_UNDER_MINIMUM,
+  PHONE_FORMAT_KR,
   USERID_FORBIDDEN,
   USERID_INCOMPLETE,
   USERID_MAX,
@@ -117,6 +118,26 @@ const components = {
       DISCONNECT: {
         errorMessage:
           "現在サーバーに接続できません。しばらくしてから再試行してください。",
+      },
+    },
+  },
+  InputPhone: {
+    label: "携帯電話",
+    error: {
+      EMPTY: {
+        regExp: EMPTY,
+        errorMessage: "携帯電話番号を入力してください。",
+      },
+      FORMAT: {
+        regExp: PHONE_FORMAT_KR,
+        errorMessage: "正しい形式で携帯電話番号を入力してください。",
+      },
+      DUPLICATE: {
+        errorMessage: "このメールアドレスはすでに登録されています。",
+      },
+      DISCONNECT: {
+        errorMessage:
+          "現在、サーバーに接続できません。しばらくしてから再度お試しください。",
       },
     },
   },

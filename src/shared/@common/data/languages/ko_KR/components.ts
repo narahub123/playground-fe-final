@@ -12,6 +12,7 @@ import {
   PASSWORD_MIN,
   PASSWORD_SPECIAL_CHARECTERS,
   PASSWORD_UNDER_MINIMUM,
+  PHONE_FORMAT_KR,
   USERID_FORBIDDEN,
   USERID_INCOMPLETE,
   USERID_MAX,
@@ -106,6 +107,22 @@ const components = {
         regExp: EMAIL_FORMAT,
         errorMessage:
           "이메일 형식에 맞게 입력해주세요. \n예시) username@example.com",
+      },
+      DUPLICATE: {
+        errorMessage: `은 이미 가입한 이메일입니다.`,
+      },
+      DISCONNECT: {
+        errorMessage: `현재 서버와 연결이 되지 않습니다. 잠시 후 다시 시도해주세요.`,
+      },
+    },
+  },
+  InputPhone: {
+    label: "휴대폰",
+    error: {
+      EMPTY: { regExp: EMPTY, errorMessage: "휴대폰을 입력해주세요." },
+      FORMAT: {
+        regExp: PHONE_FORMAT_KR,
+        errorMessage: "휴대폰 형식에 맞게 입력해주세요.",
       },
       DUPLICATE: {
         errorMessage: `은 이미 가입한 이메일입니다.`,

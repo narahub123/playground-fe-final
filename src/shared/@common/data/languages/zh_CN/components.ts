@@ -12,6 +12,7 @@ import {
   PASSWORD_MIN,
   PASSWORD_SPECIAL_CHARECTERS,
   PASSWORD_UNDER_MINIMUM,
+  PHONE_FORMAT_KR,
   USERID_FORBIDDEN,
   USERID_INCOMPLETE,
   USERID_MAX,
@@ -106,6 +107,22 @@ const components = {
       },
       DISCONNECT: {
         errorMessage: "当前无法连接到服务器。请稍后再试。",
+      },
+    },
+  },
+  InputPhone: {
+    label: "手机号码",
+    error: {
+      EMPTY: { regExp: EMPTY, errorMessage: "请输入手机号码。" },
+      FORMAT: {
+        regExp: PHONE_FORMAT_KR,
+        errorMessage: "请输入正确格式的手机号码。",
+      },
+      DUPLICATE: {
+        errorMessage: "该电子邮件已注册。",
+      },
+      DISCONNECT: {
+        errorMessage: "无法连接到服务器，请稍后再试。",
       },
     },
   },

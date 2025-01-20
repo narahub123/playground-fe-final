@@ -19,3 +19,8 @@
   display: flex;
   gap: 5px;
 }
+
+.personal__info__switch__button {
+  display: flex;
+  justify-content: right;
+}

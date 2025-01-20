@@ -12,6 +12,7 @@ import {
   PASSWORD_MIN,
   PASSWORD_SPECIAL_CHARECTERS,
   PASSWORD_UNDER_MINIMUM,
+  PHONE_FORMAT_KR,
   USERID_FORBIDDEN,
   USERID_INCOMPLETE,
   USERID_MAX,
@@ -104,6 +105,23 @@ const components = {
         regExp: EMAIL_FORMAT,
         errorMessage:
           "Please enter a valid email location format. \nExample: username@example.com",
+      },
+      DUPLICATE: {
+        errorMessage: "This email is already registered.",
+      },
+      DISCONNECT: {
+        errorMessage:
+          "Unable to connect to the server. Please try again later.",
+      },
+    },
+  },
+  InputPhone: {
+    label: "Phone Number",
+    error: {
+      EMPTY: { regExp: EMPTY, errorMessage: "Please enter a phone number." },
+      FORMAT: {
+        regExp: PHONE_FORMAT_KR,
+        errorMessage: "Please enter the phone number in the correct format.",
       },
       DUPLICATE: {
         errorMessage: "This email is already registered.",

@@ -6,6 +6,7 @@ import {
   InputBirthYear,
   InputEmail,
   InputGender,
+  InputPhone,
   InputUsername,
   Modal,
   Text,
@@ -20,6 +21,7 @@ import {
   useModalPagination,
 } from "@shared/@common/ui/components/Modal/hooks";
 import { getUserInSignup } from "@shared/auth/models/selectors/signupSelectors";
+import { useState } from "react";
 
 /**
  * ScreenPersonalInfo 컴포넌트
@@ -29,12 +31,20 @@ import { getUserInSignup } from "@shared/auth/models/selectors/signupSelectors";
  */
 const ScreenPersonalInfo = () => {
   const user = useSelector(getUserInSignup);
+  const [isPhone, setIsPhone] = useState(false);
 
   const { setScreenValidations } = useModalContext();
   const { moveNext } = useModalPagination();
 
   const { isValid, setIsValid, validationResult } = useValidationChecker({
-    fields: ["username", "email", "gender", "year", "date", "month"],
+    fields: [
+      "username",
+      isPhone ? "phone" : "email",
+      "gender",
+      "year",
+      "date",
+      "month",
+    ],
     sliceState: user,
     setScreenValidations,
     screenName: "ScreenPersonalInfo",
@@ -51,8 +61,24 @@ const ScreenPersonalInfo = () => {
         <Text type="heading2">{title}</Text>
         {/* 사용자 이름 */}
         <InputUsername isSignup isValid={isValid} setIsValid={setIsValid} />
-        {/* 이메일 */}
-        <InputEmail isSignup isValid={isValid} setIsValid={setIsValid} />
+
+        {isPhone ? (
+          // 휴대폰
+          <InputPhone isSignup isValid={isValid} setIsValid={setIsValid} />
+        ) : (
+          // 이메일
+          <InputEmail isSignup isValid={isValid} setIsValid={setIsValid} />
+        )}
+        <Button
+          onClick={() => setIsPhone(!isPhone)}
+          variant="plain"
+          fontColor="colorTheme"
+          fontSize="sm"
+          className={styles[`personal__info__switch__button`]}
+        >
+          휴대폰으로 회원 가입하기
+        </Button>
+
         {/* 성별 */}
         <InputGender isSignup isValid={isValid} setIsValid={setIsValid} />
         <div className={styles[`personal__info__screen__birth__container`]}>

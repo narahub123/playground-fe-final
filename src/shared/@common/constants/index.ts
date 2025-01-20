@@ -8,6 +8,7 @@ import {
   USERID_FORBIDDEN,
   USERID_UNDER_MINIMUM,
   USERID_INCOMPLETE,
+  PHONE_FORMAT_KR,
 } from "./regExps"; // 정규 표현식
 import {
   PASSWORD_MAX,
@@ -41,6 +42,7 @@ export {
   USERID_FORBIDDEN,
   USERID_UNDER_MINIMUM,
   USERID_INCOMPLETE,
+  PHONE_FORMAT_KR,
 
   // 상수
   PASSWORD_MAX, // 비밀번호 최대 길이

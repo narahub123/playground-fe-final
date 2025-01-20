@@ -12,6 +12,7 @@ import {
   PASSWORD_MIN,
   PASSWORD_SPECIAL_CHARECTERS,
   PASSWORD_UNDER_MINIMUM,
+  PHONE_FORMAT_KR,
   USERID_FORBIDDEN,
   USERID_INCOMPLETE,
   USERID_MAX,
@@ -106,6 +107,22 @@ const components = {
       },
       DISCONNECT: {
         errorMessage: "目前無法連接到伺服器。請稍後再試。",
+      },
+    },
+  },
+  InputPhone: {
+    label: "手機號碼",
+    error: {
+      EMPTY: { regExp: EMPTY, errorMessage: "請輸入手機號碼。" },
+      FORMAT: {
+        regExp: PHONE_FORMAT_KR,
+        errorMessage: "請以正確的格式輸入手機號碼。",
+      },
+      DUPLICATE: {
+        errorMessage: "該電子郵件已經註冊。",
+      },
+      DISCONNECT: {
+        errorMessage: "無法連接到伺服器，請稍後再試。",
       },
     },
   },
