@@ -82,7 +82,7 @@ const signupSlice = createSlice({
      * 이 리듀서는 `year` 값이 변경되었을 때만 상태를 업데이트합니다.
      * 또한 변경된 `year`에 맞게 `date` 값이 유효한 날짜로 자동으로 수정됩니다.
      */
-    setBirthYearSignup: (state, action: PayloadAction<string>) => {
+    setBirthYearInSignup: (state, action: PayloadAction<string>) => {
       const { year, month, date } = state.birth;
 
       // 이미 입력된 연도와 동일하면 업데이트를 하지 않습니다.
@@ -109,7 +109,7 @@ const signupSlice = createSlice({
      * 이 리듀서는 `month` 값이 변경되었을 때만 상태를 업데이트합니다.
      * 또한 변경된 `month`에 맞게 `date` 값이 유효한 날짜로 자동으로 수정됩니다.
      */
-    setBirthMonthSignup: (state, action: PayloadAction<string>) => {
+    setBirthMonthInSignup: (state, action: PayloadAction<string>) => {
       const { year, month, date } = state.birth;
 
       // 이미 입력된 월과 동일하면 업데이트를 하지 않습니다.
@@ -127,7 +127,7 @@ const signupSlice = createSlice({
       }
     },
 
-    setBirthDateSignup: (state, action: PayloadAction<string>) => {
+    setBirthDateInSignup: (state, action: PayloadAction<string>) => {
       state.birth.date = action.payload;
     },
     setPasswordInSignup: (state, action: PayloadAction<string>) => {
@@ -202,9 +202,9 @@ export const {
   setPhoneInSignup,
   setEmailInSignup,
   setBirthInSignup,
-  setBirthYearSignup,
-  setBirthMonthSignup,
-  setBirthDateSignup,
+  setBirthYearInSignup,
+  setBirthMonthInSignup,
+  setBirthDateInSignup,
   setPasswordInSignup,
   setUserIdInSignup,
   setProfileImageInSignup,

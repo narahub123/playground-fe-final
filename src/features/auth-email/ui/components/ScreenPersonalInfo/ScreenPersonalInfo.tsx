@@ -9,9 +9,9 @@ import {
   Text,
 } from "@shared/@common/ui/components";
 import {
-  setBirthDateSignup,
-  setBirthMonthSignup,
-  setBirthYearSignup,
+  setBirthYearInSignup,
+  setBirthMonthInSignup,
+  setBirthDateInSignup,
 } from "@shared/auth/models/slices/signupSlice";
 import { getBirthInSignup } from "@shared/auth/models/selectors";
 import { useSelector } from "react-redux";
@@ -83,7 +83,7 @@ const ScreenPersonalInfo = () => {
               field="year"
               label={birthYearLabel}
               inputValue={birth.year as string}
-              setInputValue={setBirthYearSignup}
+              setInputValue={setBirthYearInSignup}
               list={birthYearList(birthYearUnit)}
               isValid={isValid}
               setIsValid={setIsValid}
@@ -103,7 +103,7 @@ const ScreenPersonalInfo = () => {
               field="month"
               label={birthMonthLabel}
               inputValue={birth.month as string}
-              setInputValue={setBirthMonthSignup}
+              setInputValue={setBirthMonthInSignup}
               list={birthMonthList(birthMonthUnit)}
               isValid={isValid}
               setIsValid={setIsValid}
@@ -123,7 +123,7 @@ const ScreenPersonalInfo = () => {
               field="date"
               label={birthDateLabel}
               inputValue={birth.date as string}
-              setInputValue={setBirthDateSignup}
+              setInputValue={setBirthDateInSignup}
               list={birthDateList(birth.year, birth.month, birthDateUnit)}
               isValid={isValid}
               setIsValid={setIsValid}
