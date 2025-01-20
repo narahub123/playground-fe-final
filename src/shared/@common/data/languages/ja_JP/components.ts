@@ -99,6 +99,27 @@ const components = {
       },
     },
   },
+  InputEmail: {
+    label: "メールアドレス",
+    error: {
+      EMPTY: {
+        regExp: EMPTY,
+        errorMessage: "メールアドレスを入力してください。",
+      },
+      FORMAT: {
+        regExp: EMAIL_FORMAT,
+        errorMessage:
+          "メールアドレスの形式を正しく入力してください。 \n例) username@example.com",
+      },
+      DUPLICATE: {
+        errorMessage: "このメールアドレスは既に登録されています。",
+      },
+      DISCONNECT: {
+        errorMessage:
+          "現在サーバーに接続できません。しばらくしてから再試行してください。",
+      },
+    },
+  },
   InputGender: {
     label: "性別",
     list: [

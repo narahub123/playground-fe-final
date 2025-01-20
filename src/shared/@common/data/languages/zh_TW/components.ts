@@ -93,6 +93,22 @@ const components = {
       },
     },
   },
+  InputEmail: {
+    label: "電子郵件",
+    error: {
+      EMPTY: { regExp: EMPTY, errorMessage: "請輸入電子郵件地址。" },
+      FORMAT: {
+        regExp: EMAIL_FORMAT,
+        errorMessage: "請輸入有效的電子郵件格式。 \n範例: username@example.com",
+      },
+      DUPLICATE: {
+        errorMessage: "此電子郵件已註冊。",
+      },
+      DISCONNECT: {
+        errorMessage: "目前無法連接到伺服器。請稍後再試。",
+      },
+    },
+  },
   InputGender: {
     label: "性別",
     list: [

@@ -93,6 +93,22 @@ const components = {
       },
     },
   },
+  InputEmail: {
+    label: "电子邮件",
+    error: {
+      EMPTY: { regExp: EMPTY, errorMessage: "请输入电子邮件地址。" },
+      FORMAT: {
+        regExp: EMAIL_FORMAT,
+        errorMessage: "请输入有效的电子邮件格式。 \n示例: username@example.com",
+      },
+      DUPLICATE: {
+        errorMessage: "此电子邮件已注册。",
+      },
+      DISCONNECT: {
+        errorMessage: "当前无法连接到服务器。请稍后再试。",
+      },
+    },
+  },
   InputGender: {
     label: "性别",
     list: [

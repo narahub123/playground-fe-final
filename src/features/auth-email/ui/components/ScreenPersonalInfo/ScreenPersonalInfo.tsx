@@ -2,6 +2,7 @@ import styles from "./ScreenPersonalInfo.module.css";
 import {
   Button,
   Input,
+  InputEmail,
   InputGender,
   Modal,
   Text,
@@ -99,25 +100,7 @@ const ScreenPersonalInfo = () => {
           <Input.Error />
         </Input>
         {/* 이메일 */}
-        <Input
-          field="email"
-          label={emailLabel}
-          inputValue={email}
-          setInputValue={setEmailInSignup}
-          error={emailError}
-          isValid={isValid}
-          setIsValid={setIsValid}
-        >
-          <Input.Main>
-            <Input.Top>
-              <Input.Label />
-            </Input.Top>
-            <Input.Bottom>
-              <Input.Field />
-            </Input.Bottom>
-          </Input.Main>
-          <Input.Error />
-        </Input>
+        <InputEmail isSignup isValid={isValid} setIsValid={setIsValid} />
         <InputGender isSignup isValid={isValid} setIsValid={setIsValid} />
         <div className={styles[`personal__info__screen__birth__container`]}>
           <div>

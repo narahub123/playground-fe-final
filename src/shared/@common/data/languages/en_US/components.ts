@@ -96,6 +96,24 @@ const components = {
       },
     },
   },
+  InputEmail: {
+    label: "Email",
+    error: {
+      EMPTY: { regExp: EMPTY, errorMessage: "Please enter an email location." },
+      FORMAT: {
+        regExp: EMAIL_FORMAT,
+        errorMessage:
+          "Please enter a valid email location format. \nExample: username@example.com",
+      },
+      DUPLICATE: {
+        errorMessage: "This email is already registered.",
+      },
+      DISCONNECT: {
+        errorMessage:
+          "Unable to connect to the server. Please try again later.",
+      },
+    },
+  },
   InputGender: {
     label: "Gender",
     list: [

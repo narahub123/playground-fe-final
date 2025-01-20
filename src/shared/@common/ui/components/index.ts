@@ -15,6 +15,7 @@ import ImageUploader from "./ImageUploader/ImageUploader";
 import Checkbox from "./Checkbox/Checkbox";
 import InputGender from "./InputGender/InputGender";
 import InputUsername from "./InputUsername/InputUsername";
+import InputEmail from "./InputEmail/InputEmail";
 
 export {
   Text,
@@ -34,4 +35,5 @@ export {
   Checkbox,
   InputGender,
   InputUsername,
+  InputEmail,
 };
