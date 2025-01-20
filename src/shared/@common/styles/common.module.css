@@ -231,11 +231,17 @@
 .background--color--red:hover {
   background-color: hsl(0, 100%, 65%);
 }
+.background--color--red:focus-visible {
+  background-color: hsl(0, 100%, 65%);
+}
 
 .background--color--cornflowerblue {
   background-color: cornflowerblue;
 }
 .background--color--cornflowerblue:hover {
+  background-color: hsl(219, 79%, 70%);
+}
+.background--color--cornflowerblue:focus-visible {
   background-color: hsl(219, 79%, 70%);
 }
 
@@ -245,11 +251,17 @@
 .background--color--green:hover {
   background-color: hsl(120, 100%, 30%);
 }
+.background--color--green:focus-visible {
+  background-color: hsl(120, 100%, 30%);
+}
 
 .background--color--purple {
   background-color: purple;
 }
 .background--color--purple:hover {
+  background-color: hsl(270, 50%, 40%);
+}
+.background--color--purple:focus-visible {
   background-color: hsl(270, 50%, 40%);
 }
 
@@ -259,11 +271,17 @@
 .background--color--yellow:hover {
   background-color: hsl(60, 100%, 75%);
 }
+.background--color--yellow:focus-visible {
+  background-color: hsl(60, 100%, 75%);
+}
 
 .background--color--orange {
   background-color: orange;
 }
 .background--color--orange:hover {
+  background-color: hsl(39, 100%, 60%);
+}
+.background--color--orange:focus-visible {
   background-color: hsl(39, 100%, 60%);
 }
 
@@ -274,6 +292,9 @@
 .background--color--gray:hover {
   background-color: hsl(0, 0%, 60%);
 }
+.background--color--gray:focus-visible {
+  background-color: hsl(0, 0%, 60%);
+}
 
 .background--color--black {
   background-color: black;
@@ -281,11 +302,17 @@
 .background--color--black:hover {
   background-color: hsl(0, 0%, 20%);
 }
+.background--color--black:focus-visible {
+  background-color: hsl(0, 0%, 20%);
+}
 
 .background--color--white {
   background-color: white;
 }
 .background--color--white:hover {
+  background-color: hsl(0, 0%, 90%);
+}
+.background--color--white:focus-visible {
   background-color: hsl(0, 0%, 90%);
 }
 
@@ -297,6 +324,9 @@
   background-color: var(--colorTheme-color-primary);
 }
 .background--color--colorTheme:hover {
+  background-color: var(--colorTheme-bgColor-hover);
+}
+.background--color--colorTheme:focus-visible {
   background-color: var(--colorTheme-bgColor-hover);
 }
 
