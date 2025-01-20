@@ -61,12 +61,13 @@ const Button = ({
   // 언어 설정
   const { empty, ariaLabel } = useLanguageContent(["components", "Button"]);
 
+  const disabledCond = variant !== "plain" && (!isValid || disabled || loading);
   /**
    * 클래스 이름을 결합하여 하나의 문자열로 반환합니다.
    * @type {string} 결합된 클래스 이름
    */
   const classNames = joinClassNames([
-    variant !== "plain" ? styles["button"] : styles[`text`],
+    variant === "plain" ? styles[`button--plain`] : styles[`button`],
     variant && common[`variant--${variant}`],
     rounded && common[`rounded--${rounded}`],
     borderWidth && common[`border--width--${borderWidth}`],
@@ -75,51 +76,34 @@ const Button = ({
     bgColor && common[`background--color--${bgColor}`],
     fontColor && common[`color--${fontColor}`],
     fontSize && common[`fontsize--${fontSize}`],
-    disabled || !isValid || loading ? common[`disabled`] : "",
-    isValid && variant !== "plain" ? styles[`button--valid`] : "",
+    disabledCond ? common[`disabled`] : "",
+    isValid || variant === "plain" ? styles[`button--valid`] : "",
     className,
   ]);
 
   return (
-    <>
-      {variant !== "plain" ? (
-        <button
-          type="button"
-          className={classNames}
-          disabled={!isValid || disabled || loading}
-          onClick={onClick}
-          aria-disabled={!isValid || disabled} // 비활성화 상태
-          aria-label={
-            loading ? loadingText || ariaLabel.loading : ariaLabel.button
-          }
-          style={{ width: `${width}`, height: `${height}`, ...props.style }}
-          {...props}
+    <button
+      type="button"
+      className={classNames}
+      disabled={disabledCond}
+      onClick={onClick}
+      aria-disabled={disabledCond} // 비활성화 상태
+      aria-label={loading ? loadingText || ariaLabel.loading : ariaLabel.button}
+      style={{ width: `${width}`, height: `${height}`, ...props.style }}
+      {...props}
+    >
+      {loading ? (
+        <div
+          className={styles[`button__loading`]}
+          aria-live="polite" // 상태 변화시 사용자에게 알림
         >
-          {loading ? (
-            <div
-              className={styles[`button__loading`]}
-              aria-live="polite" // 상태 변화시 사용자에게 알림
-            >
-              <Spinner loadingText={loadingText} />
-              {loadingText && <Text>{loadingText}</Text>}
-            </div>
-          ) : (
-            children || empty
-          )}
-        </button>
+          <Spinner loadingText={loadingText} />
+          {loadingText && <Text>{loadingText}</Text>}
+        </div>
       ) : (
-        <p
-          className={joinClassNames([
-            styles[`text`],
-            common[`variant--plain`],
-            disabled ? common[`disabled`] : "",
-          ])}
-          style={{ ...props.style }}
-        >
-          {children || empty}
-        </p>
+        children || empty
       )}
-    </>
+    </button>
   );
 };
 

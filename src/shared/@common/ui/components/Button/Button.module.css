@@ -5,7 +5,8 @@
   user-select: none;
 }
 
-.text {
+.button--plain {
+  padding: 0;
 }
 
 .button--valid {

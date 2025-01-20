@@ -71,7 +71,13 @@
 .variant--plain {
   color: inherit;
   padding: 0;
-  cursor: text;
+}
+
+.variant--plain:hover {
+  text-decoration: underline;
+}
+.variant--plain:focus-visible {
+  text-decoration: underline;
 }
 
 /* font */
