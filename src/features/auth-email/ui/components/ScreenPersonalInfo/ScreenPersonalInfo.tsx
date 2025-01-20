@@ -4,6 +4,7 @@ import {
   Input,
   InputEmail,
   InputGender,
+  InputUsername,
   Modal,
   Text,
 } from "@shared/@common/ui/components";
@@ -11,20 +12,13 @@ import {
   setBirthDateSignup,
   setBirthMonthSignup,
   setBirthYearSignup,
-  setEmailInSignup,
-  setUsernameInSignup,
 } from "@shared/auth/models/slices/signupSlice";
-import {
-  getBirthInSignup,
-  getEmailInSignup,
-  getUsernameInSignup,
-} from "@shared/auth/models/selectors";
+import { getBirthInSignup } from "@shared/auth/models/selectors";
 import { useSelector } from "react-redux";
 import {
   useLanguageContent,
   useValidationChecker,
 } from "@shared/@common/models/hooks";
-import { USERNAME_MAX } from "@shared/@common/constants";
 import {
   useModalContext,
   useModalPagination,
@@ -38,8 +32,6 @@ import { getUserInSignup } from "@shared/auth/models/selectors/signupSelectors";
  * @returns {JSX.Element} ScreenPersonalInfo 컴포넌트 렌더링 결과
  */
 const ScreenPersonalInfo = () => {
-  const username = useSelector(getUsernameInSignup);
-  const email = useSelector(getEmailInSignup);
   const birth = useSelector(getBirthInSignup);
   const user = useSelector(getUserInSignup);
 
@@ -55,8 +47,6 @@ const ScreenPersonalInfo = () => {
 
   const {
     title,
-    usernameLabel,
-    emailLabel,
     birthHeading,
     birthExpl,
     birthYearLabel,
@@ -68,8 +58,6 @@ const ScreenPersonalInfo = () => {
     birthYearUnit,
     birthMonthUnit,
     birthDateUnit,
-    usernameError,
-    emailError,
     button,
   } = useLanguageContent(["components", "ScreenPersonalInfo"]);
 
@@ -78,29 +66,10 @@ const ScreenPersonalInfo = () => {
       <Modal.Body className={styles[`personal__info__screen__body`]}>
         <Text type="heading2">{title}</Text>
         {/* 사용자 이름 */}
-        <Input
-          field="username"
-          label={usernameLabel}
-          inputValue={username}
-          setInputValue={setUsernameInSignup}
-          maxLength={USERNAME_MAX}
-          error={usernameError}
-          isValid={isValid}
-          setIsValid={setIsValid}
-        >
-          <Input.Main>
-            <Input.Top>
-              <Input.Label />
-              <Input.Counter />
-            </Input.Top>
-            <Input.Bottom>
-              <Input.Field />
-            </Input.Bottom>
-          </Input.Main>
-          <Input.Error />
-        </Input>
+        <InputUsername isSignup isValid={isValid} setIsValid={setIsValid} />
         {/* 이메일 */}
         <InputEmail isSignup isValid={isValid} setIsValid={setIsValid} />
+        {/* 성별 */}
         <InputGender isSignup isValid={isValid} setIsValid={setIsValid} />
         <div className={styles[`personal__info__screen__birth__container`]}>
           <div>
