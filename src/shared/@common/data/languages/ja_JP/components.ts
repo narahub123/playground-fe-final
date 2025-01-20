@@ -86,6 +86,19 @@ const components = {
     birthDateUnit: "日",
     button: "次",
   },
+  InputUsername: {
+    label: "ユーザー名",
+    error: {
+      EMPTY: { regExp: EMPTY, errorMessage: "ユーザー名を入力してください。" },
+      UNDER_MINIMUM: {
+        regExp: USERNAME_UNDER_MINIMUM,
+        errorMessage: `ユーザー名は最低 ${USERNAME_MIN} 文字、最大 ${USERNAME_MAX} 文字までです。`,
+      },
+      EXCEED: {
+        errorMessage: `ユーザー名は最大 ${USERNAME_MAX} 文字までです。`,
+      },
+    },
+  },
   InputGender: {
     label: "性別",
     list: [

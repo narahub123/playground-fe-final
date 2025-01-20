@@ -14,6 +14,7 @@ import ProfileImage from "./ProfileImage/ProfileImage";
 import ImageUploader from "./ImageUploader/ImageUploader";
 import Checkbox from "./Checkbox/Checkbox";
 import InputGender from "./InputGender/InputGender";
+import InputUsername from "./InputUsername/InputUsername";
 
 export {
   Text,
@@ -32,4 +33,5 @@ export {
   ProfileImage,
   Checkbox,
   InputGender,
+  InputUsername,
 };

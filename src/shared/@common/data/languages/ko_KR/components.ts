@@ -85,6 +85,19 @@ const components = {
     birthDateUnit: "일",
     button: "다음",
   },
+  InputUsername: {
+    label: "사용자 이름",
+    error: {
+      EMPTY: { regExp: EMPTY, errorMessage: "사용자 이름을 입력해주세요." },
+      UNDER_MINIMUM: {
+        regExp: USERNAME_UNDER_MINIMUM,
+        errorMessage: `사용자 이름은 최소 ${USERNAME_MIN}자에서 최대 ${USERNAME_MAX}자까지 가능합니다.`,
+      },
+      EXCEED: {
+        errorMessage: `사용자 이름은 최대 ${USERNAME_MAX}까지 가능합니다.`,
+      },
+    },
+  },
   InputGender: {
     label: "성별",
     list: [

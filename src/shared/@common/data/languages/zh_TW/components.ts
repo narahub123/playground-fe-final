@@ -80,6 +80,19 @@ const components = {
     birthDateUnit: "日",
     button: "下一個",
   },
+  InputUsername: {
+    label: "用戶名",
+    error: {
+      EMPTY: { regExp: EMPTY, errorMessage: "請輸入用戶名。" },
+      UNDER_MINIMUM: {
+        regExp: USERNAME_UNDER_MINIMUM,
+        errorMessage: `用戶名最少 ${USERNAME_MIN} 個字元，最多 ${USERNAME_MAX} 個字元。`,
+      },
+      EXCEED: {
+        errorMessage: `用戶名最多可以包含 ${USERNAME_MAX} 個字元。`,
+      },
+    },
+  },
   InputGender: {
     label: "性別",
     list: [

@@ -83,6 +83,19 @@ const components = {
     birthDateUnit: "",
     button: "Next",
   },
+  InputUsername: {
+    label: "Username",
+    error: {
+      EMPTY: { regExp: EMPTY, errorMessage: "Please enter a username." },
+      UNDER_MINIMUM: {
+        regExp: USERNAME_UNDER_MINIMUM,
+        errorMessage: `The username must be at least ${USERNAME_MIN} characters and at most ${USERNAME_MAX} characters.`,
+      },
+      EXCEED: {
+        errorMessage: `The username can be up to ${USERNAME_MAX} characters.`,
+      },
+    },
+  },
   InputGender: {
     label: "Gender",
     list: [
