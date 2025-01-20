@@ -16,6 +16,9 @@ import Checkbox from "./Checkbox/Checkbox";
 import InputGender from "./InputGender/InputGender";
 import InputUsername from "./InputUsername/InputUsername";
 import InputEmail from "./InputEmail/InputEmail";
+import InputBirthYear from "./InputBirthYear/InputBirthYear";
+import InputBirthMonth from "./InputBirthMonth/InputBirthMonth";
+import InputBirthDate from "./InputBirthDate/InputBirthDate";
 
 export {
   Text,
@@ -36,4 +39,7 @@ export {
   InputGender,
   InputUsername,
   InputEmail,
+  InputBirthYear,
+  InputBirthMonth,
+  InputBirthDate,
 };

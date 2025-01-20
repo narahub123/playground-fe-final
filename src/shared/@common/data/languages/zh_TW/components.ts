@@ -118,6 +118,9 @@ const components = {
       { text: "中性", value: "n" },
     ],
   },
+  InputBirthYear: { label: "年", unit: "年" },
+  InputBirthMonth: { label: "月", unit: "月" },
+  InputBirthDate: { label: "日", unit: "日" },
   Button: {
     empty: "請添加文字或圖示。",
     ariaLabel: {

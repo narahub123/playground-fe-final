@@ -124,6 +124,9 @@ const components = {
       { text: "중성", value: "n" },
     ],
   },
+  InputBirthYear: { label: "년", unit: "년" },
+  InputBirthMonth: { label: "월", unit: "월" },
+  InputBirthDate: { label: "일", unit: "일" },
   Button: {
     empty: "문자열 혹은 아이콘을 넣어주세요.",
     ariaLabel: {

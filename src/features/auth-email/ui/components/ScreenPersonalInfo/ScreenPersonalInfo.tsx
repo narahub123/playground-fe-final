@@ -1,19 +1,15 @@
 import styles from "./ScreenPersonalInfo.module.css";
 import {
   Button,
-  Input,
+  InputBirthDate,
+  InputBirthMonth,
+  InputBirthYear,
   InputEmail,
   InputGender,
   InputUsername,
   Modal,
   Text,
 } from "@shared/@common/ui/components";
-import {
-  setBirthYearInSignup,
-  setBirthMonthInSignup,
-  setBirthDateInSignup,
-} from "@shared/auth/models/slices/signupSlice";
-import { getBirthInSignup } from "@shared/auth/models/selectors";
 import { useSelector } from "react-redux";
 import {
   useLanguageContent,
@@ -32,7 +28,6 @@ import { getUserInSignup } from "@shared/auth/models/selectors/signupSelectors";
  * @returns {JSX.Element} ScreenPersonalInfo 컴포넌트 렌더링 결과
  */
 const ScreenPersonalInfo = () => {
-  const birth = useSelector(getBirthInSignup);
   const user = useSelector(getUserInSignup);
 
   const { setScreenValidations } = useModalContext();
@@ -45,21 +40,10 @@ const ScreenPersonalInfo = () => {
     screenName: "ScreenPersonalInfo",
   });
 
-  const {
-    title,
-    birthHeading,
-    birthExpl,
-    birthYearLabel,
-    birthMonthLabel,
-    birthDateLabel,
-    birthYearList,
-    birthMonthList,
-    birthDateList,
-    birthYearUnit,
-    birthMonthUnit,
-    birthDateUnit,
-    button,
-  } = useLanguageContent(["components", "ScreenPersonalInfo"]);
+  const { title, birthHeading, birthExpl, button } = useLanguageContent([
+    "components",
+    "ScreenPersonalInfo",
+  ]);
 
   return (
     <div className={styles["personal__info__screen"]}>
@@ -79,65 +63,23 @@ const ScreenPersonalInfo = () => {
           <div className={styles[`personal__info__screen__birth`]}>
             {/* 생년월일 */}
             {/* 년 */}
-            <Input
-              field="year"
-              label={birthYearLabel}
-              inputValue={birth.year as string}
-              setInputValue={setBirthYearInSignup}
-              list={birthYearList(birthYearUnit)}
+            <InputBirthYear
+              isSignup
               isValid={isValid}
               setIsValid={setIsValid}
-            >
-              <Input.Main>
-                <Input.Top>
-                  <Input.Label />
-                </Input.Top>
-                <Input.Bottom>
-                  <Input.Field />
-                </Input.Bottom>
-              </Input.Main>
-              <Input.Dropdown />
-            </Input>
+            />
             {/* 월 */}
-            <Input
-              field="month"
-              label={birthMonthLabel}
-              inputValue={birth.month as string}
-              setInputValue={setBirthMonthInSignup}
-              list={birthMonthList(birthMonthUnit)}
+            <InputBirthMonth
+              isSignup
               isValid={isValid}
               setIsValid={setIsValid}
-            >
-              <Input.Main>
-                <Input.Top>
-                  <Input.Label />
-                </Input.Top>
-                <Input.Bottom>
-                  <Input.Field />
-                </Input.Bottom>
-              </Input.Main>
-              <Input.Dropdown />
-            </Input>
+            />
             {/* 일 */}
-            <Input
-              field="date"
-              label={birthDateLabel}
-              inputValue={birth.date as string}
-              setInputValue={setBirthDateInSignup}
-              list={birthDateList(birth.year, birth.month, birthDateUnit)}
+            <InputBirthDate
+              isSignup
               isValid={isValid}
               setIsValid={setIsValid}
-            >
-              <Input.Main>
-                <Input.Top>
-                  <Input.Label />
-                </Input.Top>
-                <Input.Bottom>
-                  <Input.Field />
-                </Input.Bottom>
-              </Input.Main>
-              <Input.Dropdown />
-            </Input>
+            />
           </div>
         </div>
       </Modal.Body>

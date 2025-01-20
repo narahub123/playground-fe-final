@@ -123,6 +123,9 @@ const components = {
       { text: "Neutral", value: "n" },
     ],
   },
+  InputBirthYear: { label: "Year", unit: "" },
+  InputBirthMonth: { label: "Month", unit: "" },
+  InputBirthDate: { label: "Day", unit: "" },
   Button: {
     empty: "Please add text or an icon.",
     ariaLabel: {
