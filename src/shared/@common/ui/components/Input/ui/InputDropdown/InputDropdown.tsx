@@ -65,11 +65,16 @@ const InputDropdown = ({ className }: InputDropdownProps) => {
    * @returns {void} 상태 업데이트는 내부적으로 이루어집니다.
    */
   const updateMainPosition = useCallback(() => {
+    if (!list) return;
     // mainRef가 가리키는 DOM 노드를 가져옵니다.
     const main = mainRef?.current as HTMLElement;
 
     // main 요소의 위치와 크기를 계산합니다.
     const mainRect = main.getBoundingClientRect();
+
+    // 아이템의 높이 동적 계산
+    const heightOfItem =
+      itemsRef.current[0]?.getBoundingClientRect().height || 0;
 
     // 개발자 도구가 열려 있는지 확인하는 조건식
     // 개발자 도구가 열려 있으면, 화면 크기 차이가 100px 이상이 됩니다.
@@ -79,7 +84,11 @@ const InputDropdown = ({ className }: InputDropdownProps) => {
     setMainRect((prev) => {
       // 계산된 새로운 위치와 크기 객체
       const newRect = {
-        top: isDevToolOpen ? -2 : mainRect.top + mainRect.height + 2, // 화면의 위쪽 기준 위치
+        top: isDevToolOpen
+          ? heightOfItem * list.length > mainRect.top
+            ? -2
+            : mainRect.top - heightOfItem * list.length - 4
+          : mainRect.top + mainRect.height + 2, // 화면의 위쪽 기준 위치
         left: mainRect.left, // 화면의 왼쪽 기준 위치
         width: mainRect.width, // 요소의 너비
         height: mainRect.height, // 요소의 높이
@@ -129,8 +138,14 @@ const InputDropdown = ({ className }: InputDropdownProps) => {
    * 그렇지 않으면 `window.innerHeight`와 `main` 요소의 `bottom` 값을 사용하여 높이를 계산합니다.
    */
   const updateDropdownHeight = useCallback(() => {
+    if (!list) return;
+
     // `mainRef`로 참조된 HTML 요소를 가져옵니다.
     const main = mainRef?.current as HTMLElement;
+
+    // 아이템의 높이 동적 계산
+    const heightOfItem =
+      itemsRef.current[0]?.getBoundingClientRect().height || 0;
 
     // 개발자 도구가 열려있는지 확인하는 조건
     // 개발자 도구가 열리면 `window.outerHeight - window.innerHeight` 값이 일정 이상 차이날 것임
@@ -141,7 +156,11 @@ const InputDropdown = ({ className }: InputDropdownProps) => {
 
     // 개발자 도구가 열려 있는 경우, `top` 값을 높이로 사용하고,
     // 그렇지 않으면 `window.innerHeight - bottom`으로 높이를 계산합니다.
-    const height = isDevToolOpen ? top : window.innerHeight - bottom;
+    const height = isDevToolOpen
+      ? heightOfItem * list.length + 2 > top
+        ? top
+        : heightOfItem * list.length + 2
+      : window.innerHeight - bottom;
 
     // 이전 높이와 비교하여 값이 다를 경우에만 높이를 업데이트합니다.
     setDropdownHeight((prev) => (prev === height ? prev : height));
