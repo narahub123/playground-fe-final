@@ -202,6 +202,7 @@ const components = {
   ScreenUserId: {
     title: "ユーザーIDを設定してください。",
     expl: "@ユーザーIDはあなただけのユニークなIDです。後からいつでも変更できます。",
+    recommend: "おすすめのID",
     button: "次へ",
   },
   InputUserId: {

@@ -193,6 +193,7 @@ const components = {
   ScreenUserId: {
     title: "Please set your ID.",
     expl: "@Your user ID is a unique ID just for you. You can change it anytime later.",
+    recommend: "Recommended ID",
     button: "Next",
   },
   InputUserId: {

@@ -14,3 +14,10 @@
 .screen__userId__body__header {
   width: 100%;
 }
+
+.screen__userId__body__recommend {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: 0.5rem;
+}

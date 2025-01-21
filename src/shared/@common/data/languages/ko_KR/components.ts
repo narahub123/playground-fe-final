@@ -193,6 +193,7 @@ const components = {
   ScreenUserId: {
     title: "아이디를 설정해주세요.",
     expl: "@사용자 아이디는 고유한 나만의 아이디입니다. 나중에 언제든지 바꿀 수 있습니다.",
+    recommend: "추천 아이디",
     button: "다음",
   },
   InputUserId: {

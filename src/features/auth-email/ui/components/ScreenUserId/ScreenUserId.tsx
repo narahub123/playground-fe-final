@@ -2,6 +2,7 @@ import styles from "./ScreenUserId.module.css";
 import { useSelector } from "react-redux";
 import { getUserInSignup } from "@shared/auth/models/selectors";
 import {
+  useCreateUserId,
   useLanguageContent,
   useValidationChecker,
 } from "@shared/@common/models/hooks";
@@ -12,6 +13,8 @@ import {
 } from "@shared/@common/ui/components/Modal/hooks";
 import { joinClassNames } from "@shared/@common/utils";
 import InputUserId from "@shared/@common/ui/components/InputUserId/InputUserId";
+import { useAppDispatch } from "@app/store";
+import { setUserIdInSignup } from "@shared/auth/models/slices/signupSlice";
 
 interface ScreenUserIdProps {
   className?: string;
@@ -19,8 +22,12 @@ interface ScreenUserIdProps {
 }
 
 const ScreenUserId = ({ className }: ScreenUserIdProps) => {
+  const dispatch = useAppDispatch();
   // 데이터 저장 slice
   const user = useSelector(getUserInSignup);
+
+  // userId 자동 생성
+  const userId = useCreateUserId(user.username);
 
   // 버튼 이동 설정
   const { moveNext } = useModalPagination();
@@ -61,6 +68,18 @@ const ScreenUserId = ({ className }: ScreenUserIdProps) => {
           <Text type="expl">{expl}</Text>
         </div>
         <InputUserId isValid={isValid} setIsValid={setIsValid} isSignup />
+        <div className={styles[`screen__userId__body__recommend`]}>
+          추천 아이디
+          <Button
+            onClick={() => {
+              dispatch(setUserIdInSignup(userId));
+            }}
+            variant="plain"
+            fontColor="cornflowerblue"
+          >
+            {userId}
+          </Button>
+        </div>
       </Modal.Body>
       <Modal.Footer>
         <Button
