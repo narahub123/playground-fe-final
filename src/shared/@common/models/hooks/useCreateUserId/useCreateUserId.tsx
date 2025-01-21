@@ -1,5 +1,5 @@
 import { useLanguageContent } from "@shared/@common/models/hooks";
-import { splitIntoLetters } from "./utils";
+import { splitIntoChars } from "./utils";
 
 const useCreateUserId = (text: string) => {
   // 언어 설정
@@ -9,7 +9,7 @@ const useCreateUserId = (text: string) => {
   const username = "s 안녕";
 
   // 텍스트 분해 하기
-  const splitChars = splitIntoLetters(username);
+  const splitChars = splitIntoChars(username);
 
   console.log(splitChars);
 
