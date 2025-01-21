@@ -4,7 +4,6 @@ import { useAppDispatch } from "@app/store";
 import { joinClassNames } from "@shared/@common/utils";
 import { useInputContext } from "@shared/@common/ui/components/Input/context";
 import { useCompiledInputError } from "@shared/@common/ui/components/Input/hooks";
-import { Text } from "@shared/@common/ui/components";
 import {
   checkEmailDuplicateInSignupAPI,
   checkUserIdDuplicateInSignupAPI,
@@ -321,51 +320,23 @@ const InputField = ({ className }: InputFieldProps) => {
   ]);
 
   return (
-    <>
-      {/* list 존재 여부로 드롭다운 존재 여부 판단 */}
-      {list ? (
-        /**
-         * 드롭다운이 존재하는 경우, 선택된 항목의 텍스트를 표시합니다.
-         * @component Text
-         * @prop {string} text - 드롭다운 항목 중 선택된 항목의 텍스트. 값이 없으면 inputValue를 표시.
-         * @prop {string} className - 추가적인 클래스 이름
-         */
-        <Text className={classNames}>
-          {list.find((item) => item.value === inputValue)?.text || inputValue}
-        </Text>
-      ) : (
-        /**
-         * 드롭다운이 존재하지 않는 경우, 기본 input 필드를 렌더링합니다.
-         * @element input
-         * @prop {string} type - 입력 필드의 유형 (password는 showPassword 상태에 따라 결정)
-         * @prop {string} className - 입력 필드의 CSS 클래스
-         * @prop {string} value - 입력 필드의 현재 값
-         * @prop {React.RefObject<HTMLInputElement>} ref - 입력 필드의 참조 객체
-         * @prop {string} id - 입력 필드와 연결된 label의 id
-         * @prop {function} onChange - 입력 값 변경 시 호출되는 이벤트 핸들러. disabled 상태에서는 undefined.
-         * @prop {boolean} disabled - 입력 필드 비활성화 여부
-         * @prop {boolean} aria-required - 입력 필드가 필수인지 여부
-         * @prop {boolean} aria-invalid - 입력 필드의 유효성 여부 (true일 경우 유효하지 않음)
-         * @prop {string} aria-describedby - 에러 메시지와 연결된 설명 요소의 id
-         */
-        <input
-          type={
-            field.includes("password") && !showPassword ? "password" : "text"
-          }
-          className={classNames}
-          value={
-            field === "password_confirm" ? passwordConfirmValue : inputValue
-          } // 기본 값
-          ref={inputRef} // input 참조
-          id={field} // label과 연결
-          onChange={disabled ? undefined : (e) => handleChange(e)}
-          disabled={disabled} // disabled 모드
-          aria-required={true} // 필수 입력 필드
-          aria-invalid={!isValid} // 유효성 실패 여부
-          aria-describedby="error-message" // 에러 메시지를 포함한 추가적인 정보와 연결
-        />
-      )}
-    </>
+    <input
+      type={field.includes("password") && !showPassword ? "password" : "text"}
+      className={classNames}
+      value={
+        field === "password_confirm"
+          ? passwordConfirmValue
+          : list?.find((item) => item.value === inputValue)?.text || inputValue
+      } // 기본 값
+      ref={inputRef} // input 참조
+      id={field} // label과 연결
+      onChange={disabled ? undefined : (e) => handleChange(e)}
+      disabled={disabled} // disabled 모드
+      aria-required={true} // 필수 입력 필드
+      aria-invalid={!isValid} // 유효성 실패 여부
+      aria-describedby={list ? undefined : "error-message"} // 에러 메시지를 포함한 추가적인 정보와 연결
+      readOnly={list && list.length > 0 ? true : undefined}
+    />
   );
 };
 
