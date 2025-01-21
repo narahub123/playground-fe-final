@@ -1,17 +1,18 @@
 .screen__notifications {
-  height: 430px;
+  height: 35rem;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .screen__notifications__body {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 2rem;
 }
 
 .screen__notifications__body__main {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 0.75rem;
 }

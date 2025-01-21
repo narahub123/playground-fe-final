@@ -1,5 +1,6 @@
 .screen__language {
   display: flex;
   flex-direction: column;
-  height: 430px;
+  height: 35rem;
+  overflow: hidden;
 }

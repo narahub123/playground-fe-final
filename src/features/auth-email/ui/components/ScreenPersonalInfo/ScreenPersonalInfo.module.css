@@ -2,22 +2,23 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  height: 35rem;
 }
 
 .personal__info__screen__body {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1.25rem;
 }
 
 .personal__info__screen__birth__container {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 0.5rem;
 }
 .personal__info__screen__birth {
   display: flex;
-  gap: 5px;
+  gap: 0.5rem;
 }
 
 .personal__info__switch__button {

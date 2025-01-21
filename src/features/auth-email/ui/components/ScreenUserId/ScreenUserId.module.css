@@ -1,7 +1,8 @@
 .screen__userId {
   display: flex;
   flex-direction: column;
-  height: 27rem;
+  height: 35rem;
+  overflow: hidden;
 }
 
 .screen__userId__body {

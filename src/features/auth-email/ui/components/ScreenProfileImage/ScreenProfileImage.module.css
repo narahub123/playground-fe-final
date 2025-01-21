@@ -1,7 +1,8 @@
 .screen__profile__image {
   display: flex;
   flex-direction: column;
-  height: 430px;
+  height: 35rem;
+  overflow: hidden;
 }
 
 .screen__profile__image__body {
