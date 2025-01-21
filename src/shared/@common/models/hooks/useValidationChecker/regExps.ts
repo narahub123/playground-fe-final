@@ -1,6 +1,8 @@
 import {
   EMAIL_FORMAT,
   EMPTY,
+  PASSWORD_INCOMPLETE,
+  USERID_INCOMPLETE,
   USERNAME_INCOMPLETE,
 } from "@shared/@common/constants/regExps";
 import { ButtonRegExpType } from "./types";
@@ -19,9 +21,15 @@ import { ButtonRegExpType } from "./types";
 const ButtonRegExp: ButtonRegExpType = {
   username: USERNAME_INCOMPLETE,
   email: EMAIL_FORMAT,
+  gender: EMPTY,
   year: EMPTY,
   month: EMPTY,
   date: EMPTY,
+  password: PASSWORD_INCOMPLETE,
+  userId: USERID_INCOMPLETE,
+  profileImage: EMPTY,
+  notifications: EMPTY,
+  language: EMPTY,
 };
 
 export default ButtonRegExp;
