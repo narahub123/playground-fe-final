@@ -1,3 +1,3 @@
-import splitIntoChars from "./splitIntoChars";
+import splitIntoLetters from "./splitIntoLetters";
 
-export { splitIntoChars };
+export { splitIntoLetters };
