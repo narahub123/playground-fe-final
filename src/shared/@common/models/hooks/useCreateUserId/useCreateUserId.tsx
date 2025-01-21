@@ -1,5 +1,11 @@
 import { useLanguageContent } from "@shared/@common/models/hooks";
-import { isAlphabet, isHangul, romanizeHangul, splitIntoChars } from "./utils";
+import {
+  isAlphabet,
+  isBlank,
+  isHangul,
+  romanizeHangul,
+  splitIntoChars,
+} from "./utils";
 
 const useCreateUserId = (text: string) => {
   // 언어 설정
@@ -20,6 +26,10 @@ const useCreateUserId = (text: string) => {
     } else if (isHangul(char)) {
       // 한글이면 영문으로 변경해서 반환
       return romanizeHangul(char);
+      // 공백 문자 여부 확인
+    } else if (isBlank(char)) {
+      // _ 반환
+      return "_";
     }
 
     // 그 외는 빈문자열로 반환
