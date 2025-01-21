@@ -1,6 +1,5 @@
 import {
   Button,
-  Input,
   InputLanguage,
   Modal,
   Text,
@@ -12,7 +11,6 @@ import {
 } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
 import { useSelector } from "react-redux";
-import { setLanguage } from "@shared/@common/models/slices/displaySlice";
 import { getDisplay } from "@shared/@common/models/selectors";
 import { useModalContext } from "@shared/@common/ui/components/Modal/hooks";
 import { useEffect, useState } from "react";
@@ -49,7 +47,7 @@ const ScreenLanguage = ({ className }: ScreenLanguageProps) => {
   }, [screenValidations]);
 
   // 언어 설정
-  const { title, expl, button, label, langList } = useLanguageContent([
+  const { title, expl, button } = useLanguageContent([
     "components",
     "ScreenLanguage",
   ]);
