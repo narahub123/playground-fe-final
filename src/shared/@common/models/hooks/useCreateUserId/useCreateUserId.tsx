@@ -1,46 +1,19 @@
-import { useLanguageContent } from "@shared/@common/models/hooks";
-import {
-  isAlphabet,
-  isBlank,
-  isHangul,
-  romanizeHangul,
-  splitIntoChars,
-} from "./utils";
+import { useEffect, useState } from "react";
+import { generateUserId } from "./utils";
 
-const useCreateUserId = (text: string) => {
-  // 언어 설정
-  const {} = useLanguageContent(["hooks", "useCreateUserId"]);
+const useCreateUserId = (username: string) => {
+  const [userId, setUserId] = useState("");
 
-  // 예시
-  const username = "s 안녕";
+  useEffect(() => {
+    const generate = async () => {
+      const newUserId = await generateUserId(username);
+      setUserId(newUserId);
+    };
 
-  // 텍스트 분해 하기
-  const splitChars = splitIntoChars(username);
+    generate();
+  }, [username]); // username이 변경될 때마다 유저 아이디를 새로 생성
 
-  const convertedChars = splitChars.map((char) => {
-    // 영문인지 확인
-    if (isAlphabet(char)) {
-      // 영문인 경우 그대로 반환
-      return char;
-      // 한글인지 여부 확인
-    } else if (isHangul(char)) {
-      // 한글이면 영문으로 변경해서 반환
-      return romanizeHangul(char);
-      // 공백 문자 여부 확인
-    } else if (isBlank(char)) {
-      // _ 반환
-      return "_";
-    }
-
-    // 그 외는 빈문자열로 반환
-    return "";
-  });
-
-  const convertedText = convertedChars.join("");
-
-  console.log(convertedText);
-
-  return;
+  return userId;
 };
 
 export default useCreateUserId;
