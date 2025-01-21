@@ -223,8 +223,8 @@ const components = {
     title: "选择头像",
     expl: "有喜欢的自拍照吗？ 现在上传吧。",
     button: {
-      ignore: "暂时跳过",
-      register: "下一步",
+      skip: "暂时跳过",
+      next: "下一步",
     },
   },
   LightboxCloseButton: {
@@ -247,6 +247,7 @@ const components = {
     expl: "随时了解最新动态，充分利用 PlayGround。",
     button: {
       skip: "暂时跳过",
+      next: "下一步",
     },
   },
   ScreenLanguage: {

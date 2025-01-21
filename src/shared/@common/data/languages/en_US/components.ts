@@ -229,8 +229,8 @@ const components = {
     title: "Select Profile Picture",
     expl: "Do you have a favorite selfie? Upload it now.",
     button: {
-      ignore: "Skip for now",
-      register: "Next",
+      skip: "Skip for now",
+      next: "Next",
     },
   },
   LightboxCloseButton: {
@@ -253,6 +253,7 @@ const components = {
     expl: "Stay updated with what's happening and make the most out of PlayGround.",
     button: {
       skip: "Skip for now",
+      next: "Next",
     },
   },
   ScreenLanguage: {

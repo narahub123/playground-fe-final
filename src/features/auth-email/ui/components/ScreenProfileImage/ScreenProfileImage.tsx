@@ -67,7 +67,7 @@ const ScreenProfileImage = ({ className }: ScreenProfileImageProps) => {
           bgColor="colorTheme"
           rounded="2xl"
         >
-          {button.ignore}
+          {user.profileImage ? button.next : button.skip}
         </Button>
       </Modal.Footer>
     </div>

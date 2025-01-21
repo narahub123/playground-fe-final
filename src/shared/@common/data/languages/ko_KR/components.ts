@@ -229,8 +229,8 @@ const components = {
     title: "프로필 사진 선택하기",
     expl: "마음에 드는 셀카 사진이 있나요? 지금 업로드하세요.",
     button: {
-      ignore: "지금은 넘어가기",
-      register: "다음",
+      skip: "지금은 넘어가기",
+      next: "다음",
     },
   },
   LightboxCloseButton: {
@@ -253,6 +253,7 @@ const components = {
     expl: "지금 일어나는 일에 대한 소식을 받고 PlayGround을 최대한 활용해보세요.",
     button: {
       skip: "지금은 넘어가기",
+      next: "다음",
     },
   },
   ScreenLanguage: {

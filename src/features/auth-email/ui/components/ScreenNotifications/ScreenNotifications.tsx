@@ -94,7 +94,9 @@ const ScreenNotifications = ({ className }: ScreenNotificationsProps) => {
           rounded="2xl"
           bgColor="colorTheme"
         >
-          {button.skip}
+          {Object.values(user.notifications).some(Boolean)
+            ? button.next
+            : button.skip}
         </Button>
       </Modal.Footer>
     </div>

@@ -238,8 +238,8 @@ const components = {
     title: "プロフィール写真を選択",
     expl: "お気に入りのセルフィーはありますか？ 今すぐアップロードしてください。",
     button: {
-      ignore: "今はスキップ",
-      register: "次へ",
+      skip: "今はスキップ",
+      next: "次へ",
     },
   },
   LightboxCloseButton: {
@@ -262,6 +262,7 @@ const components = {
     expl: "今起きていることを把握して、PlayGroundを最大限に活用しましょう。",
     button: {
       skip: "今はスキップ",
+      next: "次へ",
     },
   },
   ScreenLanguage: {
