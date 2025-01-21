@@ -252,9 +252,11 @@ const components = {
   ScreenLanguage: {
     title: "您使用的語言是什麼？",
     expl: "選擇您偏好的語言以查看帖子、用戶和趨勢。",
-    label: "語言",
     button: "註冊",
-    langList: [
+  },
+  InputLanguage: {
+    label: "語言",
+    list: [
       { text: "韓語 : Korean", value: "ko-KR" },
       { text: "英語 : English", value: "en-US" },
       { text: "日語 : Japanese", value: "ja-JP" },

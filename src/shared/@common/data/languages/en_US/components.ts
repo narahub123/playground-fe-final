@@ -258,9 +258,12 @@ const components = {
   ScreenLanguage: {
     title: "What is your preferred language?",
     expl: "Choose your preferred language to view posts, people, and trends.",
-    label: "Language",
+
     button: "Sign Up",
-    langList: [
+  },
+  InputLanguage: {
+    label: "Language",
+    list: [
       { text: "Korean : 한국어", value: "ko-KR" },
       { text: "English : 영어", value: "en-US" },
       { text: "Japanese : 日本語", value: "ja-JP" },

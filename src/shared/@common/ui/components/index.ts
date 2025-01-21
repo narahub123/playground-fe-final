@@ -20,6 +20,7 @@ import InputBirthYear from "./InputBirthYear/InputBirthYear";
 import InputBirthMonth from "./InputBirthMonth/InputBirthMonth";
 import InputBirthDate from "./InputBirthDate/InputBirthDate";
 import InputPhone from "./InputPhone/InputPhone";
+import InputLanguage from "./InputLanguage/InputLanguage";
 
 export {
   Text,
@@ -44,4 +45,5 @@ export {
   InputBirthMonth,
   InputBirthDate,
   InputPhone,
+  InputLanguage,
 };

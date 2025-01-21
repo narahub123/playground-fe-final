@@ -1,4 +1,10 @@
-import { Button, Input, Modal, Text } from "@shared/@common/ui/components";
+import {
+  Button,
+  Input,
+  InputLanguage,
+  Modal,
+  Text,
+} from "@shared/@common/ui/components";
 import styles from "./ScreenLanguage.module.css";
 import {
   useLanguageContent,
@@ -69,24 +75,8 @@ const ScreenLanguage = ({ className }: ScreenLanguageProps) => {
         <div className={styles[`screen__language__body__header`]}>
           <Text type="heading2">{title}</Text>
           <Text type="expl">{expl}</Text>
-          <Input
-            field="language"
-            label={label}
-            inputValue={display.language}
-            setInputValue={setLanguage}
-            list={langList}
-          >
-            <Input.Main>
-              <Input.Top>
-                <Input.Label />
-              </Input.Top>
-              <Input.Bottom>
-                <Input.Field />
-              </Input.Bottom>
-            </Input.Main>
-            <Input.Dropdown />
-          </Input>
         </div>
+        <InputLanguage setIsValid={setIsValid} />
       </Modal.Body>
       <Modal.Footer>
         <Button

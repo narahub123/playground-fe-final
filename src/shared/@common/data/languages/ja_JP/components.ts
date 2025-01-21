@@ -267,9 +267,11 @@ const components = {
   ScreenLanguage: {
     title: "ご利用の言語は何ですか？",
     expl: "お好きな言語を選択して、投稿や人、トレンドをご覧ください。",
-    label: "言語",
     button: "登録する",
-    langList: [
+  },
+  InputLanguage: {
+    label: "言語",
+    list: [
       { text: "韓国語 : Korean", value: "ko-KR" },
       { text: "英語 : English", value: "en-US" },
       { text: "日本語 : Japanese", value: "ja-JP" },

@@ -258,9 +258,11 @@ const components = {
   ScreenLanguage: {
     title: "사용하시는 언어가 무엇인가요?",
     expl: "원하늰 언어를 선택하여 게시물, 사람들, 트렌트를 볼 수 있습니다.",
-    label: "언어",
     button: "회원 가입 하기",
-    langList: [
+  },
+  InputLanguage: {
+    label: "언어",
+    list: [
       { text: "한국어 : Korean", value: "ko-KR" },
       { text: "영어 : English", value: "en-US" },
       { text: "일본어 : Japanese", value: "ja-JP" },
