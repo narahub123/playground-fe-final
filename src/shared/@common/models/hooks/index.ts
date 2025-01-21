@@ -6,6 +6,7 @@ import useValidationChecker from "./useValidationChecker/useValidationChecker";
 import useDeviceInfo from "./useDeviceInfo";
 import useIpInfo from "./useIpInfo";
 import useLocationInfo from "./useLocationInfo";
+import useCreateUserId from "./useCreateUserId/useCreateUserId";
 
 export {
   useLanguageContent,
@@ -16,4 +17,5 @@ export {
   useDeviceInfo,
   useIpInfo,
   useLocationInfo,
+  useCreateUserId,
 };

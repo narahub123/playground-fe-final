@@ -13,6 +13,7 @@ const hooks = {
     error: (childTypeName: string) =>
       `에러: ${childTypeName}는 자식으로 사용할 수 없습니다.`,
   },
+  useCreateUserId: {},
 };
 
 export default hooks;
