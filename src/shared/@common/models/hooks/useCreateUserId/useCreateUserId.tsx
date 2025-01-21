@@ -1,10 +1,5 @@
 import { useLanguageContent } from "@shared/@common/models/hooks";
-import {
-  isAlphabetOrBlank,
-  isHangul,
-  romanizeHangul,
-  splitIntoChars,
-} from "./utils";
+import { isAlphabet, isHangul, romanizeHangul, splitIntoChars } from "./utils";
 
 const useCreateUserId = (text: string) => {
   // 언어 설정
@@ -17,9 +12,9 @@ const useCreateUserId = (text: string) => {
   const splitChars = splitIntoChars(username);
 
   const convertedChars = splitChars.map((char) => {
-    // 영문이나 공백 문자인지 확인
-    if (isAlphabetOrBlank(char)) {
-      // 영문이나 공백 문자인 경우 그대로 반환
+    // 영문인지 확인
+    if (isAlphabet(char)) {
+      // 영문인 경우 그대로 반환
       return char;
       // 한글인지 여부 확인
     } else if (isHangul(char)) {

@@ -1,5 +1,6 @@
 import splitIntoChars from "./splitIntoChars";
-import { isAlphabetOrBlank } from "./alphabet";
+import { isAlphabet } from "./alphabet";
+import { isBlank } from "./blank";
 import { isHangul, romanizeHangul } from "./hangul";
 
-export { splitIntoChars, isAlphabetOrBlank, isHangul, romanizeHangul };
+export { splitIntoChars, isAlphabet, isBlank, isHangul, romanizeHangul };

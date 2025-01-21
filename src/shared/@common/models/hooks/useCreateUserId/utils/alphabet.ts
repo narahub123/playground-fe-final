@@ -1,5 +1,5 @@
-const isAlphabetOrBlank = (char: string) => {
-  return char === " " || /^[a-zA-Z]$/.test(char);
+const isAlphabet = (char: string) => {
+  return /^[a-zA-Z]$/.test(char);
 };
 
-export { isAlphabetOrBlank };
+export { isAlphabet };
