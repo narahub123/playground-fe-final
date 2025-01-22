@@ -8,8 +8,10 @@ import { useAppDispatch } from "@app/store";
 import {
   setBirthInSignup,
   setEmailInSignup,
+  setEmailOauthInSignup,
   setGenderInSignup,
   setPhoneInSignup,
+  setPhoneOauthInSignup,
   setProfileImageInSignup,
   setUsernameInSignup,
 } from "@shared/auth/models/slices/signupSlice";
@@ -51,6 +53,7 @@ const AuthPage = () => {
 
       // 전달된 데이터가 존재할 경우 리덕스 상태 업데이트
       dispatch(setEmailInSignup(email)); // 이메일 저장
+      dispatch(setEmailOauthInSignup(true)); // 이메일이 oauth에서 가져온 것임을 표시
       dispatch(setUsernameInSignup(username)); // 사용자 이름 저장
       dispatch(setProfileImageInSignup(profileImage)); // 프로필 이미지 저장
 
@@ -58,7 +61,10 @@ const AuthPage = () => {
       if (gender) dispatch(setGenderInSignup(gender));
 
       // 전화번호가 있으면 저장
-      if (phone) dispatch(setPhoneInSignup(phone));
+      if (phone) {
+        dispatch(setPhoneInSignup(phone));
+        dispatch(setPhoneOauthInSignup(true)); // 휴대폰이 oauth에서 가져온 것임을 표시
+      }
 
       // 생일이 있으면 날짜 정보를 파싱하여 저장
       if (birth) {
