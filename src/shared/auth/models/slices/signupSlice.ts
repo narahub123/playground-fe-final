@@ -10,7 +10,9 @@ import { LocationType, DeviceInfoType } from "@shared/@common/types";
 export interface SignupState {
   username: string; // 사용자 이름
   phone: string; // 휴대폰
+  phoneOauth: boolean; // 휴대폰 정보를 oauth에서 가져온지 여부
   email: string; // 이메일
+  emailOauth: boolean; // 이메일 정보를 oauth에서 가져온지 여부
   birth: BirthType; // 생년월일
   password: string; // 비밀번호
   userId: string; // 사용자 아이디
@@ -26,7 +28,9 @@ export interface SignupState {
 const initialState: SignupState = {
   username: "",
   phone: "",
+  phoneOauth: false,
   email: "",
+  emailOauth: false,
   birth: {
     year: "",
     month: "",
@@ -67,8 +71,14 @@ const signupSlice = createSlice({
     setPhoneInSignup: (state, action: PayloadAction<string>) => {
       state.phone = action.payload;
     },
+    setPhoneOauthInSignup: (state, action: PayloadAction<boolean>) => {
+      state.phoneOauth = action.payload;
+    },
     setEmailInSignup: (state, action: PayloadAction<string>) => {
       state.email = action.payload;
+    },
+    setEmailOauthInSignup: (state, action: PayloadAction<boolean>) => {
+      state.emailOauth = action.payload;
     },
     setBirthInSignup: (state, action: PayloadAction<BirthType>) => {
       state.birth = action.payload;
@@ -200,7 +210,9 @@ export default signupSlice.reducer;
 export const {
   setUsernameInSignup,
   setPhoneInSignup,
+  setPhoneOauthInSignup,
   setEmailInSignup,
+  setEmailOauthInSignup,
   setBirthInSignup,
   setBirthYearInSignup,
   setBirthMonthInSignup,

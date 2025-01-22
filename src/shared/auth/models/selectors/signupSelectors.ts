@@ -24,6 +24,8 @@ const getUsernameInSignup = (state: RootState) => state.signup.username;
  */
 const getPhoneInSignup = (state: RootState) => state.signup.phone;
 
+const getPhoneOauthInSignup = (state: RootState) => state.signup.phoneOauth;
+
 /**
  * `RootState`에서 `signup` 상태의 `email` 값을 가져오는 selector 함수입니다.
  *
@@ -32,6 +34,7 @@ const getPhoneInSignup = (state: RootState) => state.signup.phone;
  */
 const getEmailInSignup = (state: RootState) => state.signup.email;
 
+const getEmailOauthInSignup = (state: RootState) => state.signup.emailOauth;
 /**
  * `RootState`에서 `signup` 상태의 `birth` 값을 가져오는 selector 함수입니다.
  *
@@ -117,4 +120,6 @@ export {
   getIpInSignup,
   getLocationInSignup,
   getGenderInSignup,
+  getEmailOauthInSignup,
+  getPhoneOauthInSignup,
 };

@@ -14,6 +14,8 @@ import {
   getIpInSignup,
   getLocationInSignup,
   getGenderInSignup,
+  getEmailOauthInSignup,
+  getPhoneOauthInSignup,
 } from "./signupSelectors";
 
 export {
@@ -35,4 +37,6 @@ export {
   getIpInSignup,
   getLocationInSignup,
   getGenderInSignup,
+  getEmailOauthInSignup,
+  getPhoneOauthInSignup,
 };

@@ -1,7 +1,9 @@
 import {
   setUsernameInSignup,
   setPhoneInSignup,
+  setPhoneOauthInSignup,
   setEmailInSignup,
+  setEmailOauthInSignup,
   setBirthInSignup,
   setBirthYearInSignup,
   setBirthMonthInSignup,
@@ -27,7 +29,9 @@ export {
   // signup
   setUsernameInSignup,
   setPhoneInSignup,
+  setPhoneOauthInSignup,
   setEmailInSignup,
+  setEmailOauthInSignup,
   setBirthInSignup,
   setBirthYearInSignup,
   setBirthMonthInSignup,
