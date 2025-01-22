@@ -21,6 +21,13 @@ import {
   setUsername,
 } from "./userSlice";
 
+import {
+  onParallelModalOpen,
+  onParallelModalClose,
+  onErrorOpen,
+  onErrorClose,
+} from "./modalSlice";
+
 export {
   // display
   setLanguage,
@@ -42,4 +49,10 @@ export {
   setLocation,
   setPhone,
   setUsername,
+
+  // modal
+  onParallelModalOpen,
+  onParallelModalClose,
+  onErrorOpen,
+  onErrorClose,
 };

@@ -21,6 +21,13 @@ import {
   getUsername,
 } from "./userSelectors";
 
+import {
+  isSignupModalOpen,
+  isLoginModalOpen,
+  isPasswordModalOpen,
+  isErrorModalOpen,
+} from "./modalSelectors";
+
 export {
   // display
   getDisplay,
@@ -42,4 +49,10 @@ export {
   getLocation,
   getPhone,
   getUsername,
+
+  // modal
+  isSignupModalOpen,
+  isLoginModalOpen,
+  isPasswordModalOpen,
+  isErrorModalOpen,
 };

@@ -7,6 +7,7 @@ import {
   OSType,
   BrowserType,
   LocationType,
+  ParallelModals,
 } from "./slices";
 
 import {
@@ -31,6 +32,7 @@ export type {
   OSType,
   BrowserType,
   LocationType,
+  ParallelModals,
 
   // components
   DropdownItemType, // dropdown item

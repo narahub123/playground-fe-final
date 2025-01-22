@@ -7,6 +7,7 @@ import {
 import {
   displaySlice as display,
   userSlice as user,
+  modalSlice as modal,
 } from "@shared/@common/models/slices";
 
 const store = configureStore({
@@ -15,6 +16,7 @@ const store = configureStore({
     display, // 화면 표시 설정
     signup, // 회원 가입
     user, // 사용자 정보
+    modal, // 모달
   },
 
   // serializableCheck 옵션을 false로 설정하여

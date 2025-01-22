@@ -32,6 +32,8 @@ type LocationType = {
   county: string;
 };
 
+type ParallelModals = "signup" | "login" | "password";
+
 export type {
   BgThemeType,
   ColorThemeType,
@@ -41,4 +43,5 @@ export type {
   OSType,
   BrowserType,
   LocationType,
+  ParallelModals,
 };
