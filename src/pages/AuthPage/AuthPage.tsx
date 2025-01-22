@@ -2,11 +2,9 @@ import styles from "./AuthPage.module.css";
 import { Text } from "@shared/@common/ui/components";
 import { AuthButton } from "@shared/auth/ui/components";
 import {
-  useDisclosure,
   useLanguageContent,
 } from "@shared/@common/models/hooks";
 import { AuthButtonItemType, OauthType } from "@shared/auth/types";
-import { AuthModal } from "@features/auth-email/ui/components";
 import { generateSocialAuthUrl } from "@features/auth-social/utils";
 import { useAppDispatch } from "@app/store";
 import {
@@ -18,10 +16,18 @@ import {
   setUsernameInSignup,
 } from "@shared/auth/models/slices/signupSlice";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { onParallelModalOpen } from "@shared/@common/models/slices/modalSlice";
 
 const AuthPage = () => {
   const dispatch = useAppDispatch();
-  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const navigate = useNavigate();
+
+  const onOpen = () => {
+    dispatch(onParallelModalOpen("signup"));
+    navigate("i/flow/signup");
+  };
 
   useEffect(() => {
     // 부모 페이지에서 전달된 메시지를 처리하는 함수
@@ -89,7 +95,6 @@ const AuthPage = () => {
 
   return (
     <div className={styles[`auth-page`]}>
-      <AuthModal isOpen={isOpen} onClose={onClose} />
       <header className={styles.header}>
         <Text type="heading1">{title}</Text>
       </header>
