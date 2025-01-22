@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { getLogin } from "@shared/auth/models/selectors";
 import { PagesLayout } from "@shared/pages/layouts";
-
 import {
   getBgTheme,
   getColorTheme,
@@ -11,7 +10,6 @@ import {
 } from "@shared/@common/models/selectors";
 import { TextHeader } from "@test/ui/components";
 import { AuthLayout } from "@shared/auth/layouts";
-import { ModalLayout } from "@shared/@common/layouts";
 
 const PlayGround = () => {
   // 로그인 여부
@@ -66,7 +64,6 @@ const PlayGround = () => {
   return (
     <div className={styles.playground}>
       <TextHeader />
-      <ModalLayout />
       {login ? <PagesLayout /> : <AuthLayout />}
     </div>
   );

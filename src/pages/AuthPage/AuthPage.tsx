@@ -1,9 +1,7 @@
 import styles from "./AuthPage.module.css";
 import { Text } from "@shared/@common/ui/components";
 import { AuthButton } from "@shared/auth/ui/components";
-import {
-  useLanguageContent,
-} from "@shared/@common/models/hooks";
+import { useLanguageContent } from "@shared/@common/models/hooks";
 import { AuthButtonItemType, OauthType } from "@shared/auth/types";
 import { generateSocialAuthUrl } from "@features/auth-social/utils";
 import { useAppDispatch } from "@app/store";
@@ -18,6 +16,7 @@ import {
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { onParallelModalOpen } from "@shared/@common/models/slices/modalSlice";
+import { ModalLayout } from "@shared/@common/layouts";
 
 const AuthPage = () => {
   const dispatch = useAppDispatch();
@@ -95,6 +94,7 @@ const AuthPage = () => {
 
   return (
     <div className={styles[`auth-page`]}>
+      <ModalLayout />
       <header className={styles.header}>
         <Text type="heading1">{title}</Text>
       </header>

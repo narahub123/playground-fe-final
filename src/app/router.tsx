@@ -9,18 +9,20 @@ const router = createBrowserRouter([
     element: <PlayGround />,
     children: [
       {
-        index: true,
+        path: "/",
         element: <AuthPage />,
-      },
-      {
-        path: "i/flow",
-        element: <ModalLayout />,
         children: [
           {
-            path: "signup",
-            element: <AuthModal />,
+            path: "i/flow",
+            element: <ModalLayout />,
+            children: [
+              {
+                path: "signup",
+                element: <AuthModal />,
+              },
+            ], // 병렬 라우트를 적용할 모달
           },
-        ], // 병렬 라우트를 적용할 모달
+        ],
       },
     ],
   },
