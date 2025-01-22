@@ -19,37 +19,31 @@ import {
 } from "@shared/auth/models/slices/signupSlice";
 import { useSelector } from "react-redux";
 import { getUserInSignup } from "@shared/auth/models/selectors";
-
-/**
- * AuthModalPros는 AuthModal 컴포넌트에 전달되는 속성들을 정의함
- */
-interface AuthModalProps {
-  /**
-   * 모달이 열려 있는지 여부를 결정하는 상태입니다. `true`이면 모달이 열리고, `false`이면 모달이 닫힙니다.
-   * @type {boolean}
-   */
-  isOpen: boolean;
-  /**
-   * 모달을 닫는 함수입니다. 모달이 닫힐 때 호출됩니다.
-   * @type {function}
-   */
-  onClose?: () => void;
-  /**
-   * 현재 페이지를 나타내는 값입니다.
-   * @type {number}
-   */
-}
+import { useAppDispatch } from "@app/store";
+import { useNavigate } from "react-router-dom";
+import { isSignupModalOpen } from "@shared/@common/models/selectors";
+import { onParallelModalClose } from "@shared/@common/models/slices/modalSlice";
 
 /**
  * AuthModal 컴포넌트
  * 사용자 인증과 관련된 모달 컴포넌트로, 여러 페이지를 관리할 수 있습니다.
  *
- * @param {AuthModalProps} props - AuthModal 컴포넌트에 전달되는 속성들.
  * @returns {JSX.Element} AuthModal 컴포넌트 렌더링 결과.
  */
-const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
+const AuthModal = () => {
+  const dispatch = useAppDispatch();
+
+  const navigate = useNavigate();
+
   const user = useSelector(getUserInSignup);
   console.log(user);
+
+  const isOpen = useSelector(isSignupModalOpen);
+
+  const onClose = () => {
+    dispatch(onParallelModalClose("signup"));
+    navigate("/");
+  };
 
   const [curPage, setCurPage] = useState(0);
   // 유효성 상태를 관리하는 상태 훅 정의
