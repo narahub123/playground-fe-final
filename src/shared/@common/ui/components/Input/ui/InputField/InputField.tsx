@@ -336,7 +336,6 @@ const InputField = ({ className }: InputFieldProps) => {
       aria-invalid={!isValid} // 유효성 실패 여부
       aria-describedby={list ? undefined : "error-message"} // 에러 메시지를 포함한 추가적인 정보와 연결
       readOnly={list && list.length > 0 ? true : undefined}
-      tabIndex={list ? -1 : 0}
     />
   );
 };

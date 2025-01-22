@@ -266,7 +266,6 @@ const InputMain = ({ children, className }: InputMainProps) => {
     <label
       className={classNames}
       htmlFor={field}
-      tabIndex={list && !disabled ? 0 : -1} // disabled 모드가 아니고 드롭다운 사용 하는 경우에는 탭 이동 가능
       // 마우스다운 이벤트: onFocus와 onBlur와 사용할 때 이벤트 순서로 인한 충돌을 피하기 위해
       onMouseDown={disabled ? undefined : handleMouseDown}
       // 포커스
