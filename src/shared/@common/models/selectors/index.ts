@@ -22,6 +22,7 @@ import {
 } from "./userSelectors";
 
 import {
+  getParallelModals,
   isSignupModalOpen,
   isLoginModalOpen,
   isPasswordModalOpen,
@@ -51,6 +52,7 @@ export {
   getUsername,
 
   // modal
+  getParallelModals,
   isSignupModalOpen,
   isLoginModalOpen,
   isPasswordModalOpen,

@@ -14,20 +14,29 @@ import {
   setUsernameInSignup,
 } from "@shared/auth/models/slices/signupSlice";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { onParallelModalOpen } from "@shared/@common/models/slices/modalSlice";
 import { ModalLayout } from "@shared/@common/layouts";
+import { useSelector } from "react-redux";
+import { getParallelModals } from "@shared/@common/models/selectors";
+import { ParallelModals } from "@shared/@common/types";
 
 const AuthPage = () => {
   const dispatch = useAppDispatch();
-
   const navigate = useNavigate();
 
-  const onOpen = () => {
-    dispatch(onParallelModalOpen("signup"));
-    navigate("i/flow/signup");
+  // 모달창 상태 정보
+  const { signup, login } = useSelector(getParallelModals);
+
+  // 경로 정보 취득
+  const { pathname } = useLocation();
+
+  const onOpen = (type: ParallelModals) => {
+    dispatch(onParallelModalOpen(type));
+    navigate(`i/flow/${type}`);
   };
 
+  // oauth 회원 가입 처리
   useEffect(() => {
     // 부모 페이지에서 전달된 메시지를 처리하는 함수
     const handleMessage = (e: MessageEvent) => {
@@ -68,7 +77,7 @@ const AuthPage = () => {
       }
 
       // 유효한 데이터가 확인되면 모달을 열기 위해 onOpen 호출
-      onOpen();
+      onOpen("signup");
     };
 
     // 부모 페이지에서 메시지가 오면 handleMessage를 실행
@@ -79,6 +88,15 @@ const AuthPage = () => {
       window.removeEventListener("message", handleMessage);
     };
   }, []); // 의존성 배열을 빈 배열로 설정하여 컴포넌트가 처음 렌더링될 때만 실행
+
+  // 새로고침 시 모달창 유지
+  useEffect(() => {
+    if (pathname.includes("i/flow/signup") && !signup) {
+      onOpen("signup");
+    } else if (pathname.includes("i/flow/login") && !login) {
+      onOpen("login");
+    }
+  }, [pathname]);
 
   // 언어 설정
   const { title, heading1, signupList, heading2, loginList } =
@@ -107,7 +125,9 @@ const AuthPage = () => {
                 key={idx}
                 item={item}
                 handleClick={
-                  item.type ? () => handleOauth(item.type as OauthType) : onOpen
+                  item.type
+                    ? () => handleOauth(item.type as OauthType)
+                    : () => onOpen("signup")
                 }
               />
             ))}
@@ -117,7 +137,11 @@ const AuthPage = () => {
           <Text type="heading3">{heading2}</Text>
           <ul className={styles.list}>
             {(loginList as AuthButtonItemType[]).map((item, idx) => (
-              <AuthButton key={idx} item={item} handleClick={onOpen} />
+              <AuthButton
+                key={idx}
+                item={item}
+                handleClick={() => onOpen("login")}
+              />
             ))}
           </ul>
         </div>
