@@ -1,10 +1,14 @@
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import Input from "../Input/ui";
 import { useSelector } from "react-redux";
-import { getEmailInSignup } from "@shared/auth/models/selectors";
+import {
+  getEmailInSignup,
+  getEmailOauthInSignup,
+} from "@shared/auth/models/selectors";
 import { getEmail } from "@shared/@common/models/selectors";
 import { setEmailInSignup } from "@shared/auth/models/slices/signupSlice";
 import { setEmail } from "@shared/@common/models/slices/userSlice";
+import { useMemo } from "react";
 
 interface InputEmailProps {
   className?: string;
@@ -35,6 +39,10 @@ const InputEmail = ({
 }: InputEmailProps) => {
   const selector = isSignup ? getEmailInSignup : getEmail;
 
+  const oauth = useSelector(getEmailOauthInSignup);
+
+  const isFromOauth = useMemo(() => isSignup && oauth, [isSignup, oauth]);
+
   const inputValue = useSelector(selector);
 
   const setInputValue = isSignup ? setEmailInSignup : setEmail;
@@ -52,7 +60,7 @@ const InputEmail = ({
       isValid={isValid}
       setIsValid={setIsValid}
       className={className}
-      disabled={disabled}
+      disabled={disabled || isFromOauth}
     >
       <Input.Main>
         <Input.Top>
