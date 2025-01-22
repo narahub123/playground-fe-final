@@ -23,5 +23,6 @@ html {
 
 /* 스크롤을 생성해야 하는 요소에 사용 */
 .scroll {
-  overflow: auto; /* 높이가 줄어들면 내부 스크롤 생성 */
+  overflow-y: auto; /* 높이가 줄어들면 내부 스크롤 생성 */
+  overflow-x: hidden;
 }
