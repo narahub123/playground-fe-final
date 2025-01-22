@@ -1,4 +1,5 @@
 import { AuthPage, OauthCallback, PlayGround } from "@pages";
+import { ModalLayout } from "@shared/@common/layouts";
 import { createBrowserRouter } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -9,6 +10,11 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <AuthPage />,
+      },
+      {
+        path: "i/flow",
+        element: <ModalLayout />,
+        children: [], // 병렬 라우트를 적용할 모달
       },
     ],
   },
