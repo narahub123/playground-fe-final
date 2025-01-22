@@ -92,7 +92,10 @@ const ModalPagination = ({ className }: ModalPaginationProps) => {
                 key={page}
                 className={joinClassNames([
                   styles[`modal__pagination__item`],
-                  curPage !== undefined && curPage >= page
+                  // 이동 가능한 페이지 표시
+                  movableCond ? styles[`modal__pagination__item--movable`] : "",
+                  // 현재 페이지 표시
+                  curPage === page
                     ? styles[`modal__pagination__item--selected`]
                     : "",
                 ])}

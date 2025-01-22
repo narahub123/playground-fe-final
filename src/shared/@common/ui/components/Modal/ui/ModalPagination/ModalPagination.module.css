@@ -14,9 +14,26 @@
   border-radius: 50%;
   width: 5px;
   height: 5px;
+
+  transition: width 0.2s ease, height 0.2s ease;
+}
+
+.modal__pagination__item--movable {
+  background-color: var(--colorTheme-color-primary);
+  border: var(--colorTheme-border-primary);
+}
+
+.modal__pagination__item--movable:hover {
+  outline: 1px solid black;
+}
+
+.modal__pagination__item--movable:focus-visible {
+  outline: 1px solid black;
 }
 
 .modal__pagination__item--selected {
-  background-color: var(--colorTheme-color-primary);
-  border: var(--colorTheme-border-primary);
+  width: 7px;
+  height: 7px;
+
+  transition: width 0.2s ease, height 0.2s ease;
 }
