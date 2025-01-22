@@ -1,10 +1,14 @@
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Input } from "@shared/@common/ui/components";
 import { getPhone } from "@shared/@common/models/selectors";
-import { getPhoneInSignup } from "@shared/auth/models/selectors";
+import {
+  getPhoneInSignup,
+  getPhoneOauthInSignup,
+} from "@shared/auth/models/selectors";
 import { useSelector } from "react-redux";
 import { setPhone } from "@shared/@common/models/slices/userSlice";
 import { setPhoneInSignup } from "@shared/auth/models/slices/signupSlice";
+import { useMemo } from "react";
 
 interface InputPhoneProps {
   className?: string;
@@ -29,11 +33,15 @@ interface InputPhoneProps {
 const InputPhone = ({
   className,
   disabled = false,
-  isSignup,
+  isSignup = false,
   isValid,
   setIsValid,
 }: InputPhoneProps) => {
   const selector = isSignup ? getPhoneInSignup : getPhone;
+
+  const oauth = useSelector(getPhoneOauthInSignup);
+
+  const isFromOauth = useMemo(() => isSignup && oauth, [isSignup, oauth]);
 
   const inputValue = useSelector(selector);
 
@@ -51,7 +59,7 @@ const InputPhone = ({
       isValid={isValid}
       setIsValid={setIsValid}
       className={className}
-      disabled={disabled}
+      disabled={disabled || isFromOauth}
     >
       <Input.Main>
         <Input.Top>
