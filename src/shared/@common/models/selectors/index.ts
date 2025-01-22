@@ -23,10 +23,10 @@ import {
 
 import {
   getParallelModals,
-  isSignupModalOpen,
-  isLoginModalOpen,
-  isPasswordModalOpen,
-  isErrorModalOpen,
+  getSignupModal,
+  getLoginModal,
+  getPasswordModal,
+  getErrorModal,
 } from "./modalSelectors";
 
 export {
@@ -53,8 +53,8 @@ export {
 
   // modal
   getParallelModals,
-  isSignupModalOpen,
-  isLoginModalOpen,
-  isPasswordModalOpen,
-  isErrorModalOpen,
+  getSignupModal,
+  getLoginModal,
+  getPasswordModal,
+  getErrorModal,
 };

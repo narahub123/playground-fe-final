@@ -1,15 +1,15 @@
 import { RootState } from "@app/store";
 
 const getParallelModals = (state: RootState) => state.modal.parallel;
-const isSignupModalOpen = (state: RootState) => state.modal.parallel.signup;
-const isLoginModalOpen = (state: RootState) => state.modal.parallel.login;
-const isPasswordModalOpen = (state: RootState) => state.modal.parallel.password;
-const isErrorModalOpen = (state: RootState) => state.modal.standalone.error;
+const getSignupModal = (state: RootState) => state.modal.parallel.signup;
+const getLoginModal = (state: RootState) => state.modal.parallel.login;
+const getPasswordModal = (state: RootState) => state.modal.parallel.password;
+const getErrorModal = (state: RootState) => state.modal.standalone.error;
 
 export {
   getParallelModals,
-  isSignupModalOpen,
-  isLoginModalOpen,
-  isPasswordModalOpen,
-  isErrorModalOpen,
+  getSignupModal,
+  getLoginModal,
+  getPasswordModal,
+  getErrorModal,
 };

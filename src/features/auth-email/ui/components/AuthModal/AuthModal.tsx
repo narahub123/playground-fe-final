@@ -21,7 +21,7 @@ import { useSelector } from "react-redux";
 import { getUserInSignup } from "@shared/auth/models/selectors";
 import { useAppDispatch } from "@app/store";
 import { useNavigate } from "react-router-dom";
-import { isSignupModalOpen } from "@shared/@common/models/selectors";
+import { getSignupModal } from "@shared/@common/models/selectors";
 import { onParallelModalClose } from "@shared/@common/models/slices/modalSlice";
 
 /**
@@ -38,7 +38,7 @@ const AuthModal = () => {
   const user = useSelector(getUserInSignup);
   console.log(user);
 
-  const isOpen = useSelector(isSignupModalOpen);
+  const isOpen = useSelector(getSignupModal);
 
   const onClose = () => {
     dispatch(onParallelModalClose("signup"));
