@@ -2,6 +2,7 @@ import { ReactNode, useState } from "react";
 import ToastContext from "./ToastContext";
 import { ToastOptions } from "../types.ts";
 import Portal from "../../Portal/Portal.tsx";
+import { Toast } from "../ui/index.ts";
 
 interface ToastContextProviderProps {
   children: ReactNode;
@@ -23,7 +24,7 @@ const ToastContextProvider = ({ children }: ToastContextProviderProps) => {
       {children}
       <Portal id="toasts">
         {toasts.map((toast) => (
-          <div key={toast.id}></div>
+          <Toast key={toast.id} props={toast} />
         ))}
       </Portal>
     </ToastContext.Provider>

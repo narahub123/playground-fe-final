@@ -1,0 +1,40 @@
+.toast {
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #fff;
+  padding: 0.5rem;
+}
+
+.toast__icon__container {
+  position: relative;
+}
+
+.toast__icon {
+  opacity: 1;
+}
+
+.toast__text__container {
+  flex: 1;
+  background-color: #fff;
+}
+
+.toast__title {
+  opacity: 1;
+}
+
+.toast__description {
+  opacity: 1;
+}
+
+.toast__button__container {
+  all: unset;
+}
+
+.toast__button {
+  opacity: 1;
+}
