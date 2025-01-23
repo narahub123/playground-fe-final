@@ -14,8 +14,10 @@ const ToastContextProvider = ({ children }: ToastContextProviderProps) => {
     setToast((prev) => [...prev, { id: Date.now(), ...toast }]);
   };
 
-  const removeToast = (id: number) => {
-    setToast((prev) => prev.filter((toast) => toast.id !== id));
+  const removeToast = (id: number, duration?: number) => {
+    setTimeout(() => {
+      setToast((prev) => prev.filter((toast) => toast.id !== id));
+    }, duration || 5000);
   };
 
   return (

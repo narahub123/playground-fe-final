@@ -19,7 +19,7 @@ interface ToastOptions {
 
 type ToastContextType = {
   addToast: (toast: ToastOptions) => void;
-  removeToast: (id: number) => void;
+  removeToast: (id: number, duration?: number) => void;
 };
 
 export type { ToastType, ToastOptions, ToastContextType };

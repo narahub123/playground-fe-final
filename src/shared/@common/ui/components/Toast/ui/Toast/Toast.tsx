@@ -1,9 +1,11 @@
 import styles from "./Toast.module.css";
+import { useEffect } from "react";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
-import { ToastOptions } from "../../types/index.ts";
+import { ToastOptions } from "@shared/@common/ui/components/Toast/types";
 import { Icon } from "@shared/@common/ui/icons";
 import { Text, Button, Spinner } from "@shared/@common/ui/components";
+import { useToastContext } from "@shared/@common/ui/components/Toast/hooks";
 
 interface ToastProps {
   props: ToastOptions;
@@ -11,6 +13,7 @@ interface ToastProps {
 
 const Toast = ({ props }: ToastProps) => {
   const {
+    id,
     title,
     description,
     type = "info",
@@ -21,6 +24,15 @@ const Toast = ({ props }: ToastProps) => {
     overlap,
     offset,
   } = props;
+
+  const toastContext = useToastContext();
+
+  // duration 설정
+  useEffect(() => {
+    if (!id) return;
+    toastContext.removeToast(id, duration);
+  }, []);
+
   // 언어 설정
   const {} = useLanguageContent(["components", "Toast"]);
 
