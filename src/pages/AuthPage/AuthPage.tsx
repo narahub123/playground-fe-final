@@ -22,6 +22,7 @@ import { ModalLayout } from "@shared/@common/layouts";
 import { useSelector } from "react-redux";
 import { getParallelModals } from "@shared/@common/models/selectors";
 import { ParallelModals } from "@shared/@common/types";
+import { useToast } from "@shared/@common/ui/components/Toast/hooks";
 
 const AuthPage = () => {
   const dispatch = useAppDispatch();
@@ -108,6 +109,8 @@ const AuthPage = () => {
   const { title, heading1, signupList, heading2, loginList } =
     useLanguageContent(["pages", "AuthPage"]);
 
+  const toast = useToast();
+
   const handleOauth = (type: OauthType) => {
     const url = generateSocialAuthUrl(type);
 
@@ -133,7 +136,21 @@ const AuthPage = () => {
                 handleClick={
                   item.type
                     ? () => handleOauth(item.type as OauthType)
-                    : () => onOpen("signup")
+                    : () => {
+                        onOpen("signup");
+                        toast({
+                          title: "타이틀",
+                          description: "연습",
+                          action: {
+                            label: "에러",
+                            onClick: () => {
+                              console.log("하이");
+                            },
+                          },
+                          type: "warning",
+                          duration: 1000,
+                        });
+                      }
                 }
               />
             ))}

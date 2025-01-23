@@ -1,7 +1,7 @@
 import styles from "./Toast.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
-import { ToastOptions } from "../../types.ts";
+import { ToastOptions } from "../../types/index.ts";
 import { Icon } from "@shared/@common/ui/icons";
 import { Text, Button, Spinner } from "@shared/@common/ui/components";
 

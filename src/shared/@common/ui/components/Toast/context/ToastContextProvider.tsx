@@ -1,8 +1,7 @@
 import { ReactNode, useState } from "react";
-import ToastContext from "./ToastContext";
-import { ToastOptions } from "../types.ts";
-import Portal from "../../Portal/Portal.tsx";
-import { Toast } from "../ui/index.ts";
+import { ToastContext } from "@shared/@common/ui/components/Toast/context";
+import { ToastOptions } from "@shared/@common/ui/components/Toast/types";
+import { Toast, Portal } from "@shared/@common/ui/components";
 
 interface ToastContextProviderProps {
   children: ReactNode;

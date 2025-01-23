@@ -272,6 +272,7 @@ const components = {
       { text: "중국어 - 번체 : Chinese - Traditional", value: "zh-TW" },
     ],
   },
+  Toast: {},
 };
 
 export default components;

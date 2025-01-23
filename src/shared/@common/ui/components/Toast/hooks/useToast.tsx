@@ -1,9 +1,8 @@
-import { useContext } from "react";
-import { ToastOptions } from "../types.ts";
-import ToastContext from "../context/ToastContext.tsx";
+import { ToastOptions } from "@shared/@common/ui/components/Toast/types";
+import { useToastContext } from "@shared/@common/ui/components/Toast/hooks";
 
 const useToast = () => {
-  const toastContext = useContext(ToastContext);
+  const toastContext = useToastContext();
 
   const toast = ({
     title,

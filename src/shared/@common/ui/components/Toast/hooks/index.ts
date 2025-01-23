@@ -1,3 +1,4 @@
 import useToast from "./useToast";
+import useToastContext from "./useToastContext";
 
-export { useToast };
+export { useToast, useToastContext };
