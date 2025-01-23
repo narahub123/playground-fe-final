@@ -19,7 +19,6 @@ const Toast = ({ props }: ToastProps) => {
     type = "info",
     action,
     duration,
-    max,
     placement,
     overlap,
     offset,
