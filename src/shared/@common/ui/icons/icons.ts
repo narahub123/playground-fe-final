@@ -6,6 +6,8 @@ import {
   LuChevronsRight as closePost,
   LuArrowRight as arrowRight,
   LuArrowLeft as arrowLeft,
+  LuCircleCheck as success,
+  LuCircleAlert as warning,
 } from "react-icons/lu";
 import {
   RiEyeLine as eye,
@@ -39,6 +41,8 @@ const Icons = {
   rectCheckboxFill,
   roundCheckboxBlank,
   roundCheckboxFill,
+  success,
+  warning,
 };
 
 export default Icons;

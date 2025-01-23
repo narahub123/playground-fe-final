@@ -3,7 +3,7 @@ import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
 import { ToastOptions } from "../../types.ts";
 import { Icon } from "@shared/@common/ui/icons";
-import { Text, Button } from "@shared/@common/ui/components";
+import { Text, Button, Spinner } from "@shared/@common/ui/components";
 
 interface ToastProps {
   props: ToastOptions;
@@ -13,7 +13,7 @@ const Toast = ({ props }: ToastProps) => {
   const {
     title,
     description,
-    type,
+    type = "info",
     action,
     duration,
     max,
@@ -24,12 +24,23 @@ const Toast = ({ props }: ToastProps) => {
   // 언어 설정
   const {} = useLanguageContent(["components", "Toast"]);
 
-  const classNames = joinClassNames([styles["toast"]]);
+  const classNames = joinClassNames([
+    styles["toast"],
+    styles[`toast--${type}`],
+  ]);
+
+  // 아이콘 이름
+  const iconName = type === "success" ? "success" : "warning";
 
   return (
     <div className={classNames}>
       <div className={styles[`toast__icon__container`]}>
-        <Icon iconName="close" className={styles[`toast__icon`]} />
+        {/* type이 success, error, warning 경우에 아이콘 표시 */}
+        {(type === "success" || type === "error" || type === "warning") && (
+          <Icon iconName={iconName} className={styles[`toast__icon`]} />
+        )}
+        {/* type이 loading인 경우 spinner 표시 */}
+        {type === "loading" && <Spinner />}
       </div>
       <div className={styles[`toast__text__container`]}>
         {title && (

@@ -2,12 +2,37 @@
   position: absolute;
   z-index: 5;
   top: 0;
-  width: 100%;
+  width: 95%;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background-color: #fff;
   padding: 0.5rem;
+  border-radius: 0.25rem;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.11), 0 2px 2px rgba(0, 0, 0, 0.11),
+    0 4px 4px rgba(0, 0, 0, 0.11), 0 8px 8px rgba(0, 0, 0, 0.11),
+    0 16px 16px rgba(0, 0, 0, 0.11), 0 32px 32px rgba(0, 0, 0, 0.11);
+}
+
+/* 타입별 스타일 */
+.toast--success {
+  background-color: green;
+  color: #fff;
+}
+.toast--error {
+  background-color: red;
+  color: #fff;
+}
+.toast--warning {
+  background-color: orangered;
+  color: #fff;
+}
+.toast--info {
+  background-color: #fff;
+  color: #000;
+}
+.toast--loading {
+  background-color: #fff;
+  color: #000;
 }
 
 .toast__icon__container {
@@ -15,12 +40,14 @@
 }
 
 .toast__icon {
+  all: unset;
   opacity: 1;
+  background-color: inherit;
 }
 
 .toast__text__container {
   flex: 1;
-  background-color: #fff;
+  background-color: inherit;
 }
 
 .toast__title {
