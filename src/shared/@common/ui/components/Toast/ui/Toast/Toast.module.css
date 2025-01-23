@@ -26,6 +26,11 @@
   background-color: orangered;
   color: #fff;
 }
+
+.toast--warning:hover {
+  background-color: hsl(16, 100%, 50%);
+}
+
 .toast--info {
   background-color: #fff;
   color: #000;
@@ -59,9 +64,20 @@
 }
 
 .toast__button__container {
-  all: unset;
+  margin-right: 0.625rem;
 }
 
 .toast__button {
-  opacity: 1;
+  padding: 0.4rem;
+  border-radius: 0.2rem;
+}
+
+/* warning인 경우 버튼 색상*/
+.toast__button--warning {
+  background-color: orangered;
+  color: #fff;
+}
+
+.toast__button--warning:hover {
+  background-color: hsl(16, 100%, 56%);
 }

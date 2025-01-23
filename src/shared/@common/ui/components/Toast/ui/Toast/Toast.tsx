@@ -55,7 +55,20 @@ const Toast = ({ props }: ToastProps) => {
           <Button
             onClick={action.onClick}
             variant="outline"
-            className={styles[`toast__button`]}
+            className={joinClassNames([
+              styles[`toast__button`],
+              type === "warning" ? styles[`toast__button--warning`] : "",
+            ])}
+            isValid={true}
+            bgColor={
+              type === "success"
+                ? "green"
+                : type === "error"
+                ? "red"
+                : type === "info" || type === "loading"
+                ? "white"
+                : undefined
+            }
           >
             {action.label}
           </Button>
