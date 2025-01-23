@@ -1,5 +1,5 @@
 import styles from "./AuthPage.module.css";
-import { Text } from "@shared/@common/ui/components";
+import { Button, Text } from "@shared/@common/ui/components";
 import { AuthButton } from "@shared/auth/ui/components";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { AuthButtonItemType, OauthType } from "@shared/auth/types";
@@ -128,6 +128,25 @@ const AuthPage = () => {
       <main className={styles.main}>
         <div className={styles.section}>
           <Text type="heading3">{heading1}</Text>
+          <Button
+            onClick={() =>
+              toast({
+                title: "타이틀",
+                description: "연습",
+                action: {
+                  label: "에러",
+                  onClick: () => {
+                    console.log("하이");
+                  },
+                },
+                type: "warning",
+                // duration: 1000,
+              })
+            }
+            isValid={true}
+          >
+            버튼
+          </Button>
           <ul className={styles.list}>
             {(signupList as AuthButtonItemType[]).map((item, idx) => (
               <AuthButton
@@ -136,21 +155,7 @@ const AuthPage = () => {
                 handleClick={
                   item.type
                     ? () => handleOauth(item.type as OauthType)
-                    : () => {
-                        onOpen("signup");
-                        toast({
-                          title: "타이틀",
-                          description: "연습",
-                          action: {
-                            label: "에러",
-                            onClick: () => {
-                              console.log("하이");
-                            },
-                          },
-                          type: "warning",
-                          duration: 1000,
-                        });
-                      }
+                    : () => onOpen("signup")
                 }
               />
             ))}

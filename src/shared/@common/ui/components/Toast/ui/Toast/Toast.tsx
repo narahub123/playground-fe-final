@@ -45,7 +45,7 @@ const Toast = ({ props }: ToastProps) => {
   const iconName = type === "success" ? "success" : "warning";
 
   return (
-    <div className={classNames}>
+    <li className={classNames}>
       <div className={styles[`toast__icon__container`]}>
         {/* type이 success, error, warning 경우에 아이콘 표시 */}
         {(type === "success" || type === "error" || type === "warning") && (
@@ -86,7 +86,7 @@ const Toast = ({ props }: ToastProps) => {
           </Button>
         </div>
       )}
-    </div>
+    </li>
   );
 };
 
