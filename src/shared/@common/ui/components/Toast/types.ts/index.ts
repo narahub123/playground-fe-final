@@ -1,8 +1,8 @@
 type ToastType = "success" | "error" | "warning" | "info" | "loading";
 
 interface ToastOptions {
-  id: number; // key 값
   description: string; // 토스트 메시지의 본문 내용 (필수 값)
+  id?: number; // key 값
   title?: string; // 토스트 메시지의 제목 (선택 값)
   type?: ToastType; // 토스트의 유형 (예: "success", "error", "warning", "info", "loading") - 선택 값
   action?: {
@@ -17,4 +17,9 @@ interface ToastOptions {
   offset?: string; // 토스트와 화면 경계 또는 다른 토스트 간의 간격 (선택 값)
 }
 
-export type { ToastType, ToastOptions };
+type ToastContextType = {
+  addToast: (toast: ToastOptions) => void;
+  removeToast: (id: number) => void;
+};
+
+export type { ToastType, ToastOptions, ToastContextType };

@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import { ToastOptions } from "../types.ts";
+import ToastContext from "../context/ToastContext.tsx";
 
 const useToast = () => {
+  const toastContext = useContext(ToastContext);
+
   const toast = ({
     title,
     description,
@@ -12,7 +16,7 @@ const useToast = () => {
     overlap,
     offset,
   }: ToastOptions) => {
-    console.log(
+    toastContext?.addToast({
       title,
       description,
       type,
@@ -21,8 +25,8 @@ const useToast = () => {
       max,
       placement,
       overlap,
-      offset
-    );
+      offset,
+    });
   };
 
   return toast;
