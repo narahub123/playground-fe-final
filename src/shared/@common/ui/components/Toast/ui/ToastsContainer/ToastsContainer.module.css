@@ -1,22 +1,29 @@
 .toasts__container {
-  position: absolute;
+  position: fixed;
   z-index: 5;
-  top: 0;
   width: 100%;
   display: flex;
   justify-content: center;
 }
 
 .toasts__wrapper {
+  position: relative;
   width: 95%;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
 }
 
-.toast__removed {
+.toast__removed--top {
   animation-name: fade-out;
   animation-duration: 0.3s;
+  --fade-direction: 100%;
+}
+
+.toast__removed--bottom {
+  animation-name: fade-out;
+  animation-duration: 0.3s;
+  --fade-direction: -100%;
 }
 
 @keyframes fade-out {
@@ -25,7 +32,7 @@
     opacity: 1;
   }
   to {
-    transform: translateY(100%);
+    transform: translateY(var(--fade-direction));
     opacity: 0;
   }
 }

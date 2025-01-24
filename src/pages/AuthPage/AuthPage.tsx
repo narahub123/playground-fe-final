@@ -140,8 +140,9 @@ const AuthPage = () => {
                   },
                 },
                 type: "warning",
-                // duration: 1000,
+                duration: 1000,
                 max: 3,
+                placement: "top-start",
               })
             }
             isValid={true}

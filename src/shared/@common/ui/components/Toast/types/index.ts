@@ -1,5 +1,13 @@
 type ToastType = "success" | "error" | "warning" | "info" | "loading";
 
+type ToastPlacement =
+  | "top"
+  | "top-start"
+  | "top-end"
+  | "bottom"
+  | "bottom-start"
+  | "bottom-end";
+
 interface ToastOptions {
   description: string; // 토스트 메시지의 본문 내용 (필수 값)
   id?: number; // key 값
@@ -12,7 +20,7 @@ interface ToastOptions {
   };
   duration?: number; // 토스트가 화면에 표시되는 시간(밀리초 단위) (선택 값, 기본값은 구현체에서 정의)
   max?: number; // 화면에 표시될 수 있는 최대 토스트 개수 (선택 값)
-  placement?: string; // 토스트가 화면에 표시될 위치 (예: "top-right", "bottom-left") (선택 값)
+  placement?: ToastPlacement; // 토스트가 화면에 표시될 위치 (예: "top-right", "bottom-left") (선택 값)
   overlap?: boolean; // 토스트가 서로 겹쳐서 표시될 수 있는지 여부 (선택 값, 기본값은 `false`)
   offset?: string; // 토스트와 화면 경계 또는 다른 토스트 간의 간격 (선택 값)
 }

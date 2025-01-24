@@ -34,20 +34,35 @@ const Toast = ({ props, index, className }: ToastProps) => {
     toastContext.removeToast(id, duration);
   }, []);
 
+  // 모션 방향 지정
+  const direction = placement?.includes("bottom") ? "bottom" : "top";
+
   // 언어 설정
   const {} = useLanguageContent(["components", "Toast"]);
 
   const classNames = joinClassNames([
     styles["toast"],
     styles[`toast--${type}`],
+    styles[`toast--${direction}`],
     className,
   ]);
 
   // 아이콘 이름
   const iconName = type === "success" ? "success" : "warning";
 
+  const top =
+    !placement || placement?.includes("top") ? index * 76 + "px" : undefined;
+
+  const bottom = placement?.includes("bottom") ? index * 76 + "px" : undefined;
+
   return (
-    <li className={classNames} style={{ top: `${index * 76}px` }}>
+    <li
+      className={classNames}
+      style={{
+        top,
+        bottom,
+      }}
+    >
       <div className={styles[`toast__icon__container`]}>
         {/* type이 success, error, warning 경우에 아이콘 표시 */}
         {(type === "success" || type === "error" || type === "warning") && (

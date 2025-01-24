@@ -12,9 +12,24 @@ const ToastsContainer = ({ className }: ToastsContainerProps) => {
 
   const classNames = joinClassNames([styles["toasts__container"], className]);
 
+  const placement = toasts[0]?.placement || "";
+
+  const top = !placement || placement?.includes("top") ? "0px" : undefined;
+
+  const bottom = placement?.includes("bottom") ? "0px" : undefined;
+
+  const left = placement?.includes("start") ? "0px" : undefined;
+
+  const right = placement?.includes("end") ? "0px" : undefined;
+
+  const width =
+    placement?.includes("start") || placement?.includes("end") ? "50%" : "100%";
+
+  const direction = placement?.includes("bottom") ? "bottom" : "top";
+
   return (
     <Portal id="toasts">
-      <div className={classNames}>
+      <div className={classNames} style={{ top, bottom, left, right, width }}>
         <ul className={styles[`toasts__wrapper`]}>
           {toasts.map((toast, index) => {
             if (toast.max && index === toast.max) {
@@ -28,7 +43,7 @@ const ToastsContainer = ({ className }: ToastsContainerProps) => {
                 index={index}
                 className={
                   toast.max && index === toast.max
-                    ? styles[`toast__removed`]
+                    ? styles[`toast__removed--${direction}`]
                     : undefined
                 }
               />
