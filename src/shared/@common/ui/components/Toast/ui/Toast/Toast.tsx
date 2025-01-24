@@ -61,6 +61,7 @@ const Toast = ({ props, index, className }: ToastProps) => {
       style={{
         top,
         bottom,
+        animationDelay: `0s, ${duration ? (duration / 1000) * 0.8 : 4.8}s`,
       }}
     >
       <div className={styles[`toast__icon__container`]}>

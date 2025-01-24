@@ -18,7 +18,6 @@
 
   animation-name: fade-in, fade-out;
   animation-duration: 0.3s, 0.3s;
-  animation-delay: 0s, 4.8s;
 }
 
 .toast--bottom {
@@ -28,7 +27,6 @@
 
   animation-name: fade-in, fade-out;
   animation-duration: 0.3s, 0.3s;
-  animation-delay: 0s, 4.8s;
 }
 
 @keyframes fade-in {
