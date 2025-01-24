@@ -40,6 +40,9 @@ const ToastsContainer = ({ className }: ToastsContainerProps) => {
         }`
       : undefined;
 
+  // 뷰포트의 높이
+  const viewPortHeight = (visualViewport?.height as number) || 0;
+
   return (
     <Portal id="toasts">
       <div className={classNames} style={{ top, bottom, left, right, width }}>
@@ -50,15 +53,19 @@ const ToastsContainer = ({ className }: ToastsContainerProps) => {
                 removeToast(toasts[toast.max].id as number, 200);
             } else if (toast.overlap && toasts[1]) {
               toasts[1].id && removeToast(toasts[1].id as number, 200);
+            } else if (!toast.max && (index + 1) * 76 > viewPortHeight) {
+              removeToast(toasts[index].id as number, 200);
             }
+
             return (
               <Toast
                 key={toast.id}
                 props={toast}
                 index={index}
                 className={joinClassNames([
-                  (toast.max && index === toast.max) ||
-                  (toast.overlap && index === 1)
+                  (toast.max && index === toast.max && !toast.overlap) ||
+                  (toast.overlap && index === 1) ||
+                  (!toast.max && (index + 1) * 76 > viewPortHeight)
                     ? styles[`toast__removed--${direction}`]
                     : undefined,
                 ])}
