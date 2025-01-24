@@ -29,6 +29,7 @@ import {
   NAVER_CLIENT_ID,
   NAVER_CLIENT_SECRET,
   NAVER_REDIRECT_URI,
+  TOAST_GAP,
 } from "./constants"; // 상수
 
 export {
@@ -63,4 +64,5 @@ export {
   NAVER_CLIENT_ID,
   NAVER_CLIENT_SECRET,
   NAVER_REDIRECT_URI,
+  TOAST_GAP,
 };

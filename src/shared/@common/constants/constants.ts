@@ -155,3 +155,19 @@ export const NAVER_CLIENT_SECRET = import.meta.env.VITE_NAVER_CLIENT_SECRET;
  * @constant {string}
  */
 export const NAVER_REDIRECT_URI = import.meta.env.VITE_NAVER_REDIRECT_URI;
+
+/**
+ * Toast 컴포넌트 간의 간격을 정의하는 상수입니다.
+ * CSS 단위 `rem`을 사용하여 정의되었습니다.
+ *
+ * @constant {string}
+ * @default "0.75rem"
+ *
+ * @example
+ * // CSS 스타일에 바로 사용
+ * const styles = { gap: TOAST_GAP };
+ *
+ * // 숫자로 변환하여 계산에 사용
+ * getNumbersFromText(TOAST_GAP)
+ */
+export const TOAST_GAP = "0.75rem";

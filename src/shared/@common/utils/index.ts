@@ -1,3 +1,3 @@
-import { joinClassNames } from "./components";
+import { joinClassNames, getNumbersFromText } from "./components";
 
-export { joinClassNames };
+export { joinClassNames, getNumbersFromText };
