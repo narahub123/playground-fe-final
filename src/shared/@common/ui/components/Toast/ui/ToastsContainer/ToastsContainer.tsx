@@ -12,6 +12,7 @@ const ToastsContainer = ({ className }: ToastsContainerProps) => {
 
   const classNames = joinClassNames([styles["toasts__container"], className]);
 
+  // Toast의 위치
   const placement = toasts[0]?.placement || "";
 
   const top = !placement || placement?.includes("top") ? "0px" : undefined;
@@ -27,10 +28,22 @@ const ToastsContainer = ({ className }: ToastsContainerProps) => {
 
   const direction = placement?.includes("bottom") ? "bottom" : "top";
 
+  // offset 속성
+  const offset = toasts[0]?.offset || "";
+
+  const margin =
+    typeof offset === "string"
+      ? offset
+      : typeof offset === "object"
+      ? `${offset.top || 0} ${offset.right || 0} ${offset.bottom || 0} ${
+          offset.left || 0
+        }`
+      : undefined;
+
   return (
     <Portal id="toasts">
       <div className={classNames} style={{ top, bottom, left, right, width }}>
-        <ul className={styles[`toasts__wrapper`]}>
+        <ul className={styles[`toasts__wrapper`]} style={{ margin }}>
           {toasts.map((toast, index) => {
             if (toast.max && index === toast.max && !toast.overlap) {
               toasts[toast.max].id &&

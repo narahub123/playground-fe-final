@@ -21,9 +21,7 @@ const Toast = ({ props, index, className }: ToastProps) => {
     type = "info",
     action,
     duration,
-    placement,
-    overlap,
-    offset,
+    placement = "top",
   } = props;
 
   const toastContext = useToastContext();
@@ -50,9 +48,11 @@ const Toast = ({ props, index, className }: ToastProps) => {
   // 아이콘 이름
   const iconName = type === "success" ? "success" : "warning";
 
+  // 위치에 따른 top으로부터의 위치
   const top =
     !placement || placement?.includes("top") ? index * 76 + "px" : undefined;
 
+  // 위치에 따른 bottom으로부터의 위치
   const bottom = placement?.includes("bottom") ? index * 76 + "px" : undefined;
 
   return (
