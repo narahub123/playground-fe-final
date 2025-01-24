@@ -12,21 +12,11 @@
 }
 
 .toast--top {
-  transition: top 0.3s ease;
-  --fade-in-direction: -100%;
-  --fade-out-direction: 100%;
-
   animation-name: fade-in, fade-out;
-  animation-duration: 0.3s, 0.3s;
 }
 
 .toast--bottom {
-  transition: bottom 0.3s ease;
-  --fade-in-direction: 100%;
-  --fade-out-direction: -100%;
-
   animation-name: fade-in, fade-out;
-  animation-duration: 0.3s, 0.3s;
 }
 
 @keyframes fade-in {

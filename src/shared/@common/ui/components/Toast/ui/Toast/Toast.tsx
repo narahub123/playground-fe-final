@@ -6,6 +6,16 @@ import { ToastOptions } from "@shared/@common/ui/components/Toast/types";
 import { Icon } from "@shared/@common/ui/icons";
 import { Text, Button, Spinner } from "@shared/@common/ui/components";
 import { useToastContext } from "@shared/@common/ui/components/Toast/hooks";
+import {
+  MILLISECONDS_TO_SECONDS,
+  TOAST_ANIMATION_DURATION,
+  TOAST_DEFAULT_DURATION,
+  TOAST_FADE_IN_BOTTOM,
+  TOAST_FADE_IN_TOP,
+  TOAST_FADE_OUT_BOTTOM,
+  TOAST_FADE_OUT_TOP,
+  TOAST_REMOVE_DELAY,
+} from "@shared/@common/constants";
 
 interface ToastProps {
   props: ToastOptions;
@@ -15,15 +25,7 @@ interface ToastProps {
 
 const Toast = forwardRef<HTMLLIElement, ToastProps>(
   ({ props, className, sumOfboxHeight }, ref) => {
-    const {
-      id,
-      title,
-      description,
-      type = "info",
-      action,
-      duration,
-      placement = "top",
-    } = props;
+    const { id, title, description, type, action, duration, placement } = props;
 
     const toastContext = useToastContext();
 
@@ -63,11 +65,26 @@ const Toast = forwardRef<HTMLLIElement, ToastProps>(
     return (
       <li
         className={classNames}
-        style={{
-          top,
-          bottom,
-          animationDelay: `0s, ${duration ? (duration / 1000) * 0.8 : 4.8}s`,
-        }}
+        style={
+          {
+            top,
+            bottom,
+            transition: `${direction} ${
+              TOAST_ANIMATION_DURATION / MILLISECONDS_TO_SECONDS
+            }s ease`,
+            animationDuration: `${
+              TOAST_ANIMATION_DURATION / MILLISECONDS_TO_SECONDS
+            }s`,
+            animationDelay: `0s, ${
+              ((duration || TOAST_DEFAULT_DURATION) - TOAST_REMOVE_DELAY) /
+              MILLISECONDS_TO_SECONDS
+            }s`,
+            "--fade-in-direction":
+              direction === "top" ? TOAST_FADE_IN_TOP : TOAST_FADE_IN_BOTTOM,
+            "--fade-out-direction":
+              direction === "top" ? TOAST_FADE_OUT_TOP : TOAST_FADE_OUT_BOTTOM,
+          } as React.CSSProperties
+        }
         ref={ref}
       >
         <div className={styles[`toast__icon__container`]}>

@@ -171,3 +171,77 @@ export const NAVER_REDIRECT_URI = import.meta.env.VITE_NAVER_REDIRECT_URI;
  * getNumbersFromText(TOAST_GAP)
  */
 export const TOAST_GAP = "0.75rem";
+
+/**
+ * 기본 토스트 메시지 표시 시간 (밀리세컨즈).
+ * @constant {number}
+ */
+export const TOAST_DEFAULT_DURATION = 5000;
+
+/**
+ * 토스트 메시지가 사라지기 전에 대기 시간 (밀리세컨즈).
+ * @constant {number}
+ */
+export const TOAST_REMOVE_DELAY = 200;
+
+/**
+ * 토스트 메시지의 기본 오프셋 값 (px).
+ * @constant {string}
+ */
+export const TOAST_DEFAULT_OFFSET = "10px";
+
+/**
+ * 토스트 메시지의 기본 타입. 기본값은 "info".
+ * @constant {string}
+ */
+export const TOAST_DEFAULT_TYPE = "info";
+
+/**
+ * 토스트 메시지의 기본 위치. 기본값은 "top".
+ * @constant {string}
+ */
+export const TOAST_DEFAULT_PLACEMENT = "top";
+
+/**
+ * 토스트 메시지가 겹쳐서 표시될지 여부를 결정하는 기본값.
+ * 기본값은 false.
+ * @constant {boolean}
+ */
+export const TOAST_DEFAULT_OVERLAP = false;
+
+/**
+ * "top" 위치에서 토스트 메시지의 페이드 인 애니메이션 방향을 나타내는 값.
+ * @constant {string}
+ */
+export const TOAST_FADE_IN_TOP = "-100%";
+
+/**
+ * "top" 위치에서 토스트 메시지의 페이드 아웃 애니메이션 방향을 나타내는 값.
+ * @constant {string}
+ */
+export const TOAST_FADE_OUT_TOP = "100%";
+
+/**
+ * "bottom" 위치에서 토스트 메시지의 페이드 인 애니메이션 방향을 나타내는 값.
+ * @constant {string}
+ */
+export const TOAST_FADE_IN_BOTTOM = "100%";
+
+/**
+ * "bottom" 위치에서 토스트 메시지의 페이드 아웃 애니메이션 방향을 나타내는 값.
+ * @constant {string}
+ */
+export const TOAST_FADE_OUT_BOTTOM = "-100%";
+
+/**
+ * 토스트 메시지 애니메이션의 지속 시간 (밀리세컨즈).
+ * @constant {number}
+ */
+export const TOAST_ANIMATION_DURATION = 300;
+
+/**
+ * 밀리초를 초로 변환하기 위한 계수입니다.
+ * @constant {number}
+ * @default 1000
+ */
+export const MILLISECONDS_TO_SECONDS = 1000;

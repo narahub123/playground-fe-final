@@ -3,7 +3,7 @@ import { getNumbersFromText, joinClassNames } from "@shared/@common/utils";
 import { Toast, Portal } from "@shared/@common/ui/components";
 import { useToastContext } from "@shared/@common/ui/components/Toast/hooks";
 import { useEffect, useRef, useState } from "react";
-import { TOAST_GAP } from "@shared/@common/constants";
+import { TOAST_GAP, TOAST_REMOVE_DELAY } from "@shared/@common/constants";
 
 interface ToastsContainerProps {
   className?: string;
@@ -87,14 +87,15 @@ const ToastsContainer = ({ className }: ToastsContainerProps) => {
           {toasts.map((toast, index) => {
             if (toast.max && index === toast.max && !toast.overlap) {
               toasts[toast.max].id &&
-                removeToast(toasts[toast.max].id as number, 200);
+                removeToast(toasts[toast.max].id as number, TOAST_REMOVE_DELAY);
             } else if (toast.overlap && toasts[1]) {
-              toasts[1].id && removeToast(toasts[1].id as number, 200);
+              toasts[1].id &&
+                removeToast(toasts[1].id as number, TOAST_REMOVE_DELAY);
             } else if (
               !toast.max &&
               getSumOfBoxHeights(index) > viewPortHeight
             ) {
-              removeToast(toasts[index].id as number, 200);
+              removeToast(toasts[index].id as number, TOAST_REMOVE_DELAY);
             }
 
             return (
