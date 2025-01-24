@@ -32,20 +32,23 @@ const ToastsContainer = ({ className }: ToastsContainerProps) => {
       <div className={classNames} style={{ top, bottom, left, right, width }}>
         <ul className={styles[`toasts__wrapper`]}>
           {toasts.map((toast, index) => {
-            if (toast.max && index === toast.max) {
+            if (toast.max && index === toast.max && !toast.overlap) {
               toasts[toast.max].id &&
                 removeToast(toasts[toast.max].id as number, 200);
+            } else if (toast.overlap && toasts[1]) {
+              toasts[1].id && removeToast(toasts[1].id as number, 200);
             }
             return (
               <Toast
                 key={toast.id}
                 props={toast}
                 index={index}
-                className={
-                  toast.max && index === toast.max
+                className={joinClassNames([
+                  (toast.max && index === toast.max) ||
+                  (toast.overlap && index === 1)
                     ? styles[`toast__removed--${direction}`]
-                    : undefined
-                }
+                    : undefined,
+                ])}
               />
             );
           })}
