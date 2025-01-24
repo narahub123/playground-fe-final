@@ -141,6 +141,7 @@ const AuthPage = () => {
                 },
                 type: "warning",
                 // duration: 1000,
+                max: 3,
               })
             }
             isValid={true}

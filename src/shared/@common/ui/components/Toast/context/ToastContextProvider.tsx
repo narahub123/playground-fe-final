@@ -11,7 +11,8 @@ const ToastContextProvider = ({ children }: ToastContextProviderProps) => {
   const [toasts, setToast] = useState<ToastOptions[]>([]);
 
   const addToast = (toast: ToastOptions) => {
-    setToast((prev) => [...prev, { id: Date.now(), ...toast }]);
+    // placement에 따라서 toast 추가하는 방식이 달라짐 주의!!!
+    setToast((prev) => [{ id: Date.now(), ...toast }, ...prev]);
   };
 
   const removeToast = (id: number, duration?: number) => {

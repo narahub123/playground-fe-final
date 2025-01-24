@@ -9,9 +9,11 @@ import { useToastContext } from "@shared/@common/ui/components/Toast/hooks";
 
 interface ToastProps {
   props: ToastOptions;
+  index: number;
+  className?: string;
 }
 
-const Toast = ({ props }: ToastProps) => {
+const Toast = ({ props, index, className }: ToastProps) => {
   const {
     id,
     title,
@@ -38,13 +40,14 @@ const Toast = ({ props }: ToastProps) => {
   const classNames = joinClassNames([
     styles["toast"],
     styles[`toast--${type}`],
+    className,
   ]);
 
   // 아이콘 이름
   const iconName = type === "success" ? "success" : "warning";
 
   return (
-    <li className={classNames}>
+    <li className={classNames} style={{ top: `${index * 76}px` }}>
       <div className={styles[`toast__icon__container`]}>
         {/* type이 success, error, warning 경우에 아이콘 표시 */}
         {(type === "success" || type === "error" || type === "warning") && (
