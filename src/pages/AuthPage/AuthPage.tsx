@@ -1,5 +1,5 @@
 import styles from "./AuthPage.module.css";
-import { Button, Text } from "@shared/@common/ui/components";
+import { Text } from "@shared/@common/ui/components";
 import { AuthButton } from "@shared/auth/ui/components";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { AuthButtonItemType, OauthType } from "@shared/auth/types";
@@ -22,7 +22,6 @@ import { ModalLayout } from "@shared/@common/layouts";
 import { useSelector } from "react-redux";
 import { getParallelModals } from "@shared/@common/models/selectors";
 import { ParallelModals } from "@shared/@common/types";
-import { useToast } from "@shared/@common/ui/components/Toast/hooks";
 
 const AuthPage = () => {
   const dispatch = useAppDispatch();
@@ -109,8 +108,6 @@ const AuthPage = () => {
   const { title, heading1, signupList, heading2, loginList } =
     useLanguageContent(["pages", "AuthPage"]);
 
-  const toast = useToast();
-
   const handleOauth = (type: OauthType) => {
     const url = generateSocialAuthUrl(type);
 
@@ -128,27 +125,6 @@ const AuthPage = () => {
       <main className={styles.main}>
         <div className={styles.section}>
           <Text type="heading3">{heading1}</Text>
-          <Button
-            onClick={() =>
-              toast({
-                title: "타이틀",
-                description: "연습",
-                action: {
-                  label: "에러",
-                  onClick: () => {
-                    console.log("하이");
-                  },
-                },
-                type: "warning",
-                // duration: 2000,
-                max: 3,
-                placement: "bottom-start",
-              })
-            }
-            isValid={true}
-          >
-            버튼
-          </Button>
           <ul className={styles.list}>
             {(signupList as AuthButtonItemType[]).map((item, idx) => (
               <AuthButton

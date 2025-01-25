@@ -1,6 +1,5 @@
 import styles from "./Toast.module.css";
 import { forwardRef, useEffect } from "react";
-import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
 import { ToastOptions } from "@shared/@common/ui/components/Toast/types";
 import { Icon } from "@shared/@common/ui/icons";
@@ -37,9 +36,6 @@ const Toast = forwardRef<HTMLLIElement, ToastProps>(
 
     // 모션 방향 지정
     const direction = placement?.includes("bottom") ? "bottom" : "top";
-
-    // 언어 설정
-    const {} = useLanguageContent(["components", "Toast"]);
 
     const classNames = joinClassNames([
       styles["toast"],
