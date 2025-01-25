@@ -22,7 +22,6 @@ import InputBirthDate from "./InputBirthDate/InputBirthDate";
 import InputPhone from "./InputPhone/InputPhone";
 import InputLanguage from "./InputLanguage/InputLanguage";
 import { Toast } from "./Toast";
-import Alert from "./Alert";
 
 export {
   Text,
@@ -49,5 +48,4 @@ export {
   InputPhone,
   InputLanguage,
   Toast,
-  Alert,
 };

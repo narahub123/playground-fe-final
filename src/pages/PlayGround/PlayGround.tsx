@@ -11,6 +11,7 @@ import {
 import { TextHeader } from "@test/ui/components";
 import { AuthLayout } from "@shared/auth/layouts";
 import { ToastContextProvider } from "@shared/@common/ui/components/Toast/context";
+import { AlertContextProvider } from "@shared/@common/ui/components/Alert/context";
 
 const PlayGround = () => {
   // 로그인 여부
@@ -64,10 +65,12 @@ const PlayGround = () => {
 
   return (
     <ToastContextProvider>
-      <div className={styles.playground}>
-        <TextHeader />
-        {login ? <PagesLayout /> : <AuthLayout />}
-      </div>
+      <AlertContextProvider>
+        <div className={styles.playground}>
+          <TextHeader />
+          {login ? <PagesLayout /> : <AuthLayout />}
+        </div>
+      </AlertContextProvider>
     </ToastContextProvider>
   );
 };

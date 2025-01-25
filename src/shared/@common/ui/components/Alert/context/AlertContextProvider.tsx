@@ -1,15 +1,30 @@
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import AlertContext from "./AlertContext";
-import { AlertContextType } from "../types";
+import { AlertOptions } from "../types";
+import Alert from "..";
 
 interface AlertContextProviderProps {
   children: ReactNode;
 }
 
 const AlertContextProvider = ({ children }: AlertContextProviderProps) => {
-  const value: AlertContextType = {};
+  const initialAlert: AlertOptions = {
+    title: "",
+    description: "",
+  };
+  const [alert, setAlert] = useState<AlertOptions>(initialAlert);
+
+  const addAlert = (alert: AlertOptions) => {
+    setAlert(alert);
+  };
+
+  const removeAlert = () => setAlert(initialAlert);
+
   return (
-    <AlertContext.Provider value={value}>{children}</AlertContext.Provider>
+    <AlertContext.Provider value={{ addAlert, removeAlert, alert }}>
+      <Alert />
+      {children}
+    </AlertContext.Provider>
   );
 };
 
