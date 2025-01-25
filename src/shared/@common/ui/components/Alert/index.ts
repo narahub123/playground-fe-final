@@ -1,3 +1,4 @@
+import AlertCloseButton from "./ui/AlertCloseButton/AlertCloseButton";
 import AlertContent from "./ui/AlertContent/AlertContent";
 import AlertDescription from "./ui/AlertDescription/AlertDescription";
 import AlertIndicator from "./ui/AlertIndicator/AlertIndicator";
@@ -9,6 +10,7 @@ const Alert = Object.assign(AlertRoot, {
   Content: AlertContent,
   Title: AlertTitle,
   Description: AlertDescription,
+  CloseButton: AlertCloseButton,
 });
 
 export default Alert;
