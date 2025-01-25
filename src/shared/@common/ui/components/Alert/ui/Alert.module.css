@@ -6,10 +6,10 @@
   display: flex;
   justify-content: center;
 }
-.alert__open {
+.alert--open {
   animation: fade-in 0.3s;
 }
-.alert__close {
+.alert--close {
   animation: fade-out 0.3s;
 }
 
@@ -38,7 +38,23 @@
   border: 1px solid #ccc;
   border-radius: 0.5rem;
   padding: 1rem;
-  background-color: #fff;
+}
+
+.alert__error {
+  color: hsl(0, 100%, 65%);
+  background-color: hsl(0, 100%, 80%);
+}
+.alert__success {
+  color: hsl(120, 100%, 20%);
+  background-color: hsl(120, 100%, 40%);
+}
+.alert__warning {
+  color: hsl(39, 100%, 35%);
+  background-color: hsl(39, 100%, 80%);
+}
+.alert__info {
+  color: hsl(219, 79%, 50%);
+  background-color: hsl(219, 79%, 80%);
 }
 
 .alert__icon {

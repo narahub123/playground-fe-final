@@ -1,5 +1,5 @@
 import styles from "./AuthPage.module.css";
-import { Button, Text } from "@shared/@common/ui/components";
+import { Text } from "@shared/@common/ui/components";
 import { AuthButton } from "@shared/auth/ui/components";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { AuthButtonItemType, OauthType } from "@shared/auth/types";
@@ -22,7 +22,6 @@ import { ModalLayout } from "@shared/@common/layouts";
 import { useSelector } from "react-redux";
 import { getParallelModals } from "@shared/@common/models/selectors";
 import { ParallelModals } from "@shared/@common/types";
-import { useAlert } from "@shared/@common/ui/components/Alert/hooks";
 
 const AuthPage = () => {
   const dispatch = useAppDispatch();
@@ -117,8 +116,6 @@ const AuthPage = () => {
     }
   };
 
-  const alert = useAlert();
-
   return (
     <div className={styles[`auth-page`]}>
       <ModalLayout />
@@ -128,17 +125,6 @@ const AuthPage = () => {
       <main className={styles.main}>
         <div className={styles.section}>
           <Text type="heading3">{heading1}</Text>
-          <Button
-            onClick={() =>
-              alert({
-                title: "타이틀",
-                description: "안녕하세요.",
-              })
-            }
-            isValid
-          >
-            버튼
-          </Button>
           <ul className={styles.list}>
             {(signupList as AuthButtonItemType[]).map((item, idx) => (
               <AuthButton

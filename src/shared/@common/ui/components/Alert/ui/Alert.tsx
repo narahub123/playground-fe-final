@@ -13,10 +13,10 @@ interface AlertProps {
 const Alert = ({ className }: AlertProps) => {
   const [isOpen, setIsOpen] = useState(true);
   const { alert, removeAlert } = useAlertContext();
-  const { title, description } = alert;
+  const { title, description, status } = alert;
   const classNames = joinClassNames([
     styles["alert"],
-    isOpen ? styles[`alert__open`] : styles[`alert__close`],
+    isOpen ? styles[`alert--open`] : styles[`alert--close`],
     className,
   ]);
 
@@ -26,12 +26,20 @@ const Alert = ({ className }: AlertProps) => {
     <Portal id="alert">
       <div className={classNames}>
         <div
-          className={joinClassNames([styles[`alert__wrapper`]])}
+          className={joinClassNames([
+            styles[`alert__wrapper`],
+            styles[`alert__${status}`],
+          ])}
           style={{ width: "70%", marginTop: "20px" }}
         >
-          <span className={joinClassNames([styles[`alert__icon`]])}>
-            아이콘
-          </span>
+          <Icon
+            className={joinClassNames([
+              styles[`alert__icon`],
+              styles[`alert__${status}`],
+            ])}
+            iconName={status === "success" ? "success" : "warning"}
+          />
+
           <span className={joinClassNames([styles[`alert__main`]])}>
             {title && (
               <Text className={joinClassNames([styles[`alert__title`]])}>
@@ -44,7 +52,10 @@ const Alert = ({ className }: AlertProps) => {
           </span>
           <Icon
             iconName="close"
-            className={joinClassNames([styles[`alert__button`]])}
+            className={joinClassNames([
+              styles[`alert__button`],
+              styles[`alert__${status}`],
+            ])}
             onClick={() => {
               setIsOpen(false);
               setTimeout(() => {

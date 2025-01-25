@@ -4,10 +4,11 @@ import useAlertContext from "./useAlertContext";
 const useAlert = () => {
   const alertContext = useAlertContext();
 
-  const alert = ({ title, description }: AlertOptions) => {
+  const alert = ({ title, description, status = "info" }: AlertOptions) => {
     alertContext.addAlert({
       title,
       description,
+      status,
     });
   };
 
