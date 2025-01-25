@@ -1,5 +1,5 @@
 import styles from "./AuthPage.module.css";
-import { Text } from "@shared/@common/ui/components";
+import { Alert, Text } from "@shared/@common/ui/components";
 import { AuthButton } from "@shared/auth/ui/components";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { AuthButtonItemType, OauthType } from "@shared/auth/types";
@@ -124,6 +124,14 @@ const AuthPage = () => {
       </header>
       <main className={styles.main}>
         <div className={styles.section}>
+          <Alert>
+            <Alert.Indicator>아이콘</Alert.Indicator>
+            <Alert.Content>
+              <Alert.Title>타이틀</Alert.Title>
+              <Alert.Description>설명</Alert.Description>
+            </Alert.Content>
+            <Alert.CloseButton />
+          </Alert>
           <Text type="heading3">{heading1}</Text>
           <ul className={styles.list}>
             {(signupList as AuthButtonItemType[]).map((item, idx) => (

@@ -1,3 +1,4 @@
+import { Icon } from "@shared/@common/ui/icons";
 import styles from "./AlertCloseButton.module.css";
 import { joinClassNames } from "@shared/@common/utils";
 
@@ -15,7 +16,7 @@ const AlertCloseButton = ({
     className,
   ]);
 
-  return <div className={classNames}>AlertCloseButton</div>;
+  return <Icon iconName="close" className={classNames} />;
 };
 
 export default AlertCloseButton;
