@@ -1,0 +1,55 @@
+.alert {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+}
+.alert__open {
+  animation: fade-in 0.3s;
+}
+.alert__close {
+  animation: fade-out 0.3s;
+}
+
+@keyframes fade-in {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0%);
+  }
+}
+
+@keyframes fade-out {
+  from {
+    transform: translateY(0%);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+.alert__wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  background-color: #fff;
+}
+
+.alert__icon {
+}
+.alert__main {
+  flex: 1;
+}
+.alert__title {
+  font-weight: bold;
+}
+.alert__description {
+}
+.alert__button {
+}

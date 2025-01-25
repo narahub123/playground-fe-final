@@ -128,7 +128,15 @@ const AuthPage = () => {
       <main className={styles.main}>
         <div className={styles.section}>
           <Text type="heading3">{heading1}</Text>
-          <Button onClick={() => alert({ description: "안녕하세요." })} isValid>
+          <Button
+            onClick={() =>
+              alert({
+                title: "타이틀",
+                description: "안녕하세요.",
+              })
+            }
+            isValid
+          >
             버튼
           </Button>
           <ul className={styles.list}>
