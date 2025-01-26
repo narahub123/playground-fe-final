@@ -25,7 +25,7 @@ import {
   getParallelModals,
   getSignupModal,
   getLoginModal,
-  getPasswordModal,
+  getFlowModal,
   getErrorModal,
 } from "./modalSelectors";
 
@@ -55,6 +55,6 @@ export {
   getParallelModals,
   getSignupModal,
   getLoginModal,
-  getPasswordModal,
+  getFlowModal,
   getErrorModal,
 };
