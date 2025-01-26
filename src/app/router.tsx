@@ -1,5 +1,5 @@
 import { AuthModal } from "@features/auth-email/ui/components";
-import { AuthPage, OauthCallback, PlayGround } from "@pages";
+import { AuthPage, FlowPage, OauthCallback, PlayGround } from "@pages";
 import { ModalLayout } from "@shared/@common/layouts";
 import { createBrowserRouter } from "react-router-dom";
 
@@ -23,6 +23,10 @@ const router = createBrowserRouter([
             ], // 병렬 라우트를 적용할 모달
           },
         ],
+      },
+      {
+        path: "i/flow",
+        element: <FlowPage />,
       },
     ],
   },
