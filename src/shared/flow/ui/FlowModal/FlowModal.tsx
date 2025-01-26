@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "@app/store";
 import { getFlowModal } from "@shared/@common/models/selectors";
 import { useLanguageContent } from "@shared/@common/models/hooks";
@@ -15,6 +15,10 @@ interface FlowModalProps {
 const FlowModal = ({ className }: FlowModalProps) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  console.log(pathname);
+
   const [curPage, setCurPage] = useState(0);
 
   const isOpen = useSelector(getFlowModal);
@@ -28,7 +32,9 @@ const FlowModal = ({ className }: FlowModalProps) => {
   const [screenValidations, setScreenValidations] =
     useState<ScreenValidationType>({});
 
-  const screens = [<></>];
+  const screens = pathname.includes("i/flow/password_reset")
+    ? [<></>]
+    : [<></>];
 
   useEffect(() => {
     const defaultValidations = screens.reduce<Record<string, boolean>>(
