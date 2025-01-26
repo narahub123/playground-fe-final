@@ -32,7 +32,7 @@ type LocationType = {
   county: string;
 };
 
-type ParallelModals = "signup" | "login" | "password";
+type ParallelModals = "signup" | "login" | "flow";
 
 export type {
   BgThemeType,

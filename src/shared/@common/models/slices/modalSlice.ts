@@ -5,7 +5,7 @@ interface ModalState {
   parallel: {
     signup: boolean; // 회원 가입 모달 상태
     login: boolean; // 로그인 모달 상태
-    password: boolean; // 비밀번호 확인 모달 상태
+    flow: boolean; // 비밀번호 확인 모달 상태
   };
   standalone: {
     error: boolean; // 독립 모달 상태
@@ -16,7 +16,7 @@ const initialState: ModalState = {
   parallel: {
     signup: false,
     login: false,
-    password: false,
+    flow: false,
   },
   standalone: {
     error: false,
