@@ -1,6 +1,7 @@
 import { AuthModal } from "@features/auth-email/ui/components";
 import { AuthPage, FlowPage, OauthCallback, PlayGround } from "@pages";
 import { ModalLayout } from "@shared/@common/layouts";
+import { FlowModal } from "@shared/flow/ui";
 import { createBrowserRouter } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -27,6 +28,12 @@ const router = createBrowserRouter([
       {
         path: "i/flow",
         element: <FlowPage />,
+        children: [
+          {
+            path: "password_reset",
+            element: <FlowModal />,
+          },
+        ],
       },
     ],
   },
