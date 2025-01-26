@@ -100,7 +100,18 @@ const InputField = ({ className }: InputFieldProps) => {
     // password_confirm은 내부 상태를 업데이트
     if (field === "password_confirm") setPasswordConfirmValue(value);
     // 그외는 전달 받은 reducer를 통해서 외부 상태를 업데이트
-    else dispatch(setInputValue(value));
+    else {
+      const update = setInputValue(value);
+      if (
+        typeof update === "object" &&
+        "type" in update &&
+        "payload" in update
+      ) {
+        dispatch(update);
+      } else {
+        setInputValue(value); // 상태 업데이트
+      }
+    }
 
     // "password_confirm" 필드인 경우 유효성 검사를 진행하지 않고 입력 값과 password 필드의 값을 비교
     if (field === "password_confirm" && inputValue !== "" && MISMATCH) {

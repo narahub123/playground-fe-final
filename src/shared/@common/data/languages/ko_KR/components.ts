@@ -278,6 +278,9 @@ const components = {
     expl: "비밀번호를 변경하려면 계정에 연결된 이메일, 전화번호 또는 사용자 아이디를 입력해주세요.",
     button: "버튼",
   },
+  InputAccount: {
+    label: "이메일, 휴대폰, 사용자 아이디"
+  },
 };
 
 export default components;

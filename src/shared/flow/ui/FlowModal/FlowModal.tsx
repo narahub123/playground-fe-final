@@ -62,7 +62,7 @@ const FlowModal = ({ className }: FlowModalProps) => {
       className={className}
       curPage={curPage}
       setCurPage={setCurPage}
-      isOpen={isOpen}
+      isOpen={true}
       onClose={onClose}
       screenValidations={screenValidations}
       setScreenValidations={setScreenValidations}

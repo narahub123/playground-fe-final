@@ -14,7 +14,9 @@ interface InputWrapperProps {
   label: string; // input 필드의 목적을 설명하는 문자열
   field: string; // slice에서 상태를 식별하기 위한 필드 이름
   inputValue: string; // Input의 value
-  setInputValue: (value: any) => { type: string; payload: any }; // inputValue를 업데이트할 reducer
+  setInputValue:
+    | ((value: any) => { type: string; payload: any })
+    | React.Dispatch<React.SetStateAction<string>>; // inputValue를 업데이트할 reducer
   children: ReactNode;
   isValid?:
     | {

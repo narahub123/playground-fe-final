@@ -11,7 +11,9 @@ interface InputContextType {
   /** Input의 현재 value */
   inputValue: string;
   /** inputValue를 업데이트할 reducer 함수 */
-  setInputValue: (value: any) => { type: string; payload: any };
+  setInputValue:
+    | ((value: any) => { type: string; payload: any })
+    | React.Dispatch<React.SetStateAction<string>>;
   /** 현재 Input 컴포넌트의 포커스 여부 */
   isFocused: boolean;
   /** Input 컴포넌트의 포커스 상태를 업데이트하는 set 함수 */
