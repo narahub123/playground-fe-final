@@ -7,6 +7,7 @@ import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Modal } from "@shared/@common/ui/components";
 import { onParallelModalClose } from "@shared/@common/models/slices/modalSlice";
 import { ScreenValidationType } from "@shared/@common/ui/components/Modal/types";
+import ScreenAccount from "../ScreenAccount/ScreenAccount";
 
 interface FlowModalProps {
   className?: string;
@@ -33,7 +34,7 @@ const FlowModal = ({ className }: FlowModalProps) => {
     useState<ScreenValidationType>({});
 
   const screens = pathname.includes("i/flow/password_reset")
-    ? [<></>]
+    ? [<ScreenAccount />]
     : [<></>];
 
   useEffect(() => {

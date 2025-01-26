@@ -1,0 +1,11 @@
+.screen__account {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 35rem;
+}
+
+.screen__account__body {
+}
+.screen__account__footer {
+}
