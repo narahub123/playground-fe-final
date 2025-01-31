@@ -1,4 +1,5 @@
 import { AuthModal } from "@features/auth-email/ui/components";
+import { LoginModal } from "@features/auth-login/ui";
 import { AuthPage, FlowPage, OauthCallback, PlayGround } from "@pages";
 import { ModalLayout } from "@shared/@common/layouts";
 import { FlowModal } from "@shared/flow/ui";
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
               {
                 path: "signup",
                 element: <AuthModal />,
+              },
+              {
+                path: "login",
+                element: <LoginModal />,
               },
             ], // 병렬 라우트를 적용할 모달
           },

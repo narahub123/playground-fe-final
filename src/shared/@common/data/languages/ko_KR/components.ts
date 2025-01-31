@@ -279,7 +279,7 @@ const components = {
     button: "버튼",
   },
   InputAccount: {
-    label: "이메일, 휴대폰, 사용자 아이디"
+    label: "이메일, 휴대폰, 사용자 아이디",
   },
 };
 
