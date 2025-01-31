@@ -295,6 +295,11 @@ const components = {
     signupButton: "가입하기",
     button: "다음",
   },
+  ScreenLoginPassword: {
+    title: "비밀번호를 입력하세요.",
+    forgetPassword: "비밀번호 찾기",
+    button: "로그인",
+  },
 };
 
 export default components;

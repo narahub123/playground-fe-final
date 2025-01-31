@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { onParallelModalClose } from "@shared/@common/models/slices/modalSlice";
 import { ScreenValidationType } from "@shared/@common/ui/components/Modal/types";
 import ScreenSelectLogin from "../ScreenSelectLogin/ScreenSelectLogin";
+import ScreenLoginPassword from "../ScreenLoginPassword/ScreenLoginPassword";
 
 interface LoginModalProps {
   className?: string;
@@ -31,7 +32,7 @@ const LoginModal = ({ className }: LoginModalProps) => {
     navigate("/");
   };
 
-  const screens = [<ScreenSelectLogin />];
+  const screens = [<ScreenSelectLogin />, <ScreenLoginPassword />];
 
   const [screenValidations, setScreenValidations] =
     useState<ScreenValidationType>({});

@@ -280,6 +280,11 @@ const components = {
     signupButton: "註冊",
     button: "下一步",
   },
+  ScreenLoginPassword: {
+    title: "請輸入密碼。",
+    forgetPassword: "找回密碼",
+    button: "登入",
+  },
 };
 
 export default components;

@@ -287,6 +287,11 @@ const components = {
     signupButton: "Sign Up",
     button: "Next",
   },
+  ScreenLoginPassword: {
+    title: "Enter your password.",
+    forgetPassword: "Find password",
+    button: "Log in",
+  },
 };
 
 export default components;

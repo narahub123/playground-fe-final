@@ -295,6 +295,11 @@ const components = {
     signupButton: "登録",
     button: "次へ",
   },
+  ScreenLoginPassword: {
+    title: "パスワードを入力してください。",
+    forgetPassword: "パスワードを探す",
+    button: "ログイン",
+  },
 };
 
 export default components;
