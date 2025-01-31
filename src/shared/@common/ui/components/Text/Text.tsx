@@ -1,5 +1,6 @@
 import { joinClassNames } from "@shared/@common/utils";
 import styles from "./Text.module.css";
+import { ReactNode } from "react";
 
 /**
  * @interface TextCustomProps
@@ -10,8 +11,8 @@ import styles from "./Text.module.css";
  * - `className`: 추가적인 CSS 클래스 이름.
  */
 interface TextCustomProps {
-  /** 텍스트 내용, 문자열 또는 숫자 */
-  children: string | number;
+  /** 텍스트 내용 */
+  children: ReactNode;
   /** 텍스트의 유형(heading1~heading3, 설명 텍스트, 일반 텍스트) */
   type?: "heading1" | "heading2" | "heading3" | "expl" | "normal";
   /** 텍스트 상태(기본, 에러, 굵게) */
