@@ -1,0 +1,10 @@
+.horizontal__divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.line {
+  flex: 1;
+  border-bottom: 1px solid var(--bgTheme-color-primary);
+}

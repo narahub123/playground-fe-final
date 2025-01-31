@@ -8,6 +8,7 @@ import { AuthButton } from "@shared/auth/ui/components";
 import { useState } from "react";
 import { InputAccount } from "@shared/flow/ui";
 import { useModalContext } from "@shared/@common/ui/components/Modal/hooks";
+import { HorizontalDivider } from "@features/auth-login/ui";
 
 interface ScreenSelectLoginProps {
   className?: string;
@@ -32,8 +33,15 @@ const ScreenSelectLogin = ({ className }: ScreenSelectLoginProps) => {
   };
 
   // 언어 설정
-  const { title, loginList, forgetPassword, signup, signupButton, button } =
-    useLanguageContent(["components", "ScreenSelectLogin"]);
+  const {
+    title,
+    loginList,
+    divider,
+    forgetPassword,
+    signup,
+    signupButton,
+    button,
+  } = useLanguageContent(["components", "ScreenSelectLogin"]);
 
   const classNames = joinClassNames([
     styles["screen__select__login"],
@@ -54,11 +62,7 @@ const ScreenSelectLogin = ({ className }: ScreenSelectLoginProps) => {
               }}
             />
           ))}
-          <div className={styles[`horizontal__line`]}>
-            <span className={styles[`line`]} />
-            <Text>또는</Text>
-            <span className={styles[`line`]} />
-          </div>
+          <HorizontalDivider>{divider}</HorizontalDivider>
           <InputAccount isValid={isValid} setIsValid={setIsValid} />
           <Button
             onClick={() => {

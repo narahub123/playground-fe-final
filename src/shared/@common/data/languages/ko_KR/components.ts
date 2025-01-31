@@ -289,9 +289,10 @@ const components = {
       { text: "네이버로 로그인", img: naver, type: "naver" },
       { text: "카카오로 로그인", img: kakao, type: "kakao" },
     ],
+    divider: "또는",
     forgetPassword: "비밀번호를 잊으셨나요?",
     signup: "계정이 없으신가요?",
-    sigupButton: "가입하기",
+    signupButton: "가입하기",
     button: "다음",
   },
 };

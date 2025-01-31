@@ -289,9 +289,10 @@ const components = {
       { text: "Naverでログイン", img: naver, type: "naver" },
       { text: "Kakaoでログイン", img: kakao, type: "kakao" },
     ],
+    divider: "または",
     forgetPassword: "パスワードをお忘れですか？",
     signup: "アカウントをお持ちでないですか？",
-    sigupButton: "登録",
+    signupButton: "登録",
     button: "次へ",
   },
 };

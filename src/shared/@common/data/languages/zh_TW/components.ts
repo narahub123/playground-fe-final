@@ -274,9 +274,10 @@ const components = {
       { text: "使用 Naver 登入", img: naver, type: "naver" },
       { text: "使用 Kakao 登入", img: kakao, type: "kakao" },
     ],
+    divider: "或者",
     forgetPassword: "忘記密碼？",
     signup: "沒有帳號？",
-    sigupButton: "註冊",
+    signupButton: "註冊",
     button: "下一步",
   },
 };

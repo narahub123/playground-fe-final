@@ -281,9 +281,10 @@ const components = {
       { text: "Log in with Naver", img: naver, type: "naver" },
       { text: "Log in with Kakao", img: kakao, type: "kakao" },
     ],
+    divider: "or",
     forgetPassword: "Forgot your password?",
     signup: "Don't have an account?",
-    sigupButton: "Sign Up",
+    signupButton: "Sign Up",
     button: "Next",
   },
 };
