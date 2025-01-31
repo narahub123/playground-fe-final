@@ -3,6 +3,7 @@ import {
   birthMonthList,
   birthYearList,
 } from "@features/auth-email/data";
+import { google, kakao, naver } from "@shared/@common/assets";
 import {
   EMAIL_FORMAT,
   EMPTY,
@@ -265,6 +266,18 @@ const components = {
       { text: "中文 - 簡體 : Chinese - Simplified", value: "zh-CN" },
       { text: "中文 - 繁體 : Chinese - Traditional", value: "zh-TW" },
     ],
+  },
+  ScreenSelectLogin: {
+    title: "登入 PlayGround",
+    loginList: [
+      { text: "使用 Google 登入", img: google, type: "google" },
+      { text: "使用 Naver 登入", img: naver, type: "naver" },
+      { text: "使用 Kakao 登入", img: kakao, type: "kakao" },
+    ],
+    forgetPassword: "忘記密碼？",
+    signup: "沒有帳號？",
+    sigupButton: "註冊",
+    button: "下一步",
   },
 };
 

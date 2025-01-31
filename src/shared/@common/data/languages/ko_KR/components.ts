@@ -3,6 +3,7 @@ import {
   birthMonthList,
   birthYearList,
 } from "@features/auth-email/data";
+import { google, kakao, naver } from "@shared/@common/assets";
 import {
   EMAIL_FORMAT,
   EMPTY,
@@ -280,6 +281,18 @@ const components = {
   },
   InputAccount: {
     label: "이메일, 휴대폰, 사용자 아이디",
+  },
+  ScreenSelectLogin: {
+    title: "PlayGround 로그인하기",
+    loginList: [
+      { text: "구글로 로그인", img: google, type: "google" },
+      { text: "네이버로 로그인", img: naver, type: "naver" },
+      { text: "카카오로 로그인", img: kakao, type: "kakao" },
+    ],
+    forgetPassword: "비밀번호를 잊으셨나요?",
+    signup: "계정이 없으신가요?",
+    sigupButton: "가입하기",
+    button: "다음",
   },
 };
 

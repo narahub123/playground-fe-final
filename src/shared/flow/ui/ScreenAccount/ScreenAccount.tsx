@@ -18,8 +18,6 @@ const ScreenAccount = ({ className }: ScreenAccountProps) => {
     | boolean
   >(false);
 
-  console.log(isValid);
-
   const { setCurPage } = useModalContext();
 
   // 언어 설정

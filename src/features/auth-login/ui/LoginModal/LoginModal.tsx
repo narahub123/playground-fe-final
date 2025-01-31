@@ -8,6 +8,7 @@ import { useAppDispatch } from "@app/store";
 import { useNavigate } from "react-router-dom";
 import { onParallelModalClose } from "@shared/@common/models/slices/modalSlice";
 import { ScreenValidationType } from "@shared/@common/ui/components/Modal/types";
+import ScreenSelectLogin from "../ScreenSelectLogin/ScreenSelectLogin";
 
 interface LoginModalProps {
   className?: string;
@@ -30,7 +31,7 @@ const LoginModal = ({ className }: LoginModalProps) => {
     navigate("/");
   };
 
-  const screens = [<></>];
+  const screens = [<ScreenSelectLogin />];
 
   const [screenValidations, setScreenValidations] =
     useState<ScreenValidationType>({});
@@ -71,7 +72,6 @@ const LoginModal = ({ className }: LoginModalProps) => {
             <Modal.Pagination />
           </Modal.Header>
           {screens[curPage]}
-          하잉
         </Modal.Content>
       </Modal.Container>
     </Modal>

@@ -1,0 +1,33 @@
+.screen__select__login {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.screen__select__login__body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.screen__select__login__body__authlist {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.horizontal__line {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.line {
+  flex: 1;
+  border-bottom: 1px solid var(--bgTheme-color-primary);
+}
+
+.move__to__signup {
+  display: flex;
+  justify-content: center;
+}
