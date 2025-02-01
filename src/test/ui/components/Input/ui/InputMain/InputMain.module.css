@@ -1,3 +1,4 @@
 .input__main {
-  opacity: 1;
+  border: 1px solid var(--bgTheme-color-border);
+  border-radius: 0.5rem;
 }
