@@ -7,7 +7,7 @@ interface InputFieldProps {
 }
 
 const InputField = ({ className }: InputFieldProps) => {
-  const { field, setIsFocused } = useInputContext();
+  const { field, setIsFocused, handleChange, inputValue } = useInputContext();
 
   const classNames = joinClassNames([styles["input__field"], className]);
 
@@ -26,8 +26,10 @@ const InputField = ({ className }: InputFieldProps) => {
       type="text"
       className={classNames}
       id={field}
+      value={inputValue}
       onFocus={handleFocus}
       onBlur={handleBlur}
+      onChange={handleChange}
     />
   );
 };

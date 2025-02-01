@@ -7,6 +7,8 @@ interface InputContainerProps {
   children: ReactNode;
   label: string; // Input 들어갈 값에 대한 설명
   field: string; // InputLabel과 InputField를 연결할 id 값
+  inputValue: string;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   maxLength?: string; // InputValue의 최대 길이
   disabled?: boolean; // disabled 모드 적용
   className?: string; // 스타일 추가
@@ -16,6 +18,8 @@ const InputContainer = ({
   children,
   label,
   field,
+  inputValue,
+  handleChange,
   maxLength,
   className,
   disabled = false,
@@ -33,6 +37,8 @@ const InputContainer = ({
     maxLength,
     isFocused,
     setIsFocused,
+    inputValue,
+    handleChange,
   };
 
   return (

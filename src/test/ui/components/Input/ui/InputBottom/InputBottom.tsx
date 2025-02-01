@@ -6,18 +6,13 @@ import { useInputContext } from "../../hooks";
 interface InputBottomProps {
   children: ReactNode;
   className?: string;
-  disabled?: boolean;
 }
 
-const InputBottom = ({
-  children,
-  className,
-  disabled = false,
-}: InputBottomProps) => {
-  const { isFocused } = useInputContext();
+const InputBottom = ({ children, className }: InputBottomProps) => {
+  const { isFocused, inputValue } = useInputContext();
   const classNames = joinClassNames([
     styles["input__bottom"],
-    isFocused
+    isFocused || inputValue !== ""
       ? styles[`input__bottom--focused`]
       : styles[`input__bottom--unfocused`],
     className,

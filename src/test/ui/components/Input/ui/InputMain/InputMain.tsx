@@ -10,7 +10,7 @@ interface InputMainProps {
 }
 
 const InputMain = ({ children, className }: InputMainProps) => {
-  const { field, label, maxLength, isFocused } = useInputContext();
+  const { field, label, maxLength, isFocused, inputValue } = useInputContext();
   const classNames = joinClassNames([
     styles["input__main"],
     isFocused
@@ -21,19 +21,21 @@ const InputMain = ({ children, className }: InputMainProps) => {
 
   const topClassNames = joinClassNames([
     styles[`input__top`],
-    isFocused ? styles[`input__top--focused`] : styles[`input__top--unfocused`],
+    isFocused || inputValue !== ""
+      ? styles[`input__top--focused`]
+      : styles[`input__top--unfocused`],
   ]);
 
   const labelClassNames = joinClassNames([
     styles[`input__label`],
-    isFocused
+    isFocused || inputValue !== ""
       ? styles[`input__label--focused`]
       : styles[`input__label--unfocused`],
   ]);
 
   const countClassNames = joinClassNames([
     styles[`input__count`],
-    isFocused
+    isFocused || inputValue !== ""
       ? styles[`input__count--focused`]
       : styles[`input__count--unfocused`],
   ]);
@@ -42,7 +44,11 @@ const InputMain = ({ children, className }: InputMainProps) => {
     <label className={classNames} htmlFor={field}>
       <div className={topClassNames}>
         <Text className={labelClassNames}>{label}</Text>
-        {maxLength && <Text className={countClassNames}>{maxLength}</Text>}
+        {maxLength && (
+          <Text
+            className={countClassNames}
+          >{`${inputValue.length} / ${maxLength}`}</Text>
+        )}
       </div>
       {children}
     </label>

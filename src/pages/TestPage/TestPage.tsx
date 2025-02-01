@@ -1,6 +1,7 @@
 import { Input } from "@test/ui/components";
 import styles from "./TestPage.module.css";
 import { joinClassNames } from "@shared/@common/utils";
+import { useState } from "react";
 
 interface TestPageProps {
   className?: string;
@@ -8,11 +9,25 @@ interface TestPageProps {
 }
 
 const TestPage = ({ className, disabled = false }: TestPageProps) => {
+  const [inputValue, setInputValue] = useState("dkssu");
   const classNames = joinClassNames([styles["testpage"], className]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+
+    console.log(value);
+    setInputValue(value)
+  };
 
   return (
     <div className={classNames}>
-      <Input label="라벨" field="field" maxLength="100">
+      <Input
+        label="라벨"
+        field="field"
+        maxLength="100"
+        inputValue={inputValue}
+        handleChange={handleChange}
+      >
         <Input.Main>
           <Input.Bottom>
             <Input.Field />
