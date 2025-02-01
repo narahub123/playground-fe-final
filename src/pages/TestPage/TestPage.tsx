@@ -13,9 +13,14 @@ const TestPage = ({ className, disabled = false }: TestPageProps) => {
   return (
     <div className={classNames}>
       <Input>
-        <Input.Main>d</Input.Main>
-        <Input.Error></Input.Error>
-        <Input.Dropdown></Input.Dropdown>
+        <Input.Main>
+          <Input.Top />
+          <Input.Bottom>
+            <Input.Field />
+          </Input.Bottom>
+        </Input.Main>
+        <Input.Error>에러</Input.Error>
+        <Input.Dropdown>드롭다운</Input.Dropdown>
       </Input>
     </div>
   );
