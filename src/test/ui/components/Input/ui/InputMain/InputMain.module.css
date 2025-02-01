@@ -1,7 +1,18 @@
 .input__main {
-  border: 1px solid var(--bgTheme-color-border);
-  border-radius: 0.5rem;
+  display: block;
   padding: 0.5rem;
+  border-radius: 0.5rem;
+
+  transition: border 0.3s ease-in-out, outline 0.3s ease-in-out;
+}
+
+.input__main--focused {
+  border: 1px solid transparent;
+  outline: 2px solid var(--colorTheme-color-primary);
+}
+.input__main--unfocused {
+  border: 1px solid var(--bgTheme-color-border);
+  outline: 2px solid transparent;
 }
 
 .input__main__label {

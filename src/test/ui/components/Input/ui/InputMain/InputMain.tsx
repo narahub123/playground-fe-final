@@ -10,17 +10,23 @@ interface InputMainProps {
 }
 
 const InputMain = ({ children, className }: InputMainProps) => {
-  const { field, label, maxLength } = useInputContext();
-  const classNames = joinClassNames([styles["input__main"], className]);
+  const { field, label, maxLength, isFocused } = useInputContext();
+  const classNames = joinClassNames([
+    styles["input__main"],
+    isFocused
+      ? styles[`input__main--focused`]
+      : styles[`input__main--unfocused`],
+    className,
+  ]);
 
   return (
-    <div className={classNames}>
-      <label htmlFor={field} className={styles[`input__main__label`]}>
+    <label className={classNames} htmlFor={field}>
+      <div className={styles[`input__main__label`]}>
         <Text>{label}</Text>
         {maxLength && <Text>{maxLength}</Text>}
-      </label>
+      </div>
       {children}
-    </div>
+    </label>
   );
 };
 

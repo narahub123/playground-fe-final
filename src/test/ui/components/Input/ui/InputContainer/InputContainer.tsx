@@ -1,5 +1,5 @@
 import styles from "./InputContainer.module.css";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import { joinClassNames } from "@shared/@common/utils";
 import { InputContext, InputContextType } from "@test/ui/components/Input";
 
@@ -22,12 +22,19 @@ const InputContainer = ({
 }: InputContainerProps) => {
   const classNames = joinClassNames([styles["input__container"], className]);
 
+  // input 필드에 포커스 여부
+  const [isFocused, setIsFocused] = useState(false);
+
+  // InputContext 설정
   const value: InputContextType = {
     label,
     field,
     disabled,
     maxLength,
+    isFocused,
+    setIsFocused,
   };
+
   return (
     <InputContext.Provider value={value}>
       <div className={classNames}>{children}</div>
