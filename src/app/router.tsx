@@ -1,6 +1,12 @@
 import { AuthModal } from "@features/auth-email/ui/components";
 import { LoginModal } from "@features/auth-login/ui";
-import { AuthPage, FlowPage, OauthCallback, PlayGround } from "@pages";
+import {
+  AuthPage,
+  FlowPage,
+  OauthCallback,
+  PlayGround,
+  TestPage,
+} from "@pages";
 import { ModalLayout } from "@shared/@common/layouts";
 import { FlowModal } from "@shared/flow/ui";
 import { createBrowserRouter } from "react-router-dom";
@@ -40,6 +46,7 @@ const router = createBrowserRouter([
           },
         ],
       },
+      { path: "/test", element: <TestPage /> },
     ],
   },
   {
