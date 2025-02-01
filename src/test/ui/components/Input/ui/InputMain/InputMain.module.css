@@ -1,4 +1,10 @@
 .input__main {
   border: 1px solid var(--bgTheme-color-border);
   border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+
+.input__main__label {
+  display: flex;
+  justify-content: space-between;
 }

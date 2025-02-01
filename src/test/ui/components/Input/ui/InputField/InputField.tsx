@@ -9,7 +9,7 @@ interface InputFieldProps {
 const InputField = ({ className, disabled = false }: InputFieldProps) => {
   const classNames = joinClassNames([styles["input__field"], className]);
 
-  return <div className={classNames}>InputField</div>;
+  return <input type="text" className={classNames} />;
 };
 
 export default InputField;

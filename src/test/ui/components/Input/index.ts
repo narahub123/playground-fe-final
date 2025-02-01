@@ -3,14 +3,15 @@ import {
   InputDropdown,
   InputError,
   InputMain,
-  InputTop,
   InputBottom,
   InputField,
 } from "./ui";
+import { InputContext, InputContextProvider } from "./context";
+import { useInputContext } from "./hooks";
+import { InputContextType } from "./types";
 
 const Input = Object.assign(InputContainer, {
   Main: InputMain,
-  Top: InputTop,
   Bottom: InputBottom,
   Field: InputField,
   Dropdown: InputDropdown,
@@ -18,3 +19,7 @@ const Input = Object.assign(InputContainer, {
 });
 
 export default Input;
+
+export { InputContext, InputContextProvider, useInputContext };
+
+export type { InputContextType };

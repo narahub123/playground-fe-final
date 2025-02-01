@@ -12,9 +12,8 @@ const TestPage = ({ className, disabled = false }: TestPageProps) => {
 
   return (
     <div className={classNames}>
-      <Input>
+      <Input label="라벨" field="field" maxLength="100">
         <Input.Main>
-          <Input.Top />
           <Input.Bottom>
             <Input.Field />
           </Input.Bottom>
