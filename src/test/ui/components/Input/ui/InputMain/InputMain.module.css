@@ -1,7 +1,9 @@
 .input__main {
+  position: relative;
   display: block;
   padding: 0.5rem;
   border-radius: 0.5rem;
+  height: 59.6px;
 
   transition: border 0.3s ease-in-out, outline 0.3s ease-in-out;
 }
@@ -15,7 +17,49 @@
   outline: 2px solid transparent;
 }
 
-.input__main__label {
+.input__top {
+  width: 100%;
   display: flex;
   justify-content: space-between;
+  transition: all 0.3s ease-in-out;
+  align-items: center;
+}
+
+.input__top--focused {
+  height: 18px;
+}
+.input__top--unfocused {
+  height: 42px;
+}
+
+.input__label {
+  transition: all 0.3s ease-in-out;
+}
+
+.input__label--focused {
+  font-size: 0.75rem;
+  color: var(--colorTheme-color-primary);
+}
+.input__label--unfocused {
+  font-size: 1rem;
+  color: var(--bgTheme-color-primary);
+}
+
+.input__count {
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+  color: #aaa;
+
+  font-size: 0.75rem;
+
+  transition: all 0.3s ease-in-out;
+}
+
+.input__count--focused {
+  opacity: 1;
+}
+
+.input__count--unfocused {
+  opacity: 0;
 }

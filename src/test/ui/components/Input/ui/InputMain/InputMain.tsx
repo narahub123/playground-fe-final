@@ -19,11 +19,30 @@ const InputMain = ({ children, className }: InputMainProps) => {
     className,
   ]);
 
+  const topClassNames = joinClassNames([
+    styles[`input__top`],
+    isFocused ? styles[`input__top--focused`] : styles[`input__top--unfocused`],
+  ]);
+
+  const labelClassNames = joinClassNames([
+    styles[`input__label`],
+    isFocused
+      ? styles[`input__label--focused`]
+      : styles[`input__label--unfocused`],
+  ]);
+
+  const countClassNames = joinClassNames([
+    styles[`input__count`],
+    isFocused
+      ? styles[`input__count--focused`]
+      : styles[`input__count--unfocused`],
+  ]);
+
   return (
     <label className={classNames} htmlFor={field}>
-      <div className={styles[`input__main__label`]}>
-        <Text>{label}</Text>
-        {maxLength && <Text>{maxLength}</Text>}
+      <div className={topClassNames}>
+        <Text className={labelClassNames}>{label}</Text>
+        {maxLength && <Text className={countClassNames}>{maxLength}</Text>}
       </div>
       {children}
     </label>
