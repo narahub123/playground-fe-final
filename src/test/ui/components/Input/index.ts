@@ -1,10 +1,10 @@
 import {
   InputContainer,
   InputDropdown,
-  InputError,
   InputMain,
   InputBottom,
   InputField,
+  InputExtra,
 } from "./ui";
 import { InputContext, InputContextProvider } from "./context";
 import { useInputContext } from "./hooks";
@@ -15,7 +15,7 @@ const Input = Object.assign(InputContainer, {
   Bottom: InputBottom,
   Field: InputField,
   Dropdown: InputDropdown,
-  Error: InputError,
+  Extra: InputExtra,
 });
 
 export default Input;

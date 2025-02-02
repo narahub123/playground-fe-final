@@ -2,6 +2,7 @@ import { Input } from "@test/ui/components";
 import styles from "./TestPage.module.css";
 import { joinClassNames } from "@shared/@common/utils";
 import { useState } from "react";
+import { Text } from "@shared/@common/ui/components";
 
 interface TestPageProps {
   className?: string;
@@ -11,6 +12,9 @@ interface TestPageProps {
 const TestPage = ({ className, disabled = false }: TestPageProps) => {
   const [inputValue, setInputValue] = useState("");
   const [isValid, setIsValid] = useState(false);
+  // 에러 메시지
+  const [errorMessage, setErrorMessage] = useState("");
+
   const classNames = joinClassNames([styles["testpage"], className]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,6 +22,8 @@ const TestPage = ({ className, disabled = false }: TestPageProps) => {
 
     console.log(value);
     setInputValue(value);
+    if (value === "") setErrorMessage("");
+    else setErrorMessage("에러 메시지입니다.");
   };
 
   return (
@@ -35,7 +41,11 @@ const TestPage = ({ className, disabled = false }: TestPageProps) => {
             <Input.Field />
           </Input.Bottom>
         </Input.Main>
-        <Input.Error>에러</Input.Error>
+        <Input.Extra>
+          <Text type="expl" status="error">
+            {errorMessage}
+          </Text>
+        </Input.Extra>
         <Input.Dropdown>드롭다운</Input.Dropdown>
       </Input>
     </div>
