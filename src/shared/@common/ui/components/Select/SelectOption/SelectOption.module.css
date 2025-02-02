@@ -1,0 +1,14 @@
+.select__option {
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.select__option:hover {
+  background-color: var(--colorTheme-color-primary);
+  color: white;
+}
+
+.select__option--selected {
+  background-color: var(--colorTheme-color-primary);
+  color: white;
+}

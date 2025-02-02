@@ -1,30 +1,33 @@
-import styles from "./Select.module.css";
-import { useLanguageContent } from "@shared/@common/models/hooks";
+import styles from "./SelectMain.module.css";
 import { joinClassNames } from "@shared/@common/utils";
-import Text from "../Text/Text";
+import Text from "../../Text/Text";
 import { LuChevronDown } from "react-icons/lu";
 import { ReactNode, useState } from "react";
 
-interface SelectProps {
+interface SelectMainProps {
   label: string;
   value: string;
   children: ReactNode;
+  handleMouseDown: () => void;
+  handleKeyDown: (e: React.KeyboardEvent<HTMLDivElement>) => void;
+  onClose: () => void;
+  isOpen: boolean;
   className?: string;
   disabled?: boolean;
 }
 
-const Select = ({
+const SelectMain = ({
   label,
   value,
+  isOpen,
   children,
+  handleMouseDown,
+  handleKeyDown,
+  onClose,
   className,
   disabled = false,
-}: SelectProps) => {
+}: SelectMainProps) => {
   const [isFocused, setIsFocused] = useState(false);
-
-  const [isOpen, setIsOpen] = useState(false);
-  // 언어 설정
-  const {} = useLanguageContent(["components", "Select"]);
 
   const focusCond = isFocused;
 
@@ -40,23 +43,7 @@ const Select = ({
 
   const handleBlur = () => {
     setIsFocused(false);
-    setIsOpen(false);
-  };
-
-  console.log(isFocused);
-
-  const handleMouseDown = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    if (e.key === "ArrowDown") {
-    } else if (e.key === "ArrowUp") {
-    } else if (e.key === "Enter") {
-      setIsOpen(!isOpen);
-    } else if (e.key === "Escape") {
-      setIsOpen(false);
-    }
+    onClose();
   };
 
   return (
@@ -101,4 +88,4 @@ const Select = ({
   );
 };
 
-export default Select;
+export default SelectMain;
