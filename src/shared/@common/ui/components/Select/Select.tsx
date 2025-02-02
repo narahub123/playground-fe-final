@@ -21,6 +21,8 @@ const Select = ({
   disabled = false,
 }: SelectProps) => {
   const [isFocused, setIsFocused] = useState(false);
+
+  const [isOpen, setIsOpen] = useState(false);
   // 언어 설정
   const {} = useLanguageContent(["components", "Select"]);
 
@@ -38,9 +40,24 @@ const Select = ({
 
   const handleBlur = () => {
     setIsFocused(false);
+    setIsOpen(false);
   };
 
   console.log(isFocused);
+
+  const handleMouseDown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "ArrowDown") {
+    } else if (e.key === "ArrowUp") {
+    } else if (e.key === "Enter") {
+      setIsOpen(!isOpen);
+    } else if (e.key === "Escape") {
+      setIsOpen(false);
+    }
+  };
 
   return (
     <div
@@ -48,6 +65,8 @@ const Select = ({
       tabIndex={0}
       onFocus={handleFocus}
       onBlur={handleBlur}
+      onMouseDown={handleMouseDown}
+      onKeyDown={handleKeyDown}
     >
       <div className={styles[`select__container`]}>
         <span className={styles[`select__left`]}>
@@ -75,7 +94,9 @@ const Select = ({
           />
         </span>
       </div>
-      <ul className={styles[`input__option__container`]}>{children}</ul>
+      {isOpen && !disabled && (
+        <ul className={styles[`input__option__container`]}>{children}</ul>
+      )}
     </div>
   );
 };
