@@ -1,6 +1,6 @@
 import styles from "./SelectMain.module.css";
 import { joinClassNames } from "@shared/@common/utils";
-import Text from "../../Text/Text";
+import Text from "../../../Text/Text";
 import { LuChevronDown } from "react-icons/lu";
 import { ReactNode, useState } from "react";
 

@@ -1,5 +1,5 @@
-import SelectMain from "./SelectMain/SelectMain";
-import SelectOption from "./SelectOption/SelectOption";
+import SelectMain from "./ui/SelectMain/SelectMain";
+import SelectOption from "./ui/SelectOption/SelectOption";
 
 const Select = Object.assign(SelectMain, {
   Option: SelectOption,
