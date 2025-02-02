@@ -15,13 +15,15 @@ const InputMain = ({ children, className }: InputMainProps) => {
 
   const focusCond = isFocused || inputValue !== "";
 
+  const validCond = isValid || inputValue === ""; // 유효성 여부
+
   const classNames = joinClassNames([
     styles["input__main"],
     isFocused // 포커스 여부
-      ? isValid // 유효성 여부
+      ? validCond
         ? styles[`input__main--focused--valid`]
         : styles[`input__main--focused--invalid`]
-      : isValid || inputValue === "" // 유효성 및 inputValue 존재 여부
+      : validCond
       ? styles[`input__main--unfocused--valid`]
       : styles[`input__main--unfocused--invalid`],
     className,
@@ -35,7 +37,7 @@ const InputMain = ({ children, className }: InputMainProps) => {
   const labelClassNames = joinClassNames([
     styles[`input__label`],
     focusCond
-      ? isValid // 유효성 여부
+      ? validCond
         ? styles[`input__label--focused--valid`]
         : styles[`input__label--focused--invalid`]
       : styles[`input__label--unfocused`],
