@@ -53,13 +53,3 @@
 .select__icon--unfocused {
   color: var(--bgTheme-color-primary);
 }
-
-.input__option__container {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  background-color: #fff;
-  border-radius: 0.5rem;
-  border: 1px solid #ccc;
-  overflow: hidden;
-}

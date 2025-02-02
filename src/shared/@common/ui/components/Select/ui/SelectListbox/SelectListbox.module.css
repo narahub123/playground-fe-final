@@ -1,0 +1,10 @@
+.select__listbox {
+  position: absolute;
+  left: 0;
+  top: 62.4px;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  overflow: auto;
+}

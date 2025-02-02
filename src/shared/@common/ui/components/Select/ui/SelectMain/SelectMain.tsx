@@ -3,6 +3,7 @@ import { joinClassNames } from "@shared/@common/utils";
 import Text from "../../../Text/Text";
 import { LuChevronDown } from "react-icons/lu";
 import { ReactNode, useState } from "react";
+import SelectListbox from "../SelectListbox/SelectListbox";
 
 interface SelectMainProps {
   label: string;
@@ -81,9 +82,7 @@ const SelectMain = ({
           />
         </span>
       </div>
-      {isOpen && !disabled && (
-        <ul className={styles[`input__option__container`]}>{children}</ul>
-      )}
+      {isOpen && !disabled && <SelectListbox>{children}</SelectListbox>}
     </div>
   );
 };
