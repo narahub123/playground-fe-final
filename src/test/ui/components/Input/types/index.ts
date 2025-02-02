@@ -6,6 +6,7 @@ type InputContextType = {
   setIsFocused: React.Dispatch<React.SetStateAction<boolean>>;
   inputValue: string;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  isValid: boolean;
   maxLength?: string;
 };
 

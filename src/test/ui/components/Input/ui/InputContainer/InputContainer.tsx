@@ -9,6 +9,7 @@ interface InputContainerProps {
   field: string; // InputLabel과 InputField를 연결할 id 값
   inputValue: string;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  isValid?: boolean;
   maxLength?: string; // InputValue의 최대 길이
   disabled?: boolean; // disabled 모드 적용
   className?: string; // 스타일 추가
@@ -22,6 +23,7 @@ const InputContainer = ({
   handleChange,
   maxLength,
   className,
+  isValid = false,
   disabled = false,
 }: InputContainerProps) => {
   const classNames = joinClassNames([styles["input__container"], className]);
@@ -39,6 +41,7 @@ const InputContainer = ({
     setIsFocused,
     inputValue,
     handleChange,
+    isValid,
   };
 
   return (

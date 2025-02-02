@@ -10,32 +10,40 @@ interface InputMainProps {
 }
 
 const InputMain = ({ children, className }: InputMainProps) => {
-  const { field, label, maxLength, isFocused, inputValue } = useInputContext();
+  const { field, label, maxLength, isFocused, inputValue, isValid } =
+    useInputContext();
+
+  const focusCond = isFocused || inputValue !== "";
+
   const classNames = joinClassNames([
     styles["input__main"],
-    isFocused
-      ? styles[`input__main--focused`]
-      : styles[`input__main--unfocused`],
+    isFocused // 포커스 여부
+      ? isValid // 유효성 여부
+        ? styles[`input__main--focused--valid`]
+        : styles[`input__main--focused--invalid`]
+      : isValid || inputValue === "" // 유효성 및 inputValue 존재 여부
+      ? styles[`input__main--unfocused--valid`]
+      : styles[`input__main--unfocused--invalid`],
     className,
   ]);
 
   const topClassNames = joinClassNames([
     styles[`input__top`],
-    isFocused || inputValue !== ""
-      ? styles[`input__top--focused`]
-      : styles[`input__top--unfocused`],
+    focusCond ? styles[`input__top--focused`] : styles[`input__top--unfocused`],
   ]);
 
   const labelClassNames = joinClassNames([
     styles[`input__label`],
-    isFocused || inputValue !== ""
-      ? styles[`input__label--focused`]
+    focusCond
+      ? isValid // 유효성 여부
+        ? styles[`input__label--focused--valid`]
+        : styles[`input__label--focused--invalid`]
       : styles[`input__label--unfocused`],
   ]);
 
   const countClassNames = joinClassNames([
     styles[`input__count`],
-    isFocused || inputValue !== ""
+    focusCond
       ? styles[`input__count--focused`]
       : styles[`input__count--unfocused`],
   ]);

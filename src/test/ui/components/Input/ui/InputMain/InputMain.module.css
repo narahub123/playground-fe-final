@@ -8,12 +8,23 @@
   transition: border 0.3s ease-in-out, outline 0.3s ease-in-out;
 }
 
-.input__main--focused {
+.input__main--focused--valid {
   border: 1px solid transparent;
   outline: 2px solid var(--colorTheme-color-primary);
 }
-.input__main--unfocused {
+
+.input__main--focused--invalid {
+  border: 1px solid transparent;
+  outline: 2px solid red;
+}
+
+.input__main--unfocused--valid {
   border: 1px solid var(--bgTheme-color-border);
+  outline: 2px solid transparent;
+}
+
+.input__main--unfocused--invalid {
+  border: 1px solid red;
   outline: 2px solid transparent;
 }
 
@@ -36,9 +47,14 @@
   transition: all 0.3s ease-in-out;
 }
 
-.input__label--focused {
+.input__label--focused--valid {
   font-size: 0.75rem;
   color: var(--colorTheme-color-primary);
+}
+
+.input__label--focused--invalid {
+  font-size: 0.75rem;
+  color: red;
 }
 .input__label--unfocused {
   font-size: 1rem;

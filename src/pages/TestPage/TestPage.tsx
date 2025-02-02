@@ -9,14 +9,15 @@ interface TestPageProps {
 }
 
 const TestPage = ({ className, disabled = false }: TestPageProps) => {
-  const [inputValue, setInputValue] = useState("dkssu");
+  const [inputValue, setInputValue] = useState("");
+  const [isValid, setIsValid] = useState(false);
   const classNames = joinClassNames([styles["testpage"], className]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
 
     console.log(value);
-    setInputValue(value)
+    setInputValue(value);
   };
 
   return (
@@ -27,6 +28,7 @@ const TestPage = ({ className, disabled = false }: TestPageProps) => {
         maxLength="100"
         inputValue={inputValue}
         handleChange={handleChange}
+        isValid={isValid}
       >
         <Input.Main>
           <Input.Bottom>
