@@ -23,6 +23,7 @@ import InputPhone from "./InputPhone/InputPhone";
 import InputLanguage from "./InputLanguage/InputLanguage";
 import { Toast } from "./Toast";
 import Alert from "./Alert";
+import Select from "./Select/Select";
 
 export {
   Text,
@@ -50,4 +51,5 @@ export {
   InputLanguage,
   Toast,
   Alert,
+  Select,
 };

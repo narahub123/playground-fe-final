@@ -300,6 +300,7 @@ const components = {
     forgetPassword: "비밀번호 찾기",
     button: "로그인",
   },
+  Select: {},
 };
 
 export default components;
