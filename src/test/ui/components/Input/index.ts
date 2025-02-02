@@ -1,6 +1,5 @@
 import {
   InputContainer,
-  InputDropdown,
   InputMain,
   InputBottom,
   InputField,
@@ -14,7 +13,6 @@ const Input = Object.assign(InputContainer, {
   Main: InputMain,
   Bottom: InputBottom,
   Field: InputField,
-  Dropdown: InputDropdown,
   Extra: InputExtra,
 });
 

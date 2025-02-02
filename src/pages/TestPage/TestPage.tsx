@@ -46,7 +46,6 @@ const TestPage = ({ className, disabled = false }: TestPageProps) => {
             {errorMessage}
           </Text>
         </Input.Extra>
-        <Input.Dropdown>드롭다운</Input.Dropdown>
       </Input>
     </div>
   );
