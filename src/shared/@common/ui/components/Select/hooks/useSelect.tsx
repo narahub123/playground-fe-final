@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAppDispatch } from "@app/store";
+import { SELECT_LISTBOX_SCROLL_STEP } from "@shared/@common/constants";
 
 interface useSelectProps {
   value: string;
@@ -50,11 +51,44 @@ const useSelect = ({ data, value, updateFunc }: useSelectProps) => {
       setIsOpen(!isOpen);
     } else if (e.key === "Escape") {
       setIsOpen(false);
+    } else if (e.key === "PageUp") {
+      const prevIndex =
+        index - SELECT_LISTBOX_SCROLL_STEP < 0
+          ? 0
+          : index - SELECT_LISTBOX_SCROLL_STEP;
+
+      const update = updateFunc(data[prevIndex].value);
+      if (
+        typeof update === "object" &&
+        "type" in update &&
+        "payload" in update
+      ) {
+        dispatch(update);
+      } else {
+        updateFunc(data[prevIndex].value);
+      }
+    } else if (e.key === "PageDown") {
+      const nextIndex =
+        index + SELECT_LISTBOX_SCROLL_STEP > data.length - 1
+          ? data.length - 1
+          : index + SELECT_LISTBOX_SCROLL_STEP;
+
+      const update = updateFunc(data[nextIndex].value);
+      if (
+        typeof update === "object" &&
+        "type" in update &&
+        "payload" in update
+      ) {
+        dispatch(update);
+      } else {
+        updateFunc(data[nextIndex].value);
+      }
     }
   };
 
   const handleMouseDown = () => {
-    setIsOpen(!isOpen);
+    // setIsOpen(!isOpen);
+    setIsOpen(true);
   };
 
   const onClose = () => {

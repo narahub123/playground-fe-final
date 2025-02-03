@@ -245,3 +245,10 @@ export const TOAST_ANIMATION_DURATION = 300;
  * @default 1000
  */
 export const MILLISECONDS_TO_SECONDS = 1000;
+
+/**
+ * SELECT의 LISTBOX에서 PAGEUP, PAGEDOWN을 했을 때 이동하는 개수를 위한 상수입니다.
+ * @constant {number}
+ * @default 10
+ */
+export const SELECT_LISTBOX_SCROLL_STEP = 10;
