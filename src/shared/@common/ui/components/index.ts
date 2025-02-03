@@ -24,6 +24,7 @@ import InputLanguage from "./InputLanguage/InputLanguage";
 import { Toast } from "./Toast";
 import Alert from "./Alert";
 import Select from "./Select";
+import SelectLanguage from "./SelectLanguage/SelectLanguage";
 
 export {
   Text,
@@ -52,4 +53,5 @@ export {
   Toast,
   Alert,
   Select,
+  SelectLanguage,
 };

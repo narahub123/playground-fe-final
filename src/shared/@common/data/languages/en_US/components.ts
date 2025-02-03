@@ -313,6 +313,16 @@ const components = {
       { text: "Neutral", value: "n" },
     ],
   },
+  SelectLanguage: {
+    label: "Language",
+    options: [
+      { text: "Korean : 한국어", value: "ko-KR" },
+      { text: "English : 영어", value: "en-US" },
+      { text: "Japanese : 日本語", value: "ja-JP" },
+      { text: "Chinese - Simplified : 简体中文", value: "zh-CN" },
+      { text: "Chinese - Traditional : 繁體中文", value: "zh-TW" },
+    ],
+  },
 };
 
 export default components;

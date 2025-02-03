@@ -302,6 +302,16 @@ const components = {
       { text: "中性", value: "n" },
     ],
   },
+  SelectLanguage: {
+    label: "语言",
+    options: [
+      { text: "韩语 : Korean", value: "ko-KR" },
+      { text: "英语 : English", value: "en-US" },
+      { text: "日语 : Japanese", value: "ja-JP" },
+      { text: "中文 - 简体 : Chinese - Simplified", value: "zh-CN" },
+      { text: "中文 - 繁体 : Chinese - Traditional", value: "zh-TW" },
+    ],
+  },
 };
 
 export default components;

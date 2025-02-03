@@ -322,6 +322,16 @@ const components = {
       { text: "중성", value: "n" },
     ],
   },
+  SelectLanguage: {
+    label: "언어",
+    options: [
+      { text: "한국어 : Korean", value: "ko-KR" },
+      { text: "영어 : English", value: "en-US" },
+      { text: "일본어 : Japanese", value: "ja-JP" },
+      { text: "중국어 - 간체 : Chinese - Simplified", value: "zh-CN" },
+      { text: "중국어 - 번체 : Chinese - Traditional", value: "zh-TW" },
+    ],
+  },
 };
 
 export default components;

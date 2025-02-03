@@ -1,7 +1,7 @@
 import {
   Button,
-  InputLanguage,
   Modal,
+  SelectLanguage,
   Text,
 } from "@shared/@common/ui/components";
 import styles from "./ScreenLanguage.module.css";
@@ -74,7 +74,7 @@ const ScreenLanguage = ({ className }: ScreenLanguageProps) => {
           <Text type="heading2">{title}</Text>
           <Text type="expl">{expl}</Text>
         </div>
-        <InputLanguage setIsValid={setIsValid} />
+        <SelectLanguage setIsValid={setIsValid} />
       </Modal.Body>
       <Modal.Footer>
         <Button
