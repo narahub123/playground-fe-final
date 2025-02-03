@@ -22,6 +22,7 @@ const useSelect = ({ data, value, updateFunc }: useSelectProps) => {
     const index = data.findIndex((item) => item.value === value);
 
     if (e.key === "ArrowDown") {
+      e.preventDefault();
       const nextIndex = index + 1 > data.length - 1 ? 0 : index + 1;
 
       const update = updateFunc(data[nextIndex].value);
@@ -35,6 +36,7 @@ const useSelect = ({ data, value, updateFunc }: useSelectProps) => {
         updateFunc(data[nextIndex].value);
       }
     } else if (e.key === "ArrowUp") {
+      e.preventDefault();
       const prevIndex = index - 1 < 0 ? data.length - 1 : index - 1;
 
       const update = updateFunc(data[prevIndex].value);
@@ -52,6 +54,7 @@ const useSelect = ({ data, value, updateFunc }: useSelectProps) => {
     } else if (e.key === "Escape") {
       setIsOpen(false);
     } else if (e.key === "PageUp") {
+      e.preventDefault();
       const prevIndex =
         index - SELECT_LISTBOX_SCROLL_STEP < 0
           ? 0
@@ -68,6 +71,7 @@ const useSelect = ({ data, value, updateFunc }: useSelectProps) => {
         updateFunc(data[prevIndex].value);
       }
     } else if (e.key === "PageDown") {
+      e.preventDefault();
       const nextIndex =
         index + SELECT_LISTBOX_SCROLL_STEP > data.length - 1
           ? data.length - 1
