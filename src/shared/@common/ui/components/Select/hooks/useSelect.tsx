@@ -20,16 +20,48 @@ interface useSelectProps {
       | boolean // 전체 유효성 상태를 업데이트하는 함수입니다. 모든 입력 필드에 대한 유효성 상태를 한 번에 업데이트할 수 있습니다.
     >
   >; // `isValid`의 값을 업데이트하는 함수입니다. 객체일 경우, 각 필드의 유효성 상태를 개별적으로 업데이트하거나, boolean 값일 경우 전체 유효성 상태를 한 번에 업데이트할 수 있습니다.
+  field: string;
 }
 
-const useSelect = ({ data, value, updateFunc, setIsValid }: useSelectProps) => {
+const useSelect = ({
+  data,
+  value,
+  updateFunc,
+  setIsValid,
+  field,
+}: useSelectProps) => {
   const dispatch = useAppDispatch();
 
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    if (value === "") setIsValid(false);
-    else setIsValid(true);
+    if (value === "") {
+      setIsValid((prev) => {
+        // typeof null도 "object"로 나오기 때문에, null을 체크하는 조건을 추가하여 예기치 않은 상황을 방지
+        if (typeof prev === "object" && prev !== null) {
+          // 기존 값과 동일한지 확인 후 값이 다르면 업데이트
+          if (prev[field] !== false) {
+            return { ...prev, [field]: false };
+          }
+          return prev; // 값이 같으면 기존 객체 그대로 반환
+        }
+        // 객체가 아니면 false로 설정
+        return false;
+      });
+    } else {
+      setIsValid((prev) => {
+        // typeof null도 "object"로 나오기 때문에, null을 체크하는 조건을 추가하여 예기치 않은 상황을 방지
+        if (typeof prev === "object" && prev !== null) {
+          // 기존 값과 동일한지 확인 후 값이 다르면 업데이트
+          if (prev[field] !== true) {
+            return { ...prev, [field]: true };
+          }
+          return prev; // 값이 같으면 기존 객체 그대로 반환
+        }
+        // 객체가 아니면 true 설정
+        return true;
+      });
+    }
   }, [value]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
