@@ -47,8 +47,16 @@
   color: var(--bgTheme-color-primary);
 }
 
+.select__label--disabled {
+  color: #ccc;
+}
+
 .select__field {
   height: 1.5rem;
+}
+
+.select__field--disabled {
+  color: #aaa;
 }
 
 .select__icon {
@@ -61,4 +69,8 @@
 }
 .select__icon--unfocused {
   color: var(--bgTheme-color-primary);
+}
+
+.select__icon--disabled {
+  color: #ccc;
 }

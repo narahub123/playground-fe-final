@@ -43,6 +43,7 @@ const SelectMain = ({
   const classNames = joinClassNames([
     styles["select"],
     isFocused ? styles[`select--focused`] : styles[`select--unfocused`],
+    disabled ? styles["select--disabled"] : undefined,
     className,
   ]);
 
@@ -64,11 +65,11 @@ const SelectMain = ({
     <SelectContextProvider value={context}>
       <div
         className={classNames}
-        tabIndex={0}
-        onFocus={handleFocus}
+        tabIndex={disabled ? -1 : 0}
+        onFocus={!disabled ? handleFocus : undefined}
         onBlur={handleBlur}
-        onMouseDown={toggleListbox}
-        onKeyDown={handleKeyDown}
+        onMouseDown={!disabled ? toggleListbox : undefined}
+        onKeyDown={!disabled ? handleKeyDown : undefined}
         ref={selectRef}
       >
         <div className={styles[`select__container`]}>
@@ -76,7 +77,9 @@ const SelectMain = ({
             <Text
               type="expl"
               className={joinClassNames([
-                styles[`select__label`],
+                disabled
+                  ? styles[`select__label--disabled`]
+                  : styles[`select__label`],
                 focusCond
                   ? styles[`select__label--focused`]
                   : styles[`select__label--unfocused`],
@@ -84,12 +87,22 @@ const SelectMain = ({
             >
               {label}
             </Text>
-            <Text className={styles[`select__field`]}>{value}</Text>
+            <Text
+              className={
+                disabled
+                  ? styles[`select__field--disabled`]
+                  : styles[`select__field`]
+              }
+            >
+              {value}
+            </Text>
           </span>
           <span className={styles[`select__right`]}>
             <LuChevronDown
               className={joinClassNames([
-                styles[`select__icon`],
+                disabled
+                  ? styles[`select__icon--disabled`]
+                  : styles[`select__icon`],
                 isFocused
                   ? styles[`select__icon--focused`]
                   : styles[`select__icon--unfocused`],
