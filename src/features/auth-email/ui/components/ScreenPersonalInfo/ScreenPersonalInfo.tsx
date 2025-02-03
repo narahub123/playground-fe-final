@@ -2,8 +2,6 @@ import styles from "./ScreenPersonalInfo.module.css";
 import {
   Button,
   InputBirthDate,
-  InputBirthMonth,
-  InputBirthYear,
   InputEmail,
   InputGender,
   InputPhone,
@@ -22,7 +20,10 @@ import {
 } from "@shared/@common/ui/components/Modal/hooks";
 import { getUserInSignup } from "@shared/auth/models/selectors/signupSelectors";
 import { useState } from "react";
-import SelectYearSignup from "@shared/auth/ui/components/SelectYearSignup/SelectYearSignup";
+import {
+  SelectYearSignup,
+  SelectMonthSignup,
+} from "@shared/auth/ui/components";
 
 /**
  * ScreenPersonalInfo 컴포넌트
@@ -92,11 +93,7 @@ const ScreenPersonalInfo = () => {
             {/* 년 */}
             <SelectYearSignup setIsValid={setIsValid} />
             {/* 월 */}
-            <InputBirthMonth
-              isSignup
-              isValid={isValid}
-              setIsValid={setIsValid}
-            />
+            <SelectMonthSignup setIsValid={setIsValid} />
             {/* 일 */}
             <InputBirthDate
               isSignup

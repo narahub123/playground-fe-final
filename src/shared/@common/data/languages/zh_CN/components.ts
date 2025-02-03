@@ -285,9 +285,9 @@ const components = {
     forgetPassword: "找回密码",
     button: "登录",
   },
-  SelectYearSignup: {
-    label: "年",
-    unit: "年",
+  SelectMonthSignup: {
+    label: "月",
+    unit: "月",
   },
 };
 

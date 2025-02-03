@@ -304,6 +304,10 @@ const components = {
     label: "年",
     unit: "年",
   },
+  SelectMonthSignup: {
+    label: "月",
+    unit: "月",
+  },
 };
 
 export default components;
