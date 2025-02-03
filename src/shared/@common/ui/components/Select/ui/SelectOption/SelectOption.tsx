@@ -2,18 +2,24 @@ import { ReactNode, useEffect, useRef } from "react";
 import styles from "./SelectOption.module.css";
 import { joinClassNames } from "@shared/@common/utils";
 
-interface SelectOptionProps {
+interface SelectOptionCustomProps {
   children: ReactNode;
   value: string;
   onMouseDown: (value: any) => void;
+  ariaSelected: boolean;
   className?: string;
 }
+
+type SelectOptionProps = SelectOptionCustomProps &
+  React.HTMLAttributes<HTMLLIElement>;
 
 const SelectOption = ({
   children,
   value,
   onMouseDown,
   className,
+  ariaSelected,
+  ...props
 }: SelectOptionProps) => {
   const optionRef = useRef<HTMLLIElement>(null);
 
@@ -30,7 +36,14 @@ const SelectOption = ({
   const classNames = joinClassNames([styles["select__option"], className]);
 
   return (
-    <li className={classNames} onMouseDown={onMouseDown} ref={optionRef}>
+    <li
+      className={classNames}
+      onMouseDown={onMouseDown}
+      ref={optionRef}
+      role="option"
+      aria-selected={ariaSelected}
+      {...props}
+    >
       {children}
     </li>
   );

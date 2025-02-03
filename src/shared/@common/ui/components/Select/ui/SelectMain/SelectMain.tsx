@@ -71,6 +71,11 @@ const SelectMain = ({
         onMouseDown={!disabled ? toggleListbox : undefined}
         onKeyDown={!disabled ? handleKeyDown : undefined}
         ref={selectRef}
+        role="button"
+        aria-expanded={isOpen} // 드롭다운을 토글하는 버튼 역할을 하는 요소에 적용해야 함
+        aria-haspopup={"listbox"} // 해당 요소가 팝업을 트리거할 수 있다는 것을 스크린 리더 사용자에게 알려주는 속성
+        aria-controls={`select-${field}`} // 어떤 요소에 대한 컨트롤인지를 참조
+        aria-disabled={disabled} // 활성화/비활성화 상태
       >
         <div className={styles[`select__container`]}>
           <span className={styles[`select__left`]}>

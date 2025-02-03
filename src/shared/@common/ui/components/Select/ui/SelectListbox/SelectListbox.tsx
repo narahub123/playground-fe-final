@@ -92,6 +92,7 @@ const SelectListbox = ({ children, className }: SelectListboxProps) => {
           width: `${rect.width}px`,
         }}
         onMouseDown={(e) => e.stopPropagation()}
+        role="listbox"
       >
         <ul className={classNames} style={{ height: rect.height }}>
           {children}
