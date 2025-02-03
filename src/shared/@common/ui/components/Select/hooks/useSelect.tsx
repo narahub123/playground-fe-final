@@ -1,4 +1,5 @@
-import { useState } from "react";
+import styles from "@shared/@common/ui/components/Select/ui/SelectOption/SelectOption.module.css";
+import { useEffect, useState } from "react";
 import { useAppDispatch } from "@app/store";
 import { SELECT_LISTBOX_SCROLL_STEP } from "@shared/@common/constants";
 
@@ -11,12 +12,25 @@ interface useSelectProps {
   updateFunc:
     | ((value: any) => { type: string; payload: any })
     | React.Dispatch<React.SetStateAction<string>>;
+  setIsValid: React.Dispatch<
+    React.SetStateAction<
+      | {
+          [key: string]: boolean; // 각 필드에 대한 유효성 상태를 업데이트하는 함수입니다. 필드 이름을 키로 하고, boolean 값을 업데이트합니다.
+        }
+      | boolean // 전체 유효성 상태를 업데이트하는 함수입니다. 모든 입력 필드에 대한 유효성 상태를 한 번에 업데이트할 수 있습니다.
+    >
+  >; // `isValid`의 값을 업데이트하는 함수입니다. 객체일 경우, 각 필드의 유효성 상태를 개별적으로 업데이트하거나, boolean 값일 경우 전체 유효성 상태를 한 번에 업데이트할 수 있습니다.
 }
 
-const useSelect = ({ data, value, updateFunc }: useSelectProps) => {
+const useSelect = ({ data, value, updateFunc, setIsValid }: useSelectProps) => {
   const dispatch = useAppDispatch();
 
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (value === "") setIsValid(false);
+    else setIsValid(true);
+  }, [value]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
     const index = data.findIndex((item) => item.value === value);
@@ -110,12 +124,15 @@ const useSelect = ({ data, value, updateFunc }: useSelectProps) => {
     setIsOpen(false);
   };
 
+  const optionSelected = styles[`select__option--selected`];
+
   return {
     isOpen,
     handleKeyDown,
     toggleListbox,
     onClose,
     updateValue,
+    optionSelected,
   };
 };
 
