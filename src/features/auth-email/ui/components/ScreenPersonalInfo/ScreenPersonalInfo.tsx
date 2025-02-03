@@ -22,6 +22,7 @@ import {
 } from "@shared/@common/ui/components/Modal/hooks";
 import { getUserInSignup } from "@shared/auth/models/selectors/signupSelectors";
 import { useState } from "react";
+import SelectYearSignup from "@shared/auth/ui/components/SelectYearSignup/SelectYearSignup";
 
 /**
  * ScreenPersonalInfo 컴포넌트
@@ -89,11 +90,7 @@ const ScreenPersonalInfo = () => {
           <div className={styles[`personal__info__screen__birth`]}>
             {/* 생년월일 */}
             {/* 년 */}
-            <InputBirthYear
-              isSignup
-              isValid={isValid}
-              setIsValid={setIsValid}
-            />
+            <SelectYearSignup setIsValid={setIsValid} />
             {/* 월 */}
             <InputBirthMonth
               isSignup

@@ -300,6 +300,10 @@ const components = {
     forgetPassword: "パスワードを探す",
     button: "ログイン",
   },
+  SelectYearSignup: {
+    label: "年",
+    unit: "年",
+  },
 };
 
 export default components;

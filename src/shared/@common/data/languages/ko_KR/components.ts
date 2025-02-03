@@ -301,6 +301,10 @@ const components = {
     button: "로그인",
   },
   Select: {},
+  SelectYearSignup: {
+    label: "년",
+    unit: "년",
+  },
 };
 
 export default components;

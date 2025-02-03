@@ -285,6 +285,10 @@ const components = {
     forgetPassword: "找回密碼",
     button: "登入",
   },
+  SelectYearSignup: {
+    label: "年",
+    unit: "年",
+  },
 };
 
 export default components;

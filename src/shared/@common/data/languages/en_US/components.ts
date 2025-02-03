@@ -292,6 +292,10 @@ const components = {
     forgetPassword: "Find password",
     button: "Log in",
   },
+  SelectYearSignup: {
+    label: "Year",
+    unit: "",
+  },
 };
 
 export default components;
