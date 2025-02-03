@@ -2,7 +2,7 @@ import { Input } from "@test/ui/components";
 import styles from "./TestPage.module.css";
 import { joinClassNames } from "@shared/@common/utils";
 import { useState } from "react";
-import { Select, Text } from "@shared/@common/ui/components";
+import { Text } from "@shared/@common/ui/components";
 
 interface TestPageProps {
   className?: string;
@@ -47,9 +47,6 @@ const TestPage = ({ className, disabled = false }: TestPageProps) => {
           </Text>
         </Input.Extra>
       </Input>
-      <Select label={"월"} value="">
-        안녕
-      </Select>
     </div>
   );
 };

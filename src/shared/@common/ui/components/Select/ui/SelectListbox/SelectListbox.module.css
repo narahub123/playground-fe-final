@@ -1,7 +1,5 @@
 .select__listbox__container {
   position: absolute;
-  left: 0;
-  width: 100%;
   background-color: var(--bgTheme-bgColor-primary);
   border-radius: 0.5rem;
   border: 1px solid #ccc;
