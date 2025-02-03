@@ -72,6 +72,8 @@ const useSelect = ({ data, value, updateFunc }: useSelectProps) => {
     } else {
       updateFunc(value);
     }
+
+    setIsOpen(false);
   };
 
   return {

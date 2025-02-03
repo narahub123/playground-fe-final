@@ -1,10 +1,14 @@
-.select__listbox {
+.select__listbox__container {
   position: absolute;
   left: 0;
   top: 62.4px;
   width: 100%;
-  background-color: #fff;
+  background-color: var(--bgTheme-bgColor-primary);
   border-radius: 0.5rem;
   border: 1px solid #ccc;
+  overflow: hidden;
+}
+
+.select__listbox {
   overflow: auto;
 }

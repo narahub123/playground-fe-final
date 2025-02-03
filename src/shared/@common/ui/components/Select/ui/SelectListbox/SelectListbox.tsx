@@ -8,7 +8,7 @@ interface SelectListboxProps {
 }
 
 const SelectListbox = ({ children, className }: SelectListboxProps) => {
-  const listboxRef = useRef<HTMLUListElement>(null);
+  const listboxRef = useRef<HTMLDivElement>(null);
 
   const [height, setHeight] = useState(0);
 
@@ -29,9 +29,17 @@ const SelectListbox = ({ children, className }: SelectListboxProps) => {
   const classNames = joinClassNames([styles["select__listbox"], className]);
 
   return (
-    <ul className={classNames} ref={listboxRef} style={{ height }}>
-      {children}
-    </ul>
+    // 스크롤을 listbox의 보더와 맞추기 위한 div
+    <div
+      className={styles[`select__listbox__container`]}
+      ref={listboxRef}
+      style={{ height }}
+      onMouseDown={(e) => e.stopPropagation()}
+    >
+      <ul className={classNames} style={{ height }}>
+        {children}
+      </ul>
+    </div>
   );
 };
 
