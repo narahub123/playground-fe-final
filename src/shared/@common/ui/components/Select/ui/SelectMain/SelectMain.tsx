@@ -17,6 +17,7 @@ interface SelectMainProps {
   handleKeyDown: (e: React.KeyboardEvent<HTMLDivElement>) => void;
   onClose: () => void;
   isOpen: boolean;
+  lengthOfList: number;
   className?: string;
   disabled?: boolean;
 }
@@ -30,6 +31,7 @@ const SelectMain = ({
   toggleListbox,
   handleKeyDown,
   onClose,
+  lengthOfList,
   className,
   disabled = false,
 }: SelectMainProps) => {
@@ -59,6 +61,7 @@ const SelectMain = ({
   const context: SelectContextType = {
     field,
     selectRef,
+    lengthOfList,
   };
 
   return (

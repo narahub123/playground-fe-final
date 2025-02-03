@@ -64,6 +64,7 @@ const SelectYearSignup = ({
       onClose={onClose}
       value={value}
       disabled={disabled}
+      lengthOfList={data.length}
     >
       {data.map((option) => {
         const selectCond = option.value === value;

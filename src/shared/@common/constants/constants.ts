@@ -252,3 +252,10 @@ export const MILLISECONDS_TO_SECONDS = 1000;
  * @default 10
  */
 export const SELECT_LISTBOX_SCROLL_STEP = 10;
+
+/**
+ * SELECT의 OPTION의 높이를 위한 상수
+ * @constant {number}
+ * @default 40
+ */
+export const SELECT_OPTION_HEIGHT = 40;

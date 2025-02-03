@@ -3,6 +3,7 @@ import styles from "./SelectListbox.module.css";
 import { joinClassNames } from "@shared/@common/utils";
 import { useSelectContext } from "../../hooks";
 import Portal from "../../../Portal/Portal";
+import { SELECT_OPTION_HEIGHT } from "@shared/@common/constants";
 
 interface SelectListboxProps {
   children: ReactNode;
@@ -12,7 +13,7 @@ interface SelectListboxProps {
 const SelectListbox = ({ children, className }: SelectListboxProps) => {
   const listboxRef = useRef<HTMLDivElement>(null);
 
-  const { field, selectRef } = useSelectContext();
+  const { field, selectRef, lengthOfList } = useSelectContext();
 
   const [rect, setRect] = useState<{
     top: number;
@@ -42,30 +43,20 @@ const SelectListbox = ({ children, className }: SelectListboxProps) => {
       // 현재 스크린의 높이
       const screenHeight = window.visualViewport?.height || 0;
 
-      // 현재 스크린의 높이 - 부모요소의 bottom : 부모 요소의 하단부터 화면 하단까지의 거리
+      // 부모 요소의 하단 높이 - 부모요소의 bottom : 부모 요소의 하단부터 화면 하단까지의 거리
       const distance = screenHeight - bottom;
+
+      // list의 높이
+      const heightOfList = lengthOfList * SELECT_OPTION_HEIGHT;
 
       // top : 부모요소의 top으로 화면 상단부터 부모요소의 상단까지의 거리 : 상단 거리
       // distace: 부모요소의 bottom부터 화면 하단까지의 거리: 하단 거리
-      // 상단 거리가 하단 거리보다 긴 경우
-      if (top > distance) {
-        // 부모 요소의 상단에 위치
-        setRect({
-          top: 0, // 화면의 top에서부터 시작
-          height: top - 2,
-          left,
-          width,
-        });
-      } else {
-        // 하단 거리가 상단 거리보다 긴 경우
-        // 부모 요소의 하단에 위치
-        setRect({
-          top: bottom + 2, // 부모의 bottom + 2(2는 outline크기)에서부터 시작
-          height: distance - 2, // 하단 거리에서 outline 크기만큼 뺌
-          left,
-          width,
-        });
-      }
+      setRect({
+        top: top > distance ? Math.max(top - heightOfList - 2, 0) : bottom + 2,
+        height: Math.min(heightOfList, top > distance ? top - 2 : distance - 2),
+        left,
+        width,
+      });
     };
 
     setPosition();
