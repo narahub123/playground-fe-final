@@ -2,6 +2,7 @@ import styles from "@shared/@common/ui/components/Select/ui/SelectOption/SelectO
 import { useEffect, useState } from "react";
 import { useAppDispatch } from "@app/store";
 import { SELECT_LISTBOX_SCROLL_STEP } from "@shared/@common/constants";
+import { SelectOptionType } from "../types";
 
 interface useSelectProps {
   value: string;
@@ -158,6 +159,10 @@ const useSelect = ({
 
   const optionSelected = styles[`select__option--selected`];
 
+  const convertValueToText = (value: string) =>
+    (options as SelectOptionType[]).find((option) => option.value === value)
+      ?.text || value;
+
   return {
     isOpen,
     handleKeyDown,
@@ -165,6 +170,7 @@ const useSelect = ({
     onClose,
     updateValue,
     optionSelected,
+    convertValueToText,
   };
 };
 

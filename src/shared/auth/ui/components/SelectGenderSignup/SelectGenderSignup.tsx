@@ -42,6 +42,7 @@ const SelectGenderSignup = ({
     optionSelected,
     toggleListbox,
     updateValue,
+    convertValueToText,
   } = useSelect({
     value,
     options,
@@ -59,7 +60,7 @@ const SelectGenderSignup = ({
       handleKeyDown={handleKeyDown}
       toggleListbox={toggleListbox}
       onClose={onClose}
-      value={value}
+      value={convertValueToText(value)}
       disabled={disabled}
       numberOfOptions={options.length}
     >
