@@ -36,7 +36,7 @@ const SelectYearSignup = ({
 
   const value = birth.year as string;
 
-  const data = birthYearList(unit);
+  const options = birthYearList(unit);
 
   const {
     handleKeyDown,
@@ -47,7 +47,7 @@ const SelectYearSignup = ({
     updateValue,
   } = useSelect({
     value,
-    data,
+    options,
     field,
     updateFunc: setBirthYearInSignup,
     setIsValid,
@@ -64,9 +64,9 @@ const SelectYearSignup = ({
       onClose={onClose}
       value={value}
       disabled={disabled}
-      lengthOfList={data.length}
+      numberOfOptions={options.length}
     >
-      {data.map((option) => {
+      {options.map((option) => {
         const selectCond = option.value === value;
         return (
           <Select.Option

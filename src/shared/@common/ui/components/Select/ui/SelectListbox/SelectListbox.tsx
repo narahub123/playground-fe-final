@@ -13,7 +13,7 @@ interface SelectListboxProps {
 const SelectListbox = ({ children, className }: SelectListboxProps) => {
   const listboxRef = useRef<HTMLDivElement>(null);
 
-  const { field, selectRef, lengthOfList } = useSelectContext();
+  const { field, selectRef, numberOfOptions } = useSelectContext();
 
   const [rect, setRect] = useState<{
     top: number;
@@ -30,41 +30,51 @@ const SelectListbox = ({ children, className }: SelectListboxProps) => {
   useLayoutEffect(() => {
     if (!selectRef.current) return;
 
-    // 부모 요소
-    const parent = selectRef.current; // select여야 함
+    // 부모 요소 (Select 컨테이너)
+    const selectElement = selectRef.current;
 
-    // 부모 요소가 없거나 select가 아닌 경우 종료
-    if (!parent || !parent.className.includes("select")) return;
+    // 부모 요소가 없거나 select 클래스가 포함되지 않은 경우 종료
+    if (!selectElement || !selectElement.className.includes("select")) return;
 
-    const setPosition = () => {
-      // 부모 요소의 top, bottom 가져오기
-      const { top, bottom, left, width } = parent?.getBoundingClientRect();
+    const updateListboxPosition = () => {
+      // 부모 요소의 위치 및 크기 가져오기
+      const {
+        top: selectTop,
+        bottom: selectBottom,
+        left: selectLeft,
+        width: selectWidth,
+      } = selectElement.getBoundingClientRect();
 
-      // 현재 스크린의 높이
-      const screenHeight = window.visualViewport?.height || 0;
+      // 현재 화면의 높이
+      const viewportHeight = window.visualViewport?.height || 0;
 
-      // 부모 요소의 하단 높이 - 부모요소의 bottom : 부모 요소의 하단부터 화면 하단까지의 거리
-      const distance = screenHeight - bottom;
+      // 부모 요소 하단부터 화면 하단까지의 거리
+      const spaceBelow = viewportHeight - selectBottom;
 
-      // list의 높이
-      const heightOfList = lengthOfList * SELECT_OPTION_HEIGHT;
+      // 옵션 리스트의 예상 높이
+      const listboxHeight = numberOfOptions * SELECT_OPTION_HEIGHT;
 
-      // top : 부모요소의 top으로 화면 상단부터 부모요소의 상단까지의 거리 : 상단 거리
-      // distace: 부모요소의 bottom부터 화면 하단까지의 거리: 하단 거리
+      // 리스트 박스의 위치 및 높이 설정
       setRect({
-        top: top > distance ? Math.max(top - heightOfList - 2, 0) : bottom + 2,
-        height: Math.min(heightOfList, top > distance ? top - 2 : distance - 2),
-        left,
-        width,
+        top:
+          selectTop > spaceBelow
+            ? Math.max(selectTop - listboxHeight - 2, 0)
+            : selectBottom + 2,
+        height: Math.min(
+          listboxHeight,
+          selectTop > spaceBelow ? selectTop - 2 : spaceBelow - 2
+        ),
+        left: selectLeft,
+        width: selectWidth,
       });
     };
 
-    setPosition();
+    updateListboxPosition();
 
-    window.addEventListener("resize", setPosition);
+    window.addEventListener("resize", updateListboxPosition);
 
     return () => {
-      window.removeEventListener("resize", setPosition);
+      window.removeEventListener("resize", updateListboxPosition);
     };
   }, []);
 

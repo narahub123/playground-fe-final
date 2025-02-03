@@ -1,7 +1,7 @@
 type SelectContextType = {
   field: string;
   selectRef: React.RefObject<HTMLDivElement>;
-  lengthOfList: number;
+  numberOfOptions: number;
 };
 
 export type { SelectContextType };

@@ -36,7 +36,7 @@ const SelectMonthSignup = ({
 
   const value = birth.month as string;
 
-  const data = birthMonthList(unit);
+  const options = birthMonthList(unit);
 
   const {
     handleKeyDown,
@@ -47,7 +47,7 @@ const SelectMonthSignup = ({
     updateValue,
   } = useSelect({
     value,
-    data,
+    options,
     field,
     updateFunc: setBirthMonthInSignup,
     setIsValid,
@@ -64,9 +64,9 @@ const SelectMonthSignup = ({
       onClose={onClose}
       value={value}
       disabled={disabled}
-      lengthOfList={data.length}
+      numberOfOptions={options.length}
     >
-      {data.map((option) => {
+      {options.map((option) => {
         const selectCond = option.value === value;
         return (
           <Select.Option
