@@ -29,7 +29,7 @@ const SelectOption = ({
     const option = optionRef.current;
 
     if (option.className.includes("selected")) {
-      option.scrollIntoView({ behavior: "smooth", block: "start" });
+      option.scrollIntoView({ behavior: "smooth", block: "center" });
     }
   }, [value]);
 
