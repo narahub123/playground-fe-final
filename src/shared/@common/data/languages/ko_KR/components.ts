@@ -309,6 +309,10 @@ const components = {
     label: "월",
     unit: "월",
   },
+  SelectDateSignup: {
+    label: "일",
+    unit: "일",
+  },
 };
 
 export default components;

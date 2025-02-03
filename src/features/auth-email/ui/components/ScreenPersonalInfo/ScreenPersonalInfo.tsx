@@ -1,7 +1,6 @@
 import styles from "./ScreenPersonalInfo.module.css";
 import {
   Button,
-  InputBirthDate,
   InputEmail,
   InputGender,
   InputPhone,
@@ -23,6 +22,7 @@ import { useState } from "react";
 import {
   SelectYearSignup,
   SelectMonthSignup,
+  SelectDateSignup,
 } from "@shared/auth/ui/components";
 
 /**
@@ -95,11 +95,7 @@ const ScreenPersonalInfo = () => {
             {/* 월 */}
             <SelectMonthSignup setIsValid={setIsValid} />
             {/* 일 */}
-            <InputBirthDate
-              isSignup
-              isValid={isValid}
-              setIsValid={setIsValid}
-            />
+            <SelectDateSignup setIsValid={setIsValid} />
           </div>
         </div>
       </Modal.Body>

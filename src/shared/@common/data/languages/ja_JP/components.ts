@@ -308,6 +308,10 @@ const components = {
     label: "月",
     unit: "月",
   },
+  SelectDateSignup: {
+    label: "日",
+    unit: "日",
+  },
 };
 
 export default components;

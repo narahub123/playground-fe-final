@@ -300,6 +300,10 @@ const components = {
     label: "Month",
     unit: "",
   },
+  SelectDateSignup: {
+    label: "Date",
+    unit: "",
+  },
 };
 
 export default components;
