@@ -6,6 +6,7 @@ import { ReactNode, useRef, useState } from "react";
 import SelectListbox from "../SelectListbox/SelectListbox";
 import { SelectContextProvider } from "../../context";
 import { SelectContextType } from "../../types";
+import { useClickOutside } from "@shared/@common/models/hooks";
 
 interface SelectMainProps {
   label: string;
@@ -34,6 +35,8 @@ const SelectMain = ({
 }: SelectMainProps) => {
   const selectRef = useRef<HTMLDivElement>(null);
   const [isFocused, setIsFocused] = useState(false);
+
+  useClickOutside({ containerRef: selectRef, toggle: onClose });
 
   const focusCond = isFocused;
 

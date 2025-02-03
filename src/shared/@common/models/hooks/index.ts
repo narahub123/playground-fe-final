@@ -7,6 +7,7 @@ import useDeviceInfo from "./useDeviceInfo";
 import useIpInfo from "./useIpInfo";
 import useLocationInfo from "./useLocationInfo";
 import useCreateUserId from "./useCreateUserId/useCreateUserId";
+import useClickOutside from "./useClickOutside";
 
 export {
   useLanguageContent,
@@ -18,4 +19,5 @@ export {
   useIpInfo,
   useLocationInfo,
   useCreateUserId,
+  useClickOutside,
 };
