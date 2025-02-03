@@ -87,8 +87,7 @@ const useSelect = ({ data, value, updateFunc }: useSelectProps) => {
   };
 
   const handleMouseDown = () => {
-    // setIsOpen(!isOpen);
-    setIsOpen(true);
+    setIsOpen(!isOpen);
   };
 
   const onClose = () => {
