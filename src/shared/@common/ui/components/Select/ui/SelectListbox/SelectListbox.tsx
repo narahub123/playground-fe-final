@@ -18,10 +18,12 @@ const SelectListbox = ({ children, className }: SelectListboxProps) => {
     top: number;
     left: number;
     height: number;
+    width: number;
   }>({
     top: 0,
     left: 0,
     height: 0,
+    width: 0,
   });
 
   useLayoutEffect(() => {
@@ -35,7 +37,7 @@ const SelectListbox = ({ children, className }: SelectListboxProps) => {
 
     const setPosition = () => {
       // 부모 요소의 top, bottom 가져오기
-      const { top, bottom, left } = parent?.getBoundingClientRect();
+      const { top, bottom, left, width } = parent?.getBoundingClientRect();
 
       // 현재 스크린의 높이
       const screenHeight = window.visualViewport?.height || 0;
@@ -52,6 +54,7 @@ const SelectListbox = ({ children, className }: SelectListboxProps) => {
           top: 0, // 화면의 top에서부터 시작
           height: top - 2,
           left,
+          width,
         });
       } else {
         // 하단 거리가 상단 거리보다 긴 경우
@@ -60,6 +63,7 @@ const SelectListbox = ({ children, className }: SelectListboxProps) => {
           top: bottom + 2, // 부모의 bottom + 2(2는 outline크기)에서부터 시작
           height: distance - 2, // 하단 거리에서 outline 크기만큼 뺌
           left,
+          width,
         });
       }
     };
@@ -85,6 +89,7 @@ const SelectListbox = ({ children, className }: SelectListboxProps) => {
           height: rect.height,
           top: `${rect.top}px`,
           left: `${rect.left}px`,
+          width: `${rect.width}px`,
         }}
         onMouseDown={(e) => e.stopPropagation()}
       >
