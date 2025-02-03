@@ -90,6 +90,9 @@ const SelectMain = ({
                 isFocused
                   ? styles[`select__icon--focused`]
                   : styles[`select__icon--unfocused`],
+                isOpen
+                  ? styles[`select__icon--open`]
+                  : styles[`select__icon--close`],
               ])}
             />
           </span>

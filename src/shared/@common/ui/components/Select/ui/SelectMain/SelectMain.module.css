@@ -4,6 +4,8 @@
   border-radius: 0.5rem;
   padding: 0.5rem;
 
+  min-width: 100px;
+
   transition: all 0.3s ease-in-out;
 }
 
@@ -15,6 +17,13 @@
 .select--unfocused {
   border: 1px solid #ccc;
   outline: 2px solid transparent;
+}
+
+.select__icon--open {
+  transform: rotate(180deg);
+}
+.select__icon--close {
+  transform: rotate(0deg);
 }
 
 .select__container {
