@@ -312,6 +312,15 @@ const components = {
     label: "日",
     unit: "日",
   },
+  SelectGenderSignup: {
+    label: "性別",
+    options: [
+      { text: "男性", value: "m" },
+      { text: "女性", value: "f" },
+      { text: "両性", value: "b" },
+      { text: "中性", value: "n" },
+    ],
+  },
 };
 
 export default components;

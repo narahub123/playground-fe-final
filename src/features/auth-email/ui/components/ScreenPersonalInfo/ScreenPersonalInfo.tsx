@@ -2,7 +2,6 @@ import styles from "./ScreenPersonalInfo.module.css";
 import {
   Button,
   InputEmail,
-  InputGender,
   InputPhone,
   InputUsername,
   Modal,
@@ -23,6 +22,7 @@ import {
   SelectYearSignup,
   SelectMonthSignup,
   SelectDateSignup,
+  SelectGenderSignup,
 } from "@shared/auth/ui/components";
 
 /**
@@ -82,7 +82,7 @@ const ScreenPersonalInfo = () => {
         </Button>
 
         {/* 성별 */}
-        <InputGender isSignup isValid={isValid} setIsValid={setIsValid} />
+        <SelectGenderSignup setIsValid={setIsValid} />
         <div className={styles[`personal__info__screen__birth__container`]}>
           <div>
             <Text status="bold">{birthHeading}</Text>

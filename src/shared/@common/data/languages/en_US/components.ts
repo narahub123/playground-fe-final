@@ -304,6 +304,15 @@ const components = {
     label: "Date",
     unit: "",
   },
+  SelectGenderSignup: {
+    label: "Gender",
+    options: [
+      { text: "Male", value: "m" },
+      { text: "Female", value: "f" },
+      { text: "Bisexual", value: "b" },
+      { text: "Neutral", value: "n" },
+    ],
+  },
 };
 
 export default components;

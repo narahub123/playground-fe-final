@@ -313,6 +313,15 @@ const components = {
     label: "일",
     unit: "일",
   },
+  SelectGenderSignup: {
+    label: "성별",
+    options: [
+      { text: "남자", value: "m" },
+      { text: "여자", value: "f" },
+      { text: "양성", value: "b" },
+      { text: "중성", value: "n" },
+    ],
+  },
 };
 
 export default components;
