@@ -90,7 +90,7 @@ const useSelect = ({ data, value, updateFunc }: useSelectProps) => {
     }
   };
 
-  const handleMouseDown = () => {
+  const toggleListbox = () => {
     setIsOpen(!isOpen);
   };
 
@@ -98,10 +98,7 @@ const useSelect = ({ data, value, updateFunc }: useSelectProps) => {
     setIsOpen(false);
   };
 
-  const handleOnMouseDown = (
-    e: React.MouseEvent<HTMLLIElement>,
-    value: string
-  ) => {
+  const updateValue = (e: React.MouseEvent<HTMLLIElement>, value: string) => {
     e.preventDefault();
     const update = updateFunc(value);
     if (typeof update === "object" && "type" in update && "payload" in update) {
@@ -116,9 +113,9 @@ const useSelect = ({ data, value, updateFunc }: useSelectProps) => {
   return {
     isOpen,
     handleKeyDown,
-    handleMouseDown,
+    toggleListbox,
     onClose,
-    handleOnMouseDown,
+    updateValue,
   };
 };
 

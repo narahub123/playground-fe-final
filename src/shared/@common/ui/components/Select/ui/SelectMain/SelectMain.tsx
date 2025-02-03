@@ -13,7 +13,7 @@ interface SelectMainProps {
   field: string;
   value: string;
   children: ReactNode;
-  handleMouseDown: () => void;
+  toggleListbox: () => void;
   handleKeyDown: (e: React.KeyboardEvent<HTMLDivElement>) => void;
   onClose: () => void;
   isOpen: boolean;
@@ -27,7 +27,7 @@ const SelectMain = ({
   value,
   isOpen,
   children,
-  handleMouseDown,
+  toggleListbox,
   handleKeyDown,
   onClose,
   className,
@@ -67,7 +67,7 @@ const SelectMain = ({
         tabIndex={0}
         onFocus={handleFocus}
         onBlur={handleBlur}
-        onMouseDown={handleMouseDown}
+        onMouseDown={toggleListbox}
         onKeyDown={handleKeyDown}
         ref={selectRef}
       >
