@@ -6,7 +6,7 @@ import {
   InputErrorKeyWithoutRegExp,
   InputErrorKeyWithRegExp,
   InputErrorType,
-} from "@shared/@common/ui/components/Input/types";
+} from "@shared/@common/ui/components/Input1/types";
 
 /**
  * 에러 키가 정규 표현식을 사용하는지 확인하는 함수입니다.

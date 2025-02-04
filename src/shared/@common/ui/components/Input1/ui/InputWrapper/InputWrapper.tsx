@@ -1,11 +1,11 @@
 import { ReactNode, useEffect, useRef, useState } from "react";
 import styles from "./InputWrapper.module.css";
-import { InputContextProvider } from "@shared/@common/ui/components/Input/context";
+import { InputContextProvider } from "@shared/@common/ui/components/Input1/context";
 import {
   InputContextType,
   InputErrorKeyType,
   InputErrorType,
-} from "@shared/@common/ui/components/Input/types";
+} from "@shared/@common/ui/components/Input1/types";
 import { DropdownItemType } from "@shared/@common/types";
 import { joinClassNames } from "@shared/@common/utils";
 

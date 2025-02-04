@@ -1,4 +1,4 @@
-import { useInputActionIconProps } from "@shared/@common/ui/components/Input/hooks";
+import { useInputActionIconProps } from "@shared/@common/ui/components/Input1/hooks";
 import { Icons, Icon } from "@shared/@common/ui/icons";
 
 interface InputActionIconProps {

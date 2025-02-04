@@ -1,5 +1,5 @@
 import styles from "./InputCounter.module.css";
-import { useInputContext } from "@shared/@common/ui/components/Input/context";
+import { useInputContext } from "@shared/@common/ui/components/Input1/context";
 import { joinClassNames } from "@shared/@common/utils";
 import { Text } from "@shared/@common/ui/components";
 

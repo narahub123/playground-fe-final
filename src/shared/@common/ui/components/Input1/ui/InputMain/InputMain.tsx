@@ -1,6 +1,6 @@
 import styles from "./InputMain.module.css";
 import { ReactNode, useCallback, useEffect, useRef, useState } from "react";
-import { useInputContext } from "@shared/@common/ui/components/Input/context";
+import { useInputContext } from "@shared/@common/ui/components/Input1/context";
 import { joinClassNames } from "@shared/@common/utils";
 import { useAppDispatch } from "@app/store";
 import InputDropdown from "../InputDropdown/InputDropdown";

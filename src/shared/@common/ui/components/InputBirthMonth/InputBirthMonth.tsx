@@ -5,7 +5,7 @@ import { setBirthMonth } from "@shared/@common/models/slices/userSlice";
 import { getBirthInSignup } from "@shared/auth/models/selectors";
 import { setBirthMonthInSignup } from "@shared/auth/models/slices/signupSlice";
 import { useSelector } from "react-redux";
-import Input from "../Input/ui";
+import Input from "../Input1/ui";
 
 interface InputBirthMonthProps {
   className?: string;

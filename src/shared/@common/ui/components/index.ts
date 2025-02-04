@@ -1,6 +1,6 @@
 import Text from "./Text/Text";
 import Modal from "./Modal";
-import Input from "./Input";
+import Input from "./Input1";
 import Dropdown from "./Dropdown/Dropdown";
 import Portal from "./Portal/Portal";
 import Button from "./Button/Button";

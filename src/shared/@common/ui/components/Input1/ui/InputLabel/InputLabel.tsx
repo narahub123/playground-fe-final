@@ -1,6 +1,6 @@
 import styles from "./InputLabel.module.css";
 import { joinClassNames } from "@shared/@common/utils";
-import { useInputContext } from "@shared/@common/ui/components/Input/context";
+import { useInputContext } from "@shared/@common/ui/components/Input1/context";
 import { Text } from "@shared/@common/ui/components";
 
 interface InputLabelProps {

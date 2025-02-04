@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import InputContext from "./InputContext";
-import { InputContextType } from "@shared/@common/ui/components/Input/types";
+import { InputContextType } from "@shared/@common/ui/components/Input1/types";
 
 /**
  * InputContext를 제공하는 컴포넌트

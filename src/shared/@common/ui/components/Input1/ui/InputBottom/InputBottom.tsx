@@ -1,6 +1,6 @@
 import styles from "./InputBottom.module.css";
 import { ComponentType, ReactNode } from "react";
-import { useInputContext } from "@shared/@common/ui/components/Input/context";
+import { useInputContext } from "@shared/@common/ui/components/Input1/context";
 import { joinClassNames } from "@shared/@common/utils";
 import InputTop from "../InputTop/InputTop";
 import { useValidateChildren } from "@shared/@common/models/hooks";

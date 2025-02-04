@@ -1,5 +1,5 @@
 import { useLanguageContent } from "@shared/@common/models/hooks";
-import Input from "../Input/ui";
+import Input from "../Input1/ui";
 import { getUsernameInSignup } from "@shared/auth/models/selectors";
 import { getUsername } from "@shared/@common/models/selectors";
 import { useSelector } from "react-redux";

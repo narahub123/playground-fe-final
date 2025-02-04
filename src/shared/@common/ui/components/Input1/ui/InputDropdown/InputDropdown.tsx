@@ -7,7 +7,7 @@ import {
   useState,
 } from "react";
 import { joinClassNames } from "@shared/@common/utils";
-import { useInputContext } from "@shared/@common/ui/components/Input/context";
+import { useInputContext } from "@shared/@common/ui/components/Input1/context";
 import { Portal } from "@shared/@common/ui/components";
 import { useAppDispatch } from "@app/store";
 

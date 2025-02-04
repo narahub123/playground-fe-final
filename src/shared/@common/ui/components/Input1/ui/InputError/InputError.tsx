@@ -1,5 +1,5 @@
 import styles from "./InputError.module.css";
-import { useInputContext } from "@shared/@common/ui/components/Input/context";
+import { useInputContext } from "@shared/@common/ui/components/Input1/context";
 import { Text } from "@shared/@common/ui/components";
 
 interface InputErrorProps {

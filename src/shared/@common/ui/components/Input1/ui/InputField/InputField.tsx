@@ -2,8 +2,8 @@ import styles from "./InputField.module.css";
 import { useEffect, useState } from "react";
 import { useAppDispatch } from "@app/store";
 import { joinClassNames } from "@shared/@common/utils";
-import { useInputContext } from "@shared/@common/ui/components/Input/context";
-import { useCompiledInputError } from "@shared/@common/ui/components/Input/hooks";
+import { useInputContext } from "@shared/@common/ui/components/Input1/context";
+import { useCompiledInputError } from "@shared/@common/ui/components/Input1/hooks";
 import {
   checkEmailDuplicateInSignupAPI,
   checkUserIdDuplicateInSignupAPI,
