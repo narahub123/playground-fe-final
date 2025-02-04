@@ -1,0 +1,8 @@
+.input__field {
+  width: 100%;
+  border: none;
+}
+
+.input__field--disabled {
+  color: #aaa;
+}
