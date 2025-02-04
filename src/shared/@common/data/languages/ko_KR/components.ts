@@ -87,7 +87,7 @@ const components = {
     birthDateUnit: "일",
     button: "다음",
   },
-  InputUsername: {
+  InputUsernameSignup: {
     label: "사용자 이름",
     error: {
       EMPTY: { regExp: EMPTY, errorMessage: "사용자 이름을 입력해주세요." },

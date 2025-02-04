@@ -85,7 +85,7 @@ const components = {
     birthDateUnit: "",
     button: "Next",
   },
-  InputUsername: {
+  InputUsernameSignup: {
     label: "Username",
     error: {
       EMPTY: { regExp: EMPTY, errorMessage: "Please enter a username." },

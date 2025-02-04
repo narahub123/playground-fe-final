@@ -3,7 +3,6 @@ import {
   Button,
   InputEmail,
   InputPhone,
-  InputUsername,
   Modal,
   Text,
 } from "@shared/@common/ui/components";
@@ -24,6 +23,7 @@ import {
   SelectDateSignup,
   SelectGenderSignup,
 } from "@shared/auth/ui/components";
+import InputUsernameSignup from "../InputUsernameSignup/InputUsernameSignup";
 
 /**
  * ScreenPersonalInfo 컴포넌트
@@ -62,7 +62,7 @@ const ScreenPersonalInfo = () => {
       <Modal.Body className={styles[`personal__info__screen__body`]}>
         <Text type="heading2">{title}</Text>
         {/* 사용자 이름 */}
-        <InputUsername isSignup isValid={isValid} setIsValid={setIsValid} />
+        <InputUsernameSignup isValid={isValid} setIsValid={setIsValid} />
 
         {isPhone ? (
           // 휴대폰

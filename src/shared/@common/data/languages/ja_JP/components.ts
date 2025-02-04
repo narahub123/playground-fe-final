@@ -88,7 +88,7 @@ const components = {
     birthDateUnit: "日",
     button: "次",
   },
-  InputUsername: {
+  InputUsernameSignup: {
     label: "ユーザー名",
     error: {
       EMPTY: { regExp: EMPTY, errorMessage: "ユーザー名を入力してください。" },
