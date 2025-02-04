@@ -95,7 +95,7 @@ const components = {
       },
     },
   },
-  InputEmail: {
+  InputEmailSignup: {
     label: "電子郵件",
     error: {
       EMPTY: { regExp: EMPTY, errorMessage: "請輸入電子郵件地址。" },

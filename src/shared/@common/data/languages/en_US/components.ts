@@ -98,7 +98,7 @@ const components = {
       },
     },
   },
-  InputEmail: {
+  InputEmailSignup: {
     label: "Email",
     error: {
       EMPTY: { regExp: EMPTY, errorMessage: "Please enter an email location." },

@@ -1,11 +1,5 @@
 import styles from "./ScreenPersonalInfo.module.css";
-import {
-  Button,
-  InputEmail,
-  InputPhone,
-  Modal,
-  Text,
-} from "@shared/@common/ui/components";
+import { Button, InputPhone, Modal, Text } from "@shared/@common/ui/components";
 import { useSelector } from "react-redux";
 import {
   useLanguageContent,
@@ -24,6 +18,7 @@ import {
   SelectGenderSignup,
 } from "@shared/auth/ui/components";
 import InputUsernameSignup from "../InputUsernameSignup/InputUsernameSignup";
+import InputEmailSignup from "../InputEmailSignup/InputEmailSignup";
 
 /**
  * ScreenPersonalInfo 컴포넌트
@@ -69,7 +64,7 @@ const ScreenPersonalInfo = () => {
           <InputPhone isSignup isValid={isValid} setIsValid={setIsValid} />
         ) : (
           // 이메일
-          <InputEmail isSignup isValid={isValid} setIsValid={setIsValid} />
+          <InputEmailSignup isValid={isValid} setIsValid={setIsValid} />
         )}
         <Button
           onClick={() => setIsPhone(!isPhone)}

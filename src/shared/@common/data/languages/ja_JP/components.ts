@@ -101,7 +101,7 @@ const components = {
       },
     },
   },
-  InputEmail: {
+  InputEmailSignup: {
     label: "メールアドレス",
     error: {
       EMPTY: {

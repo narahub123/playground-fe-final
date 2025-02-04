@@ -95,7 +95,7 @@ const components = {
       },
     },
   },
-  InputEmail: {
+  InputEmailSignup: {
     label: "电子邮件",
     error: {
       EMPTY: { regExp: EMPTY, errorMessage: "请输入电子邮件地址。" },
