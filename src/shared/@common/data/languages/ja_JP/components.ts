@@ -166,13 +166,9 @@ const components = {
     expl: "8文字以上である必要があります。",
     button: "次",
   },
-  InputPassword: {
-    passwordLabel: {
-      password: "パスワード",
-      confirm: "パスワード確認",
-      current: "現在のパスワード",
-    },
-    passwordError: {
+  InputPasswordSignup: {
+    label: "パスワード",
+    error: {
       REQUIRED: {
         errorMessage: "パスワードを先に設定してください。",
       },

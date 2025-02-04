@@ -15,6 +15,7 @@ import { Spinner } from "../../components";
 interface IconCustomProps {
   iconName: keyof typeof Icons;
   onClick?: (value?: any) => void;
+  onMouseDown?: (value?: any) => void;
   iconSize?: SizeExtended;
   iconColor?: ColorBasicWithInherit;
   bgSize?: SizeExtended;
@@ -33,6 +34,7 @@ type IconProps = IconCustomProps & React.HTMLAttributes<HTMLElement>;
 const Icon = ({
   iconName,
   onClick,
+  onMouseDown,
   className,
   iconSize = "md",
   iconColor = "inherit",
@@ -47,13 +49,13 @@ const Icon = ({
   ...props
 }: IconProps) => {
   const classNames = joinClassNames([
-    onClick ? styles["button"] : styles["icon"],
+    onClick || onMouseDown ? styles["button"] : styles["icon"],
     disabled || loading ? common[`disabled`] : "",
     iconSize && common[`fontsize--${iconSize}`],
     iconColor && common[`color--${iconColor}`],
     bgSize && common[`background--size--${bgSize}`],
     bgColor
-      ? onClick
+      ? onClick || onMouseDown
         ? common[`background--color--${bgColor}`]
         : styles[`icon--background--color--${bgColor}`]
       : "",
@@ -66,7 +68,7 @@ const Icon = ({
 
   const Comp = Icons[iconName];
 
-  return onClick ? (
+  return onClick || onMouseDown ? (
     <button
       type="button"
       className={classNames}
@@ -75,6 +77,7 @@ const Icon = ({
         ...props.style,
       }}
       onClick={disabled || loading ? undefined : onClick}
+      onMouseDown={disabled || loading ? undefined : onMouseDown}
       disabled={disabled}
       aria-disabled={disabled || loading}
       aria-busy={loading} // 현재 업데이트 중임을 나타냄

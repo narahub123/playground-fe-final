@@ -157,13 +157,9 @@ const components = {
     expl: "It must be at least 8 characters long.",
     button: "Next",
   },
-  InputPassword: {
-    passwordLabel: {
-      password: "Password",
-      confirm: "Confirm Password",
-      current: "Current Password",
-    },
-    passwordError: {
+  InputPasswordSignup: {
+    label: "Password",
+    error: {
       REQUIRED: {
         errorMessage: "Please set the password first.",
       },

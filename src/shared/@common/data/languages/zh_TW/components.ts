@@ -151,13 +151,9 @@ const components = {
     expl: "必須至少包含8個字元。",
     button: "下一個",
   },
-  InputPassword: {
-    passwordLabel: {
-      password: "密碼",
-      confirm: "確認密碼",
-      current: "當前密碼",
-    },
-    passwordError: {
+  InputPasswordSignup: {
+    label: "密碼",
+    error: {
       REQUIRED: {
         errorMessage: "請先設定密碼。",
       },

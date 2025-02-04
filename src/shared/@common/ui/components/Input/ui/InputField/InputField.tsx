@@ -4,9 +4,10 @@ import { useInputContext } from "@shared/@common/ui/components/Input";
 
 interface InputFieldProps {
   className?: string;
+  isShown?: boolean;
 }
 
-const InputField = ({ className }: InputFieldProps) => {
+const InputField = ({ isShown = true, className }: InputFieldProps) => {
   const { field, setIsFocused, handleChange, inputValue, disabled, isValid } =
     useInputContext();
 
@@ -26,7 +27,7 @@ const InputField = ({ className }: InputFieldProps) => {
 
   return (
     <input
-      type="text"
+      type={isShown && isShown ? "text" : "password"}
       className={classNames}
       id={field}
       value={inputValue}

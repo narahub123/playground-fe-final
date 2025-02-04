@@ -157,13 +157,9 @@ const components = {
     expl: "8자 이상이어야 합니다.",
     button: "다음",
   },
-  InputPassword: {
-    passwordLabel: {
-      password: "비밀번호",
-      confirm: "비밀번호 확인",
-      current: "현재 비밀번호",
-    },
-    passwordError: {
+  InputPasswordSignup: {
+    label: "비밀번호",
+    error: {
       REQUIRED: {
         errorMessage: "비밀번호를 먼저 설정해주세요.",
       },

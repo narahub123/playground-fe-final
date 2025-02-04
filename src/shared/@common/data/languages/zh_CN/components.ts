@@ -151,13 +151,9 @@ const components = {
     expl: "必须至少包含8个字符。",
     button: "下一个",
   },
-  InputPassword: {
-    passwordLabel: {
-      password: "密码",
-      confirm: "确认密码",
-      current: "当前密码",
-    },
-    passwordError: {
+  InputPasswordSignup: {
+    label: "密码",
+    error: {
       REQUIRED: {
         errorMessage: "请先设置密码。",
       },

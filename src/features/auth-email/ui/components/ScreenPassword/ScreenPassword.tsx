@@ -1,10 +1,5 @@
 import styles from "./ScreenPassword.module.css";
-import {
-  Button,
-  InputPassword,
-  Modal,
-  Text,
-} from "@shared/@common/ui/components";
+import { Button, Modal, Text } from "@shared/@common/ui/components";
 import {
   useLanguageContent,
   useValidationChecker,
@@ -15,6 +10,7 @@ import {
   useModalContext,
   useModalPagination,
 } from "@shared/@common/ui/components/Modal/hooks";
+import InputPasswordSignup from "../InputPasswordSignup/InputPasswordSignup";
 
 const ScreenPassword = () => {
   const user = useSelector(getUserInSignup);
@@ -42,13 +38,7 @@ const ScreenPassword = () => {
           <Text type="expl">{expl}</Text>
         </div>
         <div className={styles[`password__screen__body__content`]}>
-          <InputPassword
-            isValid={isValid}
-            setIsValid={setIsValid}
-            field="password"
-            label="password"
-            isSignup
-          />
+          <InputPasswordSignup isValid={isValid} setIsValid={setIsValid} />
         </div>
       </Modal.Body>
       <Modal.Footer>
