@@ -7,7 +7,7 @@ interface InputFieldProps {
 }
 
 const InputField = ({ className }: InputFieldProps) => {
-  const { field, setIsFocused, handleChange, inputValue, disabled } =
+  const { field, setIsFocused, handleChange, inputValue, disabled, isValid } =
     useInputContext();
 
   const classNames = joinClassNames([
@@ -17,12 +17,10 @@ const InputField = ({ className }: InputFieldProps) => {
   ]);
 
   const handleFocus = () => {
-    console.log("포커스");
     setIsFocused(true);
   };
 
   const handleBlur = () => {
-    console.log("블러");
     setIsFocused(false);
   };
 
@@ -36,6 +34,9 @@ const InputField = ({ className }: InputFieldProps) => {
       onBlur={handleBlur}
       onChange={handleChange}
       disabled={disabled}
+      aria-disabled={disabled} // disabled 모드
+      aria-required={true} // 필수 입력 필드
+      aria-invalid={!isValid} // 유효성 실패 여부
     />
   );
 };
