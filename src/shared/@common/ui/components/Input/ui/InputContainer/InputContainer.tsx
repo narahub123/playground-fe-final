@@ -1,7 +1,10 @@
 import styles from "./InputContainer.module.css";
 import { ReactNode, useState } from "react";
 import { joinClassNames } from "@shared/@common/utils";
-import { InputContext, InputContextType } from "@test/ui/components/Input";
+import {
+  InputContext,
+  InputContextType,
+} from "@shared/@common/ui/components/Input";
 
 interface InputContainerProps {
   children: ReactNode;

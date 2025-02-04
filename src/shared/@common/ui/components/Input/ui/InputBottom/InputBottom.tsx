@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import styles from "./InputBottom.module.css";
 import { joinClassNames } from "@shared/@common/utils";
-import { useInputContext } from "../../hooks";
+import { useInputContext } from "@shared/@common/ui/components/Input";
 
 interface InputBottomProps {
   children: ReactNode;

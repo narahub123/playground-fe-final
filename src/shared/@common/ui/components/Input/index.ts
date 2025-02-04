@@ -6,8 +6,15 @@ import {
   InputExtra,
 } from "./ui";
 import { InputContext, InputContextProvider } from "./context";
-import { useInputContext } from "./hooks";
-import { InputContextType } from "./types";
+import { useInputContext, useInput, useCompiledInputError } from "./hooks";
+import {
+  InputContextType,
+  InputErrorType,
+  CompileErrorType,
+  InputErrorKeyType,
+  InputErrorKeyWithRegExp,
+  InputErrorKeyWithoutRegExp,
+} from "./types";
 
 const Input = Object.assign(InputContainer, {
   Main: InputMain,
@@ -18,6 +25,19 @@ const Input = Object.assign(InputContainer, {
 
 export default Input;
 
-export { InputContext, InputContextProvider, useInputContext };
+export {
+  InputContext,
+  InputContextProvider,
+  useInputContext,
+  useInput,
+  useCompiledInputError,
+};
 
-export type { InputContextType };
+export type {
+  InputContextType,
+  InputErrorType,
+  CompileErrorType,
+  InputErrorKeyType,
+  InputErrorKeyWithRegExp,
+  InputErrorKeyWithoutRegExp,
+};

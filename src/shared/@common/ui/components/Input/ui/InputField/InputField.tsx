@@ -1,6 +1,6 @@
-import { useInputContext } from "../../hooks";
 import styles from "./InputField.module.css";
 import { joinClassNames } from "@shared/@common/utils";
+import { useInputContext } from "@shared/@common/ui/components/Input";
 
 interface InputFieldProps {
   className?: string;

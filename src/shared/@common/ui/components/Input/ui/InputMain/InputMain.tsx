@@ -1,8 +1,8 @@
-import { ReactNode } from "react";
 import styles from "./InputMain.module.css";
+import { ReactNode } from "react";
 import { joinClassNames } from "@shared/@common/utils";
 import { Text } from "@shared/@common/ui/components";
-import { useInputContext } from "../../hooks";
+import { useInputContext } from "@shared/@common/ui/components/Input";
 
 interface InputMainProps {
   children: ReactNode;

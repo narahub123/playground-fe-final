@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
 import styles from "./InputExtra.module.css";
+import { ReactNode } from "react";
 import { joinClassNames } from "@shared/@common/utils";
 
 interface InputExtraProps {
