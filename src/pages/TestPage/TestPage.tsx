@@ -31,7 +31,7 @@ const TestPage = ({ className, disabled = false }: TestPageProps) => {
       <Input
         label="라벨"
         field="field"
-        maxLength="100"
+        maxLength={100}
         inputValue={inputValue}
         handleChange={handleChange}
         isValid={isValid}

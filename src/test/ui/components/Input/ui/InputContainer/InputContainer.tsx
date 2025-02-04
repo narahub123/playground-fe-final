@@ -10,7 +10,7 @@ interface InputContainerProps {
   inputValue: string;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   isValid?: boolean;
-  maxLength?: string; // InputValue의 최대 길이
+  maxLength?: number; // InputValue의 최대 길이
   disabled?: boolean; // disabled 모드 적용
   className?: string; // 스타일 추가
 }

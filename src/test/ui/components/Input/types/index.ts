@@ -7,7 +7,7 @@ type InputContextType = {
   inputValue: string;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   isValid: boolean;
-  maxLength?: string;
+  maxLength?: number;
 };
 
 export type { InputContextType };
