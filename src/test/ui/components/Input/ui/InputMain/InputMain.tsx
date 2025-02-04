@@ -10,7 +10,7 @@ interface InputMainProps {
 }
 
 const InputMain = ({ children, className }: InputMainProps) => {
-  const { field, label, maxLength, isFocused, inputValue, isValid } =
+  const { field, label, maxLength, isFocused, inputValue, isValid, disabled } =
     useInputContext();
 
   const focusCond = isFocused || inputValue !== "";
@@ -26,6 +26,7 @@ const InputMain = ({ children, className }: InputMainProps) => {
       : validCond
       ? styles[`input__main--unfocused--valid`]
       : styles[`input__main--unfocused--invalid`],
+    disabled ? styles["input__main--disabled"] : "",
     className,
   ]);
 
@@ -41,6 +42,7 @@ const InputMain = ({ children, className }: InputMainProps) => {
         ? styles[`input__label--focused--valid`]
         : styles[`input__label--focused--invalid`]
       : styles[`input__label--unfocused`],
+    disabled ? styles[`input__label--disabled`] : "",
   ]);
 
   const countClassNames = joinClassNames([
@@ -54,7 +56,7 @@ const InputMain = ({ children, className }: InputMainProps) => {
     <label className={classNames} htmlFor={field}>
       <div className={topClassNames}>
         <Text className={labelClassNames}>{label}</Text>
-        {maxLength && (
+        {maxLength && !disabled && (
           <Text
             className={countClassNames}
           >{`${inputValue.length} / ${maxLength}`}</Text>

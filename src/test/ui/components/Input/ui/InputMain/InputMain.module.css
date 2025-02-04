@@ -28,6 +28,11 @@
   outline: 2px solid transparent;
 }
 
+.input__main--disabled {
+  border: 1px solid #ccc;
+  outline: 2px solid transparent;
+}
+
 .input__top {
   width: 100%;
   display: flex;
@@ -44,6 +49,7 @@
 }
 
 .input__label {
+  user-select: none;
   transition: all 0.3s ease-in-out;
 }
 
@@ -59,6 +65,10 @@
 .input__label--unfocused {
   font-size: 1rem;
   color: var(--bgTheme-color-primary);
+}
+
+.input__label--disabled {
+  color: #ccc;
 }
 
 .input__count {

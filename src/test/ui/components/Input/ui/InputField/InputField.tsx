@@ -7,9 +7,14 @@ interface InputFieldProps {
 }
 
 const InputField = ({ className }: InputFieldProps) => {
-  const { field, setIsFocused, handleChange, inputValue } = useInputContext();
+  const { field, setIsFocused, handleChange, inputValue, disabled } =
+    useInputContext();
 
-  const classNames = joinClassNames([styles["input__field"], className]);
+  const classNames = joinClassNames([
+    styles["input__field"],
+    disabled ? styles[`input__field--disabled`] : "",
+    className,
+  ]);
 
   const handleFocus = () => {
     console.log("포커스");
@@ -30,6 +35,7 @@ const InputField = ({ className }: InputFieldProps) => {
       onFocus={handleFocus}
       onBlur={handleBlur}
       onChange={handleChange}
+      disabled={disabled}
     />
   );
 };
