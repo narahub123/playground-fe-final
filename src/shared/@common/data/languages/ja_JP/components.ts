@@ -122,7 +122,7 @@ const components = {
       },
     },
   },
-  InputPhone: {
+  InputPhoneSignup: {
     label: "携帯電話",
     error: {
       EMPTY: {

@@ -1,5 +1,5 @@
 import styles from "./ScreenPersonalInfo.module.css";
-import { Button, InputPhone, Modal, Text } from "@shared/@common/ui/components";
+import { Button, Modal, Text } from "@shared/@common/ui/components";
 import { useSelector } from "react-redux";
 import {
   useLanguageContent,
@@ -19,6 +19,7 @@ import {
 } from "@shared/auth/ui/components";
 import InputUsernameSignup from "../InputUsernameSignup/InputUsernameSignup";
 import InputEmailSignup from "../InputEmailSignup/InputEmailSignup";
+import InputPhoneSignup from "../InputPhoneSignup/InputPhoneSignup";
 
 /**
  * ScreenPersonalInfo 컴포넌트
@@ -61,7 +62,7 @@ const ScreenPersonalInfo = () => {
 
         {isPhone ? (
           // 휴대폰
-          <InputPhone isSignup isValid={isValid} setIsValid={setIsValid} />
+          <InputPhoneSignup isValid={isValid} setIsValid={setIsValid} />
         ) : (
           // 이메일
           <InputEmailSignup isValid={isValid} setIsValid={setIsValid} />

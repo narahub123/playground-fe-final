@@ -111,7 +111,7 @@ const components = {
       },
     },
   },
-  InputPhone: {
+  InputPhoneSignup: {
     label: "手机号码",
     error: {
       EMPTY: { regExp: EMPTY, errorMessage: "请输入手机号码。" },

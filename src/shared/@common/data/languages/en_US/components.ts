@@ -116,7 +116,7 @@ const components = {
       },
     },
   },
-  InputPhone: {
+  InputPhoneSignup: {
     label: "Phone Number",
     error: {
       EMPTY: { regExp: EMPTY, errorMessage: "Please enter a phone number." },

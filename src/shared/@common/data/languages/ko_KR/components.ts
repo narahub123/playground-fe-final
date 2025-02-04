@@ -117,7 +117,7 @@ const components = {
       },
     },
   },
-  InputPhone: {
+  InputPhoneSignup: {
     label: "휴대폰",
     error: {
       EMPTY: { regExp: EMPTY, errorMessage: "휴대폰을 입력해주세요." },

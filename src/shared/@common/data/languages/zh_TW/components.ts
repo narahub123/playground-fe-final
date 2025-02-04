@@ -111,7 +111,7 @@ const components = {
       },
     },
   },
-  InputPhone: {
+  InputPhoneSignup: {
     label: "手機號碼",
     error: {
       EMPTY: { regExp: EMPTY, errorMessage: "請輸入手機號碼。" },
