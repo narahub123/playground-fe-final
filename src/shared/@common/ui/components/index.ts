@@ -1,6 +1,5 @@
 import Text from "./Text/Text";
 import Modal from "./Modal";
-import Input from "./Input1";
 import Dropdown from "./Dropdown/Dropdown";
 import Portal from "./Portal/Portal";
 import Button from "./Button/Button";
@@ -8,25 +7,19 @@ import SVG from "./SVG/SVG";
 import Spinner from "./Spinner/Spinner";
 import Image from "./Image/Image";
 import Lightbox from "./Lightbox";
+
 import ProfileImage from "./ProfileImage/ProfileImage";
 import ImageUploader from "./ImageUploader/ImageUploader";
 import Checkbox from "./Checkbox/Checkbox";
-import InputGender from "../../../../test/ui/components/InputGender/InputGender";
-import InputEmail from "../../../../test/ui/components/InputEmail/InputEmail";
-import InputBirthYear from "../../../../test/ui/components/InputBirthYear/InputBirthYear";
-import InputBirthMonth from "../../../../test/ui/components/InputBirthMonth/InputBirthMonth";
-import InputBirthDate from "../../../../test/ui/components/InputBirthDate/InputBirthDate";
-import InputPhone from "./InputPhone/InputPhone";
 import { Toast } from "./Toast";
 import Alert from "./Alert";
 import Select from "./Select";
 import SelectLanguage from "./SelectLanguage/SelectLanguage";
-import InputNew from "./Input";
+import Input from "./Input";
 
 export {
   Text,
   Modal,
-  Input,
   Dropdown,
   Portal,
   Button,
@@ -37,15 +30,9 @@ export {
   ImageUploader,
   ProfileImage,
   Checkbox,
-  InputGender,
-  InputEmail,
-  InputBirthYear,
-  InputBirthMonth,
-  InputBirthDate,
-  InputPhone,
   Toast,
   Alert,
   Select,
   SelectLanguage,
-  InputNew,
+  Input,
 };

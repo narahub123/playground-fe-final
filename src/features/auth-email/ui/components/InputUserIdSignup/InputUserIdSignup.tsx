@@ -1,7 +1,7 @@
 import styles from "./InputUserIdSignup.module.css";
 import { useAppDispatch } from "@app/store";
 import { useLanguageContent } from "@shared/@common/models/hooks";
-import { InputNew as Input, Text } from "@shared/@common/ui/components";
+import { Input, Text } from "@shared/@common/ui/components";
 import { useInput } from "@shared/@common/ui/components/Input";
 import { Icon } from "@shared/@common/ui/icons";
 import { joinClassNames } from "@shared/@common/utils";

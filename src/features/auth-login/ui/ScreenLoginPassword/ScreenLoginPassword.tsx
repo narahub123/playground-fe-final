@@ -1,14 +1,10 @@
 import styles from "./ScreenLoginPassword.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
-import {
-  Button,
-  InputEmail,
-  InputPhone,
-  Modal,
-  Text,
-} from "@shared/@common/ui/components";
+import { Button, Modal, Text } from "@shared/@common/ui/components";
 
 import { joinClassNames } from "@shared/@common/utils";
+import InputEmail from "@test/ui/components/InputEmail/InputEmail";
+import InputPhone from "@test/ui/components/InputPhone/InputPhone";
 
 interface ScreenLoginPasswordProps {
   className?: string;

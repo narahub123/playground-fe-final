@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { Input } from "@shared/@common/ui/components";
+
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { getPasswordInSignup } from "@shared/auth/models/selectors";
 import { setPasswordInSignup } from "@shared/auth/models/slices/signupSlice";
@@ -12,6 +12,7 @@ import {
   setPassword,
   setPasswordCheck,
 } from "@shared/@common/models/slices/userSlice";
+import Input from "../Input/ui";
 
 interface InputPasswordProps {
   isValid?:

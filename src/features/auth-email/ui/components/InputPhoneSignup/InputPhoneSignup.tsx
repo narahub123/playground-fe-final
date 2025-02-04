@@ -1,6 +1,6 @@
 import { useAppDispatch } from "@app/store";
 import { useLanguageContent } from "@shared/@common/models/hooks";
-import { InputNew as Input, Text } from "@shared/@common/ui/components";
+import { Input, Text } from "@shared/@common/ui/components";
 import { useInput } from "@shared/@common/ui/components/Input";
 import {
   getPhoneInSignup,

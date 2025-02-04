@@ -1,5 +1,5 @@
 import { useLanguageContent } from "@shared/@common/models/hooks";
-import { Input } from "@shared/@common/ui/components";
+
 import { getPhone } from "@shared/@common/models/selectors";
 import {
   getPhoneInSignup,
@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { setPhone } from "@shared/@common/models/slices/userSlice";
 import { setPhoneInSignup } from "@shared/auth/models/slices/signupSlice";
 import { useMemo } from "react";
+import Input from "../Input/ui";
 
 interface InputPhoneProps {
   className?: string;

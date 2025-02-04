@@ -1,11 +1,12 @@
 import { useLanguageContent } from "@shared/@common/models/hooks";
-import { Input } from "@shared/@common/ui/components";
+
 import { useEffect, useState } from "react";
 import { determineInputValueType } from "../utils";
 import {
   checkEmailDuplicateInSignupAPI,
   checkUserIdDuplicateInSignupAPI,
 } from "@shared/auth/apis";
+import { Input } from "@test/ui/components";
 
 interface InputAccountProps {
   className?: string;

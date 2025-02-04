@@ -1,10 +1,11 @@
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { getGender } from "@shared/@common/models/selectors";
 import { setGender } from "@shared/@common/models/slices/userSlice";
-import { Input } from "@shared/@common/ui/components";
+
 import { getGenderInSignup } from "@shared/auth/models/selectors";
 import { setGenderInSignup } from "@shared/auth/models/slices/signupSlice";
 import { useSelector } from "react-redux";
+import Input from "../Input/ui";
 
 interface InputGenderProps {
   isSignup?: boolean;

@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { getUsernameInSignup } from "@shared/auth/models/selectors";
 import { setUsernameInSignup } from "@shared/auth/models/slices/signupSlice";
 import { useAppDispatch } from "@app/store";
-import { InputNew as Input } from "@shared/@common/ui/components";
+import { Input } from "@shared/@common/ui/components";
 import { useInput } from "@shared/@common/ui/components/Input";
 
 interface InputUsernameSignupProps {
