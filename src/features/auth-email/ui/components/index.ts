@@ -1,4 +1,4 @@
-import AuthModal from "./AuthModal/AuthModal";
+import SignupModal from "./SignupModal/SignupModal";
 import ScreenPersonalInfo from "./ScreenPersonalInfo/ScreenPersonalInfo";
 import ScreenPassword from "./ScreenPassword/ScreenPassword";
 import ScreenUserId from "./ScreenUserId/ScreenUserId";
@@ -7,7 +7,7 @@ import ScreenNotifications from "./ScreenNotifications/ScreenNotifications";
 import ScreenLanguage from "./ScreenLanguage/ScreenLanguage";
 
 export {
-  AuthModal,
+  SignupModal,
   ScreenPersonalInfo,
   ScreenPassword,
   ScreenUserId,

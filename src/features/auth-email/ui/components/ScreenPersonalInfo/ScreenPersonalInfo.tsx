@@ -27,7 +27,7 @@ import {
 
 /**
  * ScreenPersonalInfo 컴포넌트
- * AuthModal 내 사용자 이름, 이메일, 생년월일 등록과 관련된 컴포넌트로, 각 항목에 대한 유효성을 관리합니다.
+ * SignupModal 내 사용자 이름, 이메일, 생년월일 등록과 관련된 컴포넌트로, 각 항목에 대한 유효성을 관리합니다.
  *
  * @returns {JSX.Element} ScreenPersonalInfo 컴포넌트 렌더링 결과
  */

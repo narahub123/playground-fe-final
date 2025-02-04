@@ -25,12 +25,12 @@ import { getSignupModal } from "@shared/@common/models/selectors";
 import { onParallelModalClose } from "@shared/@common/models/slices/modalSlice";
 
 /**
- * AuthModal 컴포넌트
+ * SignupModal 컴포넌트
  * 사용자 인증과 관련된 모달 컴포넌트로, 여러 페이지를 관리할 수 있습니다.
  *
- * @returns {JSX.Element} AuthModal 컴포넌트 렌더링 결과.
+ * @returns {JSX.Element} SignupModal 컴포넌트 렌더링 결과.
  */
-const AuthModal = () => {
+const SignupModal = () => {
   const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
@@ -113,4 +113,4 @@ const AuthModal = () => {
   );
 };
 
-export default AuthModal;
+export default SignupModal;

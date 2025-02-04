@@ -1,4 +1,4 @@
-import { AuthModal } from "@features/auth-email/ui/components";
+import { SignupModal } from "@features/auth-email/ui/components";
 import { LoginModal } from "@features/auth-login/ui";
 import {
   AuthPage,
@@ -26,7 +26,7 @@ const router = createBrowserRouter([
             children: [
               {
                 path: "signup",
-                element: <AuthModal />,
+                element: <SignupModal />,
               },
               {
                 path: "login",
