@@ -283,6 +283,19 @@ const components = {
     signupButton: "Sign Up",
     button: "Next",
   },
+  InputAccountLogin: {
+    label: "Email, Phone Number, User ID",
+    error: [],
+    errMsg: (type: string) => {
+      return `The ${
+        type === "email"
+          ? "email"
+          : type === "phone"
+          ? "phone number"
+          : "user ID"
+      } does not exist.`;
+    },
+  },
   ScreenLoginPassword: {
     title: "Enter your password.",
     forgetPassword: "Find password",

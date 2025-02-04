@@ -276,6 +276,16 @@ const components = {
     signupButton: "註冊",
     button: "下一步",
   },
+  InputAccountLogin: {
+    label: "電子郵件、手機號、用戶ID",
+    error: [],
+    errMsg: (type: string) => {
+      return `該${
+        type === "email" ? "電子郵件" : type === "phone" ? "手機號" : "用戶ID"
+      }不存在。`;
+    },
+  },
+
   ScreenLoginPassword: {
     title: "請輸入密碼。",
     forgetPassword: "找回密碼",

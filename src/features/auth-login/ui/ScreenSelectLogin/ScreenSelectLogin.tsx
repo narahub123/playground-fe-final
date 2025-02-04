@@ -6,15 +6,32 @@ import { joinClassNames } from "@shared/@common/utils";
 import { AuthButtonItemType, OauthType } from "@shared/auth/types";
 import { AuthButton } from "@shared/auth/ui/components";
 import { useState } from "react";
-import { InputAccount } from "@shared/flow/ui";
 import { useModalContext } from "@shared/@common/ui/components/Modal/hooks";
-import { HorizontalDivider } from "@features/auth-login/ui";
+import { HorizontalDivider, InputAccountLogin } from "@features/auth-login/ui";
 
 interface ScreenSelectLoginProps {
   className?: string;
+  inputValue: {
+    email: string;
+    phone: string;
+    userId: string;
+    password: string;
+  };
+  setInputValue: React.Dispatch<
+    React.SetStateAction<{
+      email: string;
+      phone: string;
+      userId: string;
+      password: string;
+    }>
+  >;
 }
 
-const ScreenSelectLogin = ({ className }: ScreenSelectLoginProps) => {
+const ScreenSelectLogin = ({
+  className,
+  inputValue,
+  setInputValue,
+}: ScreenSelectLoginProps) => {
   const [isValid, setIsValid] = useState<
     | {
         [key: string]: boolean;
@@ -63,7 +80,12 @@ const ScreenSelectLogin = ({ className }: ScreenSelectLoginProps) => {
             />
           ))}
           <HorizontalDivider>{divider}</HorizontalDivider>
-          <InputAccount isValid={isValid} setIsValid={setIsValid} />
+          <InputAccountLogin
+            isValid={isValid}
+            setIsValid={setIsValid}
+            inputValue={inputValue}
+            setInputValue={setInputValue}
+          />
           <Button
             onClick={() => {
               console.log("하이");

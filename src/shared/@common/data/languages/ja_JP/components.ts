@@ -291,6 +291,19 @@ const components = {
     signupButton: "登録",
     button: "次へ",
   },
+  InputAccountLogin: {
+    label: "メールアドレス、電話番号、ユーザーID",
+    error: [],
+    errMsg: (type: string) => {
+      return `該当の${
+        type === "email"
+          ? "メールアドレス"
+          : type === "phone"
+          ? "電話番号"
+          : "ユーザーID"
+      }は存在しません。`;
+    },
+  },
   ScreenLoginPassword: {
     title: "パスワードを入力してください。",
     forgetPassword: "パスワードを探す",

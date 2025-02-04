@@ -19,6 +19,13 @@ const LoginModal = ({ className }: LoginModalProps) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
+  const [inputValue, setInputValue] = useState({
+    email: "",
+    phone: "",
+    userId: "",
+    password: "",
+  });
+
   // 페이지 관리
   const [curPage, setCurPage] = useState(0);
 
@@ -32,7 +39,10 @@ const LoginModal = ({ className }: LoginModalProps) => {
     navigate("/");
   };
 
-  const screens = [<ScreenSelectLogin />, <ScreenLoginPassword />];
+  const screens = [
+    <ScreenSelectLogin inputValue={inputValue} setInputValue={setInputValue} />,
+    <ScreenLoginPassword />,
+  ];
 
   const [screenValidations, setScreenValidations] =
     useState<ScreenValidationType>({});

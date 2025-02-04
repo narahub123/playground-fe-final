@@ -276,6 +276,15 @@ const components = {
     signupButton: "注册",
     button: "下一步",
   },
+  InputAccountLogin: {
+    label: "邮箱、手机号、用户ID",
+    error: [],
+    errMsg: (type: string) => {
+      return `该${
+        type === "email" ? "邮箱" : type === "phone" ? "手机号" : "用户ID"
+      }不存在。`;
+    },
+  },
   ScreenLoginPassword: {
     title: "请输入密码。",
     forgetPassword: "找回密码",
