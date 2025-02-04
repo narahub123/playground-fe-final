@@ -1,91 +1,32 @@
 .input__main {
-  position: relative;
-  display: block;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  height: 59.6px;
-
-  transition: border 0.3s ease-in-out, outline 0.3s ease-in-out;
-}
-
-.input__main--focused--valid {
-  border: 1px solid transparent;
-  outline: 2px solid var(--colorTheme-color-primary);
-}
-
-.input__main--focused--invalid {
-  border: 1px solid transparent;
-  outline: 2px solid red;
-}
-
-.input__main--unfocused--valid {
-  border: 1px solid var(--bgTheme-color-border);
-  outline: 2px solid transparent;
-}
-
-.input__main--unfocused--invalid {
-  border: 1px solid red;
-  outline: 2px solid transparent;
-}
-
-.input__main--disabled {
-  border: 1px solid #ccc;
-  outline: 2px solid transparent;
-}
-
-.input__top {
-  width: 100%;
   display: flex;
-  justify-content: space-between;
-  transition: all 0.3s ease-in-out;
-  align-items: center;
+  border: var(--bgTheme-border-primary);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  transition: var(--transition-primary);
+  outline: 0.125rem solid transparent; /* 자연스러운 변경을 위해 transparent로 변경 */
+  background-color: var(--bgTheme-bgColor-primary); /* 배경 테마 */
 }
 
-.input__top--focused {
-  height: 18px;
-}
-.input__top--unfocused {
-  height: 42px;
+/* inputValue가 유효한 경우 */
+.input__main--valid {
+  outline: var(--colorTheme-outline-primary) !important;
 }
 
-.input__label {
+/* inputValue가 유효하지 않은 경우 */
+.input__main--invalid {
+  border: var(--outline-warning);
+}
+
+/* disabled 모드인 경우 */
+.input__main--disabled {
   user-select: none;
-  transition: all 0.3s ease-in-out;
 }
 
-.input__label--focused--valid {
-  font-size: 0.75rem;
-  color: var(--colorTheme-color-primary);
-}
-
-.input__label--focused--invalid {
-  font-size: 0.75rem;
-  color: red;
-}
-.input__label--unfocused {
-  font-size: 1rem;
-  color: var(--bgTheme-color-primary);
-}
-
-.input__label--disabled {
-  color: #ccc;
-}
-
-.input__count {
-  position: absolute;
-  right: 0.5rem;
-  top: 0.5rem;
-  color: #aaa;
-
-  font-size: 0.75rem;
-
-  transition: all 0.3s ease-in-out;
-}
-
-.input__count--focused {
-  opacity: 1;
-}
-
-.input__count--unfocused {
-  opacity: 0;
+/* 스타일링 이유로 추가한 클래스 */
+.input__container {
+  position: relative;
+  flex: 1;
+  height: 2.625rem;
+  width: 100%;
 }

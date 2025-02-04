@@ -1,5 +1,4 @@
-import useInputContext from "./useInputContext";
-import useInput from "./useInput";
+import useInputActionIconProps from "./useInputActionIconProps";
 import useCompiledInputError from "./useCompiledInputError";
 
-export { useInputContext, useInput, useCompiledInputError };
+export { useInputActionIconProps, useCompiledInputError };

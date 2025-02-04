@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-
+import { useInputContext } from "../context";
 import {
   CompileErrorType,
   InputErrorKeyType,
@@ -40,12 +40,19 @@ function isWithoutRegExpKey(
   );
 }
 
-const useCompiledInputError = (error: {
-  [key: string]: {
-    regExp?: string;
-    errorMessage: string;
-  };
-}) => {
+/**
+ * `useInputContext`에서 받아온 `error` 객체를 처리하여, 각 에러 키에 대한
+ * 정규 표현식(`regExp`)과 에러 메시지(`errorMessage`)를 포함하는 객체를 반환하는 훅입니다.
+ *
+ * 이 훅은 `error` 객체를 순회하며, 각 에러 키에 대한 컴파일된 에러 정보를 반환합니다.
+ * 정규 표현식이 포함된 에러는 `regExp`와 `errorMessage`가 함께 반환되고,
+ * 정규 표현식을 사용하지 않는 에러는 `errorMessage`만 반환됩니다.
+ *
+ * @returns {Object} - 에러 키별로 정규 표현식과 에러 메시지를 포함하는 객체 반환
+ */
+const useCompiledInputError = () => {
+  const { error } = useInputContext();
+
   const compiledError = useMemo(() => {
     // error 객체가 없으면 빈 객체 반환
     if (!error) {

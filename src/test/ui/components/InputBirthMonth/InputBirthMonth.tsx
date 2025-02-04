@@ -1,13 +1,13 @@
+import { birthMonthList } from "@features/auth-email/data";
 import { useLanguageContent } from "@shared/@common/models/hooks";
-import Input from "../Input1/ui";
-import { useSelector } from "react-redux";
 import { getBirth } from "@shared/@common/models/selectors";
+import { setBirthMonth } from "@shared/@common/models/slices/userSlice";
 import { getBirthInSignup } from "@shared/auth/models/selectors";
-import { setBirthDateInSignup } from "@shared/auth/models/slices/signupSlice";
-import { setBirthDate } from "@shared/@common/models/slices/userSlice";
-import { birthDateList } from "@features/auth-email/data";
+import { setBirthMonthInSignup } from "@shared/auth/models/slices/signupSlice";
+import { useSelector } from "react-redux";
+import Input from "../../../../shared/@common/ui/components/Input1/ui";
 
-interface InputBirthDateProps {
+interface InputBirthMonthProps {
   className?: string;
   disabled?: boolean;
   isSignup?: boolean;
@@ -27,29 +27,29 @@ interface InputBirthDateProps {
   >; // `isValid`의 값을 업데이트하는 함수입니다. 객체일 경우, 각 필드의 유효성 상태를 개별적으로 업데이트하거나, boolean 값일 경우 전체 유효성 상태를 한 번에 업데이트할 수 있습니다.
 }
 
-const InputBirthDate = ({
+const InputBirthMonth = ({
   className,
   disabled = false,
   isSignup = false,
   isValid,
   setIsValid,
-}: InputBirthDateProps) => {
+}: InputBirthMonthProps) => {
   const selector = isSignup ? getBirthInSignup : getBirth;
 
   const inputValue = useSelector(selector);
 
-  const setInputValue = isSignup ? setBirthDateInSignup : setBirthDate;
+  const setInputValue = isSignup ? setBirthMonthInSignup : setBirthMonth;
 
   // 언어 설정
-  const { label, unit } = useLanguageContent(["components", "InputBirthDate"]);
+  const { label, unit } = useLanguageContent(["components", "InputBirthMonth"]);
 
   return (
     <Input
-      field="date"
+      field="month"
       label={label}
-      inputValue={inputValue.date as string}
+      inputValue={inputValue.month as string}
       setInputValue={setInputValue}
-      list={birthDateList(inputValue.year, inputValue.month, unit)}
+      list={birthMonthList(unit)}
       isValid={isValid}
       setIsValid={setIsValid}
       className={className}
@@ -68,4 +68,4 @@ const InputBirthDate = ({
   );
 };
 
-export default InputBirthDate;
+export default InputBirthMonth;

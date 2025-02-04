@@ -1,0 +1,17 @@
+.input__counter {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 0.75rem;
+  transition: var(--transition-primary);
+}
+
+/* 포커스 */
+.input__counter--focused {
+  opacity: 1;
+}
+
+/* 블러 */
+.input__counter--unfocused {
+  opacity: 0;
+}

@@ -45,7 +45,7 @@ const SignupModal = () => {
     navigate("/");
   };
 
-  const [curPage, setCurPage] = useState(2);
+  const [curPage, setCurPage] = useState(0);
   // 유효성 상태를 관리하는 상태 훅 정의
   /**
    * 화면별 유효성 상태를 관리합니다.

@@ -2,16 +2,21 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  padding: 0.5rem;
   width: 100%;
-  transition: all 0.3s ease-in-out;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  transition: var(--transition-primary);
 }
 
+/* 포커스 */
 .input__bottom--focused {
-  z-index: 1;
   opacity: 1;
+  z-index: inherit; /* 포커스일 때는 클릭 가능하게*/
 }
+
+/* 블러 */
 .input__bottom--unfocused {
-  z-index: -1;
   opacity: 0;
+  z-index: -1; /* 블러일 때는 클릭이 안되게 하기 */
 }

@@ -1,16 +1,13 @@
 import { useLanguageContent } from "@shared/@common/models/hooks";
-import Input from "../Input1/ui";
+import Input from "../../../../shared/@common/ui/components/Input1/ui";
 import { useSelector } from "react-redux";
-import {
-  getEmailInSignup,
-  getEmailOauthInSignup,
-} from "@shared/auth/models/selectors";
-import { getEmail } from "@shared/@common/models/selectors";
-import { setEmailInSignup } from "@shared/auth/models/slices/signupSlice";
-import { setEmail } from "@shared/@common/models/slices/userSlice";
-import { useMemo } from "react";
+import { getBirthInSignup } from "@shared/auth/models/selectors";
+import { getBirth } from "@shared/@common/models/selectors";
+import { setBirthYearInSignup } from "@shared/auth/models/slices/signupSlice";
+import { setBirthYear } from "@shared/@common/models/slices/userSlice";
+import { birthYearList } from "@features/auth-email/data";
 
-interface InputEmailProps {
+interface InputBirthYearProps {
   className?: string;
   disabled?: boolean;
   isSignup?: boolean;
@@ -30,37 +27,33 @@ interface InputEmailProps {
   >; // `isValid`의 값을 업데이트하는 함수입니다. 객체일 경우, 각 필드의 유효성 상태를 개별적으로 업데이트하거나, boolean 값일 경우 전체 유효성 상태를 한 번에 업데이트할 수 있습니다.
 }
 
-const InputEmail = ({
-  isSignup = false,
-  isValid,
-  setIsValid,
+const InputBirthYear = ({
   className,
   disabled = false,
-}: InputEmailProps) => {
-  const selector = isSignup ? getEmailInSignup : getEmail;
-
-  const oauth = useSelector(getEmailOauthInSignup);
-
-  const isFromOauth = useMemo(() => isSignup && oauth, [isSignup, oauth]);
+  isSignup,
+  isValid,
+  setIsValid,
+}: InputBirthYearProps) => {
+  const selector = isSignup ? getBirthInSignup : getBirth;
 
   const inputValue = useSelector(selector);
 
-  const setInputValue = isSignup ? setEmailInSignup : setEmail;
+  const setInputValue = isSignup ? setBirthYearInSignup : setBirthYear;
 
   // 언어 설정
-  const { label, error } = useLanguageContent(["components", "InputEmail"]);
+  const { label, unit } = useLanguageContent(["components", "InputBirthYear"]);
 
   return (
     <Input
-      field="email"
+      field="year"
       label={label}
-      inputValue={inputValue}
+      inputValue={inputValue.year as string}
       setInputValue={setInputValue}
-      error={error}
+      list={birthYearList(unit)}
       isValid={isValid}
       setIsValid={setIsValid}
       className={className}
-      disabled={disabled || isFromOauth}
+      disabled={disabled}
     >
       <Input.Main>
         <Input.Top>
@@ -70,9 +63,9 @@ const InputEmail = ({
           <Input.Field />
         </Input.Bottom>
       </Input.Main>
-      <Input.Error />
+      <Input.Dropdown />
     </Input>
   );
 };
 
-export default InputEmail;
+export default InputBirthYear;
