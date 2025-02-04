@@ -3,12 +3,11 @@ import { useLanguageContent } from "@shared/@common/models/hooks";
 import {
   Button,
   InputEmail,
-  InputPassword,
   InputPhone,
   Modal,
   Text,
 } from "@shared/@common/ui/components";
-import InputUserId from "@shared/@common/ui/components/InputUserId/InputUserId";
+
 import { joinClassNames } from "@shared/@common/utils";
 
 interface ScreenLoginPasswordProps {
@@ -33,10 +32,10 @@ const ScreenLoginPassword = ({ className }: ScreenLoginPasswordProps) => {
         <Text type="heading2">{title}</Text>
         <div>
           {/* 입력된 정보에 따라 다른 input이 보여야 함 */}
-          <InputUserId disabled />
+
           <InputPhone disabled />
           <InputEmail disabled />
-          <InputPassword />
+
           <Button
             variant="plain"
             fontColor="cornflowerblue"
