@@ -6,6 +6,7 @@ import ScreenProfileImage from "./ScreenProfileImage/ScreenProfileImage";
 import ScreenNotifications from "./ScreenNotifications/ScreenNotifications";
 import ScreenLanguage from "./ScreenLanguage/ScreenLanguage";
 import InputUsernameSignup from "./InputUsernameSignup/InputUsernameSignup";
+import InputUserIdSignup from "./InputUserIdSignup/InputUserIdSignup";
 
 export {
   SignupModal,
@@ -16,4 +17,5 @@ export {
   ScreenNotifications,
   ScreenLanguage,
   InputUsernameSignup,
+  InputUserIdSignup,
 };

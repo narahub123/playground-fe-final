@@ -193,9 +193,9 @@ const components = {
     recommend: "추천 아이디",
     button: "다음",
   },
-  InputUserId: {
+  InputUserIdSignup: {
     label: "사용자 아이디",
-    userIdError: {
+    error: {
       EMPTY: {
         regExp: EMPTY,
         errorMessage: "사용자 아이디를 입력해주세요.",

@@ -187,9 +187,9 @@ const components = {
     recommend: "推荐ID",
     button: "下一步",
   },
-  InputUserId: {
+  InputUserIdSignup: {
     label: "用户ID",
-    userIdError: {
+    error: {
       EMPTY: {
         regExp: EMPTY,
         errorMessage: "请输入用户ID。",

@@ -202,9 +202,9 @@ const components = {
     recommend: "おすすめのID",
     button: "次へ",
   },
-  InputUserId: {
+  InputUserIdSignup: {
     label: "ユーザーID",
-    userIdError: {
+    error: {
       EMPTY: {
         regExp: EMPTY,
         errorMessage: "ユーザーIDを入力してください。",

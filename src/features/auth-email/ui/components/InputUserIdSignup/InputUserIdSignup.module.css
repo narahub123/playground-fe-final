@@ -1,0 +1,17 @@
+.input__bottom__wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input__icon {
+  position: absolute;
+  right: 0;
+}
+
+.input__icon--valid {
+  color: var(--colorTheme-color-primary);
+}
+.input__icon--invalid {
+  color: red;
+}

@@ -193,9 +193,9 @@ const components = {
     recommend: "Recommended ID",
     button: "Next",
   },
-  InputUserId: {
+  InputUserIdSignup: {
     label: "User ID",
-    userIdError: {
+    error: {
       EMPTY: {
         regExp: EMPTY,
         errorMessage: "Please enter your user ID.",

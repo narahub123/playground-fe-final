@@ -12,9 +12,9 @@ import {
   useModalPagination,
 } from "@shared/@common/ui/components/Modal/hooks";
 import { joinClassNames } from "@shared/@common/utils";
-import InputUserId from "@shared/@common/ui/components/InputUserId/InputUserId";
 import { useAppDispatch } from "@app/store";
 import { setUserIdInSignup } from "@shared/auth/models/slices/signupSlice";
+import InputUserIdSignup from "../InputUserIdSignup/InputUserIdSignup";
 
 interface ScreenUserIdProps {
   className?: string;
@@ -67,7 +67,7 @@ const ScreenUserId = ({ className }: ScreenUserIdProps) => {
           <Text type="heading2">{title}</Text>
           <Text type="expl">{expl}</Text>
         </div>
-        <InputUserId isValid={isValid} setIsValid={setIsValid} isSignup />
+        <InputUserIdSignup isValid={isValid} setIsValid={setIsValid} />
         <div className={styles[`screen__userId__body__recommend`]}>
           추천 아이디
           <Button
