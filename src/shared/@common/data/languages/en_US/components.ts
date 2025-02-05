@@ -270,6 +270,11 @@ const components = {
       { text: "Chinese - Traditional : 繁體中文", value: "zh-TW" },
     ],
   },
+  ScreenAccount: {
+    title: "Find My PlayGround Account",
+    expl: "To reset your password, please enter the email, phone number, or user ID associated with your account.",
+    button: "Next",
+  },
   ScreenSelectLogin: {
     title: "Log in to PlayGround",
     loginList: [

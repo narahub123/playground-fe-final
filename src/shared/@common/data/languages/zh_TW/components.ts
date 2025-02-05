@@ -263,6 +263,13 @@ const components = {
       { text: "中文 - 繁體 : Chinese - Traditional", value: "zh-TW" },
     ],
   },
+
+  ScreenAccount: {
+    title: "尋找我的 PlayGround 帳戶",
+    expl: "要更改密碼，請輸入與您的帳戶關聯的電子郵件、手機號或用戶ID。",
+    button: "下一步",
+  },
+
   ScreenSelectLogin: {
     title: "登入 PlayGround",
     loginList: [

@@ -8,6 +8,7 @@ import { AuthButton } from "@shared/auth/ui/components";
 import { useState } from "react";
 import { useModalContext } from "@shared/@common/ui/components/Modal/hooks";
 import { HorizontalDivider, InputAccountLogin } from "@features/auth-login/ui";
+import { useNavigate } from "react-router-dom";
 
 interface ScreenSelectLoginProps {
   className?: string;
@@ -22,6 +23,8 @@ const ScreenSelectLogin = ({
   inputValue,
   setInputValue,
 }: ScreenSelectLoginProps) => {
+  const navigate = useNavigate();
+
   const [isValid, setIsValid] = useState<
     | {
         [key: string]: boolean;
@@ -78,7 +81,7 @@ const ScreenSelectLogin = ({
           />
           <Button
             onClick={() => {
-              console.log("하이");
+              navigate("/i/flow/password_reset");
             }}
             rounded="2xl"
             isValid

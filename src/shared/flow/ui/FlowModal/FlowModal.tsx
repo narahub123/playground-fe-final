@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "@app/store";
-import { getFlowModal } from "@shared/@common/models/selectors";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Modal } from "@shared/@common/ui/components";
 import { onParallelModalClose } from "@shared/@common/models/slices/modalSlice";
@@ -18,11 +16,7 @@ const FlowModal = ({ className }: FlowModalProps) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
-  console.log(pathname);
-
   const [curPage, setCurPage] = useState(0);
-
-  const isOpen = useSelector(getFlowModal);
 
   const onClose = () => {
     dispatch(onParallelModalClose("flow"));
@@ -33,8 +27,10 @@ const FlowModal = ({ className }: FlowModalProps) => {
   const [screenValidations, setScreenValidations] =
     useState<ScreenValidationType>({});
 
+  const [inputValue, setInputValue] = useState<{ [key: string]: string }>({});
+
   const screens = pathname.includes("i/flow/password_reset")
-    ? [<ScreenAccount />]
+    ? [<ScreenAccount inputValue={inputValue} setInputValue={setInputValue} />]
     : [<></>];
 
   useEffect(() => {

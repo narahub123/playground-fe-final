@@ -278,6 +278,13 @@ const components = {
       { text: "中国語 - 繁体 : Chinese - Traditional", value: "zh-TW" },
     ],
   },
+
+  ScreenAccount: {
+    title: "PlayGroundアカウントを探す",
+    expl: "パスワードを変更するには、アカウントに登録されているメールアドレス、電話番号、またはユーザーIDを入力してください。",
+    button: "次へ",
+  },
+
   ScreenSelectLogin: {
     title: "PlayGroundにログイン",
     loginList: [

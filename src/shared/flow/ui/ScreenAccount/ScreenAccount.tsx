@@ -3,14 +3,22 @@ import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Button, Modal, Text } from "@shared/@common/ui/components";
 import { useModalContext } from "@shared/@common/ui/components/Modal/hooks";
 import { joinClassNames } from "@shared/@common/utils";
-import InputAccount from "../InputAccount/InputAccount";
 import { useState } from "react";
+import { InputAccountLogin } from "@features/auth-login/ui";
 
 interface ScreenAccountProps {
+  inputValue: { [key: string]: string };
+  setInputValue: React.Dispatch<
+    React.SetStateAction<{ [key: string]: string }>
+  >;
   className?: string;
 }
 
-const ScreenAccount = ({ className }: ScreenAccountProps) => {
+const ScreenAccount = ({
+  inputValue,
+  setInputValue,
+  className,
+}: ScreenAccountProps) => {
   const [isValid, setIsValid] = useState<
     | {
         [key: string]: boolean;
@@ -33,7 +41,12 @@ const ScreenAccount = ({ className }: ScreenAccountProps) => {
       <Modal.Body className={styles[`screen__account__body`]}>
         <Text type="heading2">{title}</Text>
         <Text type="expl">{expl}</Text>
-        <InputAccount isValid={isValid} setIsValid={setIsValid} />
+        <InputAccountLogin
+          isValid={isValid}
+          setIsValid={setIsValid}
+          inputValue={inputValue}
+          setInputValue={setInputValue}
+        />
       </Modal.Body>
       <Modal.Footer className={styles[`screen__account__footer`]}>
         <Button
