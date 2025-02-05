@@ -4,6 +4,8 @@ import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Button, Modal, Text } from "@shared/@common/ui/components";
 import { joinClassNames } from "@shared/@common/utils";
 import { InputAccountLogin, InputPasswordLogin } from "@features/auth-login/ui";
+import { verifyPasswordLoginAPI } from "@shared/auth/apis";
+import { useNavigate } from "react-router-dom";
 
 interface ScreenLoginPasswordProps {
   inputValue: { [key: string]: string };
@@ -18,6 +20,7 @@ const ScreenLoginPassword = ({
   inputValue,
   setInputValue,
 }: ScreenLoginPasswordProps) => {
+  const navigate = useNavigate();
   const [isValid, setIsValid] = useState<
     | {
         [key: string]: boolean;
@@ -35,6 +38,22 @@ const ScreenLoginPassword = ({
     styles["screen__login__password"],
     className,
   ]);
+
+  // 로그인
+  const login = async () => {
+    const verification = await verifyPasswordLoginAPI(inputValue);
+
+    // true 시 home으로 이동
+    if (verification) {
+      console.log("안녕");
+
+      navigate("/home");
+    } else {
+      // false 시 toast 사용
+    }
+
+    console.log(verification);
+  };
 
   return (
     <div className={classNames}>
@@ -69,7 +88,7 @@ const ScreenLoginPassword = ({
         </div>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={() => {}} isValid width="100%" rounded="2xl">
+        <Button onClick={login} isValid width="100%" rounded="2xl">
           {button}
         </Button>
       </Modal.Footer>
