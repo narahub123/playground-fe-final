@@ -309,6 +309,13 @@ const components = {
     forgetPassword: "パスワードを探す",
     button: "ログイン",
   },
+
+  InputPasswordLogin: {
+    label: "パスワード",
+    error: [],
+    errMsg: "パスワードが間違っています。もう一度お試しください。",
+  },
+
   SelectYearSignup: {
     label: "年",
     unit: "年",

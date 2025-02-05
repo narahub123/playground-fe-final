@@ -301,6 +301,13 @@ const components = {
     forgetPassword: "Find password",
     button: "Log in",
   },
+
+  InputPasswordLogin: {
+    label: "Password",
+    error: [],
+    errMsg: "The password is incorrect. Please try again.",
+  },
+
   SelectYearSignup: {
     label: "Year",
     unit: "",

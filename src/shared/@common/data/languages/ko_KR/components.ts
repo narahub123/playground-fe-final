@@ -302,6 +302,13 @@ const components = {
     forgetPassword: "비밀번호 찾기",
     button: "로그인",
   },
+
+  InputPasswordLogin: {
+    label: "비밀번호",
+    error: [],
+    errMsg: "비밀번호가 잘못되었습니다. 다시 시도해주세요.",
+  },
+
   Select: {},
   SelectYearSignup: {
     label: "년",

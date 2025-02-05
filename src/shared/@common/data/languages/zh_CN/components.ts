@@ -290,6 +290,13 @@ const components = {
     forgetPassword: "找回密码",
     button: "登录",
   },
+
+  InputPasswordLogin: {
+    label: "密码",
+    error: [],
+    errMsg: "密码错误，请重试。",
+  },
+
   SelectMonthSignup: {
     label: "月",
     unit: "月",

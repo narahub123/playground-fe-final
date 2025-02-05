@@ -291,6 +291,13 @@ const components = {
     forgetPassword: "找回密碼",
     button: "登入",
   },
+
+  InputPasswordLogin: {
+    label: "密碼",
+    error: [],
+    errMsg: "密碼錯誤，請重試。",
+  },
+
   SelectYearSignup: {
     label: "年",
     unit: "年",

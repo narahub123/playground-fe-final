@@ -37,7 +37,10 @@ const LoginModal = ({ className }: LoginModalProps) => {
 
   const screens = [
     <ScreenSelectLogin inputValue={inputValue} setInputValue={setInputValue} />,
-    <ScreenLoginPassword />,
+    <ScreenLoginPassword
+      inputValue={inputValue}
+      setInputValue={setInputValue}
+    />,
   ];
 
   const [screenValidations, setScreenValidations] =

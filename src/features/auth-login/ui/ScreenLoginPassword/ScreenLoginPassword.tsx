@@ -1,16 +1,30 @@
 import styles from "./ScreenLoginPassword.module.css";
+import { useState } from "react";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Button, Modal, Text } from "@shared/@common/ui/components";
-
 import { joinClassNames } from "@shared/@common/utils";
-import InputEmail from "@test/ui/components/InputEmail/InputEmail";
-import InputPhone from "@test/ui/components/InputPhone/InputPhone";
+import { InputAccountLogin, InputPasswordLogin } from "@features/auth-login/ui";
 
 interface ScreenLoginPasswordProps {
+  inputValue: { [key: string]: string };
+  setInputValue: React.Dispatch<
+    React.SetStateAction<{ [key: string]: string }>
+  >;
   className?: string;
 }
 
-const ScreenLoginPassword = ({ className }: ScreenLoginPasswordProps) => {
+const ScreenLoginPassword = ({
+  className,
+  inputValue,
+  setInputValue,
+}: ScreenLoginPasswordProps) => {
+  const [isValid, setIsValid] = useState<
+    | {
+        [key: string]: boolean;
+      }
+    | boolean
+  >(false);
+
   // 언어 설정
   const { title, forgetPassword, button } = useLanguageContent([
     "components",
@@ -27,10 +41,20 @@ const ScreenLoginPassword = ({ className }: ScreenLoginPasswordProps) => {
       <Modal.Body>
         <Text type="heading2">{title}</Text>
         <div>
-          {/* 입력된 정보에 따라 다른 input이 보여야 함 */}
+          <InputAccountLogin
+            isValid={isValid}
+            setIsValid={setIsValid}
+            inputValue={inputValue}
+            setInputValue={setInputValue}
+            disabled
+          />
 
-          <InputPhone disabled />
-          <InputEmail disabled />
+          <InputPasswordLogin
+            inputValue={inputValue}
+            setInputValue={setInputValue}
+            isValid={isValid}
+            setIsValid={setIsValid}
+          />
 
           <Button
             variant="plain"
