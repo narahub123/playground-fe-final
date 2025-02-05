@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { determineInputValueType } from "@features/auth-login/utils";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Input, Text } from "@shared/@common/ui/components";
@@ -51,52 +50,6 @@ const InputAccountLogin = ({
     field,
     error,
   });
-
-  // useEffect(() => {
-  //   const type = determineInputValueType(value);
-
-  //   const checkUserExistence = async () => {
-  //     if (value === "") return;
-
-  //     let isValid = false;
-
-  //     if (type === "email") {
-  //       const response = await checkEmailDuplicateInSignupAPI(value);
-
-  //       const { isDuplicate } = response;
-
-  //       isValid = isDuplicate;
-  //     } else if (type === "phone") {
-  //     } else if (type === "userId") {
-  //       const response = await checkUserIdDuplicateInSignupAPI(value);
-
-  //       const { isDuplicate } = response;
-
-  //       isValid = isDuplicate;
-  //     }
-
-  //     if (!isValid) {
-  //       setInputValue({ [type]: "" });
-
-  //       updateErrorAndValidation(errMsg(type), false);
-  //     } else {
-  //       setInputValue({ [type]: value });
-  //       updateErrorAndValidation("", true);
-  //     }
-
-  //     isValid
-  //       ? setInputValue((prev) => ({
-  //           ...prev,
-  //           [type]: value,
-  //         }))
-  //       : setInputValue((prev) => ({
-  //           ...prev,
-  //           [type]: "",
-  //         }));
-  //   };
-
-  //   checkUserExistence();
-  // }, [value]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
