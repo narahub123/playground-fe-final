@@ -22,33 +22,22 @@ interface InputAccountLoginProps {
       | boolean // 전체 유효성 상태를 업데이트하는 함수입니다. 모든 입력 필드에 대한 유효성 상태를 한 번에 업데이트할 수 있습니다.
     >
   >; // `isValid`의 값을 업데이트하는 함수입니다. 객체일 경우, 각 필드의 유효성 상태를 개별적으로 업데이트하거나, boolean 값일 경우 전체 유효성 상태를 한 번에 업데이트할 수 있습니다.
-  inputValue: {
-    email: string;
-    phone: string;
-    userId: string;
-    password: string;
-  };
+  inputValue: { [key: string]: string };
   setInputValue: React.Dispatch<
-    React.SetStateAction<{
-      email: string;
-      phone: string;
-      userId: string;
-      password: string;
-    }>
+    React.SetStateAction<{ [key: string]: string }>
   >;
   className?: string;
   disabled?: boolean;
 }
 
 const InputAccountLogin = ({
+  inputValue,
   setInputValue,
   isValid,
   setIsValid,
   className,
   disabled = false,
 }: InputAccountLoginProps) => {
-  const [value, setValue] = useState("");
-
   // 언어 설정
   const { label, error, errMsg } = useLanguageContent([
     "components",
@@ -63,8 +52,58 @@ const InputAccountLogin = ({
     error,
   });
 
-  useEffect(() => {
+  // useEffect(() => {
+  //   const type = determineInputValueType(value);
+
+  //   const checkUserExistence = async () => {
+  //     if (value === "") return;
+
+  //     let isValid = false;
+
+  //     if (type === "email") {
+  //       const response = await checkEmailDuplicateInSignupAPI(value);
+
+  //       const { isDuplicate } = response;
+
+  //       isValid = isDuplicate;
+  //     } else if (type === "phone") {
+  //     } else if (type === "userId") {
+  //       const response = await checkUserIdDuplicateInSignupAPI(value);
+
+  //       const { isDuplicate } = response;
+
+  //       isValid = isDuplicate;
+  //     }
+
+  //     if (!isValid) {
+  //       setInputValue({ [type]: "" });
+
+  //       updateErrorAndValidation(errMsg(type), false);
+  //     } else {
+  //       setInputValue({ [type]: value });
+  //       updateErrorAndValidation("", true);
+  //     }
+
+  //     isValid
+  //       ? setInputValue((prev) => ({
+  //           ...prev,
+  //           [type]: value,
+  //         }))
+  //       : setInputValue((prev) => ({
+  //           ...prev,
+  //           [type]: "",
+  //         }));
+  //   };
+
+  //   checkUserExistence();
+  // }, [value]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+
     const type = determineInputValueType(value);
+
+    setInputValue({ [type]: value });
 
     const checkUserExistence = async () => {
       if (value === "") return;
@@ -87,43 +126,13 @@ const InputAccountLogin = ({
       }
 
       if (!isValid) {
-        setInputValue((prev) =>
-          Object.fromEntries(Object.keys(prev).map((key) => [[key], ""]))
-        );
-
         updateErrorAndValidation(errMsg(type), false);
       } else {
-        setInputValue((prev) =>
-          Object.fromEntries(
-            Object.keys(prev).map((key) => {
-              if (key === type) {
-                return [[type], value];
-              }
-              return [[key], ""];
-            })
-          )
-        );
         updateErrorAndValidation("", true);
       }
-
-      isValid
-        ? setInputValue((prev) => ({
-            ...prev,
-            [type]: value,
-          }))
-        : setInputValue((prev) => ({
-            ...prev,
-            [type]: "",
-          }));
     };
 
     checkUserExistence();
-  }, [value]);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-
-    setValue(value);
   };
 
   return (
@@ -131,7 +140,7 @@ const InputAccountLogin = ({
       className={className}
       label={label}
       field={field}
-      inputValue={value}
+      inputValue={Object.values(inputValue)[0]}
       handleChange={handleChange}
       isValid={typeof isValid === "object" ? isValid[field] ?? false : isValid}
       disabled={disabled}

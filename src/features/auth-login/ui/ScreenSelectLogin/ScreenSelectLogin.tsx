@@ -11,19 +11,9 @@ import { HorizontalDivider, InputAccountLogin } from "@features/auth-login/ui";
 
 interface ScreenSelectLoginProps {
   className?: string;
-  inputValue: {
-    email: string;
-    phone: string;
-    userId: string;
-    password: string;
-  };
+  inputValue: { [key: string]: string };
   setInputValue: React.Dispatch<
-    React.SetStateAction<{
-      email: string;
-      phone: string;
-      userId: string;
-      password: string;
-    }>
+    React.SetStateAction<{ [key: string]: string }>
   >;
 }
 

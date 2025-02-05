@@ -19,19 +19,15 @@ const LoginModal = ({ className }: LoginModalProps) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const [inputValue, setInputValue] = useState({
-    email: "",
-    phone: "",
-    userId: "",
-    password: "",
-  });
+  const [inputValue, setInputValue] = useState<{ [key: string]: string }>({});
+
+  console.log("입력 값", inputValue);
 
   // 페이지 관리
   const [curPage, setCurPage] = useState(0);
 
   // 로그인 모달 열기
   const isOpen = useSelector(getLoginModal);
-  console.log("로그인 모달 상태", isOpen);
 
   // 로그인 모달 닫기
   const onClose = () => {
