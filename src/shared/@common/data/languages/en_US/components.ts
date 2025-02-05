@@ -305,7 +305,6 @@ const components = {
   InputPasswordLogin: {
     label: "Password",
     error: [],
-    errMsg: "The password is incorrect. Please try again.",
   },
 
   SelectYearSignup: {

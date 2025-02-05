@@ -313,7 +313,6 @@ const components = {
   InputPasswordLogin: {
     label: "パスワード",
     error: [],
-    errMsg: "パスワードが間違っています。もう一度お試しください。",
   },
 
   SelectYearSignup: {

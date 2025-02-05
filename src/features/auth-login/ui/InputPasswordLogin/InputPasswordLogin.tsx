@@ -2,8 +2,6 @@ import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Input, Text } from "@shared/@common/ui/components";
 import { useInput } from "@shared/@common/ui/components/Input";
 
-import { useState } from "react";
-
 interface InputPasswordLoginProps {
   isValid:
     | {
@@ -39,18 +37,9 @@ const InputPasswordLogin = ({
   disabled = false,
 }: InputPasswordLoginProps) => {
   // 언어 설정
-  const { label, error, errMsg } = useLanguageContent([
-    "components",
-    "InputPasswordLogin",
-  ]);
+  const { label } = useLanguageContent(["components", "InputPasswordLogin"]);
 
   const field = "password";
-
-  const { errorMessage, updateErrorAndValidation } = useInput({
-    setIsValid,
-    field,
-    error,
-  });
 
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -59,19 +48,6 @@ const InputPasswordLogin = ({
       ...prev,
       ["password"]: value,
     }));
-
-    // 비밀번호 일치 여부 확인하기
-    const checkUserPassword = async () => {
-      const verified = true;
-
-      if (!verified) {
-        updateErrorAndValidation(errMsg, false);
-      } else {
-        updateErrorAndValidation("", true);
-      }
-    };
-
-    checkUserPassword();
   };
 
   return (
@@ -89,11 +65,6 @@ const InputPasswordLogin = ({
           <Input.Field />
         </Input.Bottom>
       </Input.Main>
-      <Input.Extra>
-        <Text type="expl" status="error">
-          {errorMessage}
-        </Text>
-      </Input.Extra>
     </Input>
   );
 };

@@ -294,7 +294,6 @@ const components = {
   InputPasswordLogin: {
     label: "密码",
     error: [],
-    errMsg: "密码错误，请重试。",
   },
 
   SelectMonthSignup: {
