@@ -294,7 +294,6 @@ const components = {
 
   InputPasswordLogin: {
     label: "密碼",
-    error: [],
   },
 
   SelectYearSignup: {

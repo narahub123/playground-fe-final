@@ -305,7 +305,6 @@ const components = {
 
   InputPasswordLogin: {
     label: "비밀번호",
-    error: [],
   },
 
   Select: {},

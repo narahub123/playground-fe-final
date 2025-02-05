@@ -1,6 +1,5 @@
 import { useLanguageContent } from "@shared/@common/models/hooks";
-import { Input, Text } from "@shared/@common/ui/components";
-import { useInput } from "@shared/@common/ui/components/Input";
+import { Input } from "@shared/@common/ui/components";
 
 interface InputPasswordLoginProps {
   isValid:
@@ -8,14 +7,6 @@ interface InputPasswordLoginProps {
         [key: string]: boolean; // 각 필드에 대한 유효성 상태를 업데이트하는 함수입니다. 필드 이름을 키로 하고, boolean 값을 업데이트합니다.
       }
     | boolean; // 전체 유효성 상태를 업데이트하는 함수입니다. 모든 입력 필드에 대한 유효성 상태를 한 번에 업데이트할 수 있습니다.;
-  setIsValid: React.Dispatch<
-    React.SetStateAction<
-      | {
-          [key: string]: boolean; // 각 필드에 대한 유효성 상태를 업데이트하는 함수입니다. 필드 이름을 키로 하고, boolean 값을 업데이트합니다.
-        }
-      | boolean // 전체 유효성 상태를 업데이트하는 함수입니다. 모든 입력 필드에 대한 유효성 상태를 한 번에 업데이트할 수 있습니다.
-    >
-  >; // `isValid`의 값을 업데이트하는 함수입니다. 객체일 경우, 각 필드의 유효성 상태를 개별적으로 업데이트하거나, boolean 값일 경우 전체 유효성 상태를 한 번에 업데이트할 수 있습니다.
   inputValue: {
     [key: string]: string;
   };
@@ -30,7 +21,6 @@ interface InputPasswordLoginProps {
 
 const InputPasswordLogin = ({
   isValid,
-  setIsValid,
   inputValue,
   setInputValue,
   className,

@@ -293,7 +293,6 @@ const components = {
 
   InputPasswordLogin: {
     label: "密码",
-    error: [],
   },
 
   SelectMonthSignup: {
