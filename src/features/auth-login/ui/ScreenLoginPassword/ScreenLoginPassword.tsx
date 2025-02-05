@@ -72,7 +72,6 @@ const ScreenLoginPassword = ({
             inputValue={inputValue}
             setInputValue={setInputValue}
             isValid={isValid}
-            setIsValid={setIsValid}
           />
 
           <Button

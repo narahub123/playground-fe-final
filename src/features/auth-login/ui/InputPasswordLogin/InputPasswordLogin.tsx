@@ -1,5 +1,9 @@
+import styles from "./InputPasswordLogin.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Input } from "@shared/@common/ui/components";
+import { Icon } from "@shared/@common/ui/icons";
+import { joinClassNames } from "@shared/@common/utils";
+import { useState } from "react";
 
 interface InputPasswordLoginProps {
   isValid:
@@ -26,6 +30,7 @@ const InputPasswordLogin = ({
   className,
   disabled = false,
 }: InputPasswordLoginProps) => {
+  const [isShown, setIsShown] = useState(false);
   // 언어 설정
   const { label } = useLanguageContent(["components", "InputPasswordLogin"]);
 
@@ -52,7 +57,26 @@ const InputPasswordLogin = ({
     >
       <Input.Main>
         <Input.Bottom>
-          <Input.Field />
+          <div className={styles[`input__bottom__wrapper`]}>
+            <Input.Field isShown={isShown} />
+            <Icon
+              iconName={isShown ? "eyeoff" : "eye"}
+              onMouseDown={() => {
+                setIsShown(!isShown);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  setIsShown(!isShown);
+                }
+              }}
+              className={joinClassNames([
+                styles[`input__bottom__icon`],
+                inputValue[field] !== ""
+                  ? styles[`input__bottom__icon--visible`]
+                  : styles[`input__bottom__icon--invisible`],
+              ])}
+            />
+          </div>
         </Input.Bottom>
       </Input.Main>
     </Input>
