@@ -306,6 +306,15 @@ const components = {
     },
   },
 
+  InputAccountLoginDisabled: {
+    label: (field: string) =>
+      field === "email"
+        ? "Email"
+        : field === "phone"
+        ? "Phone Number"
+        : "Username",
+  },
+
   InputPasswordLogin: {
     label: "Password",
   },

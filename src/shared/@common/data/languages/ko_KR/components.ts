@@ -307,6 +307,15 @@ const components = {
     },
   },
 
+  InputAccountLoginDisabled: {
+    label: (field: string) =>
+      field === "email"
+        ? "이메일"
+        : field === "phone"
+        ? "휴대 전화 번호"
+        : "사용자 이름",
+  },
+
   InputPasswordLogin: {
     label: "비밀번호",
   },

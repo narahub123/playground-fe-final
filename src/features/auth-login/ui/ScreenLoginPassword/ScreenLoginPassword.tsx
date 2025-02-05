@@ -3,7 +3,10 @@ import { useState } from "react";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Button, Modal, Spinner, Text } from "@shared/@common/ui/components";
 import { joinClassNames } from "@shared/@common/utils";
-import { InputAccountLogin, InputPasswordLogin } from "@features/auth-login/ui";
+import {
+  InputAccountLoginDisabled,
+  InputPasswordLogin,
+} from "@features/auth-login/ui";
 import { verifyPasswordLoginAPI } from "@shared/auth/apis";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@shared/@common/ui/components/Toast/hooks";
@@ -22,14 +25,6 @@ const ScreenLoginPassword = ({
   setInputValue,
 }: ScreenLoginPasswordProps) => {
   const navigate = useNavigate();
-
-  // 유효성
-  const [isValid, setIsValid] = useState<
-    | {
-        [key: string]: boolean;
-      }
-    | boolean
-  >(true);
 
   // 로딩
   const [loading, setLoading] = useState(false);
@@ -79,13 +74,7 @@ const ScreenLoginPassword = ({
       <Modal.Body>
         <Text type="heading2">{title}</Text>
         <div>
-          <InputAccountLogin
-            isValid={isValid}
-            setIsValid={setIsValid}
-            inputValue={inputValue}
-            setInputValue={setInputValue}
-            disabled
-          />
+          <InputAccountLoginDisabled inputValue={inputValue} />
 
           <InputPasswordLogin
             inputValue={inputValue}

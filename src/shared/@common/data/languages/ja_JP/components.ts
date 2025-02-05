@@ -315,6 +315,15 @@ const components = {
     },
   },
 
+  InputAccountLoginDisabled: {
+    label: (field: string) =>
+      field === "email"
+        ? "メールアドレス"
+        : field === "phone"
+        ? "電話番号"
+        : "ユーザー名",
+  },
+
   InputPasswordLogin: {
     label: "パスワード",
   },

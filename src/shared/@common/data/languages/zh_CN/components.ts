@@ -295,6 +295,11 @@ const components = {
     },
   },
 
+  InputAccountLoginDisabled: {
+    label: (field: string) =>
+      field === "email" ? "邮箱" : field === "phone" ? "手机号码" : "用户名",
+  },
+
   InputPasswordLogin: {
     label: "密码",
   },

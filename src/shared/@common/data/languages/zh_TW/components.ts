@@ -296,6 +296,15 @@ const components = {
     },
   },
 
+  InputAccountLoginDisabled: {
+    label: (field: string) =>
+      field === "email"
+        ? "電子郵件"
+        : field === "phone"
+        ? "手機號碼"
+        : "用戶名",
+  },
+
   InputPasswordLogin: {
     label: "密碼",
   },
