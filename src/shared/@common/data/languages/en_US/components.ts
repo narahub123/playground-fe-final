@@ -300,6 +300,10 @@ const components = {
     title: "Enter your password.",
     forgetPassword: "Find password",
     button: "Log in",
+    toastMessage: {
+      title: "Error",
+      description: "The password is incorrect. Please check and try again.",
+    },
   },
 
   InputPasswordLogin: {

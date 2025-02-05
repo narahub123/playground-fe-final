@@ -35,7 +35,7 @@ const ScreenLoginPassword = ({
   const [loading, setLoading] = useState(false);
 
   // 언어 설정
-  const { title, forgetPassword, button } = useLanguageContent([
+  const { title, forgetPassword, button, toastMessage } = useLanguageContent([
     "components",
     "ScreenLoginPassword",
   ]);
@@ -67,8 +67,8 @@ const ScreenLoginPassword = ({
 
       // false 시 toast 사용
       toast({
-        title: "에러",
-        description: "비밀번호가 올바르지 않습니다.",
+        title: `${toastMessage.title}`,
+        description: `${toastMessage.description}`,
         type: "error",
       });
     }

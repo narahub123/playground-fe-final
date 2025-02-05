@@ -289,6 +289,10 @@ const components = {
     title: "请输入密码。",
     forgetPassword: "找回密码",
     button: "登录",
+    toastMessage: {
+      title: "错误",
+      description: "密码不正确。请检查后重试。",
+    },
   },
 
   InputPasswordLogin: {

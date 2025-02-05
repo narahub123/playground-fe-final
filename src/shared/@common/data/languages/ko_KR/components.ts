@@ -301,6 +301,10 @@ const components = {
     title: "비밀번호를 입력하세요.",
     forgetPassword: "비밀번호 찾기",
     button: "로그인",
+    toastMessage: {
+      title: "에러",
+      description: "비밀번호가 올바르지 않습니다. 확인 후 다시 시도해주세요.",
+    },
   },
 
   InputPasswordLogin: {

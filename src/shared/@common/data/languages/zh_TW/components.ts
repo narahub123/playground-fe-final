@@ -290,6 +290,10 @@ const components = {
     title: "請輸入密碼。",
     forgetPassword: "找回密碼",
     button: "登入",
+    toastMessage: {
+      title: "錯誤",
+      description: "密碼不正確。請確認後再試一次。",
+    },
   },
 
   InputPasswordLogin: {

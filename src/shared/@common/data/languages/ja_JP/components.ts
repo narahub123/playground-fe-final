@@ -308,6 +308,11 @@ const components = {
     title: "パスワードを入力してください。",
     forgetPassword: "パスワードを探す",
     button: "ログイン",
+    toastMessage: {
+      title: "エラー",
+      description:
+        "パスワードが正しくありません。確認してもう一度お試しください。",
+    },
   },
 
   InputPasswordLogin: {
