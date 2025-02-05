@@ -3,4 +3,10 @@ import {
   checkUserIdDuplicateInSignupAPI,
 } from "./signup";
 
-export { checkEmailDuplicateInSignupAPI, checkUserIdDuplicateInSignupAPI };
+import { verifyPasswordLoginAPI } from "./login";
+
+export {
+  checkEmailDuplicateInSignupAPI,
+  checkUserIdDuplicateInSignupAPI,
+  verifyPasswordLoginAPI,
+};
