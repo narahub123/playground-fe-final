@@ -1,11 +1,12 @@
 import styles from "./ScreenLoginPassword.module.css";
 import { useState } from "react";
 import { useLanguageContent } from "@shared/@common/models/hooks";
-import { Button, Modal, Text } from "@shared/@common/ui/components";
+import { Button, Modal, Spinner, Text } from "@shared/@common/ui/components";
 import { joinClassNames } from "@shared/@common/utils";
 import { InputAccountLogin, InputPasswordLogin } from "@features/auth-login/ui";
 import { verifyPasswordLoginAPI } from "@shared/auth/apis";
 import { useNavigate } from "react-router-dom";
+import { useToast } from "@shared/@common/ui/components/Toast/hooks";
 
 interface ScreenLoginPasswordProps {
   inputValue: { [key: string]: string };
@@ -21,12 +22,17 @@ const ScreenLoginPassword = ({
   setInputValue,
 }: ScreenLoginPasswordProps) => {
   const navigate = useNavigate();
+
+  // 유효성
   const [isValid, setIsValid] = useState<
     | {
         [key: string]: boolean;
       }
     | boolean
-  >(false);
+  >(true);
+
+  // 로딩
+  const [loading, setLoading] = useState(false);
 
   // 언어 설정
   const { title, forgetPassword, button } = useLanguageContent([
@@ -39,20 +45,33 @@ const ScreenLoginPassword = ({
     className,
   ]);
 
+  const toast = useToast();
+
   // 로그인
   const login = async () => {
+    setLoading(true);
     const verification = await verifyPasswordLoginAPI(inputValue);
 
     // true 시 home으로 이동
     if (verification) {
-      console.log("안녕");
+      setLoading(false);
 
       navigate("/home");
     } else {
-      // false 시 toast 사용
-    }
+      setLoading(false);
 
-    console.log(verification);
+      setInputValue((prev) => ({
+        ...prev,
+        ["password"]: "",
+      }));
+
+      // false 시 toast 사용
+      toast({
+        title: "에러",
+        description: "비밀번호가 올바르지 않습니다.",
+        type: "error",
+      });
+    }
   };
 
   return (
@@ -71,7 +90,7 @@ const ScreenLoginPassword = ({
           <InputPasswordLogin
             inputValue={inputValue}
             setInputValue={setInputValue}
-            isValid={isValid}
+            isValid // 언제나 유효
           />
 
           <Button
@@ -87,8 +106,17 @@ const ScreenLoginPassword = ({
         </div>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={login} isValid width="100%" rounded="2xl">
-          {button}
+        <Button
+          onClick={login}
+          isValid={
+            inputValue[`password`] !== undefined &&
+            inputValue[`password`] !== "" &&
+            !loading
+          }
+          width="100%"
+          rounded="2xl"
+        >
+          {loading ? <Spinner /> : button}
         </Button>
       </Modal.Footer>
     </div>
