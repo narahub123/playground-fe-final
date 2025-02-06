@@ -3,10 +3,14 @@ import {
   checkUserIdDuplicateInSignupAPI,
 } from "./signup";
 
-import { verifyPasswordLoginAPI } from "./login";
+import { verifyPasswordLoginAPI, getContactsByAccoutAPI } from "./login";
 
 export {
+  // signup
   checkEmailDuplicateInSignupAPI,
   checkUserIdDuplicateInSignupAPI,
+
+  // login
   verifyPasswordLoginAPI,
+  getContactsByAccoutAPI,
 };
