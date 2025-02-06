@@ -1,5 +1,5 @@
 import { useLanguageContent } from "@shared/@common/models/hooks";
-import { Input, Text } from "@shared/@common/ui/components";
+import { Input } from "@shared/@common/ui/components";
 
 interface InputVerificationCodeProps {
   inputValue: {
@@ -8,7 +8,6 @@ interface InputVerificationCodeProps {
   setInputValue: React.Dispatch<
     React.SetStateAction<{ [key: string]: string }>
   >;
-  errorMessage: string;
   isValid: boolean;
   setIsValid: React.Dispatch<React.SetStateAction<boolean>>;
   className?: string;
@@ -18,7 +17,6 @@ interface InputVerificationCodeProps {
 const InputVerificationCode = ({
   inputValue,
   setInputValue,
-  errorMessage,
   isValid,
   setIsValid,
   className,
@@ -55,11 +53,6 @@ const InputVerificationCode = ({
           <Input.Field />
         </Input.Bottom>
       </Input.Main>
-      <Input.Extra>
-        <Text type="expl" status="error">
-          {errorMessage}
-        </Text>
-      </Input.Extra>
     </Input>
   );
 };

@@ -7,6 +7,7 @@ import {
   verifyPasswordLoginAPI,
   getContactsByAccoutAPI,
   requestVerifacationCodeLoginAPI,
+  checkVerificationCodeAPI,
 } from "./login";
 
 export {
@@ -18,4 +19,5 @@ export {
   verifyPasswordLoginAPI,
   getContactsByAccoutAPI,
   requestVerifacationCodeLoginAPI,
+  checkVerificationCodeAPI,
 };

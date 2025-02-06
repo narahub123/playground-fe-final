@@ -18,7 +18,7 @@ const FlowModal = ({ className }: FlowModalProps) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
-  const [curPage, setCurPage] = useState(2);
+  const [curPage, setCurPage] = useState(0);
 
   const onClose = () => {
     dispatch(onParallelModalClose("flow"));

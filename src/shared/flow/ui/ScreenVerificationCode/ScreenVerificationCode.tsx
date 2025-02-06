@@ -5,6 +5,9 @@ import { useModalContext } from "@shared/@common/ui/components/Modal/hooks";
 import { joinClassNames } from "@shared/@common/utils";
 import InputVerificationCode from "../InputVerificationCode/InputVerificationCode";
 import { useState } from "react";
+import { checkVerificationCodeAPI } from "@shared/auth/apis";
+import { useToast } from "@shared/@common/ui/components/Toast/hooks";
+import { useNavigate } from "react-router-dom";
 
 interface ScreenVerificationCodeProps {
   inputValue: {
@@ -21,8 +24,10 @@ const ScreenVerificationCode = ({
   setInputValue,
   className,
 }: ScreenVerificationCodeProps) => {
+  const navigate = useNavigate();
+
   const [isValid, setIsValid] = useState(true);
-  const [errorMessage, setErrorMessage] = useState("");
+
   // 언어 설정
   const { title, expl, button, back } = useLanguageContent([
     "components",
@@ -36,6 +41,24 @@ const ScreenVerificationCode = ({
     className,
   ]);
 
+  const toast = useToast();
+
+  const checkVerificationCode = async () => {
+    await checkVerificationCodeAPI(inputValue)
+      .then((res) => {
+        if (res.success) {
+          toast({ description: res.message, type: "success" });
+          navigate("/home");
+        } else {
+          toast({ description: res.message, type: "error" });
+          setIsValid(false);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div className={classNames}>
       <Modal.Body className={styles[`screen__verification__code__body`]}>
@@ -47,7 +70,6 @@ const ScreenVerificationCode = ({
           <InputVerificationCode
             inputValue={inputValue}
             setInputValue={setInputValue}
-            errorMessage={errorMessage}
             isValid={isValid}
             setIsValid={setIsValid}
           />
@@ -57,7 +79,7 @@ const ScreenVerificationCode = ({
         <Button
           onClick={() => {
             inputValue[`verificationCode`]
-              ? ""
+              ? checkVerificationCode()
               : setCurPage && setCurPage((prev) => prev - 1);
           }}
           isValid
