@@ -289,7 +289,12 @@ const components = {
   ScreenVerificationCode: {
     title: "Code Sent",
     expl: "Please check your email to see if you received the verification code. To request a new code, go back and select the verification method again.",
-    button: "Go Back",
+    button: "Next",
+    back: "Go Back",
+  },
+
+  InputVerificationCode: {
+    label: "Enter the code.",
   },
 
   ScreenSelectLogin: {

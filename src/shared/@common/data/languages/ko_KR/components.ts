@@ -289,7 +289,12 @@ const components = {
   ScreenVerificationCode: {
     title: "코드를 전송했습니다.",
     expl: "확인 코드를 받았는지 이메일을 확인해주세요. 새 코드를 요청하려면 돌아가서 인증을 다시 선택하세요.",
-    button: "돌아가기",
+    button: "다음",
+    back: "돌아가기",
+  },
+
+  InputVerificationCode: {
+    label: "코드를 입력하세요.",
   },
 
   InputAccountLogin: {

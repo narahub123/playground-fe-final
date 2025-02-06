@@ -298,7 +298,12 @@ const components = {
   ScreenVerificationCode: {
     title: "コードが送信されました",
     expl: "確認コードを受け取ったかどうか、メールをご確認ください。新しいコードをリクエストするには、戻って認証方法を再度選択してください。",
-    button: "戻る",
+    button: "次へ",
+    back: "戻る",
+  },
+
+  InputVerificationCode: {
+    label: "コードを入力してください。",
   },
 
   ScreenSelectLogin: {

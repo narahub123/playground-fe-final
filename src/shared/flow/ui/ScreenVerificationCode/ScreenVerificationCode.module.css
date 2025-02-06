@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  max-height: 35rem;
+  height: 35rem;
 }
 
 .screen__verification__code__body {

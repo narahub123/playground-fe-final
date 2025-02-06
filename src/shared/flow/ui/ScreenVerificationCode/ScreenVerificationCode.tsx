@@ -3,20 +3,28 @@ import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Button, Modal, Text } from "@shared/@common/ui/components";
 import { useModalContext } from "@shared/@common/ui/components/Modal/hooks";
 import { joinClassNames } from "@shared/@common/utils";
+import InputVerificationCode from "../InputVerificationCode/InputVerificationCode";
+import { useState } from "react";
 
 interface ScreenVerificationCodeProps {
   inputValue: {
     [key: string]: string;
   };
+  setInputValue: React.Dispatch<
+    React.SetStateAction<{ [key: string]: string }>
+  >;
   className?: string;
 }
 
 const ScreenVerificationCode = ({
   inputValue,
+  setInputValue,
   className,
 }: ScreenVerificationCodeProps) => {
+  const [isValid, setIsValid] = useState(true);
+  const [errorMessage, setErrorMessage] = useState("");
   // 언어 설정
-  const { title, expl, button } = useLanguageContent([
+  const { title, expl, button, back } = useLanguageContent([
     "components",
     "ScreenVerificationCode",
   ]);
@@ -35,19 +43,29 @@ const ScreenVerificationCode = ({
           <Text type="heading2">{title}</Text>
           <Text type="expl">{expl}</Text>
         </div>
-        <div className={styles["body"]}>input 코드</div>
+        <div className={styles["body"]}>
+          <InputVerificationCode
+            inputValue={inputValue}
+            setInputValue={setInputValue}
+            errorMessage={errorMessage}
+            isValid={isValid}
+            setIsValid={setIsValid}
+          />
+        </div>
       </Modal.Body>
       <Modal.Footer className={styles[`screen__verification__code__footer`]}>
         <Button
           onClick={() => {
-            setCurPage && setCurPage((prev) => prev - 1);
+            inputValue[`verificationCode`]
+              ? ""
+              : setCurPage && setCurPage((prev) => prev - 1);
           }}
           isValid
           variant="outline"
           width="100%"
           rounded="2xl"
         >
-          {button}
+          {inputValue[`verificationCode`] ? button : back}
         </Button>
       </Modal.Footer>
     </div>

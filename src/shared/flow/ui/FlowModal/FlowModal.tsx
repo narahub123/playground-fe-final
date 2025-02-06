@@ -18,7 +18,7 @@ const FlowModal = ({ className }: FlowModalProps) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
-  const [curPage, setCurPage] = useState(0);
+  const [curPage, setCurPage] = useState(2);
 
   const onClose = () => {
     dispatch(onParallelModalClose("flow"));
@@ -35,7 +35,10 @@ const FlowModal = ({ className }: FlowModalProps) => {
     ? [
         <ScreenAccount inputValue={inputValue} setInputValue={setInputValue} />,
         <ScreenChooseAuthMethod inputValue={inputValue} />,
-        <ScreenVerificationCode inputValue={inputValue} />,
+        <ScreenVerificationCode
+          inputValue={inputValue}
+          setInputValue={setInputValue}
+        />,
       ]
     : [<></>];
 

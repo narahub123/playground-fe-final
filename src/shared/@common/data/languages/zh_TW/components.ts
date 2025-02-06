@@ -283,7 +283,12 @@ const components = {
   ScreenVerificationCode: {
     title: "代碼已發送",
     expl: "請檢查您的電子郵件，查看是否收到了確認碼。如需請求新代碼，請返回並重新選擇認證方法。",
-    button: "返回",
+    button: "下一步",
+    back: "返回",
+  },
+
+  InputVerificationCode: {
+    label: "請輸入驗證碼。",
   },
 
   ScreenSelectLogin: {

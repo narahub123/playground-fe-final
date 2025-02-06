@@ -3,6 +3,7 @@ import ScreenAccount from "./ScreenAccount/ScreenAccount";
 import InputAccount from "./InputAccount/InputAccount";
 import ScreenChooseAuthMethod from "./ScreenChooseAuthMethod/ScreenChooseAuthMethod";
 import ScreenVerificationCode from "./ScreenVerificationCode/ScreenVerificationCode";
+import InputVerificationCode from "./InputVerificationCode/InputVerificationCode";
 
 export {
   FlowModal,
@@ -10,4 +11,5 @@ export {
   InputAccount,
   ScreenChooseAuthMethod,
   ScreenVerificationCode,
+  InputVerificationCode,
 };
