@@ -275,7 +275,7 @@ const components = {
     expl: "To reset your password, please enter the email, phone number, or user ID associated with your account.",
     button: "Next",
   },
-  
+
   ScreenChooseAuthMethod: {
     title: "How would you like to receive the verification code?",
     expl: "You need to verify your identity before changing your password.",
@@ -284,6 +284,12 @@ const components = {
     cancel: "Cancel",
     msg: (item: string, type: string) =>
       `Send ${type === "emails" ? "email" : "text message"} to ${item}`,
+  },
+
+  ScreenVerificationCode: {
+    title: "Code Sent",
+    expl: "Please check your email to see if you received the verification code. To request a new code, go back and select the verification method again.",
+    button: "Go Back",
   },
 
   ScreenSelectLogin: {

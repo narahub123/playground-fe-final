@@ -7,6 +7,7 @@ import { onParallelModalClose } from "@shared/@common/models/slices/modalSlice";
 import { ScreenValidationType } from "@shared/@common/ui/components/Modal/types";
 import ScreenAccount from "../ScreenAccount/ScreenAccount";
 import ScreenChooseAuthMethod from "../ScreenChooseAuthMethod/ScreenChooseAuthMethod";
+import ScreenVerificationCode from "../ScreenVerificationCode/ScreenVerificationCode";
 
 interface FlowModalProps {
   className?: string;
@@ -34,6 +35,7 @@ const FlowModal = ({ className }: FlowModalProps) => {
     ? [
         <ScreenAccount inputValue={inputValue} setInputValue={setInputValue} />,
         <ScreenChooseAuthMethod inputValue={inputValue} />,
+        <ScreenVerificationCode inputValue={inputValue} />,
       ]
     : [<></>];
 

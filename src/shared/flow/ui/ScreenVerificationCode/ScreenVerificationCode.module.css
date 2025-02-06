@@ -1,0 +1,24 @@
+.screen__verification__code {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  max-height: 35rem;
+}
+
+.screen__verification__code__body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.header {
+  opacity: 1;
+}
+
+.body {
+  opacity: 1;
+}
+
+.screen__verification__code__footer {
+  opacity: 1;
+}

@@ -286,6 +286,12 @@ const components = {
       `${item}로 ${type === "emails" ? "이메일" : "문자"} 보내기`,
   },
 
+  ScreenVerificationCode: {
+    title: "코드를 전송했습니다.",
+    expl: "확인 코드를 받았는지 이메일을 확인해주세요. 새 코드를 요청하려면 돌아가서 인증을 다시 선택하세요.",
+    button: "돌아가기",
+  },
+
   InputAccountLogin: {
     label: "이메일, 휴대폰, 사용자 아이디",
     error: [],

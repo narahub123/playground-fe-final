@@ -295,6 +295,12 @@ const components = {
       `${item} に ${type === "emails" ? "メール" : "SMS"} を送信`,
   },
 
+  ScreenVerificationCode: {
+    title: "コードが送信されました",
+    expl: "確認コードを受け取ったかどうか、メールをご確認ください。新しいコードをリクエストするには、戻って認証方法を再度選択してください。",
+    button: "戻る",
+  },
+
   ScreenSelectLogin: {
     title: "PlayGroundにログイン",
     loginList: [

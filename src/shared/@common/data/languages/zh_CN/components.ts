@@ -280,6 +280,12 @@ const components = {
       `发送${type === "emails" ? "电子邮件" : "短信"}到 ${item}`,
   },
 
+  ScreenVerificationCode: {
+    title: "代码已发送",
+    expl: "请检查您的电子邮件，查看是否收到了确认代码。如果需要请求新代码，请返回并重新选择认证方法。",
+    button: "返回",
+  },
+
   ScreenSelectLogin: {
     title: "登录 PlayGround",
     loginList: [
