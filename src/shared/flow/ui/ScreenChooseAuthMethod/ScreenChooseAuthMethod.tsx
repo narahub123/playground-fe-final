@@ -4,6 +4,7 @@ import { Button, Modal, Text } from "@shared/@common/ui/components";
 import { useModalContext } from "@shared/@common/ui/components/Modal/hooks";
 import { Icon } from "@shared/@common/ui/icons";
 import { joinClassNames } from "@shared/@common/utils";
+import { getContactsByAccoutAPI } from "@shared/auth/apis";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -40,12 +41,30 @@ const ScreenChooseAuthMethod = ({
 
   // 인증 받을 기기에 대한 정보 받기
   useEffect(() => {
-    const options = {
-      emails: ["b@b.com", "a@a.com"],
-      phones: ["+82-010-1234-5678", "+82-010-1234-5679"],
+    const fetchContactsAndsetInitialAuthMethod = async () => {
+      const options = await getContactsByAccoutAPI(inputValue);
+
+      setOptions(options);
+      setIsValid(true);
+
+      // authMethod 초기값 설정
+      const { email, phone, userId } = inputValue;
+
+      if (email) {
+        setAuthMethod({ email });
+      } else if (phone) {
+        setAuthMethod({ phone });
+      } else if (userId) {
+        const { emails, phones } = options;
+
+        // 이메일과 전화번호 목록이 있을 때 우선 이메일을 설정하고, 없으면 전화번호 설정
+        const authContact =
+          emails.length > 0 ? { email: emails[0] } : { phone: phones[0] };
+        setAuthMethod(authContact);
+      }
     };
-    setOptions(options);
-    setIsValid(true);
+
+    fetchContactsAndsetInitialAuthMethod();
   }, []);
 
   const { setCurPage } = useModalContext();
@@ -80,25 +99,28 @@ const ScreenChooseAuthMethod = ({
             {(["emails", "phones"] as const).map((type) =>
               options[type]?.map((item) => (
                 <li key={item} className={styles.option}>
-                  <Text>{msg(item, type)}</Text>
-                  {item ===
-                  authMethod[type.slice(0, -1) as keyof typeof authMethod] ? (
-                    <Icon
-                      iconName="roundCheckboxFill"
-                      iconColor="colorTheme"
-                      iconSize="xl"
-                    />
-                  ) : (
-                    <Icon
-                      iconName="roundCheckboxBlank"
-                      iconSize="xl"
-                      onClick={() =>
-                        setAuthMethod({
-                          [type.slice(0, -1) as keyof typeof authMethod]: item,
-                        })
-                      }
-                    />
-                  )}
+                  {item && <Text>{msg(item, type)}</Text>}
+                  {item ? (
+                    item ===
+                    authMethod[type.slice(0, -1) as keyof typeof authMethod] ? (
+                      <Icon
+                        iconName="roundCheckboxFill"
+                        iconColor="colorTheme"
+                        iconSize="xl"
+                      />
+                    ) : (
+                      <Icon
+                        iconName="roundCheckboxBlank"
+                        iconSize="xl"
+                        onClick={() =>
+                          setAuthMethod({
+                            [type.slice(0, -1) as keyof typeof authMethod]:
+                              item,
+                          })
+                        }
+                      />
+                    )
+                  ) : null}
                 </li>
               ))
             )}
