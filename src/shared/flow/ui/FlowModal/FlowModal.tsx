@@ -6,6 +6,7 @@ import { Modal } from "@shared/@common/ui/components";
 import { onParallelModalClose } from "@shared/@common/models/slices/modalSlice";
 import { ScreenValidationType } from "@shared/@common/ui/components/Modal/types";
 import ScreenAccount from "../ScreenAccount/ScreenAccount";
+import ScreenChooseAuthMethod from "../ScreenChooseAuthMethod/ScreenChooseAuthMethod";
 
 interface FlowModalProps {
   className?: string;
@@ -30,7 +31,10 @@ const FlowModal = ({ className }: FlowModalProps) => {
   const [inputValue, setInputValue] = useState<{ [key: string]: string }>({});
 
   const screens = pathname.includes("i/flow/password_reset")
-    ? [<ScreenAccount inputValue={inputValue} setInputValue={setInputValue} />]
+    ? [
+        <ScreenAccount inputValue={inputValue} setInputValue={setInputValue} />,
+        <ScreenChooseAuthMethod inputValue={inputValue} />,
+      ]
     : [<></>];
 
   useEffect(() => {

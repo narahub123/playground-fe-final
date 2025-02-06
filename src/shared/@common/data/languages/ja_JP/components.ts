@@ -285,6 +285,16 @@ const components = {
     button: "次へ",
   },
 
+  ScreenChooseAuthMethod: {
+    title: "どの方法で認証コードを受け取りますか？",
+    expl: "パスワードを変更する前に、ご本人確認が必要です。",
+    expl1: "まず、認証コードを受け取るデバイスを選択してください。",
+    button: "次へ",
+    cancel: "キャンセル",
+    msg: (item: string, type: string) =>
+      `${item} に ${type === "emails" ? "メール" : "SMS"} を送信`,
+  },
+
   ScreenSelectLogin: {
     title: "PlayGroundにログイン",
     loginList: [

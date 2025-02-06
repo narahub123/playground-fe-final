@@ -275,6 +275,17 @@ const components = {
     expl: "To reset your password, please enter the email, phone number, or user ID associated with your account.",
     button: "Next",
   },
+  
+  ScreenChooseAuthMethod: {
+    title: "How would you like to receive the verification code?",
+    expl: "You need to verify your identity before changing your password.",
+    expl1: "First, select the device to receive the verification code.",
+    button: "Next",
+    cancel: "Cancel",
+    msg: (item: string, type: string) =>
+      `Send ${type === "emails" ? "email" : "text message"} to ${item}`,
+  },
+
   ScreenSelectLogin: {
     title: "Log in to PlayGround",
     loginList: [

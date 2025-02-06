@@ -275,6 +275,17 @@ const components = {
     expl: "비밀번호를 변경하려면 계정에 연결된 이메일, 전화번호 또는 사용자 아이디를 입력해주세요.",
     button: "다음",
   },
+
+  ScreenChooseAuthMethod: {
+    title: "어떤 방법으로 인증 코드를 받으시겠어요?",
+    expl: "비밀번호를 변경하기 전에 본인임을 인증을 해야 합니다.",
+    expl1: "먼저 인증 코드를 받을 기기를 선택해 주세요.",
+    button: "다음",
+    cancel: "취소",
+    msg: (item: string, type: string) =>
+      `${item}로 ${type === "emails" ? "이메일" : "문자"} 보내기`,
+  },
+
   InputAccountLogin: {
     label: "이메일, 휴대폰, 사용자 아이디",
     error: [],

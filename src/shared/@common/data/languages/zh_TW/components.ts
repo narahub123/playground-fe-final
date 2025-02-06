@@ -270,6 +270,16 @@ const components = {
     button: "下一步",
   },
 
+  ScreenChooseAuthMethod: {
+    title: "您想透過哪種方式接收驗證碼？",
+    expl: "在更改密碼之前，您需要驗證身份。",
+    expl1: "首先，請選擇接收驗證碼的設備。",
+    button: "下一步",
+    cancel: "取消",
+    msg: (item: string, type: string) =>
+      `發送${type === "emails" ? "電子郵件" : "簡訊"}到 ${item}`,
+  },
+
   ScreenSelectLogin: {
     title: "登入 PlayGround",
     loginList: [
