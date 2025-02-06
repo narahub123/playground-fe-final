@@ -1,10 +1,14 @@
 import styles from "./ScreenChooseAuthMethod.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
-import { Button, Modal, Text } from "@shared/@common/ui/components";
+import { Button, Modal, Spinner, Text } from "@shared/@common/ui/components";
 import { useModalContext } from "@shared/@common/ui/components/Modal/hooks";
+import { useToast } from "@shared/@common/ui/components/Toast/hooks";
 import { Icon } from "@shared/@common/ui/icons";
 import { joinClassNames } from "@shared/@common/utils";
-import { getContactsByAccoutAPI } from "@shared/auth/apis";
+import {
+  getContactsByAccoutAPI,
+  requestVerifacationCodeLoginAPI,
+} from "@shared/auth/apis";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -31,6 +35,9 @@ const ScreenChooseAuthMethod = ({
       }
     | boolean
   >(false);
+
+  // loading
+  const [loading, setLoading] = useState(false);
 
   const [authMethod, setAuthMethod] = useState<AuthMethodType>({});
 
@@ -80,9 +87,21 @@ const ScreenChooseAuthMethod = ({
     className,
   ]);
 
+  const toast = useToast();
+
   // 인증 코드 보내기
-  const sendAuthCode = (authMethod: AuthMethodType) => {
+  const sendAuthCode = async (authMethod: AuthMethodType) => {
+    setLoading(true);
     // 인증 코드 요청하는 api
+    const response = await requestVerifacationCodeLoginAPI(authMethod);
+
+    console.log(response);
+
+    setLoading(false);
+    if (response.success) {
+      toast({ description: response.message });
+      setCurPage && setCurPage((prev) => prev + 1);
+    }
   };
 
   return (
@@ -131,14 +150,13 @@ const ScreenChooseAuthMethod = ({
         <Button
           onClick={() => {
             sendAuthCode(authMethod);
-            setCurPage && setCurPage((prev) => prev + 1);
           }}
-          isValid={isValid as boolean}
+          isValid={(isValid as boolean) && !loading}
           bgColor="gray"
           width="100%"
           rounded="2xl"
         >
-          {button}
+          {loading ? <Spinner /> : button}
         </Button>
         <Button
           onClick={() => {
