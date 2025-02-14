@@ -43,7 +43,7 @@ type AccountType = {
 
 const getContactsByAccoutAPI = async (account: AccountType) => {
   try {
-    const response = await fetch(`${BASE_URL}/login/contact-info`, {
+    const response = await fetch(`${BASE_URL}/users/contacts`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -56,8 +56,6 @@ const getContactsByAccoutAPI = async (account: AccountType) => {
     }
 
     const result = await response.json();
-
-    console.log(result);
 
     if (result.success) {
       return result.data;
@@ -75,6 +73,8 @@ const getContactsByAccoutAPI = async (account: AccountType) => {
     } else {
       console.error("알 수 없는 오류 발생:", err.message);
     }
+
+    return { emails: [], phones: [] };
   }
 };
 
