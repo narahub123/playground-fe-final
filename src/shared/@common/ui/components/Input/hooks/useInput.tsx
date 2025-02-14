@@ -29,7 +29,6 @@ const useInput = ({ setIsValid, field, error }: useInputProps) => {
     FORMAT,
     EXCEED,
     DUPLICATE,
-    DISCONNECT,
     REQUIRED,
     MISMATCH,
   } = useCompiledInputError(error);
@@ -77,19 +76,13 @@ const useInput = ({ setIsValid, field, error }: useInputProps) => {
   const validateDupulicateAsync = async (
     api: (value: string) => Promise<{
       isDuplicate: any;
-      type: string;
     }>,
     value: string
   ) => {
-    const { isDuplicate, type } = await api(value);
+    const { isDuplicate } = await api(value);
 
     if (isDuplicate) {
-      if (type === "duplicate") {
-        updateErrorAndValidation(DUPLICATE?.errorMessage || "", false);
-      } else if (type === "disconnect") {
-        updateErrorAndValidation(DISCONNECT?.errorMessage || "", false);
-      }
-
+      updateErrorAndValidation(DUPLICATE?.errorMessage || "", false);
       return false;
     }
 

@@ -4,7 +4,7 @@ const BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
 
 const checkEmailDuplicateInSignupAPI = async (email: string) => {
   try {
-    const response = await fetch(`${BASE_URL}/signup/checkEmailDuplicate`, {
+    const response = await fetch(`${BASE_URL}/users/check-duplication/email`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -18,13 +18,7 @@ const checkEmailDuplicateInSignupAPI = async (email: string) => {
 
     const result = await response.json();
 
-    // response.isDuplicate이 존재하는지 확인
-    if (result && typeof result.isDuplicate === "boolean") {
-      // return result.isDuplicate;
-      return { isDuplicate: result.isDuplicate, type: "duplicate" };
-    } else {
-      throw new Error("유효하지 않은 응답을 받았습니다.");
-    }
+    return { isDuplicate: result.data.isDuplicate };
   } catch (err: any) {
     // 서버와 연결되지 않거나 네트워크 오류 발생 시 처리
     if (err instanceof TypeError) {
