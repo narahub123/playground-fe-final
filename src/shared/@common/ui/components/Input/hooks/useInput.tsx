@@ -74,16 +74,18 @@ const useInput = ({ setIsValid, field, error }: useInputProps) => {
 
   // 중복 확인
   const validateDupulicateAsync = async (
-    api: (value: string) => Promise<{
-      isDuplicate: any;
-    }>,
+    api: (value: string) => Promise<any>,
     value: string
   ) => {
-    const { isDuplicate } = await api(value);
+    const response = await api(value);
 
-    if (isDuplicate) {
-      updateErrorAndValidation(DUPLICATE?.errorMessage || "", false);
-      return false;
+    if (response.success) {
+      const { isDuplicate } = response.data;
+
+      if (isDuplicate) {
+        updateErrorAndValidation(DUPLICATE?.errorMessage || "", false);
+        return false;
+      }
     }
 
     return true;
