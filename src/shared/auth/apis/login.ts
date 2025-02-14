@@ -118,7 +118,7 @@ const requestVerifacationCodeLoginAPI = async (authMethod: AuthMethodType) => {
 
 const checkVerificationCodeAPI = async (value: { [key: string]: string }) => {
   try {
-    const response = await fetch(`${BASE_URL}/login/check-verification-code`, {
+    const response = await fetch(`${BASE_URL}/verification/verify`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
