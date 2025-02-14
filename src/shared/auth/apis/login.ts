@@ -85,16 +85,13 @@ type AuthMethodType = {
 
 const requestVerifacationCodeLoginAPI = async (authMethod: AuthMethodType) => {
   try {
-    const response = await fetch(
-      `${BASE_URL}/login/request-verification-code`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(authMethod),
-      }
-    );
+    const response = await fetch(`${BASE_URL}/verification/request`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(authMethod),
+    });
 
     if (!response.ok) {
       throw new Error("인증 코드 요청 실패");
