@@ -110,12 +110,18 @@ const ScreenChooseAuthMethod = ({
     // 인증 코드 요청하는 api
     const response = await requestVerifacationCodeLoginAPI(authMethod);
 
-    console.log(response);
-
     setLoading(false);
     if (response.success) {
-      toast({ description: response.message });
+      toast({ type: "success", description: response.message });
       setCurPage && setCurPage((prev) => prev + 1);
+    } else {
+      for (const error of Object.values(response.data.details)) {
+        toast({
+          type: "error",
+          title: errors.title(response.code),
+          description: errors.description(error),
+        });
+      }
     }
   };
 
