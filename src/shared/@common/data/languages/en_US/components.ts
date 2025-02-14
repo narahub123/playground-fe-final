@@ -304,6 +304,10 @@ const components = {
     cancel: "Cancel",
     msg: (item: string, type: string) =>
       `Send ${type === "emails" ? "email" : "text message"} to ${item}`,
+    errors: {
+      title: getErrorTitle,
+      description: getErrorDescription,
+    },
   },
 
   ScreenVerificationCode: {

@@ -46,28 +46,49 @@ const ScreenChooseAuthMethod = ({
     phones?: string[];
   }>({});
 
+  // 언어 설정
+  const { title, expl, expl1, button, cancel, msg, errors } =
+    useLanguageContent(["components", "ScreenChooseAuthMethod"]);
+
   // 인증 받을 기기에 대한 정보 받기
   useEffect(() => {
     const fetchContactsAndsetInitialAuthMethod = async () => {
-      const options = await getContactsByAccoutAPI(inputValue);
+      const result = await getContactsByAccoutAPI(inputValue);
 
-      setOptions(options);
-      setIsValid(true);
+      if (result.success) {
+        setOptions(result.data);
+        setIsValid(true);
 
-      // authMethod 초기값 설정
-      const { email, phone, userId } = inputValue;
+        // authMethod 초기값 설정
+        const { email, phone, userId } = inputValue;
 
-      if (email) {
-        setAuthMethod({ email });
-      } else if (phone) {
-        setAuthMethod({ phone });
-      } else if (userId) {
-        const { emails, phones } = options;
+        if (email) {
+          setAuthMethod({ email });
+        } else if (phone) {
+          setAuthMethod({ phone });
+        } else if (userId) {
+          const { emails, phones } = options;
 
-        // 이메일과 전화번호 목록이 있을 때 우선 이메일을 설정하고, 없으면 전화번호 설정
-        const authContact =
-          emails.length > 0 ? { email: emails[0] } : { phone: phones[0] };
-        setAuthMethod(authContact);
+          // 이메일과 전화번호 목록이 있을 때 우선 이메일을 설정하고, 없으면 전화번호 설정
+          const authContact =
+            emails && emails.length > 0
+              ? { email: emails[0] }
+              : phones
+              ? { phone: phones[0] }
+              : {};
+
+          setAuthMethod(authContact);
+        }
+      } else {
+        const toast = useToast();
+
+        for (const error of Object.values(result.error.details)) {
+          toast({
+            type: "error",
+            title: errors.title(result.code),
+            description: errors.description(error),
+          });
+        }
       }
     };
 
@@ -75,12 +96,6 @@ const ScreenChooseAuthMethod = ({
   }, []);
 
   const { setCurPage } = useModalContext();
-
-  // 언어 설정
-  const { title, expl, expl1, button, cancel, msg } = useLanguageContent([
-    "components",
-    "ScreenChooseAuthMethod",
-  ]);
 
   const classNames = joinClassNames([
     styles["screen__choose__auth__method"],

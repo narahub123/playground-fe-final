@@ -297,6 +297,10 @@ const components = {
     cancel: "取消",
     msg: (item: string, type: string) =>
       `发送${type === "emails" ? "电子邮件" : "短信"}到 ${item}`,
+    errors: {
+      title: getErrorTitle,
+      description: getErrorDescription,
+    },
   },
 
   ScreenVerificationCode: {

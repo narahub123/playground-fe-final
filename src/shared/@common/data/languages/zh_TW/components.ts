@@ -296,6 +296,10 @@ const components = {
     cancel: "取消",
     msg: (item: string, type: string) =>
       `發送${type === "emails" ? "電子郵件" : "簡訊"}到 ${item}`,
+    errors: {
+      title: getErrorTitle,
+      description: getErrorDescription,
+    },
   },
 
   ScreenVerificationCode: {

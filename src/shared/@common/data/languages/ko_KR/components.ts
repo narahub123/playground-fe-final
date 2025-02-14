@@ -304,6 +304,10 @@ const components = {
     cancel: "취소",
     msg: (item: string, type: string) =>
       `${item}로 ${type === "emails" ? "이메일" : "문자"} 보내기`,
+    errors: {
+      title: getErrorTitle,
+      description: getErrorDescription,
+    },
   },
 
   ScreenVerificationCode: {

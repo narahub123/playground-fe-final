@@ -313,6 +313,10 @@ const components = {
     cancel: "キャンセル",
     msg: (item: string, type: string) =>
       `${item} に ${type === "emails" ? "メール" : "SMS"} を送信`,
+    errors: {
+      title: getErrorTitle,
+      description: getErrorDescription,
+    },
   },
 
   ScreenVerificationCode: {
