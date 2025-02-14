@@ -48,7 +48,7 @@ const checkEmailDuplicateInSignupAPI = async (email: string) => {
 const checkUserIdDuplicateInSignupAPI = async (userId: string) => {
   try {
     // API 호출
-    const response = await fetch(`${BASE_URL}/signup/checkUserIdDuplicate`, {
+    const response = await fetch(`${BASE_URL}/users/check-duplication/userid`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -64,14 +64,7 @@ const checkUserIdDuplicateInSignupAPI = async (userId: string) => {
     // 응답 JSON 파싱
     const result = await response.json();
 
-    // 응답에서 isDuplicate가 boolean 타입인지 확인
-    if (result && typeof result.isDuplicate === "boolean") {
-      // 중복 여부와 "duplicate" 타입 반환
-      return { isDuplicate: result.isDuplicate, type: "duplicate" };
-    } else {
-      // 유효하지 않은 응답 형식일 경우 에러 발생
-      throw new Error("유효하지 않은 응답을 받았습니다.");
-    }
+    return { isDuplicate: result.data.isDuplicate };
   } catch (err: any) {
     // 네트워크 오류 및 서버 연결 오류 처리
     if (err instanceof TypeError) {
