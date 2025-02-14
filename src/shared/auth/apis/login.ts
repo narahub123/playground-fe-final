@@ -4,7 +4,7 @@ const verifyPasswordLoginAPI = async (inputValue: {
   [key: string]: string;
 }) => {
   try {
-    const response = await fetch(`${BASE_URL}/login/verifyPassword`, {
+    const response = await fetch(`${BASE_URL}/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
