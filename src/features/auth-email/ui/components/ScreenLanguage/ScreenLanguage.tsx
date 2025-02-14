@@ -16,6 +16,7 @@ import { useModalContext } from "@shared/@common/ui/components/Modal/hooks";
 import { useEffect, useState } from "react";
 import { getUserInSignup } from "@shared/auth/models/selectors";
 import { registerUserAPI } from "@shared/auth/apis/signup";
+import { useToast } from "@shared/@common/ui/components/Toast/hooks";
 
 interface ScreenLanguageProps {
   className?: string;
@@ -47,7 +48,7 @@ const ScreenLanguage = ({ className }: ScreenLanguageProps) => {
   }, [screenValidations]);
 
   // 언어 설정
-  const { title, expl, button } = useLanguageContent([
+  const { title, expl, button, success, errors } = useLanguageContent([
     "components",
     "ScreenLanguage",
   ]);
@@ -59,12 +60,26 @@ const ScreenLanguage = ({ className }: ScreenLanguageProps) => {
 
     console.log(submit);
 
-    await registerUserAPI(submit).then((response) => {
-      if (response.success) {
-        // slice를 비우기 위해서 리프레시가 되면서 이동되는 location.href 사용
-        window.location.href = "/";
-      }
-    });
+    const toast = useToast();
+
+    const result = await registerUserAPI(submit);
+
+    if (result.success) {
+      toast({
+        type: "success",
+        title: success.title,
+        description: success.description,
+      });
+      // slice를 비우기 위해서 리프레시가 되면서 이동되는 location.href 사용
+      window.location.href = "/";
+    } else {
+      for (const error of Object.values(result.data.details))
+        toast({
+          title: errors.title(result.code),
+          description: errors.description(error),
+          type: "error",
+        });
+    }
   };
 
   return (

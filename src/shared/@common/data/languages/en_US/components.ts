@@ -270,6 +270,15 @@ const components = {
     expl: "Choose your preferred language to view posts, people, and trends.",
 
     button: "Sign Up",
+    success: {
+      title: "Registration Success",
+      description:
+        "Registration is complete. You can enjoy PlayGround after logging in.",
+    },
+    errors: {
+      title: getErrorTitle,
+      description: getErrorDescription,
+    },
   },
   InputLanguage: {
     label: "Language",

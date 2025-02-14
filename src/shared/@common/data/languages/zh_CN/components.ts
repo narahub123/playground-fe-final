@@ -263,6 +263,14 @@ const components = {
     title: "您使用的语言是什么？",
     expl: "选择您偏好的语言以查看帖子、用户和趋势。",
     button: "注册",
+    success: {
+      title: "注册成功",
+      description: "注册已完成。登录后即可享受PlayGround。",
+    },
+    errors: {
+      title: getErrorTitle,
+      description: getErrorDescription,
+    },
   },
   InputLanguage: {
     label: "语言",

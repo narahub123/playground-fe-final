@@ -269,6 +269,15 @@ const components = {
     title: "사용하시는 언어가 무엇인가요?",
     expl: "원하늰 언어를 선택하여 게시물, 사람들, 트렌트를 볼 수 있습니다.",
     button: "회원 가입 하기",
+    success: {
+      title: "회원 가입 성공",
+      description:
+        "회원 가입이 완료되었습니다. 로그인 후 PlayGround를 즐기실 수 있습니다.",
+    },
+    errors: {
+      title: getErrorTitle,
+      description: getErrorDescription,
+    },
   },
   InputLanguage: {
     label: "언어",

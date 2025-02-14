@@ -278,6 +278,15 @@ const components = {
     title: "ご利用の言語は何ですか？",
     expl: "お好きな言語を選択して、投稿や人、トレンドをご覧ください。",
     button: "登録する",
+    success: {
+      title: "会員登録成功",
+      description:
+        "会員登録が完了しました。ログイン後にPlayGroundを楽しむことができます。",
+    },
+    errors: {
+      title: getErrorTitle,
+      description: getErrorDescription,
+    },
   },
   InputLanguage: {
     label: "言語",
