@@ -24,6 +24,17 @@ import {
   USERNAME_MIN,
   USERNAME_UNDER_MINIMUM,
 } from "@shared/@common/constants";
+import ERRORS from "./errors";
+
+const getErrorTitle = (code: keyof typeof ERRORS.ERROR_TITLE_CODE) => {
+  return ERRORS.ERROR_TITLE_CODE[code];
+};
+
+const getErrorDescription = (
+  code: keyof typeof ERRORS.ERROR_DESCRIPTION_CODE
+) => {
+  return ERRORS.ERROR_DESCRIPTION_CODE[code];
+};
 
 const components = {
   Input: {
@@ -336,10 +347,9 @@ const components = {
     title: "パスワードを入力してください。",
     forgetPassword: "パスワードを探す",
     button: "ログイン",
-    toastMessage: {
-      title: "エラー",
-      description:
-        "パスワードが正しくありません。確認してもう一度お試しください。",
+    errors: {
+      title: getErrorTitle,
+      description: getErrorDescription,
     },
   },
 

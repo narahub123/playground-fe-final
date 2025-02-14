@@ -24,6 +24,17 @@ import {
   USERNAME_MIN,
   USERNAME_UNDER_MINIMUM,
 } from "@shared/@common/constants";
+import ERRORS from "./errors";
+
+const getErrorTitle = (code: keyof typeof ERRORS.ERROR_TITLE_CODE) => {
+  return ERRORS.ERROR_TITLE_CODE[code];
+};
+
+const getErrorDescription = (
+  code: keyof typeof ERRORS.ERROR_DESCRIPTION_CODE
+) => {
+  return ERRORS.ERROR_DESCRIPTION_CODE[code];
+};
 
 const components = {
   Input: {
@@ -317,9 +328,9 @@ const components = {
     title: "请输入密码。",
     forgetPassword: "找回密码",
     button: "登录",
-    toastMessage: {
-      title: "错误",
-      description: "密码不正确。请检查后重试。",
+    errors: {
+      title: getErrorTitle,
+      description: getErrorDescription,
     },
   },
 

@@ -24,6 +24,17 @@ import {
   USERNAME_MIN,
   USERNAME_UNDER_MINIMUM,
 } from "@shared/@common/constants";
+import ERRORS from "./errors";
+
+const getErrorTitle = (code: keyof typeof ERRORS.ERROR_TITLE_CODE) => {
+  return ERRORS.ERROR_TITLE_CODE[code];
+};
+
+const getErrorDescription = (
+  code: keyof typeof ERRORS.ERROR_DESCRIPTION_CODE
+) => {
+  return ERRORS.ERROR_DESCRIPTION_CODE[code];
+};
 
 const components = {
   Input: {
@@ -319,13 +330,14 @@ const components = {
     signupButton: "가입하기",
     button: "다음",
   },
+
   ScreenLoginPassword: {
     title: "비밀번호를 입력하세요.",
     forgetPassword: "비밀번호 찾기",
     button: "로그인",
-    toastMessage: {
-      title: "에러",
-      description: "비밀번호가 올바르지 않습니다. 확인 후 다시 시도해주세요.",
+    errors: {
+      title: getErrorTitle,
+      description: getErrorDescription,
     },
   },
 
