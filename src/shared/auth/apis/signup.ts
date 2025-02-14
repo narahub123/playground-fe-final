@@ -41,6 +41,22 @@ const checkUserIdDuplicateInSignupAPI = async (userId: string) => {
   return result;
 };
 
+const checkPhoneDuplicationInSignupAPI = async (phone: string) => {
+  // API 호출
+  const response = await fetch(`${BASE_URL}/users/check-duplication/phone`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ phone }),
+  });
+
+  // 응답 JSON 파싱
+  const result = await response.json();
+
+  return result;
+};
+
 const registerUserAPI = async (user: SignupState) => {
   // API 호출
   const response = await fetch(`${BASE_URL}/auth/signup`, {
@@ -60,5 +76,6 @@ const registerUserAPI = async (user: SignupState) => {
 export {
   checkEmailDuplicateInSignupAPI,
   checkUserIdDuplicateInSignupAPI,
+  checkPhoneDuplicationInSignupAPI,
   registerUserAPI,
 };
