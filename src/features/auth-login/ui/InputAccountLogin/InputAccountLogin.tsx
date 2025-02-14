@@ -4,6 +4,7 @@ import { Input, Text } from "@shared/@common/ui/components";
 import { useInput } from "@shared/@common/ui/components/Input";
 import {
   checkEmailDuplicateInSignupAPI,
+  checkPhoneDuplicationInSignupAPI,
   checkUserIdDuplicateInSignupAPI,
 } from "@shared/auth/apis";
 
@@ -61,24 +62,19 @@ const InputAccountLogin = ({
     const checkUserExistence = async () => {
       if (value === "") return;
 
-      let isValid = false;
+      let response = null;
 
       if (type === "email") {
-        const response = await checkEmailDuplicateInSignupAPI(value);
-
-        const { isDuplicate } = response;
-
-        isValid = isDuplicate;
+        response = await checkEmailDuplicateInSignupAPI(value);
       } else if (type === "phone") {
+        response = await checkPhoneDuplicationInSignupAPI(value);
       } else if (type === "userId") {
-        const response = await checkUserIdDuplicateInSignupAPI(value);
-
-        const { isDuplicate } = response;
-
-        isValid = isDuplicate;
+        response = await checkUserIdDuplicateInSignupAPI(value);
       }
 
-      if (!isValid) {
+      const { isDuplicate } = response.data;
+
+      if (!isDuplicate) {
         updateErrorAndValidation(errMsg(type), false);
       } else {
         updateErrorAndValidation("", true);
