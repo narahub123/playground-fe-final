@@ -315,6 +315,15 @@ const components = {
     expl: "Please check your email to see if you received the verification code. To request a new code, go back and select the verification method again.",
     button: "Next",
     back: "Go Back",
+    success: {
+      title: "Verification Code Confirmed",
+      description:
+        "The verification code has been successfully confirmed. Please change your password in the settings.",
+    },
+    errors: {
+      title: getErrorTitle,
+      description: getErrorDescription,
+    },
   },
 
   InputVerificationCode: {

@@ -308,6 +308,14 @@ const components = {
     expl: "请检查您的电子邮件，查看是否收到了确认代码。如果需要请求新代码，请返回并重新选择认证方法。",
     button: "下一步",
     back: "返回",
+    success: {
+      title: "验证码确认完成",
+      description: "验证码已成功确认。请在设置中更改您的密码。",
+    },
+    errors: {
+      title: getErrorTitle,
+      description: getErrorDescription,
+    },
   },
 
   InputVerificationCode: {

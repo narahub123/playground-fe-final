@@ -307,6 +307,14 @@ const components = {
     expl: "請檢查您的電子郵件，查看是否收到了確認碼。如需請求新代碼，請返回並重新選擇認證方法。",
     button: "下一步",
     back: "返回",
+    success: {
+      title: "驗證碼確認完成",
+      description: "驗證碼已成功確認。請在設置中更改您的密碼。",
+    },
+    errors: {
+      title: getErrorTitle,
+      description: getErrorDescription,
+    },
   },
 
   InputVerificationCode: {

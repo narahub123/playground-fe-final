@@ -324,6 +324,15 @@ const components = {
     expl: "確認コードを受け取ったかどうか、メールをご確認ください。新しいコードをリクエストするには、戻って認証方法を再度選択してください。",
     button: "次へ",
     back: "戻る",
+    success: {
+      title: "認証コード確認完了",
+      description:
+        "認証コードが正常に確認されました。設定でパスワードを変更してください。",
+    },
+    errors: {
+      title: getErrorTitle,
+      description: getErrorDescription,
+    },
   },
 
   InputVerificationCode: {

@@ -315,6 +315,15 @@ const components = {
     expl: "확인 코드를 받았는지 이메일을 확인해주세요. 새 코드를 요청하려면 돌아가서 인증을 다시 선택하세요.",
     button: "다음",
     back: "돌아가기",
+    success: {
+      title: "인증 코드 확인 완료",
+      description:
+        "인증 코드가 성공적으로 확인되었습니다. 설정에서 비밀번호를 변경하세요.",
+    },
+    errors: {
+      title: getErrorTitle,
+      description: getErrorDescription,
+    },
   },
 
   InputVerificationCode: {

@@ -29,7 +29,7 @@ const ScreenVerificationCode = ({
   const [isValid, setIsValid] = useState(true);
 
   // 언어 설정
-  const { title, expl, button, back } = useLanguageContent([
+  const { title, expl, button, back, success, errors } = useLanguageContent([
     "components",
     "ScreenVerificationCode",
   ]);
@@ -44,19 +44,25 @@ const ScreenVerificationCode = ({
   const toast = useToast();
 
   const checkVerificationCode = async () => {
-    await checkVerificationCodeAPI(inputValue)
-      .then((res) => {
-        if (res.success) {
-          toast({ description: res.message, type: "success" });
-          navigate("/home");
-        } else {
-          toast({ description: res.message, type: "error" });
-          setIsValid(false);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
+    const result = await checkVerificationCodeAPI(inputValue);
+
+    if (result.success) {
+      toast({
+        title: success.title,
+        description: success.description,
+        type: "success",
       });
+      navigate("/home");
+    } else {
+      for (const error of Object.values(result.data.details)) {
+        toast({
+          type: "error",
+          title: errors.title(result.code),
+          description: errors.description(error),
+        });
+      }
+      setIsValid(false);
+    }
   };
 
   return (
