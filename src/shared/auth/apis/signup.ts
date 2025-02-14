@@ -88,7 +88,7 @@ const checkUserIdDuplicateInSignupAPI = async (userId: string) => {
 const registerUserAPI = async (user: SignupState) => {
   try {
     // API 호출
-    const response = await fetch(`${BASE_URL}/signup/registerUser`, {
+    const response = await fetch(`${BASE_URL}/auth/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
