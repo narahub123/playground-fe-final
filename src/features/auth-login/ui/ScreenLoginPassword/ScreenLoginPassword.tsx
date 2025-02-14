@@ -30,7 +30,7 @@ const ScreenLoginPassword = ({
   const [loading, setLoading] = useState(false);
 
   // 언어 설정
-  const { title, forgetPassword, button, toastMessage } = useLanguageContent([
+  const { title, forgetPassword, button, errors } = useLanguageContent([
     "components",
     "ScreenLoginPassword",
   ]);
@@ -45,10 +45,11 @@ const ScreenLoginPassword = ({
   // 로그인
   const login = async () => {
     setLoading(true);
-    const verification = await verifyPasswordLoginAPI(inputValue);
+    
+    const result = await verifyPasswordLoginAPI(inputValue);
 
     // true 시 home으로 이동
-    if (verification) {
+    if (result.success) {
       setLoading(false);
 
       navigate("/home");
@@ -61,11 +62,13 @@ const ScreenLoginPassword = ({
       }));
 
       // false 시 toast 사용
-      toast({
-        title: `${toastMessage.title}`,
-        description: `${toastMessage.description}`,
-        type: "error",
-      });
+      for (const error of Object.values(result.error.details)) {
+        toast({
+          title: `${errors.title(result.code)}`,
+          description: `${errors.description(error)}`,
+          type: "error",
+        });
+      }
     }
   };
 
