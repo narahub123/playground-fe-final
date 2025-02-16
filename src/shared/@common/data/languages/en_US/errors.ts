@@ -59,6 +59,9 @@ const ERROR_DESCRIPTION_CODE = {
 
   // not found
   USER_NOT_FOUND: "No matching user found.",
+  EMAIL_INFO_NOT_FOUND: "Email not found",
+  PHONE_INFO_NOT_FOUND: "Phone number not found.",
+  CONTACT_INFO_NOT_FOUND: "Contact information not found.",
 };
 
 const ERRORS = { ERROR_DESCRIPTION_CODE, ERROR_TITLE_CODE };

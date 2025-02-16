@@ -59,6 +59,9 @@ const ERROR_DESCRIPTION_CODE = {
 
   // not found
   USER_NOT_FOUND: "該当するユーザーが見つかりません。",
+  EMAIL_INFO_NOT_FOUND: "メールが見つかりません。",
+  PHONE_INFO_NOT_FOUND: "電話番号が見つかりません。",
+  CONTACT_INFO_NOT_FOUND: "連絡先情報が見つかりません。",
 };
 
 const ERRORS = { ERROR_DESCRIPTION_CODE, ERROR_TITLE_CODE };

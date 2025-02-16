@@ -56,6 +56,9 @@ const ERROR_DESCRIPTION_CODE = {
 
   // not found
   USER_NOT_FOUND: "未找到符合条件的用户。",
+  EMAIL_INFO_NOT_FOUND: "找不到電子郵件。",
+  PHONE_INFO_NOT_FOUND: "找不到電話號碼。",
+  CONTACT_INFO_NOT_FOUND: "找不到聯繫資訊。",
 };
 
 const ERRORS = { ERROR_DESCRIPTION_CODE, ERROR_TITLE_CODE };
