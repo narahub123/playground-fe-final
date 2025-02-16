@@ -36,6 +36,11 @@ type ParallelModals = "signup" | "login" | "flow";
 
 type TwoFactorAuthenticationMethod = "sms" | "app" | "key" | "";
 
+type TagTarget = "all" | "followers";
+type MuteTarget = "all" | "notFollowing";
+type MuteDuration = "forever" | "24h" | "7d" | "30d";
+type MessageAllowSettings = "all" | "authenticated" | "none";
+
 export type {
   BgThemeType,
   ColorThemeType,
@@ -47,4 +52,8 @@ export type {
   LocationType,
   ParallelModals,
   TwoFactorAuthenticationMethod,
+  TagTarget,
+  MuteTarget,
+  MuteDuration,
+  MessageAllowSettings,
 };

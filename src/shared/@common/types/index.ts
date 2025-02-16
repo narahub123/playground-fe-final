@@ -9,6 +9,10 @@ import {
   LocationType,
   ParallelModals,
   TwoFactorAuthenticationMethod,
+  TagTarget,
+  MuteTarget,
+  MuteDuration,
+  MessageAllowSettings,
 } from "./slices";
 
 import {
@@ -35,6 +39,10 @@ export type {
   LocationType,
   ParallelModals,
   TwoFactorAuthenticationMethod,
+  TagTarget,
+  MuteTarget,
+  MuteDuration,
+  MessageAllowSettings,
 
   // components
   DropdownItemType, // dropdown item
