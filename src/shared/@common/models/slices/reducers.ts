@@ -30,6 +30,8 @@ import {
 
 import {} from "./securitySlice";
 
+import {} from "./privacySlice";
+
 export {
   // display
   setLanguage,
@@ -59,4 +61,6 @@ export {
   onErrorClose,
 
   // security
+
+  // privacy
 };
