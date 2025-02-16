@@ -55,12 +55,10 @@ const ScreenLanguage = ({ className }: ScreenLanguageProps) => {
 
   const classNames = joinClassNames([styles["screen__language"], className]);
 
+  const toast = useToast();
+
   const handleSubmit = async () => {
     const submit = { ...user, language: display.language };
-
-    console.log(submit);
-
-    const toast = useToast();
 
     const result = await registerUserAPI(submit);
 
