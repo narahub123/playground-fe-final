@@ -6,17 +6,41 @@ import {
 } from "@shared/@common/types";
 
 export interface DisplayState {
-  language: string;
-  bgTheme: BgThemeType;
-  colorTheme: ColorThemeType;
+  // 접근성
+  isColorContrastEnabled: boolean;
+  isMotionReduced: boolean;
+  isImageDescriptionAdded: boolean;
+
+  // 표시
   fontSize: FontSizeType;
+  colorTheme: ColorThemeType;
+  bgTheme: BgThemeType;
+
+  // 언어
+  language: string;
+
+  // 데이터 사용량
+  isDataSaverEnabled: boolean;
+  isAutoplayEnabled: boolean;
 }
 
 const initialState: DisplayState = {
-  language: "ko-KR",
-  bgTheme: "light",
-  colorTheme: "cornflowerblue",
+  // 접근성
+  isColorContrastEnabled: false,
+  isMotionReduced: false,
+  isImageDescriptionAdded: false,
+
+  // 표시
   fontSize: "b",
+  colorTheme: "cornflowerblue",
+  bgTheme: "light",
+
+  // 언어
+  language: "ko-KR",
+
+  // 데이터 사용량
+  isDataSaverEnabled: false,
+  isAutoplayEnabled: true,
 };
 
 const displaySlice = createSlice({
