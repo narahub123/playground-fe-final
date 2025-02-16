@@ -28,6 +28,8 @@ import {
   onErrorClose,
 } from "./modalSlice";
 
+import {} from "./securitySlice";
+
 export {
   // display
   setLanguage,
@@ -55,4 +57,6 @@ export {
   onParallelModalClose,
   onErrorOpen,
   onErrorClose,
+
+  // security
 };
