@@ -32,6 +32,8 @@ import {} from "./securitySlice";
 
 import {} from "./privacySlice";
 
+import {} from "./notificationSlice";
+
 export {
   // display
   setLanguage,
@@ -63,4 +65,6 @@ export {
   // security
 
   // privacy
+
+  // notification
 };

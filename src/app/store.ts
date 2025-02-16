@@ -10,6 +10,7 @@ import {
   modalSlice as modal,
   securitySlice as security,
   privacySlice as privacy,
+  notificationSlice as notification,
 } from "@shared/@common/models/slices";
 
 const store = configureStore({
@@ -21,6 +22,7 @@ const store = configureStore({
     modal, // 모달
     security, // 보안 설정
     privacy, // 개인 정보 설정
+    notification, // 알림 설정
   },
 
   // serializableCheck 옵션을 false로 설정하여
