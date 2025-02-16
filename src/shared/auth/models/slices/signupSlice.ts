@@ -2,6 +2,7 @@ import {
   BirthType,
   GenderType,
   NotificationInSignupType,
+  OauthType,
 } from "@shared/auth/types";
 import { validateDate } from "@shared/auth/utils";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
@@ -10,9 +11,9 @@ import { LocationType, DeviceInfoType } from "@shared/@common/types";
 export interface SignupState {
   username: string; // 사용자 이름
   phone: string; // 휴대폰
-  phoneOauth: boolean; // 휴대폰 정보를 oauth에서 가져온지 여부
+  phoneOauth?: OauthType; // 휴대폰 정보를 oauth에서 가져온지 여부
   email: string; // 이메일
-  emailOauth: boolean; // 이메일 정보를 oauth에서 가져온지 여부
+  emailOauth?: OauthType; // 이메일 정보를 oauth에서 가져온지 여부
   birth: BirthType; // 생년월일
   password: string; // 비밀번호
   userId: string; // 사용자 아이디
@@ -28,9 +29,9 @@ export interface SignupState {
 const initialState: SignupState = {
   username: "",
   phone: "",
-  phoneOauth: false,
+  phoneOauth: undefined,
   email: "",
-  emailOauth: false,
+  emailOauth: undefined,
   birth: {
     year: "",
     month: "",
@@ -71,13 +72,13 @@ const signupSlice = createSlice({
     setPhoneInSignup: (state, action: PayloadAction<string>) => {
       state.phone = action.payload;
     },
-    setPhoneOauthInSignup: (state, action: PayloadAction<boolean>) => {
+    setPhoneOauthInSignup: (state, action: PayloadAction<OauthType>) => {
       state.phoneOauth = action.payload;
     },
     setEmailInSignup: (state, action: PayloadAction<string>) => {
       state.email = action.payload;
     },
-    setEmailOauthInSignup: (state, action: PayloadAction<boolean>) => {
+    setEmailOauthInSignup: (state, action: PayloadAction<OauthType>) => {
       state.emailOauth = action.payload;
     },
     setBirthInSignup: (state, action: PayloadAction<BirthType>) => {

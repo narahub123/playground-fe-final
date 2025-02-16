@@ -46,14 +46,15 @@ const AuthPage = () => {
       if (e.origin !== window.origin) return;
 
       // 메시지에서 전달된 데이터 구조 추출
-      const { email, username, profileImage, gender, phone, birth } = e.data;
+      const { email, username, profileImage, gender, phone, birth, oauth } =
+        e.data;
 
       // email과 username이 없으면 처리를 중단
       if (!email || !username) return;
 
       // 전달된 데이터가 존재할 경우 리덕스 상태 업데이트
       dispatch(setEmailInSignup(email)); // 이메일 저장
-      dispatch(setEmailOauthInSignup(true)); // 이메일이 oauth에서 가져온 것임을 표시
+      dispatch(setEmailOauthInSignup(oauth)); // 이메일이 oauth에서 가져온 것임을 표시
       dispatch(setUsernameInSignup(username)); // 사용자 이름 저장
       dispatch(setProfileImageInSignup(profileImage)); // 프로필 이미지 저장
 
@@ -63,7 +64,7 @@ const AuthPage = () => {
       // 전화번호가 있으면 저장
       if (phone) {
         dispatch(setPhoneInSignup(phone));
-        dispatch(setPhoneOauthInSignup(true)); // 휴대폰이 oauth에서 가져온 것임을 표시
+        dispatch(setPhoneOauthInSignup(oauth)); // 휴대폰이 oauth에서 가져온 것임을 표시
       }
 
       // 생일이 있으면 날짜 정보를 파싱하여 저장
