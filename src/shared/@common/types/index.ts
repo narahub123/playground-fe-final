@@ -8,6 +8,7 @@ import {
   BrowserType,
   LocationType,
   ParallelModals,
+  TwoFactorAuthenticationMethod,
 } from "./slices";
 
 import {
@@ -33,6 +34,7 @@ export type {
   BrowserType,
   LocationType,
   ParallelModals,
+  TwoFactorAuthenticationMethod,
 
   // components
   DropdownItemType, // dropdown item

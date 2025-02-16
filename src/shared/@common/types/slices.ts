@@ -34,6 +34,8 @@ type LocationType = {
 
 type ParallelModals = "signup" | "login" | "flow";
 
+type TwoFactorAuthenticationMethod = "sms" | "app" | "key" | "";
+
 export type {
   BgThemeType,
   ColorThemeType,
@@ -44,4 +46,5 @@ export type {
   BrowserType,
   LocationType,
   ParallelModals,
+  TwoFactorAuthenticationMethod,
 };
