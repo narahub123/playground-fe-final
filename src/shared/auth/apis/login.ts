@@ -1,8 +1,8 @@
+import { LoginInputValueType } from "@features/auth-login/types";
+
 const BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
 
-const verifyPasswordLoginAPI = async (inputValue: {
-  [key: string]: string;
-}) => {
+const verifyPasswordLoginAPI = async (inputValue: LoginInputValueType) => {
   const response = await fetch(`${BASE_URL}/auth/login`, {
     method: "POST",
     headers: {

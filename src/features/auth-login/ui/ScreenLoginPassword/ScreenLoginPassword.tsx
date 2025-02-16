@@ -10,12 +10,11 @@ import {
 import { verifyPasswordLoginAPI } from "@shared/auth/apis";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@shared/@common/ui/components/Toast/hooks";
+import { LoginInputValueType } from "@features/auth-login/types";
 
 interface ScreenLoginPasswordProps {
-  inputValue: { [key: string]: string };
-  setInputValue: React.Dispatch<
-    React.SetStateAction<{ [key: string]: string }>
-  >;
+  inputValue: LoginInputValueType;
+  setInputValue: React.Dispatch<React.SetStateAction<LoginInputValueType>>;
   className?: string;
 }
 
@@ -45,7 +44,7 @@ const ScreenLoginPassword = ({
   // 로그인
   const login = async () => {
     setLoading(true);
-    
+
     const result = await verifyPasswordLoginAPI(inputValue);
 
     // true 시 home으로 이동

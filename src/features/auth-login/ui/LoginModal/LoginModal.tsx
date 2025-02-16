@@ -10,6 +10,12 @@ import { onParallelModalClose } from "@shared/@common/models/slices/modalSlice";
 import { ScreenValidationType } from "@shared/@common/ui/components/Modal/types";
 import ScreenSelectLogin from "../ScreenSelectLogin/ScreenSelectLogin";
 import ScreenLoginPassword from "../ScreenLoginPassword/ScreenLoginPassword";
+import {
+  useDeviceInfo,
+  useIpInfo,
+  useLocationInfo,
+} from "@shared/@common/models/hooks";
+import { LoginInputValueType } from "@features/auth-login/types";
 
 interface LoginModalProps {
   className?: string;
@@ -19,7 +25,7 @@ const LoginModal = ({ className }: LoginModalProps) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const [inputValue, setInputValue] = useState<{ [key: string]: string }>({});
+  const [inputValue, setInputValue] = useState<LoginInputValueType>({});
 
   console.log("입력 값", inputValue);
 
@@ -60,6 +66,21 @@ const LoginModal = ({ className }: LoginModalProps) => {
 
     setScreenValidations(defaultValidations);
   }, []);
+
+  const device = useDeviceInfo();
+  const ip = useIpInfo();
+  const location = useLocationInfo();
+
+  useEffect(() => {
+    setInputValue({
+      device,
+      ip,
+      location,
+    });
+  }, [device, ip, location]);
+
+  console.log(inputValue);
+  
 
   const classNames = joinClassNames([styles["login__modal"], className]);
 

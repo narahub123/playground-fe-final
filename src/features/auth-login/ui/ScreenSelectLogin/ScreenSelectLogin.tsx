@@ -9,13 +9,12 @@ import { useState } from "react";
 import { useModalContext } from "@shared/@common/ui/components/Modal/hooks";
 import { HorizontalDivider, InputAccountLogin } from "@features/auth-login/ui";
 import { useNavigate } from "react-router-dom";
+import { LoginInputValueType } from "@features/auth-login/types";
 
 interface ScreenSelectLoginProps {
   className?: string;
-  inputValue: { [key: string]: string };
-  setInputValue: React.Dispatch<
-    React.SetStateAction<{ [key: string]: string }>
-  >;
+  inputValue: LoginInputValueType;
+  setInputValue: React.Dispatch<React.SetStateAction<LoginInputValueType>>;
 }
 
 const ScreenSelectLogin = ({

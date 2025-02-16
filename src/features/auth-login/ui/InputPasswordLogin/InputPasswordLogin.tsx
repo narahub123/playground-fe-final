@@ -1,3 +1,4 @@
+import { LoginInputValueType } from "@features/auth-login/types";
 import styles from "./InputPasswordLogin.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Input } from "@shared/@common/ui/components";
@@ -11,14 +12,8 @@ interface InputPasswordLoginProps {
         [key: string]: boolean; // 각 필드에 대한 유효성 상태를 업데이트하는 함수입니다. 필드 이름을 키로 하고, boolean 값을 업데이트합니다.
       }
     | boolean; // 전체 유효성 상태를 업데이트하는 함수입니다. 모든 입력 필드에 대한 유효성 상태를 한 번에 업데이트할 수 있습니다.;
-  inputValue: {
-    [key: string]: string;
-  };
-  setInputValue: React.Dispatch<
-    React.SetStateAction<{
-      [key: string]: string;
-    }>
-  >;
+  inputValue: LoginInputValueType;
+  setInputValue: React.Dispatch<React.SetStateAction<LoginInputValueType>>;
   className?: string;
   disabled?: boolean;
 }
@@ -50,7 +45,7 @@ const InputPasswordLogin = ({
       className={className}
       label={label}
       field={field}
-      inputValue={inputValue["password"]}
+      inputValue={inputValue["password"] ? inputValue["password"] : ""}
       handleChange={handleChange}
       isValid={typeof isValid === "object" ? isValid[field] ?? false : isValid}
       disabled={disabled}
