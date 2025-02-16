@@ -80,14 +80,15 @@ const SignupModal = () => {
     setScreenValidations(defaultValidations);
   }, []);
 
-  // 기기 정보 저장
-  useDeviceInfo(setDeviceInSignup);
+  const device = useDeviceInfo();
+  const ip = useIpInfo();
+  const location = useLocationInfo();
 
-  // 사용자 ip 주소 저장
-  useIpInfo(setIpInSignup);
-
-  // 사용자 주소 저장
-  useLocationInfo(setLocationInSignup);
+  useEffect(() => {
+    dispatch(setDeviceInSignup(device));
+    dispatch(setIpInSignup(ip));
+    dispatch(setLocationInSignup(location));
+  }, [device, ip, location]);
 
   return (
     <Modal
