@@ -8,6 +8,7 @@ const verifyPasswordLoginAPI = async (inputValue: LoginInputValueType) => {
     headers: {
       "Content-Type": "application/json",
     },
+    credentials: "include",
     body: JSON.stringify(inputValue),
   });
 
