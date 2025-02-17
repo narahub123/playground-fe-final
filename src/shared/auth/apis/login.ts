@@ -13,6 +13,10 @@ const verifyPasswordLoginAPI = async (inputValue: LoginInputValueType) => {
 
   const result = await response.json();
 
+  if (result.data.accessToken) {
+    localStorage.setItem("accessToken", result.data.accessToken);
+  }
+
   return result;
 };
 
