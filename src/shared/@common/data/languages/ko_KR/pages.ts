@@ -18,6 +18,7 @@ const pages = {
       { text: "이메일로 로그인", colorTheme: true },
     ],
   },
+  HomePage: {},
 };
 
 export default pages;

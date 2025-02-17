@@ -18,6 +18,7 @@ const pages = {
       { text: "使用电子邮件登录", colorTheme: true },
     ],
   },
+  HomePage: {},
 };
 
 export default pages;

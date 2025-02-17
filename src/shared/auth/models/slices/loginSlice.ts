@@ -7,7 +7,7 @@ interface LoginState {
 }
 
 const initialState: LoginState = {
-  login: false,
+  login: true,
   loading: false,
 };
 

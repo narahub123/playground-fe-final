@@ -18,6 +18,7 @@ const pages = {
       { text: "メールでログイン", colorTheme: true },
     ],
   },
+  HomePage: {},
 };
 
 export default pages;

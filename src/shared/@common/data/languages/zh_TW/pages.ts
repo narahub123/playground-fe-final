@@ -18,6 +18,7 @@ const pages = {
       { text: "使用電子郵件登入", colorTheme: true },
     ],
   },
+  HomePage: {},
 };
 
 export default pages;

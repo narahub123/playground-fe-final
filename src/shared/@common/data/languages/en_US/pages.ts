@@ -18,6 +18,7 @@ const pages = {
       { text: "Log in with Email", colorTheme: true },
     ],
   },
+  HomePage: {},
 };
 
 export default pages;

@@ -3,6 +3,7 @@ import { LoginModal } from "@features/auth-login/ui";
 import {
   AuthPage,
   FlowPage,
+  HomePage,
   OauthCallback,
   PlayGround,
   TestPage,
@@ -47,8 +48,13 @@ const router = createBrowserRouter([
         ],
       },
       { path: "/test", element: <TestPage /> },
+      {
+        path: "/home",
+        element: <HomePage />,
+      },
     ],
   },
+
   {
     path: "/oauth/callback",
     element: <OauthCallback />,
