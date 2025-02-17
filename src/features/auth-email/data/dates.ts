@@ -17,7 +17,7 @@ const birthYearList = (unit: string) =>
   Array.from({ length: thisYear - BASE_YAER + 1 })
     .map((_, index) => ({
       text: (BASE_YAER + index).toString() + unit,
-      value: (BASE_YAER + index).toString(),
+      value: BASE_YAER + index,
     }))
     .reverse();
 
@@ -30,18 +30,18 @@ const birthYearList = (unit: string) =>
  * - 1월부터 12월까지의 목록을 생성하고, 각 월을 `M${unit}` 형태로 표시합니다.
  */
 const birthMonthList = (unit: string) => [
-  { text: `1${unit}`, value: "1" },
-  { text: `2${unit}`, value: "2" },
-  { text: `3${unit}`, value: "3" },
-  { text: `4${unit}`, value: "4" },
-  { text: `5${unit}`, value: "5" },
-  { text: `6${unit}`, value: "6" },
-  { text: `7${unit}`, value: "7" },
-  { text: `8${unit}`, value: "8" },
-  { text: `9${unit}`, value: "9" },
-  { text: `10${unit}`, value: "10" },
-  { text: `11${unit}`, value: "11" },
-  { text: `12${unit}`, value: "12" },
+  { text: `1${unit}`, value: 1 },
+  { text: `2${unit}`, value: 2 },
+  { text: `3${unit}`, value: 3 },
+  { text: `4${unit}`, value: 4 },
+  { text: `5${unit}`, value: 5 },
+  { text: `6${unit}`, value: 6 },
+  { text: `7${unit}`, value: 7 },
+  { text: `8${unit}`, value: 8 },
+  { text: `9${unit}`, value: 9 },
+  { text: `10${unit}`, value: 10 },
+  { text: `11${unit}`, value: 11 },
+  { text: `12${unit}`, value: 12 },
 ];
 
 /**
@@ -57,17 +57,17 @@ const birthMonthList = (unit: string) => [
  * - 예: 2024년 2월이면 29일까지 생성됩니다.
  */
 const birthDateList = (
-  year: string | number = thisYear,
-  month: string | number = thisMonth,
+  year: number = thisYear,
+  month: number = thisMonth,
   unit: string
 ) => {
-  const target = new Date(Number(year), Number(month), 0);
+  const target = new Date(year, month, 0);
 
   const lastDate = target.getDate();
 
   return Array.from({ length: lastDate }).map((_, index) => ({
     text: index + 1 + unit,
-    value: (index + 1).toString(),
+    value: index + 1,
   }));
 };
 

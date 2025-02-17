@@ -1,7 +1,7 @@
 type BirthType = {
-  year: string | number;
-  month: string | number;
-  date: string | number;
+  year: number;
+  month: number;
+  date: number;
 };
 
 type NotificationInSignupType = {

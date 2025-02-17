@@ -5,14 +5,14 @@ import { SELECT_LISTBOX_SCROLL_STEP } from "@shared/@common/constants";
 import { SelectOptionType } from "../types";
 
 interface useSelectProps {
-  value: string;
+  value: string | number;
   options: {
     text: string;
-    value: string;
+    value: string | number;
   }[];
   updateFunc:
     | ((value: any) => { type: string; payload: any })
-    | React.Dispatch<React.SetStateAction<string>>;
+    | React.Dispatch<React.SetStateAction<string | number>>;
   setIsValid: React.Dispatch<
     React.SetStateAction<
       | {
@@ -145,7 +145,10 @@ const useSelect = ({
     setIsOpen(false);
   };
 
-  const updateValue = (e: React.MouseEvent<HTMLLIElement>, value: string) => {
+  const updateValue = (
+    e: React.MouseEvent<HTMLLIElement>,
+    value: string | number
+  ) => {
     e.preventDefault();
     const update = updateFunc(value);
     if (typeof update === "object" && "type" in update && "payload" in update) {

@@ -4,7 +4,7 @@ import { joinClassNames } from "@shared/@common/utils";
 
 interface SelectOptionCustomProps {
   children: ReactNode;
-  value: string;
+  value: string | number;
   onMouseDown: (value: any) => void;
   ariaSelected: boolean;
   className?: string;

@@ -23,9 +23,9 @@ const initialState: UserState = {
   phones: [],
   emails: [],
   birth: {
-    year: "",
-    month: "",
-    date: "",
+    year: 1900,
+    month: 1,
+    date: 1,
   },
   password: "",
   userId: "",
@@ -69,7 +69,7 @@ const userSlice = createSlice({
      * 이 리듀서는 `year` 값이 변경되었을 때만 상태를 업데이트합니다.
      * 또한 변경된 `year`에 맞게 `date` 값이 유효한 날짜로 자동으로 수정됩니다.
      */
-    setBirthYear: (state, action: PayloadAction<string>) => {
+    setBirthYear: (state, action: PayloadAction<number>) => {
       const { year, month, date } = state.birth;
 
       // 이미 입력된 연도와 동일하면 업데이트를 하지 않습니다.
@@ -96,7 +96,7 @@ const userSlice = createSlice({
      * 이 리듀서는 `month` 값이 변경되었을 때만 상태를 업데이트합니다.
      * 또한 변경된 `month`에 맞게 `date` 값이 유효한 날짜로 자동으로 수정됩니다.
      */
-    setBirthMonth: (state, action: PayloadAction<string>) => {
+    setBirthMonth: (state, action: PayloadAction<number>) => {
       const { year, month, date } = state.birth;
 
       // 이미 입력된 월과 동일하면 업데이트를 하지 않습니다.
@@ -114,7 +114,7 @@ const userSlice = createSlice({
       }
     },
 
-    setBirthDate: (state, action: PayloadAction<string>) => {
+    setBirthDate: (state, action: PayloadAction<number>) => {
       state.birth.date = action.payload;
     },
     setIp: (state, action: PayloadAction<string>) => {

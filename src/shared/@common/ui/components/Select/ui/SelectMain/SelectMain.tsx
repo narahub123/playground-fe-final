@@ -11,7 +11,7 @@ import { useClickOutside } from "@shared/@common/models/hooks";
 interface SelectMainProps {
   label: string;
   field: string;
-  value: string;
+  value: string | number;
   children: ReactNode;
   toggleListbox: () => void;
   handleKeyDown: (e: React.KeyboardEvent<HTMLDivElement>) => void;

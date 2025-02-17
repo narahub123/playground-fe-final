@@ -34,7 +34,7 @@ const SelectYearSignup = ({
 
   const birth = useSelector(getBirthInSignup);
 
-  const value = birth.year as string;
+  const value = birth.year;
 
   const options = birthYearList(unit);
 

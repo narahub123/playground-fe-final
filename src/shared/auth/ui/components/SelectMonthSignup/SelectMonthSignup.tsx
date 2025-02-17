@@ -34,7 +34,7 @@ const SelectMonthSignup = ({
 
   const birth = useSelector(getBirthInSignup);
 
-  const value = birth.month as string;
+  const value = birth.month;
 
   const options = birthMonthList(unit);
 
