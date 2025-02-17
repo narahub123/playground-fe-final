@@ -1,3 +1,44 @@
-.pages-layout {
+.pages__layout {
   width: 100%;
+  display: flex;
+  justify-content: center;
+  min-height: calc(100dvh - 39.2px); /* 화면 높이에서 패널 높이를 뺌 */
+}
+
+.pages__layout__header {
+  padding: 0 0.5rem;
+  width: 260px;
+  background-color: greenyellow;
+}
+
+.pages__layout__main {
+  flex: 1;
+  max-width: 990px;
+  display: flex;
+  gap: 40px;
+}
+
+.pages__layout__page {
+  flex: 1;
+  max-width: 600px;
+}
+
+.pages__layout__sidebar {
+  width: 350px;
+  background-color: cornflowerblue;
+}
+
+@media screen and (max-width: 1298px) {
+  .pages__layout__header {
+    width: 72px;
+  }
+}
+
+@media screen and (max-width: 1020px) {
+  .pages__layout__main {
+    max-width: 600px;
+  }
+  .pages__layout__sidebar {
+    display: none;
+  }
 }
