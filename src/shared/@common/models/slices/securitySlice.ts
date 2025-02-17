@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TwoFactorAuthenticationMethod } from "@shared/@common/types";
 
 interface SecurityState {
@@ -56,9 +56,13 @@ const initialState: SecurityState = {
 const securitySlice = createSlice({
   name: "security",
   initialState,
-  reducers: {},
+  reducers: {
+    setSecurity: (state, action: PayloadAction<SecurityState>) => {
+      return action.payload;
+    },
+  },
 });
 
 export default securitySlice.reducer;
 
-export const {} = securitySlice.actions;
+export const { setSecurity } = securitySlice.actions;

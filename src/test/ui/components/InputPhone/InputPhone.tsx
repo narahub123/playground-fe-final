@@ -6,7 +6,7 @@ import {
   getPhoneOauthInSignup,
 } from "@shared/auth/models/selectors";
 import { useSelector } from "react-redux";
-import { setPhone } from "@shared/@common/models/slices/userSlice";
+import { setPhones } from "@shared/@common/models/slices/userSlice";
 import { setPhoneInSignup } from "@shared/auth/models/slices/signupSlice";
 import { useMemo } from "react";
 import Input from "../Input/ui";
@@ -46,7 +46,7 @@ const InputPhone = ({
 
   const inputValue = useSelector(selector);
 
-  const setInputValue = isSignup ? setPhoneInSignup : setPhone;
+  const setInputValue = isSignup ? setPhoneInSignup : setPhones;
   // 언어 설정
   const { label, error } = useLanguageContent(["components", "InputPhone"]);
 

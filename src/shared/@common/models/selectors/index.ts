@@ -13,11 +13,11 @@ import {
   getPasswordCheck,
   getProfileImage,
   getBirth,
-  getEmail,
+  getEmails,
   getGender,
   getIp,
   getLocation,
-  getPhone,
+  getPhones,
   getUsername,
 } from "./userSelectors";
 
@@ -28,6 +28,12 @@ import {
   getFlowModal,
   getErrorModal,
 } from "./modalSelectors";
+
+import { getSecurity } from "./securitySelectors";
+
+import { getPrivacy } from "./privacySelectors";
+
+import { getNotification } from "./notificationSelectors";
 
 export {
   // display
@@ -44,11 +50,11 @@ export {
   getPasswordCheck,
   getProfileImage,
   getBirth,
-  getEmail,
+  getEmails,
   getGender,
   getIp,
   getLocation,
-  getPhone,
+  getPhones,
   getUsername,
 
   // modal
@@ -57,4 +63,13 @@ export {
   getLoginModal,
   getFlowModal,
   getErrorModal,
+
+  // security
+  getSecurity,
+
+  // privacy
+  getPrivacy,
+
+  // notification
+  getNotification,
 };

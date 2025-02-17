@@ -47,6 +47,9 @@ const displaySlice = createSlice({
   name: "display",
   initialState,
   reducers: {
+    setDisplay: (state, action: PayloadAction<DisplayState>) => {
+      return action.payload;
+    },
     setLanguage: (state, action: PayloadAction<string>) => {
       state.language = action.payload;
     },
@@ -64,5 +67,10 @@ const displaySlice = createSlice({
 
 export default displaySlice.reducer;
 
-export const { setLanguage, setBgTheme, setColorTheme, setFontSize } =
-  displaySlice.actions;
+export const {
+  setDisplay,
+  setLanguage,
+  setBgTheme,
+  setColorTheme,
+  setFontSize,
+} = displaySlice.actions;

@@ -7,7 +7,7 @@ import {
 } from "@shared/auth/models/selectors";
 import { getEmail } from "@shared/@common/models/selectors";
 import { setEmailInSignup } from "@shared/auth/models/slices/signupSlice";
-import { setEmail } from "@shared/@common/models/slices/userSlice";
+import { setEmails } from "@shared/@common/models/slices/userSlice";
 import { useMemo } from "react";
 
 interface InputEmailProps {
@@ -45,7 +45,7 @@ const InputEmail = ({
 
   const inputValue = useSelector(selector);
 
-  const setInputValue = isSignup ? setEmailInSignup : setEmail;
+  const setInputValue = isSignup ? setEmailInSignup : setEmails;
 
   // 언어 설정
   const { label, error } = useLanguageContent(["components", "InputEmail"]);

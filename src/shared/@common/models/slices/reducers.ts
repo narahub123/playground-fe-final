@@ -1,4 +1,5 @@
 import {
+  setDisplay,
   setLanguage,
   setBgTheme,
   setColorTheme,
@@ -13,12 +14,13 @@ import {
   setBirthYear,
   setBirthMonth,
   setBirthDate,
-  setEmail,
+  setEmails,
   setGender,
   setIp,
   setLocation,
-  setPhone,
+  setPhones,
   setUsername,
+  setUser,
 } from "./userSlice";
 
 import {
@@ -28,14 +30,15 @@ import {
   onErrorClose,
 } from "./modalSlice";
 
-import {} from "./securitySlice";
+import { setSecurity } from "./securitySlice";
 
-import {} from "./privacySlice";
+import { setPrivacy } from "./privacySlice";
 
-import {} from "./notificationSlice";
+import { setNotification } from "./notificationSlice";
 
 export {
   // display
+  setDisplay,
   setLanguage,
   setBgTheme,
   setColorTheme,
@@ -49,12 +52,13 @@ export {
   setBirthYear,
   setBirthMonth,
   setBirthDate,
-  setEmail,
+  setEmails,
   setGender,
   setIp,
   setLocation,
-  setPhone,
+  setPhones,
   setUsername,
+  setUser,
 
   // modal
   onParallelModalOpen,
@@ -63,8 +67,11 @@ export {
   onErrorClose,
 
   // security
+  setSecurity,
 
   // privacy
+  setPrivacy,
 
   // notification
+  setNotification,
 };

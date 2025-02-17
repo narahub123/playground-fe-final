@@ -5,11 +5,11 @@ import { validateDate } from "@shared/auth/utils";
 
 export interface UserState {
   username: string; // 사용자 이름
-  phone: string; // 휴대폰
-  email: string; // 이메일
+  phones: string[]; // 휴대폰
+  emails: string[]; // 이메일
   birth: BirthType; // 생년월일
   password: string; // 비밀번호
-  password_check: string;
+  password_check?: string;
   userId: string; // 사용자 아이디
   profileImage: string; // 프로필 사진
   language: string; // 언어
@@ -20,15 +20,14 @@ export interface UserState {
 
 const initialState: UserState = {
   username: "",
-  phone: "",
-  email: "",
+  phones: [],
+  emails: [],
   birth: {
     year: "",
     month: "",
     date: "",
   },
   password: "",
-  password_check: "",
   userId: "",
   profileImage: "",
   language: "",
@@ -46,14 +45,17 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
+    setUser: (state, action: PayloadAction<UserState>) => {
+      return action.payload;
+    },
     setUsername: (state, action: PayloadAction<string>) => {
       state.username = action.payload;
     },
-    setPhone: (state, action: PayloadAction<string>) => {
-      state.phone = action.payload;
+    setPhones: (state, action: PayloadAction<string>) => {
+      state.phones = [...state.phones, action.payload];
     },
-    setEmail: (state, action: PayloadAction<string>) => {
-      state.email = action.payload;
+    setEmails: (state, action: PayloadAction<string>) => {
+      state.emails = [...state.emails, action.payload];
     },
     setBirth: (state, action: PayloadAction<BirthType>) => {
       state.birth = action.payload;
@@ -142,6 +144,7 @@ const userSlice = createSlice({
 export default userSlice.reducer;
 
 export const {
+  setUser,
   setPassword,
   setPasswordCheck,
   setUserId,
@@ -150,10 +153,10 @@ export const {
   setBirthYear,
   setBirthMonth,
   setBirthDate,
-  setEmail,
+  setEmails,
   setGender,
   setIp,
   setLocation,
-  setPhone,
+  setPhones,
   setUsername,
 } = userSlice.actions;

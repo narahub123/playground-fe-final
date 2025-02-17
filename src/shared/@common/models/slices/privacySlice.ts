@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
   MessageAllowSettings,
   MuteDuration,
@@ -105,9 +105,13 @@ const initialState: PrivacyState = {
 const privacySlice = createSlice({
   name: "privacy",
   initialState,
-  reducers: {},
+  reducers: {
+    setPrivacy: (state, action: PayloadAction<PrivacyState>) => {
+      return action.payload;
+    },
+  },
 });
 
 export default privacySlice.reducer;
 
-export const {} = privacySlice.actions;
+export const { setPrivacy } = privacySlice.actions;

@@ -6,11 +6,11 @@ const getPassword = (state: RootState) => state.user.password;
 const getPasswordCheck = (state: RootState) => state.user.password_check;
 const getProfileImage = (state: RootState) => state.user.profileImage;
 const getBirth = (state: RootState) => state.user.birth;
-const getEmail = (state: RootState) => state.user.email;
+const getEmails = (state: RootState) => state.user.emails;
 const getGender = (state: RootState) => state.user.gender;
 const getIp = (state: RootState) => state.user.ip;
 const getLocation = (state: RootState) => state.user.location;
-const getPhone = (state: RootState) => state.user.phone;
+const getPhones = (state: RootState) => state.user.phones;
 const getUsername = (state: RootState) => state.user.username;
 
 export {
@@ -20,10 +20,10 @@ export {
   getUserId,
   getProfileImage,
   getBirth,
-  getEmail,
+  getEmails,
   getGender,
   getIp,
   getLocation,
-  getPhone,
+  getPhones,
   getUsername,
 };
