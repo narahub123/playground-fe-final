@@ -1,0 +1,58 @@
+.header {
+  height: calc(100dvh - 39.2px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: greenyellow;
+}
+
+.header__wrapper {
+  padding: 0 0.5rem;
+  width: 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.header__container {
+  flex: 1;
+  padding: 2px;
+  width: 56px;
+  display: flex;
+  flex-direction: column;
+}
+
+.header__logo__wrapper {
+  width: 100%;
+  aspect-ratio: 1/1;
+}
+
+.header__logo {
+}
+
+.header__nav {
+  width: 100%;
+  aspect-ratio: 1/1;
+}
+
+.header__nav__list {
+}
+
+.header__nav__item {
+  padding: 12px;
+}
+
+.header__write {
+  width: 100%;
+  aspect-ratio: 1/1;
+}
+
+.header__account {
+  bottom: 0;
+  margin: 0.75rem 0;
+}
+
+@media screen and (max-width: 1298px) {
+  .header__wrapper {
+    width: 72px;
+  }
+}

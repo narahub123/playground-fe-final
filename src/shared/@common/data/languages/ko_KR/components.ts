@@ -408,6 +408,7 @@ const components = {
       { text: "중국어 - 번체 : Chinese - Traditional", value: "zh-TW" },
     ],
   },
+  Header: {},
 };
 
 export default components;

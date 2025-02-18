@@ -9,6 +9,7 @@ import { setSecurity } from "@shared/@common/models/slices/securitySlice";
 import { setPrivacy } from "@shared/@common/models/slices/privacySlice";
 import { setNotification } from "@shared/@common/models/slices/notificationSlice";
 import { getAccessToken } from "@shared/pages/utils";
+import { Header } from "@shared/pages/ui";
 
 const PagesLayout = () => {
   const dispatch = useAppDispatch();
@@ -36,9 +37,7 @@ const PagesLayout = () => {
   }, [login]);
   return (
     <div className={styles[`pages__layout`]}>
-      <header role="banner" className={styles["pages__layout__header"]}>
-        사이드 바
-      </header>
+      <Header />
       <main role="main" className={styles["pages__layout__main"]}>
         <div className={styles[`pages__layout__page`]}>
           <Outlet />
