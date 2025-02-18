@@ -410,6 +410,9 @@ const components = {
       { text: "Chinese - Traditional : 繁體中文", value: "zh-TW" },
     ],
   },
-};
+  CountBadge: {
+    ariaLabel: (count: number) => `You have ${count} unread notifications.`,
+  },
+  };
 
 export default components;

@@ -419,6 +419,9 @@ const components = {
       { text: "中国語 - 繁体 : Chinese - Traditional", value: "zh-TW" },
     ],
   },
+  CountBadge: {
+    ariaLabel: (count: number) => `${count}件の未読通知があります。`,
+  },
 };
 
 export default components;

@@ -417,6 +417,9 @@ const components = {
     profileTitle: "프로필",
     moreTitle: "더보기",
   },
+  CountBadge: {
+    ariaLabel: (count: number) => `${count}개의 읽지 않은 알림이 있습니다.`,
+  },
 };
 
 export default components;

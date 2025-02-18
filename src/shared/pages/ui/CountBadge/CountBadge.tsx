@@ -1,3 +1,4 @@
+import { useLanguageContent } from "@shared/@common/models/hooks";
 import styles from "./CountBadge.module.css";
 import common from "@shared/@common/styles/common.module.css";
 import { ColorBasic } from "@shared/@common/types";
@@ -27,8 +28,16 @@ const CountBadge = ({
     className,
   ]);
 
+  const { ariaLabel } = useLanguageContent(["components", "CountBadge"]);
+
   return (
-    <span className={classNames} aria-hidden="true" tabIndex={-1}>
+    <span
+      className={classNames}
+      tabIndex={-1}
+      aria-label={ariaLabel(count)}
+      role="status"
+      aria-live="polite"
+    >
       {count}
     </span>
   );
