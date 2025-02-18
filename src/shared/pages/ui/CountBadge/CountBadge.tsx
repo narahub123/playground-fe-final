@@ -27,7 +27,11 @@ const CountBadge = ({
     className,
   ]);
 
-  return <span className={classNames}>{count}</span>;
+  return (
+    <span className={classNames} aria-hidden="true" tabIndex={-1}>
+      {count}
+    </span>
+  );
 };
 
 export default CountBadge;
