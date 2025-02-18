@@ -1,5 +1,5 @@
 import { google, kakao, naver } from "./logos";
 
-import { defaultProfileImage } from "./images";
+import { defaultProfileImage, logo } from "./images";
 
-export { google, kakao, naver, defaultProfileImage };
+export { google, kakao, naver, defaultProfileImage, logo };

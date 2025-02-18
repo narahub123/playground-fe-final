@@ -408,7 +408,9 @@ const components = {
       { text: "중국어 - 번체 : Chinese - Traditional", value: "zh-TW" },
     ],
   },
-  Header: {},
+  Header: {
+    logoAlt: "홈으로 이동",
+  },
 };
 
 export default components;

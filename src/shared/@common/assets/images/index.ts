@@ -1,3 +1,3 @@
 import defaultProfileImage from "./defaultProfileImage.webp";
-
-export { defaultProfileImage };
+import logo from "./logo.png";
+export { defaultProfileImage, logo };

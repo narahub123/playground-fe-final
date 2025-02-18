@@ -2,7 +2,6 @@
   height: calc(100dvh - 39.2px);
   overflow-y: auto;
   overflow-x: hidden;
-  background-color: greenyellow;
 }
 
 .header__wrapper {
@@ -21,17 +20,33 @@
   flex-direction: column;
 }
 
+/*  */
+.header__logo__container {
+  width: 100%;
+}
+
+/* hover 적용을 위함, logo의 실제 범위 */
 .header__logo__wrapper {
   width: 100%;
   aspect-ratio: 1/1;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.4s ease;
+}
+
+.header__logo__wrapper:hover {
+  background-color: #ddd;
 }
 
 .header__logo {
+  height: 26px;
+  width: 26px;
 }
 
 .header__nav {
   width: 100%;
-  aspect-ratio: 1/1;
 }
 
 .header__nav__list {
