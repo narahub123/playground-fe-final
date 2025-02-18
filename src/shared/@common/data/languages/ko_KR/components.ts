@@ -410,6 +410,12 @@ const components = {
   },
   Header: {
     logoAlt: "홈으로 이동",
+    homeTitle: "홈",
+    exploreTitle: "탐색하기",
+    notificationTitle: "알림",
+    messageTitle: "메시지",
+    profileTitle: "프로필",
+    moreTitle: "더보기",
   },
 };
 

@@ -2,10 +2,23 @@ import styles from "./Header.module.css";
 import { Link } from "react-router-dom";
 import { logo } from "@shared/@common/assets";
 import { useLanguageContent } from "@shared/@common/models/hooks";
+import { Icon } from "@shared/@common/ui/icons";
+import NavItem from "../NavItem/NavItem";
 
 const Header = () => {
   // 언어 설정
-  const { logoAlt } = useLanguageContent(["components", "Header"]);
+  const {
+    logoAlt,
+    homeTitle,
+    exploreTitle,
+    notificationTitle,
+    messageTitle,
+    profileTitle,
+    moreTitle,
+  } = useLanguageContent(["components", "Header"]);
+
+  const notificationCount = 1;
+  const messageCount = 2;
 
   return (
     <header className={styles["header"]}>
@@ -26,13 +39,51 @@ const Header = () => {
             </Link>
           </div>
           <nav className={styles[`header_nav`]}>
-            <ul className={styles[`header__nav__list`]}>
-              <li className={styles[`header__nav__item`]}>아이콘</li>
-              <li className={styles[`header__nav__item`]}>아이콘</li>
-              <li className={styles[`header__nav__item`]}>아이콘</li>
-              <li className={styles[`header__nav__item`]}>아이콘</li>
-              <li className={styles[`header__nav__item`]}>아이콘</li>
-            </ul>
+            {/* 홈 */}
+            <NavItem
+              to="/home"
+              activeIconName="homeFill"
+              inactiveIconName="homeLine"
+              title={homeTitle}
+            />
+            {/* 탐색 */}
+            <NavItem
+              to="/explore"
+              activeIconName="exploreFill"
+              inactiveIconName="exploreLine"
+              title={exploreTitle}
+            />
+            {/* 알림 */}
+            <NavItem
+              to="/notifications"
+              activeIconName="notificationFill"
+              inactiveIconName="notificationLine"
+              title={notificationTitle}
+              count={notificationCount}
+            />
+            {/* 메시지 */}
+            <NavItem
+              to="/messages"
+              activeIconName="envelopFill"
+              inactiveIconName="envelopLine"
+              title={messageTitle}
+              count={messageCount}
+            />
+            {/* 프로필 */}
+            <NavItem
+              to={`/${"test1234"}`}
+              activeIconName="userFill"
+              inactiveIconName="userLine"
+              title={profileTitle}
+            />
+            {/* 더보기 */}
+            <button className={styles[`header__nav__button`]} title={moreTitle}>
+              <Icon
+                iconName="moreRounded"
+                iconSize="2xl"
+                bgColor="transparent"
+              />
+            </button>
           </nav>
           <div className={styles[`header__write`]}>쓰기</div>
         </div>

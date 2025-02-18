@@ -16,12 +16,24 @@ import {
   RiCheckboxFill as rectCheckboxFill,
   RiCheckboxBlankCircleLine as roundCheckboxBlank,
   RiCheckboxCircleFill as roundCheckboxFill,
+  RiSearchFill as exploreFill,
+  RiSearchLine as exploreLine,
+  RiNotificationLine as notificationLine,
+  RiNotificationFill as notificationFill,
 } from "react-icons/ri";
+import {
+  FaEnvelope as envelopFill,
+  FaRegEnvelope as envelopLine,
+} from "react-icons/fa";
 import {
   FaCircleCheck as valid,
   FaCircleXmark as invalid,
+  FaRegUser as userLine,
+  FaUser as userFill,
 } from "react-icons/fa6";
 import { TbCameraPlus as uploadImage } from "react-icons/tb";
+import { CgMoreO as moreRounded } from "react-icons/cg";
+import { GoHome as homeLine, GoHomeFill as homeFill } from "react-icons/go";
 
 const Icons = {
   close, // 창닫기
@@ -43,6 +55,17 @@ const Icons = {
   roundCheckboxFill,
   success,
   warning,
+  exploreFill,
+  exploreLine,
+  moreRounded,
+  homeLine,
+  homeFill,
+  notificationLine,
+  notificationFill,
+  envelopLine,
+  envelopFill,
+  userLine,
+  userFill,
 };
 
 export default Icons;
