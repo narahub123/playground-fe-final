@@ -3,3 +3,8 @@
   border: 1px solid #ccc;
   background-color: var(--bgTheme-bgColor-primary);
 }
+
+.dropdown__list {
+  display: flex;
+  flex-direction: column;
+}

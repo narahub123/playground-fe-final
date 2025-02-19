@@ -4,6 +4,7 @@ import { Dropdown } from "@shared/@common/ui/components";
 import { Icon } from "@shared/@common/ui/icons";
 import { joinClassNames } from "@shared/@common/utils";
 import { useCallback, useEffect, useRef, useState } from "react";
+import NavMoreButtonItem from "./NavMoreButtonItem/NavMoreButtonItem";
 
 interface NavMoreButtonProps {
   className?: string;
@@ -94,18 +95,24 @@ const NavMoreButton = ({ className, disabled = false }: NavMoreButtonProps) => {
           }
           left={rect.left}
         >
-          <li onClick={() => handleClick()}>하이1</li>
-          <li onClick={() => handleClick()}>하이2</li>
-          <li onClick={() => handleClick()}>하이3</li>
-          <li onClick={() => handleClick()}>하이4</li>
-          <li onClick={() => handleClick()}>하이5</li>
-          <li onClick={() => handleClick()}>하이6</li>
-          <li onClick={() => handleClick()}>하이7</li>
-          <li onClick={() => handleClick()}>하이8</li>
-          <li onClick={() => handleClick()}>하이9</li>
-          <li onClick={() => handleClick()}>하이10</li>
-          <li onClick={() => handleClick()}>하이11</li>
-          <li onClick={() => handleClick()}>하이12</li>
+          <NavMoreButtonItem
+            to={`/${"test1234"}/lists`}
+            text="리스트"
+            iconName="lists"
+          />
+
+          <NavMoreButtonItem
+            to={`/i/bookmarks`}
+            text="북마크"
+            iconName="bookmarks"
+          />
+          <NavMoreButtonItem
+            to={`/i/monetization`}
+            text="수익창출"
+            iconName="monetization"
+          />
+          <NavMoreButtonItem to={`/i/ads`} text="광고" iconName="ads" />
+          <NavMoreButtonItem to={`/settings`} text="설정" iconName="settings" />
         </Dropdown>
       </button>
     </div>

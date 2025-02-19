@@ -1,0 +1,20 @@
+.nav__more__button__item {
+  background-color: var(--bgTheme-bgColor-primary);
+  width: 150px;
+}
+
+.nav__more__button__item:hover {
+  background-color: var(--bgTheme-bgColor-hover);
+}
+
+.nav__more__button__item__link {
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.nav__more__button__item__link:focus {
+  border: 2px solid var(--colorTheme-color-primary);
+  border-radius: 0.125rem;
+  outline: none;
+}

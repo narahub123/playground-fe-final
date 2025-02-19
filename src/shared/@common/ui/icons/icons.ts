@@ -20,6 +20,7 @@ import {
   RiSearchLine as exploreLine,
   RiNotificationLine as notificationLine,
   RiNotificationFill as notificationFill,
+  RiFileList2Line as lists,
 } from "react-icons/ri";
 import {
   FaEnvelope as envelopFill,
@@ -32,8 +33,14 @@ import {
   FaUser as userFill,
 } from "react-icons/fa6";
 import { TbCameraPlus as uploadImage } from "react-icons/tb";
-import { CgMoreO as moreRounded } from "react-icons/cg";
+import {
+  CgMoreO as moreRounded,
+  CgArrowTopRightR as ads,
+} from "react-icons/cg";
 import { GoHome as homeLine, GoHomeFill as homeFill } from "react-icons/go";
+import { HiOutlineBookmark as bookmarks } from "react-icons/hi";
+import { PiMoney as monetization } from "react-icons/pi";
+import { FiSettings as settings } from "react-icons/fi";
 
 const Icons = {
   close, // 창닫기
@@ -66,6 +73,11 @@ const Icons = {
   envelopFill,
   userLine,
   userFill,
+  lists, // 리스트 아이콘
+  bookmarks, // 북마크 아이콘
+  monetization, // 수익 창출 아이콘
+  ads, // 광고 아이콘
+  settings, // 설정 아이콘
 };
 
 export default Icons;
