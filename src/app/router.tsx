@@ -10,49 +10,58 @@ import {
 } from "@pages";
 import { ModalLayout } from "@shared/@common/layouts";
 import { FlowModal } from "@shared/flow/ui";
+import { getAccessToken } from "@shared/pages/utils";
 import { createBrowserRouter } from "react-router-dom";
+
+const login = getAccessToken();
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <PlayGround />,
-    children: [
-      {
-        path: "/",
-        element: <AuthPage />,
-        children: [
+    children: login
+      ? [
           {
-            path: "i/flow",
-            element: <ModalLayout />,
+            path: "home",
+            element: <HomePage />,
+          },
+          {
+            path: "compose/pose",
+          },
+        ]
+      : [
+          {
+            path: "/",
+            element: <AuthPage />,
             children: [
               {
-                path: "signup",
-                element: <SignupModal />,
+                path: "i/flow",
+                element: <ModalLayout />,
+                children: [
+                  {
+                    path: "signup",
+                    element: <SignupModal />,
+                  },
+                  {
+                    path: "login",
+                    element: <LoginModal />,
+                  },
+                ], // 병렬 라우트를 적용할 모달
               },
-              {
-                path: "login",
-                element: <LoginModal />,
-              },
-            ], // 병렬 라우트를 적용할 모달
+            ],
           },
-        ],
-      },
-      {
-        path: "i/flow",
-        element: <FlowPage />,
-        children: [
           {
-            path: "password_reset",
-            element: <FlowModal />,
+            path: "i/flow",
+            element: <FlowPage />,
+            children: [
+              {
+                path: "password_reset",
+                element: <FlowModal />,
+              },
+            ],
           },
+          { path: "/test", element: <TestPage /> },
         ],
-      },
-      { path: "/test", element: <TestPage /> },
-      {
-        path: "/home",
-        element: <HomePage />,
-      },
-    ],
   },
 
   {

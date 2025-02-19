@@ -32,7 +32,7 @@ type LocationType = {
   county: string;
 };
 
-type ParallelModals = "signup" | "login" | "flow";
+type ParallelModals = "signup" | "login" | "flow" | "write";
 
 type TwoFactorAuthenticationMethod = "sms" | "app" | "key" | "";
 

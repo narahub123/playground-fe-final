@@ -27,6 +27,7 @@ import {
   getLoginModal,
   getFlowModal,
   getErrorModal,
+  getWritePostModal,
 } from "./modalSelectors";
 
 import { getSecurity } from "./securitySelectors";
@@ -63,6 +64,7 @@ export {
   getLoginModal,
   getFlowModal,
   getErrorModal,
+  getWritePostModal,
 
   // security
   getSecurity,

@@ -4,6 +4,7 @@ const getParallelModals = (state: RootState) => state.modal.parallel;
 const getSignupModal = (state: RootState) => state.modal.parallel.signup;
 const getLoginModal = (state: RootState) => state.modal.parallel.login;
 const getFlowModal = (state: RootState) => state.modal.parallel.flow;
+const getWritePostModal = (state: RootState) => state.modal.parallel.write;
 const getErrorModal = (state: RootState) => state.modal.standalone.error;
 
 export {
@@ -12,4 +13,5 @@ export {
   getLoginModal,
   getFlowModal,
   getErrorModal,
+  getWritePostModal,
 };
