@@ -5,6 +5,7 @@ import NavMoreButton from "./NavMoreButton/NavMoreButton";
 import WriteButton from "./WriteButton/WriteButton";
 import WritePostModal from "./WritePostModal/WritePostModal";
 import AccountButton from "./AccountButton/AccountButton";
+import AccountItem from "./AccountItem/AccountItem";
 
 export {
   Header,
@@ -14,4 +15,5 @@ export {
   WriteButton,
   WritePostModal,
   AccountButton,
+  AccountItem,
 };

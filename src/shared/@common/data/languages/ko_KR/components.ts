@@ -436,6 +436,7 @@ const components = {
   AccountButton: {
     title: "계정  ",
   },
+  AccountItem: {},
 };
 
 export default components;
