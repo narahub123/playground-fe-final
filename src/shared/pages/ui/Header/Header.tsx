@@ -4,6 +4,7 @@ import { logo } from "@shared/@common/assets";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Icon } from "@shared/@common/ui/icons";
 import NavItem from "../NavItem/NavItem";
+import NavMoreButton from "../NavMoreButton/NavMoreButton";
 
 const Header = () => {
   // 언어 설정
@@ -77,13 +78,7 @@ const Header = () => {
               title={profileTitle}
             />
             {/* 더보기 */}
-            <button className={styles[`header__nav__button`]} title={moreTitle}>
-              <Icon
-                iconName="moreRounded"
-                iconSize="2xl"
-                bgColor="transparent"
-              />
-            </button>
+            <NavMoreButton />
           </nav>
           <div className={styles[`header__write`]}>쓰기</div>
         </div>

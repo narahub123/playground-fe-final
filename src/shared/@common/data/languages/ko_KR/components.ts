@@ -415,10 +415,12 @@ const components = {
     notificationTitle: "알림",
     messageTitle: "메시지",
     profileTitle: "프로필",
-    moreTitle: "더보기",
   },
   CountBadge: {
     ariaLabel: (count: number) => `${count}개의 읽지 않은 알림이 있습니다.`,
+  },
+  NavMoreButton: {
+    moreTitle: "더보기",
   },
 };
 
