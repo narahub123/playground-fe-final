@@ -13,6 +13,7 @@ interface ModalCloseButtonProps {
    * @type {string}
    */
   className?: string;
+  location?: "right" | "left";
 }
 
 /**
@@ -21,7 +22,10 @@ interface ModalCloseButtonProps {
  *
  * @returns {JSX.Element} 모달을 닫는 버튼 아이콘입니다.
  */
-const ModalCloseButton = ({ className }: ModalCloseButtonProps) => {
+const ModalCloseButton = ({
+  className,
+  location = "right",
+}: ModalCloseButtonProps) => {
   const { onClose } = useModalContext();
 
   const { iconTitle } = useLanguageContent([
@@ -37,7 +41,13 @@ const ModalCloseButton = ({ className }: ModalCloseButtonProps) => {
       bgColor="white"
       title={iconTitle}
       onClick={onClose}
-      className={joinClassNames([styles["modal__close__button"], className])}
+      className={joinClassNames([
+        styles["modal__close__button"],
+        location === "right"
+          ? styles["modal__close__button--right"]
+          : styles["modal__close__button--left"],
+        className,
+      ])}
     />
   );
 };

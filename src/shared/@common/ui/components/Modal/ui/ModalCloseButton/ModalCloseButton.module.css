@@ -1,6 +1,13 @@
 .modal__close__button {
   position: absolute;
-  right: 10px;
   top: 10px;
   z-index: 1;
+}
+
+.modal__close__button--right {
+  right: 10px;
+}
+
+.modal__close__button--left {
+  left: 10px;
 }
