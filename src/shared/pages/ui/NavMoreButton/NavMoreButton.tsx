@@ -39,14 +39,6 @@ const NavMoreButton = ({ className }: NavMoreButtonProps) => {
   // 드롭다운 닫기
   const onClose = () => setIsOpen(false);
 
-  // 포커스 되돌려주기
-  const handleClick = () => {
-    onClose();
-    setTimeout(() => {
-      buttonRef.current?.focus();
-    }, 100);
-  };
-
   // 부모 요소의 위치 정보 저장
   const updateRect = useCallback(() => {
     if (!containerRef.current) return;
@@ -110,6 +102,8 @@ const NavMoreButton = ({ className }: NavMoreButtonProps) => {
               : 0
           }
           left={rect.left}
+          onClose={onClose}
+          lastClickedRef={buttonRef}
         >
           {navItems.map((item) => (
             <NavMoreButtonItem

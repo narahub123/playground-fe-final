@@ -5,6 +5,8 @@ import DropdownMain from "./DropdownMain/DropdownMain";
 interface DropdownProps {
   name: string;
   isOpen: boolean;
+  onClose: () => void;
+  lastClickedRef: React.RefObject<HTMLButtonElement>;
   children: ReactNode;
   top?: number;
   bottom?: number;
@@ -17,6 +19,8 @@ interface DropdownProps {
 const Dropdown = ({
   name,
   isOpen,
+  onClose,
+  lastClickedRef,
   children,
   top,
   bottom,
@@ -31,11 +35,13 @@ const Dropdown = ({
   return (
     <Portal id={`${name}-dropdown`}>
       <DropdownMain
+        onClose={onClose}
         top={top}
         bottom={bottom}
         left={left}
         right={right}
         className={className}
+        lastClickedRef={lastClickedRef}
       >
         {children}
       </DropdownMain>

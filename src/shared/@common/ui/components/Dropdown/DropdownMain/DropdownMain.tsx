@@ -5,6 +5,8 @@ import { useFocusTrap } from "@shared/@common/models/hooks";
 
 interface DropdownMainProps {
   children: ReactNode;
+  onClose: () => void;
+  lastClickedRef: React.RefObject<HTMLButtonElement>;
   top?: number;
   bottom?: number;
   left?: number;
@@ -14,6 +16,8 @@ interface DropdownMainProps {
 
 const DropdownMain = ({
   children,
+  onClose,
+  lastClickedRef,
   top,
   bottom,
   left,
@@ -32,6 +36,14 @@ const DropdownMain = ({
       style={{ top, bottom, left, right }}
       ref={containerRef}
       onClick={(e) => e.stopPropagation()}
+      onKeyDown={(e) => {
+        if (e.key === "Escape") {
+          onClose();
+          setTimeout(() => {
+            lastClickedRef.current?.focus();
+          }, 100);
+        }
+      }}
     >
       <ul
         className={styles["dropdown__list"]}
