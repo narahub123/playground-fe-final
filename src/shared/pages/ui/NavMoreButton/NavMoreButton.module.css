@@ -1,5 +1,8 @@
-.nav__more__button {
+.nav__more__button__container {
   position: relative;
+}
+
+.nav__more__button {
   width: 50px;
   height: 50px;
   padding: 12px;
