@@ -7,7 +7,6 @@ import SVG from "./SVG/SVG";
 import Spinner from "./Spinner/Spinner";
 import Image from "./Image/Image";
 import Lightbox from "./Lightbox";
-
 import ProfileImage from "./ProfileImage/ProfileImage";
 import ImageUploader from "./ImageUploader/ImageUploader";
 import Checkbox from "./Checkbox/Checkbox";

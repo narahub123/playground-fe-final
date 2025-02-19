@@ -1,0 +1,5 @@
+.dropdown {
+  position: absolute;
+  border: 1px solid #ccc;
+  background-color: var(--bgTheme-bgColor-primary);
+}
