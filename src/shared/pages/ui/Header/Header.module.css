@@ -8,6 +8,7 @@
 .header__wrapper {
   padding: 0 0.5rem;
   width: 260px;
+  height: inherit;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

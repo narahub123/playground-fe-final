@@ -433,6 +433,9 @@ const components = {
     writeTitle: "게시하기",
   },
   WritePostModal: {},
+  AccountButton: {
+    title: "계정  ",
+  },
 };
 
 export default components;

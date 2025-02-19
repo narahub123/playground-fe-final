@@ -1,0 +1,24 @@
+.account__button {
+  width: 100%;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.account__button:hover {
+  background-color: #ddd;
+}
+
+.account__button:focus {
+  background-color: #ddd;
+  outline: 2px solid var(--bgTheme-color-primary);
+}
+
+.account__button__image {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
