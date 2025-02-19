@@ -411,6 +411,9 @@ const components = {
       settings: "設定",
     },
   },
+  WriteButton: {
+    writeTitle: "發佈",
+  },
 };
 
 export default components;

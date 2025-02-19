@@ -423,6 +423,9 @@ const components = {
       settings: "Settings",
     },
   },
+  WriteButton: {
+    writeTitle: "Post",
+  },
 };
 
 export default components;

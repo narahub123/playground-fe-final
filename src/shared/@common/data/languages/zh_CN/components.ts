@@ -403,6 +403,9 @@ const components = {
       settings: "设置",
     },
   },
+  WriteButton: {
+    writeTitle: "发布",
+  },
 };
 
 export default components;

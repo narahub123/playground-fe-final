@@ -1,0 +1,14 @@
+.write__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--colorTheme-color-primary);
+  border-radius: 50%;
+  width: 100%;
+  aspect-ratio: 1/1;
+  cursor: pointer;
+}
+
+.write__button:hover {
+  background-color: var(--colorTheme-bgColor-hover);
+}

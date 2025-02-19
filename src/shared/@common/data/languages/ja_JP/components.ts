@@ -432,6 +432,9 @@ const components = {
       settings: "設定",
     },
   },
+  WriteButton: {
+    writeTitle: "投稿する",
+  },
 };
 
 export default components;

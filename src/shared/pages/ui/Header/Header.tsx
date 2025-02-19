@@ -5,6 +5,7 @@ import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Icon } from "@shared/@common/ui/icons";
 import NavItem from "../NavItem/NavItem";
 import NavMoreButton from "../NavMoreButton/NavMoreButton";
+import WriteButton from "../WriteButton/WriteButton";
 
 const Header = () => {
   // 언어 설정
@@ -80,7 +81,7 @@ const Header = () => {
             {/* 더보기 */}
             <NavMoreButton />
           </nav>
-          <div className={styles[`header__write`]}>쓰기</div>
+          <WriteButton />
         </div>
         <div className={styles[`header__account`]}>계정</div>
       </div>

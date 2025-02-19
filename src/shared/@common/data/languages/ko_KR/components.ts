@@ -429,6 +429,9 @@ const components = {
       settings: "설정",
     },
   },
+  WriteButton: {
+    writeTitle: "게시하기",
+  },
 };
 
 export default components;
