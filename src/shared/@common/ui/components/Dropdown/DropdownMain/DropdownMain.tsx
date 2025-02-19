@@ -37,7 +37,9 @@ const DropdownMain = ({
         className={styles["dropdown__list"]}
         style={{
           maxHeight:
-            bottom && window.innerHeight > bottom ? bottom : window.innerHeight,
+            bottom && window.innerHeight > bottom
+              ? window.innerHeight - bottom
+              : window.innerHeight,
           overflowY: "auto",
         }}
       >
