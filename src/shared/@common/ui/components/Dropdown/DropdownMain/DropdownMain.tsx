@@ -31,7 +31,7 @@ const DropdownMain = ({
   useFocusTrap({ containerRef });
 
   // 외부 클릭 시 창 닫기
-  useClickOutside({ containerRef, toggle: onClose });
+  useClickOutside({ containerRef, toggle: onClose, lastClickedRef });
 
   return (
     <div

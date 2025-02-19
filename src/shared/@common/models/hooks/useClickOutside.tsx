@@ -3,15 +3,25 @@ import { useEffect } from "react";
 interface useClickOutsideProps {
   containerRef: React.RefObject<HTMLElement>;
   toggle: () => void;
+  lastClickedRef?: React.RefObject<HTMLElement>;
 }
 
-const useClickOutside = ({ containerRef, toggle }: useClickOutsideProps) => {
+const useClickOutside = ({
+  containerRef,
+  toggle,
+  lastClickedRef,
+}: useClickOutsideProps) => {
   const clickOutside = (e: MouseEvent) => {
     if (
       containerRef.current &&
       !containerRef.current.contains(e.target as Node)
     ) {
       toggle();
+      if (lastClickedRef) {
+        setTimeout(() => {
+          lastClickedRef.current?.focus();
+        }, 100);
+      }
     }
   };
 
