@@ -82,6 +82,7 @@ const AccountButton = ({ className, disabled = false }: AccountButtonProps) => {
         bottom={
           rect.bottom && window.innerHeight - rect.bottom + rect.height + 20
         }
+        className={styles["account__dropdown"]}
       >
         <p>gkdl dfadfs dfasdf</p>
         <p>gkdl dfadfs dfasdf</p>
