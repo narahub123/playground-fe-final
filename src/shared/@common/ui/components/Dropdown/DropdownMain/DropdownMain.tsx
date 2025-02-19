@@ -31,6 +31,7 @@ const DropdownMain = ({
       className={classNames}
       style={{ top, bottom, left, right }}
       ref={containerRef}
+      onClick={(e) => e.stopPropagation()}
     >
       <ul
         className={styles["dropdown__list"]}

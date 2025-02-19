@@ -12,6 +12,7 @@ interface NavMoreButtonProps {
 
 const NavMoreButton = ({ className, disabled = false }: NavMoreButtonProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const [isOpen, setIsOpen] = useState(false);
   // container의 위치 저장
   const [rect, setRect] = useState<{
@@ -31,6 +32,14 @@ const NavMoreButton = ({ className, disabled = false }: NavMoreButtonProps) => {
   };
   // 드롭다운 닫기
   const onClose = () => setIsOpen(false);
+
+  // 포커스 되돌려주기
+  const handleClick = () => {
+    onClose();
+    setTimeout(() => {
+      buttonRef.current?.focus();
+    }, 100);
+  };
 
   // 부모 요소의 위치 정보 저장
   const updateRect = useCallback(() => {
@@ -73,7 +82,7 @@ const NavMoreButton = ({ className, disabled = false }: NavMoreButtonProps) => {
       onClick={() => (isOpen ? onClose() : onOpen())}
       ref={containerRef}
     >
-      <button title={moreTitle} className={classNames}>
+      <button title={moreTitle} className={classNames} ref={buttonRef}>
         <Icon iconName="moreRounded" iconSize="2xl" bgColor="transparent" />
         <Dropdown
           name="nav"
@@ -85,18 +94,18 @@ const NavMoreButton = ({ className, disabled = false }: NavMoreButtonProps) => {
           }
           left={rect.left}
         >
-          <li>하이1</li>
-          <li>하이2</li>
-          <li>하이3</li>
-          <li>하이4</li>
-          <li>하이5</li>
-          <li>하이6</li>
-          <li>하이7</li>
-          <li>하이8</li>
-          <li>하이9</li>
-          <li>하이10</li>
-          <li>하이11</li>
-          <li>하이12</li>
+          <li onClick={() => handleClick()}>하이1</li>
+          <li onClick={() => handleClick()}>하이2</li>
+          <li onClick={() => handleClick()}>하이3</li>
+          <li onClick={() => handleClick()}>하이4</li>
+          <li onClick={() => handleClick()}>하이5</li>
+          <li onClick={() => handleClick()}>하이6</li>
+          <li onClick={() => handleClick()}>하이7</li>
+          <li onClick={() => handleClick()}>하이8</li>
+          <li onClick={() => handleClick()}>하이9</li>
+          <li onClick={() => handleClick()}>하이10</li>
+          <li onClick={() => handleClick()}>하이11</li>
+          <li onClick={() => handleClick()}>하이12</li>
         </Dropdown>
       </button>
     </div>
