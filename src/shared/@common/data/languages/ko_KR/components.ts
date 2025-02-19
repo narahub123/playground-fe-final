@@ -432,6 +432,7 @@ const components = {
   WriteButton: {
     writeTitle: "게시하기",
   },
+  WritePostModal: {},
 };
 
 export default components;

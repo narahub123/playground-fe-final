@@ -2,7 +2,6 @@ import styles from "./Header.module.css";
 import { Link } from "react-router-dom";
 import { logo } from "@shared/@common/assets";
 import { useLanguageContent } from "@shared/@common/models/hooks";
-import { Icon } from "@shared/@common/ui/icons";
 import NavItem from "../NavItem/NavItem";
 import NavMoreButton from "../NavMoreButton/NavMoreButton";
 import WriteButton from "../WriteButton/WriteButton";
@@ -16,7 +15,6 @@ const Header = () => {
     notificationTitle,
     messageTitle,
     profileTitle,
-    moreTitle,
   } = useLanguageContent(["components", "Header"]);
 
   const notificationCount = 1;

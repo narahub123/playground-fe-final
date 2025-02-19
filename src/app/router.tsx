@@ -10,6 +10,7 @@ import {
 } from "@pages";
 import { ModalLayout } from "@shared/@common/layouts";
 import { FlowModal } from "@shared/flow/ui";
+import { WritePostModal } from "@shared/pages/ui";
 import { getAccessToken } from "@shared/pages/utils";
 import { createBrowserRouter } from "react-router-dom";
 
@@ -26,7 +27,8 @@ const router = createBrowserRouter([
             element: <HomePage />,
           },
           {
-            path: "compose/pose",
+            path: "compose/post",
+            element: <WritePostModal />,
           },
         ]
       : [

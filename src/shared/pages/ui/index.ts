@@ -3,5 +3,13 @@ import CountBadge from "./CountBadge/CountBadge";
 import NavItem from "./NavItem/NavItem";
 import NavMoreButton from "./NavMoreButton/NavMoreButton";
 import WriteButton from "./WriteButton/WriteButton";
+import WritePostModal from "./WritePostModal/WritePostModal";
 
-export { Header, CountBadge, NavItem, NavMoreButton, WriteButton };
+export {
+  Header,
+  CountBadge,
+  NavItem,
+  NavMoreButton,
+  WriteButton,
+  WritePostModal,
+};
