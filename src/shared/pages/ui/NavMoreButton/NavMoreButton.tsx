@@ -8,10 +8,9 @@ import NavMoreButtonItem from "./NavMoreButtonItem/NavMoreButtonItem";
 
 interface NavMoreButtonProps {
   className?: string;
-  disabled?: boolean;
 }
 
-const NavMoreButton = ({ className, disabled = false }: NavMoreButtonProps) => {
+const NavMoreButton = ({ className }: NavMoreButtonProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [isOpen, setIsOpen] = useState(false);
