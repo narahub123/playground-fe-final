@@ -1,7 +1,7 @@
 import { ReactNode, useRef } from "react";
 import styles from "./DropdownMain.module.css";
 import { joinClassNames } from "@shared/@common/utils";
-import { useFocusTrap } from "@shared/@common/models/hooks";
+import { useClickOutside, useFocusTrap } from "@shared/@common/models/hooks";
 
 interface DropdownMainProps {
   children: ReactNode;
@@ -29,6 +29,9 @@ const DropdownMain = ({
 
   // 포커스 트랩
   useFocusTrap({ containerRef });
+
+  // 외부 클릭 시 창 닫기
+  useClickOutside({ containerRef, toggle: onClose });
 
   return (
     <div
