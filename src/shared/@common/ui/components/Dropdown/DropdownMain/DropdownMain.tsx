@@ -6,7 +6,7 @@ import { useFocusTrap } from "@shared/@common/models/hooks";
 interface DropdownMainProps {
   children: ReactNode;
   onClose: () => void;
-  lastClickedRef: React.RefObject<HTMLButtonElement>;
+  lastClickedRef: React.RefObject<HTMLElement>;
   top?: number;
   bottom?: number;
   left?: number;
