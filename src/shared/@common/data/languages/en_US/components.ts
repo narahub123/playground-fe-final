@@ -413,6 +413,16 @@ const components = {
   CountBadge: {
     ariaLabel: (count: number) => `You have ${count} unread notifications.`,
   },
-  };
+  NavMoreButton: {
+    moreTitle: "More",
+    itemTexts: {
+      lists: "Lists",
+      bookmarks: "Bookmarks",
+      monetization: "Monetization",
+      ads: "Ads",
+      settings: "Settings",
+    },
+  },
+};
 
 export default components;

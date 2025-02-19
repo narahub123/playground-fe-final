@@ -1,7 +1,7 @@
 import styles from "./NavMoreButton.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Dropdown } from "@shared/@common/ui/components";
-import { Icon } from "@shared/@common/ui/icons";
+import { Icon, Icons } from "@shared/@common/ui/icons";
 import { joinClassNames } from "@shared/@common/utils";
 import { useCallback, useEffect, useRef, useState } from "react";
 import NavMoreButtonItem from "./NavMoreButtonItem/NavMoreButtonItem";
@@ -23,8 +23,14 @@ const NavMoreButton = ({ className, disabled = false }: NavMoreButtonProps) => {
     right?: number;
   }>({});
 
+  // 유저 아이디 : 나중에 가져오기 할 것
+  const userId = "test1234";
+
   // 언어 설정
-  const { moreTitle } = useLanguageContent(["components", "NavMoreButton"]);
+  const { moreTitle, itemTexts } = useLanguageContent([
+    "components",
+    "NavMoreButton",
+  ]);
   const classNames = joinClassNames([styles["nav__more__button"], className]);
 
   // 드롭다운 열기
@@ -77,6 +83,16 @@ const NavMoreButton = ({ className, disabled = false }: NavMoreButtonProps) => {
     };
   }, []);
 
+  const navLinks = {
+    lists: `/${userId}/lists`,
+    bookmarks: `/i/bookmarks`,
+    monetization: `/i/monetization`,
+    ads: `/i/ads`,
+    settings: "/settings",
+  };
+
+  const navItems = ["lists", "bookmarks", "monetization", "ads", "settings"];
+
   return (
     <div
       className={styles["nav__more__button__container"]}
@@ -85,6 +101,7 @@ const NavMoreButton = ({ className, disabled = false }: NavMoreButtonProps) => {
     >
       <button title={moreTitle} className={classNames} ref={buttonRef}>
         <Icon iconName="moreRounded" iconSize="2xl" bgColor="transparent" />
+
         <Dropdown
           name="nav"
           isOpen={isOpen}
@@ -95,24 +112,14 @@ const NavMoreButton = ({ className, disabled = false }: NavMoreButtonProps) => {
           }
           left={rect.left}
         >
-          <NavMoreButtonItem
-            to={`/${"test1234"}/lists`}
-            text="리스트"
-            iconName="lists"
-          />
-
-          <NavMoreButtonItem
-            to={`/i/bookmarks`}
-            text="북마크"
-            iconName="bookmarks"
-          />
-          <NavMoreButtonItem
-            to={`/i/monetization`}
-            text="수익창출"
-            iconName="monetization"
-          />
-          <NavMoreButtonItem to={`/i/ads`} text="광고" iconName="ads" />
-          <NavMoreButtonItem to={`/settings`} text="설정" iconName="settings" />
+          {navItems.map((item) => (
+            <NavMoreButtonItem
+              to={navLinks[item as keyof typeof navLinks]}
+              text={itemTexts[item]}
+              iconName={item as keyof typeof Icons}
+              key={item}
+            />
+          ))}
         </Dropdown>
       </button>
     </div>

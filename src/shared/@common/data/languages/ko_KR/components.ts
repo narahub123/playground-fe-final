@@ -421,6 +421,13 @@ const components = {
   },
   NavMoreButton: {
     moreTitle: "더보기",
+    itemTexts: {
+      lists: "리스트",
+      bookmarks: "북마크",
+      monetization: "수익창출",
+      ads: "광고",
+      settings: "설정",
+    },
   },
 };
 

@@ -422,6 +422,16 @@ const components = {
   CountBadge: {
     ariaLabel: (count: number) => `${count}件の未読通知があります。`,
   },
+  NavMoreButton: {
+    moreTitle: "もっと見る",
+    itemTexts: {
+      lists: "リスト",
+      bookmarks: "ブックマーク",
+      monetization: "収益化",
+      ads: "広告",
+      settings: "設定",
+    },
+  },
 };
 
 export default components;

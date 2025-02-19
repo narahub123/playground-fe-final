@@ -401,6 +401,16 @@ const components = {
   CountBadge: {
     ariaLabel: (count: number) => `您有${count}則未讀通知。`,
   },
+  NavMoreButton: {
+    moreTitle: "更多",
+    itemTexts: {
+      lists: "清單",
+      bookmarks: "書籤",
+      monetization: "營利",
+      ads: "廣告",
+      settings: "設定",
+    },
+  },
 };
 
 export default components;
