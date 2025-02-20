@@ -6,7 +6,10 @@ import { joinClassNames } from "@shared/@common/utils";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "@app/store";
 import { useNavigate } from "react-router-dom";
-import { onParallelModalClose } from "@shared/@common/models/slices/modalSlice";
+import {
+  onParallelModalClose,
+  onParallelModalOpen,
+} from "@shared/@common/models/slices/modalSlice";
 import { defaultProfileImage } from "@shared/@common/assets";
 import AccountItem from "../AccountItem/AccountItem";
 import { Icon } from "@shared/@common/ui/icons";
@@ -86,7 +89,10 @@ const AccountManageModal = ({ className }: AccountManageModalProps) => {
               })}
             </ul>
             <Button
-              onClick={() => {}}
+              onClick={() => {
+                dispatch(onParallelModalOpen("login"));
+                navigate("/i/flow/login");
+              }}
               variant="plain"
               className={styles[`account__manage__modal__add`]}
               fontColor="colorTheme"
