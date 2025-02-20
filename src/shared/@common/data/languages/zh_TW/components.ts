@@ -420,6 +420,14 @@ const components = {
     expl: `若您有兩個以上的PG帳戶，可新增並輕鬆切換。最多可新增5個帳戶。`,
     logoutBtn: "登出所有帳戶",
   },
+  LogoutModal: {
+    title: "要登出帳戶嗎？",
+    all: "所有",
+    expl1: "僅適用於此帳戶，其他帳戶將繼續保持登入狀態。",
+    expl2: "將適用於所有瀏覽器分頁中的所有帳戶。",
+    logout: "登出",
+    cancel: "取消",
+  },
 };
 
 export default components;

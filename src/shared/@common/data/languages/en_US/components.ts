@@ -432,6 +432,15 @@ const components = {
     expl: `If you have two or more PG accounts, you can add them and easily switch between them. You can add up to 5 accounts.`,
     logoutBtn: "Log out of all accounts",
   },
+  LogoutModal: {
+    title: "Log out of the account?",
+    all: "All",
+    expl1:
+      "This applies only to this account. You will remain logged in to other accounts.",
+    expl2: "This applies to all your accounts across all browser tabs.",
+    logout: "Log out",
+    cancel: "Cancel",
+  },
 };
 
 export default components;

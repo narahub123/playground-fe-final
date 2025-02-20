@@ -1,11 +1,12 @@
 import { getStandAloneModal } from "@shared/@common/models/selectors";
 import styles from "./LogoutModal.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
-import { Modal } from "@shared/@common/ui/components";
+import { Button, Modal, Text } from "@shared/@common/ui/components";
 import { joinClassNames } from "@shared/@common/utils";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "@app/store";
 import { onStandAlonClose } from "@shared/@common/models/slices/modalSlice";
+import { logo } from "@shared/@common/assets";
 
 interface LogoutModalProps {
   className?: string;
@@ -15,6 +16,9 @@ interface LogoutModalProps {
 const LogoutModal = ({ className, disabled = false }: LogoutModalProps) => {
   const dispatch = useAppDispatch();
 
+  const isAll = false;
+  const currentUser = "test1234";
+
   // 여닫기 구현
   const isOpen = useSelector(getStandAloneModal("logout"));
   const onClose = () => {
@@ -22,7 +26,10 @@ const LogoutModal = ({ className, disabled = false }: LogoutModalProps) => {
   };
 
   // 언어 설정
-  const {} = useLanguageContent(["components", "LogoutModal"]);
+  const { all, title, expl1, expl2, logout, cancel } = useLanguageContent([
+    "components",
+    "LogoutModal",
+  ]);
 
   const classNames = joinClassNames([styles["logout__modal"], className]);
 
@@ -34,12 +41,42 @@ const LogoutModal = ({ className, disabled = false }: LogoutModalProps) => {
       className={classNames}
     >
       <Modal.Overlay />
-      <Modal.Container>
+      <Modal.Container width={56}>
         <Modal.CloseButton />
         <Modal.Content>
-          <Modal.Header>헤더</Modal.Header>
-          <Modal.Body>바디</Modal.Body>
-          <Modal.Footer>푸터</Modal.Footer>
+          <Modal.Header className={styles["logout__modal__header"]}>
+            <img
+              src={logo}
+              alt="playground logo"
+              className={styles["logout__modal__logo"]}
+              aria-hidden="true"
+            />
+          </Modal.Header>
+          <Modal.Body>
+            <Text type={"heading3"}>{`${
+              isAll ? all : currentUser
+            } ${title}`}</Text>
+            <Text type="expl">{isAll ? expl2 : expl1}</Text>
+          </Modal.Body>
+          <Modal.Footer className={styles["logout__modal__footer"]}>
+            <Button
+              onClick={() => {}}
+              width="100%"
+              rounded="2xl"
+              isValid={true}
+            >
+              {logout}
+            </Button>
+            <Button
+              onClick={() => {}}
+              width="100%"
+              rounded="2xl"
+              variant="outline"
+              isValid={true}
+            >
+              {cancel}
+            </Button>
+          </Modal.Footer>
         </Modal.Content>
       </Modal.Container>
     </Modal>

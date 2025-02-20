@@ -443,7 +443,14 @@ const components = {
     expl: `PG 계정이 두 개 이상인 경우, 추가가 가능하며 쉽게 전환할 수 있습니다. 최대 5개까지 추가할 수 있습니다.`,
     logoutBtn: "모든 계정에서 로그아웃",
   },
-  LogoutModal: {},
+  LogoutModal: {
+    title: "계정에서 로그아웃할까요?",
+    all: "모든",
+    expl1: "이 계정에만 적용되며, 다른 계정에서는 계속 로그인되어 있습니다.",
+    expl2: "모든 브라우저 탭에 걸쳐 나의 모든 계정에 적용됩니다.",
+    logout: "로그아웃",
+    cancel: "취소",
+  },
 };
 
 export default components;

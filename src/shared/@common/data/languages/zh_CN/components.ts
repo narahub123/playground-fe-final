@@ -412,6 +412,14 @@ const components = {
     expl: `如果您有两个或以上的PG账户，可以添加并轻松切换。最多可添加5个账户。`,
     logoutBtn: "退出所有账户",
   },
+  LogoutModal: {
+    title: "要退出账户吗？",
+    all: "所有",
+    expl1: "仅适用于此账户，其他账户仍保持登录状态。",
+    expl2: "适用于所有浏览器标签中的所有账户。",
+    logout: "退出登录",
+    cancel: "取消",
+  },
 };
 
 export default components;
