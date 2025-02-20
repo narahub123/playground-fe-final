@@ -38,7 +38,7 @@ const LoginModal = ({ className }: LoginModalProps) => {
   // 로그인 모달 닫기
   const onClose = () => {
     dispatch(onParallelModalClose("login"));
-    navigate("/");
+    navigate(-1);
   };
 
   const screens = [
@@ -80,7 +80,6 @@ const LoginModal = ({ className }: LoginModalProps) => {
   }, [device, ip, location]);
 
   console.log(inputValue);
-  
 
   const classNames = joinClassNames([styles["login__modal"], className]);
 
