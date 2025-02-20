@@ -40,7 +40,10 @@ import {
 import { GoHome as homeLine, GoHomeFill as homeFill } from "react-icons/go";
 import { HiOutlineBookmark as bookmarks } from "react-icons/hi";
 import { PiMoney as monetization } from "react-icons/pi";
-import { FiSettings as settings } from "react-icons/fi";
+import {
+  FiSettings as settings,
+  FiMoreHorizontal as more,
+} from "react-icons/fi";
 
 const Icons = {
   close, // 창닫기
@@ -78,6 +81,7 @@ const Icons = {
   monetization, // 수익 창출 아이콘
   ads, // 광고 아이콘
   settings, // 설정 아이콘
+  more, // 더보기
 };
 
 export default Icons;

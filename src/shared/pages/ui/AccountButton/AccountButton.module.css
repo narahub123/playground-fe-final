@@ -1,7 +1,7 @@
 .account__button {
   width: 100%;
-  aspect-ratio: 1/1;
-  border-radius: 50%;
+  border-radius: 40px;
+  height: 52px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,18 +9,12 @@
 }
 
 .account__button:hover {
-  background-color: #ddd;
+  background-color: #f1f1f1;
 }
 
 .account__button:focus {
-  background-color: #ddd;
+  background-color: #f1f1f1;
   outline: 2px solid var(--bgTheme-color-primary);
-}
-
-.account__button__image {
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
 }
 
 .account__dropdown::after {
@@ -84,4 +78,83 @@
   border: 2px solid var(--colorTheme-color-primary);
   background-color: #f7f7f7;
   text-decoration: none;
+}
+
+.account__button__profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  gap: 10px;
+}
+
+.account__button__profile__wrapper {
+  display: flex;
+  align-items: center;
+}
+.account__button__profile__image {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+.account__button__profile__info {
+  display: none;
+}
+
+.account__button__profile__username {
+  font-weight: bold;
+}
+
+.account__button__profile__userid {
+  font-size: 12px;
+  color: #666;
+}
+
+.account__button__profile__more {
+  display: none;
+}
+
+@media screen and (min-width: 1299px) {
+  .account__button__profile {
+    justify-content: space-between;
+  }
+  .account__button__profile__wrapper {
+    gap: 5px;
+    overflow: hidden;
+    max-width: 100%; /* 부모 너비 제한 */
+  }
+  .account__button__profile__info {
+    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    min-width: 0; /* flex 환경에서 overflow 적용을 위해 필요 */
+    max-width: 100%; /* 부모 너비 넘지 않게 */
+  }
+  
+  .account__button__profile__username,
+  .account__button__profile__userid {
+    overflow: hidden; /* 넘친 내용 숨김 */
+    text-overflow: ellipsis; /* 넘친 텍스트에 ... 표시 */
+    white-space: nowrap; /* 줄바꿈 방지 */
+    max-width: 100%; /* 부모 너비 내에서만 표시 */
+  }
+
+  .account__button__profile__more {
+    display: flex;
+  }
+
+  .account__dropdown::after {
+    position: absolute;
+    bottom: -19px;
+    left: 122px;
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 14px solid white;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid transparent;
+    content: "";
+  }
 }

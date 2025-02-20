@@ -3,7 +3,7 @@ import styles from "./AccountButton.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Button, Dropdown } from "@shared/@common/ui/components";
+import { Button, Dropdown, Text } from "@shared/@common/ui/components";
 import AccountItem from "../AccountItem/AccountItem";
 import { Icon } from "@shared/@common/ui/icons";
 import { useAppDispatch } from "@app/store";
@@ -84,7 +84,11 @@ const AccountButton = ({ className, disabled = false }: AccountButtonProps) => {
 
   const classNames = joinClassNames([styles["account__button"], className]);
 
-  const currentUser = "test1234";
+  const user = {
+    profileImage: defaultProfileImage,
+    username: "몰러 dkjadkfjlsafjdfjaldkfjdslkfjalsdfjasldkfjsdlfsjaf",
+    userId: "test1234",
+  };
   const accounts = [
     {
       profileImage: defaultProfileImage,
@@ -105,6 +109,28 @@ const AccountButton = ({ className, disabled = false }: AccountButtonProps) => {
       ref={buttonRef}
       onClick={onOpen}
     >
+      <div className={styles[`account__button__profile`]}>
+        <div className={styles[`account__button__profile__wrapper`]}>
+          <img
+            src={user.profileImage}
+            alt={`${user.userId} ${profile}`}
+            className={styles[`account__button__profile__image`]}
+          />
+          <div className={styles[`account__button__profile__info`]}>
+            <Text className={styles["account__button__profile__username"]}>
+              {user.username}
+            </Text>
+            <Text
+              className={styles["account__button__profile__userid"]}
+            >{`@${user.userId}`}</Text>
+          </div>
+        </div>
+        <Icon
+          iconName="more"
+          className={styles[`account__button__profile__more`]}
+          bgColor="transparent"
+        />
+      </div>
       <Dropdown
         name="account"
         isOpen={isOpen}
@@ -118,7 +144,7 @@ const AccountButton = ({ className, disabled = false }: AccountButtonProps) => {
       >
         <ul className={styles["account__dropdown__list"]}>
           {accounts.map((account) => {
-            const currentCond = currentUser === account.userId;
+            const currentCond = user.userId === account.userId;
             return (
               <li
                 className={joinClassNames([
@@ -165,15 +191,10 @@ const AccountButton = ({ className, disabled = false }: AccountButtonProps) => {
             variant="plain"
             className={styles["account__dropdown__section__item"]}
           >
-            {`@${currentUser} ${logout}`}
+            {`@${user.userId} ${logout}`}
           </Button>
         </section>
       </Dropdown>
-      <img
-        src={defaultProfileImage}
-        alt={`${currentUser} ${profile}`}
-        className={styles[`account__button__image`]}
-      />
     </button>
   );
 };

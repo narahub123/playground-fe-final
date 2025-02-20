@@ -2,7 +2,7 @@
   height: calc(100dvh - 39.2px);
   overflow-y: auto;
   overflow-x: hidden;
-  background-color: greenyellow;
+  /* background-color: greenyellow; */
 }
 
 .header__wrapper {
