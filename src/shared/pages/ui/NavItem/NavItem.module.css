@@ -10,5 +10,29 @@
 }
 
 .nav__item:hover {
-  background-color: #ddd;
+  background-color: #f1f1f1;
+}
+
+.nav__item__text {
+  display: none;
+}
+@media screen and (min-width: 1299px) {
+  .nav__item {
+    width: 100%;
+
+    border-radius: 26px;
+  }
+  .nav__item__wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .nav__item__text {
+    display: block;
+  }
+  .nav__item__badge {
+    right: 12px !important;
+    bottom: 15px !important;
+  }
 }
