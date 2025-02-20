@@ -6,6 +6,7 @@ import WriteButton from "./WriteButton/WriteButton";
 import WritePostModal from "./WritePostModal/WritePostModal";
 import AccountButton from "./AccountButton/AccountButton";
 import AccountItem from "./AccountItem/AccountItem";
+import AccountManageModal from "./AccountManageModal.tsx/AccountManageModal";
 
 export {
   Header,
@@ -16,4 +17,5 @@ export {
   WritePostModal,
   AccountButton,
   AccountItem,
+  AccountManageModal,
 };

@@ -10,7 +10,7 @@ import {
 } from "@pages";
 import { ModalLayout } from "@shared/@common/layouts";
 import { FlowModal } from "@shared/flow/ui";
-import { WritePostModal } from "@shared/pages/ui";
+import { AccountManageModal, WritePostModal } from "@shared/pages/ui";
 import { getAccessToken } from "@shared/pages/utils";
 import { createBrowserRouter } from "react-router-dom";
 
@@ -39,6 +39,10 @@ const router = createBrowserRouter([
                 element: <LoginModal />,
               },
             ], // 병렬 라우트를 적용할 모달
+          },
+          {
+            path: "account/manage",
+            element: <AccountManageModal />,
           },
         ]
       : [

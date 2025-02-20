@@ -437,6 +437,7 @@ const components = {
     title: "계정  ",
   },
   AccountItem: {},
+  AccountManageModal: {},
 };
 
 export default components;

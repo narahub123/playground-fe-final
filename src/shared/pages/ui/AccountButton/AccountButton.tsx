@@ -146,7 +146,10 @@ const AccountButton = ({ className, disabled = false }: AccountButtonProps) => {
             기존 계정 추가
           </Button>
           <Button
-            onClick={() => {}}
+            onClick={() => {
+              dispatch(onParallelModalOpen("account"));
+              navigate("/account/manage");
+            }}
             variant="plain"
             className={styles["account__dropdown__section__item"]}
           >
