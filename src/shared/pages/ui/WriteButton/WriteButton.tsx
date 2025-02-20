@@ -36,7 +36,7 @@ const WriteButton = ({ className, disabled = false }: WriteButtonProps) => {
         height={26}
         className={styles["write__button__icon"]}
       />
-      <Text className={styles[`write__button__text`]}>게시하기</Text>
+      <Text className={styles[`write__button__text`]}>{writeTitle}</Text>
     </button>
   );
 };
