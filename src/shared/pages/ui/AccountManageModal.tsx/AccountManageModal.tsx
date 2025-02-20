@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import {
   onParallelModalClose,
   onParallelModalOpen,
+  onStandAlonClose,
   onStandAlonOpen,
 } from "@shared/@common/models/slices/modalSlice";
 import { defaultProfileImage } from "@shared/@common/assets";
@@ -27,6 +28,10 @@ const AccountManageModal = ({ className }: AccountManageModalProps) => {
   const onClose = () => {
     dispatch(onParallelModalClose("account"));
     navigate(-1);
+  };
+
+  const onLogoutClose = () => {
+    dispatch(onStandAlonClose("logout"));
   };
 
   // 언어 설정
@@ -71,7 +76,7 @@ const AccountManageModal = ({ className }: AccountManageModalProps) => {
             <Text>{title}</Text>
           </Modal.Header>
           <Modal.Body className={styles[`account__manage__modal__body`]}>
-            <LogoutModal isAllAccounts />
+            <LogoutModal isAllAccounts onClose={onLogoutClose} />
             <ul className={styles["account__list"]}>
               {accounts.map((account) => {
                 const currentCond = currentUser === account.userId;

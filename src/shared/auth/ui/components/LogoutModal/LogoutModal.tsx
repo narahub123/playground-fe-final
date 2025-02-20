@@ -1,31 +1,26 @@
-import { getStandAloneModal } from "@shared/@common/models/selectors";
 import styles from "./LogoutModal.module.css";
+import { getStandAloneModal } from "@shared/@common/models/selectors";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Button, Modal, Text } from "@shared/@common/ui/components";
 import { joinClassNames } from "@shared/@common/utils";
 import { useSelector } from "react-redux";
-import { useAppDispatch } from "@app/store";
-import { onStandAlonClose } from "@shared/@common/models/slices/modalSlice";
 import { logo } from "@shared/@common/assets";
 
 interface LogoutModalProps {
   className?: string;
   isAllAccounts?: boolean;
+  onClose: () => void;
 }
 
 const LogoutModal = ({
   isAllAccounts = false,
   className,
+  onClose,
 }: LogoutModalProps) => {
-  const dispatch = useAppDispatch();
-
   const currentUser = "test1234";
 
   // 여닫기 구현
   const isOpen = useSelector(getStandAloneModal("logout"));
-  const onClose = () => {
-    dispatch(onStandAlonClose("logout"));
-  };
 
   // 언어 설정
   const { all, title, expl1, expl2, logout, cancel } = useLanguageContent([
@@ -70,7 +65,7 @@ const LogoutModal = ({
               {logout}
             </Button>
             <Button
-              onClick={() => {}}
+              onClick={onClose}
               width="100%"
               rounded="2xl"
               variant="outline"
