@@ -156,7 +156,9 @@ const AccountButton = ({ className, disabled = false }: AccountButtonProps) => {
             계정 관리
           </Button>
           <Button
-            onClick={() => {}}
+            onClick={() => {
+              navigate("/logout");
+            }}
             variant="plain"
             className={styles["account__dropdown__section__item"]}
           >
