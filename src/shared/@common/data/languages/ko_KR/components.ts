@@ -437,7 +437,12 @@ const components = {
     title: "계정  ",
   },
   AccountItem: {},
-  AccountManageModal: {},
+  AccountManageModal: {
+    title: "계정",
+    addBtn: "기존 계정 추가",
+    expl: `PG 계정이 두 개 이상인 경우, 추가가 가능하며 쉽게 전환할 수 있습니다. 최대 5개까지 추가할 수 있습니다.`,
+    logoutBtn: "모든 계정에서 로그아웃",
+  },
 };
 
 export default components;

@@ -426,6 +426,12 @@ const components = {
   WriteButton: {
     writeTitle: "Post",
   },
+  AccountManageModal: {
+    title: "Account",
+    addBtn: "Add Existing Account",
+    expl: `If you have two or more PG accounts, you can add them and easily switch between them. You can add up to 5 accounts.`,
+    logoutBtn: "Log out of all accounts",
+  },
 };
 
 export default components;

@@ -435,6 +435,12 @@ const components = {
   WriteButton: {
     writeTitle: "投稿する",
   },
+  AccountManageModal: {
+    title: "アカウント",
+    addBtn: "既存のアカウントを追加",
+    expl: `PGアカウントが2つ以上ある場合、追加して簡単に切り替えることができます。最大で5つまで追加可能です。`,
+    logoutBtn: "すべてのアカウントからログアウト",
+  },
 };
 
 export default components;

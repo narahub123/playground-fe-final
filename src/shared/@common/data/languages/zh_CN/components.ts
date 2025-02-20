@@ -406,6 +406,12 @@ const components = {
   WriteButton: {
     writeTitle: "发布",
   },
+  AccountManageModal: {
+    title: "账户",
+    addBtn: "添加现有账户",
+    expl: `如果您有两个或以上的PG账户，可以添加并轻松切换。最多可添加5个账户。`,
+    logoutBtn: "退出所有账户",
+  },
 };
 
 export default components;
