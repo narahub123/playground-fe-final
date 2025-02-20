@@ -1,6 +1,6 @@
 import styles from "./NavMoreButton.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
-import { Dropdown } from "@shared/@common/ui/components";
+import { Dropdown, Text } from "@shared/@common/ui/components";
 import { Icon, Icons } from "@shared/@common/ui/icons";
 import { joinClassNames } from "@shared/@common/utils";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -92,6 +92,7 @@ const NavMoreButton = ({ className }: NavMoreButtonProps) => {
     >
       <button title={moreTitle} className={classNames} ref={buttonRef}>
         <Icon iconName="moreRounded" iconSize="2xl" bgColor="transparent" />
+        <Text className={styles["nav__more__button__text"]}>{moreTitle}</Text>
 
         <Dropdown
           name="nav"
