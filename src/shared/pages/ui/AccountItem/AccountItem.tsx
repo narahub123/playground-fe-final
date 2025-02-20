@@ -1,5 +1,4 @@
 import styles from "./AccountItem.module.css";
-import { defaultProfileImage } from "@shared/@common/assets";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Text } from "@shared/@common/ui/components";
 import { joinClassNames } from "@shared/@common/utils";
@@ -11,27 +10,20 @@ interface AccountItemProps {
     userId: string;
   };
   className?: string;
-  disabled?: boolean;
 }
 
-const AccountItem = ({
-  account,
-  className,
-  disabled = false,
-}: AccountItemProps) => {
+const AccountItem = ({ account, className }: AccountItemProps) => {
   const {} = useLanguageContent(["components", "AccountItem"]);
   const classNames = joinClassNames([styles["account__item"], className]);
 
   return (
     <div className={classNames}>
-      <div>
-        <img
-          src={account.profileImage}
-          alt="프로필 사진"
-          className={styles["account__item__img"]}
-        />
-      </div>
-      <div>
+      <img
+        src={account.profileImage}
+        alt="프로필 사진"
+        className={styles["account__item__img"]}
+      />
+      <div className={styles["account__item__info__wrapper"]}>
         <Text className={styles["account__item__username"]}>
           {account.username}
         </Text>

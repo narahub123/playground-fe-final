@@ -16,7 +16,9 @@
   background-color: #f1f1f1;
   outline: 2px solid var(--bgTheme-color-primary);
 }
-
+.account__dropdown {
+  width: 270px;
+}
 .account__dropdown::after {
   position: absolute;
   bottom: -19px;
@@ -124,14 +126,13 @@
     max-width: 100%; /* 부모 너비 제한 */
   }
   .account__button__profile__info {
-    display: block;
     display: flex;
     flex-direction: column;
     align-items: start;
     min-width: 0; /* flex 환경에서 overflow 적용을 위해 필요 */
     max-width: 100%; /* 부모 너비 넘지 않게 */
   }
-  
+
   .account__button__profile__username,
   .account__button__profile__userid {
     overflow: hidden; /* 넘친 내용 숨김 */

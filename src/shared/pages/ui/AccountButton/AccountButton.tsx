@@ -86,7 +86,7 @@ const AccountButton = ({ className, disabled = false }: AccountButtonProps) => {
 
   const user = {
     profileImage: defaultProfileImage,
-    username: "몰러 dkjadkfjlsafjdfjaldkfjdslkfjalsdfjasldkfjsdlfsjaf",
+    username: "몰러 dkjadkfjlsafjdfjaldkfjdslkfjalsdfjasldkfjsdlfsjafdfdfd",
     userId: "test1234",
   };
   const accounts = [
@@ -97,7 +97,7 @@ const AccountButton = ({ className, disabled = false }: AccountButtonProps) => {
     },
     {
       profileImage: defaultProfileImage,
-      username: "몰러",
+      username: "몰러adfafasdfasdfasfsfsdfsfsdfaf",
       userId: "test1232",
     },
   ];
