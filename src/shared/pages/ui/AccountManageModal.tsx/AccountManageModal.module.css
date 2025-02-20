@@ -1,2 +1,68 @@
 .account__manage__modal {
 }
+
+.account__manage__modal__header {
+  font-size: 1rem;
+  font-weight: bold;
+}
+.account__manage__modal__body {
+  padding: 0;
+}
+
+.account__list {
+  border-bottom: 1px solid #f1f1f1;
+  padding: 0rem 1rem 0.5rem;
+}
+
+.account__item {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+
+.account__item--unselected {
+  cursor: pointer;
+}
+
+.account__item--unselected:hover {
+  background-color: #f7f7f7;
+}
+
+.account__manage__modal__add {
+  padding: 1rem;
+  text-decoration: none;
+  border: 2px solid transparent;
+}
+.account__manage__modal__add:hover {
+  background-color: var(--colorTheme-bgColor-light);
+  text-decoration: none;
+}
+.account__manage__modal__add:focus {
+  border: 2px solid var(--colorTheme-color-primary);
+  background-color: var(--colorTheme-bgColor-light);
+  outline: none;
+  text-decoration: none;
+}
+
+.account__manage__modal__paragraph {
+  padding: 1rem;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.account__manage__modal__logout {
+  padding: 1rem;
+  text-decoration: none;
+  border: 2px solid transparent;
+}
+.account__manage__modal__logout:hover {
+  background-color: hsl(0, 100%, 90%);
+  text-decoration: none;
+}
+.account__manage__modal__logout:focus {
+  border: 2px solid red;
+  background-color: hsl(0, 100%, 90%);
+  outline: none;
+  text-decoration: none;
+}

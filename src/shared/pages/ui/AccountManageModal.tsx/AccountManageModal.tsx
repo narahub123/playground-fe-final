@@ -7,16 +7,15 @@ import { useSelector } from "react-redux";
 import { useAppDispatch } from "@app/store";
 import { useNavigate } from "react-router-dom";
 import { onParallelModalClose } from "@shared/@common/models/slices/modalSlice";
+import { defaultProfileImage } from "@shared/@common/assets";
+import AccountItem from "../AccountItem/AccountItem";
+import { Icon } from "@shared/@common/ui/icons";
 
 interface AccountManageModalProps {
   className?: string;
-  disabled?: boolean;
 }
 
-const AccountManageModal = ({
-  className,
-  disabled = false,
-}: AccountManageModalProps) => {
+const AccountManageModal = ({ className }: AccountManageModalProps) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const isOpen = useSelector(getParalleModal("account"));
@@ -36,6 +35,22 @@ const AccountManageModal = ({
     className,
   ]);
 
+  // 현재 유저에 대한 정보를 가져오는 코드 필요
+  const currentUser = "test1234";
+  // 계정 목록 가져오는 코드 필요
+  const accounts = [
+    {
+      profileImage: defaultProfileImage,
+      username: "몰러",
+      userId: "test1234",
+    },
+    {
+      profileImage: defaultProfileImage,
+      username: "몰러",
+      userId: "test1232",
+    },
+  ];
+
   return (
     <Modal
       isOpen={isOpen}
@@ -47,14 +62,52 @@ const AccountManageModal = ({
       <Modal.Container>
         <Modal.CloseButton location="left" />
         <Modal.Content>
-          <Modal.Header className={styles[`write__post__modal__header`]}>
+          <Modal.Header className={styles[`account__manage__modal__header`]}>
             <Text>{title}</Text>
           </Modal.Header>
-          <Modal.Body>
-            <Button onClick={() => {}}>{addBtn}</Button>
-            <Text>{expl}</Text>
-            <Button onClick={() => {}}>{logoutBtn}</Button>
+          <Modal.Body className={styles[`account__manage__modal__body`]}>
+            <ul className={styles["account__list"]}>
+              {accounts.map((account) => {
+                const currentCond = currentUser === account.userId;
+                return (
+                  <li
+                    className={joinClassNames([
+                      styles["account__item"],
+                      !currentCond ? styles["account__item--unselected"] : "",
+                    ])}
+                    key={account.userId}
+                  >
+                    <AccountItem account={account} />
+                    {currentCond && (
+                      <Icon iconName="valid" style={{ color: "green" }} />
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+            <Button
+              onClick={() => {}}
+              variant="plain"
+              className={styles[`account__manage__modal__add`]}
+              fontColor="colorTheme"
+            >
+              {addBtn}
+            </Button>
+
+            <p className={styles[`account__manage__modal__paragraph`]}>
+              <Text type="expl">{expl}</Text>
+            </p>
+
+            <Button
+              onClick={() => {}}
+              variant="plain"
+              className={styles[`account__manage__modal__logout`]}
+              fontColor="red"
+            >
+              {logoutBtn}
+            </Button>
           </Modal.Body>
+          <Modal.Footer>{""}</Modal.Footer>
         </Modal.Content>
       </Modal.Container>
     </Modal>
