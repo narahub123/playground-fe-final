@@ -77,7 +77,10 @@ const AccountButton = ({ className, disabled = false }: AccountButtonProps) => {
   }, []);
 
   // 언어 설정
-  const { title } = useLanguageContent(["components", "AccountButton"]);
+  const { title, add, manage, logout, profile } = useLanguageContent([
+    "components",
+    "AccountButton",
+  ]);
 
   const classNames = joinClassNames([styles["account__button"], className]);
 
@@ -143,7 +146,7 @@ const AccountButton = ({ className, disabled = false }: AccountButtonProps) => {
             variant="plain"
             className={styles["account__dropdown__section__item"]}
           >
-            기존 계정 추가
+            {add}
           </Button>
           <Button
             onClick={() => {
@@ -153,7 +156,7 @@ const AccountButton = ({ className, disabled = false }: AccountButtonProps) => {
             variant="plain"
             className={styles["account__dropdown__section__item"]}
           >
-            계정 관리
+            {manage}
           </Button>
           <Button
             onClick={() => {
@@ -162,13 +165,13 @@ const AccountButton = ({ className, disabled = false }: AccountButtonProps) => {
             variant="plain"
             className={styles["account__dropdown__section__item"]}
           >
-            {`@${currentUser} 계정에서 로그아웃`}
+            {`@${currentUser} ${logout}`}
           </Button>
         </section>
       </Dropdown>
       <img
         src={defaultProfileImage}
-        alt=""
+        alt={`${currentUser} ${profile}`}
         className={styles[`account__button__image`]}
       />
     </button>

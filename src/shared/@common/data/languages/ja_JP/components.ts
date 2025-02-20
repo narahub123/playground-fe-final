@@ -450,6 +450,13 @@ const components = {
     logout: "ログアウト",
     cancel: "キャンセル",
   },
+  AccountButton: {
+    title: "アカウント",
+    add: "既存のアカウントを追加",
+    manage: "アカウント管理",
+    logout: "アカウントからログアウト",
+    profile: "プロフィール写真",
+  },
 };
 
 export default components;

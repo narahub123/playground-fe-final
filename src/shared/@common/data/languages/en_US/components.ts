@@ -441,6 +441,13 @@ const components = {
     logout: "Log out",
     cancel: "Cancel",
   },
+  AccountButton: {
+    title: "Account",
+    add: "Add Existing Account",
+    manage: "Manage Accounts",
+    logout: "Log out of Account",
+    profile: "Profile Picture",
+  },
 };
 
 export default components;

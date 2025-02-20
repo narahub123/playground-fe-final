@@ -435,6 +435,10 @@ const components = {
   WritePostModal: {},
   AccountButton: {
     title: "계정  ",
+    add: "기존 계정 추가",
+    manage: "계정 관리",
+    logout: "계정에서 로그아웃",
+    profile: "프로필 사진"
   },
   AccountItem: {},
   AccountManageModal: {

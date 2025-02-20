@@ -420,6 +420,13 @@ const components = {
     logout: "退出登录",
     cancel: "取消",
   },
+  AccountButton: {
+    title: "账户",
+    add: "添加现有账户",
+    manage: "管理账户",
+    logout: "退出账户",
+    profile: "个人头像",
+  },
 };
 
 export default components;

@@ -428,6 +428,13 @@ const components = {
     logout: "登出",
     cancel: "取消",
   },
+  AccountButton: {
+    title: "帳戶",
+    add: "新增現有帳戶",
+    manage: "管理帳戶",
+    logout: "登出帳戶",
+    profile: "個人頭像",
+  },
 };
 
 export default components;
