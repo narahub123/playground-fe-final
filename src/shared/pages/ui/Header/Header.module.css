@@ -6,7 +6,7 @@
 
 .header__wrapper {
   padding: 0 0.5rem;
-  width: 260px;
+  width: 72px;
   height: inherit;
   display: flex;
   flex-direction: column;
@@ -16,7 +16,7 @@
 .header__container {
   flex: 1;
   padding: 2px;
-  width: 100%;
+  width: 52px;
   display: flex;
   flex-direction: column;
 }
@@ -67,17 +67,14 @@
   margin: 0.75rem 0;
 }
 
-@media screen and (max-width: 1298px) {
-  .header__wrapper {
-    width: 72px;
-  }
-  .header__container {
-    width: 52px;
-  }
-}
-
 @media screen and (min-width: 1299px) {
   .header__logo__wrapper {
     margin-left: 6px;
+  }
+  .header__wrapper {
+    width: 260px;
+  }
+  .header__container {
+    width: 100%;
   }
 }
