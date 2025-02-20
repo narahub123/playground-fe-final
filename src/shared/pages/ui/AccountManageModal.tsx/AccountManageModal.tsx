@@ -9,10 +9,12 @@ import { useNavigate } from "react-router-dom";
 import {
   onParallelModalClose,
   onParallelModalOpen,
+  onStandAlonOpen,
 } from "@shared/@common/models/slices/modalSlice";
 import { defaultProfileImage } from "@shared/@common/assets";
 import AccountItem from "../AccountItem/AccountItem";
 import { Icon } from "@shared/@common/ui/icons";
+import { LogoutModal } from "@shared/auth/ui/components";
 
 interface AccountManageModalProps {
   className?: string;
@@ -69,6 +71,7 @@ const AccountManageModal = ({ className }: AccountManageModalProps) => {
             <Text>{title}</Text>
           </Modal.Header>
           <Modal.Body className={styles[`account__manage__modal__body`]}>
+            <LogoutModal />
             <ul className={styles["account__list"]}>
               {accounts.map((account) => {
                 const currentCond = currentUser === account.userId;
@@ -105,7 +108,9 @@ const AccountManageModal = ({ className }: AccountManageModalProps) => {
             </p>
 
             <Button
-              onClick={() => {}}
+              onClick={() => {
+                dispatch(onStandAlonOpen("logout"));
+              }}
               variant="plain"
               className={styles[`account__manage__modal__logout`]}
               fontColor="red"
