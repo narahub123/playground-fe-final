@@ -3,7 +3,9 @@ import styles from "./AccountButton.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Dropdown } from "@shared/@common/ui/components";
+import { Button, Dropdown } from "@shared/@common/ui/components";
+import AccountItem from "../AccountItem/AccountItem";
+import { Icon } from "@shared/@common/ui/icons";
 
 interface AccountButtonProps {
   className?: string;
@@ -20,6 +22,14 @@ const AccountButton = ({ className, disabled = false }: AccountButtonProps) => {
     right?: number;
     height: number;
   }>({ height: 0 });
+
+  const onOpen = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const onClose = () => {
+    setIsOpen(false);
+  };
 
   const updateRect = useCallback(() => {
     if (!buttonRef.current) return;
@@ -66,17 +76,31 @@ const AccountButton = ({ className, disabled = false }: AccountButtonProps) => {
 
   const classNames = joinClassNames([styles["account__button"], className]);
 
+  const currentUser = "test1234";
+  const accounts = [
+    {
+      profileImage: defaultProfileImage,
+      username: "몰러",
+      userId: "test1234",
+    },
+    {
+      profileImage: defaultProfileImage,
+      username: "몰러",
+      userId: "test1232",
+    },
+  ];
+
   return (
     <button
       className={classNames}
       title={title}
       ref={buttonRef}
-      onClick={() => setIsOpen(!isOpen)}
+      onClick={onOpen}
     >
       <Dropdown
         name="account"
         isOpen={isOpen}
-        onClose={() => {}}
+        onClose={onClose}
         lastClickedRef={buttonRef}
         left={rect.left}
         bottom={
@@ -84,9 +108,50 @@ const AccountButton = ({ className, disabled = false }: AccountButtonProps) => {
         }
         className={styles["account__dropdown"]}
       >
-        <p>gkdl dfadfs dfasdf</p>
-        <p>gkdl dfadfs dfasdf</p>
-        <p>gkdl dfadfs dfasdf</p>
+        <ul className={styles["account__dropdown__list"]}>
+          {accounts.map((account) => {
+            const currentCond = currentUser === account.userId;
+            return (
+              <li
+                className={joinClassNames([
+                  styles["account__dropdown__item"],
+                  !currentCond
+                    ? styles["account__dropdown__item--unselected"]
+                    : "",
+                ])}
+                key={account.userId}
+              >
+                <AccountItem account={account} />
+                {currentCond && (
+                  <Icon iconName="valid" style={{ color: "green" }} />
+                )}
+              </li>
+            );
+          })}
+        </ul>
+        <section className={styles["account__dropdown__section"]}>
+          <Button
+            onClick={() => {}}
+            variant="plain"
+            className={styles["account__dropdown__section__item"]}
+          >
+            기존 계정 추가
+          </Button>
+          <Button
+            onClick={() => {}}
+            variant="plain"
+            className={styles["account__dropdown__section__item"]}
+          >
+            계정 관리
+          </Button>
+          <Button
+            onClick={() => {}}
+            variant="plain"
+            className={styles["account__dropdown__section__item"]}
+          >
+            {`@${currentUser} 계정에서 로그아웃`}
+          </Button>
+        </section>
       </Dropdown>
       <img
         src={defaultProfileImage}

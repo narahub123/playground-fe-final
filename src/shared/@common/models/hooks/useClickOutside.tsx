@@ -13,8 +13,10 @@ const useClickOutside = ({
 }: useClickOutsideProps) => {
   const clickOutside = (e: MouseEvent) => {
     if (
+      lastClickedRef &&
       containerRef.current &&
-      !containerRef.current.contains(e.target as Node)
+      !containerRef.current.contains(e.target as Node) &&
+      !lastClickedRef.current?.contains(e.target as Node)
     ) {
       toggle();
       if (lastClickedRef) {
@@ -22,6 +24,12 @@ const useClickOutside = ({
           lastClickedRef.current?.focus();
         }, 100);
       }
+    } else if (
+      !lastClickedRef &&
+      containerRef.current &&
+      !containerRef.current.contains(e.target as Node)
+    ) {
+      toggle();
     }
   };
 
