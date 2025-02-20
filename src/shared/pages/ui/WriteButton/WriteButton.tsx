@@ -6,6 +6,7 @@ import { useAppDispatch } from "@app/store";
 import { useNavigate } from "react-router-dom";
 import { onParallelModalOpen } from "@shared/@common/models/slices/modalSlice";
 import WritePostModal from "../WritePostModal/WritePostModal";
+import { Text } from "@shared/@common/ui/components";
 
 interface WriteButtonProps {
   className?: string;
@@ -29,7 +30,13 @@ const WriteButton = ({ className, disabled = false }: WriteButtonProps) => {
   return (
     <button className={classNames} title={writeTitle} onClick={() => onOpen()}>
       <WritePostModal />
-      <WriteIcon color="white" width={26} height={26} />
+      <WriteIcon
+        color="white"
+        width={26}
+        height={26}
+        className={styles["write__button__icon"]}
+      />
+      <Text className={styles[`write__button__text`]}>게시하기</Text>
     </button>
   );
 };

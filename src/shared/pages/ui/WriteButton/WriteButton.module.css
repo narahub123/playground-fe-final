@@ -12,3 +12,24 @@
 .write__button:hover {
   background-color: var(--colorTheme-bgColor-hover);
 }
+
+.write__button__text {
+  display: none;
+}
+
+@media screen and (min-width: 1298px) {
+  .write__button {
+    width: 100%;
+    aspect-ratio: auto;
+    padding: 1rem;
+    border-radius: 25px;
+  }
+  .write__button__icon {
+    display: none;
+  }
+  .write__button__text {
+    display: block;
+    font-weight: bold;
+    color: white;
+  }
+}
