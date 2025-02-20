@@ -33,6 +33,7 @@ type LocationType = {
 };
 
 type ParallelModals = "signup" | "login" | "flow" | "write" | "account";
+type StandAlonModals = "error" | "logout";
 
 type TwoFactorAuthenticationMethod = "sms" | "app" | "key" | "";
 
@@ -56,4 +57,5 @@ export type {
   MuteTarget,
   MuteDuration,
   MessageAllowSettings,
+  StandAlonModals,
 };

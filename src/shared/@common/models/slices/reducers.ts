@@ -26,6 +26,8 @@ import {
 import {
   onParallelModalOpen,
   onParallelModalClose,
+  onStandAlonOpen,
+  onStandAlonClose,
   onErrorOpen,
   onErrorClose,
 } from "./modalSlice";
@@ -63,6 +65,8 @@ export {
   // modal
   onParallelModalOpen,
   onParallelModalClose,
+  onStandAlonOpen,
+  onStandAlonClose,
   onErrorOpen,
   onErrorClose,
 

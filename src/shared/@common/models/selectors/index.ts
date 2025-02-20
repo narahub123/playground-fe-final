@@ -23,12 +23,14 @@ import {
 
 import {
   getParallelModals,
+  getStandAloneModals,
+  getParalleModal,
+  getStandAloneModal,
   getSignupModal,
   getLoginModal,
   getFlowModal,
   getErrorModal,
   getWritePostModal,
-  getParalleModal,
 } from "./modalSelectors";
 
 import { getSecurity } from "./securitySelectors";
@@ -61,12 +63,14 @@ export {
 
   // modal
   getParallelModals,
+  getStandAloneModals,
+  getParalleModal,
+  getStandAloneModal,
   getSignupModal,
   getLoginModal,
   getFlowModal,
   getErrorModal,
   getWritePostModal,
-  getParalleModal,
 
   // security
   getSecurity,
