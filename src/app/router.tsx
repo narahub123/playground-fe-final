@@ -4,6 +4,7 @@ import {
   AuthPage,
   FlowPage,
   HomePage,
+  LogoutPage,
   OauthCallback,
   PlayGround,
   TestPage,
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
             path: "account/manage",
             element: <AccountManageModal />,
           },
+          {
+            path: "/logout",
+            element: <LogoutPage />,
+          },
         ]
       : [
           {
@@ -79,7 +84,6 @@ const router = createBrowserRouter([
           { path: "/test", element: <TestPage /> },
         ],
   },
-
   {
     path: "/oauth/callback",
     element: <OauthCallback />,

@@ -10,9 +10,13 @@ import { setPrivacy } from "@shared/@common/models/slices/privacySlice";
 import { setNotification } from "@shared/@common/models/slices/notificationSlice";
 import { getAccessToken } from "@shared/pages/utils";
 import { Header } from "@shared/pages/ui";
+import { useLocation } from "react-router";
 
 const PagesLayout = () => {
   const dispatch = useAppDispatch();
+  const { pathname } = useLocation();
+
+  const isLogout = pathname.includes("logout");
 
   const login = getAccessToken();
 
@@ -37,12 +41,14 @@ const PagesLayout = () => {
   }, [login]);
   return (
     <div className={styles[`pages__layout`]}>
-      <Header />
+      {!isLogout && <Header />}
       <main role="main" className={styles["pages__layout__main"]}>
         <div className={styles[`pages__layout__page`]}>
           <Outlet />
         </div>
-        <aside className={styles[`pages__layout__sidebar`]}>기타</aside>
+        {!isLogout && (
+          <aside className={styles[`pages__layout__sidebar`]}>기타</aside>
+        )}
       </main>
     </div>
   );
