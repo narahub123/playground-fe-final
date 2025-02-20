@@ -71,7 +71,7 @@ const AccountManageModal = ({ className }: AccountManageModalProps) => {
             <Text>{title}</Text>
           </Modal.Header>
           <Modal.Body className={styles[`account__manage__modal__body`]}>
-            <LogoutModal />
+            <LogoutModal isAllAccounts />
             <ul className={styles["account__list"]}>
               {accounts.map((account) => {
                 const currentCond = currentUser === account.userId;

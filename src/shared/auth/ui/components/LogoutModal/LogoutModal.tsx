@@ -10,13 +10,15 @@ import { logo } from "@shared/@common/assets";
 
 interface LogoutModalProps {
   className?: string;
-  disabled?: boolean;
+  isAllAccounts?: boolean;
 }
 
-const LogoutModal = ({ className, disabled = false }: LogoutModalProps) => {
+const LogoutModal = ({
+  isAllAccounts = false,
+  className,
+}: LogoutModalProps) => {
   const dispatch = useAppDispatch();
 
-  const isAll = false;
   const currentUser = "test1234";
 
   // 여닫기 구현
@@ -54,9 +56,9 @@ const LogoutModal = ({ className, disabled = false }: LogoutModalProps) => {
           </Modal.Header>
           <Modal.Body>
             <Text type={"heading3"}>{`${
-              isAll ? all : currentUser
+              isAllAccounts ? all : currentUser
             } ${title}`}</Text>
-            <Text type="expl">{isAll ? expl2 : expl1}</Text>
+            <Text type="expl">{isAllAccounts ? expl2 : expl1}</Text>
           </Modal.Body>
           <Modal.Footer className={styles["logout__modal__footer"]}>
             <Button
