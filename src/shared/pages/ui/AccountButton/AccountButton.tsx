@@ -6,6 +6,9 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Button, Dropdown } from "@shared/@common/ui/components";
 import AccountItem from "../AccountItem/AccountItem";
 import { Icon } from "@shared/@common/ui/icons";
+import { useAppDispatch } from "@app/store";
+import { useNavigate } from "react-router-dom";
+import { onParallelModalOpen } from "@shared/@common/models/slices/modalSlice";
 
 interface AccountButtonProps {
   className?: string;
@@ -13,6 +16,8 @@ interface AccountButtonProps {
 }
 
 const AccountButton = ({ className, disabled = false }: AccountButtonProps) => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [rect, setRect] = useState<{
@@ -131,7 +136,10 @@ const AccountButton = ({ className, disabled = false }: AccountButtonProps) => {
         </ul>
         <section className={styles["account__dropdown__section"]}>
           <Button
-            onClick={() => {}}
+            onClick={() => {
+              dispatch(onParallelModalOpen("login"));
+              navigate("/i/flow/login");
+            }}
             variant="plain"
             className={styles["account__dropdown__section__item"]}
           >

@@ -30,6 +30,16 @@ const router = createBrowserRouter([
             path: "compose/post",
             element: <WritePostModal />,
           },
+          {
+            path: "i/flow",
+            element: <ModalLayout />,
+            children: [
+              {
+                path: "login",
+                element: <LoginModal />,
+              },
+            ], // 병렬 라우트를 적용할 모달
+          },
         ]
       : [
           {
