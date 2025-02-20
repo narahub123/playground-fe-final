@@ -7,10 +7,16 @@
   width: 100%;
   aspect-ratio: 1/1;
   cursor: pointer;
+  border: 2px solid transparent;
 }
 
 .write__button:hover {
   background-color: var(--colorTheme-bgColor-hover);
+}
+
+.write__button:focus {
+  background-color: var(--colorTheme-bgColor-hover);
+  border: 2px solid #000;
 }
 
 .write__button__text {
@@ -22,7 +28,7 @@
     width: 100%;
     aspect-ratio: auto;
     padding: 1rem;
-    border-radius: 25px;
+    border-radius: 30px;
   }
   .write__button__icon {
     display: none;
@@ -33,4 +39,3 @@
     color: white;
   }
 }
-
