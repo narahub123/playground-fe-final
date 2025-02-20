@@ -28,6 +28,7 @@ import {
   getFlowModal,
   getErrorModal,
   getWritePostModal,
+  getParalleModal,
 } from "./modalSelectors";
 
 import { getSecurity } from "./securitySelectors";
@@ -65,6 +66,7 @@ export {
   getFlowModal,
   getErrorModal,
   getWritePostModal,
+  getParalleModal,
 
   // security
   getSecurity,
