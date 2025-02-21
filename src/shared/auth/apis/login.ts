@@ -17,6 +17,9 @@ const verifyPasswordLoginAPI = async (inputValue: LoginInputValueType) => {
   if (result.data.accessToken) {
     localStorage.setItem("accessToken", result.data.accessToken);
   }
+  if (result.data.activeSessionId) {
+    localStorage.setItem("activeSessionId", result.data.activeSessionId);
+  }
 
   return result;
 };
