@@ -1,5 +1,5 @@
-import { defaultProfileImage } from "@shared/@common/assets";
 import styles from "./AccountButton.module.css";
+import { defaultProfileImage } from "@shared/@common/assets";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -9,6 +9,8 @@ import { Icon } from "@shared/@common/ui/icons";
 import { useAppDispatch } from "@app/store";
 import { useNavigate } from "react-router-dom";
 import { onParallelModalOpen } from "@shared/@common/models/slices/modalSlice";
+import { useSelector } from "react-redux";
+import { getUser } from "@shared/@common/models/selectors";
 
 interface AccountButtonProps {
   className?: string;
@@ -27,6 +29,8 @@ const AccountButton = ({ className, disabled = false }: AccountButtonProps) => {
     right?: number;
     height: number;
   }>({ height: 0 });
+
+  const user = useSelector(getUser);
 
   const onOpen = () => {
     setIsOpen(!isOpen);
@@ -84,24 +88,6 @@ const AccountButton = ({ className, disabled = false }: AccountButtonProps) => {
 
   const classNames = joinClassNames([styles["account__button"], className]);
 
-  const user = {
-    profileImage: defaultProfileImage,
-    username: "몰러 dkjadkfjlsafjdfjaldkfjdslkfjalsdfjasldkfjsdlfsjafdfdfd",
-    userId: "test1234",
-  };
-  const accounts = [
-    {
-      profileImage: defaultProfileImage,
-      username: "몰러",
-      userId: "test1234",
-    },
-    {
-      profileImage: defaultProfileImage,
-      username: "몰러adfafasdfasdfasfsfsdfsfsdfaf",
-      userId: "test1232",
-    },
-  ];
-
   return (
     <button
       className={classNames}
@@ -112,7 +98,7 @@ const AccountButton = ({ className, disabled = false }: AccountButtonProps) => {
       <div className={styles[`account__button__profile`]}>
         <div className={styles[`account__button__profile__wrapper`]}>
           <img
-            src={user.profileImage}
+            src={user.profileImage || defaultProfileImage}
             alt={`${user.userId} ${profile}`}
             className={styles[`account__button__profile__image`]}
           />
@@ -143,7 +129,7 @@ const AccountButton = ({ className, disabled = false }: AccountButtonProps) => {
         className={styles["account__dropdown"]}
       >
         <ul className={styles["account__dropdown__list"]}>
-          {accounts.map((account) => {
+          {user.accountGroup.map((account) => {
             const currentCond = user.userId === account.userId;
             return (
               <li

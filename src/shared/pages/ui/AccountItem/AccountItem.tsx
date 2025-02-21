@@ -1,4 +1,5 @@
 import styles from "./AccountItem.module.css";
+import { defaultProfileImage } from "@shared/@common/assets";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Text } from "@shared/@common/ui/components";
 import { joinClassNames } from "@shared/@common/utils";
@@ -19,7 +20,7 @@ const AccountItem = ({ account, className }: AccountItemProps) => {
   return (
     <div className={classNames}>
       <img
-        src={account.profileImage}
+        src={account.profileImage || defaultProfileImage}
         alt="프로필 사진"
         className={styles["account__item__img"]}
       />
