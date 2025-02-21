@@ -57,6 +57,7 @@ const securitySlice = createSlice({
   name: "security",
   initialState,
   reducers: {
+    clearSecurityState: () => initialState,
     setSecurity: (state, action: PayloadAction<SecurityState>) => {
       return action.payload;
     },
@@ -65,4 +66,4 @@ const securitySlice = createSlice({
 
 export default securitySlice.reducer;
 
-export const { setSecurity } = securitySlice.actions;
+export const { setSecurity, clearSecurityState } = securitySlice.actions;

@@ -47,6 +47,7 @@ const displaySlice = createSlice({
   name: "display",
   initialState,
   reducers: {
+    clearDisplayState: () => initialState,
     setDisplay: (state, action: PayloadAction<DisplayState>) => {
       return action.payload;
     },
@@ -73,4 +74,5 @@ export const {
   setBgTheme,
   setColorTheme,
   setFontSize,
+  clearDisplayState,
 } = displaySlice.actions;

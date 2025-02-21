@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { clearUserState } from "./userSlice";
 
 interface NotificationState {
   // 퀄리티 필터
@@ -122,6 +123,7 @@ const notificationSlice = createSlice({
   name: "notification",
   initialState,
   reducers: {
+    clearNotificationState: () => initialState,
     setNotification: (state, action: PayloadAction<NotificationState>) => {
       return action.payload;
     },
@@ -130,4 +132,5 @@ const notificationSlice = createSlice({
 
 export default notificationSlice.reducer;
 
-export const { setNotification } = notificationSlice.actions;
+export const { clearNotificationState, setNotification } =
+  notificationSlice.actions;

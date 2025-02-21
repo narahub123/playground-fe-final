@@ -47,6 +47,7 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
+    clearUserState: () => initialState,
     setUser: (state, action: PayloadAction<UserState>) => {
       return action.payload;
     },
@@ -165,4 +166,5 @@ export const {
   setPhones,
   setUsername,
   setAcccountGroup,
+  clearUserState,
 } = userSlice.actions;

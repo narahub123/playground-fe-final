@@ -106,6 +106,7 @@ const privacySlice = createSlice({
   name: "privacy",
   initialState,
   reducers: {
+    clearPrivacyState: () => initialState,
     setPrivacy: (state, action: PayloadAction<PrivacyState>) => {
       return action.payload;
     },
@@ -114,4 +115,4 @@ const privacySlice = createSlice({
 
 export default privacySlice.reducer;
 
-export const { setPrivacy } = privacySlice.actions;
+export const { setPrivacy, clearPrivacyState } = privacySlice.actions;

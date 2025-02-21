@@ -4,6 +4,7 @@ import {
   setBgTheme,
   setColorTheme,
   setFontSize,
+  clearDisplayState,
 } from "./displaySlice";
 
 import {
@@ -22,6 +23,7 @@ import {
   setUsername,
   setUser,
   setAcccountGroup,
+  clearUserState,
 } from "./userSlice";
 
 import {
@@ -33,11 +35,11 @@ import {
   onErrorClose,
 } from "./modalSlice";
 
-import { setSecurity } from "./securitySlice";
+import { setSecurity, clearSecurityState } from "./securitySlice";
 
-import { setPrivacy } from "./privacySlice";
+import { setPrivacy, clearPrivacyState } from "./privacySlice";
 
-import { setNotification } from "./notificationSlice";
+import { setNotification, clearNotificationState } from "./notificationSlice";
 
 export {
   // display
@@ -46,6 +48,7 @@ export {
   setBgTheme,
   setColorTheme,
   setFontSize,
+  clearDisplayState,
 
   // user
   setPassword,
@@ -63,6 +66,7 @@ export {
   setUsername,
   setUser,
   setAcccountGroup,
+  clearUserState,
 
   // modal
   onParallelModalOpen,
@@ -74,10 +78,13 @@ export {
 
   // security
   setSecurity,
+  clearSecurityState,
 
   // privacy
   setPrivacy,
+  clearPrivacyState,
 
   // notification
   setNotification,
+  clearNotificationState,
 };
