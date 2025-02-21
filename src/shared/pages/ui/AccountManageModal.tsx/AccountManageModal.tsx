@@ -1,4 +1,4 @@
-import { getParalleModal } from "@shared/@common/models/selectors";
+import { getParalleModal, getUser } from "@shared/@common/models/selectors";
 import styles from "./AccountManageModal.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Button, Modal, Text } from "@shared/@common/ui/components";
@@ -24,6 +24,7 @@ interface AccountManageModalProps {
 const AccountManageModal = ({ className }: AccountManageModalProps) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const user = useSelector(getUser);
   const isOpen = useSelector(getParalleModal("account"));
   const onClose = () => {
     dispatch(onParallelModalClose("account"));
@@ -45,22 +46,6 @@ const AccountManageModal = ({ className }: AccountManageModalProps) => {
     className,
   ]);
 
-  // 현재 유저에 대한 정보를 가져오는 코드 필요
-  const currentUser = "test1234";
-  // 계정 목록 가져오는 코드 필요
-  const accounts = [
-    {
-      profileImage: defaultProfileImage,
-      username: "몰러",
-      userId: "test1234",
-    },
-    {
-      profileImage: defaultProfileImage,
-      username: "몰러",
-      userId: "test1232",
-    },
-  ];
-
   return (
     <Modal
       isOpen={isOpen}
@@ -78,8 +63,8 @@ const AccountManageModal = ({ className }: AccountManageModalProps) => {
           <Modal.Body className={styles[`account__manage__modal__body`]}>
             <LogoutModal isAllAccounts onClose={onLogoutClose} />
             <ul className={styles["account__list"]}>
-              {accounts.map((account) => {
-                const currentCond = currentUser === account.userId;
+              {user.accountGroup.map((account) => {
+                const currentCond = user.userId === account.userId;
                 return (
                   <li
                     className={joinClassNames([
