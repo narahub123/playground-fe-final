@@ -4,14 +4,14 @@ const BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
 
 const accessToken = getAccessToken();
 // 개별 아이디 로그아웃
-const logoutAPI = async (userId: string) => {
+const logoutAPI = async () => {
   const response = await fetch(`${BASE_URL}/auth/logout`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken}`,
     },
     credentials: "include",
-    body: JSON.stringify(userId),
   });
 
   const result = await response.json();
