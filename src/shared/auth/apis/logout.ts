@@ -1,5 +1,6 @@
 const BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
 
+// 개별 아이디 로그아웃
 const logoutAPI = async (userId: string) => {
   const response = await fetch(`${BASE_URL}/auth/logout`, {
     method: "POST",
@@ -14,6 +15,21 @@ const logoutAPI = async (userId: string) => {
 
   return result;
 };
-const logoutAllAPI = async () => {};
+
+// 단체 계정 로그아웃
+const logoutAllAPI = async (userIds: string[]) => {
+  const response = await fetch(`${BASE_URL}/auth/logout/all`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify(userIds),
+  });
+
+  const result = await response.json();
+
+  return result;
+};
 
 export { logoutAPI, logoutAllAPI };
