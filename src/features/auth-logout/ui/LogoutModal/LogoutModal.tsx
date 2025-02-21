@@ -1,10 +1,22 @@
 import styles from "./LogoutModal.module.css";
-import { getStandAloneModal } from "@shared/@common/models/selectors";
+import {
+  getAccountGroup,
+  getStandAloneModal,
+} from "@shared/@common/models/selectors";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Button, Modal, Text } from "@shared/@common/ui/components";
 import { joinClassNames } from "@shared/@common/utils";
 import { useSelector } from "react-redux";
-import { logo } from "@shared/@common/assets";
+import { defaultProfileImage, logo } from "@shared/@common/assets";
+import { IAccount } from "@shared/@common/types";
+import { removeAccessToken } from "@features/auth-logout/utils";
+import { useAppDispatch } from "@app/store";
+import { useNavigate } from "react-router-dom";
+import { clearUserState } from "@shared/@common/models/slices/userSlice";
+import { clearDisplayState } from "@shared/@common/models/slices/displaySlice";
+import { clearNotificationState } from "@shared/@common/models/slices/notificationSlice";
+import { clearPrivacyState } from "@shared/@common/models/slices/privacySlice";
+import { clearSecurityState } from "@shared/@common/models/slices/securitySlice";
 
 interface LogoutModalProps {
   className?: string;
@@ -17,7 +29,21 @@ const LogoutModal = ({
   className,
   onClose,
 }: LogoutModalProps) => {
-  const currentUser = "test1234";
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  // 실제 코드
+  // const accounts = useSelector(getAccountGroup);
+
+  // 예시 코드
+  const accounts: IAccount[] = [
+    {
+      userId: "test1234",
+      profileImage: defaultProfileImage,
+      username: "몰러",
+      intro: "",
+    },
+  ];
 
   // 여닫기 구현
   const isOpen = useSelector(getStandAloneModal("logout"));
@@ -28,6 +54,23 @@ const LogoutModal = ({
   );
 
   const classNames = joinClassNames([styles["logout__modal"], className]);
+
+  // 로그아웃 구현 함수
+  const logout = async (): Promise<void> => {
+    removeAccessToken(); // access 토큰 삭제
+
+    // clear slices
+    dispatch(clearUserState());
+    dispatch(clearDisplayState());
+    dispatch(clearNotificationState());
+    dispatch(clearPrivacyState());
+    dispatch(clearSecurityState());
+
+    // api 연결
+
+    // 페이지 이동
+    window.location.href = "/";
+  };
 
   return (
     <Modal
@@ -50,17 +93,12 @@ const LogoutModal = ({
           </Modal.Header>
           <Modal.Body>
             <Text type={"heading3"}>{`${
-              isAllAccounts ? all : currentUser
+              isAllAccounts ? all : accounts[0].userId
             } ${title}`}</Text>
             <Text type="expl">{isAllAccounts ? expl2 : expl1}</Text>
           </Modal.Body>
           <Modal.Footer className={styles["logout__modal__footer"]}>
-            <Button
-              onClick={() => {}}
-              width="100%"
-              rounded="2xl"
-              isValid={true}
-            >
+            <Button onClick={logout} width="100%" rounded="2xl" isValid={true}>
               {logoutBtn}
             </Button>
             <Button
