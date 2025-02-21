@@ -15,7 +15,7 @@ import {
 import { defaultProfileImage } from "@shared/@common/assets";
 import AccountItem from "../AccountItem/AccountItem";
 import { Icon } from "@shared/@common/ui/icons";
-import { LogoutModal } from "@shared/auth/ui/components";
+import { LogoutModal } from "@features/auth-logout/ui";
 
 interface AccountManageModalProps {
   className?: string;

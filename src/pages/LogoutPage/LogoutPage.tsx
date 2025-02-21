@@ -1,5 +1,4 @@
 import styles from "./LogoutPage.module.css";
-import { LogoutModal } from "@shared/auth/ui/components";
 import { joinClassNames } from "@shared/@common/utils";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -10,6 +9,7 @@ import {
   onStandAlonClose,
   onStandAlonOpen,
 } from "@shared/@common/models/slices/modalSlice";
+import { LogoutModal } from "@features/auth-logout/ui";
 
 interface LogoutPageProps {
   className?: string;
