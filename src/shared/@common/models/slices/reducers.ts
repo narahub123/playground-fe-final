@@ -21,6 +21,7 @@ import {
   setPhones,
   setUsername,
   setUser,
+  setAcccountGroup,
 } from "./userSlice";
 
 import {
@@ -61,6 +62,7 @@ export {
   setPhones,
   setUsername,
   setUser,
+  setAcccountGroup,
 
   // modal
   onParallelModalOpen,

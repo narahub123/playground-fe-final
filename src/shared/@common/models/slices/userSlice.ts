@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { LocationType } from "@shared/@common/types";
+import { IAccount, LocationType } from "@shared/@common/types";
 import { BirthType, GenderType } from "@shared/auth/types";
 import { validateDate } from "@shared/auth/utils";
 
@@ -16,6 +16,7 @@ export interface UserState {
   ip: string;
   location: LocationType;
   gender: GenderType;
+  accountGroup: IAccount[];
 }
 
 const initialState: UserState = {
@@ -39,6 +40,7 @@ const initialState: UserState = {
     county: "",
   },
   gender: "",
+  accountGroup: [],
 };
 
 const userSlice = createSlice({
@@ -138,6 +140,9 @@ const userSlice = createSlice({
     setProfileImage: (state, action: PayloadAction<string>) => {
       state.profileImage = action.payload;
     },
+    setAcccountGroup: (state, action: PayloadAction<IAccount>) => {
+      state.accountGroup = [...state.accountGroup, action.payload];
+    },
   },
 });
 
@@ -159,4 +164,5 @@ export const {
   setLocation,
   setPhones,
   setUsername,
+  setAcccountGroup,
 } = userSlice.actions;

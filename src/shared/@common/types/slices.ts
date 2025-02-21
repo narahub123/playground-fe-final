@@ -42,6 +42,13 @@ type MuteTarget = "all" | "notFollowing";
 type MuteDuration = "forever" | "24h" | "7d" | "30d";
 type MessageAllowSettings = "all" | "authenticated" | "none";
 
+interface IAccount {
+  userId: string;
+  profileImage: string;
+  username: string;
+  intro: string;
+}
+
 export type {
   BgThemeType,
   ColorThemeType,
@@ -58,4 +65,5 @@ export type {
   MuteDuration,
   MessageAllowSettings,
   StandAlonModals,
+  IAccount,
 };

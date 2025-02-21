@@ -12,6 +12,7 @@ const getIp = (state: RootState) => state.user.ip;
 const getLocation = (state: RootState) => state.user.location;
 const getPhones = (state: RootState) => state.user.phones;
 const getUsername = (state: RootState) => state.user.username;
+  const getAccountGroup = (state: RootState) => state.user.accountGroup;
 
 export {
   getUser,
@@ -26,4 +27,5 @@ export {
   getLocation,
   getPhones,
   getUsername,
+  getAccountGroup,
 };

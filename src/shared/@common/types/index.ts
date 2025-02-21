@@ -14,6 +14,7 @@ import {
   MuteTarget,
   MuteDuration,
   MessageAllowSettings,
+  IAccount,
 } from "./slices";
 
 import {
@@ -45,6 +46,7 @@ export type {
   MuteTarget,
   MuteDuration,
   MessageAllowSettings,
+  IAccount,
 
   // components
   DropdownItemType, // dropdown item

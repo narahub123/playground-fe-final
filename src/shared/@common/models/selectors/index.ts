@@ -19,6 +19,7 @@ import {
   getLocation,
   getPhones,
   getUsername,
+  getAccountGroup,
 } from "./userSelectors";
 
 import {
@@ -60,6 +61,7 @@ export {
   getLocation,
   getPhones,
   getUsername,
+  getAccountGroup,
 
   // modal
   getParallelModals,
