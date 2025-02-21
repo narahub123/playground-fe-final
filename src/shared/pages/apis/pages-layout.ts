@@ -1,3 +1,4 @@
+import { removeAccessToken } from "@features/auth-logout/utils";
 import { getAccessToken } from "../utils";
 
 const BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
@@ -19,7 +20,28 @@ const getCurrentUserAPI = async () => {
 
   const result = await response.json();
 
-  console.log(result);
+  if (result.success && result.code === "ACCESS_TOKEN_REISSUED") {
+    // 기존 토큰 삭제
+    removeAccessToken();
+
+    // 새로운 토큰 저장
+    if (result.data.accessToken) {
+      localStorage.setItem("accessToken", result.data.accessToken);
+    }
+
+    const response = await fetch(`${BASE_URL}/users/me`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${result.data.accessToken}`,
+      },
+      credentials: "include",
+    });
+
+    const newResult = await response.json();
+
+    return newResult;
+  }
 
   return result;
 };
