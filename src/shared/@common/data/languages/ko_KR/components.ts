@@ -438,7 +438,7 @@ const components = {
     add: "기존 계정 추가",
     manage: "계정 관리",
     logout: "계정에서 로그아웃",
-    profile: "프로필 사진"
+    profile: "프로필 사진",
   },
   AccountItem: {},
   AccountManageModal: {
@@ -452,8 +452,8 @@ const components = {
     all: "모든",
     expl1: "이 계정에만 적용되며, 다른 계정에서는 계속 로그인되어 있습니다.",
     expl2: "모든 브라우저 탭에 걸쳐 나의 모든 계정에 적용됩니다.",
-    logout: "로그아웃",
-    cancel: "취소",
+    logoutBtn: "로그아웃",
+    cancelBtn: "취소",
   },
 };
 

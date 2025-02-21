@@ -23,10 +23,9 @@ const LogoutModal = ({
   const isOpen = useSelector(getStandAloneModal("logout"));
 
   // 언어 설정
-  const { all, title, expl1, expl2, logout, cancel } = useLanguageContent([
-    "components",
-    "LogoutModal",
-  ]);
+  const { all, title, expl1, expl2, logoutBtn, cancelBtn } = useLanguageContent(
+    ["components", "LogoutModal"]
+  );
 
   const classNames = joinClassNames([styles["logout__modal"], className]);
 
@@ -62,7 +61,7 @@ const LogoutModal = ({
               rounded="2xl"
               isValid={true}
             >
-              {logout}
+              {logoutBtn}
             </Button>
             <Button
               onClick={onClose}
@@ -71,7 +70,7 @@ const LogoutModal = ({
               variant="outline"
               isValid={true}
             >
-              {cancel}
+              {cancelBtn}
             </Button>
           </Modal.Footer>
         </Modal.Content>

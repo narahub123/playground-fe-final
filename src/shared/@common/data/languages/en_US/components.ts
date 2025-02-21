@@ -438,8 +438,8 @@ const components = {
     expl1:
       "This applies only to this account. You will remain logged in to other accounts.",
     expl2: "This applies to all your accounts across all browser tabs.",
-    logout: "Log out",
-    cancel: "Cancel",
+    logoutBtn: "Log out",
+    cancelBtn: "Cancel",
   },
   AccountButton: {
     title: "Account",

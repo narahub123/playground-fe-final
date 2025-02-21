@@ -425,8 +425,8 @@ const components = {
     all: "所有",
     expl1: "僅適用於此帳戶，其他帳戶將繼續保持登入狀態。",
     expl2: "將適用於所有瀏覽器分頁中的所有帳戶。",
-    logout: "登出",
-    cancel: "取消",
+    logoutBtn: "登出",
+    cancelBtn: "取消",
   },
   AccountButton: {
     title: "帳戶",

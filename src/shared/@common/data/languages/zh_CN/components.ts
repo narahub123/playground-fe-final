@@ -417,8 +417,8 @@ const components = {
     all: "所有",
     expl1: "仅适用于此账户，其他账户仍保持登录状态。",
     expl2: "适用于所有浏览器标签中的所有账户。",
-    logout: "退出登录",
-    cancel: "取消",
+    logoutBtn: "退出登录",
+    cancelBtn: "取消",
   },
   AccountButton: {
     title: "账户",

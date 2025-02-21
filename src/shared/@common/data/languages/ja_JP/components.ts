@@ -447,8 +447,8 @@ const components = {
     expl1:
       "このアカウントにのみ適用され、他のアカウントは引き続きログイン状態です。",
     expl2: "すべてのブラウザタブにわたって、すべてのアカウントに適用されます。",
-    logout: "ログアウト",
-    cancel: "キャンセル",
+    logoutBtn: "ログアウト",
+    cancelBtn: "キャンセル",
   },
   AccountButton: {
     title: "アカウント",
