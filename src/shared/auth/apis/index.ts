@@ -11,6 +11,8 @@ import {
   checkVerificationCodeAPI,
 } from "./login";
 
+import { logoutAPI, logoutAllAPI } from "./logout";
+
 export {
   // signup
   checkEmailDuplicateInSignupAPI,
@@ -22,4 +24,8 @@ export {
   getContactsByAccoutAPI,
   requestVerifacationCodeLoginAPI,
   checkVerificationCodeAPI,
+
+  // logout
+  logoutAPI,
+  logoutAllAPI,
 };
