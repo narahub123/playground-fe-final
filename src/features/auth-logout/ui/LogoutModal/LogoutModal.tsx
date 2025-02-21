@@ -17,6 +17,7 @@ import { clearDisplayState } from "@shared/@common/models/slices/displaySlice";
 import { clearNotificationState } from "@shared/@common/models/slices/notificationSlice";
 import { clearPrivacyState } from "@shared/@common/models/slices/privacySlice";
 import { clearSecurityState } from "@shared/@common/models/slices/securitySlice";
+import { logoutAllAPI, logoutAPI } from "@shared/auth/apis";
 
 interface LogoutModalProps {
   className?: string;
@@ -57,6 +58,12 @@ const LogoutModal = ({
 
   // 로그아웃 구현 함수
   const logout = async (): Promise<void> => {
+    // api 연결
+    const response = isAllAccounts ? await logoutAllAPI() : await logoutAPI();
+
+    // error 코드 작성할 것 
+    if (!response.success) return;
+
     removeAccessToken(); // access 토큰 삭제
 
     // clear slices
@@ -65,8 +72,6 @@ const LogoutModal = ({
     dispatch(clearNotificationState());
     dispatch(clearPrivacyState());
     dispatch(clearSecurityState());
-
-    // api 연결
 
     // 페이지 이동
     window.location.href = "/";
