@@ -7,6 +7,7 @@ import { clearSecurityState } from "@shared/@common/models/slices/securitySlice"
 
 const logout = () => {
   localStorage.removeItem("accessToken");
+  localStorage.removeItem("activeSessionId");
 
   // slice 초기화
   store.dispatch(clearUserState());

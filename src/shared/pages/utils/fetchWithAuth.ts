@@ -8,8 +8,9 @@ const fetchWithAuth = async (
   body: any = null
 ) => {
   const accessToken = localStorage.getItem("accessToken");
+  const activeSessionId = localStorage.getItem("activeSessionId");
 
-  if (!accessToken) throw new Error("로그인이 필요합니다.");
+  if (!accessToken || !activeSessionId) throw new Error("로그인이 필요합니다.");
 
   const makeRquest = async (token: string, body: any = null) => {
     let response = await fetch(`${BASE_URL}${url}`, {
@@ -19,15 +20,12 @@ const fetchWithAuth = async (
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
+        "x-active-session-id": activeSessionId,
         ...(options.headers || {}),
       },
       credentials: "include",
       body: body ? JSON.stringify(body) : null,
     });
-
-    // if (!response.ok) {
-    //   throw new Error("API 조회 실패");
-    // }
 
     return response.json();
   };
