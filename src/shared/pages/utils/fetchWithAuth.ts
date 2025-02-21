@@ -1,3 +1,5 @@
+import { logout } from "@features/auth-logout/utils";
+
 const BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
 
 const fetchWithAuth = async (
@@ -23,9 +25,9 @@ const fetchWithAuth = async (
       body: body ? JSON.stringify(body) : null,
     });
 
-    if (!response.ok) {
-      throw new Error("API 조회 실패");
-    }
+    // if (!response.ok) {
+    //   throw new Error("API 조회 실패");
+    // }
 
     return response.json();
   };
@@ -42,6 +44,10 @@ const fetchWithAuth = async (
     localStorage.setItem("accessToken", newAccessToken);
 
     result = await makeRquest(newAccessToken, body);
+  }
+
+  if (!result.success && result.code === "LOGOUT") {
+    logout();
   }
 
   return result;
