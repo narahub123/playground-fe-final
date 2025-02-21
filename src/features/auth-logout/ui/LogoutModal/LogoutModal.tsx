@@ -7,17 +7,15 @@ import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Button, Modal, Text } from "@shared/@common/ui/components";
 import { joinClassNames } from "@shared/@common/utils";
 import { useSelector } from "react-redux";
-import { defaultProfileImage, logo } from "@shared/@common/assets";
-import { IAccount } from "@shared/@common/types";
+import { logo } from "@shared/@common/assets";
 import { removeAccessToken } from "@features/auth-logout/utils";
 import { useAppDispatch } from "@app/store";
-import { useNavigate } from "react-router-dom";
 import { clearUserState } from "@shared/@common/models/slices/userSlice";
 import { clearDisplayState } from "@shared/@common/models/slices/displaySlice";
 import { clearNotificationState } from "@shared/@common/models/slices/notificationSlice";
 import { clearPrivacyState } from "@shared/@common/models/slices/privacySlice";
 import { clearSecurityState } from "@shared/@common/models/slices/securitySlice";
-import { logoutAllAPI, logoutAPI } from "@shared/auth/apis";
+import { fetchWithAuth } from "@shared/pages/utils";
 
 interface LogoutModalProps {
   className?: string;
@@ -31,20 +29,9 @@ const LogoutModal = ({
   onClose,
 }: LogoutModalProps) => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   // 실제 코드
-  // const accounts = useSelector(getAccountGroup);
-
-  // 예시 코드
-  const accounts: IAccount[] = [
-    {
-      userId: "test1234",
-      profileImage: defaultProfileImage,
-      username: "몰러",
-      intro: "",
-    },
-  ];
+  const accounts = useSelector(getAccountGroup);
 
   // 여닫기 구현
   const isOpen = useSelector(getStandAloneModal("logout"));
@@ -59,9 +46,11 @@ const LogoutModal = ({
   // 로그아웃 구현 함수
   const logout = async (): Promise<void> => {
     // api 연결
-    const response = isAllAccounts ? await logoutAllAPI() : await logoutAPI();
+    const response = isAllAccounts
+      ? await fetchWithAuth("/auth/logout/all", { method: "POST" })
+      : await fetchWithAuth("/auth/logout", { method: "POST" });
 
-    // error 코드 작성할 것 
+    // error 코드 작성할 것
     if (!response.success) return;
 
     removeAccessToken(); // access 토큰 삭제
