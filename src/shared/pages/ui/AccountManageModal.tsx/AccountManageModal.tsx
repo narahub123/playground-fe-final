@@ -12,7 +12,6 @@ import {
   onStandAlonClose,
   onStandAlonOpen,
 } from "@shared/@common/models/slices/modalSlice";
-import { defaultProfileImage } from "@shared/@common/assets";
 import AccountItem from "../AccountItem/AccountItem";
 import { Icon } from "@shared/@common/ui/icons";
 import { LogoutModal } from "@features/auth-logout/ui";
