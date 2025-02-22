@@ -1,6 +1,9 @@
 import styles from "./WritePostModal.module.css";
 import { useAppDispatch } from "@app/store";
-import { useLanguageContent } from "@shared/@common/models/hooks";
+import {
+  useEscKeyClose,
+  useLanguageContent,
+} from "@shared/@common/models/hooks";
 import { getWritePostModal } from "@shared/@common/models/selectors";
 import {
   onParallelModalClose,
@@ -33,6 +36,8 @@ const WritePostModal = ({}: WritePostModalProps) => {
     dispatch(onParallelModalClose("write"));
     navigate(-1);
   };
+
+  useEscKeyClose(onClose);
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} domId="write-modal">
