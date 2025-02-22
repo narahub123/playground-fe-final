@@ -22,8 +22,7 @@ const FlowModal = ({ className }: FlowModalProps) => {
 
   const onClose = () => {
     dispatch(onParallelModalClose("flow"));
-    // 나중에 가변적으로 변경 가능해야 함
-    navigate("/");
+    navigate(-1);
   };
 
   const [screenValidations, setScreenValidations] =
