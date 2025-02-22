@@ -8,7 +8,6 @@ import {
   InputPasswordLogin,
 } from "@features/auth-login/ui";
 import { verifyPasswordLoginAPI } from "@shared/auth/apis";
-import { useNavigate } from "react-router-dom";
 import { useToast } from "@shared/@common/ui/components/Toast/hooks";
 import { LoginInputValueType } from "@features/auth-login/types";
 
@@ -23,8 +22,6 @@ const ScreenLoginPassword = ({
   inputValue,
   setInputValue,
 }: ScreenLoginPasswordProps) => {
-  const navigate = useNavigate();
-
   // 로딩
   const [loading, setLoading] = useState(false);
 
