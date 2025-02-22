@@ -2,24 +2,20 @@ import styles from "./WritePostModal.module.css";
 import { useAppDispatch } from "@app/store";
 import {
   useEscKeyClose,
+  useKeepParallelModalOpen,
   useLanguageContent,
 } from "@shared/@common/models/hooks";
 import { getWritePostModal } from "@shared/@common/models/selectors";
-import {
-  onParallelModalClose,
-  onParallelModalOpen,
-} from "@shared/@common/models/slices/modalSlice";
+import { onParallelModalClose } from "@shared/@common/models/slices/modalSlice";
 import { Button, Modal } from "@shared/@common/ui/components";
-import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface WritePostModalProps {}
 
 const WritePostModal = ({}: WritePostModalProps) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { pathname } = useLocation();
   const isOpen = useSelector(getWritePostModal);
   const onClose = () => {
     dispatch(onParallelModalClose("write"));
@@ -28,12 +24,7 @@ const WritePostModal = ({}: WritePostModalProps) => {
 
   useEscKeyClose(onClose);
 
-  // 새로고침 시 주소가 같은 경우 모달 창 유지
-  useEffect(() => {
-    if (pathname.includes("/compose/post")) {
-      dispatch(onParallelModalOpen("write"));
-    }
-  }, [pathname]);
+  useKeepParallelModalOpen("/compose/post", "write");
 
   // 언어 설정
   const {} = useLanguageContent(["components", "WritePostModal"]);
