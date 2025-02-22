@@ -1,5 +1,5 @@
-import { useEffect } from "react";
 import styles from "./PagesLayout.module.css";
+import { useEffect } from "react";
 import { Outlet } from "react-router";
 import { useAppDispatch } from "@app/store";
 import { setUser } from "@shared/@common/models/slices/userSlice";
@@ -10,6 +10,10 @@ import { setNotification } from "@shared/@common/models/slices/notificationSlice
 import { fetchWithAuth, getAccessToken } from "@shared/pages/utils";
 import { Header } from "@shared/pages/ui";
 import { useLocation } from "react-router";
+import { useDisplaySetup } from "@shared/@common/models/hooks";
+import { AlertContextProvider } from "@shared/@common/ui/components/Alert/context";
+import { ToastContextProvider } from "@shared/@common/ui/components/Toast/context";
+import { TextHeader } from "@test/ui/components";
 
 const PagesLayout = () => {
   const dispatch = useAppDispatch();
@@ -18,6 +22,8 @@ const PagesLayout = () => {
   const isLogout = pathname.includes("logout");
 
   const login = getAccessToken();
+
+  useDisplaySetup();
 
   useEffect(() => {
     if (!login) return;
@@ -39,17 +45,22 @@ const PagesLayout = () => {
     fetchData();
   }, [login]);
   return (
-    <div className={styles[`pages__layout`]}>
-      {!isLogout && <Header />}
-      <main role="main" className={styles["pages__layout__main"]}>
-        <div className={styles[`pages__layout__page`]}>
-          <Outlet />
+    <ToastContextProvider>
+      <AlertContextProvider>
+        <TextHeader />
+        <div className={styles[`pages__layout`]}>
+          {!isLogout && <Header />}
+          <main role="main" className={styles["pages__layout__main"]}>
+            <div className={styles[`pages__layout__page`]}>
+              <Outlet />
+            </div>
+            {!isLogout && (
+              <aside className={styles[`pages__layout__sidebar`]}>기타</aside>
+            )}
+          </main>
         </div>
-        {!isLogout && (
-          <aside className={styles[`pages__layout__sidebar`]}>기타</aside>
-        )}
-      </main>
-    </div>
+      </AlertContextProvider>
+    </ToastContextProvider>
   );
 };
 
