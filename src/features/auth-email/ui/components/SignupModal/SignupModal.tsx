@@ -11,6 +11,7 @@ import {
   useLocationInfo,
   useDeviceInfo,
   useIpInfo,
+  useKeepParallelModalOpen,
 } from "@shared/@common/models/hooks";
 import {
   setLocationInSignup,
@@ -89,6 +90,8 @@ const SignupModal = () => {
     dispatch(setIpInSignup(ip));
     dispatch(setLocationInSignup(location));
   }, [device, ip, location]);
+
+  useKeepParallelModalOpen("i/flow/signup", "signup");
 
   return (
     <Modal
