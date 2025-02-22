@@ -9,6 +9,7 @@ import useLocationInfo from "./useLocationInfo";
 import useCreateUserId from "./useCreateUserId/useCreateUserId";
 import useClickOutside from "./useClickOutside";
 import useDisplaySetup from "./useDisplaySetup";
+import useEscKeyClose from "./useEscKeyClose";
 
 export {
   useLanguageContent,
@@ -22,4 +23,5 @@ export {
   useCreateUserId,
   useClickOutside,
   useDisplaySetup,
+  useEscKeyClose,
 };
