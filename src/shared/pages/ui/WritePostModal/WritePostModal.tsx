@@ -21,23 +21,22 @@ const WritePostModal = ({}: WritePostModalProps) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const isOpen = useSelector(getWritePostModal);
-
-  // 새로고침 시 주소가 같은 경우 모달 창 유지
-  useEffect(() => {
-    if (pathname.includes("/compose/post")) {
-      dispatch(onParallelModalOpen("write"));
-    }
-  }, [isOpen]);
-
-  // 언어 설정
-  const {} = useLanguageContent(["components", "WritePostModal"]);
-
   const onClose = () => {
     dispatch(onParallelModalClose("write"));
     navigate(-1);
   };
 
   useEscKeyClose(onClose);
+
+  // 새로고침 시 주소가 같은 경우 모달 창 유지
+  useEffect(() => {
+    if (pathname.includes("/compose/post")) {
+      dispatch(onParallelModalOpen("write"));
+    }
+  }, [pathname]);
+
+  // 언어 설정
+  const {} = useLanguageContent(["components", "WritePostModal"]);
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} domId="write-modal">
