@@ -10,6 +10,7 @@ import useCreateUserId from "./useCreateUserId/useCreateUserId";
 import useClickOutside from "./useClickOutside";
 import useDisplaySetup from "./useDisplaySetup";
 import useEscKeyClose from "./useEscKeyClose";
+import useKeepParallelModalOpen from "./useKeepParallelModalOpen";
 
 export {
   useLanguageContent,
@@ -24,4 +25,5 @@ export {
   useClickOutside,
   useDisplaySetup,
   useEscKeyClose,
+  useKeepParallelModalOpen,
 };
