@@ -6,8 +6,15 @@ import "@shared/@common/styles/globals.css";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
-import { router, store } from "@app";
+import { store } from "@app";
 import { Provider } from "react-redux";
+import { getAccessToken } from "@shared/pages/utils";
+import userRouter from "@app/userRouter";
+import guestRouter from "@app/guestRouter";
+
+const login = getAccessToken();
+
+const router = login ? userRouter : guestRouter;
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
