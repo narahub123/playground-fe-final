@@ -1,6 +1,9 @@
 import { getParalleModal, getUser } from "@shared/@common/models/selectors";
 import styles from "./AccountManageModal.module.css";
-import { useLanguageContent } from "@shared/@common/models/hooks";
+import {
+  useKeepParallelModalOpen,
+  useLanguageContent,
+} from "@shared/@common/models/hooks";
 import { Button, Modal, Text } from "@shared/@common/ui/components";
 import { joinClassNames } from "@shared/@common/utils";
 import { useSelector } from "react-redux";
@@ -33,6 +36,8 @@ const AccountManageModal = ({ className }: AccountManageModalProps) => {
   const onLogoutClose = () => {
     dispatch(onStandAlonClose("logout"));
   };
+
+  useKeepParallelModalOpen("/account/manage", "account");
 
   // 언어 설정
   const { title, addBtn, expl, logoutBtn } = useLanguageContent([
