@@ -51,7 +51,7 @@ const ScreenLoginPassword = ({
     if (result.success) {
       setLoading(false);
 
-      navigate("/home");
+      window.location.href = "/home";
     } else {
       setLoading(false);
 
