@@ -5,7 +5,6 @@ import WriteIcon from "./WriteIcon";
 import { useAppDispatch } from "@app/store";
 import { useNavigate } from "react-router-dom";
 import { onParallelModalOpen } from "@shared/@common/models/slices/modalSlice";
-import WritePostModal from "../WritePostModal/WritePostModal";
 import { Text } from "@shared/@common/ui/components";
 
 interface WriteButtonProps {
@@ -29,7 +28,6 @@ const WriteButton = ({ className, disabled = false }: WriteButtonProps) => {
 
   return (
     <button className={classNames} title={writeTitle} onClick={() => onOpen()}>
-      <WritePostModal />
       <WriteIcon
         color="white"
         width={26}
