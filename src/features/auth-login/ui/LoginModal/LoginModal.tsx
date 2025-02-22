@@ -13,6 +13,7 @@ import ScreenLoginPassword from "../ScreenLoginPassword/ScreenLoginPassword";
 import {
   useDeviceInfo,
   useIpInfo,
+  useKeepParallelModalOpen,
   useLocationInfo,
 } from "@shared/@common/models/hooks";
 import { LoginInputValueType } from "@features/auth-login/types";
@@ -66,6 +67,8 @@ const LoginModal = ({ className }: LoginModalProps) => {
 
     setScreenValidations(defaultValidations);
   }, []);
+
+  useKeepParallelModalOpen("/i/flow/login", "login");
 
   const device = useDeviceInfo();
   const ip = useIpInfo();

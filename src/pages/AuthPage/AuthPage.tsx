@@ -16,22 +16,14 @@ import {
   setUsernameInSignup,
 } from "@shared/auth/models/slices/signupSlice";
 import { useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { onParallelModalOpen } from "@shared/@common/models/slices/modalSlice";
 import { ModalLayout } from "@shared/@common/layouts";
-import { useSelector } from "react-redux";
-import { getParallelModals } from "@shared/@common/models/selectors";
 import { ParallelModals } from "@shared/@common/types";
 
 const AuthPage = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-
-  // 모달창 상태 정보
-  const { signup, login } = useSelector(getParallelModals);
-
-  // 경로 정보 취득
-  const { pathname } = useLocation();
 
   const onOpen = (type: ParallelModals) => {
     dispatch(onParallelModalOpen(type));
@@ -95,15 +87,6 @@ const AuthPage = () => {
       window.removeEventListener("message", handleMessage);
     };
   }, []); // 의존성 배열을 빈 배열로 설정하여 컴포넌트가 처음 렌더링될 때만 실행
-
-  // 새로고침 시 모달창 유지
-  useEffect(() => {
-    if (pathname.includes("i/flow/signup") && !signup) {
-      onOpen("signup");
-    } else if (pathname.includes("i/flow/login") && !login) {
-      onOpen("login");
-    }
-  }, [pathname]);
 
   // 언어 설정
   const { title, heading1, signupList, heading2, loginList } =
