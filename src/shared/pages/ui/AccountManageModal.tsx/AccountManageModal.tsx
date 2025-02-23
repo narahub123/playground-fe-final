@@ -113,6 +113,7 @@ const AccountManageModal = ({ className }: AccountManageModalProps) => {
                         ? undefined
                         : () => switchAccount(account.userId)
                     }
+                    tabIndex={currentCond ? -1 : 0}
                   >
                     <AccountItem account={account} />
                     {currentCond && (
