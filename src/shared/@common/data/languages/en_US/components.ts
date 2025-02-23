@@ -451,6 +451,10 @@ const components = {
     manage: "Manage Accounts",
     logout: "Log out of Account",
     profile: "Profile Picture",
+    errors: {
+      title: getErrorTitle,
+      description: getErrorDescription,
+    },
   },
 };
 

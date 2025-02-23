@@ -11,6 +11,8 @@ import { useNavigate } from "react-router-dom";
 import { onParallelModalOpen } from "@shared/@common/models/slices/modalSlice";
 import { useSelector } from "react-redux";
 import { getUser } from "@shared/@common/models/selectors";
+import { useToast } from "@shared/@common/ui/components/Toast/hooks";
+import { fetchWithAuth } from "@shared/pages/utils";
 
 interface AccountButtonProps {
   className?: string;
@@ -81,12 +83,42 @@ const AccountButton = ({ className, disabled = false }: AccountButtonProps) => {
   }, []);
 
   // 언어 설정
-  const { title, add, manage, logout, profile } = useLanguageContent([
+  const { title, add, manage, logout, profile, errors } = useLanguageContent([
     "components",
     "AccountButton",
   ]);
 
   const classNames = joinClassNames([styles["account__button"], className]);
+
+  const toast = useToast();
+
+  // 계정 전환
+  const switchAccount = async (userId: string) => {
+    const result = await fetchWithAuth(
+      "/users/switch",
+      {},
+      { targetUserId: userId }
+    );
+
+    if (result.success) {
+      const accessToken = result.data.accessToken;
+      const activesSessionId = result.data.activeSessionId;
+
+      localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem("activeSessionId", activesSessionId);
+
+      window.location.href = "/home";
+    } else {
+      // false 시 toast 사용
+      for (const error of Object.values(result.error.details)) {
+        toast({
+          title: `${errors.title(result.code)}`,
+          description: `${errors.description(error)}`,
+          type: "error",
+        });
+      }
+    }
+  };
 
   return (
     <button
@@ -140,6 +172,9 @@ const AccountButton = ({ className, disabled = false }: AccountButtonProps) => {
                     : "",
                 ])}
                 key={account.userId}
+                onClick={
+                  currentCond ? undefined : () => switchAccount(account.userId)
+                }
               >
                 <AccountItem account={account} />
                 {currentCond && (

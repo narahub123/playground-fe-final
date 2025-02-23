@@ -438,6 +438,10 @@ const components = {
     manage: "管理帳戶",
     logout: "登出帳戶",
     profile: "個人頭像",
+    errors: {
+      title: getErrorTitle,
+      description: getErrorDescription,
+    },
   },
 };
 

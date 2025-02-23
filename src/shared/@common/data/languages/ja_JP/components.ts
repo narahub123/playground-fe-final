@@ -460,6 +460,10 @@ const components = {
     manage: "アカウント管理",
     logout: "アカウントからログアウト",
     profile: "プロフィール写真",
+    errors: {
+      title: getErrorTitle,
+      description: getErrorDescription,
+    },
   },
 };
 

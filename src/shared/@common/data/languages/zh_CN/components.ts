@@ -430,6 +430,10 @@ const components = {
     manage: "管理账户",
     logout: "退出账户",
     profile: "个人头像",
+    errors: {
+      title: getErrorTitle,
+      description: getErrorDescription,
+    },
   },
 };
 
