@@ -12,6 +12,9 @@ import { useToast } from "@shared/@common/ui/components/Toast/hooks";
 import { LoginInputValueType } from "@features/auth-login/types";
 import { useLocation } from "react-router-dom";
 import { fetchWithAuth } from "@shared/pages/utils";
+import { useAppDispatch } from "@app/store";
+import { setAcccountGroup } from "@shared/@common/models/slices/userSlice";
+import { onParallelModalClose } from "@shared/@common/models/slices/modalSlice";
 
 interface ScreenLoginPasswordProps {
   inputValue: LoginInputValueType;
@@ -24,6 +27,7 @@ const ScreenLoginPassword = ({
   inputValue,
   setInputValue,
 }: ScreenLoginPasswordProps) => {
+  const dispatch = useAppDispatch();
   const { state } = useLocation();
 
   // 로딩
@@ -79,7 +83,10 @@ const ScreenLoginPassword = ({
 
     if (result.success) {
       setLoading(false);
-      console.log(result.data);
+      const newAccount = result.data.newAccount;
+
+      dispatch(setAcccountGroup(newAccount));
+      dispatch(onParallelModalClose("login"));
     } else {
       setLoading(false);
 
