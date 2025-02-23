@@ -175,6 +175,7 @@ const AccountButton = ({ className, disabled = false }: AccountButtonProps) => {
                 onClick={
                   currentCond ? undefined : () => switchAccount(account.userId)
                 }
+                tabIndex={currentCond ? -1 : 0}
               >
                 <AccountItem account={account} />
                 {currentCond && (
