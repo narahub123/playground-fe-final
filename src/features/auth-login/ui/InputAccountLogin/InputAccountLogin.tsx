@@ -1,6 +1,8 @@
 import { LoginInputValueType } from "@features/auth-login/types";
 import { determineInputValueType } from "@features/auth-login/utils";
 import { useLanguageContent } from "@shared/@common/models/hooks";
+import { getUser } from "@shared/@common/models/selectors";
+import { UserState } from "@shared/@common/models/slices/userSlice";
 import { Input, Text } from "@shared/@common/ui/components";
 import { useInput } from "@shared/@common/ui/components/Input";
 import {
@@ -8,6 +10,8 @@ import {
   checkPhoneDuplicationInSignupAPI,
   checkUserIdDuplicateInSignupAPI,
 } from "@shared/auth/apis";
+import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 interface InputAccountLoginProps {
   isValid:
@@ -37,6 +41,8 @@ const InputAccountLogin = ({
   className,
   disabled = false,
 }: InputAccountLoginProps) => {
+  const { state } = useLocation();
+  const user = useSelector(getUser);
   // 언어 설정
   const { label, error, errMsg } = useLanguageContent([
     "components",
@@ -76,6 +82,20 @@ const InputAccountLogin = ({
       if (!isDuplicate) {
         updateErrorAndValidation(errMsg(type), false);
       } else {
+        if (state && state.api === "addAccount") {
+          const isCurrentUser = user[type as keyof UserState] === value;
+          const accountGroupIds = user.accountGroup
+            .filter((account) => account.userId !== user.userId)
+            .map((account) => account.userId);
+          const hasAccountGroupId = accountGroupIds.includes(value);
+
+          if (isCurrentUser) {
+            updateErrorAndValidation("현재 유저입니다.", false);
+            return;
+          } else if (hasAccountGroupId) {
+            updateErrorAndValidation("이미 목록에 있는 유저입니다.", false);
+          }
+        }
         updateErrorAndValidation("", true);
       }
     };

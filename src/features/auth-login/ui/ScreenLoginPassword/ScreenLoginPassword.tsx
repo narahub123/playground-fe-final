@@ -10,6 +10,8 @@ import {
 import { verifyPasswordLoginAPI } from "@shared/auth/apis";
 import { useToast } from "@shared/@common/ui/components/Toast/hooks";
 import { LoginInputValueType } from "@features/auth-login/types";
+import { useLocation } from "react-router-dom";
+import { fetchWithAuth } from "@shared/pages/utils";
 
 interface ScreenLoginPasswordProps {
   inputValue: LoginInputValueType;
@@ -22,6 +24,8 @@ const ScreenLoginPassword = ({
   inputValue,
   setInputValue,
 }: ScreenLoginPasswordProps) => {
+  const { state } = useLocation();
+
   // 로딩
   const [loading, setLoading] = useState(false);
 
@@ -68,6 +72,33 @@ const ScreenLoginPassword = ({
     }
   };
 
+  const addAccount = async () => {
+    setLoading(true);
+
+    const result = await fetchWithAuth("/users/account-group", {}, inputValue);
+
+    if (result.success) {
+      setLoading(false);
+      console.log(result.data);
+    } else {
+      setLoading(false);
+
+      setInputValue((prev) => ({
+        ...prev,
+        ["password"]: "",
+      }));
+
+      // false 시 toast 사용
+      for (const error of Object.values(result.error.details)) {
+        toast({
+          title: `${errors.title(result.code)}`,
+          description: `${errors.description(error)}`,
+          type: "error",
+        });
+      }
+    }
+  };
+
   return (
     <div className={classNames}>
       <Modal.Body>
@@ -95,7 +126,7 @@ const ScreenLoginPassword = ({
       </Modal.Body>
       <Modal.Footer>
         <Button
-          onClick={login}
+          onClick={state?.api === "addAccount" ? addAccount : login}
           isValid={
             inputValue[`password`] !== undefined &&
             inputValue[`password`] !== "" &&

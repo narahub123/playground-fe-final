@@ -88,7 +88,7 @@ const AccountManageModal = ({ className }: AccountManageModalProps) => {
             <Button
               onClick={() => {
                 dispatch(onParallelModalOpen("login"));
-                navigate("/i/flow/login");
+                navigate("/i/flow/login", { state: { api: "addAccount" } });
               }}
               variant="plain"
               className={styles[`account__manage__modal__add`]}

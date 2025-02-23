@@ -153,7 +153,7 @@ const AccountButton = ({ className, disabled = false }: AccountButtonProps) => {
           <Button
             onClick={() => {
               dispatch(onParallelModalOpen("login"));
-              navigate("/i/flow/login");
+              navigate("/i/flow/login", { state: { api: "addAccount" } });
             }}
             variant="plain"
             className={styles["account__dropdown__section__item"]}
