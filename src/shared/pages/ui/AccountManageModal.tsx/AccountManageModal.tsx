@@ -108,7 +108,11 @@ const AccountManageModal = ({ className }: AccountManageModalProps) => {
                       !currentCond ? styles["account__item--unselected"] : "",
                     ])}
                     key={account.userId}
-                    onClick={() => switchAccount(account.userId)}
+                    onClick={
+                      currentCond
+                        ? undefined
+                        : () => switchAccount(account.userId)
+                    }
                   >
                     <AccountItem account={account} />
                     {currentCond && (
