@@ -439,6 +439,10 @@ const components = {
     manage: "계정 관리",
     logout: "계정에서 로그아웃",
     profile: "프로필 사진",
+    errors: {
+      title: getErrorTitle,
+      description: getErrorDescription,
+    },
   },
   AccountItem: {},
   AccountManageModal: {
