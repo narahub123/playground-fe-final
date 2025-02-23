@@ -440,6 +440,10 @@ const components = {
     addBtn: "既存のアカウントを追加",
     expl: `PGアカウントが2つ以上ある場合、追加して簡単に切り替えることができます。最大で5つまで追加可能です。`,
     logoutBtn: "すべてのアカウントからログアウト",
+    errors: {
+      title: getErrorTitle,
+      description: getErrorDescription,
+    },
   },
   LogoutModal: {
     title: "アカウントからログアウトしますか？",

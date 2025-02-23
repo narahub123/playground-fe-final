@@ -419,6 +419,10 @@ const components = {
     addBtn: "新增現有帳戶",
     expl: `若您有兩個以上的PG帳戶，可新增並輕鬆切換。最多可新增5個帳戶。`,
     logoutBtn: "登出所有帳戶",
+    errors: {
+      title: getErrorTitle,
+      description: getErrorDescription,
+    },
   },
   LogoutModal: {
     title: "要登出帳戶嗎？",

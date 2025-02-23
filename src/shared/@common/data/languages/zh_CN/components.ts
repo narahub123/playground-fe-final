@@ -411,6 +411,10 @@ const components = {
     addBtn: "添加现有账户",
     expl: `如果您有两个或以上的PG账户，可以添加并轻松切换。最多可添加5个账户。`,
     logoutBtn: "退出所有账户",
+    errors: {
+      title: getErrorTitle,
+      description: getErrorDescription,
+    },
   },
   LogoutModal: {
     title: "要退出账户吗？",

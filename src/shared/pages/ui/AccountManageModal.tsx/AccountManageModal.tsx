@@ -1,5 +1,5 @@
-import { getParalleModal, getUser } from "@shared/@common/models/selectors";
 import styles from "./AccountManageModal.module.css";
+import { getParalleModal, getUser } from "@shared/@common/models/selectors";
 import {
   useKeepParallelModalOpen,
   useLanguageContent,
@@ -18,6 +18,8 @@ import {
 import AccountItem from "../AccountItem/AccountItem";
 import { Icon } from "@shared/@common/ui/icons";
 import { LogoutModal } from "@features/auth-logout/ui";
+import { fetchWithAuth } from "@shared/pages/utils";
+import { useToast } from "@shared/@common/ui/components/Toast/hooks";
 
 interface AccountManageModalProps {
   className?: string;
@@ -40,7 +42,7 @@ const AccountManageModal = ({ className }: AccountManageModalProps) => {
   useKeepParallelModalOpen("/account/manage", "account");
 
   // 언어 설정
-  const { title, addBtn, expl, logoutBtn } = useLanguageContent([
+  const { title, addBtn, expl, logoutBtn, errors } = useLanguageContent([
     "components",
     "AccountManageModal",
   ]);
@@ -49,6 +51,36 @@ const AccountManageModal = ({ className }: AccountManageModalProps) => {
     styles["account__manage__modal"],
     className,
   ]);
+
+  const toast = useToast();
+
+  // 계정 전환
+  const switchAccount = async (userId: string) => {
+    const result = await fetchWithAuth(
+      "/users/switch",
+      {},
+      { targetUserId: userId }
+    );
+
+    if (result.success) {
+      const accessToken = result.data.accessToken;
+      const activesSessionId = result.data.activeSessionId;
+
+      localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem("activeSessionId", activesSessionId);
+
+      window.location.href = "/home";
+    } else {
+      // false 시 toast 사용
+      for (const error of Object.values(result.error.details)) {
+        toast({
+          title: `${errors.title(result.code)}`,
+          description: `${errors.description(error)}`,
+          type: "error",
+        });
+      }
+    }
+  };
 
   return (
     <Modal
@@ -76,6 +108,7 @@ const AccountManageModal = ({ className }: AccountManageModalProps) => {
                       !currentCond ? styles["account__item--unselected"] : "",
                     ])}
                     key={account.userId}
+                    onClick={() => switchAccount(account.userId)}
                   >
                     <AccountItem account={account} />
                     {currentCond && (
