@@ -37,4 +37,26 @@ const removePlayGroundData = () => {
   localStorage.removeItem(LOCALSTORAGE_KEY);
 };
 
-export { setPlayGroundData, checkLogin, removePlayGroundData };
+// 로컬 스토리지 데이터 가져오기
+const getPlayGroundData = (): IPlayGroundData | null => {
+  const data = localStorage.getItem(LOCALSTORAGE_KEY);
+
+  if (!data) return null;
+
+  let playground: IPlayGroundData;
+  try {
+    playground = JSON.parse(data);
+  } catch (error) {
+    console.error("파싱 도중 에러 발생", error);
+    return null;
+  }
+
+  return playground;
+};
+
+export {
+  setPlayGroundData,
+  checkLogin,
+  removePlayGroundData,
+  getPlayGroundData,
+};

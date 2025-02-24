@@ -3,6 +3,7 @@ import {
   setPlayGroundData,
   checkLogin,
   removePlayGroundData,
+  getPlayGroundData,
 } from "./localStorage";
 
 export {
@@ -13,4 +14,5 @@ export {
   setPlayGroundData,
   checkLogin,
   removePlayGroundData,
+  getPlayGroundData,
 };

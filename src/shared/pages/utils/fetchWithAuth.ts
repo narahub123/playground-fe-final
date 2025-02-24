@@ -1,4 +1,5 @@
 import { logout } from "@features/auth-logout/utils";
+import { getPlayGroundData } from "@shared/@common/utils";
 
 const BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
 
@@ -7,8 +8,11 @@ const fetchWithAuth = async (
   options: RequestInit = {},
   body: any = null
 ) => {
-  const accessToken = localStorage.getItem("accessToken");
-  const activeSessionId = localStorage.getItem("activeSessionId");
+  const playground = getPlayGroundData();
+
+  if (!playground) return;
+
+  const { accessToken, activeSessionId } = playground;
 
   if (!accessToken || !activeSessionId) throw new Error("로그인이 필요합니다.");
 
