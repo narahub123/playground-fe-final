@@ -15,10 +15,14 @@ const verifyPasswordLoginAPI = async (inputValue: LoginInputValueType) => {
 
   const result = await response.json();
 
-  setPlayGroundData({
-    accessToken: result.data.accessToken,
-    activeSessionId: result.data.activeSessionId,
-  });
+  if (result.success) {
+    if (result.data.accessToken) {
+      localStorage.setItem("accessToken", result.data.accessToken);
+    }
+    if (result.data.activeSessionId) {
+      localStorage.setItem("activeSessionId", result.data.activeSessionId);
+    }
+  }
 
   return result;
 };
