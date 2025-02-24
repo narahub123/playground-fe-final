@@ -2,8 +2,6 @@ import styles from "./SettingsPage.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Text } from "@shared/@common/ui/components";
 import { joinClassNames } from "@shared/@common/utils";
-import { LuChevronRight } from "react-icons/lu";
-import { NavLink } from "react-router-dom";
 import { SectionLayout } from "./layouts";
 
 interface SettingsPageProps {
@@ -23,7 +21,7 @@ const SettingsPage = ({ className, disabled = false }: SettingsPageProps) => {
         <SectionLayout>
           <SectionLayout.Header>헤더</SectionLayout.Header>
           <SectionLayout.HeaderContent>헤더 컨텐츠</SectionLayout.HeaderContent>
-          <SectionLayout.Main>메인</SectionLayout.Main>
+          <SectionLayout.Main>컨텐츠</SectionLayout.Main>
         </SectionLayout>
       </section>
       <section className={styles[`settings___details__section`]}>
