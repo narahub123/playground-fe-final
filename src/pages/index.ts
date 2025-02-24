@@ -8,6 +8,7 @@ import LogoutPage from "./LogoutPage/LogoutPage";
 import ExplorePage from "./ExplorePage/ExplorePage";
 import NotificationsPage from "./NotificationsPage/NotificationsPage";
 import MessagesPage from "./MessagesPage/MessagesPage";
+import ProfilePage from "./ProfilePage/ProfilePage";
 
 export {
   PlayGround,
@@ -20,4 +21,5 @@ export {
   ExplorePage,
   NotificationsPage,
   MessagesPage,
+  ProfilePage,
 };
