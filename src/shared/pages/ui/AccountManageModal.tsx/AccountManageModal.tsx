@@ -5,7 +5,7 @@ import {
   useLanguageContent,
 } from "@shared/@common/models/hooks";
 import { Button, Modal, Text } from "@shared/@common/ui/components";
-import { joinClassNames } from "@shared/@common/utils";
+import { joinClassNames, setPlayGroundData } from "@shared/@common/utils";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "@app/store";
 import { useNavigate } from "react-router-dom";
@@ -63,11 +63,10 @@ const AccountManageModal = ({ className }: AccountManageModalProps) => {
     );
 
     if (result.success) {
-      const accessToken = result.data.accessToken;
-      const activesSessionId = result.data.activeSessionId;
-
-      localStorage.setItem("accessToken", accessToken);
-      localStorage.setItem("activeSessionId", activesSessionId);
+      setPlayGroundData({
+        accessToken: result.data.accessToken,
+        activeSessionId: result.data.activeSessionId,
+      });
 
       window.location.href = "/home";
     } else {
