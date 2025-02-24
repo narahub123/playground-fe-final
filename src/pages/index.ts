@@ -7,6 +7,7 @@ import HomePage from "./HomePage/HomePage";
 import LogoutPage from "./LogoutPage/LogoutPage";
 import ExplorePage from "./ExplorePage/ExplorePage";
 import NotificationsPage from "./NotificationsPage/NotificationsPage";
+import MessagesPage from "./MessagesPage/MessagesPage";
 
 export {
   PlayGround,
@@ -18,4 +19,5 @@ export {
   LogoutPage,
   ExplorePage,
   NotificationsPage,
+  MessagesPage,
 };

@@ -21,6 +21,7 @@ const pages = {
   HomePage: {},
   ExplorePage: {},
   NotificationsPage: {},
+  MessagesPage: {},
 };
 
 export default pages;

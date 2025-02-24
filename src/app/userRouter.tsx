@@ -1,5 +1,11 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
-import { ExplorePage, HomePage, LogoutPage, NotificationsPage } from "@pages";
+import {
+  ExplorePage,
+  HomePage,
+  LogoutPage,
+  MessagesPage,
+  NotificationsPage,
+} from "@pages";
 import { ModalLayout } from "@shared/@common/layouts";
 import { AccountManageModal, WritePostModal } from "@shared/pages/ui";
 import { LoginModal } from "@features/auth-login/ui";
@@ -21,6 +27,10 @@ const userRouter = createBrowserRouter([
       {
         path: "/notifications",
         element: <NotificationsPage />,
+      },
+      {
+        path: "/messages",
+        element: <MessagesPage />,
       },
       {
         path: "compose/post",
