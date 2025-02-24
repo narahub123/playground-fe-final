@@ -1,4 +1,5 @@
 import { LoginInputValueType } from "@features/auth-login/types";
+import { setPlayGroundData } from "@shared/@common/utils/localStorage";
 
 const BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
 
@@ -14,12 +15,10 @@ const verifyPasswordLoginAPI = async (inputValue: LoginInputValueType) => {
 
   const result = await response.json();
 
-  if (result.data.accessToken) {
-    localStorage.setItem("accessToken", result.data.accessToken);
-  }
-  if (result.data.activeSessionId) {
-    localStorage.setItem("activeSessionId", result.data.activeSessionId);
-  }
+  setPlayGroundData({
+    accessToken: result.data.accessToken,
+    activeSessionId: result.data.activeSessionId,
+  });
 
   return result;
 };

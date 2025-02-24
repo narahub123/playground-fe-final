@@ -259,3 +259,5 @@ export const SELECT_LISTBOX_SCROLL_STEP = 10;
  * @default 40
  */
 export const SELECT_OPTION_HEIGHT = 40;
+
+export const LOCALSTORAGE_KEY = "www.playground.com";

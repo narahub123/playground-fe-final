@@ -29,6 +29,8 @@ import {
   VariantType,
 } from "./components";
 
+import { IPlayGroundData } from "./utils";
+
 export type {
   // slices
   BgThemeType,
@@ -58,4 +60,7 @@ export type {
   SizeExtendedWithFull,
   BorderStyle,
   VariantType,
+
+  // utils
+  IPlayGroundData,
 };
