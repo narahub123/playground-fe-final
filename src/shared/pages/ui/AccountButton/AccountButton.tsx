@@ -1,7 +1,7 @@
 import styles from "./AccountButton.module.css";
 import { defaultProfileImage } from "@shared/@common/assets";
 import { useLanguageContent } from "@shared/@common/models/hooks";
-import { joinClassNames } from "@shared/@common/utils";
+import { joinClassNames, setPlayGroundData } from "@shared/@common/utils";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Button, Dropdown, Text } from "@shared/@common/ui/components";
 import AccountItem from "../AccountItem/AccountItem";
@@ -101,11 +101,10 @@ const AccountButton = ({ className, disabled = false }: AccountButtonProps) => {
     );
 
     if (result.success) {
-      const accessToken = result.data.accessToken;
-      const activesSessionId = result.data.activeSessionId;
-
-      localStorage.setItem("accessToken", accessToken);
-      localStorage.setItem("activeSessionId", activesSessionId);
+      setPlayGroundData({
+        accessToken: result.data.accessToken,
+        activeSessionId: result.data.activeSessionId,
+      });
 
       window.location.href = "/home";
     } else {
