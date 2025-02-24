@@ -32,4 +32,9 @@ const checkLogin = (): boolean => {
   return Boolean(accessToken && activeSessionId);
 };
 
-export { setPlayGroundData, checkLogin };
+// 로컬 스토리지에서 playground 정보 삭제하기
+const removePlayGroundData = () => {
+  localStorage.removeItem(LOCALSTORAGE_KEY);
+};
+
+export { setPlayGroundData, checkLogin, removePlayGroundData };

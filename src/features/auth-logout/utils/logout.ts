@@ -4,10 +4,10 @@ import { clearDisplayState } from "@shared/@common/models/slices/displaySlice";
 import { clearNotificationState } from "@shared/@common/models/slices/notificationSlice";
 import { clearPrivacyState } from "@shared/@common/models/slices/privacySlice";
 import { clearSecurityState } from "@shared/@common/models/slices/securitySlice";
+import { removePlayGroundData } from "@shared/@common/utils";
 
 const logout = () => {
-  localStorage.removeItem("accessToken");
-  localStorage.removeItem("activeSessionId");
+  removePlayGroundData();
 
   // slice 초기화
   store.dispatch(clearUserState());
