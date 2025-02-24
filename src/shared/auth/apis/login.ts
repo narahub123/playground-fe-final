@@ -1,5 +1,5 @@
 import { LoginInputValueType } from "@features/auth-login/types";
-import { setPlayGroundData } from "@shared/@common/utils/localStorage";
+import { setPlayGroundData } from "@shared/@common/utils";
 
 const BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
 
