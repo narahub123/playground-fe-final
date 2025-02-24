@@ -1,1 +1,47 @@
-.settings__page {}
+.settings__page {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.settings___explore__section {
+  width: 100%;
+  background-color: orange;
+  border-right: 1px solid #ccc;
+}
+
+.section__tab__list {
+}
+
+.section__tab {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 12px 16px;
+  border-right: 3px solid transparent;
+}
+
+.section__tab:hover {
+  background-color: #f1f1f1;
+}
+
+.section__tab--active {
+  border-right: 3px solid var(--colorTheme-color-primary);
+  background-color: #f1f1f1;
+}
+
+.settings___details__section {
+  display: none;
+  background-color: cornflowerblue;
+}
+
+@media screen and (min-width: 1021px) {
+  .settings___details__section {
+    display: block;
+    flex: 1;
+  }
+  .settings___explore__section {
+    width: 380px;
+  }
+}

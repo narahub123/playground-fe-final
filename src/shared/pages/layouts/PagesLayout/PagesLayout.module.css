@@ -14,7 +14,6 @@
 
 .pages__layout__page {
   flex: 1;
-  max-width: 600px;
 }
 
 .pages__layout__sidebar {
