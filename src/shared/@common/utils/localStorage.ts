@@ -10,4 +10,26 @@ const setPlayGroundData = (data: IPlayGroundData) => {
   }
 };
 
-export { setPlayGroundData };
+// 로그인 여부 확인하기
+const checkLogin = (): boolean => {
+  const data = localStorage.getItem(LOCALSTORAGE_KEY);
+
+  if (!data) {
+    console.error("로컬 스토리지 빔");
+    return false;
+  }
+
+  let playground: IPlayGroundData;
+  try {
+    playground = JSON.parse(data);
+  } catch (error) {
+    console.error("파싱 도중 에러 발생", error);
+    return false;
+  }
+
+  const { accessToken, activeSessionId } = playground;
+
+  return Boolean(accessToken && activeSessionId);
+};
+
+export { setPlayGroundData, checkLogin };

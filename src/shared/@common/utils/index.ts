@@ -1,5 +1,5 @@
 import { joinClassNames, getNumbersFromText } from "./components";
-import { setPlayGroundData } from "./localStorage";
+import { setPlayGroundData, checkLogin } from "./localStorage";
 
 export {
   joinClassNames,
@@ -7,4 +7,5 @@ export {
 
   // localStorage
   setPlayGroundData,
+  checkLogin,
 };

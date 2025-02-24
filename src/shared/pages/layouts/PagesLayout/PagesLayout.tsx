@@ -7,13 +7,14 @@ import { setDisplay } from "@shared/@common/models/slices/displaySlice";
 import { setSecurity } from "@shared/@common/models/slices/securitySlice";
 import { setPrivacy } from "@shared/@common/models/slices/privacySlice";
 import { setNotification } from "@shared/@common/models/slices/notificationSlice";
-import { fetchWithAuth, getAccessToken } from "@shared/pages/utils";
+import { fetchWithAuth } from "@shared/pages/utils";
 import { Header } from "@shared/pages/ui";
 import { useLocation } from "react-router";
 import { useDisplaySetup } from "@shared/@common/models/hooks";
 import { AlertContextProvider } from "@shared/@common/ui/components/Alert/context";
 import { ToastContextProvider } from "@shared/@common/ui/components/Toast/context";
 import { TextHeader } from "@test/ui/components";
+import { checkLogin } from "@shared/@common/utils";
 
 const PagesLayout = () => {
   const dispatch = useAppDispatch();
@@ -21,12 +22,12 @@ const PagesLayout = () => {
 
   const isLogout = pathname.includes("logout");
 
-  const login = getAccessToken();
+  const isLogin = checkLogin();
 
   useDisplaySetup();
 
   useEffect(() => {
-    if (!login) return;
+    if (!isLogin) return;
 
     const fetchData = async () => {
       const result = await fetchWithAuth("/users/me");
@@ -43,7 +44,7 @@ const PagesLayout = () => {
     };
 
     fetchData();
-  }, [login]);
+  }, [isLogin]);
   return (
     <ToastContextProvider>
       <AlertContextProvider>

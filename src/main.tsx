@@ -8,13 +8,13 @@ import { createRoot } from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
 import { store } from "@app";
 import { Provider } from "react-redux";
-import { getAccessToken } from "@shared/pages/utils";
+import { checkLogin } from "@shared/@common/utils";
 import userRouter from "@app/userRouter";
 import guestRouter from "@app/guestRouter";
 
-const login = getAccessToken();
+const isLogin = checkLogin();
 
-const router = login ? userRouter : guestRouter;
+const router = isLogin ? userRouter : guestRouter;
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
