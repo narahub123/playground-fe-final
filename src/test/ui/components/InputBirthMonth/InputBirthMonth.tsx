@@ -1,6 +1,6 @@
 import { birthMonthList } from "@features/auth-email/data";
 import { useLanguageContent } from "@shared/@common/models/hooks";
-import { getBirth } from "@shared/@common/models/selectors";
+import { selectBirth } from "@shared/@common/models/selectors";
 import { setBirthMonth } from "@shared/@common/models/slices/userSlice";
 import { getBirthInSignup } from "@shared/auth/models/selectors";
 import { setBirthMonthInSignup } from "@shared/auth/models/slices/signupSlice";
@@ -34,7 +34,7 @@ const InputBirthMonth = ({
   isValid,
   setIsValid,
 }: InputBirthMonthProps) => {
-  const selector = isSignup ? getBirthInSignup : getBirth;
+  const selector = isSignup ? getBirthInSignup : selectBirth;
 
   const inputValue = useSelector(selector);
 

@@ -1,3 +1,5 @@
+import { GenderType } from "@shared/auth/types";
+
 type BgThemeType = "light" | "dark" | "darkest";
 type ColorThemeType =
   | "cornflowerblue"
@@ -49,6 +51,49 @@ interface IAccount {
   intro: string;
 }
 
+interface IBirth {
+  year: number;
+  month: number;
+  date: number;
+}
+
+type UserRoleType = "ADMIN" | "USER";
+
+interface ILocation {
+  country: string;
+  state: string;
+  city: string;
+  county?: string;
+}
+
+interface ILockStatus {
+  isLocked: boolean;
+  lockReason: "BRUTE_FORCE_DETECTED" | "TOO_MANY_LOGIN_FAILURES" | null;
+  lockedAt: Date | null;
+}
+
+interface IUser {
+  userId: string;
+  username: string;
+  phones: string[];
+  emails: string[];
+  birth: IBirth;
+  gender: GenderType;
+  userRole: UserRoleType;
+  country: string;
+  ip: string;
+  location: ILocation;
+  profileImage: string;
+  profileCoverImage: string;
+  intro: string;
+  accountGroup: IAccount[];
+  followings: string[];
+  followers: string[];
+  isAuthorized: boolean;
+  isAuthenticated: boolean;
+  lockStatus: ILockStatus;
+}
+
 export type {
   BgThemeType,
   ColorThemeType,
@@ -66,4 +111,9 @@ export type {
   MessageAllowSettings,
   StandAlonModals,
   IAccount,
+  IUser,
+  IBirth,
+  ILocation,
+  ILockStatus,
+  UserRoleType,
 };

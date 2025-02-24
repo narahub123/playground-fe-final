@@ -1,6 +1,6 @@
 import styles from "./LogoutModal.module.css";
 import {
-  getAccountGroup,
+  selectAccountGroup,
   getStandAloneModal,
 } from "@shared/@common/models/selectors";
 import { useLanguageContent } from "@shared/@common/models/hooks";
@@ -22,7 +22,7 @@ const LogoutModal = ({
   className,
   onClose,
 }: LogoutModalProps) => {
-  const accounts = useSelector(getAccountGroup);
+  const accounts = useSelector(selectAccountGroup);
 
   // 여닫기 구현
   const isOpen = useSelector(getStandAloneModal("logout"));

@@ -1,5 +1,5 @@
 import { useLanguageContent } from "@shared/@common/models/hooks";
-import { getGender } from "@shared/@common/models/selectors";
+import { selectGender } from "@shared/@common/models/selectors";
 import { setGender } from "@shared/@common/models/slices/userSlice";
 
 import { getGenderInSignup } from "@shared/auth/models/selectors";
@@ -34,7 +34,7 @@ const InputGender = ({
   isValid,
   setIsValid,
 }: InputGenderProps) => {
-  const selector = isSignup ? getGenderInSignup : getGender;
+  const selector = isSignup ? getGenderInSignup : selectGender;
   const inputValue = useSelector(selector);
 
   const setInputValue = isSignup ? setGenderInSignup : setGender;

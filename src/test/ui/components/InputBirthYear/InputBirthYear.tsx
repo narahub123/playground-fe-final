@@ -2,7 +2,7 @@ import { useLanguageContent } from "@shared/@common/models/hooks";
 import Input from "../../../../shared/@common/ui/components/Input1/ui";
 import { useSelector } from "react-redux";
 import { getBirthInSignup } from "@shared/auth/models/selectors";
-import { getBirth } from "@shared/@common/models/selectors";
+import { selectBirth } from "@shared/@common/models/selectors";
 import { setBirthYearInSignup } from "@shared/auth/models/slices/signupSlice";
 import { setBirthYear } from "@shared/@common/models/slices/userSlice";
 import { birthYearList } from "@features/auth-email/data";
@@ -34,7 +34,7 @@ const InputBirthYear = ({
   isValid,
   setIsValid,
 }: InputBirthYearProps) => {
-  const selector = isSignup ? getBirthInSignup : getBirth;
+  const selector = isSignup ? getBirthInSignup : selectBirth;
 
   const inputValue = useSelector(selector);
 

@@ -1,7 +1,7 @@
 import { LoginInputValueType } from "@features/auth-login/types";
 import { determineInputValueType } from "@features/auth-login/utils";
 import { useLanguageContent } from "@shared/@common/models/hooks";
-import { getUser } from "@shared/@common/models/selectors";
+import { selectUser } from "@shared/@common/models/selectors";
 import { UserState } from "@shared/@common/models/slices/userSlice";
 import { Input, Text } from "@shared/@common/ui/components";
 import { useInput } from "@shared/@common/ui/components/Input";
@@ -42,7 +42,7 @@ const InputAccountLogin = ({
   disabled = false,
 }: InputAccountLoginProps) => {
   const { state } = useLocation();
-  const user = useSelector(getUser);
+  const user = useSelector(selectUser);
   // 언어 설정
   const { label, error, errMsg } = useLanguageContent([
     "components",

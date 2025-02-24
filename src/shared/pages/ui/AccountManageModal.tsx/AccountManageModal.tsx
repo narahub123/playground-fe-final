@@ -1,5 +1,5 @@
 import styles from "./AccountManageModal.module.css";
-import { getParalleModal, getUser } from "@shared/@common/models/selectors";
+import { getParalleModal, selectUser } from "@shared/@common/models/selectors";
 import {
   useKeepParallelModalOpen,
   useLanguageContent,
@@ -28,7 +28,7 @@ interface AccountManageModalProps {
 const AccountManageModal = ({ className }: AccountManageModalProps) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const user = useSelector(getUser);
+  const user = useSelector(selectUser);
   const isOpen = useSelector(getParalleModal("account"));
   const onClose = () => {
     dispatch(onParallelModalClose("account"));

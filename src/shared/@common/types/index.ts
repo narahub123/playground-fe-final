@@ -15,6 +15,11 @@ import {
   MuteDuration,
   MessageAllowSettings,
   IAccount,
+  IUser,
+  IBirth,
+  ILocation,
+  ILockStatus,
+  UserRoleType,
 } from "./slices";
 
 import {
@@ -47,6 +52,11 @@ export type {
   MuteDuration,
   MessageAllowSettings,
   IAccount,
+  IUser,
+  IBirth,
+  ILocation,
+  ILockStatus,
+  UserRoleType,
 
   // components
   DropdownItemType, // dropdown item

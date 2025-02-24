@@ -1,7 +1,7 @@
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import Input from "../Input1/ui";
 import { getUsernameInSignup } from "@shared/auth/models/selectors";
-import { getUsername } from "@shared/@common/models/selectors";
+import { selectUsername } from "@shared/@common/models/selectors";
 import { useSelector } from "react-redux";
 import { setUsernameInSignup } from "@shared/auth/models/slices/signupSlice";
 import { setUsername } from "@shared/@common/models/slices/userSlice";
@@ -34,7 +34,7 @@ const InputUsername = ({
   isValid,
   setIsValid,
 }: InputUsernameProps) => {
-  const selector = isSignup ? getUsernameInSignup : getUsername;
+  const selector = isSignup ? getUsernameInSignup : selectUsername;
 
   const inputValue = useSelector(selector);
 

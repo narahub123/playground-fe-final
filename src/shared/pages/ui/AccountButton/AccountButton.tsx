@@ -10,7 +10,7 @@ import { useAppDispatch } from "@app/store";
 import { useNavigate } from "react-router-dom";
 import { onParallelModalOpen } from "@shared/@common/models/slices/modalSlice";
 import { useSelector } from "react-redux";
-import { getUser } from "@shared/@common/models/selectors";
+import { selectUser } from "@shared/@common/models/selectors";
 import { useToast } from "@shared/@common/ui/components/Toast/hooks";
 import { fetchWithAuth } from "@shared/pages/utils";
 
@@ -32,7 +32,7 @@ const AccountButton = ({ className, disabled = false }: AccountButtonProps) => {
     height: number;
   }>({ height: 0 });
 
-  const user = useSelector(getUser);
+  const user = useSelector(selectUser);
 
   const onOpen = () => {
     setIsOpen(!isOpen);

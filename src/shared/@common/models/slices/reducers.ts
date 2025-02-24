@@ -8,8 +8,6 @@ import {
 } from "./displaySlice";
 
 import {
-  setPassword,
-  setPasswordCheck,
   setUserId,
   setBirth,
   setBirthYear,
@@ -24,6 +22,15 @@ import {
   setUser,
   setAcccountGroup,
   clearUserState,
+  setFollowers,
+  setFollowings,
+  setIntro,
+  setIsAuthenticated,
+  setIsAuthorized,
+  setLockStatus,
+  setProfileCoverImage,
+  setUserLoading,
+  setUserRole,
 } from "./userSlice";
 
 import {
@@ -51,8 +58,6 @@ export {
   clearDisplayState,
 
   // user
-  setPassword,
-  setPasswordCheck,
   setUserId,
   setBirth,
   setBirthYear,
@@ -67,6 +72,15 @@ export {
   setUser,
   setAcccountGroup,
   clearUserState,
+  setFollowers,
+  setFollowings,
+  setIntro,
+  setIsAuthenticated,
+  setIsAuthorized,
+  setLockStatus,
+  setProfileCoverImage,
+  setUserLoading,
+  setUserRole,
 
   // modal
   onParallelModalOpen,

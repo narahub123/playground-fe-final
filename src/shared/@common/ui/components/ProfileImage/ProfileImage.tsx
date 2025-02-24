@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { getProfileImageInSignup } from "@shared/auth/models/selectors";
 import { defaultProfileImage } from "@shared/@common/assets";
 import { setProfileImageInSignup } from "@shared/auth/models/slices/signupSlice";
-import { getProfileImage } from "@shared/@common/models/selectors";
+import { selectProfileImage } from "@shared/@common/models/selectors";
 import { setProfileImage } from "@shared/@common/models/slices/userSlice";
 
 interface CustomProfileImageProps {
@@ -27,7 +27,7 @@ const ProfileImage = ({
   rounded,
   className,
 }: ProfileImageProps) => {
-  const selector = isSignup ? getProfileImageInSignup : getProfileImage;
+  const selector = isSignup ? getProfileImageInSignup : selectProfileImage;
 
   const reducer = isSignup ? setProfileImageInSignup : setProfileImage;
 
