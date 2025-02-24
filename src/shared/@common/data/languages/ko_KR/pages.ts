@@ -19,6 +19,7 @@ const pages = {
     ],
   },
   HomePage: {},
+  ExplorePage: {},
 };
 
 export default pages;

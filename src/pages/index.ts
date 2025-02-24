@@ -5,6 +5,7 @@ import FlowPage from "./FlowPage/FlowPage";
 import TestPage from "./TestPage/TestPage";
 import HomePage from "./HomePage/HomePage";
 import LogoutPage from "./LogoutPage/LogoutPage";
+import ExplorePage from "./ExplorePage/ExplorePage";
 
 export {
   PlayGround,
@@ -14,4 +15,5 @@ export {
   TestPage,
   HomePage,
   LogoutPage,
+  ExplorePage,
 };
