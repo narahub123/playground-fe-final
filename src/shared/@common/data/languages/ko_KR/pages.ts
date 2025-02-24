@@ -23,6 +23,7 @@ const pages = {
   NotificationsPage: {},
   MessagesPage: {},
   ProfilePage: {},
+  SettingsPage: {},
 };
 
 export default pages;

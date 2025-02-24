@@ -6,6 +6,7 @@ import {
   MessagesPage,
   NotificationsPage,
   ProfilePage,
+  SettingsPage,
 } from "@pages";
 import { ModalLayout } from "@shared/@common/layouts";
 import { AccountManageModal, WritePostModal } from "@shared/pages/ui";
@@ -36,6 +37,10 @@ const userRouter = createBrowserRouter([
       {
         path: `/:userId`,
         element: <ProfilePage />,
+      },
+      {
+        path: "/settings",
+        element: <SettingsPage />,
       },
       {
         path: "compose/post",
