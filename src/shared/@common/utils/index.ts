@@ -1,3 +1,8 @@
 import { joinClassNames, getNumbersFromText } from "./components";
+import {} from "./localStorage";
 
-export { joinClassNames, getNumbersFromText };
+export {
+  joinClassNames,
+  getNumbersFromText,
+  // localStorage
+};
