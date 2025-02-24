@@ -55,7 +55,7 @@ const PagesLayout = () => {
             <div className={styles[`pages__layout__page`]}>
               <Outlet />
             </div>
-            {!isLogout && (
+            {!isLogout && !pathname.includes("settings") && (
               <aside className={styles[`pages__layout__sidebar`]}>기타</aside>
             )}
           </main>
