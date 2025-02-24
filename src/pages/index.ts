@@ -6,6 +6,7 @@ import TestPage from "./TestPage/TestPage";
 import HomePage from "./HomePage/HomePage";
 import LogoutPage from "./LogoutPage/LogoutPage";
 import ExplorePage from "./ExplorePage/ExplorePage";
+import NotificationsPage from "./NotificationsPage/NotificationsPage";
 
 export {
   PlayGround,
@@ -16,4 +17,5 @@ export {
   HomePage,
   LogoutPage,
   ExplorePage,
+  NotificationsPage,
 };

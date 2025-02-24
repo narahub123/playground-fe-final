@@ -1,5 +1,5 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
-import { ExplorePage, HomePage, LogoutPage } from "@pages";
+import { ExplorePage, HomePage, LogoutPage, NotificationsPage } from "@pages";
 import { ModalLayout } from "@shared/@common/layouts";
 import { AccountManageModal, WritePostModal } from "@shared/pages/ui";
 import { LoginModal } from "@features/auth-login/ui";
@@ -17,6 +17,10 @@ const userRouter = createBrowserRouter([
       {
         path: "/explore",
         element: <ExplorePage />,
+      },
+      {
+        path: "/notifications",
+        element: <NotificationsPage />,
       },
       {
         path: "compose/post",
