@@ -10,6 +10,7 @@ import {
   USERID_INCOMPLETE,
   PHONE_FORMAT_KR,
 } from "./regExps"; // 정규 표현식
+
 import {
   PASSWORD_MAX,
   PASSWORD_MIN,
@@ -46,6 +47,8 @@ import {
   SELECT_OPTION_HEIGHT,
   LOCALSTORAGE_KEY,
 } from "./constants"; // 상수
+
+import SETTINGS_LINKS from "./settings-links";
 
 export {
   // 정규 표현식
@@ -95,4 +98,7 @@ export {
   SELECT_LISTBOX_SCROLL_STEP,
   SELECT_OPTION_HEIGHT,
   LOCALSTORAGE_KEY,
+
+  // settings-links
+  SETTINGS_LINKS
 };

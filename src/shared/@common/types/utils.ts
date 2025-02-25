@@ -3,4 +3,15 @@ interface IPlayGroundData {
   activeSessionId: string;
 }
 
-export type { IPlayGroundData };
+interface ISectionText {
+  label: string;
+  description?: string;
+}
+
+interface ISectionTextMap {
+  [sectionKey: string]: {
+    [itemkey: string]: ISectionText;
+  };
+}
+
+export type { IPlayGroundData, ISectionText, ISectionTextMap };

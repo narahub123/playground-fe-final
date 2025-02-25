@@ -8,6 +8,8 @@ import {
   LuArrowLeft as arrowLeft,
   LuCircleCheck as success,
   LuCircleAlert as warning,
+  LuKeyRound as keyIcon,
+  LuSmartphoneNfc as notificationPreferencesIcon,
 } from "react-icons/lu";
 import {
   RiEyeLine as eye,
@@ -21,6 +23,7 @@ import {
   RiNotificationLine as notificationLine,
   RiNotificationFill as notificationFill,
   RiFileList2Line as lists,
+  RiLock2Line as securityIcon,
 } from "react-icons/ri";
 import {
   FaEnvelope as envelopFill,
@@ -37,13 +40,45 @@ import {
   CgMoreO as moreRounded,
   CgArrowTopRightR as ads,
 } from "react-icons/cg";
-import { GoHome as homeLine, GoHomeFill as homeFill } from "react-icons/go";
-import { HiOutlineBookmark as bookmarks } from "react-icons/hi";
-import { PiMoney as monetization } from "react-icons/pi";
+import {
+  GoHome as homeLine,
+  GoHomeFill as homeFill,
+  GoArrowSwitch as connectedAccountsIcon,
+} from "react-icons/go";
+import {
+  HiOutlineBookmark as bookmarks,
+  HiOutlineDownload as downloadIcon,
+} from "react-icons/hi";
+import {
+  PiMoney as monetization,
+  PiPencilSimpleLine as myPostsIcon,
+} from "react-icons/pi";
 import {
   FiSettings as settings,
   FiMoreHorizontal as more,
 } from "react-icons/fi";
+import {
+  LiaHeartBrokenSolid as deactivateIcon,
+  LiaUsersSolid as audienceIcon,
+} from "react-icons/lia";
+import {
+  TfiLayers as appsIcon,
+  TfiLocationPin as pinIcon,
+  TfiWorld as languageIcon,
+} from "react-icons/tfi";
+import { IoPeopleOutline as delegateIcon } from "react-icons/io5";
+import {
+  BsCardText as contentIcon,
+  BsArrowUpRightSquare as adsPreferencesIcon,
+  BsSliders2 as notificationFiltersIcon,
+  BsEyeSlash as accessibilityIcon,
+  BsBrush as displayIcon,
+} from "react-icons/bs";
+import {
+  BiVolumeMute as muteIcon,
+  BiBarChart as dataIcon,
+} from "react-icons/bi";
+import { MdOutlinePersonSearch as findPersonIcon } from "react-icons/md";
 
 const Icons = {
   close, // 창닫기
@@ -82,6 +117,26 @@ const Icons = {
   ads, // 광고 아이콘
   settings, // 설정 아이콘
   more, // 더보기
+  keyIcon, // 비밀변경 아이콘
+  downloadIcon, // 다운로드 아이콘
+  deactivateIcon, // 비활성화 아이콘
+  securityIcon, // 보안 아이콘
+  appsIcon, // 앱과 세션 아이콘
+  connectedAccountsIcon, // 연결된 계정 아이콘
+  delegateIcon, // 위임 아이콘
+  audienceIcon, // 오디언스 아이콘
+  myPostsIcon, // 내 게시물 아이콘
+  contentIcon, // 표시되는 컨텐츠 아이콘
+  muteIcon, // 뮤트 아이콘
+  findPersonIcon, // 계정 찾기 아이콘
+  adsPreferencesIcon, // 광고 설정 아이콘
+  pinIcon, // 위치 설정 아이콘
+  notificationFiltersIcon, // 알림 필터 아이콘
+  notificationPreferencesIcon, // 알림 환경설정 아이콘
+  accessibilityIcon, // 접근성 아이콘
+  displayIcon, // 표시 아이콘
+  languageIcon, // 언어 아이콘
+  dataIcon, // 데이터 사용량 아이콘
 };
 
 export default Icons;

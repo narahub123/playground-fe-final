@@ -8,7 +8,7 @@ interface HeaderContentProps {
 }
 
 const HeaderContent = ({ children, className }: HeaderContentProps) => {
-  const classNames = joinClassNames([styles["headercontent"], className]);
+  const classNames = joinClassNames([styles["header__content"], className]);
 
   return <div className={classNames}>{children}</div>;
 };

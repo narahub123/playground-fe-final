@@ -34,7 +34,7 @@ import {
   VariantType,
 } from "./components";
 
-import { IPlayGroundData } from "./utils";
+import { IPlayGroundData, ISectionText, ISectionTextMap } from "./utils";
 
 export type {
   // slices
@@ -73,4 +73,6 @@ export type {
 
   // utils
   IPlayGroundData,
+  ISectionText,
+  ISectionTextMap,
 };
