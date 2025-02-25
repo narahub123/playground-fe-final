@@ -12,6 +12,6 @@ interface ISectionDataMap {
   };
 }
 
-interface ITabData extends ISectionData, ISectionText {}
+interface ISectionTabData extends ISectionData, ISectionText {}
 
-export type { ISectionData, ITabData, ISectionDataMap };
+export type { ISectionData, ISectionTabData, ISectionDataMap };
