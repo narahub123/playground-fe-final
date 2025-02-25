@@ -9,7 +9,7 @@
   background-color: #f9f9f9;
 }
 
-.setting__tab--active {
+.settings__tab--active {
   background-color: #f8f8f8;
   border-right: 2px solid var(--colorTheme-color-primary);
 }
