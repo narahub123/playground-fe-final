@@ -5,6 +5,7 @@ import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Text } from "@shared/@common/ui/components";
 import { joinClassNames } from "@shared/@common/utils";
 import SettingsTab from "../SettingsTab/SettingsTab";
+import { SettingsSearch } from "@features/settings-search/ui";
 
 const ExploreSection = () => {
   // 언어 설정
@@ -19,7 +20,9 @@ const ExploreSection = () => {
       <SectionLayout.Header>
         <Text type="heading3">{title}</Text>
       </SectionLayout.Header>
-      <SectionLayout.HeaderContent>헤더 컨텐츠</SectionLayout.HeaderContent>
+      <SectionLayout.HeaderContent>
+        <SettingsSearch />
+      </SectionLayout.HeaderContent>
       <SectionLayout.Main>
         <nav role="tablist">
           {tabs.map((tab) => (

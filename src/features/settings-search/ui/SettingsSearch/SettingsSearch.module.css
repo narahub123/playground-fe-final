@@ -1,0 +1,43 @@
+.settings__search {
+  display: flex;
+  align-items: center;
+}
+
+.settings__search__off__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34.4px;
+  height: 34.4px;
+  margin-right: 0.25rem;
+}
+
+.settings__search__container {
+  flex: 1;
+  height: 40px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.settings__search__leading__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 0.25rem;
+}
+
+.settings__search__field {
+  flex: 1;
+  padding: 0 1rem 0 0.25rem;
+  height: 100%;
+  border: none;
+}
+
+.settings__search__trailing__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.75em;
+}
