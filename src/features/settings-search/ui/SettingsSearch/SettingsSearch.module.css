@@ -3,7 +3,7 @@
   align-items: center;
 }
 
-.settings__search__off__icon {
+.settings__search__off__wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -21,7 +21,7 @@
   align-items: center;
 }
 
-.settings__search__leading__icon {
+.settings__search__leading__wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -35,9 +35,17 @@
   border: none;
 }
 
-.settings__search__trailing__icon {
+.settings__search__trailing__wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-right: 0.75em;
+}
+
+.settings__search__close__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.4rem;
 }

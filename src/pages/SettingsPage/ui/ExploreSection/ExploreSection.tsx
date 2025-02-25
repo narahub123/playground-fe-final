@@ -6,8 +6,11 @@ import { Text } from "@shared/@common/ui/components";
 import { joinClassNames } from "@shared/@common/utils";
 import SettingsTab from "../SettingsTab/SettingsTab";
 import { SettingsSearch } from "@features/settings-search/ui";
+import { useState } from "react";
 
 const ExploreSection = () => {
+  const [keyword, setKeyword] = useState("");
+  const [isSearching, setIsSearching] = useState(false);
   // 언어 설정
   const { title } = useLanguageContent(["sections", "ExploreSection"]);
 
@@ -21,7 +24,12 @@ const ExploreSection = () => {
         <Text type="heading3">{title}</Text>
       </SectionLayout.Header>
       <SectionLayout.HeaderContent>
-        <SettingsSearch />
+        <SettingsSearch
+          keyword={keyword}
+          setKeyword={setKeyword}
+          isSearching={isSearching}
+          setIsSearching={setIsSearching}
+        />
       </SectionLayout.HeaderContent>
       <SectionLayout.Main>
         <nav role="tablist">

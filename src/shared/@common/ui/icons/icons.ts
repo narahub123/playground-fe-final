@@ -79,9 +79,11 @@ import {
   BiBarChart as dataIcon,
 } from "react-icons/bi";
 import { MdOutlinePersonSearch as findPersonIcon } from "react-icons/md";
+import { IoCloseCircleSharp as closeFill } from "react-icons/io5";
 
 const Icons = {
   close, // 창닫기
+  closeFill, //
   wrongName: close, // 잘못된 아이콘 이름을 입력한 경우
   eye, // 비밀번호 보이기
   eyeoff, // 비밀번호 숨기기
