@@ -2,27 +2,18 @@ import styles from "./SettingsPage.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Text } from "@shared/@common/ui/components";
 import { joinClassNames } from "@shared/@common/utils";
-import { SectionLayout } from "./layouts";
+import { ExploreSection } from "./ui";
 
-interface SettingsPageProps {
-  className?: string;
-  disabled?: boolean;
-}
-
-const SettingsPage = ({ className, disabled = false }: SettingsPageProps) => {
+const SettingsPage = () => {
   // 언어 설정
   const {} = useLanguageContent(["pages", "SettingsPage"]);
 
-  const classNames = joinClassNames([styles["settings__page"], className]);
+  const classNames = joinClassNames([styles["settings__page"]]);
 
   return (
     <div className={classNames}>
       <section className={styles[`settings___explore__section`]}>
-        <SectionLayout>
-          <SectionLayout.Header>헤더</SectionLayout.Header>
-          <SectionLayout.HeaderContent>헤더 컨텐츠</SectionLayout.HeaderContent>
-          <SectionLayout.Main>컨텐츠</SectionLayout.Main>
-        </SectionLayout>
+        <ExploreSection />
       </section>
       <section className={styles[`settings___details__section`]}>
         <header className={styles["section__header"]}>
