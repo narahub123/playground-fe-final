@@ -4,8 +4,7 @@ import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
 import { Text } from "@shared/@common/ui/components";
 import { useSettingsTabs } from "@pages/SettingsPage/hooks";
-import { SettingsTab } from "@pages/SettingsPage/ui";
-import { Icon } from "@shared/@common/ui/icons";
+import { BackIcon, SettingsTab } from "@pages/SettingsPage/ui";``
 
 const AccountSection = () => {
   // 언어 설정
@@ -21,7 +20,7 @@ const AccountSection = () => {
   return (
     <SectionLayout className={classNames}>
       <SectionLayout.Header>
-        <Icon iconName="arrowLeft" onClick={() => {}} />
+        <BackIcon />
         <Text type="heading3">{title}</Text>
       </SectionLayout.Header>
       <SectionLayout.HeaderContent>

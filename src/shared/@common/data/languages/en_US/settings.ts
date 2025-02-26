@@ -30,6 +30,9 @@ const settings = {
   SettingsSearch: {
     placeholder: "Search settings",
   },
+  BackIcon: {
+    title: "Go back",
+  },
 };
 
 export default settings;

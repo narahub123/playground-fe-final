@@ -27,6 +27,9 @@ const settings = {
   SettingsSearch: {
     placeholder: "搜尋設定",
   },
+  BackIcon: {
+    title: "返回",
+  },
 };
 
 export default settings;
