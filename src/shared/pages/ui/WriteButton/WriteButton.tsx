@@ -6,6 +6,7 @@ import { useAppDispatch } from "@app/store";
 import { useNavigate } from "react-router-dom";
 import { onParallelModalOpen } from "@shared/@common/models/slices/modalSlice";
 import { Text } from "@shared/@common/ui/components";
+import { PRIMARY_LINK } from "@shared/@common/constants";
 
 interface WriteButtonProps {
   className?: string;
@@ -23,7 +24,7 @@ const WriteButton = ({ className, disabled = false }: WriteButtonProps) => {
 
   const onOpen = () => {
     dispatch(onParallelModalOpen("write"));
-    navigate(`/compose/post`);
+    navigate(PRIMARY_LINK.COMPOSE_POST);
   };
 
   return (

@@ -52,7 +52,7 @@ const ScreenVerificationCode = ({
         description: success.description,
         type: "success",
       });
-      navigate("/home");
+      navigate("PRIMARY_LINK.HOME");
     } else {
       for (const error of Object.values(result.data.details)) {
         toast({

@@ -12,7 +12,7 @@ import { ModalLayout } from "@shared/@common/layouts";
 import { AccountManageModal, WritePostModal } from "@shared/pages/ui";
 import { LoginModal } from "@features/auth-login/ui";
 import { PagesLayout } from "@shared/pages/layouts";
-import { SETTINGS_LINKS } from "@shared/@common/constants";
+import { PRIMARY_LINK, SETTINGS_LINKS } from "@shared/@common/constants";
 
 const userRouter = createBrowserRouter([
   {
@@ -20,27 +20,27 @@ const userRouter = createBrowserRouter([
     element: <PagesLayout />,
     children: [
       {
-        path: "/home",
+        path: PRIMARY_LINK.HOME,
         element: <HomePage />,
       },
       {
-        path: "/explore",
+        path: PRIMARY_LINK.EXPLORE,
         element: <ExplorePage />,
       },
       {
-        path: "/notifications",
+        path: PRIMARY_LINK.NOTIFICATIONS,
         element: <NotificationsPage />,
       },
       {
-        path: "/messages",
+        path: PRIMARY_LINK.MESSAGES,
         element: <MessagesPage />,
       },
       {
-        path: `/:userId`,
+        path: PRIMARY_LINK.PROFILE,
         element: <ProfilePage />,
       },
       {
-        path: "/settings",
+        path: PRIMARY_LINK.SETTINGS,
         element: <SettingsPage />,
         children: [
           {
@@ -154,30 +154,30 @@ const userRouter = createBrowserRouter([
         ],
       },
       {
-        path: "compose/post",
+        path: PRIMARY_LINK.COMPOSE_POST,
         element: <WritePostModal />,
       },
       {
-        path: "/logout",
+        path: PRIMARY_LINK.LOGOUT,
         element: <LogoutPage />,
       },
       {
-        path: "i/flow",
+        path: PRIMARY_LINK.FLOW,
         element: <ModalLayout />,
         children: [
           {
-            path: "login",
+            path: PRIMARY_LINK.LOGIN,
             element: <LoginModal />,
           },
         ],
       },
       {
-        path: "account/manage",
+        path: PRIMARY_LINK.ACCOUNT_MANAGE,
         element: <AccountManageModal />,
       },
       {
         path: "*",
-        element: <Navigate to={"/home"} />,
+        element: <Navigate to={PRIMARY_LINK.HOME} />,
       },
     ],
   },

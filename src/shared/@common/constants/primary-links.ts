@@ -1,5 +1,18 @@
 const PRIMARY_LINK = {
+  AUTH: "/",
+  HOME: "/home",
+  EXPLORE: "/explore",
+  NOTIFICATIONS: "/notifications",
+  MESSAGES: "/messages",
+  PROFILE: "/:userId",
   SETTINGS: "/settings",
+  COMPOSE_POST: "/compose/post",
+  LOGOUT: "/logout",
+  FLOW: "/i/flow",
+  LOGIN: "/i/flow/login",
+  SIGNUP: "/i/flow/signup",
+  ACCOUNT_MANAGE: "/account/manage",
+  PASSWORD_RESET: "/i/flow/password_reset",
 };
 
 export default PRIMARY_LINK;

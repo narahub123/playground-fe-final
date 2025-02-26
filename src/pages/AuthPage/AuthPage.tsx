@@ -20,6 +20,7 @@ import { useNavigate } from "react-router-dom";
 import { onParallelModalOpen } from "@shared/@common/models/slices/modalSlice";
 import { ModalLayout } from "@shared/@common/layouts";
 import { ParallelModals } from "@shared/@common/types";
+import { PRIMARY_LINK } from "@shared/@common/constants";
 
 const AuthPage = () => {
   const dispatch = useAppDispatch();
@@ -27,7 +28,7 @@ const AuthPage = () => {
 
   const onOpen = (type: ParallelModals) => {
     dispatch(onParallelModalOpen(type));
-    navigate(`i/flow/${type}`);
+    navigate(`${PRIMARY_LINK.FLOW}/${type}`);
   };
 
   // oauth 회원 가입 처리

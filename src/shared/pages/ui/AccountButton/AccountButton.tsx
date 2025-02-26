@@ -13,6 +13,7 @@ import { useSelector } from "react-redux";
 import { selectUser } from "@shared/@common/models/selectors";
 import { useToast } from "@shared/@common/ui/components/Toast/hooks";
 import { fetchWithAuth } from "@shared/pages/utils";
+import { PRIMARY_LINK } from "@shared/@common/constants";
 
 interface AccountButtonProps {
   className?: string;
@@ -106,7 +107,7 @@ const AccountButton = ({ className, disabled = false }: AccountButtonProps) => {
         activeSessionId: result.data.activeSessionId,
       });
 
-      window.location.href = "/home";
+      window.location.href = "PRIMARY_LINK.HOME";
     } else {
       // false 시 toast 사용
       for (const error of Object.values(result.error.details)) {
@@ -188,7 +189,7 @@ const AccountButton = ({ className, disabled = false }: AccountButtonProps) => {
           <Button
             onClick={() => {
               dispatch(onParallelModalOpen("login"));
-              navigate("/i/flow/login", { state: { api: "addAccount" } });
+              navigate(PRIMARY_LINK.LOGIN, { state: { api: "addAccount" } });
             }}
             variant="plain"
             className={styles["account__dropdown__section__item"]}
@@ -198,7 +199,7 @@ const AccountButton = ({ className, disabled = false }: AccountButtonProps) => {
           <Button
             onClick={() => {
               dispatch(onParallelModalOpen("account"));
-              navigate("/account/manage");
+              navigate(PRIMARY_LINK.ACCOUNT_MANAGE);
             }}
             variant="plain"
             className={styles["account__dropdown__section__item"]}
@@ -207,7 +208,7 @@ const AccountButton = ({ className, disabled = false }: AccountButtonProps) => {
           </Button>
           <Button
             onClick={() => {
-              navigate("/logout");
+              navigate(PRIMARY_LINK.LOGOUT);
             }}
             variant="plain"
             className={styles["account__dropdown__section__item"]}

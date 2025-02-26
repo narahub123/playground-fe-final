@@ -6,6 +6,7 @@ import NavItem from "../NavItem/NavItem";
 import NavMoreButton from "../NavMoreButton/NavMoreButton";
 import WriteButton from "../WriteButton/WriteButton";
 import AccountButton from "../AccountButton/AccountButton";
+import { PRIMARY_LINK } from "@shared/@common/constants";
 
 const Header = () => {
   // 언어 설정
@@ -27,7 +28,7 @@ const Header = () => {
         <div className={styles[`header__container`]}>
           <div className={styles[`header__logo__container`]}>
             <Link
-              to={"/home"}
+              to={PRIMARY_LINK.HOME}
               className={styles[`header__logo__wrapper`]}
               aria-label={logoAlt}
             >
@@ -42,21 +43,21 @@ const Header = () => {
           <nav className={styles[`header_nav`]}>
             {/* 홈 */}
             <NavItem
-              to="/home"
+              to={PRIMARY_LINK.HOME}
               activeIconName="homeFill"
               inactiveIconName="homeLine"
               title={homeTitle}
             />
             {/* 탐색 */}
             <NavItem
-              to="/explore"
+              to={PRIMARY_LINK.EXPLORE}
               activeIconName="exploreFill"
               inactiveIconName="exploreLine"
               title={exploreTitle}
             />
             {/* 알림 */}
             <NavItem
-              to="/notifications"
+              to={PRIMARY_LINK.NOTIFICATIONS}
               activeIconName="notificationFill"
               inactiveIconName="notificationLine"
               title={notificationTitle}
@@ -64,7 +65,7 @@ const Header = () => {
             />
             {/* 메시지 */}
             <NavItem
-              to="/messages"
+              to={PRIMARY_LINK.MESSAGES}
               activeIconName="envelopFill"
               inactiveIconName="envelopLine"
               title={messageTitle}

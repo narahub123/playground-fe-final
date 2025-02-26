@@ -24,6 +24,7 @@ import { useAppDispatch } from "@app/store";
 import { useNavigate } from "react-router-dom";
 import { getSignupModal } from "@shared/@common/models/selectors";
 import { onParallelModalClose } from "@shared/@common/models/slices/modalSlice";
+import { PRIMARY_LINK } from "@shared/@common/constants";
 
 /**
  * SignupModal 컴포넌트
@@ -91,7 +92,7 @@ const SignupModal = () => {
     dispatch(setLocationInSignup(location));
   }, [device, ip, location]);
 
-  useKeepParallelModalOpen("i/flow/signup", "signup");
+  useKeepParallelModalOpen(PRIMARY_LINK.SIGNUP, "signup");
 
   return (
     <Modal

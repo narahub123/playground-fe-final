@@ -1,5 +1,6 @@
 import styles from "./WritePostModal.module.css";
 import { useAppDispatch } from "@app/store";
+import { PRIMARY_LINK } from "@shared/@common/constants";
 import {
   useEscKeyClose,
   useKeepParallelModalOpen,
@@ -24,7 +25,7 @@ const WritePostModal = ({}: WritePostModalProps) => {
 
   useEscKeyClose(onClose);
 
-  useKeepParallelModalOpen("/compose/post", "write");
+  useKeepParallelModalOpen(PRIMARY_LINK.COMPOSE_POST, "write");
 
   // 언어 설정
   const {} = useLanguageContent(["components", "WritePostModal"]);

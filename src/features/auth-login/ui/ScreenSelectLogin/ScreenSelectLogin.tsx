@@ -10,6 +10,7 @@ import { useModalContext } from "@shared/@common/ui/components/Modal/hooks";
 import { HorizontalDivider, InputAccountLogin } from "@features/auth-login/ui";
 import { useNavigate } from "react-router-dom";
 import { LoginInputValueType } from "@features/auth-login/types";
+import { PRIMARY_LINK } from "@shared/@common/constants";
 
 interface ScreenSelectLoginProps {
   className?: string;
@@ -80,7 +81,7 @@ const ScreenSelectLogin = ({
           />
           <Button
             onClick={() => {
-              navigate("/i/flow/password_reset");
+              navigate(PRIMARY_LINK.PASSWORD_RESET);
             }}
             rounded="2xl"
             isValid

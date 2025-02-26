@@ -5,6 +5,7 @@ import { Icon, Icons } from "@shared/@common/ui/icons";
 import { joinClassNames } from "@shared/@common/utils";
 import { useCallback, useEffect, useRef, useState } from "react";
 import NavMoreButtonItem from "./NavMoreButtonItem/NavMoreButtonItem";
+import { PRIMARY_LINK } from "@shared/@common/constants";
 
 interface NavMoreButtonProps {
   className?: string;
@@ -79,7 +80,7 @@ const NavMoreButton = ({ className }: NavMoreButtonProps) => {
     bookmarks: `/i/bookmarks`,
     monetization: `/i/monetization`,
     ads: `/i/ads`,
-    settings: "/settings",
+    settings: PRIMARY_LINK.SETTINGS,
   };
 
   const navItems = ["lists", "bookmarks", "monetization", "ads", "settings"];

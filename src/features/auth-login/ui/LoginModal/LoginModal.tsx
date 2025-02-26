@@ -17,6 +17,7 @@ import {
   useLocationInfo,
 } from "@shared/@common/models/hooks";
 import { LoginInputValueType } from "@features/auth-login/types";
+import { PRIMARY_LINK } from "@shared/@common/constants";
 
 interface LoginModalProps {
   className?: string;
@@ -68,7 +69,7 @@ const LoginModal = ({ className }: LoginModalProps) => {
     setScreenValidations(defaultValidations);
   }, []);
 
-  useKeepParallelModalOpen("/i/flow/login", "login");
+  useKeepParallelModalOpen(PRIMARY_LINK.LOGIN, "login");
 
   const device = useDeviceInfo();
   const ip = useIpInfo();

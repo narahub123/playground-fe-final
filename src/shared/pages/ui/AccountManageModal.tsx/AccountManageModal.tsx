@@ -20,6 +20,7 @@ import { Icon } from "@shared/@common/ui/icons";
 import { LogoutModal } from "@features/auth-logout/ui";
 import { fetchWithAuth } from "@shared/pages/utils";
 import { useToast } from "@shared/@common/ui/components/Toast/hooks";
+import { PRIMARY_LINK } from "@shared/@common/constants";
 
 interface AccountManageModalProps {
   className?: string;
@@ -39,7 +40,7 @@ const AccountManageModal = ({ className }: AccountManageModalProps) => {
     dispatch(onStandAlonClose("logout"));
   };
 
-  useKeepParallelModalOpen("/account/manage", "account");
+  useKeepParallelModalOpen(PRIMARY_LINK.ACCOUNT_MANAGE, "account");
 
   // 언어 설정
   const { title, addBtn, expl, logoutBtn, errors } = useLanguageContent([
@@ -68,7 +69,7 @@ const AccountManageModal = ({ className }: AccountManageModalProps) => {
         activeSessionId: result.data.activeSessionId,
       });
 
-      window.location.href = "/home";
+      window.location.href = "PRIMARY_LINK.HOME";
     } else {
       // false 시 toast 사용
       for (const error of Object.values(result.error.details)) {
@@ -125,7 +126,7 @@ const AccountManageModal = ({ className }: AccountManageModalProps) => {
             <Button
               onClick={() => {
                 dispatch(onParallelModalOpen("login"));
-                navigate("/i/flow/login", { state: { api: "addAccount" } });
+                navigate(PRIMARY_LINK.LOGIN, { state: { api: "addAccount" } });
               }}
               variant="plain"
               className={styles[`account__manage__modal__add`]}
