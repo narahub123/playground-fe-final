@@ -1,4 +1,4 @@
-const sections = {
+const settings = {
   ExploreSection: {
     title: "설정",
   },
@@ -26,6 +26,9 @@ const sections = {
     title: "접근성, 표시, 언어",
     description: "PlayGround의 콘텐츠 표시 방식을 관리합니다.",
   },
+  SettingsSearch: {
+    placeholder: "설정 검색하기",
+  },
 };
 
-export default sections;
+export default settings;

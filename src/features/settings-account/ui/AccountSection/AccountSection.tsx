@@ -10,7 +10,7 @@ import { Icon } from "@shared/@common/ui/icons";
 const AccountSection = () => {
   // 언어 설정
   const { title, description } = useLanguageContent([
-    "sections",
+    "settings",
     "AccountSection",
   ]);
 

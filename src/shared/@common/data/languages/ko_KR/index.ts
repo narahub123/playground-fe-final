@@ -3,7 +3,7 @@ import countryNames from "./countryNames";
 import hooks from "./hooks";
 import pages from "./pages";
 import ERRORS from "./errors";
-import sections from "./settings-sections";
+import settings from "./settings";
 import sectionTextMap from "./settings-section-text-map";
 
 const ko_kR = {
@@ -12,7 +12,7 @@ const ko_kR = {
   components,
   hooks,
   ERRORS,
-  sections,
+  settings,
   sectionTextMap,
 };
 

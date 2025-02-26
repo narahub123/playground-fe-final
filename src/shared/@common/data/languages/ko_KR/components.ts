@@ -463,9 +463,6 @@ const components = {
     logoutBtn: "로그아웃",
     cancelBtn: "취소",
   },
-  SettingsSearch: {
-    placeholder: "설정 검색하기",
-  },
 };
 
 export default components;

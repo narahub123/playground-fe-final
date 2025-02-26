@@ -24,6 +24,9 @@ const sections = {
     title: "可访问性、显示、语言",
     description: "管理PlayGround上内容的显示方式。",
   },
+  SettingsSearch: {
+    placeholder: "搜索设置",
+  },
 };
 
 export default sections;

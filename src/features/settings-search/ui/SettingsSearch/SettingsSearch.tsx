@@ -18,7 +18,7 @@ const SettingsSearch = ({
   setIsSearching,
 }: SettingsSearchProps) => {
   // 언어 설정
-  const { placeholder } = useLanguageContent(["components", "SettingsSearch"]);
+  const { placeholder } = useLanguageContent(["settings", "SettingsSearch"]);
 
   const classNames = joinClassNames([styles["settings__search"]]);
 

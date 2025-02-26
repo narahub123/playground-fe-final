@@ -3,7 +3,7 @@ import countryNames from "./countryNames";
 import ERRORS from "./errors";
 import hooks from "./hooks";
 import pages from "./pages";
-import sections from "./settings-sections";
+import settings from "./settings";
 import sectionTextMap from "./settings-section-text-map";
 
 const en_US = {
@@ -12,7 +12,7 @@ const en_US = {
   components,
   hooks,
   ERRORS,
-  sections,
+  settings,
   sectionTextMap,
 };
 

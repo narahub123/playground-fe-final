@@ -17,7 +17,7 @@ const ExploreSection = () => {
   const [keyword, setKeyword] = useState("");
   const [isSearching, setIsSearching] = useState(false);
   // 언어 설정
-  const { title } = useLanguageContent(["sections", "ExploreSection"]);
+  const { title } = useLanguageContent(["settings", "ExploreSection"]);
 
   const classNames = joinClassNames([styles["explore__section"]]);
 
