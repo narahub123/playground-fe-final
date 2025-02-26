@@ -24,6 +24,9 @@ const ExploreSection = () => {
   // 설정 섹션 탭 목록 가져오기
   const sectionData = useSectionDataArray();
 
+  // explore section의 기본 탭의 label만 가져오기
+  const primaryTabLabels = initialTabs.map((tab) => tab.label);
+
   useEffect(() => {
     if (!isSearching) {
       setTabs(initialTabs);
@@ -35,15 +38,34 @@ const ExploreSection = () => {
       return;
     }
 
-    const results: ISectionTabData[] = [];
+    let results: ISectionTabData[] = [];
 
-    for (const section of sectionData) {
+    for (let i = 0; i < sectionData.length; i++) {
+      const section = sectionData[i];
       const sectionTabs = Object.values(section);
 
-      const matchingItems = sectionTabs.filter((item) =>
+      let matchingItems = sectionTabs.filter((item) =>
         item.label.includes(keyword)
       );
 
+      // 검색이 primary 섹션이 아니고 검색 결과가 있는 경우
+      if (i > 0 && matchingItems.length > 0) {
+        // primary section 배열
+        const primarySection = Object.values(sectionData[0]);
+
+        // 부모 탭 가져오기
+        const parentTab = primarySection[i];
+
+        // 부모탭에 검색어가 포함된 경우 해당 요소를 삭제함
+        if (parentTab.label.includes(keyword)) {
+          results = results.filter((item) => item.label !== parentTab.label);
+        }
+
+        // 부모를 포함한 matching item 생성
+        matchingItems = [parentTab, ...matchingItems];
+      }
+
+      // matching된 아이템들을 결과에 추가
       results.push(...matchingItems);
     }
 
@@ -93,9 +115,12 @@ const ExploreSection = () => {
               <SettingsTab
                 label={tab.label}
                 link={tab.link}
-                description={tab.description}
-                iconName={tab.iconName}
                 key={tab.link}
+                className={
+                  isSearching && primaryTabLabels.includes(tab.label)
+                    ? styles["tab__primary"]
+                    : undefined
+                }
               />
             ))}
           </nav>

@@ -23,3 +23,7 @@
 .explore__section__no__result--description {
   color: #777;
 }
+
+.tab__primary {
+  font-weight: bold;
+}
