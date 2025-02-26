@@ -99,7 +99,7 @@ const sectionTextMap: ISectionTextMap = {
       description: "為不同類型的通知選擇偏好設置。",
     },
   },
-  AccessibiltyAndDisplayAndLanguageSection: {
+  AccessibiltyAndDisplayAndLanguagesSection: {
     accessibility: {
       label: "可訪問性",
       description: "管理PlayGround中的環境，如對比度和動作限制。",

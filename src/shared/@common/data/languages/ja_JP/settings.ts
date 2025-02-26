@@ -22,7 +22,7 @@ const settings = {
     title: "通知",
     description: "活動、興味、推奨に関する通知の種類を選択します。",
   },
-  AccessibiltyAndDisplayAndLanguageSection: {
+  AccessibiltyAndDisplayAndLanguagesSection: {
     title: "アクセシビリティ、表示、言語",
     description: "PlayGroundでのコンテンツ表示方法を管理します。",
   },

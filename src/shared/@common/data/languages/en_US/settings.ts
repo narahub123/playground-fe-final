@@ -23,7 +23,7 @@ const settings = {
     description:
       "Choose the types of notifications you receive about activities, interests, and recommendations.",
   },
-  AccessibiltyAndDisplayAndLanguageSection: {
+  AccessibiltyAndDisplayAndLanguagesSection: {
     title: "Accessibility, Display, Language",
     description: "Manage how content is displayed on PlayGround.",
   },

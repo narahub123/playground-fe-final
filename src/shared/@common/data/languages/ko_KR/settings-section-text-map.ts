@@ -103,7 +103,7 @@ const sectionTextMap: ISectionTextMap = {
       description: "알림 유형별로 환경설정을 선택하세요.",
     },
   },
-  AccessibiltyAndDisplayAndLanguageSection: {
+  AccessibiltyAndDisplayAndLanguagesSection: {
     accessibility: {
       label: "접근성",
       description: "색 대비와 동작 제한 등 PlayGround에서의 환경을 관리합니다.",

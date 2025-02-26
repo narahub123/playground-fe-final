@@ -104,7 +104,7 @@ const sectionTextMap: ISectionTextMap = {
       description: "異なるタイプの通知の環境設定を選択します。",
     },
   },
-  AccessibiltyAndDisplayAndLanguageSection: {
+  AccessibiltyAndDisplayAndLanguagesSection: {
     accessibility: {
       label: "アクセシビリティ",
       description: "コントラストや動作制限など、PlayGroundの環境を管理します。",
@@ -126,6 +126,5 @@ const sectionTextMap: ISectionTextMap = {
     },
   },
 };
-
 
 export default sectionTextMap;

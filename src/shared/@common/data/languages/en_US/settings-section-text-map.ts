@@ -108,7 +108,7 @@ const sectionTextMap: ISectionTextMap = {
       description: "Set preferences for different types of notifications.",
     },
   },
-  AccessibiltyAndDisplayAndLanguageSection: {
+  AccessibiltyAndDisplayAndLanguagesSection: {
     accessibility: {
       label: "Accessibility",
       description:

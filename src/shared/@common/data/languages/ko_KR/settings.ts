@@ -22,7 +22,7 @@ const settings = {
     title: "알림",
     description: "활동, 관심사 및 추천에 관해 받는 알림의 종류를 선택합니다.",
   },
-  AccessibiltyAndDisplayAndLanguageSection: {
+  AccessibiltyAndDisplayAndLanguagesSection: {
     title: "접근성, 표시, 언어",
     description: "PlayGround의 콘텐츠 표시 방식을 관리합니다.",
   },

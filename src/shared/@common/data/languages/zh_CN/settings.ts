@@ -20,7 +20,7 @@ const sections = {
     title: "通知",
     description: "选择接收关于活动、兴趣和推荐的通知类型。",
   },
-  AccessibiltyAndDisplayAndLanguageSection: {
+  AccessibiltyAndDisplayAndLanguagesSection: {
     title: "可访问性、显示、语言",
     description: "管理PlayGround上内容的显示方式。",
   },

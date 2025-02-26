@@ -99,7 +99,7 @@ const sectionDataMap: ISectionDataMap = {
       iconName: "notificationPreferencesIcon",
     },
   },
-  AccessibiltyAndDisplayAndLanguageSection: {
+  AccessibiltyAndDisplayAndLanguagesSection: {
     accessibility: {
       link: SETTINGS_LINKS.ACCESSIBILITY,
       iconName: "accessibilityIcon",

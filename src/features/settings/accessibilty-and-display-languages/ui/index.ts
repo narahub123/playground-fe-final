@@ -1,0 +1,3 @@
+import AccessibiltyAndDisplayAndLanguagesSection from "./AccessibiltyAndDisplayAndLanguagesSection/AccessibiltyAndDisplayAndLanguagesSection";
+
+export { AccessibiltyAndDisplayAndLanguagesSection };

@@ -17,6 +17,7 @@ import { AccountSection } from "@features/settings/account/ui";
 import { SecurityAndAccountAccessSection } from "@features/settings/security-and-account-access/ui";
 import { PrivacyAndSafetySection } from "@features/settings/privacy-and-safety/ui";
 import { NotificationsSection } from "@features/settings/notifications/ui";
+import { AccessibiltyAndDisplayAndLanguagesSection } from "@features/settings/accessibilty-and-display-languages/ui";
 
 const userRouter = createBrowserRouter([
   {
@@ -137,7 +138,7 @@ const userRouter = createBrowserRouter([
           },
           {
             path: SETTINGS_LINKS.ACCESSIBILITY_DISPLAY_AND_LANGUAGES,
-            element: <></>,
+            element: <AccessibiltyAndDisplayAndLanguagesSection />,
           },
           {
             path: SETTINGS_LINKS.ACCESSIBILITY,

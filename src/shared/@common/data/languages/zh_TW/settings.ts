@@ -20,7 +20,7 @@ const settings = {
     title: "通知",
     description: "選擇有關活動、興趣和推薦的通知類型。",
   },
-  AccessibiltyAndDisplayAndLanguageSection: {
+  AccessibiltyAndDisplayAndLanguagesSection: {
     title: "可訪問性、顯示、語言",
     description: "管理PlayGround上內容的顯示方式。",
   },
