@@ -30,6 +30,9 @@ const settings = {
   BackIcon: {
     title: "返回",
   },
+  AccountInfoSection: {
+    title: "帳戶資訊",
+  },
 };
 
 export default settings;

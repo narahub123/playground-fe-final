@@ -32,6 +32,9 @@ const settings = {
   BackIcon: {
     title: "뒤로가기",
   },
+  AccountInfoSection: {
+    title: "계정 정보",
+  },
 };
 
 export default settings;

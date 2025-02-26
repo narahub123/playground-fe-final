@@ -30,6 +30,9 @@ const sections = {
   BackIcon: {
     title: "返回",
   },
+  AccountInfoSection: {
+    title: "账户信息",
+  },
 };
 
 export default sections;

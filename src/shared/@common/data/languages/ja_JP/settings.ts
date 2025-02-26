@@ -32,6 +32,9 @@ const settings = {
   BackIcon: {
     title: "戻る",
   },
+  AccountInfoSection: {
+    title: "アカウント情報",
+  },
 };
 
 export default settings;

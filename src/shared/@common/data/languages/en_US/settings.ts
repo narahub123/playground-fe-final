@@ -33,6 +33,9 @@ const settings = {
   BackIcon: {
     title: "Go back",
   },
+  AccountInfoSection: {
+    title: "Account Information",
+  },
 };
 
 export default settings;

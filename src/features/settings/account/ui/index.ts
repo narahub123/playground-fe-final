@@ -1,3 +1,3 @@
 import AccountSection from "./AccountSection/AccountSection";
-
-export { AccountSection };
+import AccountInfoSection from "./AccountInfoSection/AccountInfoSection";
+export { AccountSection, AccountInfoSection };

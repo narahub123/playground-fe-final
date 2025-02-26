@@ -13,7 +13,10 @@ import { AccountManageModal, WritePostModal } from "@shared/pages/ui";
 import { LoginModal } from "@features/auth-login/ui";
 import { PagesLayout } from "@shared/pages/layouts";
 import { PRIMARY_LINK, SETTINGS_LINKS } from "@shared/@common/constants";
-import { AccountSection } from "@features/settings/account/ui";
+import {
+  AccountInfoSection,
+  AccountSection,
+} from "@features/settings/account/ui";
 import { SecurityAndAccountAccessSection } from "@features/settings/security-and-account-access/ui";
 import { PrivacyAndSafetySection } from "@features/settings/privacy-and-safety/ui";
 import { NotificationsSection } from "@features/settings/notifications/ui";
@@ -54,7 +57,7 @@ const userRouter = createBrowserRouter([
           },
           {
             path: SETTINGS_LINKS.ACCOUNT_INFO,
-            element: <></>,
+            element: <AccountInfoSection />,
           },
           {
             path: SETTINGS_LINKS.PASSWORD,
