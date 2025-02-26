@@ -46,3 +46,9 @@ html[data-bg-theme="darkest"] {
   transition-delay: 0.4s;
   /* transition: opacity 0.3s ease 0.4s; */
 }
+
+@media screen and (min-width: 1021px) {
+  .back__icon {
+    display: none;
+  }
+}
