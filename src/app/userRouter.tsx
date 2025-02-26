@@ -13,6 +13,7 @@ import { AccountManageModal, WritePostModal } from "@shared/pages/ui";
 import { LoginModal } from "@features/auth-login/ui";
 import { PagesLayout } from "@shared/pages/layouts";
 import { PRIMARY_LINK, SETTINGS_LINKS } from "@shared/@common/constants";
+import { AccountSection } from "@features/settings-account/ui";
 
 const userRouter = createBrowserRouter([
   {
@@ -45,7 +46,7 @@ const userRouter = createBrowserRouter([
         children: [
           {
             path: SETTINGS_LINKS.ACCOUNT,
-            element: <></>,
+            element: <AccountSection />,
           },
           {
             path: SETTINGS_LINKS.ACCOUNT_INFO,
