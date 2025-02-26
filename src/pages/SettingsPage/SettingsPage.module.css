@@ -4,9 +4,13 @@
   height: 100%;
 }
 
-.settings___explore__section {
+.settings___explore__section--index {
   width: 100%;
   border-right: 1px solid #ccc;
+}
+
+.settings___explore__section {
+  display: none;
 }
 
 .section__tab__list {
@@ -30,17 +34,26 @@
   background-color: #f1f1f1;
 }
 
-.settings___details__section {
+.settings___details__section--index {
   display: none;
-  background-color: cornflowerblue;
+}
+
+.settings___details__section {
+  flex: 1;
 }
 
 @media screen and (min-width: 1021px) {
-  .settings___details__section {
+  .settings___explore__section--index {
+    width: 380px;
+  }
+  .settings___details__section--index {
     display: block;
     flex: 1;
   }
+
   .settings___explore__section {
+    display: block;
     width: 380px;
+    border-right: 1px solid #ccc;
   }
 }

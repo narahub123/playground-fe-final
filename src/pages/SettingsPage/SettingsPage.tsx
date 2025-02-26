@@ -5,7 +5,10 @@ import { joinClassNames } from "@shared/@common/utils";
 import { ExploreSection } from "./ui";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { SETTINGS_LAYOUT_BREAKPOINT } from "@shared/@common/constants";
+import {
+  PRIMARY_LINK,
+  SETTINGS_LAYOUT_BREAKPOINT,
+} from "@shared/@common/constants";
 
 const SettingsPage = () => {
   const navigate = useNavigate();
@@ -13,7 +16,7 @@ const SettingsPage = () => {
 
   const moveToAccount = () => {
     if (
-      pathname === "/settings" &&
+      pathname === PRIMARY_LINK.SETTINGS &&
       window.innerWidth > SETTINGS_LAYOUT_BREAKPOINT
     ) {
       navigate("account");
@@ -33,10 +36,22 @@ const SettingsPage = () => {
 
   return (
     <div className={classNames}>
-      <section className={styles[`settings___explore__section`]}>
+      <section
+        className={
+          pathname === PRIMARY_LINK.SETTINGS
+            ? styles[`settings___explore__section--index`]
+            : styles[`settings___explore__section`]
+        }
+      >
         <ExploreSection />
       </section>
-      <section className={styles[`settings___details__section`]}>
+      <section
+        className={
+          pathname === PRIMARY_LINK.SETTINGS
+            ? styles[`settings___details__section--index`]
+            : styles[`settings___details__section`]
+        }
+      >
         <header className={styles["section__header"]}>
           <Text type="heading3">설정</Text>
         </header>

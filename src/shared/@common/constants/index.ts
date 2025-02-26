@@ -48,6 +48,7 @@ import {
   LOCALSTORAGE_KEY,
 } from "./constants"; // 상수
 
+import PRIMARY_LINK from "./primary-links";
 import SETTINGS_LINKS from "./settings-links";
 
 import { SETTINGS_LAYOUT_BREAKPOINT } from "./settings";
@@ -101,6 +102,8 @@ export {
   SELECT_OPTION_HEIGHT,
   LOCALSTORAGE_KEY,
 
+  // links
+  PRIMARY_LINK,
   // settings-links
   SETTINGS_LINKS,
 
