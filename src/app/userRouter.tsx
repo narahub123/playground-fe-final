@@ -14,6 +14,7 @@ import { LoginModal } from "@features/auth-login/ui";
 import { PagesLayout } from "@shared/pages/layouts";
 import { PRIMARY_LINK, SETTINGS_LINKS } from "@shared/@common/constants";
 import { AccountSection } from "@features/settings/account/ui";
+import { SecurityAndAccountAccessSection } from "@features/settings/security-and-account-access/ui";
 
 const userRouter = createBrowserRouter([
   {
@@ -66,7 +67,7 @@ const userRouter = createBrowserRouter([
           },
           {
             path: SETTINGS_LINKS.SECURITY_AND_ACCOUNT_ACCESS,
-            element: <></>,
+            element: <SecurityAndAccountAccessSection />,
           },
           {
             path: SETTINGS_LINKS.SECURITY,
