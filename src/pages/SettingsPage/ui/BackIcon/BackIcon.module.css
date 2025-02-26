@@ -37,6 +37,10 @@ html[data-bg-theme="darkest"] {
   opacity: 0; /* 초기 상태에서 투명하게 설정 */
 }
 
+.back__icon[data-title]:focus::after {
+  opacity: 1;
+}
+
 .back__icon[data-title]:hover::after {
   opacity: 1;
   transition-delay: 0.4s;
