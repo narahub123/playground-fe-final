@@ -1,8 +1,8 @@
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { ISectionTextMap } from "@shared/@common/types";
-import { ISectionData, ISectionTabData } from "@pages/SettingsPage/types";
-import { sectionDataMap } from "@pages/SettingsPage//data";
 import { useToast } from "@shared/@common/ui/components/Toast/hooks";
+import { ISectionData, ISectionTabData } from "@shared/pages/settings/types";
+import { sectionDataMap } from "@shared/pages/settings/data";
 
 const useSettingsTabs = (section: keyof ISectionTextMap): ISectionTabData[] => {
   // 언어 설정 가져오기: label, description
