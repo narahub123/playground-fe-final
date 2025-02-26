@@ -1,10 +1,10 @@
-import { SectionLayout } from "@pages/SettingsPage/layouts";
 import styles from "./AccountSection.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
 import { Text } from "@shared/@common/ui/components";
-import { useSettingsTabs } from "@pages/SettingsPage/hooks";
-import { BackIcon, SettingsTab } from "@pages/SettingsPage/ui";``
+import { SectionLayout } from "@shared/pages/settings/layouts";
+import { BackIcon, SettingsTab } from "@shared/pages/settings/ui";
+import { useSettingsTabs } from "@shared/pages/settings/hooks";
 
 const AccountSection = () => {
   // 언어 설정

@@ -1,13 +1,13 @@
 import styles from "./SettingsPage.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
-import { ExploreSection } from "./ui";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import {
   PRIMARY_LINK,
   SETTINGS_LAYOUT_BREAKPOINT,
 } from "@shared/@common/constants";
+import { ExploreSection } from "@shared/pages/settings/ui";
 
 const SettingsPage = () => {
   const navigate = useNavigate();
