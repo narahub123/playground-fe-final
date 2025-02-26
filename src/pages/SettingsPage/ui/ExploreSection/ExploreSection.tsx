@@ -64,17 +64,42 @@ const ExploreSection = () => {
         />
       </SectionLayout.HeaderContent>
       <SectionLayout.Main>
-        <nav role="tablist">
-          {tabs.map((tab) => (
-            <SettingsTab
-              label={tab.label}
-              link={tab.link}
-              description={tab.description}
-              iconName={tab.iconName}
-              key={tab.link}
-            />
-          ))}
-        </nav>
+        {isSearching && keyword === "" ? (
+          <div className={styles[`explore__section__text__container`]}>
+            <Text className={styles[`explore__section__no__keyword`]}>
+              알림과 개인정보 보호 등에 대해 검색해 보세요.
+            </Text>
+          </div>
+        ) : isSearching && tabs.length === 0 ? (
+          <div className={styles[`explore__section__text__container`]}>
+            <div className={styles[`explore__section__no__result`]}>
+              <Text
+                className={styles[`explore__section__no__result--title`]}
+                type="heading1"
+              >
+                {`${keyword}에 대한 검색 결과가 없습니다.`}
+              </Text>
+              <Text
+                className={styles[`explore__section__no__result--description`]}
+              >
+                입력하신 단어에 대한 검색 결과가 없습니다. 다른 검색어를
+                사용해보세요.
+              </Text>
+            </div>
+          </div>
+        ) : (
+          <nav role="tablist">
+            {tabs.map((tab) => (
+              <SettingsTab
+                label={tab.label}
+                link={tab.link}
+                description={tab.description}
+                iconName={tab.iconName}
+                key={tab.link}
+              />
+            ))}
+          </nav>
+        )}
       </SectionLayout.Main>
     </SectionLayout>
   );

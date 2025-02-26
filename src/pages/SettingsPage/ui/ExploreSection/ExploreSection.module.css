@@ -1,2 +1,24 @@
 .explore__section {
 }
+
+.explore__section__text__container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.explore__section__no__keyword {
+  padding: 1.25rem 0.75rem 0.75rem 0.75rem;
+  color: #777;
+}
+
+.explore__section__no__result {
+  margin: 32px 90px;
+}
+
+.explore__section__no__result--title {
+  margin-bottom: 0.5rem;
+}
+.explore__section__no__result--description {
+  color: #777;
+}
