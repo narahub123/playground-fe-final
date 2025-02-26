@@ -50,6 +50,8 @@ import {
 
 import SETTINGS_LINKS from "./settings-links";
 
+import { SETTINGS_LAYOUT_BREAKPOINT } from "./settings";
+
 export {
   // 정규 표현식
   EMPTY,
@@ -100,5 +102,8 @@ export {
   LOCALSTORAGE_KEY,
 
   // settings-links
-  SETTINGS_LINKS
+  SETTINGS_LINKS,
+
+  // settings
+  SETTINGS_LAYOUT_BREAKPOINT,
 };

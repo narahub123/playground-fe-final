@@ -3,8 +3,29 @@ import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Text } from "@shared/@common/ui/components";
 import { joinClassNames } from "@shared/@common/utils";
 import { ExploreSection } from "./ui";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { SETTINGS_LAYOUT_BREAKPOINT } from "@shared/@common/constants";
 
 const SettingsPage = () => {
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  const moveToAccount = () => {
+    if (
+      pathname === "/settings" &&
+      window.innerWidth > SETTINGS_LAYOUT_BREAKPOINT
+    ) {
+      navigate("account");
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", moveToAccount);
+
+    return () => window.removeEventListener("resize", moveToAccount);
+  }, []);
+
   // 언어 설정
   const {} = useLanguageContent(["pages", "SettingsPage"]);
 
