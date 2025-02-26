@@ -15,6 +15,7 @@ import { PagesLayout } from "@shared/pages/layouts";
 import { PRIMARY_LINK, SETTINGS_LINKS } from "@shared/@common/constants";
 import { AccountSection } from "@features/settings/account/ui";
 import { SecurityAndAccountAccessSection } from "@features/settings/security-and-account-access/ui";
+import { PrivacyAndSafetySection } from "@features/settings/privacy-and-safety/ui";
 
 const userRouter = createBrowserRouter([
   {
@@ -87,7 +88,7 @@ const userRouter = createBrowserRouter([
           },
           {
             path: SETTINGS_LINKS.PRIVACY_AND_SAFETY,
-            element: <></>,
+            element: <PrivacyAndSafetySection />,
           },
           {
             path: SETTINGS_LINKS.AUDIENCE_AND_TAGGING,
