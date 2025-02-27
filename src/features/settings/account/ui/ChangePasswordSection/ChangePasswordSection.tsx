@@ -6,6 +6,7 @@ import { joinClassNames } from "@shared/@common/utils";
 import { SectionLayout } from "@shared/pages/settings/layouts";
 import { BackIcon } from "@shared/pages/settings/ui";
 import { useState } from "react";
+import NewPasswordFields from "./NewPasswordFields/NewPasswordFields";
 
 interface ChangePasswordSectionProps {
   className?: string;
@@ -48,7 +49,9 @@ const ChangePasswordSection = ({ className }: ChangePasswordSectionProps) => {
             label="비밀번호"
           />
         </section>
-        <section className={styles["section"]}>새비밀번호</section>
+        <section className={styles["section"]}>
+          <NewPasswordFields />
+        </section>
         <section className={styles["section"]}>
           <Text>{expl(5)}</Text>
         </section>
