@@ -7,6 +7,7 @@ const ERROR_TITLE_CODE = {
   LOGIN_FAILED: "ログインに失敗しました",
   VERIFICATION_CODE_VERIFICATION_FAILED: "認証コードの確認に失敗しました",
   VERIFICATION_CODE_SEND_FAILED: "認証コードの送信に失敗しました",
+  VERIFY_PASSWORD_FAILED: "パスワード認証に失敗しました",
 };
 
 const ERROR_DESCRIPTION_CODE = {
@@ -62,6 +63,9 @@ const ERROR_DESCRIPTION_CODE = {
   EMAIL_INFO_NOT_FOUND: "メールが見つかりません。",
   PHONE_INFO_NOT_FOUND: "電話番号が見つかりません。",
   CONTACT_INFO_NOT_FOUND: "連絡先情報が見つかりません。",
+
+  // unknown error
+  UNKNOWN_ERROR: "不明なエラーが発生しました",
 };
 
 const ERRORS = { ERROR_DESCRIPTION_CODE, ERROR_TITLE_CODE };

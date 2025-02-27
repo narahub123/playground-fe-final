@@ -8,6 +8,7 @@ const ERROR_TITLE_CODE = {
   VERIFICATION_CODE_VERIFICATION_FAILED: "인증 코드 인증 실패",
   VERIFICATION_CODE_SEND_FAILED: "인증 코드 전송 실패",
   ADD_ACCOUNT_FAILED: "계정 추가 실패",
+  VERIFY_PASSWORD_FAILED: "비밀 번호 인증 실패",
 };
 
 const ERROR_DESCRIPTION_CODE = {
@@ -66,6 +67,9 @@ const ERROR_DESCRIPTION_CODE = {
 
   // duplicate
   ACCOUNT_ALREADY_EXISTS: "이미 존재하는 계정입니다.",
+
+  // unknown error
+  UNKNOWN_ERROR: "알 수 없는 에러 발생",
 };
 
 const ERROR_DB_CODE = {

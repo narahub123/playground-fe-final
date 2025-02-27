@@ -9,7 +9,11 @@ import {
   SettingsTabStatic,
 } from "@shared/pages/settings/ui";
 import { useAccountInfo } from "../../hooks";
+import { VerifyPassword } from "@features/auth/verify-password/ui";
+import { useState } from "react";
 const AccountInfoSection = () => {
+  const [isAuthorized, setIsAuthorized] = useState(false);
+
   // 언어 설정
   const { title } = useLanguageContent(["settings", "AccountInfoSection"]);
 
@@ -23,11 +27,8 @@ const AccountInfoSection = () => {
       description: accountInfo[index].description,
       extra: accountInfo[index].extra,
     };
-    console.log(newTab);
     return newTab;
   });
-
-  console.log(combinedTabs);
 
   return (
     <SectionLayout>
@@ -36,29 +37,33 @@ const AccountInfoSection = () => {
         <Text type="heading3">{title}</Text>
       </SectionLayout.Header>
       <SectionLayout.Main>
-        {combinedTabs.map((tab) => {
-          if (tab.link) {
-            return (
-              <SettingsTab
-                label={tab.label}
-                description={tab.description}
-                link={tab.link}
-                iconName={tab.iconName}
-                key={tab.label}
-              />
-            );
-          } else {
-            return (
-              <SettingsTabStatic
-                label={tab.label}
-                description={tab.description}
-                iconName={tab.iconName}
-                extra={tab.extra}
-                key={tab.label}
-              />
-            );
-          }
-        })}
+        {isAuthorized ? (
+          combinedTabs.map((tab) => {
+            if (tab.link) {
+              return (
+                <SettingsTab
+                  label={tab.label}
+                  description={tab.description}
+                  link={tab.link}
+                  iconName={tab.iconName}
+                  key={tab.label}
+                />
+              );
+            } else {
+              return (
+                <SettingsTabStatic
+                  label={tab.label}
+                  description={tab.description}
+                  iconName={tab.iconName}
+                  extra={tab.extra}
+                  key={tab.label}
+                />
+              );
+            }
+          })
+        ) : (
+          <VerifyPassword setIsAuthorized={setIsAuthorized} />
+        )}
       </SectionLayout.Main>
     </SectionLayout>
   );

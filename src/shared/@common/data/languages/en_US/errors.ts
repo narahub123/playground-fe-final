@@ -7,6 +7,7 @@ const ERROR_TITLE_CODE = {
   LOGIN_FAILED: "Login Failed",
   VERIFICATION_CODE_VERIFICATION_FAILED: "Verification Code Validation Failed",
   VERIFICATION_CODE_SEND_FAILED: "Failed to Send Verification Code",
+  VERIFY_PASSWORD_FAILED: "Password verification failed",
 };
 
 const ERROR_DESCRIPTION_CODE = {
@@ -62,6 +63,9 @@ const ERROR_DESCRIPTION_CODE = {
   EMAIL_INFO_NOT_FOUND: "Email not found",
   PHONE_INFO_NOT_FOUND: "Phone number not found.",
   CONTACT_INFO_NOT_FOUND: "Contact information not found.",
+
+  // unknown error
+  UNKNOWN_ERROR: "An unknown error occurred",
 };
 
 const ERRORS = { ERROR_DESCRIPTION_CODE, ERROR_TITLE_CODE };

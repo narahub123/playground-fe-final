@@ -5,6 +5,7 @@ import pages from "./pages";
 import ERRORS from "./errors";
 import settings from "./settings";
 import sectionTextMap from "./settings-section-text-map";
+import auths from "./auths";
 
 const ko_kR = {
   pages,
@@ -14,6 +15,7 @@ const ko_kR = {
   ERRORS,
   settings,
   sectionTextMap,
+  auths,
 };
 
 export default ko_kR;

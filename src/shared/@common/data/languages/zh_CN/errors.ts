@@ -7,6 +7,7 @@ const ERROR_TITLE_CODE = {
   LOGIN_FAILED: "登录失败",
   VERIFICATION_CODE_VERIFICATION_FAILED: "验证码验证失败",
   VERIFICATION_CODE_SEND_FAILED: "验证码发送失败",
+  VERIFY_PASSWORD_FAILED: "密码验证失败",
 };
 
 const ERROR_DESCRIPTION_CODE = {
@@ -59,6 +60,9 @@ const ERROR_DESCRIPTION_CODE = {
   EMAIL_INFO_NOT_FOUND: "找不到电子邮件。",
   PHONE_INFO_NOT_FOUND: "找不到电话号码。",
   CONTACT_INFO_NOT_FOUND: "找不到联系信息。",
+
+  // unknown error
+  UNKNOWN_ERROR: "发生未知错误",
 };
 
 const ERRORS = { ERROR_DESCRIPTION_CODE, ERROR_TITLE_CODE };

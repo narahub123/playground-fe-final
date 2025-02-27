@@ -5,6 +5,7 @@ import pages from "./pages";
 import ERRORS from "./errors";
 import settings from "./settings";
 import sectionTextMap from "./settings-section-text-map";
+import auths from "./auths";
 
 const ja_JP = {
   pages,
@@ -14,6 +15,7 @@ const ja_JP = {
   ERRORS,
   settings,
   sectionTextMap,
+  auths,
 };
 
 export default ja_JP;

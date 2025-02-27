@@ -5,6 +5,7 @@ import hooks from "./hooks";
 import pages from "./pages";
 import settings from "./settings";
 import sectionTextMap from "./settings-section-text-map";
+import auths from "./auths";
 
 const en_US = {
   pages,
@@ -14,6 +15,7 @@ const en_US = {
   ERRORS,
   settings,
   sectionTextMap,
+  auths,
 };
 
 export default en_US;
