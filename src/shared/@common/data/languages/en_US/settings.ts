@@ -36,6 +36,11 @@ const settings = {
   AccountInfoSection: {
     title: "Account Information",
   },
+  ChangePasswordSection: {
+    title: "Change Password",
+    expl: (numOfSession: number) =>
+      `Changing your password will log you out of all active X sessions except the one you are currently using. ${numOfSession} applications with access to your account will not be affected.`,
+  },
 };
 
 export default settings;

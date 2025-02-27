@@ -35,6 +35,11 @@ const settings = {
   AccountInfoSection: {
     title: "계정 정보",
   },
+  ChangePasswordSection: {
+    title: "비밀번호 변경",
+    expl: (numOfSession: number) =>
+      `비밀번호를 변경하면 현재 사용 중인 세션을 제외한 모든 활성 X 세션에서 로그아웃됩니다. 내 계정에 대한 액세스 권한이 있는 ${numOfSession}개의 애플리케이션은(는) 영향을 받지 않습니다.`,
+  },
 };
 
 export default settings;

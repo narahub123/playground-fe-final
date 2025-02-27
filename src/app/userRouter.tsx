@@ -16,6 +16,7 @@ import { PRIMARY_LINK, SETTINGS_LINKS } from "@shared/@common/constants";
 import {
   AccountInfoSection,
   AccountSection,
+  ChangePasswordSection,
 } from "@features/settings/account/ui";
 import { SecurityAndAccountAccessSection } from "@features/settings/security-and-account-access/ui";
 import { PrivacyAndSafetySection } from "@features/settings/privacy-and-safety/ui";
@@ -61,7 +62,7 @@ const userRouter = createBrowserRouter([
           },
           {
             path: SETTINGS_LINKS.PASSWORD,
-            element: <></>,
+            element: <ChangePasswordSection />,
           },
           {
             path: SETTINGS_LINKS.DOWNLOAD_DATA,

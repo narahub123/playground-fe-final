@@ -33,6 +33,11 @@ const settings = {
   AccountInfoSection: {
     title: "帳戶資訊",
   },
+  ChangePasswordSection: {
+    title: "更改密碼",
+    expl: (numOfSession: number) =>
+      `更改密碼後，除了當前使用的會話外，您將從所有活躍的X會話中登出。擁有您帳戶訪問權限的${numOfSession}個應用程式不會受到影響。`,
+  },
 };
 
 export default settings;

@@ -33,6 +33,11 @@ const sections = {
   AccountInfoSection: {
     title: "账户信息",
   },
+  ChangePasswordSection: {
+    title: "更改密码",
+    expl: (numOfSession: number) =>
+      `更改密码后，除当前使用的会话外，您将在所有活跃的X会话中退出登录。拥有您账户访问权限的${numOfSession}个应用程序不会受到影响。`,
+  },
 };
 
 export default sections;

@@ -35,6 +35,11 @@ const settings = {
   AccountInfoSection: {
     title: "アカウント情報",
   },
+  ChangePasswordSection: {
+    title: "パスワード変更",
+    expl: (numOfSession: number) =>
+      `パスワードを変更すると、現在使用中のセッションを除くすべてのアクティブなXセッションからログアウトされます。アカウントへのアクセス権を持つ${numOfSession}件のアプリケーションには影響しません。`,
+  },
 };
 
 export default settings;

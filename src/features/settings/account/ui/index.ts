@@ -1,3 +1,5 @@
 import AccountSection from "./AccountSection/AccountSection";
 import AccountInfoSection from "./AccountInfoSection/AccountInfoSection";
-export { AccountSection, AccountInfoSection };
+import ChangePasswordSection from "./ChangePasswordSection/ChangePasswordSection";
+
+export { AccountSection, AccountInfoSection, ChangePasswordSection };
