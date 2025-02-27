@@ -123,6 +123,41 @@ const sectionTextMap: ISectionTextMap = {
         "PlayGround는 이 디바이스에서 사용자의 일부 네트워크 데이터를 사용하는 방식을 제한합니다.",
     },
   },
+  AccountInfoSection: {
+    screenName: {
+      label: "사용자 아이디",
+    },
+    phone: {
+      label: "휴대폰",
+    },
+    email: {
+      label: "이메일",
+    },
+    isAuthorized: {
+      label: "인증됨",
+    },
+    isPostPrivate: {
+      label: "비공개 게시물",
+    },
+    createdAt: {
+      label: "계정 생성",
+    },
+    country: {
+      label: "국가",
+    },
+    languages: {
+      label: "언어",
+    },
+    gender: {
+      label: "성별",
+    },
+    birth: {
+      label: "생년월일",
+    },
+    age: {
+      label: "연령",
+    },
+  },
 };
 
 export default sectionTextMap;

@@ -1,5 +1,6 @@
 import { Icons } from "@shared/@common/ui/icons";
 import { ISectionText } from "@shared/@common/types";
+import { ReactNode } from "react";
 
 interface ISectionData {
   link: string;
@@ -12,6 +13,8 @@ interface ISectionDataMap {
   };
 }
 
-interface ISectionTabData extends ISectionData, ISectionText {}
+interface ISectionTabData extends ISectionData, ISectionText {
+  extra?: ReactNode;
+}
 
 export type { ISectionData, ISectionTabData, ISectionDataMap };

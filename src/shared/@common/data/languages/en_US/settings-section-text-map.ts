@@ -129,6 +129,41 @@ const sectionTextMap: ISectionTextMap = {
         "PlayGround limits the use of some network data on this device.",
     },
   },
+  AccountInfoSection: {
+    screenName: {
+      label: "Username",
+    },
+    phone: {
+      label: "Phone",
+    },
+    email: {
+      label: "Email",
+    },
+    isAuthorized: {
+      label: "Verified",
+    },
+    isPostPrivate: {
+      label: "Private Posts",
+    },
+    createdAt: {
+      label: "Account Created",
+    },
+    country: {
+      label: "Country",
+    },
+    languages: {
+      label: "Languages",
+    },
+    gender: {
+      label: "Gender",
+    },
+    birth: {
+      label: "Date of Birth",
+    },
+    age: {
+      label: "Age",
+    },
+  },
 };
 
 export default sectionTextMap;

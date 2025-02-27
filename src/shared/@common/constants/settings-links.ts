@@ -26,6 +26,13 @@ const SETTINGS_LINKS = {
   DISPLAY: "display",
   LANGUAGE: "language",
   DATA: "data",
+  SCREEN_NAME: "screen_name",
+  PHONE: "phone",
+  EMAIL: "email",
+  COUNTRY: "country",
+  LANGUAGES: "languages",
+  GENDER: "gender",
+  AGE: "age",
 };
 
 export default SETTINGS_LINKS;

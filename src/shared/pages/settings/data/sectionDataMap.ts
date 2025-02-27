@@ -117,6 +117,41 @@ const sectionDataMap: ISectionDataMap = {
       iconName: "dataIcon",
     },
   },
+  AccountInfoSection: {
+    screenName: {
+      link: `/settings/${SETTINGS_LINKS.SCREEN_NAME}`,
+    },
+    phone: {
+      link: `/settings/${SETTINGS_LINKS.PHONE}`,
+    },
+    email: {
+      link: `/settings/${SETTINGS_LINKS.EMAIL}`,
+    },
+    isAuthorized: {
+      link: "",
+    },
+    isPostPrivate: {
+      link: `/settings/${SETTINGS_LINKS.AUDIENCE_AND_TAGGING}`,
+    },
+    createdAt: {
+      link: "",
+    },
+    country: {
+      link: `/settings/${SETTINGS_LINKS.COUNTRY}`,
+    },
+    languages: {
+      link: `/settings/${SETTINGS_LINKS.LANGUAGES}`,
+    },
+    gender: {
+      link: `/settings/${SETTINGS_LINKS.GENDER}`,
+    },
+    birth: {
+      link: ``,
+    },
+    age: {
+      link: `/settings/${SETTINGS_LINKS.AGE}`,
+    },
+  },
 };
 
 export default sectionDataMap;

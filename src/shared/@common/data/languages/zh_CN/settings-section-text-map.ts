@@ -118,6 +118,41 @@ const sectionTextMap: ISectionTextMap = {
       description: "PlayGround限制在此设备上使用的网络数据。",
     },
   },
+  AccountInfoSection: {
+    screenName: {
+      label: "用户名",
+    },
+    phone: {
+      label: "手机",
+    },
+    email: {
+      label: "电子邮件",
+    },
+    isAuthorized: {
+      label: "已认证",
+    },
+    isPostPrivate: {
+      label: "私密帖子",
+    },
+    createdAt: {
+      label: "账户创建",
+    },
+    country: {
+      label: "国家",
+    },
+    languages: {
+      label: "语言",
+    },
+    gender: {
+      label: "性别",
+    },
+    birth: {
+      label: "出生日期",
+    },
+    age: {
+      label: "年龄",
+    },
+  },
 };
 
 export default sectionTextMap;
