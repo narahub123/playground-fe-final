@@ -7,7 +7,7 @@ import {
   LocationType,
   UserRoleType,
 } from "@shared/@common/types";
-import { BirthType, GenderType } from "@shared/auth/types";
+import { GenderType } from "@shared/auth/types";
 import { validateDate } from "@shared/auth/utils";
 
 export interface UserState {
@@ -49,6 +49,7 @@ const initialState: UserState = {
       lockReason: null,
       lockedAt: null,
     },
+    createdAt: new Date(),
   },
   loading: false,
 };

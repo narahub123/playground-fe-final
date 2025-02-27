@@ -92,6 +92,7 @@ interface IUser {
   isAuthorized: boolean;
   isAuthenticated: boolean;
   lockStatus: ILockStatus;
+  createdAt: Date;
 }
 
 export type {
