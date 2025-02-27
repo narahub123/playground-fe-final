@@ -24,7 +24,7 @@ const InputVerifyPassword = ({
   handleChange,
 }: InputVerifyPasswordProps) => {
   // 언어 설정
-  const {} = useLanguageContent(["auths", "InputVerifyPassword"]);
+  const { recovery } = useLanguageContent(["auths", "InputVerifyPassword"]);
 
   const classNames = joinClassNames([
     styles["input__verify__password"],
@@ -43,7 +43,7 @@ const InputVerifyPassword = ({
       />
       <div className={styles["input__verify__password__link"]}>
         <PasswordRecoveryButton handleClick={() => {}}>
-          비밀번호를 잊으셨나요?
+          {recovery}
         </PasswordRecoveryButton>
       </div>
     </div>

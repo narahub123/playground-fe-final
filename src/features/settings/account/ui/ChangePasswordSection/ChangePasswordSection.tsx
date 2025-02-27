@@ -33,7 +33,7 @@ const ChangePasswordSection = ({ className }: ChangePasswordSectionProps) => {
   ]);
 
   return (
-    <SectionLayout>
+    <SectionLayout className={classNames}>
       <SectionLayout.Header>
         <BackIcon />
         <Text type="heading3">{title}</Text>
@@ -48,22 +48,7 @@ const ChangePasswordSection = ({ className }: ChangePasswordSectionProps) => {
             label="비밀번호"
           />
         </section>
-        <section className={styles["section"]}>
-          <InputVerifyPassword
-            inputValue={inputValue}
-            isValid={isValid}
-            handleChange={handleChange}
-            field="password"
-            label="비밀번호"
-          />
-          <InputVerifyPassword
-            inputValue={inputValue}
-            isValid={isValid}
-            handleChange={handleChange}
-            field="password"
-            label="비밀번호"
-          />
-        </section>
+        <section className={styles["section"]}>새비밀번호</section>
         <section className={styles["section"]}>
           <Text>{expl(5)}</Text>
         </section>
