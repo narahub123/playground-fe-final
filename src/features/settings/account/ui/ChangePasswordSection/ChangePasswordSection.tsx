@@ -44,6 +44,8 @@ const ChangePasswordSection = ({ className }: ChangePasswordSectionProps) => {
             inputValue={inputValue}
             isValid={isValid}
             handleChange={handleChange}
+            field="password"
+            label="비밀번호"
           />
         </section>
         <section className={styles["section"]}>
@@ -51,11 +53,15 @@ const ChangePasswordSection = ({ className }: ChangePasswordSectionProps) => {
             inputValue={inputValue}
             isValid={isValid}
             handleChange={handleChange}
+            field="password"
+            label="비밀번호"
           />
           <InputVerifyPassword
             inputValue={inputValue}
             isValid={isValid}
             handleChange={handleChange}
+            field="password"
+            label="비밀번호"
           />
         </section>
         <section className={styles["section"]}>

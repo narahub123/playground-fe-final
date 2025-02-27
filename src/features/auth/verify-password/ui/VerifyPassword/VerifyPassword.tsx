@@ -101,6 +101,8 @@ const VerifyPassword = ({
         inputValue={inputValue}
         isValid={isValid}
         handleChange={handleChange}
+        field="password"
+        label="비밀번호"
       />
       <div className={styles["verify__password__btn__wrapper"]}>
         <Button
