@@ -8,7 +8,7 @@ const useCountryName = (countryCode: string) => {
   const countryNames =
     languages[language as keyof typeof languages].countryNames;
 
-  const code = countryCode.toLowerCase() ?? "kr";
+  const code = countryCode.toLowerCase() || "kr";
 
   const countryName = countryNames[code as keyof typeof countryNames];
 
