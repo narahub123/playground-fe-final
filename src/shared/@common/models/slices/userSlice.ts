@@ -51,7 +51,7 @@ const initialState: UserState = {
     },
     createdAt: new Date(),
   },
-  loading: false,
+  loading: true,
 };
 
 const userSlice = createSlice({

@@ -14,11 +14,15 @@ import { useDisplaySetup } from "@shared/@common/models/hooks";
 import { AlertContextProvider } from "@shared/@common/ui/components/Alert/context";
 import { ToastContextProvider } from "@shared/@common/ui/components/Toast/context";
 import { TextHeader } from "@test/ui/components";
-import { checkLogin } from "@shared/@common/utils";
+import { checkLogin, joinClassNames } from "@shared/@common/utils";
+import { useSelector } from "react-redux";
+import { selectUserLoading } from "@shared/@common/models/selectors";
+import { Spinner } from "@shared/@common/ui/components";
 
 const PagesLayout = () => {
   const dispatch = useAppDispatch();
   const { pathname } = useLocation();
+  const isLoading = useSelector(selectUserLoading);
 
   const isLogout = pathname.includes("logout");
 
@@ -52,8 +56,17 @@ const PagesLayout = () => {
         <div className={styles[`pages__layout`]}>
           {!isLogout && <Header />}
           <main role="main" className={styles["pages__layout__main"]}>
-            <div className={styles[`pages__layout__page`]}>
-              <Outlet />
+            <div
+              className={joinClassNames([
+                styles[`pages__layout__page`],
+                isLoading ? styles[`loading`] : "",
+              ])}
+            >
+              {isLoading ? (
+                <Spinner color="cornflowerblue" size={1.5} />
+              ) : (
+                <Outlet />
+              )}
             </div>
             {!isLogout && !pathname.includes("settings") && (
               <aside className={styles[`pages__layout__sidebar`]}>기타</aside>
