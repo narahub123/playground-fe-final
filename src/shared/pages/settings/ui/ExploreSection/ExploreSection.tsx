@@ -40,7 +40,8 @@ const ExploreSection = () => {
 
     let results: ISectionTabData[] = [];
 
-    for (let i = 0; i < sectionData.length; i++) {
+    // 검색 범위를 첫번째 내부 페이지까지로 제한
+    for (let i = 0; i < 6; i++) {
       const section = sectionData[i];
       const sectionTabs = Object.values(section);
 
@@ -54,7 +55,9 @@ const ExploreSection = () => {
         const primarySection = Object.values(sectionData[0]);
 
         // 부모 탭 가져오기
-        const parentTab = primarySection[i];
+        const parentTab = primarySection[i - 1];
+
+        console.log(parentTab);
 
         // 부모탭에 검색어가 포함된 경우 해당 요소를 삭제함
         if (parentTab.label.includes(keyword)) {
