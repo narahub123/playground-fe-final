@@ -1,4 +1,6 @@
 .header {
+  position: sticky;
+  top: 39.2px;
   height: calc(100dvh - 39.2px);
   overflow-y: auto;
   overflow-x: hidden;
