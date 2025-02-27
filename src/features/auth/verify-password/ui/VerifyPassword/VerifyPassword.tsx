@@ -21,7 +21,7 @@ const VerifyPassword = ({
   const [isLoading, setIsLoading] = useState(false);
 
   // 언어 설정
-  const { heading, description, btn, errors } = useLanguageContent([
+  const { heading, description, btn, errors, label } = useLanguageContent([
     "auths",
     "VerifyPassword",
   ]);
@@ -33,18 +33,19 @@ const VerifyPassword = ({
 
     setInputValue(value);
 
-    if (inputValue !== "") {
+    if (value === "") {
       setIsValid((prev) => {
-        if (prev !== true) {
-          return true;
+        if (prev !== false) {
+          return false;
         } else return prev;
       });
 
       return;
     }
+
     setIsValid((prev) => {
-      if (prev !== false) {
-        return false;
+      if (prev !== true) {
+        return true;
       } else return prev;
     });
   };
@@ -102,7 +103,7 @@ const VerifyPassword = ({
         isValid={isValid}
         handleChange={handleChange}
         field="password"
-        label="비밀번호"
+        label={label}
       />
       <div className={styles["verify__password__btn__wrapper"]}>
         <Button

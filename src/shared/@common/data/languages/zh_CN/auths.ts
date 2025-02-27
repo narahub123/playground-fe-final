@@ -19,9 +19,10 @@ const auths = {
       title: getErrorTitle,
       description: getErrorDescription,
     },
+    label: "密码",
   },
   InputVerifyPassword: {
-    label: "密码",
+    recovery: "忘记密码？",
   },
 };
 

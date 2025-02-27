@@ -19,10 +19,12 @@ const auths = {
       title: getErrorTitle,
       description: getErrorDescription,
     },
-  },
-  InputVerifyPassword: {
     label: "비밀번호",
   },
+  InputVerifyPassword: {
+    recovery: "비밀번호를 잊으셨나요?",
+  },
+  future: {}
 };
 
 export default auths;
