@@ -4,6 +4,11 @@ import {
   settings_common_jp,
   settings_common_cn,
   settings_common_tw,
+  sectionTextMap_kr,
+  sectionTextMap_us,
+  sectionTextMap_jp,
+  sectionTextMap_cn,
+  sectionTextMap_tw,
 } from "./languages";
 
 const settings_kr = {
@@ -26,4 +31,15 @@ const settings_tw = {
   ...settings_common_tw,
 };
 
-export { settings_kr, settings_en, settings_jp, settings_cn, settings_tw };
+export {
+  settings_kr,
+  settings_en,
+  settings_jp,
+  settings_cn,
+  settings_tw,
+  sectionTextMap_kr,
+  sectionTextMap_us,
+  sectionTextMap_jp,
+  sectionTextMap_cn,
+  sectionTextMap_tw,
+};
