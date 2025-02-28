@@ -1,3 +1,4 @@
 import SettingsTab from "./SettingsTab/SettingsTab";
+import SettingsTabStatic from "./SettingsTabStatic/SettingsTabStatic";
 
-export { SettingsTab };
+export { SettingsTab, SettingsTabStatic };
