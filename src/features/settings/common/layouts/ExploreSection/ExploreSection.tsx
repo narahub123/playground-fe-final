@@ -2,13 +2,13 @@ import styles from "./ExploreSection.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Text } from "@shared/@common/ui/components";
 import { joinClassNames } from "@shared/@common/utils";
-import { SettingsTab } from "@shared/pages/settings/ui";
 import { useEffect, useState } from "react";
 import { useSettingsTabs } from "../../hooks";
 import { ISectionTabData } from "../../types";
 import { useSectionDataArray } from "@features/settings/search/hooks";
 import { SectionLayout } from "../../layouts";
 import { SettingsSearch } from "@features/settings/search/ui";
+import { SettingsTab } from "../../ui";
 
 const ExploreSection = () => {
   const initialTabs = useSettingsTabs("ExploreSection");

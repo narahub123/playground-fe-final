@@ -7,7 +7,7 @@ import {
   PRIMARY_LINK,
   SETTINGS_LAYOUT_BREAKPOINT,
 } from "@shared/@common/constants";
-import { ExploreSection } from "@shared/pages/settings/ui";
+import { ExploreSection } from "@features/settings/common/layouts";
 
 const SettingsPage = () => {
   const navigate = useNavigate();
