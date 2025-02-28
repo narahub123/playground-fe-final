@@ -10,6 +10,7 @@ import {
   sectionTextMap_cn,
   sectionTextMap_tw,
 } from "./languages";
+import sectionDataMap from "./sectionDataMap";
 
 const settings_kr = {
   ...settings_common_kr,
@@ -42,4 +43,5 @@ export {
   sectionTextMap_jp,
   sectionTextMap_cn,
   sectionTextMap_tw,
+  sectionDataMap,
 };
