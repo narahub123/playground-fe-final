@@ -1,0 +1,54 @@
+html[data-bg-theme="light"] {
+  --bgTheme-icon-color-primary: white;
+  --bgTheme-icon-bgColor-primary: #444;
+}
+
+html[data-bg-theme="dark"] {
+  --bgTheme-icon-color-primary: black;
+  --bgTheme-icon-bgColor-primary: #ddd;
+}
+
+html[data-bg-theme="darkest"] {
+  --bgTheme-icon-color-primary: black;
+  --bgTheme-icon-bgColor-primary: white;
+}
+
+.back__icon {
+  position: relative;
+  color: var(--bgTheme-color-primary);
+}
+
+.back__icon[data-title]::after {
+  content: attr(data-title);
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, 2px);
+  padding: 3px;
+  font-size: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  color: var(--bgTheme-icon-color-primary);
+  background: var(--bgTheme-icon-bgColor-primary);
+  white-space: nowrap; /* 부모 너비보다 크게 */
+
+  opacity: 0; /* 초기 상태에서 투명하게 설정 */
+}
+
+.back__icon[data-title]:focus::after {
+  opacity: 1;
+}
+
+.back__icon[data-title]:hover::after {
+  opacity: 1;
+  transition-delay: 0.4s;
+  /* transition: opacity 0.3s ease 0.4s; */
+}
+
+@media screen and (min-width: 1021px) {
+  .back__icon {
+    display: none;
+  }
+}
