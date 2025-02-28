@@ -24,6 +24,10 @@ const auths = {
   InputVerifyPassword: {
     recovery: "パスワードをお忘れですか？",
   },
+  VerifyPasswordWithError: {
+    label: "現在のパスワード",
+    recovery: "パスワードをお忘れですか？",
+  },
 };
 
 export default auths;

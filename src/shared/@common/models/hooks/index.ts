@@ -11,6 +11,7 @@ import useClickOutside from "./useClickOutside";
 import useDisplaySetup from "./useDisplaySetup";
 import useEscKeyClose from "./useEscKeyClose";
 import useKeepParallelModalOpen from "./useKeepParallelModalOpen";
+import useAPIError from "./useAPIError";
 
 export {
   useLanguageContent,
@@ -26,4 +27,5 @@ export {
   useDisplaySetup,
   useEscKeyClose,
   useKeepParallelModalOpen,
+  useAPIError,
 };

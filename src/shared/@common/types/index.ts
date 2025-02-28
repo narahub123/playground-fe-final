@@ -36,6 +36,13 @@ import {
 
 import { IPlayGroundData, ISectionText, ISectionTextMap } from "./utils";
 
+import {
+  LanguagesType,
+  ErrorTitleCodeType,
+  ErrorDescriptionCodeType,
+  ErrorDBCodeType,
+} from "./hooks";
+
 export type {
   // slices
   BgThemeType,
@@ -75,4 +82,10 @@ export type {
   IPlayGroundData,
   ISectionText,
   ISectionTextMap,
+
+  // hooks
+  LanguagesType,
+  ErrorTitleCodeType,
+  ErrorDescriptionCodeType,
+  ErrorDBCodeType,
 };

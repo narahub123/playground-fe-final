@@ -7,8 +7,10 @@ const ERROR_TITLE_CODE = {
   LOGIN_FAILED: "ログインに失敗しました",
   VERIFICATION_CODE_VERIFICATION_FAILED: "認証コードの確認に失敗しました",
   VERIFICATION_CODE_SEND_FAILED: "認証コードの送信に失敗しました",
+  ADD_ACCOUNT_FAILED: "アカウントの追加に失敗しました。",
   VERIFY_PASSWORD_FAILED: "パスワード認証に失敗しました",
-};
+  PASSWORD_CHANGE_FAILED: "パスワードの変更に失敗しました",
+} as const;
 
 const ERROR_DESCRIPTION_CODE = {
   // validation error
@@ -19,6 +21,8 @@ const ERROR_DESCRIPTION_CODE = {
     "メール、電話番号、ユーザーIDのうち、少なくとも1つが必要です。入力してください。",
   MISSING_LANGUAGE_SETTING: "言語設定は必須です。設定を入力してください。",
   MISSING_PASSWORD: "パスワードは必須です。パスワードを入力してください。",
+  MISSING_NEW_PASSWORD:
+    "新しいパスワードは必須です。新しいパスワードを入力してください。",
   MISSING_USERNAME: "ユーザー名は必須です。ユーザー名を入力してください。",
   MISSING_BIRTH: "生年月日は必須です。入力してください。",
   MISSING_NOTIFICATION_SETTINGS:
@@ -37,6 +41,7 @@ const ERROR_DESCRIPTION_CODE = {
   PASSWORD_UNMATCHED: "パスワードが一致しません。",
   VERIFICATION_CODE_EXPIRED:
     "認証コードの有効期限が切れました。新しいコードを取得して再試行してください。",
+  PASSWORD_UNCHANGED: "パスワード変更がありません",
 
   // session error
   SESSION_CREATION_FAILED: "アクティブなセッションの作成に失敗しました。",
@@ -63,6 +68,8 @@ const ERROR_DESCRIPTION_CODE = {
   EMAIL_INFO_NOT_FOUND: "メールが見つかりません。",
   PHONE_INFO_NOT_FOUND: "電話番号が見つかりません。",
   CONTACT_INFO_NOT_FOUND: "連絡先情報が見つかりません。",
+
+  ACCOUNT_ALREADY_EXISTS: "このアカウントは既に存在します。",
 
   // unknown error
   UNKNOWN_ERROR: "不明なエラーが発生しました",

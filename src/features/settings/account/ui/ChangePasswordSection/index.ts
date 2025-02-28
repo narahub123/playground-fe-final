@@ -1,4 +1,11 @@
 import ChangePasswordSection from "./ChangePasswordSection";
-import NewPasswordFields from "./NewPasswordFields/NewPasswordFields";
+import InputNewPassword from "./InputNewPassword/InputNewPassword";
+import InputPasswordConfirm from "./InputPasswordConfirm/InputPasswordConfirm";
+import NewPasswordFields from "./NewPasswordFields";
 
-export { ChangePasswordSection, NewPasswordFields };
+export {
+  ChangePasswordSection,
+  InputNewPassword,
+  InputPasswordConfirm,
+  NewPasswordFields,
+};

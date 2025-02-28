@@ -9,7 +9,8 @@ const ERROR_TITLE_CODE = {
   VERIFICATION_CODE_SEND_FAILED: "인증 코드 전송 실패",
   ADD_ACCOUNT_FAILED: "계정 추가 실패",
   VERIFY_PASSWORD_FAILED: "비밀 번호 인증 실패",
-};
+  PASSWORD_CHANGE_FAILED: "비밀 번호 변경 실패",
+} as const;
 
 const ERROR_DESCRIPTION_CODE = {
   // validataion error
@@ -20,6 +21,8 @@ const ERROR_DESCRIPTION_CODE = {
     "이메일, 휴대전화번호, 사용자 아이디 중 적어도 하나는 필수입니다. 이메일, 휴대전화번호, 사용자 아이디를 제공해주세요.",
   MISSING_LANGUAGE_SETTING: "언어 설정은 필수입니다. 언어 설정을 제공해주세요.",
   MISSING_PASSWORD: "비밀번호는 필수입니다. 비밀번호를 제공해주세요.",
+  MISSING_NEW_PASSWORD:
+    "새로운 비밀번호는 필수입니다. 새로운 비밀번호를 제공해주세요.",
   MISSING_USERNAME: "사용자 이름은 필수입니다. 사용자 이름을 제공해주세요.",
   MISSING_BIRTH: "생년월일은 필수입니다. 생년월일을 제공해주세요.",
   MISSING_NOTIFICATION_SETTINGS:
@@ -38,6 +41,7 @@ const ERROR_DESCRIPTION_CODE = {
   PASSWORD_UNMATCHED: "비밀번호 불일치",
   VERIFICATION_CODE_EXPIRED:
     "인증 코드가 만료되었습니다. 인증 코드를 재발급한 후에 다시 시도해주세요.",
+  PASSWORD_UNCHANGED: "비밀번호 변경 없음",
 
   // session error
   SESSION_CREATION_FAILED: "활성 세션 생성 실패",
@@ -70,7 +74,7 @@ const ERROR_DESCRIPTION_CODE = {
 
   // unknown error
   UNKNOWN_ERROR: "알 수 없는 에러 발생",
-};
+} as const;
 
 const ERROR_DB_CODE = {
   DUPLICATE_KEY: "DUPLICATE_KEY", // 중복된 키 존재

@@ -7,8 +7,10 @@ const ERROR_TITLE_CODE = {
   LOGIN_FAILED: "登录失败",
   VERIFICATION_CODE_VERIFICATION_FAILED: "验证码验证失败",
   VERIFICATION_CODE_SEND_FAILED: "验证码发送失败",
+  ADD_ACCOUNT_FAILED: "账户添加失败。",
   VERIFY_PASSWORD_FAILED: "密码验证失败",
-};
+  PASSWORD_CHANGE_FAILED: "密码更改失败",
+} as const;
 
 const ERROR_DESCRIPTION_CODE = {
   // validation error
@@ -19,6 +21,7 @@ const ERROR_DESCRIPTION_CODE = {
     "邮箱、手机号码或用户ID至少需要提供一个。请提供相关信息。",
   MISSING_LANGUAGE_SETTING: "语言设置是必填项。请提供语言设置。",
   MISSING_PASSWORD: "密码是必填项。请提供密码。",
+  MISSING_NEW_PASSWORD: "新密码是必填项。请提供新密码。",
   MISSING_USERNAME: "用户名是必填项。请提供用户名。",
   MISSING_BIRTH: "出生日期是必填项。请提供出生日期。",
   MISSING_NOTIFICATION_SETTINGS: "通知设置是必填项。请提供通知设置。",
@@ -34,6 +37,7 @@ const ERROR_DESCRIPTION_CODE = {
   // authentication failed
   PASSWORD_UNMATCHED: "密码不匹配。",
   VERIFICATION_CODE_EXPIRED: "验证码已过期。请重新获取验证码并重试。",
+  PASSWORD_UNCHANGED: "未检测到密码更改",
 
   // session error
   SESSION_CREATION_FAILED: "创建活动会话失败。",
@@ -60,6 +64,8 @@ const ERROR_DESCRIPTION_CODE = {
   EMAIL_INFO_NOT_FOUND: "找不到电子邮件。",
   PHONE_INFO_NOT_FOUND: "找不到电话号码。",
   CONTACT_INFO_NOT_FOUND: "找不到联系信息。",
+
+  ACCOUNT_ALREADY_EXISTS: "该账户已存在。",
 
   // unknown error
   UNKNOWN_ERROR: "发生未知错误",

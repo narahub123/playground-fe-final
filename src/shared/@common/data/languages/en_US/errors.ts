@@ -7,8 +7,10 @@ const ERROR_TITLE_CODE = {
   LOGIN_FAILED: "Login Failed",
   VERIFICATION_CODE_VERIFICATION_FAILED: "Verification Code Validation Failed",
   VERIFICATION_CODE_SEND_FAILED: "Failed to Send Verification Code",
+  ADD_ACCOUNT_FAILED: "Account addition failed.",
   VERIFY_PASSWORD_FAILED: "Password verification failed",
-};
+  PASSWORD_CHANGE_FAILED: "Password change failed",
+} as const;
 
 const ERROR_DESCRIPTION_CODE = {
   // validation error
@@ -19,6 +21,8 @@ const ERROR_DESCRIPTION_CODE = {
     "At least one of email, phone number, or user ID is required. Please provide one.",
   MISSING_LANGUAGE_SETTING: "Language setting is required. Please provide it.",
   MISSING_PASSWORD: "Password is required. Please provide a password.",
+  MISSING_NEW_PASSWORD:
+    "New password is required. Please provide a new password.",
   MISSING_USERNAME: "Username is required. Please provide a username.",
   MISSING_BIRTH: "Date of birth is required. Please provide it.",
   MISSING_NOTIFICATION_SETTINGS:
@@ -37,6 +41,7 @@ const ERROR_DESCRIPTION_CODE = {
   PASSWORD_UNMATCHED: "Password does not match.",
   VERIFICATION_CODE_EXPIRED:
     "Verification code has expired. Please request a new code and try again.",
+  PASSWORD_UNCHANGED: "No password change detected",
 
   // session error
   SESSION_CREATION_FAILED: "Failed to create an active session.",
@@ -63,6 +68,8 @@ const ERROR_DESCRIPTION_CODE = {
   EMAIL_INFO_NOT_FOUND: "Email not found",
   PHONE_INFO_NOT_FOUND: "Phone number not found.",
   CONTACT_INFO_NOT_FOUND: "Contact information not found.",
+
+  ACCOUNT_ALREADY_EXISTS: "The account already exists.",
 
   // unknown error
   UNKNOWN_ERROR: "An unknown error occurred",

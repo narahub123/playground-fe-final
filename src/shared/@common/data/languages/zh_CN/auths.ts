@@ -24,6 +24,10 @@ const auths = {
   InputVerifyPassword: {
     recovery: "忘记密码？",
   },
+  VerifyPasswordWithError: {
+    label: "当前密码",
+    recovery: "忘记密码？",
+  },
 };
 
 export default auths;

@@ -20,7 +20,7 @@ const fetchWithAuth = async (
     let response = await fetch(`${BASE_URL}${url}`, {
       ...options,
       // body가 있으면 POST 없으면 options.method를 따르거나 없으면 GET
-      method: body ? "POST" : options.method || "GET",
+      method: options.method ? options.method : body ? "POST" : "GET",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,

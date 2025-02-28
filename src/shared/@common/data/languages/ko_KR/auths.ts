@@ -24,7 +24,10 @@ const auths = {
   InputVerifyPassword: {
     recovery: "비밀번호를 잊으셨나요?",
   },
-  future: {}
+  VerifyPasswordWithError: {
+    label: "현재 비밀번호",
+    recovery: "비밀번호를 잊으셨나요?",
+  },
 };
 
 export default auths;
