@@ -1,3 +1,4 @@
 import useSettingsTabs from "./useSettingsTabs";
+import useSectionDataArray from "./useSectionDataArray";
 
-export { useSettingsTabs };
+export { useSettingsTabs, useSectionDataArray };

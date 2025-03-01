@@ -1,6 +1,6 @@
 import { useLanguageContent } from "@shared/@common/models/hooks";
-import { sectionDataMap } from "@shared/pages/settings/data";
-import { ISectionTabData } from "@shared/pages/settings/types";
+import { ISectionTabData } from "@features/settings/common/types";
+import { sectionDataMap } from "@features/settings/common/data";
 
 const useSectionDataArray = (): { [key: string]: ISectionTabData }[] => {
   const sectionTextMap = useLanguageContent(["sectionTextMap"]);

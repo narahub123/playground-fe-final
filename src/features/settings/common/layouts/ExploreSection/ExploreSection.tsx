@@ -3,12 +3,13 @@ import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Text } from "@shared/@common/ui/components";
 import { joinClassNames } from "@shared/@common/utils";
 import { useEffect, useState } from "react";
-import { useSettingsTabs } from "../../hooks";
-import { ISectionTabData } from "../../types";
-import { useSectionDataArray } from "@features/settings/search/hooks";
-import { SectionLayout } from "../../layouts";
-import { SettingsSearch } from "@features/settings/search/ui";
-import { SettingsTab } from "../../ui";
+import {
+  useSectionDataArray,
+  useSettingsTabs,
+} from "@features/settings/common/hooks";
+import { ISectionTabData } from "@features/settings/common/types";
+import { SectionLayout } from "@features/settings/common/layouts";
+import { SettingsSearch, SettingsTab } from "@features/settings/common/ui";
 
 const ExploreSection = () => {
   const initialTabs = useSettingsTabs("ExploreSection");
