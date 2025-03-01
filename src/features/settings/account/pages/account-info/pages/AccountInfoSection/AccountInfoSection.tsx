@@ -1,16 +1,17 @@
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Text } from "@shared/@common/ui/components";
-import { useSettingsTabs } from "@shared/pages/settings/hooks";
-import { SectionLayout } from "@shared/pages/settings/layouts";
-import { ISectionTabData } from "@shared/pages/settings/types";
+import { VerifyPassword } from "@features/auth/verify-password/ui";
+import { useState } from "react";
+import { useAccountInfo } from "../../hooks";
+import { useSettingsTabs } from "@features/settings/common/hooks";
+import { ISectionTabData } from "@features/settings/common/types";
+import { SectionLayout } from "@features/settings/common/layouts";
 import {
   BackIcon,
   SettingsTab,
   SettingsTabStatic,
-} from "@shared/pages/settings/ui";
-import { useAccountInfo } from "../../hooks";
-import { VerifyPassword } from "@features/auth/verify-password/ui";
-import { useState } from "react";
+} from "@features/settings/common/ui";
+
 const AccountInfoSection = () => {
   const [isAuthorized, setIsAuthorized] = useState(false);
 
