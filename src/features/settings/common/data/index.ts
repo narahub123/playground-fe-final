@@ -1,59 +1,20 @@
-import {
-  settings_common_kr,
-  settings_common_us,
-  settings_common_jp,
-  settings_common_cn,
-  settings_common_tw,
-  sectionTextMap_kr,
-  sectionTextMap_us,
-  sectionTextMap_jp,
-  sectionTextMap_cn,
-  sectionTextMap_tw,
-} from "./languages";
-import {
-  settings_account_us,
-  settings_account_jp,
-  settings_account_kr,
-  settings_account_cn,
-  settings_account_tw,
-} from "../../account/data";
+import { settings_common, sectionTextMap } from "./languages";
+import { settings_account } from "../../account/data";
 import sectionDataMap from "./sectionDataMap";
 
-const settings_kr = {
-  ...settings_common_kr,
-  ...settings_account_kr,
+const combineSettings = (countryCode: keyof typeof settings_common) => {
+  return {
+    ...settings_common[countryCode],
+    ...settings_account[countryCode],
+  };
 };
 
-const settings_en = {
-  ...settings_common_us,
-  ...settings_account_us,
+const settings_lang = {
+  us: combineSettings("us"),
+  jp: combineSettings("jp"),
+  kr: combineSettings("kr"),
+  cn: combineSettings("cn"),
+  tw: combineSettings("tw"),
 };
 
-const settings_jp = {
-  ...settings_common_jp,
-  ...settings_account_jp,
-};
-
-const settings_cn = {
-  ...settings_common_cn,
-  ...settings_account_cn,
-};
-
-const settings_tw = {
-  ...settings_common_tw,
-  ...settings_account_tw,
-};
-
-export {
-  settings_kr,
-  settings_en,
-  settings_jp,
-  settings_cn,
-  settings_tw,
-  sectionTextMap_kr,
-  sectionTextMap_us,
-  sectionTextMap_jp,
-  sectionTextMap_cn,
-  sectionTextMap_tw,
-  sectionDataMap,
-};
+export { sectionTextMap, sectionDataMap, settings_lang };
