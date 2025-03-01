@@ -1,8 +1,8 @@
+import { useSettingsTabs } from "@features/settings/common/hooks";
+import { SectionLayout } from "@features/settings/common/layouts";
+import { BackIcon, SettingsTab } from "@features/settings/common/ui";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Text } from "@shared/@common/ui/components";
-import { useSettingsTabs } from "@shared/pages/settings/hooks";
-import { SectionLayout } from "@shared/pages/settings/layouts";
-import { BackIcon, SettingsTab } from "@shared/pages/settings/ui";
 
 const NotificationsSection = () => {
   // 언어 설정

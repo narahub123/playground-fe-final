@@ -13,13 +13,13 @@ import { AccountManageModal, WritePostModal } from "@shared/pages/ui";
 import { LoginModal } from "@features/auth-login/ui";
 import { PagesLayout } from "@shared/pages/layouts";
 import { PRIMARY_LINK, SETTINGS_LINKS } from "@shared/@common/constants";
-import { NotificationsSection } from "@features/settings/notifications/ui";
 import { AccessibiltyAndDisplayAndLanguagesSection } from "@features/settings/accessibilty-and-display-languages/ui";
 import { AccountSection } from "@features/settings/account/pages";
 import AccountInfoSection from "@features/settings/account/pages/account-info/pages/AccountInfoSection/AccountInfoSection";
 import { ChangePasswordSection } from "@features/settings/account/pages/change-password/pages";
 import { PrivacyAndSafetySection } from "@features/settings/privacy-and-safety/pages";
 import { SecurityAndAccountAccessSection } from "@features/settings/security-and-account-access/pages";
+import { NotificationsSection } from "@features/settings/notifications/pages";
 
 const userRouter = createBrowserRouter([
   {
