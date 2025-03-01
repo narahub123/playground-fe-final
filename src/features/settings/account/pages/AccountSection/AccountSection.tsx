@@ -1,10 +1,8 @@
-import styles from "./AccountSection.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
-import { joinClassNames } from "@shared/@common/utils";
 import { Text } from "@shared/@common/ui/components";
-import { SectionLayout } from "@shared/pages/settings/layouts";
-import { BackIcon, SettingsTab } from "@shared/pages/settings/ui";
-import { useSettingsTabs } from "@shared/pages/settings/hooks";
+import { SectionLayout } from "@features/settings/common/layouts";
+import { BackIcon, SettingsTab } from "@features/settings/common/ui";
+import { useSettingsTabs } from "@features/settings/common/hooks";
 
 const AccountSection = () => {
   // 언어 설정
@@ -15,10 +13,8 @@ const AccountSection = () => {
 
   const tabs = useSettingsTabs("AccountSection");
 
-  const classNames = joinClassNames([styles["accountsection"]]);
-
   return (
-    <SectionLayout className={classNames}>
+    <SectionLayout>
       <SectionLayout.Header>
         <BackIcon />
         <Text type="heading3">{title}</Text>
