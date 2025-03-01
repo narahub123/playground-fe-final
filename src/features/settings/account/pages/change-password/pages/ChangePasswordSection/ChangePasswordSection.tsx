@@ -2,14 +2,14 @@ import styles from "./ChangePasswordSection.module.css";
 import { useAPIError, useLanguageContent } from "@shared/@common/models/hooks";
 import { Button, Text } from "@shared/@common/ui/components";
 import { joinClassNames } from "@shared/@common/utils";
-import { SectionLayout } from "@shared/pages/settings/layouts";
-import { BackIcon } from "@shared/pages/settings/ui";
 import { useState } from "react";
 import { useCompiledInputError } from "@shared/@common/ui/components/Input";
 import { fetchWithAuth } from "@shared/pages/utils";
 import { VerifyPasswordWithError } from "@features/auth/verify-password/ui";
-import NewPasswordFields from "./NewPasswordFields";
 import { ErrorDescriptionCodeType } from "@shared/@common/types";
+import { SectionLayout } from "@features/settings/common/layouts";
+import { BackIcon } from "@features/settings/common/ui";
+import { NewPasswordFields } from "../../ui";
 
 interface ChangePasswordSectionProps {
   className?: string;

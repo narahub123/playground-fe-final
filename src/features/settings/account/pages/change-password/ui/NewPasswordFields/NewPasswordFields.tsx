@@ -2,7 +2,7 @@ import styles from "./NewPasswordFields.module.css";
 import { joinClassNames } from "@shared/@common/utils";
 import { ReactNode } from "react";
 
-interface NewPasswordFieldsProps {
+interface NewPasswordFieldsContainerProps {
   children: ReactNode;
   className?: string;
 }
@@ -10,7 +10,7 @@ interface NewPasswordFieldsProps {
 const NewPasswordFieldsContainer = ({
   className,
   children,
-}: NewPasswordFieldsProps) => {
+}: NewPasswordFieldsContainerProps) => {
   const classNames = joinClassNames([
     styles["new__password__fields"],
     className,
