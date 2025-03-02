@@ -34,7 +34,7 @@ type LocationType = {
   county: string;
 };
 
-type ParallelModals = "signup" | "login" | "flow" | "write" | "account";
+type ParallelModals = "signup" | "login" | "flow" | "write" | "account" | 'ownership';
 type StandAlonModals = "error" | "logout";
 
 type TwoFactorAuthenticationMethod = "sms" | "app" | "key" | "";

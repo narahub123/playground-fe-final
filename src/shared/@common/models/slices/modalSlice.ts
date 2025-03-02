@@ -8,6 +8,7 @@ interface ModalState {
     flow: boolean; // 비밀번호 확인 모달 상태
     write: boolean; // writepost 모달 상태
     account: boolean; // accountmanage 모달 상태
+    ownership: boolean; // 계정 소유자 여부 확인 모달 상태
   };
   standalone: {
     error: boolean; // 독립 모달 상태
@@ -22,6 +23,7 @@ const initialState: ModalState = {
     flow: false,
     write: false,
     account: false,
+    ownership: false,
   },
   standalone: {
     error: false,
