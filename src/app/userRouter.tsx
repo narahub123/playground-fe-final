@@ -20,6 +20,7 @@ import { PrivacyAndSafetySection } from "@features/settings/privacy-and-safety/p
 import { SecurityAndAccountAccessSection } from "@features/settings/security-and-account-access/pages";
 import { NotificationsSection } from "@features/settings/notifications/pages";
 import { AccessibiltyAndDisplayAndLanguagesSection } from "@features/settings/accessibilty-and-display-languages/pages";
+import { DownloadDataSection } from "@features/settings/account/pages/download-data/pages";
 
 const userRouter = createBrowserRouter([
   {
@@ -64,7 +65,7 @@ const userRouter = createBrowserRouter([
           },
           {
             path: SETTINGS_LINKS.DOWNLOAD_DATA,
-            element: <></>,
+            element: <DownloadDataSection />,
           },
           {
             path: SETTINGS_LINKS.DEACTIVATE,
