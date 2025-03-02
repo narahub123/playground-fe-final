@@ -1,26 +1,15 @@
-import { SectionLayout } from "@features/settings/common/layouts";
 import styles from "./DownloadDataSection.module.css";
+import { SectionLayout } from "@features/settings/common/layouts";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
 import { BackIcon } from "@features/settings/common/ui";
 import { Button, Text } from "@shared/@common/ui/components";
 
-interface DownloadDataSectionProps {
-  className?: string;
-  disabled?: boolean;
-}
-
-const DownloadDataSection = ({
-  className,
-  disabled = false,
-}: DownloadDataSectionProps) => {
+const DownloadDataSection = () => {
   // 언어 설정
-  //   const {} = useLanguageContent(["settings", "DownloadDataSection"]);
+  const {} = useLanguageContent(["settings", "DownloadDataSection"]);
 
-  const classNames = joinClassNames([
-    styles["download__data__section"],
-    className,
-  ]);
+  const classNames = joinClassNames([styles["download__data__section"]]);
 
   return (
     <SectionLayout className={classNames}>
