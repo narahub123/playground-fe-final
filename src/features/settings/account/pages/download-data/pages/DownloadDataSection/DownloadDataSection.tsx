@@ -7,7 +7,10 @@ import { Button, Text } from "@shared/@common/ui/components";
 
 const DownloadDataSection = () => {
   // 언어 설정
-  const {} = useLanguageContent(["settings", "DownloadDataSection"]);
+  const { heading, description, server } = useLanguageContent([
+    "settings",
+    "DownloadDataSection",
+  ]);
 
   const classNames = joinClassNames([styles["download__data__section"]]);
 
@@ -15,12 +18,10 @@ const DownloadDataSection = () => {
     <SectionLayout className={classNames}>
       <SectionLayout.Header>
         <BackIcon />
-        <Text type="heading3">내 데이터 기록 파일을 다운로드하세요.</Text>
+        <Text type="heading3">{heading}</Text>
       </SectionLayout.Header>
       <SectionLayout.HeaderContent>
-        <Text type="expl">
-          계정에 저장된 정보의 유형에 대한 인사이트를 얻으세요.
-        </Text>
+        <Text type="expl">{description}</Text>
       </SectionLayout.HeaderContent>
       <SectionLayout.Main>
         <section className={styles["data__wrapper"]}>
@@ -31,7 +32,7 @@ const DownloadDataSection = () => {
             ])}
           >
             <Text type="heading3" className={styles["data__title__text"]}>
-              PlayGround 데이터
+              {server.title}
             </Text>
           </div>
           <div
@@ -41,9 +42,7 @@ const DownloadDataSection = () => {
             ])}
           >
             <Text type="expl" className={styles["data__description__text"]}>
-              내 계정 정보, 계정 기록, 앱 및 디바이스, 계정 활동, 관심사 및 광고
-              데이터 기록이 담긴 ZIP 파일을 요청하실 수 있습니다. 데이터 기록
-              파일을 다운로드할 준비가 완료되면 앱 내 알림이 표시됩니다.
+              {server.description}
             </Text>
           </div>
           <div
@@ -52,14 +51,14 @@ const DownloadDataSection = () => {
               styles["request__wrapper"],
             ])}
           >
-            <Text className={styles["service__name"]}>PlayGround</Text>
+            <Text className={styles["service__name"]}>{server.name}</Text>
             <Button
               onClick={() => {}}
               rounded="2xl"
               bgColor="colorTheme"
               className={styles["request__button"]}
             >
-              기록 파일 요청하기
+              {server.btn}
             </Button>
           </div>
         </section>
