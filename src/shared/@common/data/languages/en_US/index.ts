@@ -3,8 +3,12 @@ import countryNames from "./countryNames";
 import ERRORS from "./errors";
 import hooks from "./hooks";
 import pages from "./pages";
-import settings from "./settings";
-import sectionTextMap from "./settings-section-text-map";
+import {
+  settings_lang,
+  sectionTextMap_all,
+} from "@features/settings/common/data";
+const settings = settings_lang["us"];
+const sectionTextMap = sectionTextMap_all["us"];
 import auths from "./auths";
 
 const en_US = {

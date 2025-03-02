@@ -1,4 +1,4 @@
-import { settings_common, sectionTextMap } from "./languages";
+import { settings_common, sectionTextMap_all } from "./languages";
 import { settings_account } from "../../account/data";
 import { privacy_and_safety } from "../../privacy-and-safety/data";
 import { security_and_account_access } from "../../security-and-account-access/data";
@@ -25,4 +25,4 @@ const settings_lang = {
   tw: combineSettings("tw"),
 };
 
-export { sectionTextMap, sectionDataMap, settings_lang };
+export { sectionTextMap_all, sectionDataMap, settings_lang };

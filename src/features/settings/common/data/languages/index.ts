@@ -12,7 +12,7 @@ const settings_common = {
   tw: settings_common_tw,
 };
 
-const sectionTextMap = {
+const sectionTextMap_all = {
   kr: sectionTextMap_kr,
   us: sectionTextMap_us,
   jp: sectionTextMap_jp,
@@ -20,4 +20,4 @@ const sectionTextMap = {
   tw: sectionTextMap_tw,
 };
 
-export { settings_common, sectionTextMap };
+export { settings_common, sectionTextMap_all };
