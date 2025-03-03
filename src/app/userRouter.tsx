@@ -21,6 +21,7 @@ import { SecurityAndAccountAccessSection } from "@features/settings/security-and
 import { NotificationsSection } from "@features/settings/notifications/pages";
 import { AccessibiltyAndDisplayAndLanguagesSection } from "@features/settings/accessibilty-and-display-languages/pages";
 import { DownloadDataSection } from "@features/settings/account/pages/download-data/pages";
+import { VerifyOwnershipModal } from "@features/auth/verify-ownership/ui";
 
 const userRouter = createBrowserRouter([
   {
@@ -164,6 +165,10 @@ const userRouter = createBrowserRouter([
       {
         path: PRIMARY_LINK.COMPOSE_POST,
         element: <WritePostModal />,
+      },
+      {
+        path: PRIMARY_LINK.VERIFY_OWNERSHIP,
+        element: <VerifyOwnershipModal />,
       },
       {
         path: PRIMARY_LINK.LOGOUT,

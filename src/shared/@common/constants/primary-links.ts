@@ -13,6 +13,7 @@ const PRIMARY_LINK = {
   SIGNUP: "/i/flow/signup",
   ACCOUNT_MANAGE: "/account/manage",
   PASSWORD_RESET: "/i/flow/password_reset",
+  VERIFY_OWNERSHIP: "/i/flow/verify_account_ownership",
 };
 
 export default PRIMARY_LINK;

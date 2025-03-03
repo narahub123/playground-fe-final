@@ -6,12 +6,23 @@ import { useEffect } from "react";
 import {
   PRIMARY_LINK,
   SETTINGS_LAYOUT_BREAKPOINT,
+  SETTINGS_LINKS,
 } from "@shared/@common/constants";
 import { ExploreSection } from "@features/settings/common/layouts";
+import { onParallelModalOpen } from "@shared/@common/models/slices/modalSlice";
+import { useAppDispatch } from "@app/store";
 
 const SettingsPage = () => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { pathname } = useLocation();
+
+  useEffect(() => {
+    if (pathname.includes(SETTINGS_LINKS.DOWNLOAD_DATA)) {
+      dispatch(onParallelModalOpen("ownership"));
+      navigate(PRIMARY_LINK.VERIFY_OWNERSHIP);
+    }
+  }, [pathname]);
 
   const moveToAccount = () => {
     if (
