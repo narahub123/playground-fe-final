@@ -1,25 +1,37 @@
 import { useAppDispatch } from "@app/store";
 import { Modal } from "@shared/@common/ui/components";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { onParallelModalClose } from "@shared/@common/models/slices/modalSlice";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import {
+  onParallelModalClose,
+  onParallelModalOpen,
+} from "@shared/@common/models/slices/modalSlice";
 import { useSelector } from "react-redux";
 import { getParalleModal } from "@shared/@common/models/selectors";
+import ScreenPassword from "../ScreenPassword/ScreenPassword";
+import { PRIMARY_LINK } from "@shared/@common/constants";
 
 const VerifyOwnershipModal = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   const isOpen = useSelector(getParalleModal("ownership"));
 
   const [curPage, setCurPage] = useState(0);
+
+  useEffect(() => {
+    if (pathname.includes(PRIMARY_LINK.VERIFY_OWNERSHIP)) {
+      dispatch(onParallelModalOpen("ownership"));
+    }
+  }, []);
 
   const onClose = () => {
     dispatch(onParallelModalClose("ownership"));
     navigate("/settings/account");
   };
 
-  const screens = [<></>];
+  const screens = [<ScreenPassword setCurPage={setCurPage} />];
 
   return (
     <Modal

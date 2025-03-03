@@ -28,6 +28,15 @@ const auths = {
     label: "현재 비밀번호",
     recovery: "비밀번호를 잊으셨나요?",
   },
+  ScreenPassword: {
+    heading: "비밀번호 확인",
+    expl: "계속하려면 PlayGround 비밀번호를 다시 입력하세요.",
+    input: { label: "비밀번호" },
+    btn: {
+      next: "다음",
+      cancel: "취소",
+    },
+  },
 };
 
 export default auths;
