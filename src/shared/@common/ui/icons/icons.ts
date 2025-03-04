@@ -24,6 +24,10 @@ import {
   RiNotificationFill as notificationFill,
   RiFileList2Line as lists,
   RiLock2Line as securityIcon,
+  RiImage2Line as imageIcon,
+  RiListRadio as voteIcon,
+  RiUserSmileLine as emojiIcon,
+  RiCalendarScheduleLine as scheduleIcon,
 } from "react-icons/ri";
 import {
   FaEnvelope as envelopFill,
@@ -139,6 +143,10 @@ const Icons = {
   displayIcon, // 표시 아이콘
   languageIcon, // 언어 아이콘
   dataIcon, // 데이터 사용량 아이콘
+  imageIcon, // 이미지 아이콘
+  voteIcon, // 투표 아이콘
+  emojiIcon, // 이모티콘 아이콘
+  scheduleIcon, // 예약 아이콘
 };
 
 export default Icons;

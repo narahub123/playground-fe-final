@@ -5,6 +5,7 @@ import ProfileImage from "../ProfileImage/ProfileImage";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUser } from "@shared/@common/models/selectors";
+import PostEditorToolbar from "../PostEditorToolBar/PostEditorToolBar";
 
 interface PostEditorProps {
   className?: string;
@@ -39,7 +40,9 @@ const PostEditor = ({ className }: PostEditorProps) => {
           <div className={styles["dropdown__btn__wrapper"]}>버튼</div>
         </div>
         <div className={styles["toolbar__container"]}>
-          <span className={styles["toolbar__wrapper"]}>툴바</span>
+          <span className={styles["toolbar__wrapper"]}>
+            <PostEditorToolbar />
+          </span>
           <span className={styles["post__btn__wrapper"]}>버튼</span>
         </div>
       </span>

@@ -467,6 +467,7 @@ const components = {
   ProfileImage: {
     imageAlt: "프로필 이미지",
   },
+  PostEditorToolbar: {},
 };
 
 export default components;

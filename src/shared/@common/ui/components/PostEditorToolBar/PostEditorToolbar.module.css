@@ -1,0 +1,16 @@
+.post__editor__toolbar {
+  display: flex;
+}
+
+.post__editor__toolbar__list {
+  display: flex;
+  align-items: center;
+}
+
+.post__editor__toolbar__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  aspect-ratio: 1/1;
+}
