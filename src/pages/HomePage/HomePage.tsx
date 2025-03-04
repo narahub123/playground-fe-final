@@ -1,16 +1,35 @@
+import { HomeTab } from "@features/home/ui";
 import styles from "./HomePage.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
+import { useState } from "react";
+
+interface IHomeTab {
+  text: string;
+  field: string;
+}
 
 const HomePage = () => {
+  const [tabSelection, setTabSelection] = useState("following");
   // 언어 설정
-  const {} = useLanguageContent(["pages", "HomePage"]);
+  const { tabs } = useLanguageContent(["home", "HomePage"]);
 
   const classNames = joinClassNames([styles["home__page"]]);
 
   return (
     <div className={classNames}>
-      <nav>탭</nav>
+      <nav className={styles["home__nav"]}>
+        {(tabs as IHomeTab[]).map((tab) => (
+          <HomeTab
+            text={tab.text}
+            field={tab.field}
+            tabSelection={tabSelection}
+            onClick={() => {
+              setTabSelection(tab.field);
+            }}
+          />
+        ))}
+      </nav>
       <div>글쓰기</div>
       <div>광고</div>
       <div>피드</div>

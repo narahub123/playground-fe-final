@@ -1,0 +1,44 @@
+.home__tab {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.home__tab:hover {
+  background-color: #f1f1f1;
+}
+
+.home__tab:focus {
+  background-color: #f1f1f1;
+  outline: 2px solid var(--colorTheme-color-primary);
+}
+
+.home__tab__text__container {
+  position: relative;
+  padding: 0 0.5rem;
+}
+
+.home__tab__text__wrapper {
+  padding: 1rem 0;
+}
+
+.home__tab__text {
+  flex: 1;
+}
+
+.home__tab__text__border {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+
+.home__tab__text__border--unselected {
+  border-bottom: 4px solid transparent;
+}
+
+.home__tab__text__border--selected {
+  border-bottom: 4px solid var(--colorTheme-color-primary);
+}
