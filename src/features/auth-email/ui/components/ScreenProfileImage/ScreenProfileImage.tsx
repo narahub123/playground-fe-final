@@ -6,7 +6,7 @@ import {
 import {
   Button,
   Modal,
-  ProfileImage,
+  ProfileImageUploader,
   Text,
 } from "@shared/@common/ui/components";
 import {
@@ -57,7 +57,7 @@ const ScreenProfileImage = ({ className }: ScreenProfileImageProps) => {
           <Text type="heading2">{title}</Text>
           <Text type="expl">{expl}</Text>
         </div>
-        <ProfileImage width="10rem" rounded="full" isSignup />
+        <ProfileImageUploader width="10rem" rounded="full" isSignup />
       </Modal.Body>
       <Modal.Footer>
         <Button

@@ -1,0 +1,6 @@
+.profile__image__uploader {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

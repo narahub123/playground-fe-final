@@ -464,6 +464,9 @@ const components = {
     cancelBtn: "취소",
   },
   PostEditor: {},
+  ProfileImage: {
+    imageAlt: "프로필 이미지",
+  },
 };
 
 export default components;

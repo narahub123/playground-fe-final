@@ -16,6 +16,7 @@ import Select from "./Select";
 import SelectLanguage from "./SelectLanguage/SelectLanguage";
 import Input from "./Input";
 import PostEditor from "./PostEditor/PostEditor";
+import ProfileImageUploader from "./ProfileImageUploader/ProfileImageUploader";
 
 export {
   Text,
@@ -36,4 +37,5 @@ export {
   SelectLanguage,
   Input,
   PostEditor,
+  ProfileImageUploader,
 };
