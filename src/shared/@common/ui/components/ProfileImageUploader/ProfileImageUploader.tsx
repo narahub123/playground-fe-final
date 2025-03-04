@@ -7,8 +7,6 @@ import { setProfileImageInSignup } from "@shared/auth/models/slices/signupSlice"
 import { setProfileImage } from "@shared/@common/models/slices/userSlice";
 import { useSelector } from "react-redux";
 import ImageUploader from "../ImageUploader/ImageUploader";
-import Image from "../Image/Image";
-import { defaultProfileImage } from "@shared/@common/assets";
 import ProfileImage from "../ProfileImage/ProfileImage";
 
 interface CustomProfileImageUploaderProps {
@@ -40,7 +38,7 @@ const ProfileImageUploader = ({
   return (
     <div className={classNames}>
       <ImageUploader setImages={reducer} />
-      <ProfileImage image={image} />
+      <ProfileImage image={image} width={width} rounded={rounded} />
     </div>
   );
 };
