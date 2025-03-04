@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { selectEmails } from "@shared/@common/models/selectors";
 import { fetchWithAuth } from "@shared/pages/utils";
 import { useToast } from "@shared/@common/ui/components/Toast/hooks";
+import { useState } from "react";
 
 interface ScreenSendVerificationCodeProps {
   className?: string;
@@ -17,6 +18,7 @@ const ScreenSendVerificationCode = ({
   className,
   setCurPage,
 }: ScreenSendVerificationCodeProps) => {
+  const [loading, setLoading] = useState(false);
   const emails = useSelector(selectEmails);
   // 언어 설정
   const { logoAlt, heading, description, btn } = useLanguageContent([
@@ -34,6 +36,7 @@ const ScreenSendVerificationCode = ({
   const { getErrorDescription, getErrorTitle } = useAPIError();
 
   const handleSubmit = async () => {
+    setLoading(true);
     const result = await fetchWithAuth(
       "/verification/me/request",
       {},
@@ -42,13 +45,18 @@ const ScreenSendVerificationCode = ({
       }
     );
 
-    if (result.success) {
-      setCurPage((prev) => prev + 1);
-    } else {
-      toast({
-        title: getErrorTitle(result.code),
-        description: getErrorDescription(result.error.details[0]),
-      });
+    try {
+      if (result.success) {
+        setCurPage((prev) => prev + 1);
+      } else {
+        toast({
+          title: getErrorTitle(result.code),
+          description: getErrorDescription(result.error.details[0]),
+        });
+      }
+    } catch (error) {
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -75,7 +83,7 @@ const ScreenSendVerificationCode = ({
         <div className={styles["screen__btn__wrapper"]}>
           <Button
             variant="plain"
-            onClick={handleSubmit}
+            onClick={loading ? () => {} : handleSubmit}
             className={styles["screen__btn"]}
           >
             {btn}
