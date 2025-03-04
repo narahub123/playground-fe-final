@@ -4,8 +4,8 @@ import { FitType, RoundedType } from "./types";
 import { roundedValues } from "./data";
 
 interface CustomImageProps {
-  width?: string;
-  height?: string;
+  width?: string | number;
+  height?: string | number;
   border?: string;
   fit?: FitType;
   rounded?: RoundedType | string;

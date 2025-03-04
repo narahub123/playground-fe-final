@@ -11,7 +11,7 @@ import ProfileImage from "../ProfileImage/ProfileImage";
 
 interface CustomProfileImageUploaderProps {
   isSignup?: boolean;
-  width?: string;
+  width?: string | number;
   rounded?: RoundedType;
   className?: string;
 }

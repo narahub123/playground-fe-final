@@ -8,9 +8,10 @@ import { useLanguageContent } from "@shared/@common/models/hooks";
 interface CustomProfileImageProps {
   image?: string;
   isSignup?: boolean;
-  width?: string;
+  width?: string | number;
   rounded?: RoundedType;
   className?: string;
+  onClick?: () => void;
 }
 
 type ProfileImageProps = CustomProfileImageProps &
@@ -21,6 +22,8 @@ const ProfileImage = ({
   width,
   rounded,
   className,
+  onClick,
+  ...rest
 }: ProfileImageProps) => {
   const classNames = joinClassNames([styles["profile__image"], className]);
 
@@ -35,6 +38,8 @@ const ProfileImage = ({
       rounded={rounded}
       alt={imageAlt}
       fit="cover"
+      onClick={onClick}
+      {...rest}
     />
   );
 };
