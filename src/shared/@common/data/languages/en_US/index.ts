@@ -10,6 +10,8 @@ import {
 const settings = settings_lang["us"];
 const sectionTextMap = sectionTextMap_all["us"];
 import auths from "./auths";
+import { home_lang } from "@features/home/data";
+const home = home_lang["us"];
 
 const en_US = {
   pages,
@@ -20,6 +22,7 @@ const en_US = {
   settings,
   sectionTextMap,
   auths,
+  home,
 };
 
 export default en_US;

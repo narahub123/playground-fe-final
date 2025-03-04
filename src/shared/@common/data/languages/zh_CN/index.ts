@@ -10,6 +10,8 @@ import {
 const settings = settings_lang["cn"];
 const sectionTextMap = sectionTextMap_all["cn"];
 import auths from "./auths";
+import { home_lang } from "@features/home/data";
+const home = home_lang["cn"];
 
 const zh_CN = {
   pages,
@@ -20,6 +22,7 @@ const zh_CN = {
   settings,
   sectionTextMap,
   auths,
+  home,
 };
 
 export default zh_CN;

@@ -10,6 +10,8 @@ import {
 const settings = settings_lang["jp"];
 const sectionTextMap = sectionTextMap_all["jp"];
 import auths from "./auths";
+import { home_lang } from "@features/home/data";
+const home = home_lang["jp"];
 
 const ja_JP = {
   pages,
@@ -20,6 +22,7 @@ const ja_JP = {
   settings,
   sectionTextMap,
   auths,
+  home,
 };
 
 export default ja_JP;

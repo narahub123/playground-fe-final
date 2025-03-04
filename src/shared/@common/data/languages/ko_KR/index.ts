@@ -7,6 +7,8 @@ import {
   settings_lang,
   sectionTextMap_all,
 } from "@features/settings/common/data";
+import { home_lang } from "@features/home/data";
+const home = home_lang["kr"];
 const settings = settings_lang["kr"];
 const sectionTextMap = sectionTextMap_all["kr"];
 import auths from "./auths";
@@ -20,6 +22,7 @@ const ko_kR = {
   settings,
   sectionTextMap,
   auths,
+  home,
 };
 
 export default ko_kR;

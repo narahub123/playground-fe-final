@@ -10,6 +10,8 @@ import {
 const settings = settings_lang["tw"];
 const sectionTextMap = sectionTextMap_all["tw"];
 import auths from "./auths";
+import { home_lang } from "@features/home/data";
+const home = home_lang["tw"];
 
 const zh_TW = {
   pages,
@@ -20,6 +22,7 @@ const zh_TW = {
   settings,
   sectionTextMap,
   auths,
+  home,
 };
 
 export default zh_TW;
