@@ -37,6 +37,15 @@ const auths = {
       cancel: "취소",
     },
   },
+  ScreenSendVerificationCode: {
+    logoAlt: "로고",
+    heading: "본인 인증하기",
+    description: (
+      email: string
+    ) => `데이터를 안전하게 보호하세요. 본인 인증을 위해 ${email}로 인증 코드를
+            보내드립니다.`,
+    btn: "코드 전송",
+  },
 };
 
 export default auths;

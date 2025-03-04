@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import { getParalleModal } from "@shared/@common/models/selectors";
 import ScreenPassword from "../ScreenPassword/ScreenPassword";
 import { PRIMARY_LINK } from "@shared/@common/constants";
+import ScreenSendVerificationCode from "../ScreenSendVerificationCode/ScreenSendVerificationCode";
 
 const VerifyOwnershipModal = () => {
   const dispatch = useAppDispatch();
@@ -18,7 +19,7 @@ const VerifyOwnershipModal = () => {
 
   const isOpen = useSelector(getParalleModal("ownership"));
 
-  const [curPage, setCurPage] = useState(0);
+  const [curPage, setCurPage] = useState(1);
 
   useEffect(() => {
     if (pathname.includes(PRIMARY_LINK.VERIFY_OWNERSHIP)) {
@@ -31,7 +32,10 @@ const VerifyOwnershipModal = () => {
     navigate("/settings/account");
   };
 
-  const screens = [<ScreenPassword setCurPage={setCurPage} />];
+  const screens = [
+    <ScreenPassword setCurPage={setCurPage} />,
+    <ScreenSendVerificationCode setCurPage={setCurPage} />,
+  ];
 
   return (
     <Modal
