@@ -46,6 +46,15 @@ const auths = {
             보내드립니다.`,
     btn: "코드 전송",
   },
+  ScreenVerifyVerificationCode: {
+    heading: "코드를 보내 드렸습니다.",
+    description: (email: string) => `${email}로 전송된 인증 코드를 입력하세요.`,
+    input: {
+      label: "인증 코드를 입력하세요.",
+    },
+    notReceived: "코드를 받지 못했습니다.",
+    button: "다음",
+  },
 };
 
 export default auths;

@@ -11,6 +11,7 @@ import { getParalleModal } from "@shared/@common/models/selectors";
 import ScreenPassword from "../ScreenPassword/ScreenPassword";
 import { PRIMARY_LINK } from "@shared/@common/constants";
 import ScreenSendVerificationCode from "../ScreenSendVerificationCode/ScreenSendVerificationCode";
+import ScreenVerifyVerificationCode from "../ScreenVerifyVerificationCode/ScreenVerifyVerificationCode";
 
 const VerifyOwnershipModal = () => {
   const dispatch = useAppDispatch();
@@ -19,7 +20,7 @@ const VerifyOwnershipModal = () => {
 
   const isOpen = useSelector(getParalleModal("ownership"));
 
-  const [curPage, setCurPage] = useState(1);
+  const [curPage, setCurPage] = useState(0);
 
   useEffect(() => {
     if (pathname.includes(PRIMARY_LINK.VERIFY_OWNERSHIP)) {
@@ -35,6 +36,7 @@ const VerifyOwnershipModal = () => {
   const screens = [
     <ScreenPassword setCurPage={setCurPage} />,
     <ScreenSendVerificationCode setCurPage={setCurPage} />,
+    <ScreenVerifyVerificationCode />,
   ];
 
   return (

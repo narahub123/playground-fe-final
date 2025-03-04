@@ -8,6 +8,7 @@ import { selectEmails } from "@shared/@common/models/selectors";
 import { fetchWithAuth } from "@shared/pages/utils";
 import { useToast } from "@shared/@common/ui/components/Toast/hooks";
 import { useState } from "react";
+import { ErrorDescriptionCodeType } from "@shared/@common/types";
 
 interface ScreenSendVerificationCodeProps {
   className?: string;
@@ -51,7 +52,9 @@ const ScreenSendVerificationCode = ({
       } else {
         toast({
           title: getErrorTitle(result.code),
-          description: getErrorDescription(result.error.details[0]),
+          description: getErrorDescription(
+            Object.values(result.error.details)[0] as ErrorDescriptionCodeType
+          ),
         });
       }
     } catch (error) {
