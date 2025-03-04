@@ -14,7 +14,10 @@ import { useSelector } from "react-redux";
 import { fetchWithAuth } from "@shared/pages/utils";
 import { useAppDispatch } from "@app/store";
 import { useNavigate } from "react-router-dom";
-import { onParallelModalClose } from "@shared/@common/models/slices/modalSlice";
+import {
+  onParallelModalClose,
+  setVerified,
+} from "@shared/@common/models/slices/modalSlice";
 import { useToast } from "@shared/@common/ui/components/Toast/hooks";
 import { ErrorDescriptionCodeType } from "@shared/@common/types";
 
@@ -59,6 +62,7 @@ const ScreenVerifyVerificationCode = () => {
 
     try {
       if (result.success) {
+        dispatch(setVerified("ownership"));
         dispatch(onParallelModalClose("ownership"));
         navigate("/settings/download_your_data");
       } else {

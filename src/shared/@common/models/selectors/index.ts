@@ -41,6 +41,7 @@ import {
   getFlowModal,
   getErrorModal,
   getWritePostModal,
+  selectVerificationModal,
 } from "./modalSelectors";
 
 import { getSecurity } from "./securitySelectors";
@@ -91,6 +92,7 @@ export {
   getFlowModal,
   getErrorModal,
   getWritePostModal,
+  selectVerificationModal,
 
   // security
   getSecurity,

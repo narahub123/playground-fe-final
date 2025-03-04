@@ -1,5 +1,9 @@
 import { RootState } from "@app/store";
-import { ParallelModals, StandAlonModals } from "@shared/@common/types";
+import {
+  VerificationModals,
+  ParallelModals,
+  StandAlonModals,
+} from "@shared/@common/types";
 
 const getParallelModals = (state: RootState) => state.modal.parallel;
 const getParalleModal = (type: ParallelModals) => (state: RootState) =>
@@ -12,6 +16,9 @@ const getLoginModal = (state: RootState) => state.modal.parallel.login;
 const getFlowModal = (state: RootState) => state.modal.parallel.flow;
 const getWritePostModal = (state: RootState) => state.modal.parallel.write;
 const getErrorModal = (state: RootState) => state.modal.standalone.error;
+const selectVerificationModal =
+  (type: VerificationModals) => (state: RootState) =>
+    state.modal.verification[type];
 
 export {
   getParallelModals,
@@ -23,4 +30,5 @@ export {
   getParalleModal,
   getStandAloneModal,
   getStandAloneModals,
+  selectVerificationModal,
 };

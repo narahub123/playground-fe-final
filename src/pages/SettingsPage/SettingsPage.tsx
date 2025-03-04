@@ -11,14 +11,17 @@ import {
 import { ExploreSection } from "@features/settings/common/layouts";
 import { onParallelModalOpen } from "@shared/@common/models/slices/modalSlice";
 import { useAppDispatch } from "@app/store";
+import { useSelector } from "react-redux";
+import { selectVerificationModal } from "@shared/@common/models/selectors";
 
 const SettingsPage = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const verification = useSelector(selectVerificationModal("ownership"));
 
   useEffect(() => {
-    if (pathname.includes(SETTINGS_LINKS.DOWNLOAD_DATA)) {
+    if (pathname.includes(SETTINGS_LINKS.DOWNLOAD_DATA) && !verification) {
       dispatch(onParallelModalOpen("ownership"));
       navigate(PRIMARY_LINK.VERIFY_OWNERSHIP);
     }

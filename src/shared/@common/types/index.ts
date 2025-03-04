@@ -20,6 +20,7 @@ import {
   ILocation,
   ILockStatus,
   UserRoleType,
+  VerificationModals,
 } from "./slices";
 
 import {
@@ -66,6 +67,7 @@ export type {
   ILocation,
   ILockStatus,
   UserRoleType,
+  VerificationModals,
 
   // components
   DropdownItemType, // dropdown item

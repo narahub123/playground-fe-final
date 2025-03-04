@@ -1,5 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ParallelModals, StandAlonModals } from "@shared/@common/types";
+import {
+  VerificationModals,
+  ParallelModals,
+  StandAlonModals,
+} from "@shared/@common/types";
 
 interface ModalState {
   parallel: {
@@ -13,6 +17,9 @@ interface ModalState {
   standalone: {
     error: boolean; // 독립 모달 상태
     logout: boolean; // 로그아웃 모달 상태
+  };
+  verification: {
+    ownership: boolean;
   };
 }
 
@@ -28,6 +35,9 @@ const initialState: ModalState = {
   standalone: {
     error: false,
     logout: false,
+  },
+  verification: {
+    ownership: false,
   },
 };
 
@@ -47,6 +57,9 @@ const modalSlice = createSlice({
     onStandAlonClose: (state, action: PayloadAction<StandAlonModals>) => {
       state.standalone[action.payload] = false;
     },
+    setVerified: (state, action: PayloadAction<VerificationModals>) => {
+      state.verification[action.payload] = true;
+    },
     onErrorOpen: (state) => {
       state.standalone.error = true;
     },
@@ -65,4 +78,5 @@ export const {
   onErrorClose,
   onStandAlonOpen,
   onStandAlonClose,
+  setVerified,
 } = modalSlice.actions;

@@ -34,8 +34,15 @@ type LocationType = {
   county: string;
 };
 
-type ParallelModals = "signup" | "login" | "flow" | "write" | "account" | 'ownership';
+type ParallelModals =
+  | "signup"
+  | "login"
+  | "flow"
+  | "write"
+  | "account"
+  | "ownership";
 type StandAlonModals = "error" | "logout";
+type VerificationModals = "ownership";
 
 type TwoFactorAuthenticationMethod = "sms" | "app" | "key" | "";
 
@@ -117,4 +124,5 @@ export type {
   ILocation,
   ILockStatus,
   UserRoleType,
+  VerificationModals,
 };

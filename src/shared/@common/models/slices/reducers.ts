@@ -40,6 +40,7 @@ import {
   onStandAlonClose,
   onErrorOpen,
   onErrorClose,
+  setVerified,
 } from "./modalSlice";
 
 import { setSecurity, clearSecurityState } from "./securitySlice";
@@ -89,6 +90,7 @@ export {
   onStandAlonClose,
   onErrorOpen,
   onErrorClose,
+  setVerified,
 
   // security
   setSecurity,
