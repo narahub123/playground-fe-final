@@ -1,0 +1,22 @@
+.post__editor {
+  width: 100%;
+  display: flex;
+}
+
+.post__editor__left {
+  padding-top: 0.75rem;
+  margin-right: 0.5rem;
+}
+
+.post__editor__right {
+  flex: 1;
+}
+
+.dropdown__btn__wrapper {
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.post__editor__toolbar__container {
+  display: flex;
+  justify-content: space-between;
+}

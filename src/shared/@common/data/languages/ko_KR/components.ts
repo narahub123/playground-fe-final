@@ -463,6 +463,7 @@ const components = {
     logoutBtn: "로그아웃",
     cancelBtn: "취소",
   },
+  PostEditor: {},
 };
 
 export default components;

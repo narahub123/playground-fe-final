@@ -15,6 +15,7 @@ import Alert from "./Alert";
 import Select from "./Select";
 import SelectLanguage from "./SelectLanguage/SelectLanguage";
 import Input from "./Input";
+import PostEditor from "./PostEditor/PostEditor";
 
 export {
   Text,
@@ -34,4 +35,5 @@ export {
   Select,
   SelectLanguage,
   Input,
+  PostEditor,
 };

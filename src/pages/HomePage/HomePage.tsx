@@ -3,6 +3,7 @@ import styles from "./HomePage.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
 import { useState } from "react";
+import { PostEditor } from "@shared/@common/ui/components";
 
 interface IHomeTab {
   text: string;
@@ -30,7 +31,11 @@ const HomePage = () => {
           />
         ))}
       </nav>
-      <div>글쓰기</div>
+      <div className={styles["home__write"]}>
+        <div className={styles["home__write__container"]}>
+          <PostEditor />
+        </div>
+      </div>
       <div>광고</div>
       <div>피드</div>
     </div>
