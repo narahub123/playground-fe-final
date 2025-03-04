@@ -17,7 +17,11 @@ import SelectLanguage from "./SelectLanguage/SelectLanguage";
 import Input from "./Input";
 import PostEditor from "./PostEditor/PostEditor";
 import ProfileImageUploader from "./ProfileImageUploader/ProfileImageUploader";
-import { PostEditorToolbar, ToolbarButton } from "./PostEditorToolbar";
+import {
+  PostEditorToolbar,
+  ToolbarButton,
+  ImageButton,
+} from "./PostEditorToolbar";
 import PostButton from "./PostButton/PostButton";
 
 export {
@@ -42,5 +46,6 @@ export {
   ProfileImageUploader,
   PostEditorToolbar,
   ToolbarButton,
+  ImageButton,
   PostButton,
 };

@@ -2,6 +2,11 @@ import styles from "./PostEditorToolbar.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
 import { Icon } from "../../icons";
+import ImageButton from "./ImageButton/ImageButton";
+import VoteButton from "./VoteButton/VoteButton";
+import EmojiButton from "./EmojiButton/EmojiButton";
+import ReserveButton from "./ReserveButton/ReserveButton";
+import LocationTagButton from "./LocationTagButton/LocationTagButton";
 
 interface PostEditorToolbarProps {
   className?: string;
@@ -19,21 +24,11 @@ const PostEditorToolbar = ({ className }: PostEditorToolbarProps) => {
   return (
     <div className={classNames}>
       <nav className={styles["post__editor__toolbar__list"]}>
-        <span className={styles["post__editor__toolbar__item"]}>
-          <Icon iconName="imageIcon" onClick={() => {}} />
-        </span>
-        <span className={styles["post__editor__toolbar__item"]}>
-          <Icon iconName="voteIcon" onClick={() => {}} />
-        </span>
-        <span className={styles["post__editor__toolbar__item"]}>
-          <Icon iconName="emojiIcon" onClick={() => {}} />
-        </span>
-        <span className={styles["post__editor__toolbar__item"]}>
-          <Icon iconName="scheduleIcon" onClick={() => {}} />
-        </span>
-        <span className={styles["post__editor__toolbar__item"]}>
-          <Icon iconName="pinIcon" onClick={() => {}} />
-        </span>
+        <ImageButton />
+        <VoteButton />
+        <EmojiButton />
+        <ReserveButton />
+        <LocationTagButton />
       </nav>
     </div>
   );

@@ -469,6 +469,11 @@ const components = {
   },
   PostEditorToolbar: {},
   PostButton: { text: "게시하기" },
+  ImageButton: { title: "미디어" },
+  VoteButton: { title: "투표" },
+  EmojiButton: { title: "이모티콘" },
+  ReserveButton: { title: "예약하기" },
+  LocationTagButton: { title: "위치 태그하기" },
 };
 
 export default components;
