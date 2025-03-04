@@ -1,0 +1,20 @@
+.post__btn {
+  color: white;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+}
+
+.post__btn--valid {
+  cursor: pointer;
+  background-color: hsl(0, 0%, 0%);
+}
+
+.post__btn--valid:hover,
+.post__btn--valid:focus {
+  background-color: hsl(0, 0%, 20%);
+}
+
+.post__btn--invalid {
+  background-color: #888;
+}

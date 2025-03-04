@@ -3,11 +3,11 @@ import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
 import { Icon } from "../../icons";
 
-interface PostEditorToolBarProps {
+interface PostEditorToolbarProps {
   className?: string;
 }
 
-const PostEditorToolbar = ({ className }: PostEditorToolBarProps) => {
+const PostEditorToolbar = ({ className }: PostEditorToolbarProps) => {
   // 언어 설정
   const {} = useLanguageContent(["components", "PostEditorToolbar"]);
 

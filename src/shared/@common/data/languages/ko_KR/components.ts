@@ -468,6 +468,7 @@ const components = {
     imageAlt: "프로필 이미지",
   },
   PostEditorToolbar: {},
+  PostButton: { text: "게시하기" },
 };
 
 export default components;

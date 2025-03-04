@@ -5,7 +5,9 @@ import ProfileImage from "../ProfileImage/ProfileImage";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUser } from "@shared/@common/models/selectors";
-import PostEditorToolbar from "../PostEditorToolBar/PostEditorToolBar";
+import { useState } from "react";
+import PostEditorToolbar from "../PostEditorToolbar/PostEditorToolbar";
+import PostButton from "../PostButton/PostButton";
 
 interface PostEditorProps {
   className?: string;
@@ -13,6 +15,7 @@ interface PostEditorProps {
 
 const PostEditor = ({ className }: PostEditorProps) => {
   const navigate = useNavigate();
+  const [isValid, setIsValid] = useState(false);
 
   const user = useSelector(selectUser);
   // 언어 설정
@@ -43,7 +46,9 @@ const PostEditor = ({ className }: PostEditorProps) => {
           <span className={styles["toolbar__wrapper"]}>
             <PostEditorToolbar />
           </span>
-          <span className={styles["post__btn__wrapper"]}>버튼</span>
+          <span className={styles["post__btn__wrapper"]}>
+            <PostButton isValid={isValid} />
+          </span>
         </div>
       </span>
     </div>
