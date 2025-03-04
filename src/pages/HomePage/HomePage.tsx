@@ -28,6 +28,7 @@ const HomePage = () => {
             onClick={() => {
               setTabSelection(tab.field);
             }}
+            key={tab.field}
           />
         ))}
       </nav>

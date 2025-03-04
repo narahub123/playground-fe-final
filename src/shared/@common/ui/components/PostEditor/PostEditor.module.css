@@ -8,6 +8,13 @@
   margin-right: 0.5rem;
 }
 
+.profile__container {
+}
+
+.profile_image {
+  cursor: pointer;
+}
+
 .post__editor__right {
   flex: 1;
 }
