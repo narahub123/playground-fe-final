@@ -1,0 +1,24 @@
+.toolbar__button {
+  color: var(--colorTheme-color-primary);
+  cursor: pointer;
+  border: 2.5px solid transparent;
+}
+
+.toolbar__button:hover {
+  background-color: var(--colorTheme-bgColor-light);
+  border-radius: 50%;
+}
+
+.toolbar__button:focus {
+  background-color: var(--colorTheme-bgColor-light);
+  border-radius: 50%;
+  border: 2.5px solid var(--colorTheme-bgColor-hover);
+}
+
+.toolbar__button__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34.4px;
+  aspect-ratio: 1/1;
+}

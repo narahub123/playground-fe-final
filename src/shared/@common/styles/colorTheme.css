@@ -4,7 +4,7 @@ html[data-color-theme="cornflowerblue"] {
   --colorTheme-color-invalid: hsl(219, 30%, 66%);
   --colorTheme-color-dark: hsl(235, 79%, 66%); /* 버튼 폰트 색 */
   --colorTheme-color-light: hsl(219, 79%, 80%); /* 버튼 보더 색 */
-  --colorTheme-bgColor-light: hsl(219, 79%, 90%); /* 버튼 배경색 */
+  --colorTheme-bgColor-light: hsl(219, 79%, 96%); /* 버튼 배경색 */
   --colorTheme-bgColor-hover: hsl(219, 79%, 70%);
   --colorTheme-color-outline: rgb(120, 169, 255);
   --colorTheme-border-primary: 1px solid var(--colorTheme-color-primary);
