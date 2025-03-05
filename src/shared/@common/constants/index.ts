@@ -46,6 +46,7 @@ import {
   SELECT_LISTBOX_SCROLL_STEP,
   SELECT_OPTION_HEIGHT,
   LOCALSTORAGE_KEY,
+  POST_LENGTH_MAX,
 } from "./constants"; // 상수
 
 import PRIMARY_LINK from "./primary-links";
@@ -101,6 +102,7 @@ export {
   SELECT_LISTBOX_SCROLL_STEP,
   SELECT_OPTION_HEIGHT,
   LOCALSTORAGE_KEY,
+  POST_LENGTH_MAX,
 
   // links
   PRIMARY_LINK,

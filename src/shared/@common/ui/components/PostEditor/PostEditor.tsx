@@ -8,6 +8,10 @@ import { selectUser } from "@shared/@common/models/selectors";
 import { useState } from "react";
 import PostEditorToolbar from "../PostEditorToolbar/PostEditorToolbar";
 import PostButton from "../PostButton/PostButton";
+import { LuPlus } from "react-icons/lu";
+import { Link } from "react-router-dom";
+import CircularProgressBar from "../CircularProgressBar/CircularProgressBar";
+import AddPostLink from "../AddPostLink/AddPostLink";
 
 interface PostEditorProps {
   className?: string;
@@ -16,6 +20,7 @@ interface PostEditorProps {
 const PostEditor = ({ className }: PostEditorProps) => {
   const navigate = useNavigate();
   const [isValid, setIsValid] = useState(false);
+  const [text, setText] = useState("");
 
   const user = useSelector(selectUser);
   // 언어 설정
@@ -46,7 +51,10 @@ const PostEditor = ({ className }: PostEditorProps) => {
           <span className={styles["toolbar__wrapper"]}>
             <PostEditorToolbar />
           </span>
-          <span className={styles["post__btn__wrapper"]}>
+          <span className={styles["btns__wrapper"]}>
+            <CircularProgressBar textLength={text.length} />
+            <div className={styles["vertical__divider"]} />
+            <AddPostLink />
             <PostButton isValid={isValid} />
           </span>
         </div>

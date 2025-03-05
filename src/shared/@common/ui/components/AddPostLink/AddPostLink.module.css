@@ -1,0 +1,14 @@
+.add__post__link {
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  color: var(--colorTheme-color-primary);
+}
+
+.add__post__link:hover {
+  background-color: var(--colorTheme-bgColor-light);
+}

@@ -1,0 +1,23 @@
+.circular__progress__bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.svg {
+  display: block;
+}
+
+.border {
+  fill: none;
+  stroke: #eee;
+  stroke-width: 2;
+  transform: rotate(-90deg);
+  transform-origin: center;
+}
+
+.progress {
+  fill: none;
+  stroke: var(--colorTheme-color-primary);
+  stroke-width: 2;
+}

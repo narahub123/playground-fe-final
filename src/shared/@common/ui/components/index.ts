@@ -23,6 +23,8 @@ import {
   ImageButton,
 } from "./PostEditorToolbar";
 import PostButton from "./PostButton/PostButton";
+import CircularProgressBar from "./CircularProgressBar/CircularProgressBar";
+import AddPostLink from "./AddPostLink/AddPostLink";
 
 export {
   Text,
@@ -48,4 +50,6 @@ export {
   ToolbarButton,
   ImageButton,
   PostButton,
+  CircularProgressBar,
+  AddPostLink,
 };

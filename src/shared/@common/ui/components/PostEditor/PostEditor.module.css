@@ -32,3 +32,17 @@
   align-items: center;
   padding: 0.5rem 0;
 }
+
+.btns__wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.vertical__divider {
+  border-left: 1px solid #aaa;
+  width: 1px;
+  height: 35px;
+}
+
+

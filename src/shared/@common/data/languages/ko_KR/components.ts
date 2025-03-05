@@ -474,6 +474,9 @@ const components = {
   EmojiButton: { title: "이모티콘" },
   ReserveButton: { title: "예약하기" },
   LocationTagButton: { title: "위치 태그하기" },
+  AddPostLink: {
+    title: "게시물 추가하기",
+  },
 };
 
 export default components;

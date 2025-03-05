@@ -1,7 +1,6 @@
 import styles from "./PostEditorToolbar.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
-import { Icon } from "../../icons";
 import ImageButton from "./ImageButton/ImageButton";
 import VoteButton from "./VoteButton/VoteButton";
 import EmojiButton from "./EmojiButton/EmojiButton";
