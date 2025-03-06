@@ -477,6 +477,39 @@ const components = {
   AddPostLink: {
     title: "게시물 추가하기",
   },
+  ReplyPermissionControl: {
+    header: {
+      text: "답글을 달 수 있는 사람",
+      description:
+        "이 게시물에 답글을 달 수 있는 사람을 선택하세요. 멘션된 사람은 언제든지 답글을 달 수 있습니다.",
+    },
+    replyOptions: [
+      {
+        value: "all",
+        text: "모든 사람",
+        icon: "allIcon",
+        description: "모든 사람이 답글을 달 수 있습니다.",
+      },
+      {
+        value: "following",
+        text: "내가 팔로우하는 계정",
+        icon: "followingIcon",
+        description: "내가 팔로우하는 계정은 답글을 쓸 수 있습니다.",
+      },
+      {
+        value: "authenticated",
+        text: "인증된 계정",
+        icon: "verifiedIcon",
+        description: "인증된 계정만 답글을 쓸 수 있습니다.",
+      },
+      {
+        value: "mentioned",
+        text: "내가 멘션하는 계정만",
+        icon: "mentionedIcon",
+        description: "내가 멘션하는 계정만 답글을 쓸 수 있습니다.",
+      },
+    ],
+  },
 };
 
 export default components;

@@ -38,6 +38,9 @@ import {
   FaCircleXmark as invalid,
   FaRegUser as userLine,
   FaUser as userFill,
+  FaEarthAsia as allIcon,
+  FaUserCheck as followingIcon,
+  FaAt as mentionedIcon,
 } from "react-icons/fa6";
 import { TbCameraPlus as uploadImage } from "react-icons/tb";
 import {
@@ -48,6 +51,7 @@ import {
   GoHome as homeLine,
   GoHomeFill as homeFill,
   GoArrowSwitch as connectedAccountsIcon,
+  GoVerified as verifiedIcon,
 } from "react-icons/go";
 import {
   HiOutlineBookmark as bookmarks,
@@ -147,6 +151,10 @@ const Icons = {
   voteIcon, // 투표 아이콘
   emojiIcon, // 이모티콘 아이콘
   scheduleIcon, // 예약 아이콘
+  allIcon,
+  followingIcon,
+  verifiedIcon,
+  mentionedIcon,
 };
 
 export default Icons;

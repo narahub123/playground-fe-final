@@ -456,6 +456,39 @@ const components = {
       description: getErrorDescription,
     },
   },
+  ReplyPermissionControl: {
+    header: {
+      text: "Who can reply",
+      description:
+        "Choose who can reply to this post. Mentioned people can always reply.",
+    },
+    replyOptions: [
+      {
+        value: "all",
+        text: "Everyone",
+        icon: "allIcon",
+        description: "Anyone can reply.",
+      },
+      {
+        value: "following",
+        text: "Accounts I follow",
+        icon: "followingIcon",
+        description: "Only accounts you follow can reply.",
+      },
+      {
+        value: "authenticated",
+        text: "Verified accounts",
+        icon: "verifiedIcon",
+        description: "Only verified accounts can reply.",
+      },
+      {
+        value: "mentioned",
+        text: "Only mentioned accounts",
+        icon: "mentionedIcon",
+        description: "Only accounts you mention can reply.",
+      },
+    ],
+  },
 };
 
 export default components;

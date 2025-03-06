@@ -465,6 +465,39 @@ const components = {
       description: getErrorDescription,
     },
   },
+  ReplyPermissionControl: {
+    header: {
+      text: "返信できる人",
+      description:
+        "この投稿に返信できる人を選んでください。メンションされた人はいつでも返信できます。",
+    },
+    replyOptions: [
+      {
+        value: "all",
+        text: "すべてのユーザー",
+        icon: "allIcon",
+        description: "すべてのユーザーが返信できます。",
+      },
+      {
+        value: "following",
+        text: "フォロー中のアカウント",
+        icon: "followingIcon",
+        description: "あなたがフォローしているアカウントのみ返信できます。",
+      },
+      {
+        value: "authenticated",
+        text: "認証済みアカウント",
+        icon: "verifiedIcon",
+        description: "認証済みアカウントのみ返信できます。",
+      },
+      {
+        value: "mentioned",
+        text: "メンションしたアカウントのみ",
+        icon: "mentionedIcon",
+        description: "メンションしたアカウントのみ返信できます。",
+      },
+    ],
+  },
 };
 
 export default components;

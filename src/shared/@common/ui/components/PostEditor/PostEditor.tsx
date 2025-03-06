@@ -8,10 +8,10 @@ import { selectUser } from "@shared/@common/models/selectors";
 import { useState } from "react";
 import PostEditorToolbar from "../PostEditorToolbar/PostEditorToolbar";
 import PostButton from "../PostButton/PostButton";
-import { LuPlus } from "react-icons/lu";
-import { Link } from "react-router-dom";
 import CircularProgressBar from "../CircularProgressBar/CircularProgressBar";
 import AddPostLink from "../AddPostLink/AddPostLink";
+import ReplyPermissionControl from "../ReplyPermissionControl/ReplyPermissionControl";
+import { ReplyOptionType } from "@shared/@common/types/components";
 
 interface PostEditorProps {
   className?: string;
@@ -21,6 +21,7 @@ const PostEditor = ({ className }: PostEditorProps) => {
   const navigate = useNavigate();
   const [isValid, setIsValid] = useState(false);
   const [text, setText] = useState("");
+  const [replyOption, setReplyOption] = useState<ReplyOptionType>("all");
 
   const user = useSelector(selectUser);
   // 언어 설정
@@ -45,7 +46,12 @@ const PostEditor = ({ className }: PostEditorProps) => {
       <span className={styles["post__editor__right"]}>
         <div className={styles["text__editor__container"]}>
           <div className={styles["text__editor__wrapper"]}>텍스트 에디터</div>
-          <div className={styles["dropdown__btn__wrapper"]}>버튼</div>
+          <div className={styles["dropdown__btn__wrapper"]}>
+            <ReplyPermissionControl
+              replyOption={replyOption}
+              setReplyOption={setReplyOption}
+            />
+          </div>
         </div>
         <div className={styles["toolbar__container"]}>
           <span className={styles["toolbar__wrapper"]}>

@@ -443,6 +443,38 @@ const components = {
       description: getErrorDescription,
     },
   },
+  ReplyPermissionControl: {
+    header: {
+      text: "誰可以回覆",
+      description: "請選擇誰可以回覆此貼文。被提及的人始終可以回覆。",
+    },
+    replyOptions: [
+      {
+        value: "all",
+        text: "所有人",
+        icon: "allIcon",
+        description: "任何人都可以回覆。",
+      },
+      {
+        value: "following",
+        text: "我關注的帳號",
+        icon: "followingIcon",
+        description: "只有你關注的帳號可以回覆。",
+      },
+      {
+        value: "authenticated",
+        text: "已認證帳號",
+        icon: "verifiedIcon",
+        description: "只有已認證帳號可以回覆。",
+      },
+      {
+        value: "mentioned",
+        text: "僅提及的帳號",
+        icon: "mentionedIcon",
+        description: "只有你提及的帳號可以回覆。",
+      },
+    ],
+  },
 };
 
 export default components;

@@ -33,6 +33,8 @@ import {
   SizeExtendedWithFull,
   BorderStyle,
   VariantType,
+  ReplyOptionType,
+  IReplyOption,
 } from "./components";
 
 import { IPlayGroundData, ISectionText, ISectionTextMap } from "./utils";
@@ -79,6 +81,8 @@ export type {
   SizeExtendedWithFull,
   BorderStyle,
   VariantType,
+  ReplyOptionType,
+  IReplyOption,
 
   // utils
   IPlayGroundData,

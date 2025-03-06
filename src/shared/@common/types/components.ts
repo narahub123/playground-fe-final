@@ -1,3 +1,5 @@
+import { Icons } from "../ui/icons";
+
 interface DropdownItemType {
   text: string;
   value: string | number;
@@ -46,6 +48,15 @@ type VariantType =
   | "ghost"
   | "plain";
 
+type ReplyOptionType = "all" | "following" | "authenticated" | "mentioned";
+
+interface IReplyOption {
+  value: ReplyOptionType;
+  icon: keyof typeof Icons;
+  text: string;
+  description: string;
+}
+
 export type {
   DropdownItemType,
   ColorBasic,
@@ -56,4 +67,6 @@ export type {
   SizeExtendedWithFull,
   BorderStyle,
   VariantType,
+  ReplyOptionType,
+  IReplyOption,
 };

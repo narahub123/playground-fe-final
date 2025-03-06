@@ -25,6 +25,7 @@ import {
 import PostButton from "./PostButton/PostButton";
 import CircularProgressBar from "./CircularProgressBar/CircularProgressBar";
 import AddPostLink from "./AddPostLink/AddPostLink";
+import ReplyPermissionControl from "./ReplyPermissionControl/ReplyPermissionControl";
 
 export {
   Text,
@@ -52,4 +53,5 @@ export {
   PostButton,
   CircularProgressBar,
   AddPostLink,
+  ReplyPermissionControl,
 };

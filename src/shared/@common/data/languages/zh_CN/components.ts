@@ -435,6 +435,38 @@ const components = {
       description: getErrorDescription,
     },
   },
+  ReplyPermissionControl: {
+    header: {
+      text: "谁可以回复",
+      description: "请选择谁可以回复此帖子。被提及的人始终可以回复。",
+    },
+    replyOptions: [
+      {
+        value: "all",
+        text: "所有人",
+        icon: "allIcon",
+        description: "任何人都可以回复。",
+      },
+      {
+        value: "following",
+        text: "我关注的账号",
+        icon: "followingIcon",
+        description: "只有你关注的账号可以回复。",
+      },
+      {
+        value: "authenticated",
+        text: "已认证账号",
+        icon: "verifiedIcon",
+        description: "只有已认证账号可以回复。",
+      },
+      {
+        value: "mentioned",
+        text: "仅被提及的账号",
+        icon: "mentionedIcon",
+        description: "只有你提及的账号可以回复。",
+      },
+    ],
+  },
 };
 
 export default components;
