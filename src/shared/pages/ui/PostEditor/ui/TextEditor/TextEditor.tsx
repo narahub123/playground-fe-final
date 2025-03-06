@@ -5,14 +5,12 @@ import { joinClassNames } from "@shared/@common/utils";
 interface TextEditorProps {
   className?: string;
   disabled?: boolean;
-  text: string;
   setText: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const TextEditor = ({
   className,
   disabled = false,
-  text,
   setText,
 }: TextEditorProps) => {
   const textRef = useRef<HTMLDivElement>(null);

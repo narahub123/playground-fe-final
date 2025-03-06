@@ -51,7 +51,7 @@ const PostEditor = ({ className }: PostEditorProps) => {
       <span className={styles["post__editor__right"]}>
         <div className={styles["text__editor__container"]}>
           <div className={styles["text__editor__wrapper"]}>
-            <TextEditor setText={setText} text={text} />
+            <TextEditor setText={setText} />
           </div>
           <div className={styles["dropdown__btn__wrapper"]}>
             <ReplyPermissionControl
