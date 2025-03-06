@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import styles from "./TextEditor.module.css";
 import { joinClassNames } from "@shared/@common/utils";
 
@@ -8,11 +8,7 @@ interface TextEditorProps {
   setText: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const TextEditor = ({
-  className,
-  disabled = false,
-  setText,
-}: TextEditorProps) => {
+const TextEditor = ({ className, disabled = false }: TextEditorProps) => {
   const textRef = useRef<HTMLDivElement>(null);
   const classNames = joinClassNames([
     styles["text__editor__container"],
@@ -24,13 +20,6 @@ const TextEditor = ({
     console.log(text);
   };
 
-  useEffect(() => {
-    if (!textRef.current) return;
-    const text = textRef.current.innerText;
-
-    console.log(text);
-  }, [textRef.current]);
-
   return (
     <div className={classNames}>
       <div
@@ -38,7 +27,6 @@ const TextEditor = ({
         contentEditable={true}
         ref={textRef}
         onInput={handleInput}
-        onFocus={() => setText("")}
         data-placeholder={"무슨 일이 일어나고 있나요?"}
       />
     </div>
