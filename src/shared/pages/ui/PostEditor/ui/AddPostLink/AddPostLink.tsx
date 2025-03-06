@@ -1,8 +1,8 @@
 import styles from "./AddPostLink.module.css";
+import { Link } from "react-router-dom";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
 import { LuPlus } from "react-icons/lu";
-import { Link } from "react-router-dom";
 
 interface AddPostLinkProps {
   className?: string;

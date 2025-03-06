@@ -1,16 +1,15 @@
 import styles from "./ReplyPermissionControl.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
-import Button from "../Button/Button";
-import Text from "../Text/Text";
 import { useLayoutEffect, useRef, useState } from "react";
-import Dropdown from "../Dropdown/Dropdown";
 import { LuCheck } from "react-icons/lu";
-import { Icon } from "../../icons";
+
 import {
   IReplyOption,
   ReplyOptionType,
-} from "@shared/@common/types/components";
+} from "@shared/pages/ui/PostEditor/types";
+import { Icon } from "@shared/@common/ui/icons";
+import { Button, Dropdown, Text } from "@shared/@common/ui/components";
 
 interface ReplyPermissionControlProps {
   className?: string;

@@ -1,5 +1,5 @@
-import { POST_LENGTH_MAX } from "@shared/@common/constants";
 import styles from "./CircularProgressBar.module.css";
+import { POST_LENGTH_MAX } from "@shared/@common/constants";
 import { joinClassNames } from "@shared/@common/utils";
 
 interface CircularProgressBarProps {

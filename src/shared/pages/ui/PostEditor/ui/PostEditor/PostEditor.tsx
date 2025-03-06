@@ -1,17 +1,19 @@
 import styles from "./PostEditor.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
-import ProfileImage from "../ProfileImage/ProfileImage";
+import { ProfileImage } from "@shared/@common/ui/components";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUser } from "@shared/@common/models/selectors";
 import { useState } from "react";
-import PostEditorToolbar from "../PostEditorToolbar/PostEditorToolbar";
-import PostButton from "../PostButton/PostButton";
-import CircularProgressBar from "../CircularProgressBar/CircularProgressBar";
-import AddPostLink from "../AddPostLink/AddPostLink";
-import ReplyPermissionControl from "../ReplyPermissionControl/ReplyPermissionControl";
-import { ReplyOptionType } from "@shared/@common/types/components";
+import {
+  AddPostLink,
+  CircularProgressBar,
+  PostButton,
+  PostEditorToolbar,
+  ReplyPermissionControl,
+} from "@shared/pages/ui/PostEditor/ui";
+import { ReplyOptionType } from "@shared/pages/ui/PostEditor/types";
 
 interface PostEditorProps {
   className?: string;

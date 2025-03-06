@@ -7,6 +7,7 @@ import WritePostModal from "./WritePostModal/WritePostModal";
 import AccountButton from "./AccountButton/AccountButton";
 import AccountItem from "./AccountItem/AccountItem";
 import AccountManageModal from "./AccountManageModal.tsx/AccountManageModal";
+import { PostEditor } from "./PostEditor";
 
 export {
   Header,
@@ -18,4 +19,5 @@ export {
   AccountButton,
   AccountItem,
   AccountManageModal,
+  PostEditor,
 };

@@ -1,9 +1,9 @@
-import { HomeTab } from "@features/home/ui";
 import styles from "./HomePage.module.css";
+import { HomeTab } from "@features/home/ui";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
 import { useState } from "react";
-import { PostEditor } from "@shared/@common/ui/components";
+import { PostEditor } from "@shared/pages/ui";
 
 interface IHomeTab {
   text: string;
