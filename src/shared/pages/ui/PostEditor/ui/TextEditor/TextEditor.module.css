@@ -1,0 +1,17 @@
+.text__editor__container {
+  padding: 0.25em;
+}
+
+.text__editor {
+  line-height: 1.25rem;
+  font-size: 1.25em;
+}
+
+.text__editor:focus {
+  outline: none;
+}
+
+.text__editor:empty::before {
+  content: attr(data-placeholder);
+  color: #aaa;
+}

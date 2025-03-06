@@ -12,6 +12,7 @@ import {
   PostButton,
   PostEditorToolbar,
   ReplyPermissionControl,
+  TextEditor,
 } from "@shared/pages/ui/PostEditor/ui";
 import { ReplyOptionType } from "@shared/pages/ui/PostEditor/types";
 
@@ -24,6 +25,8 @@ const PostEditor = ({ className }: PostEditorProps) => {
   const [isValid, setIsValid] = useState(false);
   const [text, setText] = useState("");
   const [replyOption, setReplyOption] = useState<ReplyOptionType>("all");
+
+  console.log("텍스트", text);
 
   const user = useSelector(selectUser);
   // 언어 설정
@@ -47,7 +50,9 @@ const PostEditor = ({ className }: PostEditorProps) => {
       </span>
       <span className={styles["post__editor__right"]}>
         <div className={styles["text__editor__container"]}>
-          <div className={styles["text__editor__wrapper"]}>텍스트 에디터</div>
+          <div className={styles["text__editor__wrapper"]}>
+            <TextEditor setText={setText} text={text} />
+          </div>
           <div className={styles["dropdown__btn__wrapper"]}>
             <ReplyPermissionControl
               replyOption={replyOption}

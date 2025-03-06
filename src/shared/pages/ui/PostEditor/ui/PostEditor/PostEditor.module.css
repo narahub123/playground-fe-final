@@ -20,6 +20,11 @@
 
 .post__editor__right {
   flex: 1;
+  padding-top: 0.25rem;
+}
+
+.text__editor__wrapper {
+  padding: 0.75rem 0;
 }
 
 .dropdown__btn__wrapper {
