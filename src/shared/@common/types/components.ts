@@ -1,5 +1,3 @@
-import { Icons } from "../ui/icons";
-
 interface DropdownItemType {
   text: string;
   value: string | number;

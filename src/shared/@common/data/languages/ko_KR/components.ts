@@ -467,7 +467,6 @@ const components = {
   ProfileImage: {
     imageAlt: "프로필 이미지",
   },
-  PostEditorToolbar: {},
   PostButton: { text: "게시하기" },
   ImageButton: { title: "미디어" },
   VoteButton: { title: "투표" },

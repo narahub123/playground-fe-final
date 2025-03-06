@@ -1,5 +1,4 @@
 import styles from "./PostEditorToolbar.module.css";
-import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
 import ImageButton from "./ImageButton/ImageButton";
 import VoteButton from "./VoteButton/VoteButton";
@@ -12,9 +11,6 @@ interface PostEditorToolbarProps {
 }
 
 const PostEditorToolbar = ({ className }: PostEditorToolbarProps) => {
-  // 언어 설정
-  const {} = useLanguageContent(["components", "PostEditorToolbar"]);
-
   const classNames = joinClassNames([
     styles["post__editor__toolbar"],
     className,
