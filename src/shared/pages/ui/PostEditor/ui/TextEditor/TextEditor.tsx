@@ -1,6 +1,7 @@
-import { ReactNode, useEffect, useRef, useState } from "react";
 import styles from "./TextEditor.module.css";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import { joinClassNames } from "@shared/@common/utils";
+import { HASHTAGREGEX, MENTIONREGEX, URLREGEX } from "../../constants";
 
 interface TextEditorProps {
   className?: string;
@@ -19,22 +20,14 @@ const TextEditor = ({ className }: TextEditorProps) => {
     const text = e.currentTarget.innerText;
 
     console.log(text);
-    const hashtagRegExp =
-      /(?<=^|[^\p{L}0-9_&])#[\p{L}0-9_]*(?=[\p{L}_])[\p{L}0-9_]*(?=$|[^\p{L}0-9_#])/gu;
 
-    const mentionRegExp =
-      /(?<=^|[^a-zA-Z0-9_&!@#%&*])@[a-zA-Z0-9_]+(?=$|[^a-zA-Z0-9_@])/g;
+    console.log(HASHTAGREGEX.test(text));
+    console.log(MENTIONREGEX.test(text));
+    console.log(URLREGEX.test(text));
 
-    const urlRegExp =
-      /(?<=^|[^\w\d@#$-])((?:https?|ftp):\/\/)?(?:www\.)?[a-z0-9][a-z0-9-]*(?:\.[a-zA-Z]{2,})?(?:\.[a-zA-Z]{2,3})(?:\/[\p{L}0-9+-_]*)?(?=$|\s|[^\d\w.+-@/])/giu;
-
-    console.log(hashtagRegExp.test(text));
-    console.log(mentionRegExp.test(text));
-    console.log(urlRegExp.test(text));
-
-    console.log(text.match(hashtagRegExp));
-    console.log(text.match(mentionRegExp));
-    console.log(text.match(urlRegExp));
+    console.log(text.match(HASHTAGREGEX));
+    console.log(text.match(MENTIONREGEX));
+    console.log(text.match(URLREGEX));
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLSpanElement>) => {
