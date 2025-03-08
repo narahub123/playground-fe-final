@@ -15,9 +15,26 @@ interface ITextLine {
 const TextEditor = ({ className }: TextEditorProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const linesRef = useRef<(HTMLDivElement | null)[]>([]);
-  const handleInput = (e: React.FormEvent<HTMLDivElement>) => {
+  const handleOnInput = (e: React.FormEvent<HTMLDivElement>) => {
     const text = e.currentTarget.innerText;
+
     console.log(text);
+    const hashtagRegExp =
+      /(?<=^|[^\p{L}0-9_&])#[\p{L}0-9_]*(?=[\p{L}_])[\p{L}0-9_]*(?=$|[^\p{L}0-9_#])/gu;
+
+    const mentionRegExp =
+      /(?<=^|[^a-zA-Z0-9_&!@#%&*])@[a-zA-Z0-9_]+(?=$|[^a-zA-Z0-9_@])/g;
+
+    const urlRegExp =
+      /(?<=^|[^\w\d@#$-])((?:https?|ftp):\/\/)?(?:www\.)?[a-z0-9][a-z0-9-]*(?:\.[a-zA-Z]{2,})?(?:\.[a-zA-Z]{2,3})(?:\/[\p{L}0-9+-_]*)?(?=$|\s|[^\d\w.+-@/])/giu;
+
+    console.log(hashtagRegExp.test(text));
+    console.log(mentionRegExp.test(text));
+    console.log(urlRegExp.test(text));
+
+    console.log(text.match(hashtagRegExp));
+    console.log(text.match(mentionRegExp));
+    console.log(text.match(urlRegExp));
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLSpanElement>) => {
@@ -37,7 +54,7 @@ const TextEditor = ({ className }: TextEditorProps) => {
       content: (
         <span
           contentEditable={true}
-          onInput={handleInput}
+          onInput={handleOnInput}
           className={styles["text__editor__item"]}
           data-placeholder={"작성해라"}
           onKeyDown={handleKeyDown}
@@ -58,7 +75,7 @@ const TextEditor = ({ className }: TextEditorProps) => {
           content: (
             <span
               contentEditable={true}
-              onInput={handleInput}
+              onInput={handleOnInput}
               className={styles["text__editor__item"]}
               onKeyDown={handleKeyDown}
             />
