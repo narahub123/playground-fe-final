@@ -1,0 +1,21 @@
+.text__editor {
+  padding: 0.25em;
+}
+
+[data-text="true"]:after {
+  content: attr(data-ph);
+  color: #aaa;
+}
+
+.text__editor:focus {
+  outline: none;
+}
+
+.text__editor__line {
+  width: 100%;
+  padding: 0.125rem 0;
+}
+
+.text__editor__item {
+  font-size: 1.25em;
+}

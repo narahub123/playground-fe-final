@@ -1,7 +1,11 @@
 import styles from "./TextEditor.module.css";
 import { ReactNode, useEffect, useRef, useState } from "react";
 import { joinClassNames } from "@shared/@common/utils";
-import { HASHTAGREGEX, MENTIONREGEX, URLREGEX } from "../../constants";
+import {
+  HASHTAGREGEX,
+  MENTIONREGEX,
+  URLREGEX,
+} from "@shared/pages/ui/PostEditor/constants";
 
 interface TextEditorProps {
   className?: string;
