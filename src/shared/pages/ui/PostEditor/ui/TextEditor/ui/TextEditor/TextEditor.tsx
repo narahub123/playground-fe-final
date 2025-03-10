@@ -6,12 +6,7 @@ import {
   MENTIONREGEX,
   URLREGEX,
 } from "@shared/pages/ui/PostEditor/constants";
-import {
-  createItem,
-  createLine,
-  createNextLine,
-  preserveEditorStructure,
-} from "../../utils";
+import { createNextLine, preserveEditorStructure } from "../../utils";
 
 interface TextEditorProps {
   className?: string;
@@ -45,9 +40,6 @@ const TextEditor = ({ className }: TextEditorProps) => {
       <div className={styles["text__editor__line"]} data-offset={"0"}>
         <span className={styles["text__editor__item"]} data-offset={"0-0"}>
           <br data-text={true} />
-        </span>
-        <span className={styles["text__editor__item"]} data-offset={"0-0"}>
-          dfakdksf
         </span>
       </div>
     </div>
