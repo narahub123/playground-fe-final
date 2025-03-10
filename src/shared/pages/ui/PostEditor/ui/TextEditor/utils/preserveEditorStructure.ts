@@ -17,7 +17,7 @@ const preserveEditorStructure = () => {
 
     const row = Number(curItem.dataset["offset"]);
     const newSpan = createItem(row, 0);
-    curItem.appendChild(newSpan);
+    curItem.appendChild(newSpan)
     // 현재 아이템이 editor인 경우
   } else if (
     curItem.nodeName === "DIV" &&

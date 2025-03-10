@@ -6,7 +6,11 @@ import {
   MENTIONREGEX,
   URLREGEX,
 } from "@shared/pages/ui/PostEditor/constants";
-import { createNextLine, preserveEditorStructure } from "../../utils";
+import {
+  createNextLine,
+  handleHashtag,
+  preserveEditorStructure,
+} from "../../utils";
 
 interface TextEditorProps {
   className?: string;
@@ -18,6 +22,7 @@ const TextEditor = ({ className }: TextEditorProps) => {
   const editor = useRef<HTMLDivElement>(null);
   const handleOnInput = (e: React.FormEvent<HTMLDivElement>) => {
     preserveEditorStructure();
+    handleHashtag();
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {

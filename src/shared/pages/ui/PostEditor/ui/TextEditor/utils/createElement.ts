@@ -1,3 +1,4 @@
+import { getColorTheme } from "@shared/@common/models/selectors";
 import styles from "../ui/TextEditor/TextEditor.module.css";
 
 // 라인 생성
@@ -34,6 +35,18 @@ const createItem = (row?: number, col?: number, text?: string | null) => {
   return span;
 };
 
+// 인라인 아이템 생성
+const createInlineItem = (row?: number, col?: number, text?: string | null) => {
+  const inlineItem = document.createElement("span");
+  inlineItem.setAttribute("style", `color: ${"cornflowerblue"}`);
+
+  const item = createItem(row, col, text);
+
+  inlineItem.appendChild(item);
+
+  return inlineItem;
+};
+
 // br 생성
 const createBr = () => {
   const br = document.createElement("br");
@@ -42,4 +55,4 @@ const createBr = () => {
   return br;
 };
 
-export { createLine, createItem, createBr };
+export { createLine, createItem, createBr, createInlineItem };
