@@ -42,9 +42,6 @@ const TextEditor = ({ className }: TextEditorProps) => {
         <span className={styles["text__editor__item"]} data-offset={"0-0"}>
           <br data-text={true} />
         </span>
-        <span className={styles["text__editor__item"]} data-offset={"0-1"}>
-          sdjsdlkjasdlkfajslfk
-        </span>
       </div>
     </div>
   );
