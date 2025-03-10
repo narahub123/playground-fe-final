@@ -6,7 +6,12 @@ import {
   MENTIONREGEX,
   URLREGEX,
 } from "@shared/pages/ui/PostEditor/constants";
-import { createNextLine } from "../../utils";
+import {
+  createItem,
+  createLine,
+  createNextLine,
+  preserveEditorStructure,
+} from "../../utils";
 
 interface TextEditorProps {
   className?: string;
@@ -17,13 +22,12 @@ const TextEditor = ({ className }: TextEditorProps) => {
   const classNames = joinClassNames([styles["text__editor"], className]);
   const editor = useRef<HTMLDivElement>(null);
   const handleOnInput = (e: React.FormEvent<HTMLDivElement>) => {
-    const selection = window.getSelection();
-    if (!selection) return;
-    console.log(selection);
+    preserveEditorStructure();
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
     const key = e.key;
+
     if (key === "Enter") {
       e.preventDefault();
       createNextLine();
@@ -41,6 +45,9 @@ const TextEditor = ({ className }: TextEditorProps) => {
       <div className={styles["text__editor__line"]} data-offset={"0"}>
         <span className={styles["text__editor__item"]} data-offset={"0-0"}>
           <br data-text={true} />
+        </span>
+        <span className={styles["text__editor__item"]} data-offset={"0-0"}>
+          dfakdksf
         </span>
       </div>
     </div>
