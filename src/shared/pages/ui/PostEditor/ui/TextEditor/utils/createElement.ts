@@ -1,26 +1,35 @@
 import styles from "../ui/TextEditor/TextEditor.module.css";
 
 // 라인 생성
-const createLine = (row: number, col: number) => {
+const createLine = (row: number, col: number, spans?: HTMLElement[]) => {
   const div = document.createElement("div");
   div.setAttribute("class", styles["text__editor__line"]);
   div.setAttribute("data-offset", `${row}`);
 
-  const item = createItem(row, col);
-
-  div.appendChild(item);
+  if (spans && spans.length > 0) {
+    for (const span of spans) {
+      div.appendChild(span);
+    }
+  } else {
+    const item = createItem(row, col);
+    div.appendChild(item);
+  }
 
   return div;
 };
 
 // 아이템 생성
-const createItem = (row: number, col: number) => {
+const createItem = (row?: number, col?: number, text?: string | null) => {
   const span = document.createElement("span");
   span.setAttribute("class", styles["text__editor__item"]);
-  span.setAttribute("data-offset", `${row}-${col}`);
+  span.setAttribute("data-offset", `${row || 0}-${col || 0}`);
 
-  const br = createBr();
-  span.appendChild(br);
+  if (!text) {
+    const br = createBr();
+    span.appendChild(br);
+  } else {
+    span.textContent = text;
+  }
 
   return span;
 };
