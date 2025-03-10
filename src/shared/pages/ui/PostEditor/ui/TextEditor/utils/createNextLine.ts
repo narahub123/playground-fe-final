@@ -18,25 +18,19 @@ const createNextLine = () => {
   const isCursorInMiddle = cursorPos !== lengthOfCurNode;
 
   // 현재 노드의 길이와 현재 커서의 위치가 같지 않은 경우
+  // 현재 노드의 텍스트
+  const curText = curNode.nodeValue || "";
+
   // 커서 이전의 텍스트
-  const remainedText = isCursorInMiddle
-    ? curNode.nodeValue
-      ? curNode.nodeValue?.slice(0, cursorPos)
-      : null
-    : null;
+  const remainedText = isCursorInMiddle ? curText.slice(0, cursorPos) : null;
 
   // 커서 이후의 텍스트
-  const extractedText = isCursorInMiddle
-    ? curNode.nodeValue
-      ? curNode.nodeValue?.slice(cursorPos)
-      : null
-    : null;
+  const extractedText = isCursorInMiddle ? curText.slice(cursorPos) : null;
 
   // 커서가 있는 아이템(span)
   const curItem =
     curNode.nodeType === 3 ? curNode.parentElement : (curNode as HTMLElement);
   if (!curItem) return;
-  console.log("현재 아이템", curItem);
 
   // 커서 이전 텍스트 삽입: 커서의 위치와 현재 노드의 길이가 다른 경우
   if (isCursorInMiddle) {
@@ -49,10 +43,8 @@ const createNextLine = () => {
   }
 
   // 행, 열 알아내기
-  const offset = curItem.dataset["offset"];
-  const row = Number(offset?.split("-")[0]) || 0;
-  const col = Number(offset?.split("-")[1]) || 0;
-  console.log("행", row, "열", col);
+  const offset = curItem.dataset["offset"] || "0-0";
+  const [row, col] = offset?.split("-").map(Number);
 
   // 현재 커서의 위치와 현재 노드의 길이가 다른 경우 새로운 span 생성
   const newSpan = isCursorInMiddle
@@ -66,21 +58,12 @@ const createNextLine = () => {
   // 현재 줄의 자식 요소
   const children = Array.prototype.slice.call(curLine.childNodes);
 
-  // 현재 아이템이 현재 줄의 마지막에 존재하는지 확인
-  const isCurItemInMiddle = col !== children.length - 1;
-
   // 현재 아이템 이후 아이템
-  const curItemAfter = isCurItemInMiddle
-    ? children.filter((_, index) => index > col)
-    : [];
+  const extractedItems = children.slice(col + 1);
+  if (newSpan) extractedItems.unshift(newSpan);
 
-  // newSpan이 있다면 추출된 아이템에 추가
-  const extractedItems = newSpan ? [newSpan, ...curItemAfter] : curItemAfter;
-
-  // 추출된 아이템의 data-offset 수정
-  const updatedExtractItems = extractedItems.map((item, index) => {
-    item.dataset["offset"] = `${row + 1}-${index}`;
-    return item;
+  extractedItems.forEach((item, index) => {
+    (item as HTMLElement).dataset["offset"] = `${row + 1}-${index}`;
   });
 
   // 현재 줄의 다음 형제 줄
@@ -91,7 +74,7 @@ const createNextLine = () => {
   if (!editor) return;
 
   // 새줄 생성하기
-  const newLine = createLine(row + 1, 0, updatedExtractItems);
+  const newLine = createLine(row + 1, 0, extractedItems);
 
   // 다음 줄이 존재하는 경우 다음 줄 전에 삽입
   if (nextLine) {
