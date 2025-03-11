@@ -23,6 +23,7 @@ const handleHashtag = () => {
 
   const curParent = curItem.parentElement;
   if (!curParent) return;
+  console.log("현재 부모", curParent);
 
   const curLine =
     curParent.nodeName === "DIV" ? curParent : curParent.parentElement;
@@ -101,7 +102,13 @@ const handleHashtag = () => {
       const hashtagAfterItem = createItem(row, col + 1, hashtagAfter);
       console.log(hashtagAfterItem);
 
-      curLine.appendChild(hashtagAfterItem);
+      const nextItem = curParent.nextElementSibling;
+
+      if (nextItem) {
+        curLine.insertBefore(hashtagAfterItem, nextItem);
+      } else {
+        curLine.appendChild(hashtagAfterItem);
+      }
 
       const range = document.createRange();
 
