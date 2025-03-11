@@ -1,5 +1,6 @@
 import { HASHTAGREGEX } from "../../../constants";
 import { createInlineItem, createItem } from "./createElement";
+import setCaretPosition from "./setCaretPosition";
 
 const handleHashtag = () => {
   const selection = window.getSelection();
@@ -89,11 +90,12 @@ const handleHashtag = () => {
 
           if (!nextFirstChild.firstChild) return;
           // 커서 위치 지정
-          const range = document.createRange();
-          range.setStart(nextFirstChild.firstChild, hashtag[0].length);
-          range.setEnd(nextFirstChild.firstChild, hashtag[0].length);
-          selection.removeAllRanges();
-          selection.addRange(range);
+          setCaretPosition(nextFirstChild as HTMLElement, hashtag[0].length);
+          //   const range = document.createRange();
+          //   range.setStart(nextFirstChild.firstChild, hashtag[0].length);
+          //   range.setEnd(nextFirstChild.firstChild, hashtag[0].length);
+          //   selection.removeAllRanges();
+          //   selection.addRange(range);
 
           return;
 
@@ -124,23 +126,11 @@ const handleHashtag = () => {
         curLine.appendChild(hashtagAfterItem);
       }
 
-      //
-
       // 커서 위치 지정
-      const range = document.createRange();
-
-      const firstChild = newInlineItem.firstChild?.firstChild;
-
-      if (firstChild) {
-        range.setStart(firstChild, hashtag[0].length);
-        range.setEnd(firstChild, hashtag[0].length);
-      } else {
-        range.setStart(newInlineItem, hashtag[0].length);
-        range.setEnd(newInlineItem, hashtag[0].length);
-      }
-
-      selection.removeAllRanges();
-      selection.addRange(range);
+      setCaretPosition(
+        newInlineItem.firstChild as HTMLElement,
+        hashtag[0].length
+      );
     } else {
       // 일반 아이템에서의 삭제 처리
       // 커서가 인라인의 마지막에 존재하지 확인
@@ -190,20 +180,7 @@ const handleHashtag = () => {
             }
 
             // 커서 위치 설정
-            const range = document.createRange();
-
-            const firstChild = curItem.firstChild;
-
-            if (firstChild) {
-              range.setStart(firstChild, curPos);
-              range.setEnd(firstChild, curPos);
-            } else {
-              range.setStart(curItem, curPos);
-              range.setEnd(curItem, curPos);
-            }
-
-            selection.removeAllRanges();
-            selection.addRange(range);
+            setCaretPosition(curItem, curPos);
 
             // 해시태그에 만족하는 부분이 없는 경우 : 변경 없음
           } else if (isStartWithSharp) {
@@ -237,20 +214,9 @@ const handleHashtag = () => {
             }
 
             // 커서 위치 지정
-            const range = document.createRange();
-            const firstChild = prevItem
-              ? (prevItem.firstChild as HTMLElement)
-              : curItem.firstChild
-              ? (curItem.firstChild as HTMLElement)
-              : curItem;
-
+            const item = prevItem ? prevItem : curItem;
             const cursorPosition = prevItem ? prevText.length + curPos : curPos;
-
-            range.setStart(firstChild, cursorPosition);
-            range.setEnd(firstChild, cursorPosition);
-
-            selection.removeAllRanges();
-            selection.addRange(range);
+            setCaretPosition(item, cursorPosition);
           }
         }
       }
@@ -288,13 +254,7 @@ const handleHashtag = () => {
           nextItem.textContent = hashtagAfter + nextItem.textContent;
 
           // 커서 위치 지정
-          const range = document.createRange();
-          const firstChild = nextItem.firstChild;
-          if (!firstChild) return;
-          range.setStart(firstChild, 1);
-          range.setEnd(firstChild, 1);
-          selection.removeAllRanges();
-          selection.addRange(range);
+          setCaretPosition(nextItem, 1);
 
           return;
           // 다른 종류의 아이템인 경우
@@ -308,14 +268,7 @@ const handleHashtag = () => {
         curLine.appendChild(hashtagAfterItem);
       }
 
-      const range = document.createRange();
-
-      const firstChild = hashtagAfterItem.firstChild;
-      if (!firstChild) return;
-      range.setStart(firstChild, hashtagAfter.length);
-      range.setEnd(firstChild, hashtagAfter.length);
-      selection.removeAllRanges();
-      selection.addRange(range);
+      setCaretPosition(hashtagAfterItem, hashtagAfter.length);
     }
   }
   // 현재 부모가 span이고 hashtag가 존재하지 않는 경우
@@ -356,15 +309,8 @@ const handleHashtag = () => {
         curParent.remove();
 
         // 커서 위치 지정
-        const range = document.createRange();
+        setCaretPosition(prevItem, prevText.length + curPos);
 
-        const firstChild = prevItem.firstChild ? prevItem.firstChild : prevItem;
-
-        range.setStart(firstChild, prevText.length + curPos);
-        range.setEnd(firstChild, prevText.length + curPos);
-
-        selection.removeAllRanges();
-        selection.addRange(range);
         return;
       }
     }
@@ -374,15 +320,7 @@ const handleHashtag = () => {
     curLine.replaceChild(curItem, curParent);
 
     // 커서 위치 지정
-    const range = document.createRange();
-
-    const firstChild = curItem.firstChild ? curItem.firstChild : curItem;
-
-    range.setStart(firstChild, curPos);
-    range.setEnd(firstChild, curPos);
-
-    selection.removeAllRanges();
-    selection.addRange(range);
+    setCaretPosition(curItem, curPos);
   }
   if (curParent.nodeName === "DIV" && !hashtag) {
     const nextItem = curItem.nextElementSibling as HTMLElement;
@@ -431,20 +369,7 @@ const handleHashtag = () => {
         }
 
         // 커서 위치 지정
-        const range = document.createRange();
-
-        const firstChild = curItem.firstChild;
-
-        if (firstChild) {
-          range.setStart(firstChild, curPos);
-          range.setEnd(firstChild, curPos);
-        } else {
-          range.setStart(curItem, curPos);
-          range.setEnd(curItem, curPos);
-        }
-
-        selection.removeAllRanges();
-        selection.addRange(range);
+        setCaretPosition(curItem, curPos);
       } else {
         // 해시태그에 만족하는 경우
         // 현재 텍스트가 조건에 맞게 끝나는지 확인
@@ -471,19 +396,7 @@ const handleHashtag = () => {
           }
 
           // 커서 위치 지정
-          const range = document.createRange();
-          const firstChild = curItem.firstChild;
-
-          if (firstChild) {
-            range.setStart(firstChild, curPos);
-            range.setEnd(firstChild, curPos);
-          } else {
-            range.setStart(curItem, curPos);
-            range.setEnd(curItem, curPos);
-          }
-
-          selection.removeAllRanges();
-          selection.addRange(range);
+          setCaretPosition(curItem, curPos);
         }
       }
     }

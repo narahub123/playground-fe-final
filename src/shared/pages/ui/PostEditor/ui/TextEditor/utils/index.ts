@@ -7,6 +7,7 @@ import {
 import createNextLine from "./createNextLine";
 import preserveEditorStructure from "./preserveEditorStructure";
 import handleHashtag from "./handleHashtag";
+import setCaretPosition from "./setCaretPosition";
 
 export {
   createLine,
@@ -16,4 +17,5 @@ export {
   createNextLine,
   preserveEditorStructure,
   handleHashtag,
+  setCaretPosition,
 };
