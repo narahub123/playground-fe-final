@@ -120,6 +120,13 @@ const handleHashtag = () => {
       selection.addRange(range);
     }
   }
+  // 현재 부모가 span이고 hashtag가 존재하지 않는 경우
+  if (curParent.nodeName === "SPAN" && !hashtag) {
+    // 현재 아이템을 현재 부모 앞에 추가
+    curLine.insertBefore(curItem, curParent);
+    // 현재 아이템 삭제
+    curParent.remove();
+  }
 };
 
 export default handleHashtag;
