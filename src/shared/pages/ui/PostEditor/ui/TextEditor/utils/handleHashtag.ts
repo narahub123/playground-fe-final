@@ -7,6 +7,10 @@ const handleHashtag = () => {
   const curNode = selection.focusNode;
   if (!curNode) return;
   console.log("현재 노드", curNode);
+
+  const curPos = selection.focusOffset;
+  console.log("현재 커서 위치", curPos);
+
   const curText = curNode.textContent || "";
   console.log("현재 텍스트", curText);
   const curItem =
@@ -183,8 +187,69 @@ const handleHashtag = () => {
   }
   // 현재 부모가 span이고 hashtag가 존재하지 않는 경우
   if (curParent.nodeName === "SPAN" && !hashtag) {
-    // 현재 부모를 현재 아이템을 대체
+    const nextItem = curParent.nextElementSibling;
+    const prevItem = curParent.previousElementSibling;
+    // 이후 아이템이 있는 경우
+    if (nextItem) {
+      // 현재 아이템과 이후 아이템을 비교
+      const isSameItem = nextItem.className.includes("text__editor__item");
+
+      // 현재 아이템과 이후 아이템이 같은 종류의 아이템인 경우
+      if (isSameItem) {
+        // 현재 아이템에 이후 아이템의 텍스트 추가
+        const nextText = nextItem.textContent || "";
+
+        curItem.innerHTML = curItem.textContent + nextText;
+
+        // 이 후 아이템 삭제
+        nextItem.remove();
+      }
+    }
+
+    // 이전 아이템이 있는 경우
+    if (prevItem) {
+      // 현재 아이템과 이전 아이템을 비교
+      const isSameItem = prevItem.className.includes("text__editor__item");
+
+      // 현재 아이템과 이후 아이템이 같은 종류의 아이템인 경우
+      if (isSameItem) {
+        // 이전 텍스트
+        const prevText = prevItem.textContent || "";
+
+        // 이전 아이템에 현재 아이템의 텍스트 추가
+        prevItem.textContent = prevText + curItem.textContent;
+
+        // 현재 부모 삭제
+        curParent.remove();
+
+        // 커서 위치 지정
+        const range = document.createRange();
+
+        const firstChild = prevItem.firstChild ? prevItem.firstChild : prevItem;
+
+        range.setStart(firstChild, prevText.length + curPos);
+        range.setEnd(firstChild, prevText.length + curPos);
+
+        selection.removeAllRanges();
+        selection.addRange(range);
+        return;
+      }
+    }
+
+    // 이후 아이템이 없거나 이후 아이템과 현재 아이템이 다른 종류인 경우
+    // 현재 아이템이 현재 부모를 대체
     curLine.replaceChild(curItem, curParent);
+
+    // 커서 위치 지정
+    const range = document.createRange();
+
+    const firstChild = curItem.firstChild ? curItem.firstChild : curItem;
+
+    range.setStart(firstChild, curPos);
+    range.setEnd(firstChild, curPos);
+
+    selection.removeAllRanges();
+    selection.addRange(range);
   }
 };
 
