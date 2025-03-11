@@ -11,6 +11,7 @@ import {
   handleHashtag,
   preserveEditorStructure,
 } from "../../utils";
+import { Line } from "@shared/pages/ui/PostEditor/ui/TextEditor/ui";
 
 interface TextEditorProps {
   className?: string;
@@ -42,11 +43,7 @@ const TextEditor = ({ className }: TextEditorProps) => {
       onInput={handleOnInput}
       onKeyDown={handleKeyDown}
     >
-      <div className={styles["text__editor__line"]} data-offset={"0"}>
-        <span className={styles["text__editor__item"]} data-offset={"0-0"}>
-          <br data-text={true} />
-        </span>
-      </div>
+      <Line />
     </div>
   );
 };

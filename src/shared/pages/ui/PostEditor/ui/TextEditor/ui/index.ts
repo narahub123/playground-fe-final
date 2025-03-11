@@ -1,3 +1,5 @@
 import TextEditor from "./TextEditor/TextEditor";
+import Segment from "./Segment/Segment";
+import Line from "./Line/Line";
 
-export { TextEditor };
+export { TextEditor, Segment, Line };
