@@ -1,4 +1,3 @@
-import { getColorTheme } from "@shared/@common/models/selectors";
 import styles from "../ui/TextEditor/TextEditor.module.css";
 
 // 라인 생성
