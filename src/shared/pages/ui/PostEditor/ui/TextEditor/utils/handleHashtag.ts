@@ -43,11 +43,11 @@ const handleHashtag = () => {
     if (curParent.nodeName === "DIV") {
       // 문자열 분리하기
       // 첫번째 해시 태그의 인덱스
-      const hashtagIndex = curText.indexOf(hashtag[0]);
-      const hashtagEndIndex = hashtagIndex + hashtag[0].length;
-      console.log(hashtagIndex);
+      const hashtagStartIndex = curText.indexOf(hashtag[0]);
+      const hashtagEndIndex = hashtagStartIndex + hashtag[0].length;
+      console.log(hashtagStartIndex);
 
-      const hashtagBefore = curText.slice(0, hashtagIndex);
+      const hashtagBefore = curText.slice(0, hashtagStartIndex);
       console.log("해시태그 이전 텍스트", `"${hashtagBefore}"`);
 
       const hashtagAfter = curText.slice(hashtagEndIndex);
@@ -62,8 +62,8 @@ const handleHashtag = () => {
       console.log("해시태그 span", newInlineItem);
 
       // 해시태그 span 삽입
-      // 다음 아아템이 있는 경우
-      if (nextItem) {
+      // 다음 아아템이 있고 hashtagAfter가 없는 경우
+      if (nextItem && hashtagAfter.length === 0) {
         // newInlineItem과 nextItem의 span 비교
         // nextItem에 className이 없는 경우
         const isSameItem = !nextItem.className;
@@ -101,10 +101,29 @@ const handleHashtag = () => {
           curLine.insertBefore(newInlineItem, nextItem);
         }
 
+        console.log("저경우임");
+
+        // 다음 아아템이 있고 hashtagAfter가 있는 경우
+        // 다음아이템은 item class가 아님
+        // 따라서 item 클래스인 hashtagAfterItem과 같은 경우가 없음
+      } else if (nextItem && hashtagAfter.length > 0) {
+        // 인라인 아이템을 이 후 아이템 앞에 삽입함
+        curLine.insertBefore(newInlineItem, nextItem);
+
+        // hashtagAfter를 이 후 아이템 앞에 삽입
+        const hashtagAfterItem = createItem(row, col + 2, hashtagAfter);
+        curLine.insertBefore(hashtagAfterItem, nextItem);
+
         // 다음 아아템이 없는 경우
       } else {
         curLine.appendChild(newInlineItem);
+
+        // hashtagAfter 처리
+        const hashtagAfterItem = createItem(row, col + 2, hashtagAfter);
+        curLine.appendChild(hashtagAfterItem);
       }
+
+      //
 
       // 커서 위치 지정
       const range = document.createRange();
@@ -124,11 +143,11 @@ const handleHashtag = () => {
     } else {
       // 문자열 분리하기
       // 첫번째 해시 태그의 인덱스
-      const hashtagIndex = curText.indexOf(hashtag[0]);
-      const hashtagEndIndex = hashtagIndex + hashtag[0].length;
-      console.log(hashtagIndex);
+      const hashtagStartIndex = curText.indexOf(hashtag[0]);
+      const hashtagEndIndex = hashtagStartIndex + hashtag[0].length;
+      console.log(hashtagStartIndex);
 
-      const hashtagBefore = curText.slice(0, hashtagIndex);
+      const hashtagBefore = curText.slice(0, hashtagStartIndex);
       console.log("해시태그 이전 텍스트", `"${hashtagBefore}"`);
 
       const hashtagAfter = curText.slice(hashtagEndIndex);
