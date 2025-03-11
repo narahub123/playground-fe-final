@@ -60,7 +60,43 @@ const handleHashtag = () => {
       // 해시태그 span 삽입
       // 다음 아아템이 있는 경우
       if (nextItem) {
-        curLine.insertBefore(newInlineItem, nextItem);
+        // newInlineItem과 nextItem의 span 비교
+        // nextItem에 className이 없는 경우
+        const isSameItem = !nextItem.className;
+
+        // 같은 아이템인 경우
+        if (isSameItem) {
+          const nextFirstChild = nextItem.firstChild;
+          console.log(nextFirstChild);
+
+          if (!nextFirstChild) return;
+          const newText = hashtag[0] + nextFirstChild.textContent;
+          nextItem.firstChild.textContent = newText;
+
+          // 새로운 텍스트가 hashtag에 적합하지 확인
+          const isHashtag = HASHTAGREGEX.test(newText);
+
+          // 해시태그가 아닌 경우
+          if (!isHashtag) {
+            // inline 아이템을 일반 item으로 변경
+            curLine.replaceChild(nextFirstChild, nextItem);
+          }
+
+          if (!nextFirstChild.firstChild) return;
+          // 커서 위치 지정
+          const range = document.createRange();
+          range.setStart(nextFirstChild.firstChild, hashtag[0].length);
+          range.setEnd(nextFirstChild.firstChild, hashtag[0].length);
+          selection.removeAllRanges();
+          selection.addRange(range);
+
+          return;
+
+          // 다른 아이템인 경우
+        } else {
+          curLine.insertBefore(newInlineItem, nextItem);
+        }
+
         // 다음 아아템이 없는 경우
       } else {
         curLine.appendChild(newInlineItem);
@@ -102,10 +138,35 @@ const handleHashtag = () => {
       const hashtagAfterItem = createItem(row, col + 1, hashtagAfter);
       console.log(hashtagAfterItem);
 
-      const nextItem = curParent.nextElementSibling;
+      const nextItem = curParent.nextElementSibling as HTMLElement;
 
       if (nextItem) {
-        curLine.insertBefore(hashtagAfterItem, nextItem);
+        // hashtagAfterItem과 nextItem이 동일한 span인지 확인
+        // hashtageAfterItem이 item이므로 nextItem도 item인지 확인
+        const isSameItem = nextItem.className.includes("text__editor__item");
+
+        // 같은 종류의 아이템인 경우
+        if (isSameItem) {
+          // hashtagAfter를 nextItem의 textContent에 합침
+          nextItem.textContent = hashtagAfter + nextItem.textContent;
+
+          // 커서 위치 지정
+          const range = document.createRange();
+          const firstChild = nextItem.firstChild;
+          if (!firstChild) return;
+          range.setStart(firstChild, 1);
+          range.setEnd(firstChild, 1);
+          selection.removeAllRanges();
+          selection.addRange(range);
+
+          return;
+          // 다른 종류의 아이템인 경우
+        } else {
+          // 다음 아이템 이전에 hashtagAfterItem을 삽입
+          curLine.insertBefore(hashtagAfterItem, nextItem);
+
+          // 나중에 offset 변경이 필요하게 될 수도 있음: 현재는 불필요
+        }
       } else {
         curLine.appendChild(hashtagAfterItem);
       }
