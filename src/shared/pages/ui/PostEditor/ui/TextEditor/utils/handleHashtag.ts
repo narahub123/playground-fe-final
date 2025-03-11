@@ -39,238 +39,229 @@ const handleHashtag = () => {
   const hashtag = curText.match(HASHTAGREGEX);
   console.log("해시태그", hashtag);
 
-  // 해시 태그가 존재하는 경우
-  // 일반 아이템 안
-  if (hashtag) {
-    if (curParent.nodeName === "DIV") {
-      // 문자열 분리하기
-      // 첫번째 해시 태그의 인덱스
-      const hashtagStartIndex = curText.indexOf(hashtag[0]);
-      const hashtagEndIndex = hashtagStartIndex + hashtag[0].length;
-      console.log(hashtagStartIndex);
+  // 해시 태그가 존재하고 부모 요소가 div => line인 경우
+  if (hashtag && curParent.nodeName === "DIV") {
+    // 문자열 분리하기
+    // 첫번째 해시 태그의 인덱스
+    const hashtagStartIndex = curText.indexOf(hashtag[0]);
+    const hashtagEndIndex = hashtagStartIndex + hashtag[0].length;
+    console.log(hashtagStartIndex);
 
-      const hashtagBefore = curText.slice(0, hashtagStartIndex);
-      console.log("해시태그 이전 텍스트", `"${hashtagBefore}"`);
+    const hashtagBefore = curText.slice(0, hashtagStartIndex);
+    console.log("해시태그 이전 텍스트", `"${hashtagBefore}"`);
 
-      const hashtagAfter = curText.slice(hashtagEndIndex);
-      console.log("해시태그 이후 텍스트", `"${hashtagAfter}"`);
+    const hashtagAfter = curText.slice(hashtagEndIndex);
+    console.log("해시태그 이후 텍스트", `"${hashtagAfter}"`);
 
-      // 현재 아이템에 해시태그 이전 텍스트 삽입
-      if (hashtagBefore) curItem.innerHTML = hashtagBefore;
-      else curItem.remove();
+    // 현재 아이템에 해시태그 이전 텍스트 삽입
+    if (hashtagBefore) curItem.innerHTML = hashtagBefore;
+    else curItem.remove();
 
-      // 해시태그 span 생성
-      const newInlineItem = createInlineItem(row, col + 1, hashtag[0]);
-      console.log("해시태그 span", newInlineItem);
+    // 해시태그 span 생성
+    const newInlineItem = createInlineItem(row, col + 1, hashtag[0]);
+    console.log("해시태그 span", newInlineItem);
 
-      // 해시태그 span 삽입
-      // 다음 아아템이 있고 hashtagAfter가 없는 경우
-      if (nextItem && hashtagAfter.length === 0) {
-        // newInlineItem과 nextItem의 span 비교
-        // nextItem에 className이 없는 경우
-        const isSameItem = !nextItem.className;
+    // 해시태그 span 삽입
+    // 다음 아아템이 있고 hashtagAfter가 없는 경우
+    if (nextItem && hashtagAfter.length === 0) {
+      // newInlineItem과 nextItem의 span 비교
+      // nextItem에 className이 없는 경우
+      const isSameItem = !nextItem.className;
 
-        // 같은 아이템인 경우
-        if (isSameItem) {
-          const nextFirstChild = nextItem.firstChild;
-          console.log(nextFirstChild);
+      // 같은 아이템인 경우
+      if (isSameItem) {
+        const nextFirstChild = nextItem.firstChild;
+        console.log(nextFirstChild);
 
-          if (!nextFirstChild) return;
-          const newText = hashtag[0] + nextFirstChild.textContent;
-          nextItem.firstChild.textContent = newText;
+        if (!nextFirstChild) return;
+        const newText = hashtag[0] + nextFirstChild.textContent;
+        nextItem.firstChild.textContent = newText;
 
-          // 새로운 텍스트가 hashtag에 적합하지 확인
-          const isHashtag = HASHTAGREGEX.test(newText);
+        // 새로운 텍스트가 hashtag에 적합하지 확인
+        const isHashtag = HASHTAGREGEX.test(newText);
 
-          // 해시태그가 아닌 경우
-          if (!isHashtag) {
-            // inline 아이템을 일반 item으로 변경
-            curLine.replaceChild(nextFirstChild, nextItem);
-          }
-
-          if (!nextFirstChild.firstChild) return;
-          // 커서 위치 지정
-          setCaretPosition(nextFirstChild as HTMLElement, hashtag[0].length);
-          //   const range = document.createRange();
-          //   range.setStart(nextFirstChild.firstChild, hashtag[0].length);
-          //   range.setEnd(nextFirstChild.firstChild, hashtag[0].length);
-          //   selection.removeAllRanges();
-          //   selection.addRange(range);
-
-          return;
-
-          // 다른 아이템인 경우
-        } else {
-          curLine.insertBefore(newInlineItem, nextItem);
+        // 해시태그가 아닌 경우
+        if (!isHashtag) {
+          // inline 아이템을 일반 item으로 변경
+          curLine.replaceChild(nextFirstChild, nextItem);
         }
 
-        console.log("저경우임");
+        if (!nextFirstChild.firstChild) return;
+        // 커서 위치 지정
+        setCaretPosition(nextFirstChild, hashtag[0].length);
 
-        // 다음 아아템이 있고 hashtagAfter가 있는 경우
-        // 다음아이템은 item class가 아님
-        // 따라서 item 클래스인 hashtagAfterItem과 같은 경우가 없음
-      } else if (nextItem && hashtagAfter.length > 0) {
-        // 인라인 아이템을 이 후 아이템 앞에 삽입함
+        return;
+
+        // 다른 아이템인 경우
+      } else {
         curLine.insertBefore(newInlineItem, nextItem);
+      }
 
-        // hashtagAfter를 이 후 아이템 앞에 삽입
-        const hashtagAfterItem = createItem(row, col + 2, hashtagAfter);
+      // 다음 아아템이 있고 hashtagAfter가 있는 경우
+      // 다음아이템은 item class가 아님
+      // 따라서 item 클래스인 hashtagAfterItem과 같은 경우가 없음
+    } else if (nextItem && hashtagAfter.length > 0) {
+      // 인라인 아이템을 이 후 아이템 앞에 삽입함
+      curLine.insertBefore(newInlineItem, nextItem);
+
+      // hashtagAfter를 이 후 아이템 앞에 삽입
+      const hashtagAfterItem = createItem(row, col + 2, hashtagAfter);
+      curLine.insertBefore(hashtagAfterItem, nextItem);
+
+      // 다음 아아템이 없는 경우
+    } else {
+      curLine.appendChild(newInlineItem);
+
+      // hashtagAfter 처리
+      const hashtagAfterItem = createItem(row, col + 2, hashtagAfter);
+      curLine.appendChild(hashtagAfterItem);
+    }
+
+    // 커서 위치 지정
+    setCaretPosition(
+      newInlineItem.firstChild as HTMLElement,
+      hashtag[0].length
+    );
+  } else if (hashtag && curParent.nodeName === "SPAN") {
+    // 일반 아이템에서의 삭제 처리
+    // 커서가 인라인의 마지막에 존재하지 확인
+    const isCursorAtTheEnd = curPos === curText.length;
+    console.log("커서가 인라인의 마지막에 존재하는 확인", isCursorAtTheEnd);
+
+    // 커서가 인라인의 마지막에 존재하는 경우
+    if (isCursorAtTheEnd) {
+      // 다음 아이템 존재 여부확인
+      const nextItem = curParent.nextElementSibling;
+      console.log("다음 아이템", nextItem);
+
+      // 다음 아이템이 존재하는 경우
+      if (nextItem) {
+        const nextText = nextItem.textContent || "";
+        // 다음 아이템의 텍스트가 문자, 숫자, _로 시작하는 지 확인
+        const isStartWithCondition = /^[\p{L}0-9_]/u.test(nextText);
+        console.log("해시태그의 부분이 될 수 있는지 확인", isCursorAtTheEnd);
+        const isStartWithSharp = nextText.startsWith("#");
+        console.log("#으로 시작하는가?", isStartWithSharp);
+
+        // 다음 아이템이 인라인지만 해시태그에 만족하지 않는 경우
+        if (isStartWithCondition) {
+          const testText = "#" + nextText;
+
+          const hashtag = testText.match(HASHTAGREGEX);
+
+          // 해시태그에 만족하는 부분이 있는 경우
+          if (hashtag && hashtag.length > 0) {
+            const hashtagEndIndex = hashtag[0].length - 1;
+
+            const hashtagPart = nextText.slice(0, hashtagEndIndex);
+            console.log("해시태그 부분", hashtagPart);
+
+            const remainingText = nextText.slice(hashtagEndIndex);
+            console.log("남은 부분", remainingText);
+
+            curItem.textContent = curText + hashtagPart;
+
+            // 남은 부분이 있는 경우
+            if (remainingText.length > 0) {
+              nextItem.textContent = remainingText;
+            } else {
+              // 남은 부분이 없는 경우
+              nextItem.remove();
+            }
+          }
+
+          // 커서 위치 설정
+          setCaretPosition(curItem, curPos);
+
+          // 해시태그에 만족하는 부분이 없는 경우 : 변경 없음
+        } else if (isStartWithSharp) {
+          // 다음 아이템이 #으로 시작하는 경우 즉 해시태그가 연속인 경우
+          const nextNextItem = nextItem.nextElementSibling;
+          const nextNextText = nextNextItem?.textContent || "";
+          const newText = curText + nextText + nextNextText;
+          console.log("통합 텍스트", newText);
+          const prevItem = curParent.previousElementSibling;
+          console.log("이전 아이템", prevItem);
+          const prevText = prevItem?.textContent || "";
+
+          // 이전 아이템이 존재하는 경우
+          if (prevItem) {
+            // 이전 아이템에 통합 텍스트 추가
+            prevItem.textContent += newText;
+          } else {
+            const row = Number(curLine.dataset["offset"]) || 0;
+            // 이전 아이템이 존재하지 않는 경우
+            const newItem = createItem(row, 0, newText);
+
+            curLine.prepend(newItem);
+          }
+          // 현재 아이템 삭제
+          curParent.remove();
+          // 다음 아이템 삭제
+          nextItem.remove();
+          // 다음 다음 아이템이 존재하는 경우 삭제
+          if (nextNextItem) {
+            nextNextItem.remove();
+          }
+
+          // 커서 위치 지정
+          const item = prevItem ? prevItem : curItem;
+          const cursorPosition = prevItem ? prevText.length + curPos : curPos;
+          setCaretPosition(item, cursorPosition);
+        }
+      }
+    }
+
+    // 해시태그 인라인 아이템 안
+    // 문자열 분리하기
+    // 첫번째 해시 태그의 인덱스
+    const hashtagStartIndex = curText.indexOf(hashtag[0]);
+    const hashtagEndIndex = hashtagStartIndex + hashtag[0].length;
+    console.log(hashtagStartIndex);
+
+    const hashtagBefore = curText.slice(0, hashtagStartIndex);
+    console.log("해시태그 이전 텍스트", `"${hashtagBefore}"`);
+
+    const hashtagAfter = curText.slice(hashtagEndIndex);
+    console.log("해시태그 이후 텍스트", `"${hashtagAfter}"`);
+
+    if (!hashtagAfter) return;
+
+    curItem.innerHTML = hashtag[0];
+
+    const hashtagAfterItem = createItem(row, col + 1, hashtagAfter);
+    console.log(hashtagAfterItem);
+
+    const nextItem = curParent.nextElementSibling as HTMLElement;
+
+    if (nextItem) {
+      // hashtagAfterItem과 nextItem이 동일한 span인지 확인
+      // hashtageAfterItem이 item이므로 nextItem도 item인지 확인
+      const isSameItem = nextItem.className.includes("text__editor__item");
+
+      // 같은 종류의 아이템인 경우
+      if (isSameItem) {
+        // hashtagAfter를 nextItem의 textContent에 합침
+        nextItem.textContent = hashtagAfter + nextItem.textContent;
+
+        // 커서 위치 지정
+        setCaretPosition(nextItem, 1);
+
+        return;
+        // 다른 종류의 아이템인 경우
+      } else {
+        // 다음 아이템 이전에 hashtagAfterItem을 삽입
         curLine.insertBefore(hashtagAfterItem, nextItem);
 
-        // 다음 아아템이 없는 경우
-      } else {
-        curLine.appendChild(newInlineItem);
-
-        // hashtagAfter 처리
-        const hashtagAfterItem = createItem(row, col + 2, hashtagAfter);
-        curLine.appendChild(hashtagAfterItem);
+        // 나중에 offset 변경이 필요하게 될 수도 있음: 현재는 불필요
       }
-
-      // 커서 위치 지정
-      setCaretPosition(
-        newInlineItem.firstChild as HTMLElement,
-        hashtag[0].length
-      );
     } else {
-      // 일반 아이템에서의 삭제 처리
-      // 커서가 인라인의 마지막에 존재하지 확인
-      const isCursorAtTheEnd = curPos === curText.length;
-      console.log("커서가 인라인의 마지막에 존재하는 확인", isCursorAtTheEnd);
-
-      // 커서가 인라인의 마지막에 존재하는 경우
-      if (isCursorAtTheEnd) {
-        // 다음 아이템 존재 여부확인
-        const nextItem = curParent.nextElementSibling;
-        console.log("다음 아이템", nextItem);
-
-        // 다음 아이템이 존재하는 경우
-        if (nextItem) {
-          const nextText = nextItem.textContent || "";
-          // 다음 아이템의 텍스트가 문자, 숫자, _로 시작하는 지 확인
-          const isStartWithCondition = /^[\p{L}0-9_]/u.test(nextText);
-          console.log("해시태그의 부분이 될 수 있는지 확인", isCursorAtTheEnd);
-          const isStartWithSharp = nextText.startsWith("#");
-          console.log("#으로 시작하는가?", isStartWithSharp);
-
-          // 다음 아이템이 인라인지만 해시태그에 만족하지 않는 경우
-          if (isStartWithCondition) {
-            const testText = "#" + nextText;
-
-            const hashtag = testText.match(HASHTAGREGEX);
-
-            // 해시태그에 만족하는 부분이 있는 경우
-            if (hashtag && hashtag.length > 0) {
-              const hashtagEndIndex = hashtag[0].length - 1;
-
-              const hashtagPart = nextText.slice(0, hashtagEndIndex);
-              console.log("해시태그 부분", hashtagPart);
-
-              const remainingText = nextText.slice(hashtagEndIndex);
-              console.log("남은 부분", remainingText);
-
-              curItem.textContent = curText + hashtagPart;
-
-              // 남은 부분이 있는 경우
-              if (remainingText.length > 0) {
-                nextItem.textContent = remainingText;
-              } else {
-                // 남은 부분이 없는 경우
-                nextItem.remove();
-              }
-            }
-
-            // 커서 위치 설정
-            setCaretPosition(curItem, curPos);
-
-            // 해시태그에 만족하는 부분이 없는 경우 : 변경 없음
-          } else if (isStartWithSharp) {
-            // 다음 아이템이 #으로 시작하는 경우 즉 해시태그가 연속인 경우
-            const nextNextItem = nextItem.nextElementSibling;
-            const nextNextText = nextNextItem?.textContent || "";
-            const newText = curText + nextText + nextNextText;
-            console.log("통합 텍스트", newText);
-            const prevItem = curParent.previousElementSibling;
-            console.log("이전 아이템", prevItem);
-            const prevText = prevItem?.textContent || "";
-
-            // 이전 아이템이 존재하는 경우
-            if (prevItem) {
-              // 이전 아이템에 통합 텍스트 추가
-              prevItem.textContent += newText;
-            } else {
-              const row = Number(curLine.dataset["offset"]) || 0;
-              // 이전 아이템이 존재하지 않는 경우
-              const newItem = createItem(row, 0, newText);
-
-              curLine.prepend(newItem);
-            }
-            // 현재 아이템 삭제
-            curParent.remove();
-            // 다음 아이템 삭제
-            nextItem.remove();
-            // 다음 다음 아이템이 존재하는 경우 삭제
-            if (nextNextItem) {
-              nextNextItem.remove();
-            }
-
-            // 커서 위치 지정
-            const item = prevItem ? prevItem : curItem;
-            const cursorPosition = prevItem ? prevText.length + curPos : curPos;
-            setCaretPosition(item, cursorPosition);
-          }
-        }
-      }
-
-      // 해시태그 인라인 아이템 안
-      // 문자열 분리하기
-      // 첫번째 해시 태그의 인덱스
-      const hashtagStartIndex = curText.indexOf(hashtag[0]);
-      const hashtagEndIndex = hashtagStartIndex + hashtag[0].length;
-      console.log(hashtagStartIndex);
-
-      const hashtagBefore = curText.slice(0, hashtagStartIndex);
-      console.log("해시태그 이전 텍스트", `"${hashtagBefore}"`);
-
-      const hashtagAfter = curText.slice(hashtagEndIndex);
-      console.log("해시태그 이후 텍스트", `"${hashtagAfter}"`);
-
-      if (!hashtagAfter) return;
-
-      curItem.innerHTML = hashtag[0];
-
-      const hashtagAfterItem = createItem(row, col + 1, hashtagAfter);
-      console.log(hashtagAfterItem);
-
-      const nextItem = curParent.nextElementSibling as HTMLElement;
-
-      if (nextItem) {
-        // hashtagAfterItem과 nextItem이 동일한 span인지 확인
-        // hashtageAfterItem이 item이므로 nextItem도 item인지 확인
-        const isSameItem = nextItem.className.includes("text__editor__item");
-
-        // 같은 종류의 아이템인 경우
-        if (isSameItem) {
-          // hashtagAfter를 nextItem의 textContent에 합침
-          nextItem.textContent = hashtagAfter + nextItem.textContent;
-
-          // 커서 위치 지정
-          setCaretPosition(nextItem, 1);
-
-          return;
-          // 다른 종류의 아이템인 경우
-        } else {
-          // 다음 아이템 이전에 hashtagAfterItem을 삽입
-          curLine.insertBefore(hashtagAfterItem, nextItem);
-
-          // 나중에 offset 변경이 필요하게 될 수도 있음: 현재는 불필요
-        }
-      } else {
-        curLine.appendChild(hashtagAfterItem);
-      }
-
-      setCaretPosition(hashtagAfterItem, hashtagAfter.length);
+      curLine.appendChild(hashtagAfterItem);
     }
+
+    setCaretPosition(hashtagAfterItem, hashtagAfter.length);
   }
+
   // 현재 부모가 span이고 hashtag가 존재하지 않는 경우
   if (curParent.nodeName === "SPAN" && !hashtag) {
     const nextItem = curParent.nextElementSibling;
