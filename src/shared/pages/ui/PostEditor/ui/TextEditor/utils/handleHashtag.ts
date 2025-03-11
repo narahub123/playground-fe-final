@@ -151,6 +151,7 @@ const handleHashtag = () => {
       if (isCursorAtTheEnd) {
         // 다음 아이템 존재 여부확인
         const nextItem = curParent.nextElementSibling;
+        console.log("다음 아이템", nextItem);
 
         // 다음 아이템이 존재하는 경우
         if (nextItem) {
@@ -158,6 +159,10 @@ const handleHashtag = () => {
           // 다음 아이템의 텍스트가 문자, 숫자, _로 시작하는 지 확인
           const isStartWithCondition = /^[\p{L}0-9_]/u.test(nextText);
           console.log("해시태그의 부분이 될 수 있는지 확인", isCursorAtTheEnd);
+          const isStartWithSharp = nextText.startsWith("#");
+          console.log("#으로 시작하는가?", isStartWithSharp);
+
+          // 다음 아이템이 인라인지만 해시태그에 만족하지 않는 경우
           if (isStartWithCondition) {
             const testText = "#" + nextText;
 
@@ -201,6 +206,51 @@ const handleHashtag = () => {
             selection.addRange(range);
 
             // 해시태그에 만족하는 부분이 없는 경우 : 변경 없음
+          } else if (isStartWithSharp) {
+            // 다음 아이템이 #으로 시작하는 경우 즉 해시태그가 연속인 경우
+            const nextNextItem = nextItem.nextElementSibling;
+            const nextNextText = nextNextItem?.textContent || "";
+            const newText = curText + nextText + nextNextText;
+            console.log("통합 텍스트", newText);
+            const prevItem = curParent.previousElementSibling;
+            console.log("이전 아이템", prevItem);
+            const prevText = prevItem?.textContent || "";
+
+            // 이전 아이템이 존재하는 경우
+            if (prevItem) {
+              // 이전 아이템에 통합 텍스트 추가
+              prevItem.textContent += newText;
+            } else {
+              const row = Number(curLine.dataset["offset"]) || 0;
+              // 이전 아이템이 존재하지 않는 경우
+              const newItem = createItem(row, 0, newText);
+
+              curLine.prepend(newItem);
+            }
+            // 현재 아이템 삭제
+            curParent.remove();
+            // 다음 아이템 삭제
+            nextItem.remove();
+            // 다음 다음 아이템이 존재하는 경우 삭제
+            if (nextNextItem) {
+              nextNextItem.remove();
+            }
+
+            // 커서 위치 지정
+            const range = document.createRange();
+            const firstChild = prevItem
+              ? (prevItem.firstChild as HTMLElement)
+              : curItem.firstChild
+              ? (curItem.firstChild as HTMLElement)
+              : curItem;
+
+            const cursorPosition = prevItem ? prevText.length + curPos : curPos;
+
+            range.setStart(firstChild, cursorPosition);
+            range.setEnd(firstChild, cursorPosition);
+
+            selection.removeAllRanges();
+            selection.addRange(range);
           }
         }
       }
