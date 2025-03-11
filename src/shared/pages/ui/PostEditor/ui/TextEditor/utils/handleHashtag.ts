@@ -341,6 +341,7 @@ const handleHashtag = () => {
 
     // 다음 아이템이 인라인인지 확인
     const isInlineItem = !nextItem.dataset["offset"];
+    console.log(isInlineItem);
 
     // 인라인 아이템이 맞는 경우
     if (isInlineItem) {
@@ -394,6 +395,46 @@ const handleHashtag = () => {
 
         selection.removeAllRanges();
         selection.addRange(range);
+      } else {
+        // 해시태그에 만족하는 경우
+        // 현재 텍스트가 조건에 맞게 끝나는지 확인
+        const isEndWithCondition = /[\p{L}0-9_]$/u.test(curText);
+        console.log(
+          "현재 텍스트가 조건에 맞게 끝나는지 확인",
+          isEndWithCondition
+        );
+
+        // 현재 텍스트가 문자, 숫자, _ 로 끝나는 경우
+        if (isEndWithCondition) {
+          const nextNextItem = nextItem.nextElementSibling;
+          const nextNextText = nextNextItem?.textContent || "";
+
+          // 현재 텍스트에 다음 텍스트와 다음 다음 텍스트 추가
+          curItem.textContent += nextText + nextNextText;
+
+          // 다음 아이템 삭제
+          nextItem.remove();
+          // 다음 다음 아이템이 존재하는 경우
+          if (nextNextItem) {
+            // 다음 다음 아이템 삭제
+            nextNextItem.remove();
+          }
+
+          // 커서 위치 지정
+          const range = document.createRange();
+          const firstChild = curItem.firstChild;
+
+          if (firstChild) {
+            range.setStart(firstChild, curPos);
+            range.setEnd(firstChild, curPos);
+          } else {
+            range.setStart(curItem, curPos);
+            range.setEnd(curItem, curPos);
+          }
+
+          selection.removeAllRanges();
+          selection.addRange(range);
+        }
       }
     }
   }
