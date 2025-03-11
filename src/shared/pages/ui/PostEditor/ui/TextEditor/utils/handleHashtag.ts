@@ -36,9 +36,10 @@ const handleHashtag = () => {
 
   // 현재 텍스테에 해시태그가 있는지 확인
   const hashtag = curText.match(HASHTAGREGEX);
-  console.log(hashtag);
+  console.log("해시태그", hashtag);
 
   // 해시 태그가 존재하는 경우
+  // 일반 아이템 안
   if (hashtag) {
     if (curParent.nodeName === "DIV") {
       // 문자열 분리하기
@@ -141,6 +142,70 @@ const handleHashtag = () => {
       selection.removeAllRanges();
       selection.addRange(range);
     } else {
+      // 일반 아이템에서의 삭제 처리
+      // 커서가 인라인의 마지막에 존재하지 확인
+      const isCursorAtTheEnd = curPos === curText.length;
+      console.log("커서가 인라인의 마지막에 존재하는 확인", isCursorAtTheEnd);
+
+      // 커서가 인라인의 마지막에 존재하는 경우
+      if (isCursorAtTheEnd) {
+        // 다음 아이템 존재 여부확인
+        const nextItem = curParent.nextElementSibling;
+
+        // 다음 아이템이 존재하는 경우
+        if (nextItem) {
+          const nextText = nextItem.textContent || "";
+          // 다음 아이템의 텍스트가 문자, 숫자, _로 시작하는 지 확인
+          const isStartWithCondition = /^[\p{L}0-9_]/u.test(nextText);
+          console.log("해시태그의 부분이 될 수 있는지 확인", isCursorAtTheEnd);
+          if (isStartWithCondition) {
+            const testText = "#" + nextText;
+
+            const hashtag = testText.match(HASHTAGREGEX);
+
+            // 해시태그에 만족하는 부분이 있는 경우
+            if (hashtag && hashtag.length > 0) {
+              const hashtagEndIndex = hashtag[0].length - 1;
+
+              const hashtagPart = nextText.slice(0, hashtagEndIndex);
+              console.log("해시태그 부분", hashtagPart);
+
+              const remainingText = nextText.slice(hashtagEndIndex);
+              console.log("남은 부분", remainingText);
+
+              curItem.textContent = curText + hashtagPart;
+
+              // 남은 부분이 있는 경우
+              if (remainingText.length > 0) {
+                nextItem.textContent = remainingText;
+              } else {
+                // 남은 부분이 없는 경우
+                nextItem.remove();
+              }
+            }
+
+            // 커서 위치 설정
+            const range = document.createRange();
+
+            const firstChild = curItem.firstChild;
+
+            if (firstChild) {
+              range.setStart(firstChild, curPos);
+              range.setEnd(firstChild, curPos);
+            } else {
+              range.setStart(curItem, curPos);
+              range.setEnd(curItem, curPos);
+            }
+
+            selection.removeAllRanges();
+            selection.addRange(range);
+
+            // 해시태그에 만족하는 부분이 없는 경우 : 변경 없음
+          }
+        }
+      }
+
+      // 해시태그 인라인 아이템 안
       // 문자열 분리하기
       // 첫번째 해시 태그의 인덱스
       const hashtagStartIndex = curText.indexOf(hashtag[0]);
@@ -154,7 +219,6 @@ const handleHashtag = () => {
       console.log("해시태그 이후 텍스트", `"${hashtagAfter}"`);
 
       if (!hashtagAfter) return;
-      console.log("여기 옴?");
 
       curItem.innerHTML = hashtag[0];
 
@@ -269,6 +333,69 @@ const handleHashtag = () => {
 
     selection.removeAllRanges();
     selection.addRange(range);
+  }
+  if (curParent.nodeName === "DIV" && !hashtag) {
+    const nextItem = curItem.nextElementSibling as HTMLElement;
+    if (!nextItem) return;
+    console.log("다음 아이템", nextItem);
+
+    // 다음 아이템이 인라인인지 확인
+    const isInlineItem = !nextItem.dataset["offset"];
+
+    // 인라인 아이템이 맞는 경우
+    if (isInlineItem) {
+      // 다음 아이템의 텍스트
+      const nextText = nextItem.textContent;
+
+      if (!nextText) return;
+
+      // 다음 텍스트가 해시태그에 만족하는 지 확인
+      const isHashtag = HASHTAGREGEX.test(nextText);
+
+      // 해시태그에 만족하지 않는 경우
+      if (!isHashtag) {
+        const nextNextItem = nextItem.nextElementSibling;
+        // 다음 다음 아이템이 존재하는 경우: 아이템임
+        if (nextNextItem) {
+          const nextNextText = nextNextItem.textContent;
+          console.log(nextNextText);
+
+          // 다음 텍스트와 다음 다음 텍스트를 합침
+          const newNextText = nextText + nextNextText;
+
+          // 합친 텍스트를 현재 텍스트에 추가
+          curItem.textContent += newNextText;
+
+          // 다음 아이템 삭제
+          nextItem.remove();
+          // 다음 다음 아이템 삭제
+          nextNextItem.remove();
+        } else {
+          // 다음 다음 아이템이 존재하지 않는 경우
+          // 다음 텍스트를 현재 텍스트에 추가
+          curItem.textContent += nextText;
+
+          // 다음 아이템을 삭제
+          nextItem.remove();
+        }
+
+        // 커서 위치 지정
+        const range = document.createRange();
+
+        const firstChild = curItem.firstChild;
+
+        if (firstChild) {
+          range.setStart(firstChild, curPos);
+          range.setEnd(firstChild, curPos);
+        } else {
+          range.setStart(curItem, curPos);
+          range.setEnd(curItem, curPos);
+        }
+
+        selection.removeAllRanges();
+        selection.addRange(range);
+      }
+    }
   }
 };
 
