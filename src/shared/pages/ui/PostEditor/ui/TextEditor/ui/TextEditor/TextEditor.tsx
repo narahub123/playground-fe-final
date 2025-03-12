@@ -1,6 +1,11 @@
 import styles from "./TextEditor.module.css";
-import { Line } from "@shared/pages/ui/PostEditor/ui/TextEditor";
+import {
+  createNewLine,
+  ILine,
+  Line,
+} from "@shared/pages/ui/PostEditor/ui/TextEditor";
 import { joinClassNames } from "@shared/@common/utils";
+import React, { useRef, useState } from "react";
 
 interface TextEditorProps {
   className?: string;
@@ -8,10 +13,41 @@ interface TextEditorProps {
 
 const TextEditor = ({ className }: TextEditorProps) => {
   const classNames = joinClassNames([styles["text__editor"], className]);
+  const linesRef = useRef<(HTMLDivElement | null)[]>([]);
+
+  const [lines, setLines] = useState<ILine[]>([
+    {
+      row: 0,
+      segments: [
+        { type: "plain", text: "ㅎㅎ" },
+        { type: "inline", text: "22" },
+      ],
+    },
+  ]);
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    const key = e.key;
+
+    if (key === "Enter") {
+      e.preventDefault();
+      createNewLine(setLines, linesRef);
+    }
+  };
 
   return (
-    <div className={classNames} contentEditable={true}>
-      <Line />
+    <div
+      className={classNames}
+      contentEditable={true}
+      onKeyDown={handleKeyDown}
+    >
+      {lines.map((line, index) => (
+        <Line
+          row={index}
+          segments={line.segments}
+          key={index}
+          ref={(el) => (linesRef.current[index] = el)}
+        />
+      ))}
     </div>
   );
 };

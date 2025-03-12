@@ -4,22 +4,39 @@ import {
   InlineSegment,
   Segment,
 } from "@shared/pages/ui/PostEditor/ui/TextEditor";
-const Line = ({ row = 0, segments = [] }: ILine) => {
-  return (
-    <div className={styles["line"]} data-offset={row}>
-      {segments.length > 0 ? (
-        segments.map((segment, index) => {
-          if (segment.text === "plain") {
-            return <Segment row={row} col={index} text={segment.text} />;
-          } else if (segment.type === "inline") {
-            return <InlineSegment row={row} col={index} text={segment.text} />;
-          }
-        })
-      ) : (
-        <Segment />
-      )}
-    </div>
-  );
-};
+import { forwardRef } from "react";
+const Line = forwardRef<HTMLDivElement, ILine>(
+  ({ row = 0, segments = [] }, ref) => {
+    return (
+      <div className={styles["line"]} data-offset={row} ref={ref}>
+        {segments.length > 0 ? (
+          segments.map((segment, index) => {
+            if (segment.type === "plain") {
+              return (
+                <Segment
+                  row={row}
+                  col={index}
+                  text={segment.text}
+                  key={index}
+                />
+              );
+            } else if (segment.type === "inline") {
+              return (
+                <InlineSegment
+                  row={row}
+                  col={index}
+                  text={segment.text}
+                  key={index}
+                />
+              );
+            }
+          })
+        ) : (
+          <Segment />
+        )}
+      </div>
+    );
+  }
+);
 
 export default Line;
