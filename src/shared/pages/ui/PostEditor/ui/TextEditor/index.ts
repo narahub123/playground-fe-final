@@ -1,3 +1,5 @@
-import { TextEditor } from "./ui";
+import { TextEditor, InlineSegment, Line, Segment } from "./ui";
+import { ILine, ISegment, ISegmentProps, SegmentType } from "./types";
 
-export { TextEditor };
+export { TextEditor, InlineSegment, Line, Segment };
+export type { ILine, ISegment, ISegmentProps, SegmentType };

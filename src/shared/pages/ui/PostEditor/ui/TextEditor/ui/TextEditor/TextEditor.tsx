@@ -1,4 +1,5 @@
 import styles from "./TextEditor.module.css";
+import { Line } from "@shared/pages/ui/PostEditor/ui/TextEditor";
 import { joinClassNames } from "@shared/@common/utils";
 
 interface TextEditorProps {
@@ -10,7 +11,7 @@ const TextEditor = ({ className }: TextEditorProps) => {
 
   return (
     <div className={classNames} contentEditable={true}>
-      TextEditor
+      <Line />
     </div>
   );
 };
