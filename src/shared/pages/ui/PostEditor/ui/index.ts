@@ -4,7 +4,6 @@ import CircularProgressBar from "./CircularProgressBar/CircularProgressBar";
 import PostButton from "./PostButton/PostButton";
 import { PostEditorToolbar } from "./PostEditorToolbar";
 import ReplyPermissionControl from "./ReplyPermissionControl/ReplyPermissionControl";
-import { TextEditor } from "./TextEditor";
 
 export {
   PostEditor,
@@ -13,5 +12,4 @@ export {
   PostButton,
   PostEditorToolbar,
   ReplyPermissionControl,
-  TextEditor,
 };
