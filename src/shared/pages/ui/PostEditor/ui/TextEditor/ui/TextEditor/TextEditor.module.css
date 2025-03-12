@@ -1,0 +1,7 @@
+.text__editor {
+  padding: 0.25em;
+}
+
+.text__editor:focus {
+  outline: none;
+}
