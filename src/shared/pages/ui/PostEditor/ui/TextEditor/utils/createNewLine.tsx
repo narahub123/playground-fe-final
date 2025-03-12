@@ -2,7 +2,6 @@ import {
   ILine,
   ISegment,
   isInlineSegment,
-  isPlainSegment,
 } from "@shared/pages/ui/PostEditor/ui/TextEditor";
 
 // 새 줄 생성하기
@@ -27,7 +26,7 @@ const createNewLine = (
   // 현재 커서가 위치한 segment
   const curSegment = curNode.nodeType === 3 ? curNode.parentNode : curNode;
   if (!curSegment) return;
-  console.log("현재 새그먼트", curSegment);
+  console.log("현재 세그먼트", curSegment);
   const offset = (curSegment as HTMLElement).dataset["offset"];
   if (!offset) return;
   const [curRow, curCol] = offset.split("-").map(Number);
@@ -47,23 +46,54 @@ const createNewLine = (
   const textBeforeCaret = curText.slice(0, curPos);
   console.log("커서 앞 텍스트", textBeforeCaret);
 
-  // 현재 노드에 텍스트 삽입
-  curNode.textContent = textBeforeCaret;
-
   // 커서 뒤 텍스트
   const textAfterCaret = curText.slice(curPos);
   console.log("커서 뒤 텍스트", textAfterCaret);
 
+  // 커서 뒤 세그먼트
+  const segmentsAfterCaret: ISegment[] = Array.prototype.slice
+    .call(curLine.childNodes) // childnodes to array
+    .filter((_, index) => {
+      return curPos === 0 ? index >= curCol : index > curCol;
+    }) // 세그먼트 범위
+    .map((seg) => ({
+      type: seg.className.includes("inline") ? "inline" : "plain",
+      text: seg.innerText,
+    })); // ISegment 형식으로 변경
+
+  // 다음 줄에 들어 갈 세그먼트
+  const segmentsToMove: ISegment[] =
+    curPos > 0 && textAfterCaret.length > 0
+      ? [{ type: "plain", text: textAfterCaret }, ...segmentsAfterCaret] // type 나중에 점검해야 함
+      : [...segmentsAfterCaret];
+
+  console.log("새 줄에 들어갈 세그먼트", segmentsToMove);
+
+  // 새 줄 추가
   setLines((prev) => {
     const newLines = [...prev];
 
+    // 현재 줄에서 커서 이후 세그먼트 삭제
+    newLines[curRow] = {
+      ...newLines[curRow],
+      segments: newLines[curRow].segments
+        ?.filter((_, idx) => idx <= curCol)
+        .map((seg, index) => {
+          if (index === curCol)
+            return {
+              ...seg,
+              text: textBeforeCaret,
+            };
+          else return seg;
+        }),
+    };
+
+    // 새 줄에 현재 줄의 세그먼트 추가
     const nextRow = curRow + 1;
     newLines.splice(nextRow, 0, {
       row: nextRow,
-      segments: [{ type: "plain", text: textAfterCaret }],
+      segments: [...segmentsToMove],
     });
-
-    console.log(newLines);
 
     return newLines;
   });
