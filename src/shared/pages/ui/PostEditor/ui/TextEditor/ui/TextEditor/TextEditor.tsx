@@ -2,7 +2,9 @@ import styles from "./TextEditor.module.css";
 import {
   createNewLine,
   ILine,
+  ITextEditorContext,
   Line,
+  TextEditorContextProvider,
 } from "@shared/pages/ui/PostEditor/ui/TextEditor";
 import { joinClassNames } from "@shared/@common/utils";
 import React, { useRef, useState } from "react";
@@ -34,21 +36,27 @@ const TextEditor = ({ className }: TextEditorProps) => {
     }
   };
 
+  const value: ITextEditorContext = {
+    setLines,
+  };
+
   return (
-    <div
-      className={classNames}
-      contentEditable={true}
-      onKeyDown={handleKeyDown}
-    >
-      {lines.map((line, index) => (
-        <Line
-          row={index}
-          segments={line.segments}
-          key={index}
-          ref={(el) => (linesRef.current[index] = el)}
-        />
-      ))}
-    </div>
+    <TextEditorContextProvider value={value}>
+      <div
+        className={classNames}
+        contentEditable={true}
+        onKeyDown={handleKeyDown}
+      >
+        {lines.map((line, index) => (
+          <Line
+            row={index}
+            segments={line.segments}
+            key={index}
+            ref={(el) => (linesRef.current[index] = el)}
+          />
+        ))}
+      </div>
+    </TextEditorContextProvider>
   );
 };
 
