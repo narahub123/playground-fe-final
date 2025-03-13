@@ -103,14 +103,36 @@ const createNewLine = (
         }),
     };
 
+    console.log(newLines);
+
+    // 현재 줄 이후의 줄들의 row변경
+    const updatedLines = newLines.map((line) => {
+      if (line.row > curRow) {
+        const newSegments = [...line.segments];
+
+        console.log("이동해야하는 segments", newSegments);
+
+        const updatedSegments = newSegments.map((seg) => ({
+          ...seg,
+          row: seg.row + 1,
+        }));
+        return {
+          row: line.row + 1, // 현재 row보다 하나 크게 만듦
+          segments: updatedSegments,
+        };
+      } else return line;
+    });
+
+    console.log("업데이트된 라인들", updatedLines);
+
     // 새 줄에 현재 줄의 세그먼트 추가
     const nextRow = curRow + 1;
-    newLines.splice(nextRow, 0, {
+    updatedLines.splice(nextRow, 0, {
       row: nextRow,
       segments: [...segmentsToMove],
     });
 
-    return newLines;
+    return updatedLines;
   });
 
   // 커서 위치 지정
