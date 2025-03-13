@@ -1,3 +1,4 @@
 import useTextEditorContext from "./useTextEditorContext";
+import useCaretInfo from "./useCaretInfo";
 
-export { useTextEditorContext };
+export { useTextEditorContext, useCaretInfo };

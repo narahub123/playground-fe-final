@@ -5,6 +5,7 @@ import {
   isInlineSegment,
   useTextEditorContext,
 } from "@shared/pages/ui/PostEditor/ui/TextEditor";
+import { useCaretInfo } from "../../hooks";
 
 const Segment = ({ row, col, text }: ISegmentProps) => {
   const spanRef = useRef<HTMLSpanElement>(null);
@@ -16,34 +17,11 @@ const Segment = ({ row, col, text }: ISegmentProps) => {
     }
   }, [text]);
 
+  const caretInfo = useCaretInfo();
+
   useEffect(() => {
-    const selection = window.getSelection();
-    if (!selection) return;
-    const curNode = selection.focusNode;
-    if (!curNode) return;
-    console.log("현재 노드", curNode);
-
-    const curPos = selection.focusOffset;
-    console.log("현재 커서 위치", curPos);
-    const curText = curNode.textContent || "";
-    console.log("현재 텍스트", curText);
-    const curSegment =
-      curNode.nodeType === 3 || curNode.nodeName === "BR"
-        ? curNode.parentNode
-        : curNode;
-
-    if (!curSegment) return;
-
-    console.log("현재 세그먼트", curSegment);
-
-    const offset = (curSegment as HTMLElement).dataset["offset"];
-    if (!offset) return;
-    const [curRow, curCol] = offset.split("-").map(Number);
-    console.log("행", curRow, "열", curCol);
-    const curParent = curSegment.parentNode;
-    if (!curParent) return;
-
-    console.log("컴포넌트 행, 열", `${row}-${col}`);
+    if (!caretInfo) return;
+    const { curRow, curCol, curText, curSegment } = caretInfo;
 
     // 줄 업데이트
     setLines((prev) => {
@@ -52,7 +30,7 @@ const Segment = ({ row, col, text }: ISegmentProps) => {
       const curLineSegments = newLines[curRow].segments;
 
       curLineSegments.splice(curCol, 1, {
-        type: isInlineSegment(curParent) ? "inline" : "plain",
+        type: isInlineSegment(curSegment) ? "inline" : "plain",
         row: curRow,
         col: curCol,
         text: curText,
@@ -60,7 +38,7 @@ const Segment = ({ row, col, text }: ISegmentProps) => {
 
       return newLines;
     });
-  }, []);
+  }, [caretInfo]);
 
   return (
     <span
