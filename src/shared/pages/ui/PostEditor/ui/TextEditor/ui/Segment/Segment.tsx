@@ -1,10 +1,23 @@
 import styles from "./Segment.module.css";
+import { useEffect, useRef } from "react";
 import { ISegmentProps } from "@shared/pages/ui/PostEditor/ui/TextEditor";
 
 const Segment = ({ row = 0, col = 0, text }: ISegmentProps) => {
+  const spanRef = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    if (spanRef.current && spanRef.current.innerText.trim() === "") {
+      spanRef.current.innerHTML = `<br data-text="true" />`;
+    }
+  }, [text]);
+
   return (
-    <span className={styles["segment"]} data-offset={`${row}-${col}`}>
-      {text && text.length > 0 ? text : <br data-text={true} />}
+    <span
+      ref={spanRef}
+      className={styles["segment"]}
+      data-offset={`${row}-${col}`}
+    >
+      {text || ""}
     </span>
   );
 };
