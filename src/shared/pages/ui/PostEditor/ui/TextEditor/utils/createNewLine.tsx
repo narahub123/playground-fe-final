@@ -24,10 +24,15 @@ const createNewLine = (
   const curText = curNode.textContent || "";
   console.log("현재 텍스트", curText);
   // 현재 커서가 위치한 segment
-  const curSegment = curNode.nodeType === 3 ? curNode.parentNode : curNode;
+  const curSegment =
+    curNode.nodeType === 3 || curNode.nodeName === "BR"
+      ? curNode.parentNode
+      : curNode;
   if (!curSegment) return;
   console.log("현재 세그먼트", curSegment);
   const offset = (curSegment as HTMLElement).dataset["offset"];
+  console.log("offset", offset);
+
   if (!offset) return;
   const [curRow, curCol] = offset.split("-").map(Number);
   console.log("현재 행", curRow, "현재 열", curCol);
