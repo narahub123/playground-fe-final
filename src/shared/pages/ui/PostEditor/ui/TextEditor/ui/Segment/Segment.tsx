@@ -2,7 +2,7 @@ import styles from "./Segment.module.css";
 import { useEffect, useRef } from "react";
 import { ISegmentProps } from "@shared/pages/ui/PostEditor/ui/TextEditor";
 
-const Segment = ({ row = 0, col = 0, text }: ISegmentProps) => {
+const Segment = ({ row, col, text }: ISegmentProps) => {
   const spanRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {

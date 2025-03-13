@@ -56,15 +56,25 @@ const createNewLine = (
     .filter((_, index) => {
       return curPos === 0 ? index >= curCol : index > curCol;
     }) // 세그먼트 범위
-    .map((seg) => ({
+    .map((seg, idx) => ({
       type: seg.className.includes("inline") ? "inline" : "plain",
       text: seg.innerText,
+      row: curRow + 1,
+      col: idx,
     })); // ISegment 형식으로 변경
 
   // 다음 줄에 들어 갈 세그먼트
   const segmentsToMove: ISegment[] =
     curPos > 0 && textAfterCaret.length > 0
-      ? [{ type: "plain", text: textAfterCaret }, ...segmentsAfterCaret] // type 나중에 점검해야 함
+      ? [
+          { type: "plain", text: textAfterCaret, row: curRow + 1, col: 0 },
+          ...segmentsAfterCaret.map((seg, idx) => ({
+            ...seg,
+            col: idx + 1,
+          })),
+        ] // type 나중에 점검해야 함
+      : textAfterCaret.length === 0 && segmentsAfterCaret.length === 0
+      ? [{ type: "plain", text: "", row: curRow + 1, col: 0 }]
       : [...segmentsAfterCaret];
 
   console.log("새 줄에 들어갈 세그먼트", segmentsToMove);

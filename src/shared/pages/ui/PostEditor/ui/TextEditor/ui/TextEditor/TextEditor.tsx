@@ -19,8 +19,8 @@ const TextEditor = ({ className }: TextEditorProps) => {
     {
       row: 0,
       segments: [
-        { type: "plain", text: "ㅎㅎ" },
-        { type: "inline", text: "22" },
+        { type: "plain", text: "ㅎㅎ", row: 0, col: 0 },
+        { type: "inline", text: "22", row: 0, col: 1 },
       ],
     },
   ]);

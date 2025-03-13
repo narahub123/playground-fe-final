@@ -32,7 +32,7 @@ const Line = forwardRef<HTMLDivElement, ILine>(
             }
           })
         ) : (
-          <Segment />
+          <Segment row={row} col={0} text="" />
         )}
       </div>
     );

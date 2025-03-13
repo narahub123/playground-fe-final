@@ -1,16 +1,18 @@
 interface ISegmentProps {
-  row?: number;
-  col?: number;
-  text?: string;
+  row: number;
+  col: number;
+  text: string;
 }
 
 interface ILine {
-  row?: number;
-  segments?: ISegment[];
+  row: number;
+  segments: ISegment[];
 }
 
 interface ISegment {
   type: SegmentType;
+  row: number;
+  col: number;
   text: string;
 }
 
