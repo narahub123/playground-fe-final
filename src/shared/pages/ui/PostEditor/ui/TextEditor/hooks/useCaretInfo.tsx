@@ -5,31 +5,91 @@ import { ICaretInfo } from "../types";
 const useCaretInfo = () => {
   const getCaretInfo = useCallback((): ICaretInfo | null => {
     const selection = window.getSelection();
-    if (!selection) return null;
+    if (!selection) {
+      console.error("selection 객체 생성 실패");
+      return null;
+    }
 
     const curPos = selection.focusOffset;
+
     const curNode = selection.focusNode;
-    if (!curNode) return null;
+    if (!curNode) {
+      console.error("현재 노드 생성 실패");
+      return null;
+    }
 
     const curText = curNode.textContent || "";
-    const curSegment =
+
+    const curTextSpan =
       curNode.nodeType === 3 || curNode.nodeName === "BR"
         ? curNode.parentNode
         : curNode;
 
-    if (!curSegment || !(curSegment instanceof HTMLElement)) return null;
+    if (!curTextSpan || !(curTextSpan as HTMLElement).dataset["text"]) {
+      if (!curTextSpan) {
+        console.error("curTextSpan 생성 실패");
+      } else {
+        console.error("적합하지 않은 curTextSpan");
+      }
+      return null;
+    }
 
-    const offset = curSegment.dataset["offset"];
-    if (!offset) return null;
+    const curWrapperSpan = curTextSpan.parentNode;
+    if (!curWrapperSpan || !(curWrapperSpan as HTMLElement).dataset["offset"]) {
+      if (!curWrapperSpan) {
+        console.error("curWrapperSpan 생성 실패");
+      } else {
+        console.error("적합하지 않은 curWrapperSpan");
+      }
+
+      return null;
+    }
+
+    const curTextBlock = curWrapperSpan.parentNode;
+    if (!curTextBlock) {
+      console.error("curTextBlock 생성 실패");
+      return null;
+    }
+
+    const curSegment = (
+      curTextBlock.nodeName === "SPAN" ? curTextBlock : curWrapperSpan
+    ) as HTMLSpanElement;
+
+    if (!curSegment || curSegment.nodeName !== "SPAN") {
+      if (!curSegment) {
+        console.error("curSegment 생성 실패");
+      } else {
+        console.error("적합하지 않은 curSegment");
+      }
+      return null;
+    }
+
+    const offset = isInlineSegment(curSegment)
+      ? (curSegment.firstChild as HTMLSpanElement).dataset["offset"]
+      : (curSegment as HTMLSpanElement).dataset["offset"];
+
+    if (!offset) {
+      console.error("offset 생성 실패");
+      return null;
+    }
 
     const [curRow, curCol] = offset.split("-").map(Number);
 
-    const curParent = curSegment.parentNode;
-    if (!curParent) return null;
+    if (isNaN(curRow) || isNaN(curCol)) {
+      console.error("잘못된 offset 값 생성");
+      return null;
+    }
 
-    const curLine = (
-      isInlineSegment(curParent) ? curParent.parentNode : curParent
-    ) as HTMLDivElement;
+    const curLine = curSegment.parentNode as HTMLDivElement;
+
+    if (!curLine || curLine.nodeName !== "DIV") {
+      if (!curLine) {
+        console.error("curLine 생성 실패");
+      } else {
+        console.error("적합하지 않은 curLine");
+      }
+      return null;
+    }
 
     return {
       curPos,
