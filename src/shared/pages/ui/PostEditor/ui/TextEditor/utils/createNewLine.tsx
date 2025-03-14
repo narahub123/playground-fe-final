@@ -1,4 +1,5 @@
 import {
+  ICaretInfo,
   ILine,
   ISegment,
   isInlineSegment,
@@ -7,45 +8,12 @@ import {
 // 새 줄 생성하기
 const createNewLine = (
   setLines: React.Dispatch<React.SetStateAction<ILine[]>>,
-  linesRef: React.MutableRefObject<(HTMLDivElement | null)[]>
+  linesRef: React.MutableRefObject<(HTMLDivElement | null)[]>,
+  caretInfo: ICaretInfo
 ) => {
   console.log("createNewLine 진입 : 새 줄 생성");
 
-  const selection = window.getSelection();
-  if (!selection) return;
-  // 현재 커서 위치
-  const curPos = selection.focusOffset;
-  console.log("현재 커서 위치", curPos);
-  // 현재 커서가 위치한 노드
-  const curNode = selection.focusNode;
-  if (!curNode) return;
-  console.log("현재 노드", curNode);
-  // 현재 커서가 위치한 노드의 텍스트
-  const curText = curNode.textContent || "";
-  console.log("현재 텍스트", curText);
-  // 현재 커서가 위치한 segment
-  const curSegment =
-    curNode.nodeType === 3 || curNode.nodeName === "BR"
-      ? curNode.parentNode
-      : curNode;
-  if (!curSegment) return;
-  console.log("현재 세그먼트", curSegment);
-  const offset = (curSegment as HTMLElement).dataset["offset"];
-  console.log("offset", offset);
-
-  if (!offset) return;
-  const [curRow, curCol] = offset.split("-").map(Number);
-  console.log("현재 행", curRow, "현재 열", curCol);
-
-  // 현재 새그먼트의 부모
-  const curParent = curSegment.parentNode;
-  if (!curParent) return;
-  console.log("현재 부모", curParent);
-
-  // 현재 줄
-  const curLine = isInlineSegment(curParent) ? curParent.parentNode : curParent;
-  if (!curLine) return;
-  console.log("현재 줄", curLine);
+  const { curPos, curText, curLine, curRow, curCol } = caretInfo;
 
   // 커서 앞 텍스트
   const textBeforeCaret = curText.slice(0, curPos);
@@ -137,6 +105,8 @@ const createNewLine = (
 
   // 커서 위치 지정
   setTimeout(() => {
+    const selection = window.getSelection();
+    if (!selection) return;
     const newLine = linesRef.current[curRow + 1];
     if (!newLine) return;
     const firstSegment = newLine.firstChild;

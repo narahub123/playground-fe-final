@@ -6,6 +6,7 @@ import {
   IOffset,
 } from "./components";
 import { ITextEditorContext } from "./context";
+import { ICaretInfo } from "./hooks";
 
 export type {
   ISegmentProps,
@@ -14,4 +15,5 @@ export type {
   SegmentType,
   ITextEditorContext,
   IOffset,
+  ICaretInfo,
 };

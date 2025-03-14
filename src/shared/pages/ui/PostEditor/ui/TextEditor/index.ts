@@ -6,6 +6,7 @@ import {
   SegmentType,
   ITextEditorContext,
   IOffset,
+  ICaretInfo,
 } from "./types";
 import {
   createNewLine,
@@ -26,6 +27,7 @@ export type {
   SegmentType,
   ITextEditorContext,
   IOffset,
+  ICaretInfo,
 };
 export {
   createNewLine,

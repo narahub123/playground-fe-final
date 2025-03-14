@@ -9,6 +9,7 @@ import {
 import { joinClassNames } from "@shared/@common/utils";
 import React, { useRef, useState } from "react";
 import { updateLines } from "../../utils";
+import { useCaretInfo } from "../../hooks";
 
 interface TextEditorProps {
   className?: string;
@@ -28,13 +29,19 @@ const TextEditor = ({ className }: TextEditorProps) => {
     },
   ]);
 
+  const getCaretInfo = useCaretInfo();
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
     const key = e.key;
 
     if (key === "Enter") {
       e.preventDefault();
+      const caretInfo = getCaretInfo();
+      if (!caretInfo) return;
+      console.log(caretInfo);
+
       updateLines(setLines, linesRef);
-      createNewLine(setLines, linesRef);
+      createNewLine(setLines, linesRef, caretInfo);
     }
   };
 
