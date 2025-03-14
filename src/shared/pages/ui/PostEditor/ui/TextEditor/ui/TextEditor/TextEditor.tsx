@@ -8,6 +8,7 @@ import {
 } from "@shared/pages/ui/PostEditor/ui/TextEditor";
 import { joinClassNames } from "@shared/@common/utils";
 import React, { useRef, useState } from "react";
+import { updateLines } from "../../utils";
 
 interface TextEditorProps {
   className?: string;
@@ -32,6 +33,7 @@ const TextEditor = ({ className }: TextEditorProps) => {
 
     if (key === "Enter") {
       e.preventDefault();
+      updateLines(setLines, linesRef);
       createNewLine(setLines, linesRef);
     }
   };

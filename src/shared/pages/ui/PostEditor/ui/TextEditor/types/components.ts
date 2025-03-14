@@ -18,4 +18,9 @@ interface ISegment {
 
 type SegmentType = "plain" | "inline";
 
-export type { ISegmentProps, ILine, ISegment, SegmentType };
+interface IOffset {
+  row: number;
+  col: number;
+}
+
+export type { ISegmentProps, ILine, ISegment, SegmentType, IOffset };
