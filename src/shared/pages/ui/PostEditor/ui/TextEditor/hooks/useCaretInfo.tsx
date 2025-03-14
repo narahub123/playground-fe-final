@@ -20,15 +20,17 @@ const useCaretInfo = () => {
 
     const curText = curNode.textContent || "";
 
-    const curTextSpan =
-      curNode.nodeType === 3 || curNode.nodeName === "BR"
-        ? curNode.parentNode
-        : curNode;
+    const curTextSpan = curNode.nodeType === 3 ? curNode.parentNode : curNode;
 
-    if (!curTextSpan || !(curTextSpan as HTMLElement).dataset["text"]) {
+    if (
+      !curTextSpan ||
+      curTextSpan.nodeName !== "SPAN" ||
+      !(curTextSpan as HTMLElement).dataset["text"]
+    ) {
       if (!curTextSpan) {
         console.error("curTextSpan 생성 실패");
       } else {
+        console.log("curTextSpan", curTextSpan);
         console.error("적합하지 않은 curTextSpan");
       }
       return null;
