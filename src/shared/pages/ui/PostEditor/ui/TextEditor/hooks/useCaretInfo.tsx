@@ -18,25 +18,18 @@ const useCaretInfo = () => {
       return null;
     }
 
-    console.log("현재 노드", curNode);
-
     const curText = curNode.textContent || "";
 
-    const curTextSpan =
-      curNode.nodeType === 3
-        ? curNode.parentNode
-        : (curNode as HTMLElement).dataset["text"]
-        ? curNode
-        : curNode.firstChild;
-    console.log("curTextSapn", curTextSpan);
+    const curTextSpan = curNode.nodeType === 3 ? curNode.parentNode : curNode;
 
     if (!curTextSpan) {
-      if (!curTextSpan) {
-        console.error("curTextSpan 생성 실패");
-      }
+      console.error("curTextSpan 생성 실패");
+
       return null;
     }
 
+    // lines가 업데이트되기 전에는 텍스트는 curWrapperSpan 안에 존재하고 curTextSpan은 존재하지 않음
+    // 따라서 텍스트가 curWrapperSpan 안에 없는 경우에는 curTextSpan과 curWrapperSpan이 동일함
     const curWrapperSpan = (curTextSpan as HTMLElement).dataset["offset"]
       ? curTextSpan
       : curTextSpan.parentNode;
