@@ -33,9 +33,26 @@ const getRowAndColOfSegment = (segment: Node | HTMLElement): IOffset => {
   };
 };
 
+const logStart = (message: string) => {
+  if (import.meta.env.VITE_ENV === "development") {
+    console.log(
+      `--------------------- ${message} 시작 --------------------------`
+    );
+  }
+};
+
+const logEnd = (message: string) => {
+  if (import.meta.env.VITE_ENV === "development") {
+    console.log(
+      `--------------------- ${message} 종료 --------------------------`
+    );
+  }
+};
+
 const logError = (message: string, content: any) => {
-  if (import.meta.env.VITE_ENV === "development")
-    console.error(`${message}: ${content}}`);
+  if (import.meta.env.VITE_ENV === "development") {
+    console.error(`${message}: ${content}`);
+  }
 };
 
 export {
@@ -44,4 +61,6 @@ export {
   getRowAndColOfSegment,
   getSegmentType,
   logError,
+  logStart,
+  logEnd,
 };

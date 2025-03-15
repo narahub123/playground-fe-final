@@ -15,6 +15,8 @@ import {
   getRowAndColOfSegment,
   getSegmentType,
   logError,
+  logStart,
+  logEnd,
   setCaretPosition,
 } from "./utils";
 import { TextEditorContext, TextEditorContextProvider } from "./context";
@@ -37,6 +39,8 @@ export {
   isInlineSegment,
   getRowAndColOfSegment,
   getSegmentType,
+  logStart,
+  logEnd,
   logError,
   setCaretPosition,
 };

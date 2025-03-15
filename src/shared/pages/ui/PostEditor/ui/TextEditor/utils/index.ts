@@ -6,6 +6,8 @@ import {
   getRowAndColOfSegment,
   getSegmentType,
   logError,
+  logStart,
+  logEnd,
 } from "./segments";
 import setCaretPosition from "./setCaretPosition";
 
@@ -18,4 +20,6 @@ export {
   getSegmentType,
   logError,
   setCaretPosition,
+  logStart,
+  logEnd,
 };

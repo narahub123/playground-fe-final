@@ -7,6 +7,8 @@ import {
   Line,
   TextEditorContextProvider,
   setCaretPosition,
+  logStart,
+  logEnd,
 } from "@shared/pages/ui/PostEditor/ui/TextEditor";
 import { joinClassNames } from "@shared/@common/utils";
 import React, { useEffect, useRef, useState } from "react";
@@ -39,10 +41,39 @@ const TextEditor = ({ className }: TextEditorProps) => {
     if (!addLine) return;
 
     createNewLine(setLines, caretInfo);
-    setCaretPosition(linesRef, caretInfo);
 
     setAddLine(false);
   }, [lines]);
+
+  useEffect(() => {
+    linesRef.current = lines.map((_, i) => linesRef.current[i] || null);
+  }, [lines]);
+
+  // 다음 줄로 커서 이동
+  useEffect(() => {
+    const message = "커서 다음 줄로 이동";
+
+    logStart(message);
+
+    const newCaretInfo = getCaretInfo();
+
+    if (!newCaretInfo) {
+      logEnd(message);
+      return;
+    }
+    const { curRow } = newCaretInfo;
+
+    const nextLine = linesRef.current[curRow + 1];
+    const segment = nextLine?.firstChild as HTMLSpanElement;
+
+    if (!segment) {
+      logEnd(message);
+      return;
+    }
+
+    setCaretPosition(segment, 0);
+    logEnd(message);
+  }, [linesRef.current]);
 
   const updateLines = useUpdateLines(linesRef, setLines);
 
@@ -52,7 +83,7 @@ const TextEditor = ({ className }: TextEditorProps) => {
     if (key === "Enter") {
       e.preventDefault();
       const caretInfo = getCaretInfo();
-      console.log("상태 변경 전 커서 위치", caretInfo);
+
       if (caretInfo) {
         setCaretInfo(caretInfo);
       }
