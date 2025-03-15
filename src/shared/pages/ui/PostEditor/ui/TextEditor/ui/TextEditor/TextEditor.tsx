@@ -37,6 +37,14 @@ const TextEditor = ({ className }: TextEditorProps) => {
 
   const getCaretInfo = useCaretInfo();
 
+  // lines 업데이트 후 커서 위치 지정
+  useEffect(() => {
+    if (!caretInfo) return;
+    const { curSegment, curPos } = caretInfo;
+    setCaretPosition(curSegment, curPos);
+  }, [lines]);
+
+  // 새 줄 생성 하기
   useEffect(() => {
     if (!addLine) return;
 
@@ -45,6 +53,7 @@ const TextEditor = ({ className }: TextEditorProps) => {
     setAddLine(false);
   }, [lines]);
 
+  // lines 업데이트 후 linesRef 업데이트 하기 
   useEffect(() => {
     linesRef.current = lines.map((_, i) => linesRef.current[i] || null);
   }, [lines]);
