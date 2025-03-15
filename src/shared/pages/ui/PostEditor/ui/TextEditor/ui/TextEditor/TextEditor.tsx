@@ -6,6 +6,7 @@ import {
   ITextEditorContext,
   Line,
   TextEditorContextProvider,
+  setCaretPosition,
 } from "@shared/pages/ui/PostEditor/ui/TextEditor";
 import { joinClassNames } from "@shared/@common/utils";
 import React, { useEffect, useRef, useState } from "react";
@@ -37,7 +38,8 @@ const TextEditor = ({ className }: TextEditorProps) => {
   useEffect(() => {
     if (!addLine) return;
 
-    createNewLine(setLines, linesRef, caretInfo);
+    createNewLine(setLines, caretInfo);
+    setCaretPosition(linesRef, caretInfo);
 
     setAddLine(false);
   }, [lines]);

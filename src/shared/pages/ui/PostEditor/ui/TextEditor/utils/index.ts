@@ -7,6 +7,7 @@ import {
   getSegmentType,
   logError,
 } from "./segments";
+import setCaretPosition from "./setCaretPosition";
 
 export {
   createNewLine,
@@ -16,4 +17,5 @@ export {
   getRowAndColOfSegment,
   getSegmentType,
   logError,
+  setCaretPosition,
 };

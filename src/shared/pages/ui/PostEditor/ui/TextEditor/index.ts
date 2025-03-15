@@ -15,6 +15,7 @@ import {
   getRowAndColOfSegment,
   getSegmentType,
   logError,
+  setCaretPosition,
 } from "./utils";
 import { TextEditorContext, TextEditorContextProvider } from "./context";
 import { useTextEditorContext } from "./hooks";
@@ -37,6 +38,7 @@ export {
   getRowAndColOfSegment,
   getSegmentType,
   logError,
+  setCaretPosition,
 };
 export { TextEditorContext, TextEditorContextProvider };
 export { useTextEditorContext };
