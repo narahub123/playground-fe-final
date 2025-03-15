@@ -69,6 +69,7 @@ const TextEditor = ({ className }: TextEditorProps) => {
       <div
         className={classNames}
         contentEditable={true}
+        suppressContentEditableWarning={true}
         onKeyDown={handleKeyDown}
       >
         {lines.map((line, index) => (
