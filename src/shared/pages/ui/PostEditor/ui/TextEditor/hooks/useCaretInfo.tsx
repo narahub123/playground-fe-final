@@ -1,12 +1,19 @@
 import { useCallback } from "react";
-import { isInlineSegment } from "../utils";
-import { ICaretInfo } from "../types";
+import {
+  isInlineSegment,
+  ICaretInfo,
+  logError,
+} from "@shared/pages/ui/PostEditor/ui/TextEditor";
 
 const useCaretInfo = () => {
   const getCaretInfo = useCallback((): ICaretInfo | null => {
+    console.log(
+      "--------------------- getCaretInfo 시작 --------------------------"
+    );
+
     const selection = window.getSelection();
     if (!selection) {
-      console.error("selection 객체 생성 실패");
+      logError("selection 객체 생성 실패", selection);
       return null;
     }
 
@@ -14,7 +21,7 @@ const useCaretInfo = () => {
 
     const curNode = selection.focusNode;
     if (!curNode) {
-      console.error("현재 노드 생성 실패");
+      logError("현재 노드 생성 실패", curNode);
       return null;
     }
 
@@ -23,7 +30,7 @@ const useCaretInfo = () => {
     const curTextSpan = curNode.nodeType === 3 ? curNode.parentNode : curNode;
 
     if (!curTextSpan) {
-      console.error("curTextSpan 생성 실패");
+      logError("curTextSpan 생성 실패", curTextSpan);
 
       return null;
     }
@@ -35,9 +42,9 @@ const useCaretInfo = () => {
       : curTextSpan.parentNode;
     if (!curWrapperSpan || !(curWrapperSpan as HTMLElement).dataset["offset"]) {
       if (!curWrapperSpan) {
-        console.error("curWrapperSpan 생성 실패");
+        logError("curWrapperSpan 생성 실패", curWrapperSpan);
       } else {
-        console.error("적합하지 않은 curWrapperSpan");
+        logError("적합하지 않은 curWrapperSpan", curWrapperSpan);
       }
 
       return null;
@@ -45,7 +52,7 @@ const useCaretInfo = () => {
 
     const curTextBlock = curWrapperSpan.parentNode;
     if (!curTextBlock) {
-      console.error("curTextBlock 생성 실패");
+      logError("curTextBlock 생성 실패", curTextBlock);
       return null;
     }
 
@@ -55,9 +62,9 @@ const useCaretInfo = () => {
 
     if (!curSegment || curSegment.nodeName !== "SPAN") {
       if (!curSegment) {
-        console.error("curSegment 생성 실패");
+        logError("curSegment 생성 실패", curSegment);
       } else {
-        console.error("적합하지 않은 curSegment");
+        logError("적합하지 않은 curSegment", curSegment);
       }
       return null;
     }
@@ -67,14 +74,14 @@ const useCaretInfo = () => {
       : (curSegment as HTMLSpanElement).dataset["offset"];
 
     if (!offset) {
-      console.error("offset 생성 실패");
+      logError("offset 생성 실패", offset);
       return null;
     }
 
     const [curRow, curCol] = offset.split("-").map(Number);
 
     if (isNaN(curRow) || isNaN(curCol)) {
-      console.error("잘못된 offset 값 생성");
+      logError("잘못된 offset 값 생성", { curRow, curCol });
       return null;
     }
 
@@ -82,13 +89,16 @@ const useCaretInfo = () => {
 
     if (!curLine || curLine.nodeName !== "DIV") {
       if (!curLine) {
-        console.error("curLine 생성 실패");
+        logError("curLine 생성 실패", curLine);
       } else {
-        console.error("적합하지 않은 curLine");
+        logError("적합하지 않은 curLine", curLine);
       }
       return null;
     }
 
+    console.log(
+      "--------------------- getCaretInfo 종료 --------------------------"
+    );
     return {
       curPos,
       curText,

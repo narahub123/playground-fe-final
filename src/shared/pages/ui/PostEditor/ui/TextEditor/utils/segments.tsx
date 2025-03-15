@@ -33,9 +33,15 @@ const getRowAndColOfSegment = (segment: Node | HTMLElement): IOffset => {
   };
 };
 
+const logError = (message: string, content: any) => {
+  if (import.meta.env.VITE_ENV === "development")
+    console.error(`${message}: ${content}}`);
+};
+
 export {
   isPlainSegment,
   isInlineSegment,
   getRowAndColOfSegment,
   getSegmentType,
+  logError,
 };

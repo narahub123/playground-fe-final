@@ -14,6 +14,7 @@ import {
   isInlineSegment,
   getRowAndColOfSegment,
   getSegmentType,
+  logError,
 } from "./utils";
 import { TextEditorContext, TextEditorContextProvider } from "./context";
 import { useTextEditorContext } from "./hooks";
@@ -35,6 +36,7 @@ export {
   isInlineSegment,
   getRowAndColOfSegment,
   getSegmentType,
+  logError,
 };
 export { TextEditorContext, TextEditorContextProvider };
 export { useTextEditorContext };

@@ -5,6 +5,7 @@ import {
   isInlineSegment,
   getRowAndColOfSegment,
   getSegmentType,
+  logError,
 } from "./segments";
 
 export {
@@ -14,4 +15,5 @@ export {
   updateLines,
   getRowAndColOfSegment,
   getSegmentType,
+  logError,
 };
