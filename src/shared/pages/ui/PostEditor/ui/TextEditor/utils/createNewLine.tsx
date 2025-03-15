@@ -9,11 +9,18 @@ import {
 const createNewLine = (
   setLines: React.Dispatch<React.SetStateAction<ILine[]>>,
   linesRef: React.MutableRefObject<(HTMLDivElement | null)[]>,
-  caretInfo: ICaretInfo
+  caretInfo: ICaretInfo | null
 ) => {
   console.log("createNewLine 진입 : 새 줄 생성");
+  if (!caretInfo) {
+    console.log("caretInfo 없음");
+
+    return;
+  }
 
   const { curPos, curText, curLine, curRow, curCol } = caretInfo;
+
+  console.log(curPos);
 
   // 커서 앞 텍스트
   const textBeforeCaret = curText.slice(0, curPos);
@@ -31,10 +38,17 @@ const createNewLine = (
     }) // 세그먼트 범위
     .map((seg, idx) => ({
       type: seg.className.includes("inline") ? "inline" : "plain",
-      text: seg.innerText,
+      text: seg.innerText === "\n" ? "" : seg.innerText,
       row: curRow + 1,
       col: idx,
     })); // ISegment 형식으로 변경
+
+  console.log(
+    "커서 뒤 텍스트",
+    textAfterCaret.length === 0,
+    "커서 뒤 세그먼트",
+    segmentsAfterCaret
+  );
 
   // 다음 줄에 들어 갈 세그먼트
   const segmentsToMove: ISegment[] =
@@ -112,13 +126,19 @@ const createNewLine = (
     const firstSegment = newLine.firstChild;
     if (!firstSegment) return;
 
+    console.log(`열 ${curRow + 1}`, firstSegment);
+
     const isInline = isInlineSegment(firstSegment);
     console.log(isInline);
 
     const firstChildNode = firstSegment.firstChild;
     if (!firstChildNode) return;
 
-    const textNode = isInline ? firstChildNode.firstChild : firstChildNode;
+    const childNode = isInline ? firstChildNode.firstChild : firstChildNode;
+    if (!childNode) return;
+    console.log("자식 노드", childNode);
+    const textNode =
+      childNode.nodeName === "BR" ? childNode : childNode.firstChild;
     if (!textNode) return;
     console.log("텍스트 노드", textNode);
 
@@ -127,7 +147,7 @@ const createNewLine = (
     range.collapse(true);
     selection.removeAllRanges();
     selection.addRange(range);
-  }, 10);
+  }, 4);
 };
 
 export default createNewLine;

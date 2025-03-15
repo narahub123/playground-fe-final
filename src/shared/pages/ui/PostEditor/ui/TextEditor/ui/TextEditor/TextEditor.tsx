@@ -1,15 +1,16 @@
 import styles from "./TextEditor.module.css";
 import {
   createNewLine,
+  ICaretInfo,
   ILine,
   ITextEditorContext,
   Line,
   TextEditorContextProvider,
 } from "@shared/pages/ui/PostEditor/ui/TextEditor";
 import { joinClassNames } from "@shared/@common/utils";
-import React, { useRef, useState } from "react";
-import { updateLines } from "../../utils";
+import React, { useEffect, useRef, useState } from "react";
 import { useCaretInfo } from "../../hooks";
+import useUpdateLines from "../../hooks/useUpdateLines";
 
 interface TextEditorProps {
   className?: string;
@@ -18,6 +19,8 @@ interface TextEditorProps {
 const TextEditor = ({ className }: TextEditorProps) => {
   const classNames = joinClassNames([styles["text__editor"], className]);
   const linesRef = useRef<(HTMLDivElement | null)[]>([]);
+  const [addLine, setAddLine] = useState(false);
+  const [caretInfo, setCaretInfo] = useState<ICaretInfo | null>(null);
 
   const [lines, setLines] = useState<ILine[]>([
     {
@@ -31,17 +34,29 @@ const TextEditor = ({ className }: TextEditorProps) => {
 
   const getCaretInfo = useCaretInfo();
 
+  useEffect(() => {
+    if (!addLine) return;
+
+    createNewLine(setLines, linesRef, caretInfo);
+
+    setAddLine(false);
+  }, [lines]);
+
+  const updateLines = useUpdateLines(linesRef, setLines);
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
     const key = e.key;
 
     if (key === "Enter") {
       e.preventDefault();
       const caretInfo = getCaretInfo();
-      if (!caretInfo) return;
-      console.log(caretInfo);
+      console.log("상태 변경 전 커서 위치", caretInfo);
+      if (caretInfo) {
+        setCaretInfo(caretInfo);
+      }
 
-      updateLines(setLines, linesRef);
-      createNewLine(setLines, linesRef, caretInfo);
+      updateLines();
+      setAddLine(true);
     }
   };
 

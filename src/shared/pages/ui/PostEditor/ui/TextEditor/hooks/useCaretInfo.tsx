@@ -18,25 +18,28 @@ const useCaretInfo = () => {
       return null;
     }
 
+    console.log("현재 노드", curNode);
+
     const curText = curNode.textContent || "";
 
-    const curTextSpan = curNode.nodeType === 3 ? curNode.parentNode : curNode;
+    const curTextSpan =
+      curNode.nodeType === 3
+        ? curNode.parentNode
+        : (curNode as HTMLElement).dataset["text"]
+        ? curNode
+        : curNode.firstChild;
+    console.log("curTextSapn", curTextSpan);
 
-    if (
-      !curTextSpan ||
-      curTextSpan.nodeName !== "SPAN" ||
-      !(curTextSpan as HTMLElement).dataset["text"]
-    ) {
+    if (!curTextSpan) {
       if (!curTextSpan) {
         console.error("curTextSpan 생성 실패");
-      } else {
-        console.log("curTextSpan", curTextSpan);
-        console.error("적합하지 않은 curTextSpan");
       }
       return null;
     }
 
-    const curWrapperSpan = curTextSpan.parentNode;
+    const curWrapperSpan = (curTextSpan as HTMLElement).dataset["offset"]
+      ? curTextSpan
+      : curTextSpan.parentNode;
     if (!curWrapperSpan || !(curWrapperSpan as HTMLElement).dataset["offset"]) {
       if (!curWrapperSpan) {
         console.error("curWrapperSpan 생성 실패");
