@@ -2,25 +2,26 @@ import {
   ICaretInfo,
   ILine,
   ISegment,
+  logEnd,
+  logStart,
 } from "@shared/pages/ui/PostEditor/ui/TextEditor";
 
 // 새 줄 생성하기
 const createNewLine = (
-  setLines: React.Dispatch<React.SetStateAction<ILine[]>>,
-  caretInfo: ICaretInfo | null
+  caretInfo: ICaretInfo | null,
+  setLines: React.Dispatch<React.SetStateAction<ILine[]>>
 ) => {
-  console.log(
-    "--------------------- createNewLine 시작 --------------------------"
-  );
+  const message = "createNewLine";
+  logStart(message);
+
   if (!caretInfo) {
     console.log("caretInfo 없음");
+    logEnd(message);
 
     return;
   }
 
   const { curPos, curText, curLine, curRow, curCol } = caretInfo;
-
-  console.log(curPos);
 
   // 커서 앞 텍스트
   const textBeforeCaret = curText.slice(0, curPos);
@@ -42,13 +43,6 @@ const createNewLine = (
       row: curRow + 1,
       col: idx,
     })); // ISegment 형식으로 변경
-
-  console.log(
-    "커서 뒤 텍스트",
-    textAfterCaret.length === 0,
-    "커서 뒤 세그먼트",
-    segmentsAfterCaret
-  );
 
   // 다음 줄에 들어 갈 세그먼트
   const segmentsToMove: ISegment[] =
@@ -85,7 +79,7 @@ const createNewLine = (
         }),
     };
 
-    console.log(newLines);
+    console.log("현재 줄 수정", newLines);
 
     // 현재 줄 이후의 줄들의 row변경
     const updatedLines = newLines.map((line) => {
@@ -105,7 +99,7 @@ const createNewLine = (
       } else return line;
     });
 
-    console.log("업데이트된 라인들", updatedLines);
+    console.log("업데이트된 줄들", updatedLines);
 
     // 새 줄에 현재 줄의 세그먼트 추가
     const nextRow = curRow + 1;
@@ -114,12 +108,12 @@ const createNewLine = (
       segments: [...segmentsToMove],
     });
 
+    console.log("새 줄 추가된 줄들", updatedLines);
+
     return updatedLines;
   });
 
-  console.log(
-    "--------------------- createNewLine 종료 --------------------------"
-  );
+  logEnd(message);
 };
 
 export default createNewLine;

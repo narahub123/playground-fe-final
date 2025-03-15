@@ -40,7 +40,7 @@ const TextEditor = ({ className }: TextEditorProps) => {
   useEffect(() => {
     if (!addLine) return;
 
-    createNewLine(setLines, caretInfo);
+    createNewLine(caretInfo, setLines);
 
     setAddLine(false);
   }, [lines]);
