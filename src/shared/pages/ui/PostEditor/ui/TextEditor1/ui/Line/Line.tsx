@@ -1,18 +1,42 @@
 import styles from "./Line.module.css";
-import { ReactNode } from "react";
-import { Segment } from "@shared/pages/ui/PostEditor/ui/TextEditor/ui";
-
-interface LineProps {
-  row?: number;
-  children?: ReactNode;
-}
-
-const Line = ({ row = 0, children }: LineProps) => {
-  return (
-    <div className={styles["line"]} data-offset={row}>
-      {children ? children : <Segment row={row} />}
-    </div>
-  );
-};
+import { ILine } from "@shared/pages/ui/PostEditor/ui/TextEditor";
+import {
+  InlineSegment,
+  Segment,
+} from "@shared/pages/ui/PostEditor/ui/TextEditor";
+import { forwardRef } from "react";
+const Line = forwardRef<HTMLDivElement, ILine>(
+  ({ row = 0, segments = [] }, ref) => {
+    return (
+      <div className={styles["line"]} data-offset={row} ref={ref}>
+        {segments.length > 0 ? (
+          segments.map((segment, index) => {
+            if (segment.type === "plain") {
+              return (
+                <Segment
+                  row={row}
+                  col={index}
+                  text={segment.text}
+                  key={index}
+                />
+              );
+            } else if (segment.type === "inline") {
+              return (
+                <InlineSegment
+                  row={row}
+                  col={index}
+                  text={segment.text}
+                  key={index}
+                />
+              );
+            }
+          })
+        ) : (
+          <Segment row={row} col={0} text="" />
+        )}
+      </div>
+    );
+  }
+);
 
 export default Line;

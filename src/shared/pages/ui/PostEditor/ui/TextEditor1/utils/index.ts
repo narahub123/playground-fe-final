@@ -1,21 +1,25 @@
+import createNewLine from "./createNewLine";
+import updateLines from "./updateLines";
 import {
-  createLine,
-  createItem,
-  createBr,
-  createInlineItem,
-} from "./createElement";
-import createNextLine from "./createNextLine";
-import preserveEditorStructure from "./preserveEditorStructure";
-import handleHashtag from "./handleHashtag";
+  isPlainSegment,
+  isInlineSegment,
+  getRowAndColOfSegment,
+  getSegmentType,
+  logError,
+  logStart,
+  logEnd,
+} from "./segments";
 import setCaretPosition from "./setCaretPosition";
 
 export {
-  createLine,
-  createItem,
-  createBr,
-  createInlineItem,
-  createNextLine,
-  preserveEditorStructure,
-  handleHashtag,
+  createNewLine,
+  isPlainSegment,
+  isInlineSegment,
+  updateLines,
+  getRowAndColOfSegment,
+  getSegmentType,
+  logError,
   setCaretPosition,
+  logStart,
+  logEnd,
 };
