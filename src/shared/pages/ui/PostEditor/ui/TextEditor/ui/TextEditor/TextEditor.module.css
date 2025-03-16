@@ -1,0 +1,22 @@
+.text__editor {
+  padding: 0.25em;
+}
+
+.text__editor:focus {
+  outline: none;
+}
+
+[contenteditable="true"]:empty::before {
+  content: attr(data-ph);
+}
+
+.line {
+  width: 100%;
+  padding: 0.125rem 0;
+  color: var(--bgTheme-color-primary);
+}
+
+.segment {
+  font-size: 1.25em;
+  color: inherit;
+}
