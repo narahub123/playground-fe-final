@@ -16,7 +16,9 @@ const postEditorSlice = createSlice({
   reducers: {
     clearPostEditor: () => initialState,
     setPostEditorImages: (state, action: PayloadAction<string[]>) => {
-      state.images = action.payload;
+      const prevImages = [...state.images];
+
+      state.images = [...prevImages, ...action.payload];
     },
     removePostEditorImage: (state, action: PayloadAction<string>) => {
       const prevImages = [...state.images];
@@ -26,7 +28,9 @@ const postEditorSlice = createSlice({
       state.images = newImages;
     },
     setPostEditorVideos: (state, action: PayloadAction<string[]>) => {
-      state.videos = action.payload;
+      const prevVideos = [...state.videos];
+      
+      state.videos = [...prevVideos, ...action.payload];
     },
     removePostEditorVideo: (state, action: PayloadAction<string>) => {
       const prevVideos = [...state.videos];

@@ -4,9 +4,12 @@ import {
   POST_VIDEO_SIZE_MAX,
 } from "@shared/@common/constants";
 import { useToast } from "@shared/@common/ui/components/Toast/hooks";
+import { selectPostEditorImages } from "@shared/pages/ui/PostEditor/models/selectors";
+import { useSelector } from "react-redux";
 
 const useValidateFiles = () => {
   const toast = useToast();
+  const prevImages = useSelector(selectPostEditorImages);
 
   const validateFiles = (files: FileList): File[] => {
     return Array.from(files).filter((file, index) => {
@@ -43,7 +46,7 @@ const useValidateFiles = () => {
       }
 
       // 파일 개수
-      if (index > POST_MEDIA_MAX - 1) {
+      if (prevImages.length + index + 1 > POST_MEDIA_MAX) {
         console.log("미디어 개수는 10개를 초과할 수 없습니다.");
         toast({
           description: `미디어 개수는 ${POST_MEDIA_MAX}개를 초과할 수 없습니다.`,

@@ -6,15 +6,12 @@ import {
   useValidateFiles,
   usePreviewMedia,
 } from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/MediaButton";
-import { useToast } from "@shared/@common/ui/components/Toast/hooks";
 
 const MediaButton = () => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   // 언어 설정
   const { title } = useLanguageContent(["components", "MediaButton"]);
-
-  const toast = useToast();
 
   const handleClick = () => {
     // input file 열기
@@ -35,12 +32,7 @@ const MediaButton = () => {
     // 유효한 파일 추출하기
     const validFiles = validateFiles(files);
 
-    // 유효한 파일이 없는 경우 업로드 중지
-    if (validFiles.length === 0) {
-      toast({ description: "유효한 파일이 없습니다.", type: "error" });
-      return;
-    }
-
+    // 미디어 미리보기 생성
     previewMedia(validFiles);
   };
 
