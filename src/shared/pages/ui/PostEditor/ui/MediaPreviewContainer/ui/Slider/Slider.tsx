@@ -24,8 +24,11 @@ const Slider = ({ images, videos, curStart }: SliderProps) => {
       const wrapperWidth = wrapper.getBoundingClientRect().width;
 
       const width = (wrapperWidth - gap) / 2;
+
       setWidth(width);
     };
+
+    calculateWidth();
 
     window.addEventListener("resize", calculateWidth);
 
@@ -43,7 +46,7 @@ const Slider = ({ images, videos, curStart }: SliderProps) => {
               images.length > 1 ? styles["preview--multiple"] : "",
             ])}
             style={{
-              transform: `translateX(-${(width + gap) * curStart}px)`,
+              transform: `translateX(${-(width + gap) * curStart}px)`,
               transition: "transform 0.3s ease",
             }}
           />

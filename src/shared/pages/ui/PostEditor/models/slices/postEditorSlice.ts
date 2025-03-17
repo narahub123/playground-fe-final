@@ -18,12 +18,31 @@ const postEditorSlice = createSlice({
     setPostEditorImages: (state, action: PayloadAction<string[]>) => {
       state.images = action.payload;
     },
+    removePostEditorImage: (state, action: PayloadAction<string>) => {
+      const prevImages = [...state.images];
+
+      const newImages = prevImages.filter((image) => image !== action.payload);
+
+      state.images = newImages;
+    },
     setPostEditorVideos: (state, action: PayloadAction<string[]>) => {
       state.videos = action.payload;
+    },
+    removePostEditorVideo: (state, action: PayloadAction<string>) => {
+      const prevVideos = [...state.videos];
+
+      const newVideos = prevVideos.filter((video) => video !== action.payload);
+
+      state.videos = newVideos;
     },
   },
 });
 
 export default postEditorSlice.reducer;
-export const { clearPostEditor, setPostEditorImages, setPostEditorVideos } =
-  postEditorSlice.actions;
+export const {
+  clearPostEditor,
+  setPostEditorImages,
+  setPostEditorVideos,
+  removePostEditorImage,
+  removePostEditorVideo,
+} = postEditorSlice.actions;

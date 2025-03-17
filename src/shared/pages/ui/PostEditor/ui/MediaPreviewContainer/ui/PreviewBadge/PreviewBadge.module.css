@@ -1,0 +1,11 @@
+.preview__badge {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background-color: rgba(0, 0, 0, 60%);
+  color: white;
+  padding: 2.5px 6px;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 5px;
+}

@@ -3,6 +3,13 @@ import {
   MediaPreviewContainer,
   VideoPreview,
   Slider,
+  PreviewBadge,
 } from "./ui";
 
-export { ImagePreview, MediaPreviewContainer, VideoPreview, Slider };
+export {
+  ImagePreview,
+  MediaPreviewContainer,
+  VideoPreview,
+  Slider,
+  PreviewBadge,
+};
