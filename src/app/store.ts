@@ -13,6 +13,8 @@ import {
   notificationSlice as notification,
 } from "@shared/@common/models/slices";
 
+import { postEditorSlice as postEditor } from "@shared/pages/ui/PostEditor/models/slices";
+
 const store = configureStore({
   reducer: {
     login, // 로그인 상태
@@ -23,6 +25,7 @@ const store = configureStore({
     security, // 보안 설정
     privacy, // 개인 정보 설정
     notification, // 알림 설정
+    postEditor, // 포스트 작성
   },
 
   // serializableCheck 옵션을 false로 설정하여
