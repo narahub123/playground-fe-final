@@ -1,15 +1,8 @@
 import {
-  ImagePreview,
   MediaPreviewContainer,
-  VideoPreview,
   Slider,
   PreviewBadge,
+  MediaPreview,
 } from "./ui";
 
-export {
-  ImagePreview,
-  MediaPreviewContainer,
-  VideoPreview,
-  Slider,
-  PreviewBadge,
-};
+export { MediaPreviewContainer, Slider, PreviewBadge, MediaPreview };

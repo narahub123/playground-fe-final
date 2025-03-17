@@ -1,8 +1,8 @@
-.image__preview {
+.media__preview {
   position: relative;
 }
 
-.image__preview__icon {
+.media__preview__icon {
   position: absolute;
   right: 0.625rem;
   top: 0.625rem;

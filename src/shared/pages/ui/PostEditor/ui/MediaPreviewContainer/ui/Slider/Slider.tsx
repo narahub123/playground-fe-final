@@ -1,16 +1,14 @@
 import { useLayoutEffect, useRef, useState } from "react";
-import ImagePreview from "../ImagePreview/ImagePreview";
-import VideoPreview from "../VideoPreview/VideoPreview";
 import styles from "./Slider.module.css";
 import { joinClassNames } from "@shared/@common/utils";
+import MediaPreview from "../MediaPreview/MediaPreview";
 
 interface SliderProps {
-  images: string[];
-  videos: string[];
+  media: string[];
   curStart: number;
 }
 
-const Slider = ({ images, videos, curStart }: SliderProps) => {
+const Slider = ({ media, curStart }: SliderProps) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const gap = 10;
   const [width, setWidth] = useState(0);
@@ -38,21 +36,18 @@ const Slider = ({ images, videos, curStart }: SliderProps) => {
   return (
     <div className={styles["slider__wrapper"]} ref={wrapperRef}>
       <div className={styles["slider"]} style={{ gap }}>
-        {images.map((image, index) => (
-          <ImagePreview
-            image={image}
-            key={`image_${index + 1}`}
+        {media.map((medium, index) => (
+          <MediaPreview
+            key={index}
+            medium={medium}
             className={joinClassNames([
-              images.length > 1 ? styles["preview--multiple"] : "",
+              media.length > 1 ? styles["preview--multiple"] : "",
             ])}
             style={{
               transform: `translateX(${-(width + gap) * curStart}px)`,
               transition: "transform 0.3s ease",
             }}
           />
-        ))}
-        {videos.map((video, index) => (
-          <VideoPreview video={video} key={`video_${index + 1}`} />
         ))}
       </div>
     </div>
