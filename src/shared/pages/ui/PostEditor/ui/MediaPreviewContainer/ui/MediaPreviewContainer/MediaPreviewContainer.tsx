@@ -9,8 +9,8 @@ import { useState } from "react";
 interface MediaPreviewContainerProps {}
 
 const MediaPreviewContainer = ({}: MediaPreviewContainerProps) => {
-  const { images, videos } = useSelector(selectPostEditor);
-  const media = [...images, ...videos];
+  const { media } = useSelector(selectPostEditor);
+
   const [curStart, setCurStart] = useState(0);
 
   const moveRight = () => {

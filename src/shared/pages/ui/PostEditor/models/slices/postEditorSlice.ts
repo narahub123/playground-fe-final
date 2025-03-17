@@ -1,13 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface PostEditorState {
-  images: string[];
-  videos: string[];
+  media: string[];
 }
 
 const initialState: PostEditorState = {
-  images: [],
-  videos: [],
+  media: [],
 };
 
 const postEditorSlice = createSlice({
@@ -15,38 +13,21 @@ const postEditorSlice = createSlice({
   initialState,
   reducers: {
     clearPostEditor: () => initialState,
-    setPostEditorImages: (state, action: PayloadAction<string[]>) => {
-      const prevImages = [...state.images];
+    setPostEditorMedia: (state, action: PayloadAction<string[]>) => {
+      const prevMedia = [...state.media];
 
-      state.images = [...prevImages, ...action.payload];
+      state.media = [...prevMedia, ...action.payload];
     },
-    removePostEditorImage: (state, action: PayloadAction<string>) => {
-      const prevImages = [...state.images];
+    removePostEditorMedia: (state, action: PayloadAction<string>) => {
+      const prevMedia = [...state.media];
 
-      const newImages = prevImages.filter((image) => image !== action.payload);
+      const newMedia = prevMedia.filter((medium) => medium !== action.payload);
 
-      state.images = newImages;
-    },
-    setPostEditorVideos: (state, action: PayloadAction<string[]>) => {
-      const prevVideos = [...state.videos];
-      
-      state.videos = [...prevVideos, ...action.payload];
-    },
-    removePostEditorVideo: (state, action: PayloadAction<string>) => {
-      const prevVideos = [...state.videos];
-
-      const newVideos = prevVideos.filter((video) => video !== action.payload);
-
-      state.videos = newVideos;
+      state.media = newMedia;
     },
   },
 });
 
 export default postEditorSlice.reducer;
-export const {
-  clearPostEditor,
-  setPostEditorImages,
-  setPostEditorVideos,
-  removePostEditorImage,
-  removePostEditorVideo,
-} = postEditorSlice.actions;
+export const { clearPostEditor, setPostEditorMedia, removePostEditorMedia } =
+  postEditorSlice.actions;

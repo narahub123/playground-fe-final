@@ -1,5 +1,5 @@
 import { useAppDispatch } from "@app/store";
-import { setPostEditorImages } from "@shared/pages/ui/PostEditor/models/slices/postEditorSlice";
+import { setPostEditorMedia } from "@shared/pages/ui/PostEditor/models/slices/postEditorSlice";
 
 const usePreviewMedia = () => {
   const dispatch = useAppDispatch();
@@ -28,8 +28,8 @@ const usePreviewMedia = () => {
     });
 
     Promise.all(readers)
-      .then((images) => {
-        dispatch(setPostEditorImages(images));
+      .then((media) => {
+        dispatch(setPostEditorMedia(media));
       })
       .catch((error) => {
         console.error("이미지 처리 중 에러", error);

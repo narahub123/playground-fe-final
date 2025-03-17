@@ -1,15 +1,7 @@
 import {
   clearPostEditor,
-  setPostEditorImages,
-  setPostEditorVideos,
-  removePostEditorImage,
-  removePostEditorVideo,
+  setPostEditorMedia,
+  removePostEditorMedia,
 } from "./postEditorSlice";
 
-export {
-  clearPostEditor,
-  setPostEditorImages,
-  setPostEditorVideos,
-  removePostEditorImage,
-  removePostEditorVideo,
-};
+export { clearPostEditor, setPostEditorMedia, removePostEditorMedia };

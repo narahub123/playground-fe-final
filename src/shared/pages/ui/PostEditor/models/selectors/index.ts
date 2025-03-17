@@ -1,7 +1,3 @@
-import {
-  selectPostEditor,
-  selectPostEditorImages,
-  selectPostEditorVideos,
-} from "./postEditorSelector";
+import { selectPostEditor, selectPostEditorMedia } from "./postEditorSelector";
 
-export { selectPostEditor, selectPostEditorImages, selectPostEditorVideos };
+export { selectPostEditor, selectPostEditorMedia };
