@@ -9,6 +9,7 @@ import { useState } from "react";
 import {
   AddPostLink,
   CircularProgressBar,
+  MediaPreviewContainer,
   PostButton,
   PostEditorToolbar,
   ReplyPermissionControl,
@@ -24,16 +25,12 @@ interface PostEditorProps {
 const PostEditor = ({ className }: PostEditorProps) => {
   const navigate = useNavigate();
   const [isValid, setIsValid] = useState(false);
-  const [text, setText] = useState("");
   const [replyOption, setReplyOption] = useState<ReplyOptionType>("all");
 
+  const user = useSelector(selectUser);
   const postEditorContent = useSelector(selectPostEditor);
-
   console.log(postEditorContent);
 
-  console.log("텍스트", text);
-
-  const user = useSelector(selectUser);
   // 언어 설정
   const {} = useLanguageContent(["components", "PostEditor"]);
 
@@ -58,6 +55,9 @@ const PostEditor = ({ className }: PostEditorProps) => {
           <div className={styles["text__editor__wrapper"]}>
             <TextEditor />
           </div>
+          <div className={styles["media__preview__wrapper"]}>
+            <MediaPreviewContainer />
+          </div>
           <div className={styles["dropdown__btn__wrapper"]}>
             <ReplyPermissionControl
               replyOption={replyOption}
@@ -70,7 +70,7 @@ const PostEditor = ({ className }: PostEditorProps) => {
             <PostEditorToolbar />
           </span>
           <span className={styles["btns__wrapper"]}>
-            <CircularProgressBar textLength={text.length} />
+            <CircularProgressBar textLength={0} />
             <div className={styles["vertical__divider"]} />
             <AddPostLink />
             <PostButton isValid={isValid} />
