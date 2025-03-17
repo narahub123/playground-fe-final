@@ -263,3 +263,7 @@ export const SELECT_OPTION_HEIGHT = 40;
 export const LOCALSTORAGE_KEY = "www.playground.com";
 
 export const POST_LENGTH_MAX = 150;
+
+export const POST_MEDIA_MAX = 10;
+export const POST_IMAGE_SIZE_MAX = 5 * 1024 * 1024;
+export const POST_VIDEO_SIZE_MAX = 100 * 1024 * 1024;
