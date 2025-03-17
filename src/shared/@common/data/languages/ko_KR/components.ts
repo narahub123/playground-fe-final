@@ -468,7 +468,7 @@ const components = {
     imageAlt: "프로필 이미지",
   },
   PostButton: { text: "게시하기" },
-  ImageButton: { title: "미디어" },
+  MediaButton: { title: "미디어" },
   VoteButton: { title: "투표" },
   EmojiButton: { title: "이모티콘" },
   ReserveButton: { title: "예약하기" },

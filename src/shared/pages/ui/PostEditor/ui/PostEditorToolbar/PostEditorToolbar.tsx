@@ -1,6 +1,6 @@
 import styles from "./PostEditorToolbar.module.css";
 import { joinClassNames } from "@shared/@common/utils";
-import ImageButton from "./ImageButton/ImageButton";
+import MediaButton from "./MediaButton/MediaButton";
 import VoteButton from "./VoteButton/VoteButton";
 import EmojiButton from "./EmojiButton/EmojiButton";
 import ReserveButton from "./ReserveButton/ReserveButton";
@@ -19,7 +19,7 @@ const PostEditorToolbar = ({ className }: PostEditorToolbarProps) => {
   return (
     <div className={classNames}>
       <nav className={styles["post__editor__toolbar__list"]}>
-        <ImageButton />
+        <MediaButton />
         <VoteButton />
         <EmojiButton />
         <ReserveButton />

@@ -4,9 +4,11 @@ import { RiImage2Line } from "react-icons/ri";
 
 interface ImageButtonProps {}
 
-const ImageButton = ({}: ImageButtonProps) => {
+const MediaButton = ({}: ImageButtonProps) => {
   // 언어 설정
-  const { title } = useLanguageContent(["components", "ImageButton"]);
+  const { title } = useLanguageContent(["components", "MediaButton"]);
+
+  
 
   return (
     <ToolbarButton onClick={() => {}} title={title}>
@@ -15,4 +17,4 @@ const ImageButton = ({}: ImageButtonProps) => {
   );
 };
 
-export default ImageButton;
+export default MediaButton;
