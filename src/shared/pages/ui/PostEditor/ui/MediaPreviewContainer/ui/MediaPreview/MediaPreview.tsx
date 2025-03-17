@@ -8,18 +8,22 @@ import { useLanguageContent } from "@shared/@common/models/hooks";
 interface MediaPreviewProps {
   medium: string;
   style: React.CSSProperties;
+  handleDelete: () => void;
   className?: string;
 }
 
-const MediaPreview = ({ className, medium, style }: MediaPreviewProps) => {
+const MediaPreview = ({
+  className,
+  medium,
+  handleDelete,
+  style,
+}: MediaPreviewProps) => {
   const classNames = joinClassNames([styles["media__preview"], className]);
 
   const { iconTitle, imgAlt } = useLanguageContent([
     "components",
     "MediaPreview",
   ]);
-
-  const handleDelete = () => {};
 
   return (
     <div className={classNames} style={style}>

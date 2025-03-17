@@ -6,9 +6,7 @@ import { Icon } from "@shared/@common/ui/icons";
 import { joinClassNames } from "@shared/@common/utils";
 import { useState } from "react";
 
-interface MediaPreviewContainerProps {}
-
-const MediaPreviewContainer = ({}: MediaPreviewContainerProps) => {
+const MediaPreviewContainer = () => {
   const { media } = useSelector(selectPostEditor);
 
   const [curStart, setCurStart] = useState(0);
@@ -23,7 +21,7 @@ const MediaPreviewContainer = ({}: MediaPreviewContainerProps) => {
 
   return (
     <div className={styles["media__preview__container"]}>
-      <Slider media={media} curStart={curStart} />
+      <Slider media={media} curStart={curStart} moveLeft={moveLeft} />
       <Icon
         iconName="arrowLeft"
         bgColor="black"

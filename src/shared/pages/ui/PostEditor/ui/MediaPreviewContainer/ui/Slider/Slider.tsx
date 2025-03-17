@@ -2,13 +2,17 @@ import { useLayoutEffect, useRef, useState } from "react";
 import styles from "./Slider.module.css";
 import { joinClassNames } from "@shared/@common/utils";
 import MediaPreview from "../MediaPreview/MediaPreview";
+import { useAppDispatch } from "@app/store";
+import { removePostEditorMedia } from "@shared/pages/ui/PostEditor/models/slices/postEditorSlice";
 
 interface SliderProps {
   media: string[];
   curStart: number;
+  moveLeft: () => void;
 }
 
-const Slider = ({ media, curStart }: SliderProps) => {
+const Slider = ({ media, curStart, moveLeft }: SliderProps) => {
+  const dispatch = useAppDispatch();
   const wrapperRef = useRef<HTMLDivElement>(null);
   const gap = 10;
   const [width, setWidth] = useState(0);
@@ -33,6 +37,16 @@ const Slider = ({ media, curStart }: SliderProps) => {
     return () => window.removeEventListener("resize", calculateWidth);
   }, []);
 
+  const handleDelete = (medium: string) => {
+    dispatch(removePostEditorMedia(medium));
+
+    // 현재 시작 slider가 미디어 개수보다 2작고 media 총개수가 2보다 큰 경우
+    // 왼쪽으로 이동
+    if (curStart === media.length - 2 && media.length > 2) {
+      moveLeft();
+    }
+  };
+
   return (
     <div className={styles["slider__wrapper"]} ref={wrapperRef}>
       <div className={styles["slider"]} style={{ gap }}>
@@ -47,6 +61,7 @@ const Slider = ({ media, curStart }: SliderProps) => {
               transform: `translateX(${-(width + gap) * curStart}px)`,
               transition: "transform 0.3s ease",
             }}
+            handleDelete={() => handleDelete(medium)}
           />
         ))}
       </div>
