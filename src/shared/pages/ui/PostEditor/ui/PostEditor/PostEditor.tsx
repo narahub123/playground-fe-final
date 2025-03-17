@@ -15,6 +15,7 @@ import {
   TextEditor,
 } from "@shared/pages/ui/PostEditor/ui";
 import { ReplyOptionType } from "@shared/pages/ui/PostEditor/types";
+import { selectPostEditor } from "../../models/selectors";
 
 interface PostEditorProps {
   className?: string;
@@ -25,6 +26,10 @@ const PostEditor = ({ className }: PostEditorProps) => {
   const [isValid, setIsValid] = useState(false);
   const [text, setText] = useState("");
   const [replyOption, setReplyOption] = useState<ReplyOptionType>("all");
+
+  const postEditorContent = useSelector(selectPostEditor);
+
+  console.log(postEditorContent);
 
   console.log("텍스트", text);
 
