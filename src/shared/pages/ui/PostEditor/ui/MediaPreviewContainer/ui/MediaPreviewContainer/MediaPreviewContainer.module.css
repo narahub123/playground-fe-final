@@ -1,3 +1,33 @@
 .media__preview__container {
+  position: relative;
   margin-top: 0.25rem;
+}
+
+.leading__icon {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.leading__icon--visible {
+  display: flex;
+}
+
+.leading__icon--invisible {
+  display: none;
+}
+
+.trailing__icon {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+.trailing__icon--visible {
+  display: flex;
+}
+.trailing__icon--invisible {
+  display: none;
 }

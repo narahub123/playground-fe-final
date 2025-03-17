@@ -1,3 +1,8 @@
-import { ImagePreview, MediaPreviewContainer, VideoPreview } from "./ui";
+import {
+  ImagePreview,
+  MediaPreviewContainer,
+  VideoPreview,
+  Slider,
+} from "./ui";
 
-export { ImagePreview, MediaPreviewContainer, VideoPreview };
+export { ImagePreview, MediaPreviewContainer, VideoPreview, Slider };
