@@ -17,14 +17,14 @@ type PostEditorToolbarButtonType =
   | "media"
   | "vote"
   | "emoticon"
-  | "reservation"
+  | "reserve"
   | "location";
 
 interface IPostEditorToolbar {
   media: boolean;
   vote: boolean;
   emoticon: boolean;
-  reservation: boolean;
+  reserve: boolean;
   location: boolean;
 }
 

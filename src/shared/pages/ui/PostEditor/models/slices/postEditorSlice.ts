@@ -18,7 +18,7 @@ const initialState: PostEditorState = {
     media: false,
     vote: false,
     emoticon: false,
-    reservation: false,
+    reserve: false,
     location: false,
   },
 };
