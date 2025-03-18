@@ -44,6 +44,7 @@
   position: sticky;
   bottom: -1px;
   background-color: var(--bgTheme-bgColor-primary);
+  z-index: 2;
 }
 
 .reply__permission__control__wrapper {

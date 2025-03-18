@@ -5,9 +5,16 @@
   flex-direction: column;
 }
 
-.vote__questionaries {
+.vote__options {
   padding: 0.75em;
   border-bottom: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.vote__option {
+  display: flex;
 }
 
 .vote__duration {

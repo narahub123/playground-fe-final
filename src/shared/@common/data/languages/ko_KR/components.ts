@@ -515,6 +515,13 @@ const components = {
     videoTitle: "비디오 미리보기",
   },
   Vote: {},
+  InputOption: {
+    label: "선택",
+    extra: "(선택 사항)",
+  },
+  AddOptionButton: {
+    title: "추가",
+  },
 };
 
 export default components;

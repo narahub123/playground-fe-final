@@ -10,6 +10,7 @@ import {
   LuCircleAlert as warning,
   LuKeyRound as keyIcon,
   LuSmartphoneNfc as notificationPreferencesIcon,
+  LuPlus as plus,
 } from "react-icons/lu";
 import {
   RiEyeLine as eye,
@@ -155,6 +156,7 @@ const Icons = {
   followingIcon,
   verifiedIcon,
   mentionedIcon,
+  plus, // 추가
 };
 
 export default Icons;
