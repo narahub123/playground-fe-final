@@ -1,13 +1,13 @@
 import styles from "./MediaPreviewContainer.module.css";
 import { useSelector } from "react-redux";
-import { selectPostEditor } from "@shared/pages/ui/PostEditor/models/selectors";
+import { selectPostEditorMedia } from "@shared/pages/ui/PostEditor/models/selectors";
 import { Slider } from "@shared/pages/ui/PostEditor/ui/MediaPreviewContainer";
 import { Icon } from "@shared/@common/ui/icons";
 import { joinClassNames } from "@shared/@common/utils";
 import { useState } from "react";
 
 const MediaPreviewContainer = () => {
-  const { media } = useSelector(selectPostEditor);
+  const media = useSelector(selectPostEditorMedia);
 
   const [curStart, setCurStart] = useState(0);
 

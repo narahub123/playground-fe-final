@@ -29,7 +29,9 @@ const PostEditor = ({ className }: PostEditorProps) => {
 
   const user = useSelector(selectUser);
   const postEditorContent = useSelector(selectPostEditor);
-  console.log(postEditorContent);
+  const { post, toolbar } = postEditorContent;
+
+  console.log(toolbar);
 
   // 언어 설정
   const {} = useLanguageContent(["components", "PostEditor"]);

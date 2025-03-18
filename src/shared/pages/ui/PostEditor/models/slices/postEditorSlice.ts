@@ -1,11 +1,26 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {
+  IPostEditorPost,
+  IPostEditorToolbar,
+  PostEditorToolbarButtonType,
+} from "../../types";
 
 interface PostEditorState {
-  media: string[];
+  post: IPostEditorPost;
+  toolbar: IPostEditorToolbar;
 }
 
 const initialState: PostEditorState = {
-  media: [],
+  post: {
+    media: [],
+  },
+  toolbar: {
+    media: false,
+    vote: false,
+    emoticon: false,
+    reservation: false,
+    location: false,
+  },
 };
 
 const postEditorSlice = createSlice({
@@ -14,20 +29,37 @@ const postEditorSlice = createSlice({
   reducers: {
     clearPostEditor: () => initialState,
     setPostEditorMedia: (state, action: PayloadAction<string[]>) => {
-      const prevMedia = [...state.media];
+      const prevMedia = [...state.post.media];
 
-      state.media = [...prevMedia, ...action.payload];
+      state.post.media = [...prevMedia, ...action.payload];
     },
     removePostEditorMedia: (state, action: PayloadAction<number>) => {
-      const prevMedia = [...state.media];
+      const prevMedia = [...state.post.media];
 
       const newMedia = prevMedia.filter((_, index) => index !== action.payload);
 
-      state.media = newMedia;
+      state.post.media = newMedia;
+    },
+    postEditorToolbarButtonOn: (
+      state,
+      action: PayloadAction<PostEditorToolbarButtonType>
+    ) => {
+      state.toolbar[action.payload] = true;
+    },
+    postEditorToolbarButtonOff: (
+      state,
+      action: PayloadAction<PostEditorToolbarButtonType>
+    ) => {
+      state.toolbar[action.payload] = false;
     },
   },
 });
 
 export default postEditorSlice.reducer;
-export const { clearPostEditor, setPostEditorMedia, removePostEditorMedia } =
-  postEditorSlice.actions;
+export const {
+  clearPostEditor,
+  setPostEditorMedia,
+  removePostEditorMedia,
+  postEditorToolbarButtonOff,
+  postEditorToolbarButtonOn,
+} = postEditorSlice.actions;

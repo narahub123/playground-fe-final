@@ -9,4 +9,29 @@ interface IReplyOption {
   description: string;
 }
 
-export type { IReplyOption, ReplyOptionType };
+interface IPostEditorPost {
+  media: string[];
+}
+
+type PostEditorToolbarButtonType =
+  | "media"
+  | "vote"
+  | "emoticon"
+  | "reservation"
+  | "location";
+
+interface IPostEditorToolbar {
+  media: boolean;
+  vote: boolean;
+  emoticon: boolean;
+  reservation: boolean;
+  location: boolean;
+}
+
+export type {
+  IReplyOption,
+  ReplyOptionType,
+  IPostEditorPost,
+  IPostEditorToolbar,
+  PostEditorToolbarButtonType,
+};
