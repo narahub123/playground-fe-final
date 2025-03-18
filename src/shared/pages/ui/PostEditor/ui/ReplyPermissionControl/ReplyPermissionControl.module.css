@@ -1,14 +1,15 @@
 .reply__permission__control {
+  display: flex;
 }
 
 .reply__button {
   display: flex;
   align-items: center;
   gap: 0.25em;
-  padding: 0.25rem 0.75rem;
   border-radius: 15px;
   color: var(--colorTheme-color-primary);
   font-weight: bold;
+  padding-right: 0.5em;
 }
 
 .reply__button:hover {

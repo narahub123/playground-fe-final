@@ -31,10 +31,16 @@
   opacity: 1;
 }
 
-.dropdown__btn__wrapper {
+.controls__wrapper {
+  position: sticky;
+  bottom: -1px;
+  background-color: var(--bgTheme-bgColor-primary);
+}
+
+.reply__permission__control__wrapper {
   position: relative;
   border-bottom: 1px solid #f1f1f1;
-  padding: 0.75em 0;
+  padding-bottom: 0.75rem;
 }
 
 .toolbar__container {

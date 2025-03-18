@@ -58,23 +58,25 @@ const PostEditor = ({ className }: PostEditorProps) => {
           <div className={styles["media__preview__wrapper"]}>
             <MediaPreviewContainer />
           </div>
-          <div className={styles["dropdown__btn__wrapper"]}>
+        </div>
+        <div className={styles["controls__wrapper"]}>
+          <div className={styles["reply__permission__control__wrapper"]}>
             <ReplyPermissionControl
               replyOption={replyOption}
               setReplyOption={setReplyOption}
             />
           </div>
-        </div>
-        <div className={styles["toolbar__container"]}>
-          <span className={styles["toolbar__wrapper"]}>
-            <PostEditorToolbar />
-          </span>
-          <span className={styles["btns__wrapper"]}>
-            <CircularProgressBar textLength={0} />
-            <div className={styles["vertical__divider"]} />
-            <AddPostLink />
-            <PostButton isValid={isValid} />
-          </span>
+          <div className={styles["toolbar__container"]}>
+            <span className={styles["toolbar__wrapper"]}>
+              <PostEditorToolbar />
+            </span>
+            <span className={styles["btns__wrapper"]}>
+              <CircularProgressBar textLength={0} />
+              <div className={styles["vertical__divider"]} />
+              <AddPostLink />
+              <PostButton isValid={isValid} />
+            </span>
+          </div>
         </div>
       </span>
     </div>
