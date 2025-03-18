@@ -509,13 +509,10 @@ const components = {
       },
     ],
   },
-  ImagePreview: {
-    iconTitle: "삭제",
-    imgAlt: "이미지 미리보기",
-  },
   MediaPreview: {
     iconTitle: "삭제",
     imgAlt: "이미지 미리보기",
+    videoTitle: "비디오 미리보기",
   },
 };
 

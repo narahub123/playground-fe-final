@@ -1,9 +1,15 @@
 .media__preview {
   position: relative;
+  max-height: 400px;
+}
+.media__preview__wrapper {
+  position: relative;
+  height: 100%;
 }
 
 .media__preview__icon {
   position: absolute;
   right: 0.625rem;
   top: 0.625rem;
+  z-index: 1;
 }

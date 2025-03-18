@@ -37,8 +37,8 @@ const Slider = ({ media, curStart, moveLeft }: SliderProps) => {
     return () => window.removeEventListener("resize", calculateWidth);
   }, []);
 
-  const handleDelete = (medium: string) => {
-    dispatch(removePostEditorMedia(medium));
+  const handleDelete = (index: number) => {
+    dispatch(removePostEditorMedia(index));
 
     // 현재 시작 slider가 미디어 개수보다 2작고 media 총개수가 2보다 큰 경우
     // 왼쪽으로 이동
@@ -61,7 +61,7 @@ const Slider = ({ media, curStart, moveLeft }: SliderProps) => {
               transform: `translateX(${-(width + gap) * curStart}px)`,
               transition: "transform 0.3s ease",
             }}
-            handleDelete={() => handleDelete(medium)}
+            handleDelete={() => handleDelete(index)}
           />
         ))}
       </div>

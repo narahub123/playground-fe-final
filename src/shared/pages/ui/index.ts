@@ -8,6 +8,7 @@ import AccountButton from "./AccountButton/AccountButton";
 import AccountItem from "./AccountItem/AccountItem";
 import AccountManageModal from "./AccountManageModal.tsx/AccountManageModal";
 import { PostEditor } from "./PostEditor";
+import Video from "./Video/Video";
 
 export {
   Header,
@@ -20,4 +21,5 @@ export {
   AccountItem,
   AccountManageModal,
   PostEditor,
+  Video,
 };

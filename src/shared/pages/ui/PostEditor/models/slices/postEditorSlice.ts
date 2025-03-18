@@ -18,10 +18,10 @@ const postEditorSlice = createSlice({
 
       state.media = [...prevMedia, ...action.payload];
     },
-    removePostEditorMedia: (state, action: PayloadAction<string>) => {
+    removePostEditorMedia: (state, action: PayloadAction<number>) => {
       const prevMedia = [...state.media];
 
-      const newMedia = prevMedia.filter((medium) => medium !== action.payload);
+      const newMedia = prevMedia.filter((_, index) => index !== action.payload);
 
       state.media = newMedia;
     },
