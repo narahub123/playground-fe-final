@@ -514,7 +514,14 @@ const components = {
     imgAlt: "이미지 미리보기",
     videoTitle: "비디오 미리보기",
   },
-  Vote: {},
+  Vote: {
+    voteDuration: "투표 기간",
+    label: {
+      date: "일",
+      hour: "시간",
+      minute: "분",
+    },
+  },
   InputOption: {
     label: "선택",
     extra: "(선택 사항)",

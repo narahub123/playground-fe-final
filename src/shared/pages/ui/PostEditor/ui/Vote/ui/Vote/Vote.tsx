@@ -3,7 +3,13 @@ import styles from "./Vote.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Text } from "@shared/@common/ui/components";
 import { joinClassNames } from "@shared/@common/utils";
-import { IVoteOptions, VoteOption } from "@shared/pages/ui/PostEditor/ui/Vote";
+import {
+  IVoteDuration,
+  IVoteOptions,
+  SelectVoteDuration,
+  VoteOption,
+  VoteOptions,
+} from "@shared/pages/ui/PostEditor/ui/Vote";
 import { useState } from "react";
 
 interface VoteProps {
@@ -31,9 +37,23 @@ const initialVoteOptions: IVoteOptions = {
 
 const Vote = ({ className }: VoteProps) => {
   // 언어 설정
-  const {} = useLanguageContent(["components", "Vote"]);
+  const { voteDuration, label } = useLanguageContent(["components", "Vote"]);
 
   const [options, setOptions] = useState<IVoteOptions>(initialVoteOptions);
+
+  const initialVoteDuration: IVoteDuration = {
+    date: 0,
+    hour: 0,
+    minute: 0,
+  };
+
+  const [duration, setDuration] = useState<IVoteDuration>(initialVoteDuration);
+
+  const [isValid, setIsValid] = useState<{ [key: string]: boolean } | boolean>({
+    date: false,
+    hour: false,
+    minute: false,
+  });
 
   const classNames = joinClassNames([styles["vote"], className]);
 
@@ -66,9 +86,11 @@ const Vote = ({ className }: VoteProps) => {
     }
   };
 
+  const durationArr = ["date", "hour", "minute"];
+
   return (
     <div className={classNames}>
-      <div className={styles["vote__options"]}>
+      <section className={styles["vote__options"]}>
         {Object.values(options).map((option, index) => (
           <VoteOption
             handleChange={(e) => handleChange(e, index)}
@@ -78,15 +100,23 @@ const Vote = ({ className }: VoteProps) => {
             key={index}
           />
         ))}
-      </div>
-      <div className={styles["vote__duration"]}>
-        <Text>투표기간</Text>
+      </section>
+      <section className={styles["vote__duration"]}>
+        <Text>{voteDuration}</Text>
         <div className={styles["selectors__wrapper"]}>
-          <input type="text" style={{ width: "100%" }} />
-          <input type="text" style={{ width: "100%" }} />
-          <input type="text" style={{ width: "100%" }} />
+          {durationArr.map((key) => (
+            <SelectVoteDuration
+              key={key}
+              value={duration[key as keyof typeof duration]}
+              setIsValid={setIsValid}
+              setFunc={setDuration}
+              field={key}
+              options={VoteOptions(key)}
+              label={label[key]}
+            />
+          ))}
         </div>
-      </div>
+      </section>
       <div className={styles["vote__button"]}>버튼</div>
     </div>
   );

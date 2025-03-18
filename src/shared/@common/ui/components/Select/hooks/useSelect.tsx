@@ -10,9 +10,9 @@ interface useSelectProps {
     text: string;
     value: string | number;
   }[];
-  updateFunc:
-    | ((value: any) => { type: string; payload: any })
-    | React.Dispatch<React.SetStateAction<string | number>>;
+  updateFunc?: (value: any) => { type: string; payload: any };
+
+  setFunc?: React.Dispatch<React.SetStateAction<{ [key: string]: any } | any>>;
   setIsValid: React.Dispatch<
     React.SetStateAction<
       | {
@@ -28,6 +28,7 @@ const useSelect = ({
   options,
   value,
   updateFunc,
+  setFunc,
   setIsValid,
   field,
 }: useSelectProps) => {
@@ -65,6 +66,22 @@ const useSelect = ({
     }
   }, [value]);
 
+  const update = (value: string | number) => {
+    if (updateFunc) {
+      dispatch(updateFunc(value));
+    } else {
+      setFunc &&
+        setFunc((prev: any) => {
+          if (typeof prev === "object") {
+            return {
+              ...prev,
+              [field]: value,
+            };
+          } else return value;
+        });
+    }
+  };
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
     const index = options.findIndex((item) => item.value === value);
 
@@ -72,30 +89,12 @@ const useSelect = ({
       e.preventDefault();
       const nextIndex = index + 1 > options.length - 1 ? 0 : index + 1;
 
-      const update = updateFunc(options[nextIndex].value);
-      if (
-        typeof update === "object" &&
-        "type" in update &&
-        "payload" in update
-      ) {
-        dispatch(update);
-      } else {
-        updateFunc(options[nextIndex].value);
-      }
+      update(options[nextIndex].value);
     } else if (e.key === "ArrowUp") {
       e.preventDefault();
       const prevIndex = index - 1 < 0 ? options.length - 1 : index - 1;
 
-      const update = updateFunc(options[prevIndex].value);
-      if (
-        typeof update === "object" &&
-        "type" in update &&
-        "payload" in update
-      ) {
-        dispatch(update);
-      } else {
-        updateFunc(options[prevIndex].value);
-      }
+      update(options[prevIndex].value);
     } else if (e.key === "Enter") {
       setIsOpen(!isOpen);
     } else if (e.key === "Escape") {
@@ -107,16 +106,7 @@ const useSelect = ({
           ? 0
           : index - SELECT_LISTBOX_SCROLL_STEP;
 
-      const update = updateFunc(options[prevIndex].value);
-      if (
-        typeof update === "object" &&
-        "type" in update &&
-        "payload" in update
-      ) {
-        dispatch(update);
-      } else {
-        updateFunc(options[prevIndex].value);
-      }
+      update(options[prevIndex].value);
     } else if (e.key === "PageDown") {
       e.preventDefault();
       const nextIndex =
@@ -124,16 +114,7 @@ const useSelect = ({
           ? options.length - 1
           : index + SELECT_LISTBOX_SCROLL_STEP;
 
-      const update = updateFunc(options[nextIndex].value);
-      if (
-        typeof update === "object" &&
-        "type" in update &&
-        "payload" in update
-      ) {
-        dispatch(update);
-      } else {
-        updateFunc(options[nextIndex].value);
-      }
+      update(options[nextIndex].value);
     }
   };
 
@@ -150,12 +131,7 @@ const useSelect = ({
     value: string | number
   ) => {
     e.preventDefault();
-    const update = updateFunc(value);
-    if (typeof update === "object" && "type" in update && "payload" in update) {
-      dispatch(update);
-    } else {
-      updateFunc(value);
-    }
+    update(value);
 
     setIsOpen(false);
   };

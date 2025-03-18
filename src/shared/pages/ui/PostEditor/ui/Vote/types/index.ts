@@ -10,4 +10,10 @@ interface IVoteOptions {
   option3: IVoteOption;
 }
 
-export type { IVoteOption, IVoteOptions };
+interface IVoteDuration {
+  date: number;
+  hour: number;
+  minute: number;
+}
+
+export type { IVoteOption, IVoteOptions, IVoteDuration };
