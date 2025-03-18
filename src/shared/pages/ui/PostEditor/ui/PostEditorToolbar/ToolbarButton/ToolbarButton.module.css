@@ -5,6 +5,13 @@
   border: 2.5px solid transparent;
 }
 
+.toolbar__button--disabled {
+  position: relative;
+  color: var(--colorTheme-color-primary);
+  border: 2.5px solid transparent;
+  opacity: 0.6;
+}
+
 .toolbar__button[data-title]::after {
   content: attr(data-title);
   position: absolute;

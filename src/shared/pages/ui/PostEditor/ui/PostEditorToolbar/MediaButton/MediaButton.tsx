@@ -7,7 +7,11 @@ import {
   usePreviewMedia,
 } from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/MediaButton";
 
-const MediaButton = () => {
+interface MediaButtonProps {
+  disabled?: boolean;
+}
+
+const MediaButton = ({ disabled = false }: MediaButtonProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   // 언어 설정
@@ -42,7 +46,7 @@ const MediaButton = () => {
   };
 
   return (
-    <ToolbarButton onClick={handleClick} title={title}>
+    <ToolbarButton onClick={handleClick} title={title} disabled={disabled}>
       <input
         type="file"
         hidden

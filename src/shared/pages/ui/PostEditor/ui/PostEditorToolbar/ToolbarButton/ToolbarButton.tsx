@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
 import styles from "./ToolbarButton.module.css";
+import { ReactNode } from "react";
 import { joinClassNames } from "@shared/@common/utils";
 
 interface ToolbarButtonProps {
@@ -17,7 +17,10 @@ const ToolbarButton = ({
   onClick,
   title,
 }: ToolbarButtonProps) => {
-  const classNames = joinClassNames([styles["toolbar__button"], className]);
+  const classNames = joinClassNames([
+    disabled ? styles["toolbar__button--disabled"] : styles["toolbar__button"],
+    className,
+  ]);
 
   return (
     <button
