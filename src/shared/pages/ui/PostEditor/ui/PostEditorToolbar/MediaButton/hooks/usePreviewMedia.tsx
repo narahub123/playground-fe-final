@@ -1,5 +1,8 @@
 import { useAppDispatch } from "@app/store";
-import { setPostEditorMedia } from "@shared/pages/ui/PostEditor/models/slices/postEditorSlice";
+import {
+  postEditorToolbarButtonOn,
+  setPostEditorMedia,
+} from "@shared/pages/ui/PostEditor/models/slices/postEditorSlice";
 
 const usePreviewMedia = () => {
   const dispatch = useAppDispatch();
@@ -30,6 +33,8 @@ const usePreviewMedia = () => {
     Promise.all(readers)
       .then((media) => {
         dispatch(setPostEditorMedia(media));
+        // media on 적용
+        dispatch(postEditorToolbarButtonOn("media"));
       })
       .catch((error) => {
         console.error("이미지 처리 중 에러", error);

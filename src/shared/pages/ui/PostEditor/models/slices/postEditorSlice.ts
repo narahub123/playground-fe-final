@@ -44,13 +44,17 @@ const postEditorSlice = createSlice({
       state,
       action: PayloadAction<PostEditorToolbarButtonType>
     ) => {
-      state.toolbar[action.payload] = true;
+      if (!state.toolbar[action.payload]) {
+        state.toolbar = { ...state.toolbar, [action.payload]: true };
+      }
     },
     postEditorToolbarButtonOff: (
       state,
       action: PayloadAction<PostEditorToolbarButtonType>
     ) => {
-      state.toolbar[action.payload] = false;
+      if (state.toolbar[action.payload]) {
+        state.toolbar = { ...state.toolbar, [action.payload]: false };
+      }
     },
   },
 });

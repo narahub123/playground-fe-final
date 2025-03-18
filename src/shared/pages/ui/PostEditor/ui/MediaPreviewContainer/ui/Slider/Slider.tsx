@@ -3,7 +3,10 @@ import styles from "./Slider.module.css";
 import { joinClassNames } from "@shared/@common/utils";
 import MediaPreview from "../MediaPreview/MediaPreview";
 import { useAppDispatch } from "@app/store";
-import { removePostEditorMedia } from "@shared/pages/ui/PostEditor/models/slices/postEditorSlice";
+import {
+  postEditorToolbarButtonOff,
+  removePostEditorMedia,
+} from "@shared/pages/ui/PostEditor/models/slices/postEditorSlice";
 
 interface SliderProps {
   media: string[];
@@ -44,6 +47,12 @@ const Slider = ({ media, curStart, moveLeft }: SliderProps) => {
     // 왼쪽으로 이동
     if (curStart === media.length - 2 && media.length > 2) {
       moveLeft();
+    }
+
+    // 미디어 개수가 0이면 되면 toolbar의 media false
+    // 같은 함수 내에서 즉각 적으로 변경되지 않는 관계로 미디어 개수 - 1을 적용함
+    if (media.length - 1 === 0) {
+      dispatch(postEditorToolbarButtonOff("media"));
     }
   };
 
