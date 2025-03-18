@@ -23,12 +23,21 @@
   padding-top: 0.25rem;
 }
 
+.text__editor__container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
 .text__editor__wrapper {
   padding: 0.75rem 0;
 }
 
 .media__preview__wrapper {
   opacity: 1;
+}
+
+.vote__wrapper {
 }
 
 .controls__wrapper {

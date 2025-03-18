@@ -6,6 +6,7 @@ import { PostEditorToolbar } from "./PostEditorToolbar";
 import ReplyPermissionControl from "./ReplyPermissionControl/ReplyPermissionControl";
 import { TextEditor } from "./TextEditor";
 import { MediaPreviewContainer } from "./MediaPreviewContainer";
+import { Vote } from "./Vote";
 
 export {
   AddPostLink,
@@ -16,4 +17,5 @@ export {
   ReplyPermissionControl,
   TextEditor,
   MediaPreviewContainer,
+  Vote,
 };

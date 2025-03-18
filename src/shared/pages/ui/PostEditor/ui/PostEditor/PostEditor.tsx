@@ -14,6 +14,7 @@ import {
   PostEditorToolbar,
   ReplyPermissionControl,
   TextEditor,
+  Vote,
 } from "@shared/pages/ui/PostEditor/ui";
 import { ReplyOptionType } from "@shared/pages/ui/PostEditor/types";
 import { selectPostEditor } from "../../models/selectors";
@@ -30,6 +31,7 @@ const PostEditor = ({ className }: PostEditorProps) => {
   const user = useSelector(selectUser);
   const postEditorContent = useSelector(selectPostEditor);
   const { post, toolbar } = postEditorContent;
+  const { media, vote } = toolbar;
 
   console.log(toolbar);
 
@@ -57,9 +59,16 @@ const PostEditor = ({ className }: PostEditorProps) => {
           <div className={styles["text__editor__wrapper"]}>
             <TextEditor />
           </div>
-          <div className={styles["media__preview__wrapper"]}>
-            <MediaPreviewContainer />
-          </div>
+          {media && (
+            <div className={styles["media__preview__wrapper"]}>
+              <MediaPreviewContainer />
+            </div>
+          )}
+          {vote && (
+            <div className={styles["vote__wrapper"]}>
+              <Vote />
+            </div>
+          )}
         </div>
         <div className={styles["controls__wrapper"]}>
           <div className={styles["reply__permission__control__wrapper"]}>

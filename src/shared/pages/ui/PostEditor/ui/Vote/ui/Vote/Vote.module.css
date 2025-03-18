@@ -1,0 +1,31 @@
+.vote {
+  border: 1px solid #ccc;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.vote__questionaries {
+  padding: 0.75em;
+  border-bottom: 1px solid #ccc;
+}
+
+.vote__duration {
+  padding: 0.75em;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+}
+
+.selectors__wrapper {
+  width: 100%;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.vote__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}

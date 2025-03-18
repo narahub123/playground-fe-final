@@ -514,6 +514,7 @@ const components = {
     imgAlt: "이미지 미리보기",
     videoTitle: "비디오 미리보기",
   },
+  Vote: {},
 };
 
 export default components;

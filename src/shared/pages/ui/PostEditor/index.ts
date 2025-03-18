@@ -6,6 +6,7 @@ import {
   PostEditorToolbar,
   ReplyPermissionControl,
   TextEditor,
+  Vote,
 } from "./ui";
 
 export {
@@ -16,4 +17,5 @@ export {
   PostEditorToolbar,
   ReplyPermissionControl,
   TextEditor,
+  Vote,
 };
