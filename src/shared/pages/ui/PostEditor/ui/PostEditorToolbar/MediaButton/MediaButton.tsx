@@ -32,8 +32,13 @@ const MediaButton = () => {
     // 유효한 파일 추출하기
     const validFiles = validateFiles(files);
 
+    console.log(validFiles);
+
     // 미디어 미리보기 생성
     previewMedia(validFiles);
+
+    // 같은 이름의 파일을 업로드하기 위해서는 초기화해줘야 함
+    e.target.value = "";
   };
 
   return (
