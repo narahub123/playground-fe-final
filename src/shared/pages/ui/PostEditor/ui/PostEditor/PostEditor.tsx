@@ -34,6 +34,7 @@ const PostEditor = ({ className }: PostEditorProps) => {
   const { media, vote } = toolbar;
 
   console.log(toolbar);
+  console.log(post);
 
   // 언어 설정
   const {} = useLanguageContent(["components", "PostEditor"]);

@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
   IPostEditorPost,
   IPostEditorToolbar,
+  IVote,
   PostEditorToolbarButtonType,
 } from "../../types";
 
@@ -13,6 +14,10 @@ interface PostEditorState {
 const initialState: PostEditorState = {
   post: {
     media: [],
+    vote: {
+      options: [],
+      duration: null,
+    },
   },
   toolbar: {
     media: false,
@@ -40,6 +45,9 @@ const postEditorSlice = createSlice({
 
       state.post.media = newMedia;
     },
+    setPostEditorVote: (state, action: PayloadAction<IVote>) => {
+      state.post.vote = action.payload;
+    },
     postEditorToolbarButtonOn: (
       state,
       action: PayloadAction<PostEditorToolbarButtonType>
@@ -66,4 +74,5 @@ export const {
   removePostEditorMedia,
   postEditorToolbarButtonOff,
   postEditorToolbarButtonOn,
+  setPostEditorVote,
 } = postEditorSlice.actions;

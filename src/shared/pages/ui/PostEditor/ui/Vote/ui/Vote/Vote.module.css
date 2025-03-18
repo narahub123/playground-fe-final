@@ -3,6 +3,7 @@
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .vote__options {
@@ -30,9 +31,17 @@
   gap: 1.5rem;
 }
 
-.vote__button {
+.vote__button__wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
+}
+
+.vote__button {
+  width: 100%;
+  color: red;
+}
+
+.vote__button:hover {
+  background-color: rgba(255, 0, 0, 0.1);
 }

@@ -4,6 +4,7 @@ import {
   removePostEditorMedia,
   postEditorToolbarButtonOff,
   postEditorToolbarButtonOn,
+  setPostEditorVote,
 } from "./postEditorSlice";
 
 export {
@@ -12,4 +13,5 @@ export {
   removePostEditorMedia,
   postEditorToolbarButtonOff,
   postEditorToolbarButtonOn,
+  setPostEditorVote,
 };

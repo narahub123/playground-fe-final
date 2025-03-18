@@ -1,4 +1,5 @@
 import { Icons } from "@shared/@common/ui/icons";
+import { IVoteDuration } from "../ui/Vote";
 
 type ReplyOptionType = "all" | "following" | "authenticated" | "mentioned";
 
@@ -9,8 +10,17 @@ interface IReplyOption {
   description: string;
 }
 
+interface IVote {
+  options: string[];
+  duration: IVoteDuration | null;
+}
+
 interface IPostEditorPost {
   media: string[];
+  vote: {
+    options: string[];
+    duration: IVoteDuration | null;
+  };
 }
 
 type PostEditorToolbarButtonType =
@@ -34,4 +44,5 @@ export type {
   IPostEditorPost,
   IPostEditorToolbar,
   PostEditorToolbarButtonType,
+  IVote,
 };

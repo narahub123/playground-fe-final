@@ -521,6 +521,7 @@ const components = {
       hour: "시간",
       minute: "분",
     },
+    deleteBtn: "투표 삭제",
   },
   InputOption: {
     label: "선택",
