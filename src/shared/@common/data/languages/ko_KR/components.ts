@@ -530,6 +530,12 @@ const components = {
   AddOptionButton: {
     title: "추가",
   },
+
+  EmojiDropdown: {},
+  EmojiSearch: {},
+  EmojiTabs: {},
+  EmojiRecent: {},
+  EmojiList: {},
 };
 
 export default components;

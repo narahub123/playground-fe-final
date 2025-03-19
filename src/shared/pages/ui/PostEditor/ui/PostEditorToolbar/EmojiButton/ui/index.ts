@@ -1,4 +1,17 @@
 import EmojiButton from "./EmojiButton/EmojiButton";
-import EmojiDropdown from "./EmojiDropdown/EmojiDropdown";
+import {
+  EmojiDropdown,
+  EmojiSearch,
+  EmojiTabs,
+  EmojiRecent,
+  EmojiList,
+} from "./EmojiDropdown";
 
-export { EmojiButton, EmojiDropdown };
+export {
+  EmojiButton,
+  EmojiDropdown,
+  EmojiSearch,
+  EmojiTabs,
+  EmojiRecent,
+  EmojiList,
+};

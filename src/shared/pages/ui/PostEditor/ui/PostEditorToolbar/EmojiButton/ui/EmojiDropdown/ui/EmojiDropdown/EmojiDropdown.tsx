@@ -1,6 +1,12 @@
 import styles from "./EmojiDropdown.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Dropdown } from "@shared/@common/ui/components";
+import {
+  EmojiList,
+  EmojiRecent,
+  EmojiSearch,
+  EmojiTabs,
+} from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/EmojiButton";
 
 interface EmojiDropdownProps {
   disabled?: boolean;
@@ -24,7 +30,7 @@ const EmojiDropdown = ({
   right,
 }: EmojiDropdownProps) => {
   // 언어 설정
-  //   const {} = useLanguageContent(["", "EmojiDropdown"]);
+  const {} = useLanguageContent(["components", "EmojiDropdown"]);
 
   return (
     <Dropdown
@@ -39,11 +45,19 @@ const EmojiDropdown = ({
       className={styles["emoji__dropdown"]}
       disabled={disabled}
     >
-      <div>
-        <div>검색</div>
-        <div>탭들</div>
-        <div>최근</div>
-        <div>리스트</div>
+      <div className={styles["emoji__dropdown__container"]}>
+        <div className={styles["emoji__search__wrapper"]}>
+          <EmojiSearch />
+        </div>
+        <div className={styles["emoji__tabs__wrapper"]}>
+          <EmojiTabs />
+        </div>
+        <div className={styles["emoji__recent__wrapper"]}>
+          <EmojiRecent />
+        </div>
+        <div className={styles["emoji__list__wrapper"]}>
+          <EmojiList />
+        </div>
       </div>
     </Dropdown>
   );
