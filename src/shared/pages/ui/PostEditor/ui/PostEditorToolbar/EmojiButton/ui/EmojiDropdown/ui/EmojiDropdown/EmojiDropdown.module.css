@@ -13,6 +13,9 @@
 
 /* 스크롤 적용 가능하도록 변경 필요 */
 .emoji__list__container {
+  position: relative;
+  max-height: 300px;
+  overflow: auto;
 }
 .emoji__recent__wrapper {
 }

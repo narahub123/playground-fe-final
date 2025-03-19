@@ -4,10 +4,14 @@ import {
   EmojiSearch,
   EmojiTabs,
   EmojiRecent,
+  EmojiListContainer,
   EmojiList,
   EmojiTab,
-  IEmojiTab,
+  IEmoji,
   Emoji,
+  IEmojiData,
+  useEmojiData,
+  emojiData,
 } from "./EmojiDropdown";
 
 export {
@@ -16,9 +20,16 @@ export {
   EmojiSearch,
   EmojiTabs,
   EmojiRecent,
+  EmojiListContainer,
   EmojiList,
   EmojiTab,
   Emoji,
+
+  // hooks
+  useEmojiData,
+
+  // data
+  emojiData,
 };
 
-export type { IEmojiTab };
+export type { IEmoji, IEmojiData };

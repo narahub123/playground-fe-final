@@ -1,12 +1,12 @@
 import { Button } from "@shared/@common/ui/components";
 import styles from "./Emoji.module.css";
 import { joinClassNames } from "@shared/@common/utils";
-import { IEmojiTab } from "../../types";
+import { IEmoji } from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/EmojiButton";
 
 interface EmojiProps {
   className?: string;
   disabled?: boolean;
-  emoji: IEmojiTab;
+  emoji: IEmoji;
 }
 
 const Emoji = ({ className, disabled = false, emoji }: EmojiProps) => {
@@ -20,10 +20,10 @@ const Emoji = ({ className, disabled = false, emoji }: EmojiProps) => {
       }}
       isValid={!disabled}
       className={classNames}
-      aria-label={emoji.title}
+      aria-label={emoji.name}
       variant="ghost"
     >
-      <span className={styles["emoji__icon"]}>{emoji.emoji}</span>
+      <span className={styles["emoji__icon"]}>{emoji.char}</span>
     </Button>
   );
 };

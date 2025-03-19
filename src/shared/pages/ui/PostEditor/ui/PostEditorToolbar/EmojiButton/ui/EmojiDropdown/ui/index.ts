@@ -5,6 +5,7 @@ import EmojiRecent from "./EmojiRecent/EmojiRecent";
 import EmojiList from "./EmojiList/EmojiList";
 import EmojiTab from "./EmojiTab/EmojiTab";
 import Emoji from "./Emoji/Emoji";
+import EmojiListContainer from "./EmojiListContainer/EmojiListContainer";
 
 export {
   EmojiDropdown,
@@ -14,4 +15,5 @@ export {
   EmojiList,
   EmojiTab,
   Emoji,
+  EmojiListContainer,
 };

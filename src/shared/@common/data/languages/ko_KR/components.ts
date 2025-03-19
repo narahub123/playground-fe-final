@@ -533,15 +533,15 @@ const components = {
 
   EmojiDropdown: {
     tabs: [
-      { emoji: "🕑", title: "최근" },
-      { emoji: "😀", title: "스마일리 및 사람" },
-      { emoji: "🐻", title: "동물 및 자연" },
-      { emoji: "🍔", title: "음식 및 음료" },
-      { emoji: "⚽", title: "활동" },
-      { emoji: "🚔", title: "여행 및 장소" },
-      { emoji: "💡", title: "사물" },
-      { emoji: "🔣", title: "기호" },
-      { emoji: "🚩", title: "깃발" },
+      { char: "🕑", name: "최근" },
+      { char: "😀", name: "스마일리 및 사람" },
+      { char: "🐻", name: "동물 및 자연" },
+      { char: "🍔", name: "음식 및 음료" },
+      { char: "⚽", name: "활동" },
+      { char: "🚔", name: "여행 및 장소" },
+      { char: "💡", name: "사물" },
+      { char: "🔣", name: "기호" },
+      { char: "🚩", name: "깃발" },
     ],
   },
   EmojiSearch: {

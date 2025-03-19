@@ -3,11 +3,14 @@ import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Dropdown } from "@shared/@common/ui/components";
 import {
   EmojiList,
+  EmojiListContainer,
   EmojiRecent,
   EmojiSearch,
   EmojiTabs,
+  IEmoji,
 } from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/EmojiButton";
 import { useState } from "react";
+import useEmojiData from "../../hooks/useEmojiData";
 
 interface EmojiDropdownProps {
   disabled?: boolean;
@@ -37,7 +40,11 @@ const EmojiDropdown = ({
 
   const [keyword, setKeyword] = useState("");
 
-  console.log(keyword);
+  const emojis = useEmojiData();
+
+  const tabNames = (tabs as IEmoji[])
+    .filter((_, index) => index !== 0)
+    .map((tab) => tab.name);
 
   return (
     <Dropdown
@@ -64,7 +71,7 @@ const EmojiDropdown = ({
             <EmojiRecent />
           </div>
           <div className={styles["emoji__list__wrapper"]}>
-            <EmojiList tabName={tabs[curTab].title} />
+            <EmojiListContainer tabNames={tabNames} emojiList={emojis} />
           </div>
         </div>
       </div>

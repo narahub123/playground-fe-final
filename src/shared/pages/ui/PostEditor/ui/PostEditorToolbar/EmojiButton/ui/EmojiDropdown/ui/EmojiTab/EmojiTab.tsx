@@ -1,10 +1,10 @@
 import styles from "./EmojiTab.module.css";
 import { Button } from "@shared/@common/ui/components";
-import { IEmojiTab } from "../../types";
+import { IEmoji } from "../../types";
 import { joinClassNames } from "@shared/@common/utils";
 
 interface EmojiTabProps {
-  tabInfo: IEmojiTab;
+  tabInfo: IEmoji;
   isCurTab: boolean;
   onClick: () => void;
 }
@@ -15,7 +15,7 @@ const EmojiTab = ({ tabInfo, isCurTab, onClick }: EmojiTabProps) => {
     isCurTab ? styles["selected"] : styles["unselected"],
   ]);
 
-  const { emoji, title } = tabInfo;
+  const { char, name } = tabInfo;
 
   return (
     <Button
@@ -24,10 +24,10 @@ const EmojiTab = ({ tabInfo, isCurTab, onClick }: EmojiTabProps) => {
       isValid
       variant="ghost"
       fontSize="lg"
-      aria-label={title}
-      data-title={title}
+      aria-label={name}
+      data-title={name}
     >
-      <div className={styles["emoji"]}>{emoji}</div>
+      <div className={styles["emoji"]}>{char}</div>
     </Button>
   );
 };
