@@ -22,7 +22,7 @@ const initialState: PostEditorState = {
   toolbar: {
     media: false,
     vote: false,
-    emoticon: false,
+    emoji: false,
     reserve: false,
     location: false,
   },
