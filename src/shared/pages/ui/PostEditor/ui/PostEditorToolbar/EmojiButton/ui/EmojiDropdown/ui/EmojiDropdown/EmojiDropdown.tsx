@@ -7,6 +7,7 @@ import {
   EmojiSearch,
   EmojiTabs,
 } from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/EmojiButton";
+import { useState } from "react";
 
 interface EmojiDropdownProps {
   disabled?: boolean;
@@ -32,6 +33,10 @@ const EmojiDropdown = ({
   // 언어 설정
   const {} = useLanguageContent(["components", "EmojiDropdown"]);
 
+  const [keyword, setKeyword] = useState("");
+
+  console.log(keyword);
+
   return (
     <Dropdown
       isOpen={isOpen}
@@ -47,7 +52,7 @@ const EmojiDropdown = ({
     >
       <div className={styles["emoji__dropdown__container"]}>
         <div className={styles["emoji__search__wrapper"]}>
-          <EmojiSearch />
+          <EmojiSearch keyword={keyword} setKeyword={setKeyword} />
         </div>
         <div className={styles["emoji__tabs__wrapper"]}>
           <EmojiTabs />

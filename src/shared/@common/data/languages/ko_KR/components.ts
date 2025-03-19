@@ -532,7 +532,9 @@ const components = {
   },
 
   EmojiDropdown: {},
-  EmojiSearch: {},
+  EmojiSearch: {
+    ph: "이모티콘 검색하기",
+  },
   EmojiTabs: {},
   EmojiRecent: {},
   EmojiList: {},

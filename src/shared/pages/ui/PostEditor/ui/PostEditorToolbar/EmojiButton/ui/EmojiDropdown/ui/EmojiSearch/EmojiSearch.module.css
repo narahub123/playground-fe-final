@@ -1,0 +1,24 @@
+.emoji__search {
+  margin: 0.25rem;
+  border: 1px solid #ccc;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.emoji__search--focused {
+  outline: 2px solid var(--colorTheme-color-primary);
+  border: 1px solid transparent;
+}
+
+.emoji__search--unfocused {
+  border: 1px solid #ccc;
+}
+
+.emoji__search__field {
+  border: none;
+}
+
+.emoji__search__clear__icon {
+  margin: 0 0.25rem;
+}
