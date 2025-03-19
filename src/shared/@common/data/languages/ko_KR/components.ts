@@ -548,7 +548,10 @@ const components = {
     ph: "이모티콘 검색하기",
   },
 
-  EmojiRecent: {},
+  EmojiRecent: {
+    title: "최근",
+    clearBtn: "모두 지우기",
+  },
   EmojiList: {},
 };
 

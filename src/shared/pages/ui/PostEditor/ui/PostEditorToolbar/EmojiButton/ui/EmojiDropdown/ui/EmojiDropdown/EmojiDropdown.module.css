@@ -11,6 +11,9 @@
 .emoji__tabs__wrapper {
 }
 
+/* 스크롤 적용 가능하도록 변경 필요 */
+.emoji__list__container {
+}
 .emoji__recent__wrapper {
 }
 

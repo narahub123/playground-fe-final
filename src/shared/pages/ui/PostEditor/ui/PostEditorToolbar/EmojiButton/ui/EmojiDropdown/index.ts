@@ -5,6 +5,7 @@ import {
   EmojiRecent,
   EmojiList,
   EmojiTab,
+  Emoji,
 } from "./ui";
 
 import { IEmojiTab } from "./types";
@@ -16,6 +17,7 @@ export {
   EmojiRecent,
   EmojiList,
   EmojiTab,
+  Emoji,
 };
 
 export type { IEmojiTab };

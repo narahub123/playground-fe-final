@@ -59,11 +59,13 @@ const EmojiDropdown = ({
         <div className={styles["emoji__tabs__wrapper"]}>
           <EmojiTabs curTab={curTab} setCurTab={setCurTab} tabs={tabs} />
         </div>
-        <div className={styles["emoji__recent__wrapper"]}>
-          <EmojiRecent />
-        </div>
-        <div className={styles["emoji__list__wrapper"]}>
-          <EmojiList tabName={tabs[curTab].title} />
+        <div className={styles["emoji__list__container"]}>
+          <div className={styles["emoji__recent__wrapper"]}>
+            <EmojiRecent />
+          </div>
+          <div className={styles["emoji__list__wrapper"]}>
+            <EmojiList tabName={tabs[curTab].title} />
+          </div>
         </div>
       </div>
     </Dropdown>
