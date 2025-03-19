@@ -5,6 +5,8 @@ import {
   EmojiTabs,
   EmojiRecent,
   EmojiList,
+  EmojiTab,
+  IEmojiTab,
 } from "./EmojiDropdown";
 
 export {
@@ -14,4 +16,7 @@ export {
   EmojiTabs,
   EmojiRecent,
   EmojiList,
+  EmojiTab,
 };
+
+export type { IEmojiTab };

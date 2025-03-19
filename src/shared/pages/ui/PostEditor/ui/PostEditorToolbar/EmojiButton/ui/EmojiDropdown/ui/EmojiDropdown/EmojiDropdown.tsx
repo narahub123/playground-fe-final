@@ -31,7 +31,9 @@ const EmojiDropdown = ({
   right,
 }: EmojiDropdownProps) => {
   // 언어 설정
-  const {} = useLanguageContent(["components", "EmojiDropdown"]);
+  const { tabs } = useLanguageContent(["components", "EmojiDropdown"]);
+
+  const [curTab, setCurTab] = useState(0);
 
   const [keyword, setKeyword] = useState("");
 
@@ -55,13 +57,13 @@ const EmojiDropdown = ({
           <EmojiSearch keyword={keyword} setKeyword={setKeyword} />
         </div>
         <div className={styles["emoji__tabs__wrapper"]}>
-          <EmojiTabs />
+          <EmojiTabs curTab={curTab} setCurTab={setCurTab} tabs={tabs} />
         </div>
         <div className={styles["emoji__recent__wrapper"]}>
           <EmojiRecent />
         </div>
         <div className={styles["emoji__list__wrapper"]}>
-          <EmojiList />
+          <EmojiList tabName={tabs[curTab].title} />
         </div>
       </div>
     </Dropdown>

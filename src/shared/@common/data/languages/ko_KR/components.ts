@@ -531,11 +531,23 @@ const components = {
     title: "추가",
   },
 
-  EmojiDropdown: {},
+  EmojiDropdown: {
+    tabs: [
+      { emoji: "🕑", title: "최근" },
+      { emoji: "😀", title: "스마일리 및 사람" },
+      { emoji: "🐻", title: "동물 및 자연" },
+      { emoji: "🍔", title: "음식 및 음료" },
+      { emoji: "⚽", title: "활동" },
+      { emoji: "🚔", title: "여행 및 장소" },
+      { emoji: "💡", title: "사물" },
+      { emoji: "🔣", title: "기호" },
+      { emoji: "🚩", title: "깃발" },
+    ],
+  },
   EmojiSearch: {
     ph: "이모티콘 검색하기",
   },
-  EmojiTabs: {},
+
   EmojiRecent: {},
   EmojiList: {},
 };

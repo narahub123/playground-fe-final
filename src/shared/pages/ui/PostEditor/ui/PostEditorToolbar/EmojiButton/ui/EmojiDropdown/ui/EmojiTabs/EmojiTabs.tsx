@@ -1,19 +1,32 @@
 import styles from "./EmojiTabs.module.css";
-import { useLanguageContent } from "@shared/@common/models/hooks";
-import { joinClassNames } from "@shared/@common/utils";
+import {
+  EmojiTab,
+  IEmojiTab,
+} from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/EmojiButton";
 
 interface EmojiTabsProps {
-  className?: string;
-  disabled?: boolean;
+  curTab: number;
+  setCurTab: React.Dispatch<React.SetStateAction<number>>;
+  tabs: IEmojiTab[];
 }
 
-const EmojiTabs = ({ className, disabled = false }: EmojiTabsProps) => {
-  // 언어 설정
-  const {} = useLanguageContent(["components", "EmojiTabs"]);
+const EmojiTabs = ({ curTab, setCurTab, tabs }: EmojiTabsProps) => {
+  const handleClick = (index: number) => {
+    setCurTab(index); 
+  };
 
-  const classNames = joinClassNames([styles["emojitabs"], className]);
-
-  return <div className={classNames}>EmojiTabs</div>;
+  return (
+    <div className={styles["emoji__tabs"]}>
+      {(tabs as IEmojiTab[]).map((emoji, index) => (
+        <EmojiTab
+          key={index}
+          tabInfo={emoji}
+          isCurTab={curTab === index}
+          onClick={() => handleClick(index)}
+        />
+      ))}
+    </div>
+  );
 };
 
 export default EmojiTabs;
