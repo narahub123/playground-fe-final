@@ -17,6 +17,7 @@
 
 .emoji__search__field {
   border: none;
+  flex: 1;
 }
 
 .emoji__search__clear__icon {
