@@ -1,6 +1,7 @@
 import styles from "./EmojiPreview.module.css";
 import {
   defaultEmojiPreviews,
+  getEmojiWithSkinTone,
   IEmoji,
   ISkinTone,
   SkintonePicker,
@@ -25,7 +26,9 @@ const EmojiPreview = ({
       <div className={styles["emoji__preview__wrapper"]}>
         <div className={styles["emoji__preview__bigger__emoji"]}>
           <div className={styles["bigger__emoji"]}>
-            {curEmoji ? curEmoji.char : defaultPreview.char}
+            {curEmoji
+              ? getEmojiWithSkinTone(curEmoji, curSkinton.name)
+              : defaultPreview.char}
           </div>
         </div>
         {curEmoji && (

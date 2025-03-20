@@ -2,6 +2,7 @@ import { Button } from "@shared/@common/ui/components";
 import styles from "./Emoji.module.css";
 import { joinClassNames } from "@shared/@common/utils";
 import {
+  getEmojiWithSkinTone,
   IEmoji,
   SkintoneType,
 } from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/EmojiButton";
@@ -45,17 +46,7 @@ const Emoji = ({
       onMouseLeave={handleMouseLeave}
     >
       <span className={styles["emoji__icon"]}>
-        {!emoji.skintone || curSkinTone === "default"
-          ? emoji.char
-          : curSkinTone === "light"
-          ? emoji.skintone[0]
-          : curSkinTone === "mediumLight"
-          ? emoji.skintone[1]
-          : curSkinTone === "medium"
-          ? emoji.skintone[2]
-          : curSkinTone === "mediumDark"
-          ? emoji.skintone[3]
-          : emoji.skintone[4]}
+        {getEmojiWithSkinTone(emoji, curSkinTone)}
       </span>
     </Button>
   );

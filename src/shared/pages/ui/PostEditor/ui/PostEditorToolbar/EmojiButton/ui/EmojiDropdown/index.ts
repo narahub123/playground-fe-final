@@ -18,6 +18,8 @@ import { useEmojiData } from "./hooks";
 
 import { emojiData, skinTones, defaultEmojiPreviews } from "./data";
 
+import { getEmojiWithSkinTone } from "./utils";
+
 export {
   EmojiDropdown,
   EmojiSearch,
@@ -38,6 +40,9 @@ export {
   emojiData,
   skinTones,
   defaultEmojiPreviews,
+
+  // utils
+  getEmojiWithSkinTone,
 };
 
 export type { IEmoji, IEmojiData, SkintoneType, ISkinTone };

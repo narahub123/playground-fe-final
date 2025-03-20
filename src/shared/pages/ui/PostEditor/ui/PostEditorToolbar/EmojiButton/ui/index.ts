@@ -19,6 +19,7 @@ import {
   SkintoneType,
   ISkinTone,
   defaultEmojiPreviews,
+  getEmojiWithSkinTone,
 } from "./EmojiDropdown";
 
 export {
@@ -42,6 +43,9 @@ export {
   emojiData,
   skinTones,
   defaultEmojiPreviews,
+
+  // utils
+  getEmojiWithSkinTone,
 };
 
 export type { IEmoji, IEmojiData, SkintoneType, ISkinTone };
