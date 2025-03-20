@@ -1,14 +1,15 @@
 import { Button, Text } from "@shared/@common/ui/components";
 import styles from "./EmojiRecent.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
-import { IEmoji } from "../../types";
+import { IEmoji, SkintoneType } from "../../types";
 import Emoji from "../Emoji/Emoji";
 
 interface EmojiRecentProps {
   setCurEmoji: React.Dispatch<React.SetStateAction<IEmoji | null>>;
+  curSkinTone: SkintoneType;
 }
 
-const EmojiRecent = ({ setCurEmoji }: EmojiRecentProps) => {
+const EmojiRecent = ({ setCurEmoji, curSkinTone }: EmojiRecentProps) => {
   // 언어 설정
   const { title, clearBtn } = useLanguageContent(["components", "EmojiRecent"]);
 
@@ -48,7 +49,12 @@ const EmojiRecent = ({ setCurEmoji }: EmojiRecentProps) => {
       <div className={styles["emoji__recent__content__wrapper"]}>
         <div className={styles["emoji__recent__content"]}>
           {recentList.map((emoji, index) => (
-            <Emoji emoji={emoji} key={index} setCurEmoji={setCurEmoji} />
+            <Emoji
+              emoji={emoji}
+              key={index}
+              setCurEmoji={setCurEmoji}
+              curSkinTone={curSkinTone}
+            />
           ))}
         </div>
       </div>

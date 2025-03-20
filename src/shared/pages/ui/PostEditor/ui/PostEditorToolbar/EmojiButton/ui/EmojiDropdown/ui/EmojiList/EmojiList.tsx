@@ -5,6 +5,7 @@ import { joinClassNames } from "@shared/@common/utils";
 import {
   Emoji,
   IEmoji,
+  SkintoneType,
 } from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/EmojiButton";
 
 interface EmojiListProps {
@@ -12,6 +13,7 @@ interface EmojiListProps {
   tabName: string;
   emojiList: IEmoji[];
   setCurEmoji: React.Dispatch<React.SetStateAction<IEmoji | null>>;
+  curSkinTone: SkintoneType;
 }
 
 const EmojiList = ({
@@ -19,6 +21,7 @@ const EmojiList = ({
   tabName,
   emojiList,
   setCurEmoji,
+  curSkinTone,
 }: EmojiListProps) => {
   // 언어 설정
   const {} = useLanguageContent(["components", "EmojiList"]);
@@ -33,7 +36,12 @@ const EmojiList = ({
       <div className={styles["emoji__list__content__wrapper"]}>
         <div className={styles["emoji__list__content"]}>
           {emojiList.map((emoji) => (
-            <Emoji emoji={emoji} key={emoji.char} setCurEmoji={setCurEmoji} />
+            <Emoji
+              emoji={emoji}
+              key={emoji.char}
+              setCurEmoji={setCurEmoji}
+              curSkinTone={curSkinTone}
+            />
           ))}
         </div>
       </div>

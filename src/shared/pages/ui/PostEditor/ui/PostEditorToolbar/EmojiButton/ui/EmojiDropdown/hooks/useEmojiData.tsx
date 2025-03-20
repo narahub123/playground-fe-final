@@ -8,7 +8,7 @@ import {
 const useEmojiData = () => {
   const [emojiArr, setEmojiArr] = useState<IEmoji[][]>([]);
   useEffect(() => {
-    const smileys__people: IEmoji[] = [];
+    const smileys__people: IEmojiData[] = [];
     const animals_nature: IEmoji[] = [];
     const food_drink: IEmoji[] = [];
     const travel_places: IEmoji[] = [];
@@ -17,19 +17,74 @@ const useEmojiData = () => {
     const symbols: IEmoji[] = [];
     const flags: IEmoji[] = [];
 
-    console.log(emojiData.map((emoji) => emoji.char));
+    const checkSkinTone = (emoji: IEmojiData) => {
+      const splitCode = emoji.codes.split(" ");
 
-    const filtering = (emoji: IEmojiData) => {
-      const { char, name } = emoji;
-      return { char, name };
+      if (splitCode.length > 2) return;
+
+      if (splitCode.length === 2) {
+        const baseEmojiCode = splitCode[0];
+
+        const baseEmoji = smileys__people.find(
+          (emoji) => emoji.codes === baseEmojiCode
+        );
+
+        if (!baseEmoji) return;
+
+        if (!baseEmoji.skintone) {
+          baseEmoji.skintone = [];
+        }
+
+        if (emoji.codes.includes("1F3FB")) {
+          console.log("light");
+
+          baseEmoji.skintone[0] = emoji.char;
+
+          return;
+        } else if (emoji.codes.includes("1F3FC")) {
+          console.log("mediumLight");
+
+          baseEmoji.skintone[1] = emoji.char;
+
+          return;
+        } else if (emoji.codes.includes("1F3FD")) {
+          console.log("medium");
+
+          baseEmoji.skintone[2] = emoji.char;
+
+          return;
+        } else if (emoji.codes.includes("1F3FE")) {
+          console.log("mediumDark");
+
+          baseEmoji.skintone[3] = emoji.char;
+
+          return;
+        } else if (emoji.codes.includes("1F3FF")) {
+          console.log("dark");
+
+          baseEmoji.skintone[4] = emoji.char;
+
+          return;
+        }
+      }
+
+      smileys__people.push(emoji);
+    };
+
+    // IEmojiData를 IEmoji로 변경
+    const filtering = (emoji: IEmojiData): IEmoji => {
+      const { char, name, skintone } = emoji;
+
+      return { char, name, skintone };
     };
 
     emojiData.forEach((emoji) => {
+      if (emoji.codes.includes("FE0F")) return;
       if (
         emoji.category.includes("Smileys") ||
         emoji.category.includes("People")
       ) {
-        smileys__people.push(filtering(emoji));
+        checkSkinTone(emoji);
       } else if (emoji.category.includes("Animals")) {
         animals_nature.push(filtering(emoji));
       } else if (emoji.category.includes("Food")) {
@@ -58,8 +113,12 @@ const useEmojiData = () => {
         flags.length
     );
 
+    const modifedSmileysPeople = smileys__people.map((emoji) =>
+      filtering(emoji)
+    );
+
     setEmojiArr([
-      smileys__people,
+      modifedSmileysPeople,
       animals_nature,
       food_drink,
       travel_places,

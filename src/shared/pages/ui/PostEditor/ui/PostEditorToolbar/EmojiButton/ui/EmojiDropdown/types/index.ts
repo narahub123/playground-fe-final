@@ -1,6 +1,7 @@
 interface IEmoji {
   char: string;
   name: string;
+  skintone?: string[];
 }
 
 interface IEmojiData {
@@ -10,6 +11,7 @@ interface IEmojiData {
   category: string; // 카테고리 (예: Smileys & Emotion)
   group: string; // 그룹 (예: Smileys & Emotion)
   subgroup: string; // 서브 그룹 (예: face-smiling)
+  skintone?: string[];
 }
 
 type SkintoneType =
@@ -23,6 +25,7 @@ type SkintoneType =
 interface ISkinTone {
   name: SkintoneType;
   color: string;
+  code: string;
 }
 
 export type { IEmoji, IEmojiData, SkintoneType, ISkinTone };

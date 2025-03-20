@@ -73,13 +73,17 @@ const EmojiDropdown = ({
         </div>
         <div className={styles["emoji__list__container"]}>
           <div className={styles["emoji__recent__wrapper"]}>
-            <EmojiRecent setCurEmoji={setCurEmoji} />
+            <EmojiRecent
+              setCurEmoji={setCurEmoji}
+              curSkinTone={curSkinton.name}
+            />
           </div>
           <div className={styles["emoji__list__wrapper"]}>
             <EmojiListContainer
               tabNames={tabNames}
               emojiList={emojis}
               setCurEmoji={setCurEmoji}
+              curSkinTone={curSkinton.name}
             />
           </div>
         </div>

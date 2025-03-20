@@ -3,18 +3,21 @@ import { joinClassNames } from "@shared/@common/utils";
 import {
   EmojiList,
   IEmoji,
+  SkintoneType,
 } from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/EmojiButton";
 
 interface EmojiListContainerProps {
   tabNames: string[];
   emojiList: IEmoji[][];
   setCurEmoji: React.Dispatch<React.SetStateAction<IEmoji | null>>;
+  curSkinTone: SkintoneType;
 }
 
 const EmojiListContainer = ({
   tabNames,
   emojiList,
   setCurEmoji,
+  curSkinTone,
 }: EmojiListContainerProps) => {
   const classNames = joinClassNames([styles["emoji__list__container"]]);
 
@@ -26,6 +29,7 @@ const EmojiListContainer = ({
           emojiList={emojiList[index]}
           key={index}
           setCurEmoji={setCurEmoji}
+          curSkinTone={curSkinTone}
         />
       ))}
     </div>
