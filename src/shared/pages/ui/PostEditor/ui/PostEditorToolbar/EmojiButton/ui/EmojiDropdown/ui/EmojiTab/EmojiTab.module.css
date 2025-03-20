@@ -6,32 +6,9 @@
   width: 2.25rem;
 }
 
-.emoji__tab[data-title]::after {
-  content: attr(data-title);
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  top: 100%;
-  left: 50%;
-  transform: translate(-50%, 2px);
-  padding: 3px;
-  font-size: 0.75rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  color: var(--bgTheme-icon-color-primary);
-  background: var(--bgTheme-icon-bgColor-primary);
-  white-space: nowrap; /* 부모 너비보다 크게 */
-
-  opacity: 0;
-}
-
-.emoji__tab[data-title]:hover::after {
-  opacity: 1;
-  transition-delay: 0.1s;
-}
-
 .emoji__tab:hover {
   background-color: var(--colorTheme-bgColor-hover-light);
+  filter: grayscale(0%);
 }
 
 .emoji__tab:focus-visible {
@@ -44,6 +21,7 @@
 
 .unselected {
   border-bottom: 3px solid transparent;
+  filter: grayscale(100%);
 }
 
 .emoji {

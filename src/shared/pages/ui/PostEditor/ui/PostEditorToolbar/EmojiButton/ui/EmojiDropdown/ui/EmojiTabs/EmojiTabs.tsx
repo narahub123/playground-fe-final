@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import styles from "./EmojiTabs.module.css";
 import {
   EmojiTab,
@@ -17,17 +18,20 @@ const EmojiTabs = ({
   tabs,
   headersRefs,
 }: EmojiTabsProps) => {
+  const [sections, setSecions] = useState<(HTMLDivElement | null)[]>([]);
+  useEffect(() => {
+    const headers = headersRefs.current;
+    if (!headers || headers.length === 0) return;
+
+    setSecions(headers);
+  }, []);
   const handleClick = (index: number) => {
     setCurTab(index);
 
-    const headers = headersRefs.current;
-    if (!headers) return;
-
-    const section = headers[index];
-    if (!section) {
-      headers[1]?.scrollIntoView({ block: "start", behavior: "smooth" });
+    if (!sections[index]) {
+      sections[1]?.scrollIntoView({ block: "start", behavior: "smooth" });
     }
-    section?.scrollIntoView({ block: "start", behavior: "smooth" });
+    sections[index]?.scrollIntoView({ block: "start", behavior: "smooth" });
   };
 
   return (
@@ -38,6 +42,7 @@ const EmojiTabs = ({
           tabInfo={emoji}
           isCurTab={curTab === index}
           onClick={() => handleClick(index)}
+          disabled={Boolean(!sections[index])}
         />
       ))}
     </div>

@@ -11,7 +11,7 @@ import {
   ISkinTone,
   skinTones,
 } from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/EmojiButton";
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import useEmojiData from "../../hooks/useEmojiData";
 
 interface EmojiDropdownProps {
@@ -40,7 +40,12 @@ const EmojiDropdown = ({
 
   const headersRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  const [curTab, setCurTab] = useState(0);
+  const intialTab = useCallback(() => {
+    if (headersRefs.current[0]) return 0;
+    else return 1;
+  }, [headersRefs.current]);
+
+  const [curTab, setCurTab] = useState(intialTab);
   const [keyword, setKeyword] = useState("");
   const [curEmoji, setCurEmoji] = useState<IEmoji | null>(null);
   const [curSkinTone, setCurSkinTon] = useState<ISkinTone>(skinTones[0]);

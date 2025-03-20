@@ -7,9 +7,15 @@ interface EmojiTabProps {
   tabInfo: IEmoji;
   isCurTab: boolean;
   onClick: () => void;
+  disabled?: boolean;
 }
 
-const EmojiTab = ({ tabInfo, isCurTab, onClick }: EmojiTabProps) => {
+const EmojiTab = ({
+  tabInfo,
+  isCurTab,
+  onClick,
+  disabled = false,
+}: EmojiTabProps) => {
   const classNames = joinClassNames([
     styles["emoji__tab"],
     isCurTab ? styles["selected"] : styles["unselected"],
@@ -25,7 +31,7 @@ const EmojiTab = ({ tabInfo, isCurTab, onClick }: EmojiTabProps) => {
       variant="ghost"
       fontSize="lg"
       aria-label={name}
-      data-title={name}
+      disabled={disabled}
     >
       <div className={styles["emoji"]}>{char}</div>
     </Button>
