@@ -1,0 +1,30 @@
+.skintone__dot {
+}
+
+.skintone__dot__icon__wrapper {
+  width: 1.2rem;
+  height: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.skintone__dot__icon--selected {
+  outline: 2px solid var(--colorTheme-color-primary);
+}
+.skintone__dot__icon--unselected {
+  outline: 2px solid transparent;
+}
+
+.skintone__dot__icon--unselected:hover {
+  outline: 2px solid rgba(var(--color), 0.5);
+}
+
+.skintone__dot__icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}

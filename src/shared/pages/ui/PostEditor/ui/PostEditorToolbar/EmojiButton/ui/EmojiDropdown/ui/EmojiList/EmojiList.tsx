@@ -11,9 +11,15 @@ interface EmojiListProps {
   className?: string;
   tabName: string;
   emojiList: IEmoji[];
+  setCurEmoji: React.Dispatch<React.SetStateAction<IEmoji | null>>;
 }
 
-const EmojiList = ({ className, tabName, emojiList }: EmojiListProps) => {
+const EmojiList = ({
+  className,
+  tabName,
+  emojiList,
+  setCurEmoji,
+}: EmojiListProps) => {
   // 언어 설정
   const {} = useLanguageContent(["components", "EmojiList"]);
 
@@ -27,7 +33,7 @@ const EmojiList = ({ className, tabName, emojiList }: EmojiListProps) => {
       <div className={styles["emoji__list__content__wrapper"]}>
         <div className={styles["emoji__list__content"]}>
           {emojiList.map((emoji) => (
-            <Emoji emoji={emoji} key={emoji.char} />
+            <Emoji emoji={emoji} key={emoji.char} setCurEmoji={setCurEmoji} />
           ))}
         </div>
       </div>

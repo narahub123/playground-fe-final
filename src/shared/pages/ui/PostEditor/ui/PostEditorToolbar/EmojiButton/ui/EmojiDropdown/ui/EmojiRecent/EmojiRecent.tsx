@@ -4,9 +4,11 @@ import { useLanguageContent } from "@shared/@common/models/hooks";
 import { IEmoji } from "../../types";
 import Emoji from "../Emoji/Emoji";
 
-interface EmojiRecentProps {}
+interface EmojiRecentProps {
+  setCurEmoji: React.Dispatch<React.SetStateAction<IEmoji | null>>;
+}
 
-const EmojiRecent = ({}: EmojiRecentProps) => {
+const EmojiRecent = ({ setCurEmoji }: EmojiRecentProps) => {
   // 언어 설정
   const { title, clearBtn } = useLanguageContent(["components", "EmojiRecent"]);
 
@@ -46,7 +48,7 @@ const EmojiRecent = ({}: EmojiRecentProps) => {
       <div className={styles["emoji__recent__content__wrapper"]}>
         <div className={styles["emoji__recent__content"]}>
           {recentList.map((emoji, index) => (
-            <Emoji emoji={emoji} key={index} />
+            <Emoji emoji={emoji} key={index} setCurEmoji={setCurEmoji} />
           ))}
         </div>
       </div>

@@ -7,10 +7,24 @@ interface EmojiProps {
   className?: string;
   disabled?: boolean;
   emoji: IEmoji;
+  setCurEmoji: React.Dispatch<React.SetStateAction<IEmoji | null>>;
 }
 
-const Emoji = ({ className, disabled = false, emoji }: EmojiProps) => {
+const Emoji = ({
+  className,
+  disabled = false,
+  emoji,
+  setCurEmoji,
+}: EmojiProps) => {
   const classNames = joinClassNames([styles["emoji"], className]);
+
+  const handleMouseEnter = () => {
+    setCurEmoji(emoji);
+  };
+
+  const handleMouseLeave = () => {
+    setCurEmoji(null);
+  };
 
   return (
     <Button
@@ -22,6 +36,8 @@ const Emoji = ({ className, disabled = false, emoji }: EmojiProps) => {
       className={classNames}
       aria-label={emoji.name}
       variant="ghost"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       <span className={styles["emoji__icon"]}>{emoji.char}</span>
     </Button>

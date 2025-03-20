@@ -2,12 +2,14 @@ import styles from "./EmojiDropdown.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Dropdown } from "@shared/@common/ui/components";
 import {
-  EmojiList,
   EmojiListContainer,
+  EmojiPreview,
   EmojiRecent,
   EmojiSearch,
   EmojiTabs,
   IEmoji,
+  ISkinTone,
+  skinTones,
 } from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/EmojiButton";
 import { useState } from "react";
 import useEmojiData from "../../hooks/useEmojiData";
@@ -40,6 +42,9 @@ const EmojiDropdown = ({
 
   const [keyword, setKeyword] = useState("");
 
+  const [curEmoji, setCurEmoji] = useState<IEmoji | null>(null);
+  const [curSkinton, setCurSkinton] = useState<ISkinTone>(skinTones[0]);
+
   const emojis = useEmojiData();
 
   const tabNames = (tabs as IEmoji[])
@@ -68,11 +73,22 @@ const EmojiDropdown = ({
         </div>
         <div className={styles["emoji__list__container"]}>
           <div className={styles["emoji__recent__wrapper"]}>
-            <EmojiRecent />
+            <EmojiRecent setCurEmoji={setCurEmoji} />
           </div>
           <div className={styles["emoji__list__wrapper"]}>
-            <EmojiListContainer tabNames={tabNames} emojiList={emojis} />
+            <EmojiListContainer
+              tabNames={tabNames}
+              emojiList={emojis}
+              setCurEmoji={setCurEmoji}
+            />
           </div>
+        </div>
+        <div className={styles["emoji__preview__wrapper"]}>
+          <EmojiPreview
+            curEmoji={curEmoji}
+            curSkinton={curSkinton}
+            setCurSkinton={setCurSkinton}
+          />
         </div>
       </div>
     </Dropdown>

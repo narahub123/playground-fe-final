@@ -1,0 +1,8 @@
+.skintone__picker {
+}
+
+.skintone__list {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}

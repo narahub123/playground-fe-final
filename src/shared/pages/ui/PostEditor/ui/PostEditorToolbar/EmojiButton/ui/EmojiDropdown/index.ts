@@ -7,13 +7,16 @@ import {
   EmojiTab,
   Emoji,
   EmojiListContainer,
+  EmojiPreview,
+  SkintonePicker,
+  SkintoneDot,
 } from "./ui";
 
-import { IEmoji, IEmojiData } from "./types";
+import { IEmoji, IEmojiData, SkintoneType, ISkinTone } from "./types";
 
 import { useEmojiData } from "./hooks";
 
-import { emojiData } from "./data";
+import { emojiData, skinTones, defaultEmojiPreviews } from "./data";
 
 export {
   EmojiDropdown,
@@ -24,12 +27,17 @@ export {
   EmojiList,
   EmojiTab,
   Emoji,
+  EmojiPreview,
+  SkintonePicker,
+  SkintoneDot,
 
   // hooks
   useEmojiData,
 
   // data
   emojiData,
+  skinTones,
+  defaultEmojiPreviews,
 };
 
-export type { IEmoji, IEmojiData };
+export type { IEmoji, IEmojiData, SkintoneType, ISkinTone };

@@ -553,6 +553,7 @@ const components = {
     clearBtn: "모두 지우기",
   },
   EmojiList: {},
+  SkintonePicker: {},
 };
 
 export default components;

@@ -12,4 +12,17 @@ interface IEmojiData {
   subgroup: string; // 서브 그룹 (예: face-smiling)
 }
 
-export type { IEmoji, IEmojiData };
+type SkintoneType =
+  | "default"
+  | "light"
+  | "mediumLight"
+  | "medium"
+  | "mediumDark"
+  | "dark";
+
+interface ISkinTone {
+  name: SkintoneType;
+  color: string;
+}
+
+export type { IEmoji, IEmojiData, SkintoneType, ISkinTone };

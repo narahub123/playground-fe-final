@@ -6,6 +6,9 @@ import EmojiList from "./EmojiList/EmojiList";
 import EmojiTab from "./EmojiTab/EmojiTab";
 import Emoji from "./Emoji/Emoji";
 import EmojiListContainer from "./EmojiListContainer/EmojiListContainer";
+import EmojiPreview from "./EmojiPreview/EmojiPreview";
+import SkintonePicker from "./SkintonePicker/SkintonePicker";
+import SkintoneDot from "./SkintoneDot/SkintoneDot";
 
 export {
   EmojiDropdown,
@@ -16,4 +19,7 @@ export {
   EmojiTab,
   Emoji,
   EmojiListContainer,
+  EmojiPreview,
+  SkintonePicker,
+  SkintoneDot,
 };
