@@ -2,17 +2,19 @@ import styles from "./EmojiDropdown.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Dropdown } from "@shared/@common/ui/components";
 import {
+  EmojiContextProvider,
   EmojiList,
   EmojiPreview,
   EmojiRecent,
   EmojiSearch,
   EmojiTabs,
   IEmoji,
+  IEmojiContext,
   ISkinTone,
   skinTones,
+  useEmojiData,
 } from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/EmojiButton";
 import { useCallback, useRef, useState } from "react";
-import useEmojiData from "../../hooks/useEmojiData";
 
 interface EmojiDropdownProps {
   disabled?: boolean;
@@ -56,61 +58,65 @@ const EmojiDropdown = ({
     .filter((_, index) => index !== 0)
     .map((tab) => tab.name);
 
+  const value: IEmojiContext = {};
+
   return (
-    <Dropdown
-      isOpen={isOpen}
-      lastClickedRef={lastClickedRef}
-      name="emoji"
-      onClose={onClose}
-      top={top}
-      left={left}
-      bottom={bottom}
-      right={right}
-      className={styles["emoji__dropdown"]}
-      disabled={disabled}
-    >
-      <div className={styles["emoji__dropdown__container"]}>
-        <div className={styles["emoji__search__wrapper"]}>
-          <EmojiSearch keyword={keyword} setKeyword={setKeyword} />
-        </div>
-        <div className={styles["emoji__tabs__wrapper"]}>
-          <EmojiTabs
-            curTab={curTab}
-            setCurTab={setCurTab}
-            tabs={tabs}
-            headersRefs={headersRefs}
-          />
-        </div>
-        <div className={styles["emoji__list__container"]}>
-          <div className={styles["emoji__recent__wrapper"]}>
-            <EmojiRecent
-              setCurEmoji={setCurEmoji}
-              curSkinTone={curSkinTone.name}
-              ref={(el) => (headersRefs.current[0] = el)}
+    <EmojiContextProvider value={value}>
+      <Dropdown
+        isOpen={isOpen}
+        lastClickedRef={lastClickedRef}
+        name="emoji"
+        onClose={onClose}
+        top={top}
+        left={left}
+        bottom={bottom}
+        right={right}
+        className={styles["emoji__dropdown"]}
+        disabled={disabled}
+      >
+        <div className={styles["emoji__dropdown__container"]}>
+          <div className={styles["emoji__search__wrapper"]}>
+            <EmojiSearch keyword={keyword} setKeyword={setKeyword} />
+          </div>
+          <div className={styles["emoji__tabs__wrapper"]}>
+            <EmojiTabs
+              curTab={curTab}
+              setCurTab={setCurTab}
+              tabs={tabs}
+              headersRefs={headersRefs}
             />
           </div>
-          <div className={styles["emoji__list__wrapper"]}>
-            {tabNames.map((tabName, index) => (
-              <EmojiList
-                tabName={tabName}
-                emojiList={emojis[index]}
-                key={index}
+          <div className={styles["emoji__list__container"]}>
+            <div className={styles["emoji__recent__wrapper"]}>
+              <EmojiRecent
                 setCurEmoji={setCurEmoji}
                 curSkinTone={curSkinTone.name}
-                ref={(el) => (headersRefs.current[index + 1] = el)}
+                ref={(el) => (headersRefs.current[0] = el)}
               />
-            ))}
+            </div>
+            <div className={styles["emoji__list__wrapper"]}>
+              {tabNames.map((tabName, index) => (
+                <EmojiList
+                  tabName={tabName}
+                  emojiList={emojis[index]}
+                  key={index}
+                  setCurEmoji={setCurEmoji}
+                  curSkinTone={curSkinTone.name}
+                  ref={(el) => (headersRefs.current[index + 1] = el)}
+                />
+              ))}
+            </div>
+          </div>
+          <div className={styles["emoji__preview__wrapper"]}>
+            <EmojiPreview
+              curEmoji={curEmoji}
+              curSkinTone={curSkinTone}
+              setCurSkinTon={setCurSkinTon}
+            />
           </div>
         </div>
-        <div className={styles["emoji__preview__wrapper"]}>
-          <EmojiPreview
-            curEmoji={curEmoji}
-            curSkinTone={curSkinTone}
-            setCurSkinTon={setCurSkinTon}
-          />
-        </div>
-      </div>
-    </Dropdown>
+      </Dropdown>
+    </EmojiContextProvider>
   );
 };
 

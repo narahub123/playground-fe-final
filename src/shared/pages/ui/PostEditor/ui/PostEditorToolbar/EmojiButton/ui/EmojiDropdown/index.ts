@@ -12,13 +12,20 @@ import {
   SkintoneDot,
 } from "./ui";
 
-import { IEmoji, IEmojiData, SkintoneType, ISkinTone } from "./types";
+import {
+  IEmoji,
+  IEmojiData,
+  SkintoneType,
+  ISkinTone,
+  IEmojiContext,
+} from "./types";
 
 import { useEmojiData } from "./hooks";
 
 import { emojiData, skinTones, defaultEmojiPreviews } from "./data";
 
 import { getEmojiWithSkinTone } from "./utils";
+import { EmojiContext, EmojiContextProvider } from "./context";
 
 export {
   EmojiDropdown,
@@ -43,6 +50,10 @@ export {
 
   // utils
   getEmojiWithSkinTone,
+
+  // context
+  EmojiContext,
+  EmojiContextProvider,
 };
 
-export type { IEmoji, IEmojiData, SkintoneType, ISkinTone };
+export type { IEmoji, IEmojiData, SkintoneType, ISkinTone, IEmojiContext };

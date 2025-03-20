@@ -28,4 +28,6 @@ interface ISkinTone {
   code: string;
 }
 
-export type { IEmoji, IEmojiData, SkintoneType, ISkinTone };
+interface IEmojiContext {}
+
+export type { IEmoji, IEmojiData, SkintoneType, ISkinTone, IEmojiContext };

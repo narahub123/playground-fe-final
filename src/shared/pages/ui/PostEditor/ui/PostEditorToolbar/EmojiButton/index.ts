@@ -20,6 +20,9 @@ import {
   ISkinTone,
   defaultEmojiPreviews,
   getEmojiWithSkinTone,
+  IEmojiContext,
+  EmojiContext,
+  EmojiContextProvider,
 } from "./ui";
 
 export {
@@ -46,6 +49,10 @@ export {
 
   // utils
   getEmojiWithSkinTone,
+
+  // context
+  EmojiContext,
+  EmojiContextProvider,
 };
 
-export type { IEmoji, IEmojiData, SkintoneType, ISkinTone };
+export type { IEmoji, IEmojiData, SkintoneType, ISkinTone, IEmojiContext };
