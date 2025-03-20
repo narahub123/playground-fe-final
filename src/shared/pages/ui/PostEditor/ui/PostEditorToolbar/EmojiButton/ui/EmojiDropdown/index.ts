@@ -20,7 +20,7 @@ import {
   IEmojiContext,
 } from "./types";
 
-import { useEmojiData } from "./hooks";
+import { useEmojiData, useEmojiContext } from "./hooks";
 
 import { emojiData, skinTones, defaultEmojiPreviews } from "./data";
 
@@ -42,6 +42,7 @@ export {
 
   // hooks
   useEmojiData,
+  useEmojiContext,
 
   // data
   emojiData,

@@ -1,28 +1,22 @@
-import { Button } from "@shared/@common/ui/components";
 import styles from "./Emoji.module.css";
 import { joinClassNames } from "@shared/@common/utils";
+import { Button } from "@shared/@common/ui/components";
 import {
   getEmojiWithSkinTone,
   IEmoji,
-  SkintoneType,
+  useEmojiContext,
 } from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/EmojiButton";
 
 interface EmojiProps {
   className?: string;
   disabled?: boolean;
   emoji: IEmoji;
-  setCurEmoji: React.Dispatch<React.SetStateAction<IEmoji | null>>;
-  curSkinTone: SkintoneType;
 }
 
-const Emoji = ({
-  className,
-  disabled = false,
-  emoji,
-  setCurEmoji,
-  curSkinTone,
-}: EmojiProps) => {
+const Emoji = ({ className, disabled = false, emoji }: EmojiProps) => {
   const classNames = joinClassNames([styles["emoji"], className]);
+
+  const { curSkinTone, setCurEmoji } = useEmojiContext();
 
   const handleMouseEnter = () => {
     setCurEmoji(emoji);
@@ -46,7 +40,7 @@ const Emoji = ({
       onMouseLeave={handleMouseLeave}
     >
       <span className={styles["emoji__icon"]}>
-        {getEmojiWithSkinTone(emoji, curSkinTone)}
+        {getEmojiWithSkinTone(emoji, curSkinTone.name)}
       </span>
     </Button>
   );

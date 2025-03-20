@@ -3,15 +3,13 @@ import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Icon } from "@shared/@common/ui/icons";
 import { joinClassNames } from "@shared/@common/utils";
 import { useState } from "react";
+import { useEmojiContext } from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/EmojiButton";
 
-interface EmojiSearchProps {
-  keyword: string;
-  setKeyword: React.Dispatch<React.SetStateAction<string>>;
-}
-
-const EmojiSearch = ({ keyword, setKeyword }: EmojiSearchProps) => {
+const EmojiSearch = () => {
   // 언어 설정
   const { ph } = useLanguageContent(["components", "EmojiSearch"]);
+
+  const { setKeyword, keyword } = useEmojiContext();
 
   const [isFocused, setIsFocused] = useState(false);
 

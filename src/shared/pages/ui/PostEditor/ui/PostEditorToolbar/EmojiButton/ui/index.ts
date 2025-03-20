@@ -23,6 +23,7 @@ import {
   IEmojiContext,
   EmojiContext,
   EmojiContextProvider,
+  useEmojiContext,
 } from "./EmojiDropdown";
 
 export {
@@ -41,6 +42,7 @@ export {
 
   // hooks
   useEmojiData,
+  useEmojiContext,
 
   // data
   emojiData,

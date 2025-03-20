@@ -3,22 +3,13 @@ import styles from "./EmojiTabs.module.css";
 import {
   EmojiTab,
   IEmoji,
+  useEmojiContext,
 } from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/EmojiButton";
 
-interface EmojiTabsProps {
-  curTab: number;
-  setCurTab: React.Dispatch<React.SetStateAction<number>>;
-  tabs: IEmoji[];
-  headersRefs: React.MutableRefObject<(HTMLDivElement | null)[]>;
-}
-
-const EmojiTabs = ({
-  curTab,
-  setCurTab,
-  tabs,
-  headersRefs,
-}: EmojiTabsProps) => {
+const EmojiTabs = () => {
   const [sections, setSecions] = useState<(HTMLDivElement | null)[]>([]);
+  const { curTab, setCurTab, headersRefs, tabs } = useEmojiContext();
+
   useEffect(() => {
     const headers = headersRefs.current;
     if (!headers || headers.length === 0) return;

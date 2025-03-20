@@ -28,6 +28,17 @@ interface ISkinTone {
   code: string;
 }
 
-interface IEmojiContext {}
+interface IEmojiContext {
+  curTab: number;
+  setCurTab: React.Dispatch<React.SetStateAction<number>>;
+  keyword: string;
+  setKeyword: React.Dispatch<React.SetStateAction<string>>;
+  curEmoji: IEmoji | null;
+  setCurEmoji: React.Dispatch<React.SetStateAction<IEmoji | null>>;
+  curSkinTone: ISkinTone;
+  setCurSkinTon: React.Dispatch<React.SetStateAction<ISkinTone>>;
+  headersRefs: React.MutableRefObject<(HTMLDivElement | null)[]>;
+  tabs: IEmoji[];
+}
 
 export type { IEmoji, IEmojiData, SkintoneType, ISkinTone, IEmojiContext };

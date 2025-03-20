@@ -4,7 +4,6 @@ import { joinClassNames } from "@shared/@common/utils";
 import {
   Emoji,
   IEmoji,
-  SkintoneType,
 } from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/EmojiButton";
 import { forwardRef } from "react";
 
@@ -12,12 +11,10 @@ interface EmojiListProps {
   className?: string;
   tabName: string;
   emojiList: IEmoji[];
-  setCurEmoji: React.Dispatch<React.SetStateAction<IEmoji | null>>;
-  curSkinTone: SkintoneType;
 }
 
 const EmojiList = forwardRef<HTMLDivElement, EmojiListProps>(
-  ({ className, tabName, emojiList, setCurEmoji, curSkinTone }, ref) => {
+  ({ className, tabName, emojiList }, ref) => {
     const classNames = joinClassNames([styles["emoji__list"], className]);
 
     return (
@@ -28,12 +25,7 @@ const EmojiList = forwardRef<HTMLDivElement, EmojiListProps>(
         <div className={styles["emoji__list__content__wrapper"]}>
           <div className={styles["emoji__list__content"]}>
             {emojiList.map((emoji) => (
-              <Emoji
-                emoji={emoji}
-                key={emoji.char}
-                setCurEmoji={setCurEmoji}
-                curSkinTone={curSkinTone}
-              />
+              <Emoji emoji={emoji} key={emoji.char} />
             ))}
           </div>
         </div>

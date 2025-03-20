@@ -58,7 +58,18 @@ const EmojiDropdown = ({
     .filter((_, index) => index !== 0)
     .map((tab) => tab.name);
 
-  const value: IEmojiContext = {};
+  const value: IEmojiContext = {
+    curTab,
+    setCurTab,
+    keyword,
+    setKeyword,
+    curEmoji,
+    setCurEmoji,
+    curSkinTone,
+    setCurSkinTon,
+    headersRefs,
+    tabs,
+  };
 
   return (
     <EmojiContextProvider value={value}>
@@ -76,23 +87,14 @@ const EmojiDropdown = ({
       >
         <div className={styles["emoji__dropdown__container"]}>
           <div className={styles["emoji__search__wrapper"]}>
-            <EmojiSearch keyword={keyword} setKeyword={setKeyword} />
+            <EmojiSearch />
           </div>
           <div className={styles["emoji__tabs__wrapper"]}>
-            <EmojiTabs
-              curTab={curTab}
-              setCurTab={setCurTab}
-              tabs={tabs}
-              headersRefs={headersRefs}
-            />
+            <EmojiTabs />
           </div>
           <div className={styles["emoji__list__container"]}>
             <div className={styles["emoji__recent__wrapper"]}>
-              <EmojiRecent
-                setCurEmoji={setCurEmoji}
-                curSkinTone={curSkinTone.name}
-                ref={(el) => (headersRefs.current[0] = el)}
-              />
+              <EmojiRecent ref={(el) => (headersRefs.current[0] = el)} />
             </div>
             <div className={styles["emoji__list__wrapper"]}>
               {tabNames.map((tabName, index) => (
@@ -100,19 +102,13 @@ const EmojiDropdown = ({
                   tabName={tabName}
                   emojiList={emojis[index]}
                   key={index}
-                  setCurEmoji={setCurEmoji}
-                  curSkinTone={curSkinTone.name}
                   ref={(el) => (headersRefs.current[index + 1] = el)}
                 />
               ))}
             </div>
           </div>
           <div className={styles["emoji__preview__wrapper"]}>
-            <EmojiPreview
-              curEmoji={curEmoji}
-              curSkinTone={curSkinTone}
-              setCurSkinTon={setCurSkinTon}
-            />
+            <EmojiPreview />
           </div>
         </div>
       </Dropdown>

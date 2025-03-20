@@ -2,22 +2,12 @@ import styles from "./EmojiPreview.module.css";
 import {
   defaultEmojiPreviews,
   getEmojiWithSkinTone,
-  IEmoji,
-  ISkinTone,
   SkintonePicker,
+  useEmojiContext,
 } from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/EmojiButton";
 
-interface EmojiPreviewProps {
-  curEmoji: IEmoji | null;
-  curSkinTone: ISkinTone;
-  setCurSkinTon: React.Dispatch<React.SetStateAction<ISkinTone>>;
-}
-
-const EmojiPreview = ({
-  curEmoji,
-  curSkinTone,
-  setCurSkinTon,
-}: EmojiPreviewProps) => {
+const EmojiPreview = () => {
+  const { curEmoji, curSkinTone } = useEmojiContext();
   const defaultPreview = defaultEmojiPreviews.find(
     (item) => item.name === curSkinTone.name
   )!;
@@ -34,10 +24,7 @@ const EmojiPreview = ({
         {curEmoji && (
           <div className={styles["emoji__preview__name"]}>{curEmoji.name}</div>
         )}
-        <SkintonePicker
-          curSkinTone={curSkinTone}
-          setCurSkinTon={setCurSkinTon}
-        />
+        <SkintonePicker />
       </div>
     </div>
   );

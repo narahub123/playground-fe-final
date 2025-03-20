@@ -1,29 +1,16 @@
 import styles from "./SkintonePicker.module.css";
-import { useLanguageContent } from "@shared/@common/models/hooks";
-import { joinClassNames } from "@shared/@common/utils";
+import { useState } from "react";
 import {
   ISkinTone,
   SkintoneDot,
   skinTones,
+  useEmojiContext,
 } from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/EmojiButton";
-import { useState } from "react";
 
-interface SkintonePickerProps {
-  className?: string;
-  curSkinTone: ISkinTone;
-  setCurSkinTon: React.Dispatch<React.SetStateAction<ISkinTone>>;
-}
-
-const SkintonePicker = ({
-  className,
-  curSkinTone,
-  setCurSkinTon,
-}: SkintonePickerProps) => {
+const SkintonePicker = () => {
   const [isOpen, setIsOpen] = useState(false);
-  // 언어 설정
-  const {} = useLanguageContent(["components", "SkintonePicker"]);
 
-  const classNames = joinClassNames([styles["skintone__picker"], className]);
+  const { curSkinTone, setCurSkinTon } = useEmojiContext();
 
   const handleClick = (skintone?: ISkinTone) => {
     if (skintone?.name) {
@@ -35,9 +22,9 @@ const SkintonePicker = ({
   };
 
   return (
-    <div className={classNames}>
+    <div className={styles["skintone__picker"]}>
       {isOpen ? (
-        <div className={joinClassNames([styles["skintone__list"]])}>
+        <div className={styles["skintone__list"]}>
           {skinTones.map((skintone) => (
             <SkintoneDot
               key={skintone.name}
