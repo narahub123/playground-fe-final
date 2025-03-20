@@ -2,7 +2,7 @@ import styles from "./EmojiDropdown.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Dropdown } from "@shared/@common/ui/components";
 import {
-  EmojiListContainer,
+  EmojiList,
   EmojiPreview,
   EmojiRecent,
   EmojiSearch,
@@ -11,7 +11,7 @@ import {
   ISkinTone,
   skinTones,
 } from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/EmojiButton";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import useEmojiData from "../../hooks/useEmojiData";
 
 interface EmojiDropdownProps {
@@ -38,12 +38,12 @@ const EmojiDropdown = ({
   // 언어 설정
   const { tabs } = useLanguageContent(["components", "EmojiDropdown"]);
 
+  const headersRefs = useRef<(HTMLDivElement | null)[]>([]);
+
   const [curTab, setCurTab] = useState(0);
-
   const [keyword, setKeyword] = useState("");
-
   const [curEmoji, setCurEmoji] = useState<IEmoji | null>(null);
-  const [curSkinton, setCurSkinton] = useState<ISkinTone>(skinTones[0]);
+  const [curSkinTone, setCurSkinTon] = useState<ISkinTone>(skinTones[0]);
 
   const emojis = useEmojiData();
 
@@ -69,29 +69,39 @@ const EmojiDropdown = ({
           <EmojiSearch keyword={keyword} setKeyword={setKeyword} />
         </div>
         <div className={styles["emoji__tabs__wrapper"]}>
-          <EmojiTabs curTab={curTab} setCurTab={setCurTab} tabs={tabs} />
+          <EmojiTabs
+            curTab={curTab}
+            setCurTab={setCurTab}
+            tabs={tabs}
+            headersRefs={headersRefs}
+          />
         </div>
         <div className={styles["emoji__list__container"]}>
           <div className={styles["emoji__recent__wrapper"]}>
             <EmojiRecent
               setCurEmoji={setCurEmoji}
-              curSkinTone={curSkinton.name}
+              curSkinTone={curSkinTone.name}
+              ref={(el) => (headersRefs.current[0] = el)}
             />
           </div>
           <div className={styles["emoji__list__wrapper"]}>
-            <EmojiListContainer
-              tabNames={tabNames}
-              emojiList={emojis}
-              setCurEmoji={setCurEmoji}
-              curSkinTone={curSkinton.name}
-            />
+            {tabNames.map((tabName, index) => (
+              <EmojiList
+                tabName={tabName}
+                emojiList={emojis[index]}
+                key={index}
+                setCurEmoji={setCurEmoji}
+                curSkinTone={curSkinTone.name}
+                ref={(el) => (headersRefs.current[index + 1] = el)}
+              />
+            ))}
           </div>
         </div>
         <div className={styles["emoji__preview__wrapper"]}>
           <EmojiPreview
             curEmoji={curEmoji}
-            curSkinton={curSkinton}
-            setCurSkinton={setCurSkinton}
+            curSkinTone={curSkinTone}
+            setCurSkinTon={setCurSkinTon}
           />
         </div>
       </div>

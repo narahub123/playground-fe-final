@@ -10,14 +10,14 @@ import { useState } from "react";
 
 interface SkintonePickerProps {
   className?: string;
-  curSkinton: ISkinTone;
-  setCurSkinton: React.Dispatch<React.SetStateAction<ISkinTone>>;
+  curSkinTone: ISkinTone;
+  setCurSkinTon: React.Dispatch<React.SetStateAction<ISkinTone>>;
 }
 
 const SkintonePicker = ({
   className,
-  curSkinton,
-  setCurSkinton,
+  curSkinTone,
+  setCurSkinTon,
 }: SkintonePickerProps) => {
   const [isOpen, setIsOpen] = useState(false);
   // 언어 설정
@@ -28,7 +28,7 @@ const SkintonePicker = ({
   const handleClick = (skintone?: ISkinTone) => {
     if (skintone?.name) {
       // 스킨톤 선택
-      setCurSkinton(skintone);
+      setCurSkinTon(skintone);
     }
 
     setIsOpen(!isOpen);
@@ -43,13 +43,13 @@ const SkintonePicker = ({
               key={skintone.name}
               skintone={skintone}
               onClick={() => handleClick(skintone)}
-              isCurSkinTone={curSkinton.name === skintone.name}
+              isCurSkinTone={curSkinTone.name === skintone.name}
             />
           ))}
         </div>
       ) : (
         <SkintoneDot
-          skintone={curSkinton}
+          skintone={curSkinTone}
           onClick={handleClick}
           isCurSkinTone={true}
         />

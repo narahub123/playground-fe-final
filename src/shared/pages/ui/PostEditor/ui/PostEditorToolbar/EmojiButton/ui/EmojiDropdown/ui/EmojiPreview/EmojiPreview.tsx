@@ -9,17 +9,17 @@ import {
 
 interface EmojiPreviewProps {
   curEmoji: IEmoji | null;
-  curSkinton: ISkinTone;
-  setCurSkinton: React.Dispatch<React.SetStateAction<ISkinTone>>;
+  curSkinTone: ISkinTone;
+  setCurSkinTon: React.Dispatch<React.SetStateAction<ISkinTone>>;
 }
 
 const EmojiPreview = ({
   curEmoji,
-  curSkinton,
-  setCurSkinton,
+  curSkinTone,
+  setCurSkinTon,
 }: EmojiPreviewProps) => {
   const defaultPreview = defaultEmojiPreviews.find(
-    (item) => item.name === curSkinton.name
+    (item) => item.name === curSkinTone.name
   )!;
   return (
     <div className={styles["emoji__preview"]}>
@@ -27,14 +27,17 @@ const EmojiPreview = ({
         <div className={styles["emoji__preview__bigger__emoji"]}>
           <div className={styles["bigger__emoji"]}>
             {curEmoji
-              ? getEmojiWithSkinTone(curEmoji, curSkinton.name)
+              ? getEmojiWithSkinTone(curEmoji, curSkinTone.name)
               : defaultPreview.char}
           </div>
         </div>
         {curEmoji && (
           <div className={styles["emoji__preview__name"]}>{curEmoji.name}</div>
         )}
-        <SkintonePicker curSkinton={curSkinton} setCurSkinton={setCurSkinton} />
+        <SkintonePicker
+          curSkinTone={curSkinTone}
+          setCurSkinTon={setCurSkinTon}
+        />
       </div>
     </div>
   );
