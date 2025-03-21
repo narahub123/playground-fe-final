@@ -9,7 +9,11 @@ import {
   SettingsPage,
 } from "@pages";
 import { ModalLayout } from "@shared/@common/layouts";
-import { AccountManageModal, WritePostModal } from "@shared/pages/ui";
+import {
+  AccountManageModal,
+  WritePost,
+  WritePostModal,
+} from "@shared/pages/ui";
 import { LoginModal } from "@features/auth-login/ui";
 import { PagesLayout } from "@shared/pages/layouts";
 import { PRIMARY_LINK, SETTINGS_LINKS } from "@shared/@common/constants";
@@ -167,6 +171,10 @@ const userRouter = createBrowserRouter([
         path: PRIMARY_LINK.COMPOSE_POST,
         element: <WritePostModal />,
         children: [
+          {
+            index: true,
+            element: <WritePost />,
+          },
           {
             path: PRIMARY_LINK.RESERVE_POST,
             element: <>예약</>,

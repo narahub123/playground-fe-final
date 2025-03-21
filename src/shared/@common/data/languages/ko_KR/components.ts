@@ -432,7 +432,7 @@ const components = {
   WriteButton: {
     writeTitle: "게시하기",
   },
-  WritePostModal: {},
+  WritePost: {},
   AccountButton: {
     title: "계정  ",
     add: "기존 계정 추가",

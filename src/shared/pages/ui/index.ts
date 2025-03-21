@@ -9,6 +9,7 @@ import AccountItem from "./AccountItem/AccountItem";
 import AccountManageModal from "./AccountManageModal.tsx/AccountManageModal";
 import { PostEditor } from "./PostEditor";
 import Video from "./Video/Video";
+import WritePost from "./WritePost/WritePost";
 
 export {
   Header,
@@ -22,4 +23,5 @@ export {
   AccountManageModal,
   PostEditor,
   Video,
+  WritePost,
 };
