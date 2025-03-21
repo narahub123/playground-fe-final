@@ -7,6 +7,12 @@
   padding: 15px 20px 15px 50px;
 }
 
+.schedule__form__body__indicator__text {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
 .schedule__form__header__btn {
   padding: 0.3rem 0.6rem;
 }

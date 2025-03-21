@@ -2,8 +2,9 @@ import ScheduleButton from "./ScheduleButton/ScheduleButton";
 import { ScheduleDraftList } from "./ScheduleDraftList";
 import { ScheduledPostList } from "./ScheduledPostList/ui";
 import {
-  SchdulePostForm,
+  SchedulePostForm,
   SelectSchedule,
+  ScheduleText,
   AmPmType,
   ISchedule,
   scheduleAmPm,
@@ -13,7 +14,8 @@ import {
   scheduleMonth,
   scheduleYear,
   useScheduleData,
-} from "./SchdulePostForm";
+} from "./SchedulePostForm";
+
 import { UnsentPost } from "./UnsentPost";
 
 export {
@@ -21,8 +23,9 @@ export {
   UnsentPost,
   ScheduledPostList,
   ScheduleDraftList,
-  SchdulePostForm,
+  SchedulePostForm,
   SelectSchedule,
+  ScheduleText,
   scheduleAmPm,
   scheduleDate,
   scheduleHour,

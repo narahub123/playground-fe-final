@@ -1,4 +1,4 @@
-import { SchdulePostForm, SelectSchedule } from "./ui";
+import { SchedulePostForm, SelectSchedule, ScheduleText } from "./ui";
 import { ISchedule, AmPmType } from "./types";
 import {
   scheduleAmPm,
@@ -11,8 +11,9 @@ import {
 import { useScheduleData } from "./hooks";
 
 export {
-  SchdulePostForm,
+  SchedulePostForm,
   SelectSchedule,
+  ScheduleText,
   useScheduleData,
   scheduleAmPm,
   scheduleDate,

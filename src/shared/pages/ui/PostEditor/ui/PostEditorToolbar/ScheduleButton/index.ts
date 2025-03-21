@@ -3,7 +3,7 @@ import {
   UnsentPost,
   ScheduledPostList,
   ScheduleDraftList,
-  SchdulePostForm,
+  SchedulePostForm,
   SelectSchedule,
   scheduleAmPm,
   scheduleDate,
@@ -14,11 +14,12 @@ import {
   useScheduleData,
   AmPmType,
   ISchedule,
+  ScheduleText,
 } from "./ui";
 
 export {
   ScheduleButton,
-  SchdulePostForm,
+  SchedulePostForm,
   SelectSchedule,
   UnsentPost,
   ScheduledPostList,
@@ -30,6 +31,7 @@ export {
   scheduleMonth,
   scheduleYear,
   useScheduleData,
+  ScheduleText,
 };
 
 export type { AmPmType, ISchedule };

@@ -1,4 +1,4 @@
-import styles from "./SchdulePostForm.module.css";
+import styles from "./SchedulePostForm.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
 import { useState } from "react";
@@ -11,13 +11,14 @@ import {
   scheduleDate,
   ISchedule,
   useScheduleData,
+  ScheduleText,
 } from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/ScheduleButton";
 
-interface SchdulePostFormProps {
+interface SchedulePostFormProps {
   className?: string;
 }
 
-const SchdulePostForm = ({ className }: SchdulePostFormProps) => {
+const SchedulePostForm = ({ className }: SchedulePostFormProps) => {
   const navigate = useNavigate();
 
   const getInitialSchedule = (): ISchedule => {
@@ -26,7 +27,8 @@ const SchdulePostForm = ({ className }: SchdulePostFormProps) => {
     const year = today.getFullYear();
     const month = today.getMonth() + 1;
     const date = today.getDate();
-    const hour = today.getHours();
+    const hour =
+      today.getHours() > 12 ? today.getHours() - 12 : today.getHours();
     const minute = today.getMinutes();
     const amPm = today.getHours() > 12 ? "pm" : "am";
     const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -52,7 +54,7 @@ const SchdulePostForm = ({ className }: SchdulePostFormProps) => {
   // 언어 설정
   const { header, scheduleDay, scheduleTime, timeZone } = useLanguageContent([
     "components",
-    "SchdulePostForm",
+    "SchedulePostForm",
   ]);
 
   const scheduleData = useScheduleData();
@@ -78,13 +80,14 @@ const SchdulePostForm = ({ className }: SchdulePostFormProps) => {
       </Modal.Header>
       <Modal.Body className={styles["schedule__form__body"]}>
         <div className={styles["schedule__form__body__indicator"]}>
-          <Text>2025년 4월에 전송 예정</Text>
+          <ScheduleText schedule={schedule} />
         </div>
         <div className={styles["schedule__form__body__date"]}>
           <Text type="expl">날짜</Text>
           <div className={styles["schedule__form__body__select__wrapper"]}>
             {["year", "month", "date"].map((item) => (
               <SelectSchedule
+                key={item}
                 label={scheduleDay[item]}
                 field={item}
                 options={
@@ -107,6 +110,7 @@ const SchdulePostForm = ({ className }: SchdulePostFormProps) => {
           <div className={styles["schedule__form__body__select__wrapper"]}>
             {["hour", "minute", "amPm"].map((item) => (
               <SelectSchedule
+                key={item}
                 label={scheduleTime[item]}
                 field={item}
                 options={scheduleData[item as keyof typeof scheduleData]}
@@ -137,4 +141,4 @@ const SchdulePostForm = ({ className }: SchdulePostFormProps) => {
   );
 };
 
-export default SchdulePostForm;
+export default SchedulePostForm;

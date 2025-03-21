@@ -554,7 +554,7 @@ const components = {
   },
   EmojiList: {},
   SkintonePicker: {},
-  SchdulePostForm: {
+  SchedulePostForm: {
     header: {
       title: "예약하기",
       btn: "확인",

@@ -26,7 +26,7 @@ import { NotificationsSection } from "@features/settings/notifications/pages";
 import { AccessibiltyAndDisplayAndLanguagesSection } from "@features/settings/accessibilty-and-display-languages/pages";
 import { DownloadDataSection } from "@features/settings/account/pages/download-data/pages";
 import { VerifyOwnershipModal } from "@features/auth/verify-ownership/ui";
-import { SchdulePostForm } from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/ScheduleButton";
+import { SchedulePostForm } from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/ScheduleButton";
 
 const userRouter = createBrowserRouter([
   {
@@ -178,7 +178,7 @@ const userRouter = createBrowserRouter([
           },
           {
             path: PRIMARY_LINK.SCHEDULE_POST,
-            element: <SchdulePostForm />,
+            element: <SchedulePostForm />,
           },
           {
             path: PRIMARY_LINK.UNSENT_POST,
