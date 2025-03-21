@@ -14,6 +14,7 @@ import {
   PASSWORD_SPECIAL_CHARECTERS,
   PASSWORD_UNDER_MINIMUM,
   PHONE_FORMAT_KR,
+  PRIMARY_LINK,
   USERID_FORBIDDEN,
   USERID_INCOMPLETE,
   USERID_MAX,
@@ -570,6 +571,21 @@ const components = {
       amPm: "AM/PM",
     },
     timeZone: "시간대",
+  },
+  UnsentPost: {
+    header: {
+      title: "초안",
+    },
+    tabs: [
+      {
+        text: "전송되지 않은 게시물",
+        path: PRIMARY_LINK.DRAFT_POST,
+      },
+      {
+        text: "예약됨",
+        path: PRIMARY_LINK.SCHEDULED_POST,
+      },
+    ],
   },
 };
 

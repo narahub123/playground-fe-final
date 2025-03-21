@@ -1,0 +1,28 @@
+.unsent__post__tab {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.unsent__post__tab:focus-visible {
+  background-color: #e1e1e1;
+  outline: 2px solid #aaa;
+}
+
+.unsent__post__tab:hover {
+  background-color: #e3e3e3;
+}
+
+.wrapper {
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.selected {
+  border-bottom: 3px solid var(--colorTheme-color-primary);
+}
+
+.unselected {
+  border-bottom: 3px solid transparent;
+}

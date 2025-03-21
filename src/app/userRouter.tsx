@@ -26,7 +26,12 @@ import { NotificationsSection } from "@features/settings/notifications/pages";
 import { AccessibiltyAndDisplayAndLanguagesSection } from "@features/settings/accessibilty-and-display-languages/pages";
 import { DownloadDataSection } from "@features/settings/account/pages/download-data/pages";
 import { VerifyOwnershipModal } from "@features/auth/verify-ownership/ui";
-import { SchedulePostForm } from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/ScheduleButton";
+import {
+  ScheduledPostList,
+  ScheduleDraftList,
+  SchedulePostForm,
+  UnsentPost,
+} from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/ScheduleButton";
 
 const userRouter = createBrowserRouter([
   {
@@ -182,15 +187,15 @@ const userRouter = createBrowserRouter([
           },
           {
             path: PRIMARY_LINK.UNSENT_POST,
-            element: <></>,
+            element: <UnsentPost />,
             children: [
               {
                 path: PRIMARY_LINK.SCHEDULED_POST,
-                element: <>예약됨</>,
+                element: <ScheduledPostList />,
               },
               {
                 path: PRIMARY_LINK.DRAFT_POST,
-                element: <>전송하지 않은 게시물</>,
+                element: <ScheduleDraftList />,
               },
             ],
           },

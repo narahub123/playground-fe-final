@@ -145,7 +145,7 @@ const SchedulePostForm = ({ className }: SchedulePostFormProps) => {
   const classNames = joinClassNames([styles["schedule__form"], className]);
 
   const moveToUnsent = () => {
-    navigate(PRIMARY_LINK.UNSENT_POST);
+    navigate(PRIMARY_LINK.SCHEDULED_POST);
   };
 
   return (
