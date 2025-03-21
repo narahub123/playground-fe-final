@@ -40,7 +40,9 @@ type ParallelModals =
   | "flow"
   | "write"
   | "account"
-  | "ownership";
+  | "ownership"
+  | "schedule";
+
 type StandAlonModals = "error" | "logout";
 type VerificationModals = "ownership";
 

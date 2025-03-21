@@ -31,6 +31,7 @@ const userRouter = createBrowserRouter([
       {
         path: PRIMARY_LINK.HOME,
         element: <HomePage />,
+        children: [],
       },
       {
         path: PRIMARY_LINK.EXPLORE,
@@ -165,6 +166,20 @@ const userRouter = createBrowserRouter([
       {
         path: PRIMARY_LINK.COMPOSE_POST,
         element: <WritePostModal />,
+        children: [
+          {
+            path: PRIMARY_LINK.RESERVE_POST,
+            element: <>예약</>,
+          },
+          {
+            path: PRIMARY_LINK.RESERVED_POST,
+            element: <>예약됨</>,
+          },
+          {
+            path: PRIMARY_LINK.DRAFT_POST,
+            element: <>전송하지 않은 게시물</>,
+          },
+        ],
       },
       {
         path: PRIMARY_LINK.VERIFY_OWNERSHIP,
