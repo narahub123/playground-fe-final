@@ -93,20 +93,28 @@ const SchedulePostForm = ({ className }: SchedulePostFormProps) => {
       setError((prev) => {
         if (prev.date.length === 0) {
           return {
-            ...prev,
+            time: "",
             date: "게시일을 과거 날짜로 예약할 수 없습니다.",
           };
         } else return prev;
+      });
+      setIsValid((prev) => {
+        if (prev === true) return false;
+        else return prev;
       });
       return;
     } else if (target.getTime() <= today.getTime()) {
       setError((prev) => {
         if (prev.time.length === 0) {
           return {
-            ...prev,
+            date: "",
             time: "게시일을 과거 날짜로 예약할 수 없습니다.",
           };
         } else return prev;
+      });
+      setIsValid((prev) => {
+        if (prev === true) return false;
+        else return prev;
       });
 
       return;
@@ -119,6 +127,10 @@ const SchedulePostForm = ({ className }: SchedulePostFormProps) => {
           time: "",
         };
       } else return prev;
+    });
+    setIsValid((prev) => {
+      if (prev === false) return true;
+      else return prev;
     });
   }, [schedule]);
 
@@ -144,7 +156,7 @@ const SchedulePostForm = ({ className }: SchedulePostFormProps) => {
           onClick={() => {}}
           className={styles["schedule__form__header__btn"]}
           rounded="2xl"
-          isValid
+          isValid={isValid as boolean}
         >
           {header.btn}
         </Button>
