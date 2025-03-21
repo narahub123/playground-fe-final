@@ -149,80 +149,83 @@ const SchedulePostForm = ({ className }: SchedulePostFormProps) => {
   };
 
   return (
-    <Modal.Content className={classNames}>
-      <Modal.Header className={styles["schedule__form__header"]}>
-        <Text type="heading3">{header.title}</Text>
-        <Button
-          onClick={() => {}}
-          className={styles["schedule__form__header__btn"]}
-          rounded="2xl"
-          isValid={isValid as boolean}
-        >
-          {header.btn}
-        </Button>
-      </Modal.Header>
-      <Modal.Body className={styles["schedule__form__body"]}>
-        <div className={styles["schedule__form__body__indicator"]}>
-          <ScheduleText schedule={schedule} />
-        </div>
-        <div className={styles["schedule__form__body__date"]}>
-          <Text type="expl">날짜</Text>
-          <div className={styles["schedule__form__body__select__wrapper"]}>
-            {["year", "month", "date"].map((item) => (
-              <SelectSchedule
-                key={item}
-                label={scheduleDay[item]}
-                field={item}
-                options={
-                  item === "date"
-                    ? scheduleDate(schedule.year, schedule.month)
-                    : scheduleData[item as keyof typeof scheduleData]
-                }
-                setFunc={setSchedule}
-                setIsValid={setIsValid}
-                value={schedule[item as keyof ISchedule]}
-              />
-            ))}
-            <div className={styles["icon__container"]}>
-              <Icon iconName="calendar" onClick={() => {}} />
+    <Modal.Container width={85}>
+      <Modal.CloseButton location="left" />
+      <Modal.Content className={classNames}>
+        <Modal.Header className={styles["schedule__form__header"]}>
+          <Text type="heading3">{header.title}</Text>
+          <Button
+            onClick={() => {}}
+            className={styles["schedule__form__header__btn"]}
+            rounded="2xl"
+            isValid={isValid as boolean}
+          >
+            {header.btn}
+          </Button>
+        </Modal.Header>
+        <Modal.Body className={styles["schedule__form__body"]}>
+          <div className={styles["schedule__form__body__indicator"]}>
+            <ScheduleText schedule={schedule} />
+          </div>
+          <div className={styles["schedule__form__body__date"]}>
+            <Text type="expl">날짜</Text>
+            <div className={styles["schedule__form__body__select__wrapper"]}>
+              {["year", "month", "date"].map((item) => (
+                <SelectSchedule
+                  key={item}
+                  label={scheduleDay[item]}
+                  field={item}
+                  options={
+                    item === "date"
+                      ? scheduleDate(schedule.year, schedule.month)
+                      : scheduleData[item as keyof typeof scheduleData]
+                  }
+                  setFunc={setSchedule}
+                  setIsValid={setIsValid}
+                  value={schedule[item as keyof ISchedule]}
+                />
+              ))}
+              <div className={styles["icon__container"]}>
+                <Icon iconName="calendar" onClick={() => {}} />
+              </div>
             </div>
+            {error.date && <Text status="error">{error.date}</Text>}
           </div>
-          {error.date && <Text status="error">{error.date}</Text>}
-        </div>
-        <div className={styles["schedule__form__body__hour"]}>
-          <Text type="expl">시간</Text>
-          <div className={styles["schedule__form__body__select__wrapper"]}>
-            {["hour", "minute", "amPm"].map((item) => (
-              <SelectSchedule
-                key={item}
-                label={scheduleTime[item]}
-                field={item}
-                options={scheduleData[item as keyof typeof scheduleData]}
-                setFunc={setSchedule}
-                setIsValid={setIsValid}
-                value={schedule[item as keyof ISchedule]}
-              />
-            ))}
+          <div className={styles["schedule__form__body__hour"]}>
+            <Text type="expl">시간</Text>
+            <div className={styles["schedule__form__body__select__wrapper"]}>
+              {["hour", "minute", "amPm"].map((item) => (
+                <SelectSchedule
+                  key={item}
+                  label={scheduleTime[item]}
+                  field={item}
+                  options={scheduleData[item as keyof typeof scheduleData]}
+                  setFunc={setSchedule}
+                  setIsValid={setIsValid}
+                  value={schedule[item as keyof ISchedule]}
+                />
+              ))}
+            </div>
+            {error.time && <Text status="error">{error.time}</Text>}
           </div>
-          {error.time && <Text status="error">{error.time}</Text>}
-        </div>
-        <div className={styles["schedule__form__body__time__zone"]}>
-          <Text type="expl">{timeZone}</Text>
-          <Text>{schedule.timeZone}</Text>
-        </div>
-      </Modal.Body>
-      <Modal.Footer className={styles["schedule__form__footer"]}>
-        <Button
-          onClick={moveToUnsent}
-          variant="plain"
-          isValid
-          fontColor="colorTheme"
-          type="button"
-        >
-          예약 게시물
-        </Button>
-      </Modal.Footer>
-    </Modal.Content>
+          <div className={styles["schedule__form__body__time__zone"]}>
+            <Text type="expl">{timeZone}</Text>
+            <Text>{schedule.timeZone}</Text>
+          </div>
+        </Modal.Body>
+        <Modal.Footer className={styles["schedule__form__footer"]}>
+          <Button
+            onClick={moveToUnsent}
+            variant="plain"
+            isValid
+            fontColor="colorTheme"
+            type="button"
+          >
+            예약 게시물
+          </Button>
+        </Modal.Footer>
+      </Modal.Content>
+    </Modal.Container>
   );
 };
 

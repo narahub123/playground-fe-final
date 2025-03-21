@@ -1,6 +1,13 @@
 .schedule__unsent {
 }
 
+.schedule__unsent__forward__icon {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  z-index: 1;
+}
+
 .schedule__unsent__header {
   display: flex;
   justify-content: space-between;
@@ -10,14 +17,14 @@
 .schedule__unsent__body {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  padding: 5px 20px 0px 50px;
+  padding: 5px 0px 0px 0px;
 }
 
 .schedule__unsent__tabs {
   width: 100%;
   display: flex;
   align-items: center;
+  border-bottom: 1px solid #e1e1e1;
 }
 
 .schedule__unsent__footer {

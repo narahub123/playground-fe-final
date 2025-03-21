@@ -1,0 +1,12 @@
+.empty__unsent__post {
+  display: flex;
+  justify-content: center;
+}
+
+.empty__wrapper {
+  width: 22rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}

@@ -28,10 +28,7 @@ const WritePostModal = ({}: WritePostModalProps) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose} domId="write-modal">
       <Modal.Overlay />
-      <Modal.Container width={85}>
-        <Modal.CloseButton location="left" />
-        <Outlet />
-      </Modal.Container>
+      <Outlet />
     </Modal>
   );
 };

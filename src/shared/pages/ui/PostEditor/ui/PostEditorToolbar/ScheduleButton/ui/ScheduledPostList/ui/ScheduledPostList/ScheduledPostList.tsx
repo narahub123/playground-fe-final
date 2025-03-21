@@ -1,22 +1,17 @@
 import styles from "./ScheduledPostList.module.css";
-import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
+import EmptyUnsentPost from "../../../UnsentPost/ui/EmptyUnsentPost/EmptyUnsentPost";
 
-interface ScheduledPostListProps {
-  className?: string;
-  disabled?: boolean;
-}
+const ScheduledPostList = () => {
+  const scheduledPosts = [];
 
-const ScheduledPostList = ({
-  className,
-  disabled = false,
-}: ScheduledPostListProps) => {
-  // 언어 설정
-  //   const {} = useLanguageContent(["", "ScheduledPostList"]);
+  const classNames = joinClassNames([styles["scheduled__list"]]);
 
-  const classNames = joinClassNames([styles["scheduledlist"], className]);
-
-  return <div className={classNames}>ScheduledPostList</div>;
+  return (
+    <div className={classNames}>
+      {scheduledPosts.length === 0 ? <EmptyUnsentPost /> : <></>}
+    </div>
+  );
 };
 
 export default ScheduledPostList;

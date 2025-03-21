@@ -1,22 +1,17 @@
+import EmptyUnsentPost from "../../../UnsentPost/ui/EmptyUnsentPost/EmptyUnsentPost";
 import styles from "./ScheduleDraftList.module.css";
-import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
 
-interface ScheduleDraftListProps {
-  className?: string;
-  disabled?: boolean;
-}
+const ScheduleDraftList = () => {
+  const classNames = joinClassNames([styles["schedule__draft__list"]]);
 
-const ScheduleDraftList = ({
-  className,
-  disabled = false,
-}: ScheduleDraftListProps) => {
-  // 언어 설정
-  //   const {} = useLanguageContent(["", "ScheduleDraftList"]);
+  const drafts = [];
 
-  const classNames = joinClassNames([styles["scheduledraftlist"], className]);
-
-  return <div className={classNames}>ScheduleDraftList</div>;
+  return (
+    <div className={classNames}>
+      {drafts.length === 0 ? <EmptyUnsentPost /> : <></>}
+    </div>
+  );
 };
 
 export default ScheduleDraftList;

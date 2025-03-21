@@ -16,23 +16,26 @@ const WritePost = ({ className }: WritePostProps) => {
   const classNames = joinClassNames([styles["write__post"], className]);
 
   return (
-    <Modal.Content>
-      <Modal.Header className={classNames}>
-        <Button
-          onClick={() => {
-            navigate("unsent/drafts");
-          }}
-          type="button"
-          variant="plain"
-          fontColor="green"
-          style={{ fontWeight: "bold" }}
-        >
-          초안
-        </Button>
-      </Modal.Header>
-      <Modal.Body>바디</Modal.Body>
-      <Modal.Footer>푸터</Modal.Footer>
-    </Modal.Content>
+    <Modal.Container width={85}>
+      <Modal.CloseButton location="left" />
+      <Modal.Content>
+        <Modal.Header className={classNames}>
+          <Button
+            onClick={() => {
+              navigate("unsent/drafts");
+            }}
+            type="button"
+            variant="plain"
+            fontColor="green"
+            style={{ fontWeight: "bold" }}
+          >
+            초안
+          </Button>
+        </Modal.Header>
+        <Modal.Body>바디</Modal.Body>
+        <Modal.Footer>푸터</Modal.Footer>
+      </Modal.Content>
+    </Modal.Container>
   );
 };
 
