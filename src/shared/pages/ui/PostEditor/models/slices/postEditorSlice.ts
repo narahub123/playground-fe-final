@@ -23,7 +23,7 @@ const initialState: PostEditorState = {
     media: false,
     vote: false,
     emoji: false,
-    reserve: false,
+    schedule: false,
     location: false,
   },
 };

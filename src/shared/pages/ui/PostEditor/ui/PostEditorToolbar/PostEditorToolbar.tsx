@@ -4,7 +4,7 @@ import {
   EmojiButton,
   LocationTagButton,
   MediaButton,
-  ReserveButton,
+  ScheduleButton,
   VoteButton,
 } from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar";
 
@@ -29,7 +29,7 @@ const PostEditorToolbar = ({ className }: PostEditorToolbarProps) => {
         <MediaButton disabled={vote ? true : false} />
         <VoteButton disabled={vote || media ? true : false} />
         <EmojiButton />
-        <ReserveButton disabled={vote ? true : false} />
+        <ScheduleButton disabled={vote ? true : false} />
         <LocationTagButton />
       </nav>
     </div>

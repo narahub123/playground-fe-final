@@ -9,11 +9,11 @@ interface ReserveButtonProps {
   disabled?: boolean;
 }
 
-const ReserveButton = ({ disabled = false }: ReserveButtonProps) => {
+const ScheduleButton = ({ disabled = false }: ReserveButtonProps) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   // 언어 설정
-  const { title } = useLanguageContent(["components", "ReserveButton"]);
+  const { title } = useLanguageContent(["components", "ScheduleButton"]);
 
   const handleClick = () => {
     dispatch(onParallelModalOpen("schedule"));
@@ -27,4 +27,4 @@ const ReserveButton = ({ disabled = false }: ReserveButtonProps) => {
   );
 };
 
-export default ReserveButton;
+export default ScheduleButton;

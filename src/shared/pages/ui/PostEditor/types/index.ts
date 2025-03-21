@@ -27,14 +27,14 @@ type PostEditorToolbarButtonType =
   | "media"
   | "vote"
   | "emoji"
-  | "reserve"
+  | "schedule"
   | "location";
 
 interface IPostEditorToolbar {
   media: boolean;
   vote: boolean;
   emoji: boolean;
-  reserve: boolean;
+  schedule: boolean;
   location: boolean;
 }
 
