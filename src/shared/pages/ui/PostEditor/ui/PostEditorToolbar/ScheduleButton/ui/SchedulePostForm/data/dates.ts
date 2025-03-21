@@ -36,8 +36,8 @@ const scheduleHour = () => {
 
 const scheduleMinute = () => {
   return Array.from({ length: 60 }).map((_, index) => ({
-    text: (index + 1).toString(),
-    value: index + 1,
+    text: index.toString(),
+    value: index,
   }));
 };
 

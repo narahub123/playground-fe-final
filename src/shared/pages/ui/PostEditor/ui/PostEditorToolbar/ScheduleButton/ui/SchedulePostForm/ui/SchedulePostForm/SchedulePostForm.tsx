@@ -50,7 +50,12 @@ const SchedulePostForm = ({ className }: SchedulePostFormProps) => {
   const [isValid, setIsValid] = useState<{ [key: string]: boolean } | boolean>(
     true
   );
+  const [error, setError] = useState<{ date: string; time: string }>({
+    date: "",
+    time: "",
+  });
 
+  // amPm 자동 변경
   useEffect(() => {
     if (schedule.hour === 12) {
       if (schedule.amPm === "am") {
@@ -66,6 +71,56 @@ const SchedulePostForm = ({ className }: SchedulePostFormProps) => {
       }
     }
   }, [schedule.hour]);
+
+  useEffect(() => {
+    const today = new Date();
+    const thisMonth = today.getMonth() + 1;
+    const thisDate = today.getDate();
+
+    const { year, month, date, hour, minute, amPm } = schedule;
+    const target = new Date(
+      year,
+      month - 1,
+      date,
+      amPm === "pm" ? hour + 12 : hour,
+      minute
+    );
+
+    if (
+      thisMonth > schedule.month ||
+      (thisMonth === schedule.month && thisDate > schedule.date)
+    ) {
+      setError((prev) => {
+        if (prev.date.length === 0) {
+          return {
+            ...prev,
+            date: "게시일을 과거 날짜로 예약할 수 없습니다.",
+          };
+        } else return prev;
+      });
+      return;
+    } else if (target.getTime() <= today.getTime()) {
+      setError((prev) => {
+        if (prev.time.length === 0) {
+          return {
+            ...prev,
+            time: "게시일을 과거 날짜로 예약할 수 없습니다.",
+          };
+        } else return prev;
+      });
+
+      return;
+    }
+
+    setError((prev) => {
+      if (prev.date.length !== 0 || prev.time.length !== 0) {
+        return {
+          date: "",
+          time: "",
+        };
+      } else return prev;
+    });
+  }, [schedule]);
 
   // 언어 설정
   const { header, scheduleDay, scheduleTime, timeZone } = useLanguageContent([
@@ -120,6 +175,7 @@ const SchedulePostForm = ({ className }: SchedulePostFormProps) => {
               <Icon iconName="calendar" onClick={() => {}} />
             </div>
           </div>
+          {error.date && <Text status="error">{error.date}</Text>}
         </div>
         <div className={styles["schedule__form__body__hour"]}>
           <Text type="expl">시간</Text>
@@ -136,6 +192,7 @@ const SchedulePostForm = ({ className }: SchedulePostFormProps) => {
               />
             ))}
           </div>
+          {error.time && <Text status="error">{error.time}</Text>}
         </div>
         <div className={styles["schedule__form__body__time__zone"]}>
           <Text type="expl">{timeZone}</Text>
