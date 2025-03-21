@@ -594,6 +594,7 @@ const components = {
         "아직 게시할 준비가 되지 않았나요? 초안을 저장해 두거나 나중을 위해 예약하세요.",
     },
   },
+  CalendarIcon: {},
 };
 
 export default components;

@@ -4,7 +4,6 @@ import { joinClassNames } from "@shared/@common/utils";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Modal, Text } from "@shared/@common/ui/components";
-import { Icon } from "@shared/@common/ui/icons";
 import { PRIMARY_LINK } from "@shared/@common/constants";
 import {
   SelectSchedule,
@@ -12,6 +11,7 @@ import {
   ISchedule,
   useScheduleData,
   ScheduleText,
+  CalendarButton,
 } from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/ScheduleButton";
 
 interface SchedulePostFormProps {
@@ -185,9 +185,7 @@ const SchedulePostForm = ({ className }: SchedulePostFormProps) => {
                   value={schedule[item as keyof ISchedule]}
                 />
               ))}
-              <div className={styles["icon__container"]}>
-                <Icon iconName="calendar" onClick={() => {}} />
-              </div>
+              <CalendarButton />
             </div>
             {error.date && <Text status="error">{error.date}</Text>}
           </div>
