@@ -1,10 +1,13 @@
 import styles from "./PostEditorToolbar.module.css";
 import { joinClassNames } from "@shared/@common/utils";
-import MediaButton from "./MediaButton/MediaButton";
-import VoteButton from "./VoteButton/VoteButton";
-import { EmojiButton } from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar";
-import ReserveButton from "./ReserveButton/ReserveButton";
-import LocationTagButton from "./LocationTagButton/LocationTagButton";
+import {
+  EmojiButton,
+  LocationTagButton,
+  MediaButton,
+  ReserveButton,
+  VoteButton,
+} from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar";
+
 import { useSelector } from "react-redux";
 import { selectPostEditorToolbar } from "../../models/selectors";
 
