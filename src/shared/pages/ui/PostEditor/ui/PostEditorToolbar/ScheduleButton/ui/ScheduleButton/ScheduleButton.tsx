@@ -1,4 +1,5 @@
 import { useAppDispatch } from "@app/store";
+import { PRIMARY_LINK } from "@shared/@common/constants";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { onParallelModalOpen } from "@shared/@common/models/slices/modalSlice";
 import { ToolbarButton } from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar";
@@ -17,7 +18,7 @@ const ScheduleButton = ({ disabled = false }: ReserveButtonProps) => {
 
   const handleClick = () => {
     dispatch(onParallelModalOpen("schedule"));
-    navigate("/compose/post/schedule");
+    navigate(PRIMARY_LINK.SCHEDULE_POST);
   };
 
   return (

@@ -1,22 +1,17 @@
 import styles from "./SchdulePostForm.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
-import { Button, Modal, Text } from "@shared/@common/ui/components";
 import { joinClassNames } from "@shared/@common/utils";
-import { LuCalendarDays } from "react-icons/lu";
-import { useNavigate } from "react-router-dom";
-import { PRIMARY_LINK } from "@shared/@common/constants";
-import SelectSchedule from "../SelectSchedule/SelectSchedule";
 import { useState } from "react";
-import { scheduleMonth } from "../../data";
-import {
-  scheduleAmPm,
-  scheduleDate,
-  scheduleHour,
-  scheduleMinute,
-  scheduleYear,
-} from "../../data/dates";
-import { ISchedule } from "../../types";
+import { useNavigate } from "react-router-dom";
+import { Button, Modal, Text } from "@shared/@common/ui/components";
 import { Icon } from "@shared/@common/ui/icons";
+import { PRIMARY_LINK } from "@shared/@common/constants";
+import {
+  SelectSchedule,
+  scheduleDate,
+  ISchedule,
+  useScheduleData,
+} from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/ScheduleButton";
 
 interface SchdulePostFormProps {
   className?: string;
@@ -27,17 +22,14 @@ const SchdulePostForm = ({ className }: SchdulePostFormProps) => {
 
   const getInitialSchedule = (): ISchedule => {
     const today = new Date();
-    console.log(today);
+
     const year = today.getFullYear();
     const month = today.getMonth() + 1;
     const date = today.getDate();
     const hour = today.getHours();
     const minute = today.getMinutes();
     const amPm = today.getHours() > 12 ? "pm" : "am";
-
     const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-
-    console.log(timeZone);
 
     return {
       year,
@@ -54,11 +46,16 @@ const SchdulePostForm = ({ className }: SchdulePostFormProps) => {
 
   const [schedule, setSchedule] = useState<ISchedule>(initialSchedule);
   const [isValid, setIsValid] = useState<{ [key: string]: boolean } | boolean>(
-    false
+    true
   );
 
   // 언어 설정
-  const { header } = useLanguageContent(["components", "SchdulePostForm"]);
+  const { header, scheduleDay, scheduleTime, timeZone } = useLanguageContent([
+    "components",
+    "SchdulePostForm",
+  ]);
+
+  const scheduleData = useScheduleData();
 
   const classNames = joinClassNames([styles["schedule__form"], className]);
 
@@ -86,30 +83,20 @@ const SchdulePostForm = ({ className }: SchdulePostFormProps) => {
         <div className={styles["schedule__form__body__date"]}>
           <Text type="expl">날짜</Text>
           <div className={styles["schedule__form__body__select__wrapper"]}>
-            <SelectSchedule
-              label="년"
-              field="year"
-              options={scheduleYear()}
-              setFunc={setSchedule}
-              setIsValid={setIsValid}
-              value={schedule.year}
-            />
-            <SelectSchedule
-              label="월"
-              field="month"
-              options={scheduleMonth()}
-              setFunc={setSchedule}
-              setIsValid={setIsValid}
-              value={schedule.month}
-            />
-            <SelectSchedule
-              label="일"
-              field="date"
-              options={scheduleDate(schedule.year, schedule.month)}
-              setFunc={setSchedule}
-              setIsValid={setIsValid}
-              value={schedule.date}
-            />
+            {["year", "month", "date"].map((item) => (
+              <SelectSchedule
+                label={scheduleDay[item]}
+                field={item}
+                options={
+                  item === "date"
+                    ? scheduleDate(schedule.year, schedule.month)
+                    : scheduleData[item as keyof typeof scheduleData]
+                }
+                setFunc={setSchedule}
+                setIsValid={setIsValid}
+                value={schedule[item as keyof ISchedule]}
+              />
+            ))}
             <div className={styles["icon__container"]}>
               <Icon iconName="calendar" onClick={() => {}} />
             </div>
@@ -118,34 +105,20 @@ const SchdulePostForm = ({ className }: SchdulePostFormProps) => {
         <div className={styles["schedule__form__body__hour"]}>
           <Text type="expl">시간</Text>
           <div className={styles["schedule__form__body__select__wrapper"]}>
-            <SelectSchedule
-              label="시간"
-              field="hour"
-              options={scheduleHour()}
-              setFunc={setSchedule}
-              setIsValid={setIsValid}
-              value={schedule.hour}
-            />
-            <SelectSchedule
-              label="분"
-              field="minute"
-              options={scheduleMinute()}
-              setFunc={setSchedule}
-              setIsValid={setIsValid}
-              value={schedule.minute}
-            />
-            <SelectSchedule
-              label="Am/Pm"
-              field="amPm"
-              options={scheduleAmPm()}
-              setFunc={setSchedule}
-              setIsValid={setIsValid}
-              value={schedule.amPm}
-            />
+            {["hour", "minute", "amPm"].map((item) => (
+              <SelectSchedule
+                label={scheduleTime[item]}
+                field={item}
+                options={scheduleData[item as keyof typeof scheduleData]}
+                setFunc={setSchedule}
+                setIsValid={setIsValid}
+                value={schedule[item as keyof ISchedule]}
+              />
+            ))}
           </div>
         </div>
         <div className={styles["schedule__form__body__time__zone"]}>
-          <Text type="expl">시간대</Text>
+          <Text type="expl">{timeZone}</Text>
           <Text>{schedule.timeZone}</Text>
         </div>
       </Modal.Body>

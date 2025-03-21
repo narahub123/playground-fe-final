@@ -559,6 +559,17 @@ const components = {
       title: "예약하기",
       btn: "확인",
     },
+    scheduleDay: {
+      year: "년",
+      month: "월",
+      date: "일",
+    },
+    scheduleTime: {
+      hour: "시간",
+      minute: "분",
+      amPm: "AM/PM",
+    },
+    timeZone: "시간대",
   },
 };
 
