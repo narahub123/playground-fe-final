@@ -554,6 +554,12 @@ const components = {
   },
   EmojiList: {},
   SkintonePicker: {},
+  SchdulePostForm: {
+    header: {
+      title: "예약하기",
+      btn: "확인",
+    },
+  },
 };
 
 export default components;

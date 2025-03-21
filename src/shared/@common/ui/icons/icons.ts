@@ -11,6 +11,7 @@ import {
   LuKeyRound as keyIcon,
   LuSmartphoneNfc as notificationPreferencesIcon,
   LuPlus as plus,
+  LuCalendarDays as calendar,
 } from "react-icons/lu";
 import {
   RiEyeLine as eye,
@@ -157,6 +158,7 @@ const Icons = {
   verifiedIcon,
   mentionedIcon,
   plus, // 추가
+  calendar, // 달력 아이콘
 };
 
 export default Icons;

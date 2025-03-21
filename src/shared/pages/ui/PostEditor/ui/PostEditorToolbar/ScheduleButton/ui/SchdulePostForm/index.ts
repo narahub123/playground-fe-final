@@ -1,3 +1,5 @@
-import { SchdulePostForm } from "./ui";
+import { SchdulePostForm, SelectSchedule } from "./ui";
+import { ISchedule, AmPmType } from "./types";
 
-export { SchdulePostForm };
+export { SchdulePostForm, SelectSchedule };
+export type { AmPmType, ISchedule };
