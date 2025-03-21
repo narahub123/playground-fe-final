@@ -1,7 +1,7 @@
 import styles from "./SchedulePostForm.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Modal, Text } from "@shared/@common/ui/components";
 import { Icon } from "@shared/@common/ui/icons";
@@ -50,6 +50,22 @@ const SchedulePostForm = ({ className }: SchedulePostFormProps) => {
   const [isValid, setIsValid] = useState<{ [key: string]: boolean } | boolean>(
     true
   );
+
+  useEffect(() => {
+    if (schedule.hour === 12) {
+      if (schedule.amPm === "am") {
+        setSchedule((prev) => ({
+          ...prev,
+          amPm: "pm",
+        }));
+      } else {
+        setSchedule((prev) => ({
+          ...prev,
+          amPm: "am",
+        }));
+      }
+    }
+  }, [schedule.hour]);
 
   // 언어 설정
   const { header, scheduleDay, scheduleTime, timeZone } = useLanguageContent([
