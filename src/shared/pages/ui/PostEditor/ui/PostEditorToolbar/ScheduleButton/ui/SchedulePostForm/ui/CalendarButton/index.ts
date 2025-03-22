@@ -5,6 +5,7 @@ import {
   Calendar,
   CalendarAccordian,
   DateButton,
+  MonthButton,
 } from "./ui";
 
 export {
@@ -14,4 +15,5 @@ export {
   Calendar,
   CalendarAccordian,
   DateButton,
+  MonthButton,
 };

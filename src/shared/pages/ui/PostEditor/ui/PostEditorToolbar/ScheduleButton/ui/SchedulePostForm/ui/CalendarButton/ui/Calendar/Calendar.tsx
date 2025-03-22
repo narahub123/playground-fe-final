@@ -22,9 +22,6 @@ const Calendar = ({
   //   const {} = useLanguageContent(["", "Calendar"]);
   const [dates, setDates] = useState<Date[]>([]);
 
-  const firstDate = new Date(year, month - 1, 1);
-  const lastDate = new Date(year, month, 0);
-
   const classNames = joinClassNames([styles["calendar"], className]);
 
   const days = ["일", "월", "화", "수", "목", "금", "토"];

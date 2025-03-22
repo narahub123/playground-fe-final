@@ -165,6 +165,7 @@ const CalendarDropdown = ({
                 year={year}
                 isOpen={isAccordianOpen === year}
                 setIsAccordianOpen={setIsAccordianOpen}
+                setIsCalendar={setIsCalendar}
               />
             ))}
           </div>

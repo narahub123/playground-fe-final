@@ -2,12 +2,14 @@ import styles from "./CalendarAccordian.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
 import { useScheduleContext, useScheduleData } from "../../../../hooks";
+import MonthButton from "../MonthButton/MonthButton";
 
 interface CalendarAccordianProps {
   className?: string;
   year: number;
   isOpen: boolean;
   setIsAccordianOpen: React.Dispatch<React.SetStateAction<number>>;
+  setIsCalendar: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const CalendarAccordian = ({
@@ -15,6 +17,7 @@ const CalendarAccordian = ({
   year,
   isOpen,
   setIsAccordianOpen,
+  setIsCalendar,
 }: CalendarAccordianProps) => {
   // 언어 설정
   //   const {} = useLanguageContent(["", "CalendarAccordian"]);
@@ -48,40 +51,26 @@ const CalendarAccordian = ({
           if (index % 4 === 0) {
             acc.push(
               <div key={index} className={styles["calendar__month"]}>
-                <button
+                <MonthButton
                   key={index}
-                  className={joinClassNames([
-                    styles["month__button"],
-                    schedule.year === year && schedule.month === month.value
-                      ? styles["month__button--selected"]
-                      : "",
-                    isOpen
-                      ? styles["month__button--open"]
-                      : styles["month__button--closed"],
-                  ])}
-                >
-                  {month.text}
-                </button>
+                  month={month}
+                  isOpen={isOpen}
+                  year={year}
+                  setIsCalendar={setIsCalendar}
+                />
               </div>
             );
           } else {
             acc[acc.length - 1] = (
               <div key={acc.length - 1} className={styles["calendar__month"]}>
                 {acc[acc.length - 1].props.children}
-                <button
+                <MonthButton
                   key={index}
-                  className={joinClassNames([
-                    styles["month__button"],
-                    schedule.year === year && schedule.month === month.value
-                      ? styles["month__button--selected"]
-                      : "",
-                    isOpen
-                      ? styles["month__button--open"]
-                      : styles["month__button--closed"],
-                  ])}
-                >
-                  {month.text}
-                </button>
+                  month={month}
+                  isOpen={isOpen}
+                  year={year}
+                  setIsCalendar={setIsCalendar}
+                />
               </div>
             );
           }

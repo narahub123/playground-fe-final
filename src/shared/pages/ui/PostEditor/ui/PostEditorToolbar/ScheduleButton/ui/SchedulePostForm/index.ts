@@ -8,6 +8,7 @@ import {
   Calendar,
   CalendarAccordian,
   DateButton,
+  MonthButton,
 } from "./ui";
 import { ISchedule, AmPmType, IScheduleContext } from "./types";
 import {
@@ -41,5 +42,6 @@ export {
   ScheduleContext,
   ScheduleContextProvider,
   useScheduleContext,
+  MonthButton,
 };
 export type { AmPmType, ISchedule, IScheduleContext };

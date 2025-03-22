@@ -8,6 +8,7 @@ import {
   Calendar,
   CalendarAccordian,
   DateButton,
+  MonthButton,
 } from "./CalendarButton";
 
 export {
@@ -20,4 +21,5 @@ export {
   Calendar,
   CalendarAccordian,
   DateButton,
+  MonthButton,
 };
