@@ -39,9 +39,11 @@ const CalendarDropdown = ({
 
   const [isCalendar, setIsCalendar] = useState(true);
 
+  const [isAccordianOpen, setIsAccordianOpen] = useState(year);
+
   const classNames = joinClassNames([styles["calendar__dropdown"]]);
 
-  const years = ["2025", "2026", "2027"];
+  const years = [2025, 2026, 2027];
 
   const curMonth = Intl.DateTimeFormat(navigator.language, {
     year: "numeric",
@@ -158,7 +160,12 @@ const CalendarDropdown = ({
         ) : (
           <div className={styles["calendar__dropdown__accordian__wrapper"]}>
             {years.map((year, index) => (
-              <CalendarAccordian key={index} />
+              <CalendarAccordian
+                key={index}
+                year={year}
+                isOpen={isAccordianOpen === year}
+                setIsAccordianOpen={setIsAccordianOpen}
+              />
             ))}
           </div>
         )}

@@ -1,22 +1,95 @@
 import styles from "./CalendarAccordian.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
+import { useScheduleContext, useScheduleData } from "../../../../hooks";
 
 interface CalendarAccordianProps {
   className?: string;
-  disabled?: boolean;
+  year: number;
+  isOpen: boolean;
+  setIsAccordianOpen: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const CalendarAccordian = ({
   className,
-  disabled = false,
+  year,
+  isOpen,
+  setIsAccordianOpen,
 }: CalendarAccordianProps) => {
   // 언어 설정
   //   const {} = useLanguageContent(["", "CalendarAccordian"]);
 
-  const classNames = joinClassNames([styles["calendaraccordian"], className]);
+  const classNames = joinClassNames([styles["calendar__accordian"], className]);
 
-  return <div className={classNames}>CalendarAccordian</div>;
+  const { schedule } = useScheduleContext();
+  const { month: months } = useScheduleData();
+
+  return (
+    <div className={classNames}>
+      <div
+        className={styles["calendar__accordian__header"]}
+        onClick={() => {
+          console.log(year);
+
+          setIsAccordianOpen(year);
+        }}
+      >
+        {year}
+      </div>
+      <div
+        className={joinClassNames([
+          styles["calendar__accordian__year"],
+          isOpen
+            ? styles["calendar__accordian__year--open"]
+            : styles["calendar__accordian__year--closed"],
+        ])}
+      >
+        {months.reduce<JSX.Element[]>((acc, month, index) => {
+          if (index % 4 === 0) {
+            acc.push(
+              <div key={index} className={styles["calendar__month"]}>
+                <button
+                  key={index}
+                  className={joinClassNames([
+                    styles["month__button"],
+                    schedule.year === year && schedule.month === month.value
+                      ? styles["month__button--selected"]
+                      : "",
+                    isOpen
+                      ? styles["month__button--open"]
+                      : styles["month__button--closed"],
+                  ])}
+                >
+                  {month.text}
+                </button>
+              </div>
+            );
+          } else {
+            acc[acc.length - 1] = (
+              <div key={acc.length - 1} className={styles["calendar__month"]}>
+                {acc[acc.length - 1].props.children}
+                <button
+                  key={index}
+                  className={joinClassNames([
+                    styles["month__button"],
+                    schedule.year === year && schedule.month === month.value
+                      ? styles["month__button--selected"]
+                      : "",
+                    isOpen
+                      ? styles["month__button--open"]
+                      : styles["month__button--closed"],
+                  ])}
+                >
+                  {month.text}
+                </button>
+              </div>
+            );
+          }
+          return acc;
+        }, [])}
+      </div>
+    </div>
+  );
 };
 
 export default CalendarAccordian;
