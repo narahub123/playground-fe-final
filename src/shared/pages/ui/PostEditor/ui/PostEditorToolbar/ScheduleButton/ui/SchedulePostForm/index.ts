@@ -7,8 +7,9 @@ import {
   CalendarDropdown,
   Calendar,
   CalendarAccordian,
+  DateButton,
 } from "./ui";
-import { ISchedule, AmPmType } from "./types";
+import { ISchedule, AmPmType, IScheduleContext } from "./types";
 import {
   scheduleAmPm,
   scheduleDate,
@@ -17,7 +18,8 @@ import {
   scheduleMonth,
   scheduleYear,
 } from "./data";
-import { useScheduleData } from "./hooks";
+import { useScheduleData, useScheduleContext } from "./hooks";
+import { ScheduleContext, ScheduleContextProvider } from "./context";
 
 export {
   SchedulePostForm,
@@ -35,5 +37,9 @@ export {
   CalendarDropdown,
   Calendar,
   CalendarAccordian,
+  DateButton,
+  ScheduleContext,
+  ScheduleContextProvider,
+  useScheduleContext,
 };
-export type { AmPmType, ISchedule };
+export type { AmPmType, ISchedule, IScheduleContext };

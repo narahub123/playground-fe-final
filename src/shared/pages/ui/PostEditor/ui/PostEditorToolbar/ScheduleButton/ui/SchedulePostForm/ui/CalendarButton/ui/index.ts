@@ -3,6 +3,7 @@ import CalendarIcon from "./CalendarIcon/CalendarIcon";
 import CalendarDropdown from "./CalendarDropdown/CalendarDropdown";
 import Calendar from "./Calendar/Calendar";
 import CalendarAccordian from "./CalendarAccordian/CalendarAccordian";
+import DateButton from "./DateButton/DateButton";
 
 export {
   CalendarButton,
@@ -10,4 +11,5 @@ export {
   CalendarDropdown,
   Calendar,
   CalendarAccordian,
+  DateButton,
 };

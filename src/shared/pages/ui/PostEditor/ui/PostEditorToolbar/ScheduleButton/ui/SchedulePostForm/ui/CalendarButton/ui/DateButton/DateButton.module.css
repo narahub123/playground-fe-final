@@ -1,0 +1,44 @@
+.date__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 34px;
+  height: 34px;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.date__button:hover {
+  border: 1px solid #000;
+  background-color: var(--colorTheme-bgColor-hover-light);
+}
+
+.date__button:focus-visible {
+  outline: 1px solid #000;
+}
+
+.sunday {
+  color: red;
+}
+
+.saturday {
+  color: blue;
+}
+
+.last__month {
+  color: #ccc;
+}
+
+.next__month {
+  color: #ccc;
+}
+
+.today {
+  border: 1px solid #000;
+}
+
+.scheduled__date {
+  border: 1px solid #000;
+  background-color: var(--colorTheme-color-primary);
+  color: white;
+}

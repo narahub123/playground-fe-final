@@ -7,6 +7,7 @@ import {
   CalendarDropdown,
   Calendar,
   CalendarAccordian,
+  DateButton,
 } from "./CalendarButton";
 
 export {
@@ -18,4 +19,5 @@ export {
   CalendarDropdown,
   Calendar,
   CalendarAccordian,
+  DateButton,
 };
