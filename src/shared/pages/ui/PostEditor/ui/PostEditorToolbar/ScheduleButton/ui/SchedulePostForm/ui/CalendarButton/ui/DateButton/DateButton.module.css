@@ -42,3 +42,9 @@
   background-color: var(--colorTheme-color-primary);
   color: white;
 }
+
+.scheduled__date:hover {
+  border: 1px solid #000;
+  background-color: var(--colorTheme-color-primary);
+  color: white;
+}

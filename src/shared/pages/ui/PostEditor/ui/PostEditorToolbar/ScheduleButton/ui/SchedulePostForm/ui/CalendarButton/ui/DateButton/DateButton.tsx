@@ -12,7 +12,7 @@ const DateButton = ({ index, date }: DateButtonProps) => {
   // 언어 설정
   //   const {} = useLanguageContent(["", "DateButton"]);
 
-  const { schedule: scheduled } = useScheduleContext();
+  const { schedule: scheduled, setSchedule } = useScheduleContext();
 
   const { year, month, date: selectedDate } = scheduled;
 
@@ -41,8 +41,17 @@ const DateButton = ({ index, date }: DateButtonProps) => {
     schedule.getTime() === date.getTime() ? styles["scheduled__date"] : "",
   ]);
 
+  const handleClick = () => {
+    setSchedule((prev) => ({
+      ...prev,
+      year: date.getFullYear(),
+      month: date.getMonth() + 1,
+      date: date.getDate(),
+    }));
+  };
+
   return (
-    <button className={classNames} key={index}>
+    <button className={classNames} key={index} onClick={handleClick}>
       {date.getDate()}
     </button>
   );

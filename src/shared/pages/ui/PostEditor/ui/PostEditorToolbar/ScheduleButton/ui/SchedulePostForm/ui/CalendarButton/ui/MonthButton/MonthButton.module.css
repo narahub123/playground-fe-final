@@ -4,6 +4,11 @@
   border: 1px solid transparent;
 }
 
+.month__button:hover {
+  border: 1px solid #000;
+  background-color: var(--colorTheme-bgColor-hover-light);
+}
+
 .month__button--open {
   width: 59.5px;
   max-height: 34px;
@@ -19,6 +24,12 @@
 }
 
 .month__button--selected {
+  background-color: var(--colorTheme-color-primary);
+  color: white;
+  outline: 2px solid #000;
+}
+
+.month__button--selected:hover {
   background-color: var(--colorTheme-color-primary);
   color: white;
   outline: 2px solid #000;
