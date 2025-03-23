@@ -2,8 +2,9 @@ import styles from "./Calendar.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
 import { scheduleDate } from "../../../../data";
-import { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import DateButton from "../DateButton/DateButton";
+import { useScheduleContext } from "../../../../hooks";
 
 interface CalendarProps {
   className?: string;
@@ -25,6 +26,14 @@ const Calendar = ({
   const classNames = joinClassNames([styles["calendar"], className]);
 
   const days = ["일", "월", "화", "수", "목", "금", "토"];
+
+  const { schedule, setSchedule } = useScheduleContext();
+
+  const {
+    year: selectedYear,
+    month: selectedMonth,
+    date: selectedDate,
+  } = schedule;
 
   useEffect(() => {
     const thisDates = scheduleDate(year, month).map(
@@ -56,6 +65,71 @@ const Calendar = ({
 
   console.log(dates);
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    const key = e.key;
+    if (key === "ArrowDown") {
+      const curSchedule = new Date(
+        selectedYear,
+        selectedMonth - 1,
+        selectedDate
+      );
+
+      curSchedule.setDate(curSchedule.getDate() + 7);
+
+      setSchedule((prev) => ({
+        ...prev,
+        year: curSchedule.getFullYear(),
+        month: curSchedule.getMonth() + 1,
+        date: curSchedule.getDate(),
+      }));
+    } else if (key === "ArrowUp") {
+      const curSchedule = new Date(
+        selectedYear,
+        selectedMonth - 1,
+        selectedDate
+      );
+
+      curSchedule.setDate(curSchedule.getDate() - 7);
+
+      setSchedule((prev) => ({
+        ...prev,
+        year: curSchedule.getFullYear(),
+        month: curSchedule.getMonth() + 1,
+        date: curSchedule.getDate(),
+      }));
+    } else if (key === "ArrowLeft") {
+      const curSchedule = new Date(
+        selectedYear,
+        selectedMonth - 1,
+        selectedDate
+      );
+
+      curSchedule.setDate(curSchedule.getDate() - 1);
+
+      setSchedule((prev) => ({
+        ...prev,
+        year: curSchedule.getFullYear(),
+        month: curSchedule.getMonth() + 1,
+        date: curSchedule.getDate(),
+      }));
+    } else if (key === "ArrowRight") {
+      const curSchedule = new Date(
+        selectedYear,
+        selectedMonth - 1,
+        selectedDate
+      );
+
+      curSchedule.setDate(curSchedule.getDate() + 1);
+
+      setSchedule((prev) => ({
+        ...prev,
+        year: curSchedule.getFullYear(),
+        month: curSchedule.getMonth() + 1,
+        date: curSchedule.getDate(),
+      }));
+    }
+  };
+
   return (
     <div className={classNames}>
       <div className={styles["calendar__wrapper"]}>
@@ -66,7 +140,7 @@ const Calendar = ({
             </span>
           ))}
         </div>
-        <div className={styles["calendar__dates"]}>
+        <div className={styles["calendar__dates"]} onKeyDown={handleKeyDown}>
           {dates.reduce<JSX.Element[]>((acc, date, index) => {
             if (index % 7 === 0) {
               acc.push(
