@@ -1,0 +1,9 @@
+.calendar__icon {
+  opacity: 1;
+}
+
+.calendar__icon__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

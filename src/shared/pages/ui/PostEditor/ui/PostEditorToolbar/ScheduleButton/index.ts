@@ -19,6 +19,10 @@ import {
   ScheduleContextProvider,
   useScheduleContext,
   IScheduleContext,
+  CalendarButton,
+  CalendarIcon,
+  CalendarDropdown,
+  IRect,
 } from "./ui";
 
 export {
@@ -39,6 +43,9 @@ export {
   ScheduleContext,
   ScheduleContextProvider,
   useScheduleContext,
+  CalendarButton,
+  CalendarIcon,
+  CalendarDropdown,
 };
 
-export type { AmPmType, ISchedule, IScheduleContext };
+export type { AmPmType, ISchedule, IScheduleContext, IRect };

@@ -18,6 +18,10 @@ import {
   ScheduleContextProvider,
   useScheduleContext,
   IScheduleContext,
+  CalendarButton,
+  CalendarIcon,
+  CalendarDropdown,
+  IRect,
 } from "./SchedulePostForm";
 
 import { UnsentPost } from "./UnsentPost";
@@ -40,6 +44,9 @@ export {
   ScheduleContext,
   ScheduleContextProvider,
   useScheduleContext,
+  CalendarButton,
+  CalendarIcon,
+  CalendarDropdown,
 };
 
-export type { AmPmType, ISchedule, IScheduleContext };
+export type { AmPmType, ISchedule, IScheduleContext, IRect };
