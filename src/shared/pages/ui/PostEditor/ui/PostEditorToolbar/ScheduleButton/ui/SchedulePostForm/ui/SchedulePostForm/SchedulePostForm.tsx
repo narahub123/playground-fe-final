@@ -1,14 +1,13 @@
 import styles from "./SchedulePostForm.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Modal, Text } from "@shared/@common/ui/components";
 import { PRIMARY_LINK } from "@shared/@common/constants";
 import {
   SelectSchedule,
   scheduleDate,
-  ISchedule,
   useScheduleData,
   ScheduleText,
   CalendarButton,
