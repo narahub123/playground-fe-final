@@ -27,6 +27,10 @@ import {
   MonthUpButton,
   CalendarView,
   CalendarAccordianView,
+  CalendarDropdownContext,
+  CalendarDropdownContextProvider,
+  useCalendarDropdownContext,
+  ICalendarDropdown,
 } from "./SchedulePostForm";
 
 import { UnsentPost } from "./UnsentPost";
@@ -57,6 +61,9 @@ export {
   MonthUpButton,
   CalendarView,
   CalendarAccordianView,
+  CalendarDropdownContext,
+  CalendarDropdownContextProvider,
+  useCalendarDropdownContext,
 };
 
-export type { AmPmType, ISchedule, IScheduleContext, IRect };
+export type { AmPmType, ISchedule, IScheduleContext, IRect, ICalendarDropdown };

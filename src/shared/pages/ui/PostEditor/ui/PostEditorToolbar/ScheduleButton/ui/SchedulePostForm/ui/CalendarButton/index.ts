@@ -7,6 +7,10 @@ import {
   MonthUpButton,
   CalendarView,
   CalendarAccordianView,
+  CalendarDropdownContext,
+  CalendarDropdownContextProvider,
+  useCalendarDropdownContext,
+  ICalendarDropdown,
 } from "./ui";
 import { IRect } from "./types";
 
@@ -19,6 +23,9 @@ export {
   MonthUpButton,
   CalendarView,
   CalendarAccordianView,
+  CalendarDropdownContext,
+  CalendarDropdownContextProvider,
+  useCalendarDropdownContext,
 };
 
-export type { IRect };
+export type { IRect, ICalendarDropdown };
