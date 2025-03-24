@@ -1,21 +1,21 @@
 import styles from "./YearMonthButton.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
-import { useScheduleContext } from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/ScheduleButton";
+import {
+  useCalendarDropdownContext,
+  useScheduleContext,
+} from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/ScheduleButton";
 
 interface YearMonthButtonProps {
   className?: string;
-  isCalendarAccordianView: boolean;
 }
 
-const YearMonthButton = ({
-  className,
-  isCalendarAccordianView,
-}: YearMonthButtonProps) => {
+const YearMonthButton = ({ className }: YearMonthButtonProps) => {
   // 언어 설정
   //   const {} = useLanguageContent(["", "YearMonthButton"]);
 
   const { schedule } = useScheduleContext();
+  const { isCalendarView, setIsCalendarView } = useCalendarDropdownContext();
 
   const { year, month } = schedule;
 
@@ -29,8 +29,9 @@ const YearMonthButton = ({
   return (
     <button
       className={classNames}
-      aria-expanded={!isCalendarAccordianView}
+      aria-expanded={!isCalendarView}
       aria-controls="calendar-accordian-view"
+      onClick={() => setIsCalendarView(false)}
     >
       {scheduledYearMonth}
     </button>

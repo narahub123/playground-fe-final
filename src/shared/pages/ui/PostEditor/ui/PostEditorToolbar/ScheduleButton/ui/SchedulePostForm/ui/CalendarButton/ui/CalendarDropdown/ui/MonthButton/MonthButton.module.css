@@ -1,0 +1,16 @@
+.month__button {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.month__button--open {
+  max-height: 34.4px;
+}
+
+.month__button--closed {
+  max-height: 0px;
+}

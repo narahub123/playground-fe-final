@@ -11,6 +11,9 @@ import {
   CalendarDropdownContextProvider,
   useCalendarDropdownContext,
   ICalendarDropdown,
+  CalendarAccordian,
+  YearButton,
+  MonthButton,
 } from "./ui";
 import { IRect } from "./types";
 
@@ -26,6 +29,9 @@ export {
   CalendarDropdownContext,
   CalendarDropdownContextProvider,
   useCalendarDropdownContext,
+  CalendarAccordian,
+  YearButton,
+  MonthButton,
 };
 
 export type { IRect, ICalendarDropdown };

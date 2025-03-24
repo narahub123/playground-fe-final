@@ -5,6 +5,9 @@ import {
   MonthUpButton,
   CalendarView,
   CalendarAccordianView,
+  CalendarAccordian,
+  YearButton,
+  MonthButton,
 } from "./ui";
 
 import {
@@ -26,6 +29,9 @@ export {
   CalendarDropdownContext,
   CalendarDropdownContextProvider,
   useCalendarDropdownContext,
+  CalendarAccordian,
+  YearButton,
+  MonthButton,
 };
 
 export type { ICalendarDropdown };

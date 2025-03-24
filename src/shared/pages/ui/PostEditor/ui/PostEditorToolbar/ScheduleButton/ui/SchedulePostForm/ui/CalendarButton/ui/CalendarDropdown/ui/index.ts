@@ -4,6 +4,9 @@ import MonthUpButton from "./MonthUpButton/MonthUpButton";
 import MonthDownButton from "./MonthDownButton/MonthDownButton";
 import CalendarView from "./CalendarView/CalendarView";
 import CalendarAccordianView from "./CalendarAccordianView/CalendarAccordianView";
+import CalendarAccordian from "./CalendarAccordian/CalendarAccordian";
+import YearButton from "./YearButton/YearButton";
+import MonthButton from "./MonthButton/MonthButton";
 
 export {
   CalendarDropdown,
@@ -12,4 +15,7 @@ export {
   MonthUpButton,
   CalendarView,
   CalendarAccordianView,
+  CalendarAccordian,
+  YearButton,
+  MonthButton,
 };

@@ -1,23 +1,28 @@
 import styles from "./CalendarAccordianView.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
+import {
+  useCalendarDropdownContext,
+  useScheduleData,
+  CalendarAccordian,
+} from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/ScheduleButton";
+import { useState } from "react";
 
 interface CalendarAccordianViewProps {
   className?: string;
-  disabled?: boolean;
-  isCalendarAccordianView: boolean;
 }
 
-const CalendarAccordianView = ({
-  className,
-  disabled = false,
-  isCalendarAccordianView,
-}: CalendarAccordianViewProps) => {
+const CalendarAccordianView = ({ className }: CalendarAccordianViewProps) => {
   // 언어 설정
   //   const {} = useLanguageContent(["", "CalendarAccordianView"]);
+  const { year: years } = useScheduleData();
+
+  const [openedAccordian, setOpenedAccordian] = useState(years[0].value);
+
+  const { isCalendarView } = useCalendarDropdownContext();
 
   const classNames = joinClassNames([
-    styles["calendaraccordianview"],
+    styles["calendar__accordian__view"],
     className,
   ]);
 
@@ -26,9 +31,15 @@ const CalendarAccordianView = ({
       className={classNames}
       id={"calendar-accordian-view"}
       role="region"
-      aria-hidden={isCalendarAccordianView}
+      aria-hidden={!isCalendarView}
     >
-      CalendarAccordianView
+      {years.map((year) => (
+        <CalendarAccordian
+          year={year.value}
+          isAccordianOpen={openedAccordian === year.value}
+          setOpenedAccordian={setOpenedAccordian}
+        />
+      ))}
     </div>
   );
 };

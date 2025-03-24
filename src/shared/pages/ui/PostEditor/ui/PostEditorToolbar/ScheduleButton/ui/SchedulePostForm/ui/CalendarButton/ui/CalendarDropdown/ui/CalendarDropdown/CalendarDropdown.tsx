@@ -9,6 +9,8 @@ import {
   MonthUpButton,
   CalendarView,
   CalendarAccordianView,
+  CalendarDropdownContextProvider,
+  ICalendarDropdown,
 } from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/ScheduleButton";
 
 interface CalendarDropdownProps {
@@ -35,6 +37,11 @@ const CalendarDropdown = ({
 
   const classNames = joinClassNames([styles["calendar__dropdown"], className]);
 
+  const value: ICalendarDropdown = {
+    isCalendarView,
+    setIsCalendarView,
+  };
+
   return (
     <Dropdown
       className={classNames}
@@ -45,20 +52,18 @@ const CalendarDropdown = ({
       top={top}
       left={left}
     >
-      <div className={styles["calendar__dropdown__header"]}>
-        <YearMonthButton isCalendarAccordianView={!isCalendarView} />
-        <span className={styles["calendar__dropdown__arrow__btns"]}>
-          <MonthUpButton />
-          <MonthDownButton />
-        </span>
-      </div>
-      <div className={styles["calendar__dropdown__body"]}>
-        {isCalendarView ? (
-          <CalendarView isCalendarView={isCalendarView} />
-        ) : (
-          <CalendarAccordianView isCalendarAccordianView={!isCalendarView} />
-        )}
-      </div>
+      <CalendarDropdownContextProvider value={value}>
+        <div className={styles["calendar__dropdown__header"]}>
+          <YearMonthButton />
+          <span className={styles["calendar__dropdown__arrow__btns"]}>
+            <MonthUpButton />
+            <MonthDownButton />
+          </span>
+        </div>
+        <div className={styles["calendar__dropdown__body"]}>
+          {isCalendarView ? <CalendarView /> : <CalendarAccordianView />}
+        </div>
+      </CalendarDropdownContextProvider>
     </Dropdown>
   );
 };
