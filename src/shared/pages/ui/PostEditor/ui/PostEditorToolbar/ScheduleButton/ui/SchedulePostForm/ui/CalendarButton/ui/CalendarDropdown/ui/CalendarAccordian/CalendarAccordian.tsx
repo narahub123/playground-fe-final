@@ -43,7 +43,7 @@ const CalendarAccordian = ({
         className={styles["calendar__accordian__header"]}
         onClick={handleOpen}
       >
-        <YearButton year={year} />
+        <YearButton year={year} setOpenedAccordian={setOpenedAccordian} />
       </div>
       <div
         className={joinClassNames([
@@ -54,7 +54,12 @@ const CalendarAccordian = ({
         ])}
       >
         {months.map((month) => (
-          <MonthButton month={month} year={year} isOpen={isAccordianOpen} />
+          <MonthButton
+            month={month}
+            year={year}
+            isOpen={isAccordianOpen}
+            setOpenedAccordian={setOpenedAccordian}
+          />
         ))}
       </div>
     </div>

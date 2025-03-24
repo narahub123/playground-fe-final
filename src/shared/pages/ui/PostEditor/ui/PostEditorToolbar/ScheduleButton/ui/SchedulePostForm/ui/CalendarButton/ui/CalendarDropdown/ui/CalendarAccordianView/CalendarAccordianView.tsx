@@ -19,20 +19,13 @@ const CalendarAccordianView = ({ className }: CalendarAccordianViewProps) => {
 
   const [openedAccordian, setOpenedAccordian] = useState(years[0].value);
 
-  const { isCalendarView } = useCalendarDropdownContext();
-
   const classNames = joinClassNames([
     styles["calendar__accordian__view"],
     className,
   ]);
 
   return (
-    <div
-      className={classNames}
-      id={"calendar-accordian-view"}
-      role="region"
-      aria-hidden={!isCalendarView}
-    >
+    <div className={classNames} id={"calendar-accordian-view"} role="region">
       {years.map((year) => (
         <CalendarAccordian
           year={year.value}

@@ -4,7 +4,17 @@
   justify-content: center;
   align-items: center;
   padding: 0.5rem 1rem;
+  border: 1px solid transparent;
   transition: all 0.3s ease-in-out;
+}
+
+.month__button:focus-visible {
+  border: 1px solid #000;
+}
+
+.month__button:not(.month__button--selected):hover {
+  border: 1px solid #000;
+  background-color: #e1e1e1;
 }
 
 .month__button--open {
@@ -13,4 +23,13 @@
 
 .month__button--closed {
   max-height: 0px;
+}
+
+.month__button--selected {
+  background-color: var(--colorTheme-color-primary);
+  color: white;
+}
+
+.month__button--curMonth {
+  border: 1px solid #000;
 }
