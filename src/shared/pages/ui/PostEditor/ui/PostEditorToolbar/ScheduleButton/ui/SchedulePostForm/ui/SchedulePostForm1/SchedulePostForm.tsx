@@ -22,26 +22,118 @@ interface SchedulePostFormProps {
 const SchedulePostForm = ({ className }: SchedulePostFormProps) => {
   const navigate = useNavigate();
 
-  const initialSchedule = () => {
-    const targetDate = new Date();
+  const getInitialSchedule = (): ISchedule => {
+    const today = new Date();
 
-    targetDate.setDate(targetDate.getDate() + 5);
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1;
+    const date = today.getDate();
+    const hour =
+      today.getHours() > 12 ? today.getHours() - 12 : today.getHours();
+    const minute = today.getMinutes();
+    const amPm = today.getHours() > 12 ? "pm" : "am";
+    const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-    return targetDate;
+    return {
+      year,
+      month,
+      date: date + 5,
+      hour,
+      minute,
+      amPm,
+      timeZone,
+    };
   };
 
-  const [schedule, setSchedule] = useState<Date>(initialSchedule());
+  const initialSchedule = getInitialSchedule();
 
-  console.log(schedule);
-
+  const [schedule, setSchedule] = useState<ISchedule>(initialSchedule);
   const [isValid, setIsValid] = useState<{ [key: string]: boolean } | boolean>(
     true
   );
-
   const [error, setError] = useState<{ date: string; time: string }>({
     date: "",
     time: "",
   });
+
+  // amPm 자동 변경
+  useEffect(() => {
+    if (schedule.hour === 12) {
+      if (schedule.amPm === "am") {
+        setSchedule((prev) => ({
+          ...prev,
+          amPm: "pm",
+        }));
+      } else {
+        setSchedule((prev) => ({
+          ...prev,
+          amPm: "am",
+        }));
+      }
+    }
+  }, [schedule.hour]);
+
+  useEffect(() => {
+    const today = new Date();
+    const thisMonth = today.getMonth() + 1;
+    const thisDate = today.getDate();
+
+    const { year, month, date, hour, minute, amPm } = schedule;
+    const target = new Date(
+      year,
+      month - 1,
+      date,
+      amPm === "pm" ? hour + 12 : hour,
+      minute
+    );
+
+    if (
+      thisMonth > schedule.month ||
+      (thisMonth === schedule.month && thisDate > schedule.date)
+    ) {
+      setError((prev) => {
+        if (prev.date.length === 0) {
+          return {
+            time: "",
+            date: "게시일을 과거 날짜로 예약할 수 없습니다.",
+          };
+        } else return prev;
+      });
+      setIsValid((prev) => {
+        if (prev === true) return false;
+        else return prev;
+      });
+      return;
+    } else if (target.getTime() <= today.getTime()) {
+      setError((prev) => {
+        if (prev.time.length === 0) {
+          return {
+            date: "",
+            time: "게시일을 과거 날짜로 예약할 수 없습니다.",
+          };
+        } else return prev;
+      });
+      setIsValid((prev) => {
+        if (prev === true) return false;
+        else return prev;
+      });
+
+      return;
+    }
+
+    setError((prev) => {
+      if (prev.date.length !== 0 || prev.time.length !== 0) {
+        return {
+          date: "",
+          time: "",
+        };
+      } else return prev;
+    });
+    setIsValid((prev) => {
+      if (prev === false) return true;
+      else return prev;
+    });
+  }, [schedule]);
 
   // 언어 설정
   const { header, scheduleDay, scheduleTime, timeZone } = useLanguageContent([
@@ -55,24 +147,6 @@ const SchedulePostForm = ({ className }: SchedulePostFormProps) => {
 
   const moveToUnsent = () => {
     navigate(PRIMARY_LINK.SCHEDULED_POST);
-  };
-
-  const distructureDate = () => {
-    const year = schedule.getFullYear();
-    const month = schedule.getMonth() + 1;
-    const date = schedule.getDate();
-    const hour = schedule.getHours();
-    const minute = schedule.getMinutes();
-    const amPm = hour > 12 ? "pm" : "am";
-
-    return {
-      year,
-      month,
-      date,
-      hour,
-      minute,
-      amPm,
-    };
   };
 
   return (
@@ -105,17 +179,12 @@ const SchedulePostForm = ({ className }: SchedulePostFormProps) => {
                     field={item}
                     options={
                       item === "date"
-                        ? scheduleDate(
-                            schedule.getFullYear(),
-                            schedule.getMonth() + 1
-                          )
+                        ? scheduleDate(schedule.year, schedule.month)
                         : scheduleData[item as keyof typeof scheduleData]
                     }
                     setFunc={setSchedule}
                     setIsValid={setIsValid}
-                    value={
-                      distructureDate()[item as keyof typeof distructureDate]
-                    }
+                    value={schedule[item as keyof ISchedule]}
                   />
                 ))}
                 <CalendarButton />
@@ -133,9 +202,7 @@ const SchedulePostForm = ({ className }: SchedulePostFormProps) => {
                     options={scheduleData[item as keyof typeof scheduleData]}
                     setFunc={setSchedule}
                     setIsValid={setIsValid}
-                    value={
-                      distructureDate()[item as keyof typeof distructureDate]
-                    }
+                    value={schedule[item as keyof ISchedule]}
                   />
                 ))}
               </div>
@@ -143,7 +210,7 @@ const SchedulePostForm = ({ className }: SchedulePostFormProps) => {
             </div>
             <div className={styles["schedule__form__body__time__zone"]}>
               <Text type="expl">{timeZone}</Text>
-              <Text>{Intl.DateTimeFormat().resolvedOptions().timeZone}</Text>
+              <Text>{schedule.timeZone}</Text>
             </div>
           </Modal.Body>
           <Modal.Footer className={styles["schedule__form__footer"]}>

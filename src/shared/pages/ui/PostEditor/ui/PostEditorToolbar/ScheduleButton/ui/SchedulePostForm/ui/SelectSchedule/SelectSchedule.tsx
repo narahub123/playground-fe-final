@@ -1,4 +1,6 @@
 import Select, { useSelect } from "@shared/@common/ui/components/Select";
+import { useScheduleContext } from "../../hooks";
+import React from "react";
 
 interface SelectScheduleProps {
   className?: string;
@@ -28,13 +30,70 @@ const SelectSchedule = ({
   options,
   label,
 }: SelectScheduleProps) => {
+  const { schedule } = useScheduleContext();
+
+  const updateFunc = (field: string, value: number | string) => {
+    if (field === "year") {
+      const newSchedule = new Date(schedule);
+      newSchedule.setFullYear(value as number);
+
+      setFunc(newSchedule);
+    } else if (field === "month") {
+      const newSchedule = new Date(schedule);
+      newSchedule.setMonth((value as number) - 1);
+
+      setFunc(newSchedule);
+    } else if (field === "date") {
+      const newSchedule = new Date(schedule);
+      newSchedule.setDate(value as number);
+
+      setFunc(newSchedule);   
+    } else if (field === "hour") {
+      const newSchedule = new Date(schedule);
+      newSchedule.setHours(value as number);
+
+      setFunc(newSchedule);
+    } else if (field === "minute") {
+      const newSchedule = new Date(schedule);
+      newSchedule.setMinutes(value as number);
+
+      setFunc(newSchedule);
+    } else if (field === "amPm") {
+      const newSchedule = new Date(schedule);
+
+      if (value === "am") newSchedule.setHours(newSchedule.getHours() - 12);
+      else if (value === "pm")
+        newSchedule.setHours(newSchedule.getHours() + 12);
+
+      setFunc(newSchedule);
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    const key = e.key;
+    const index = options.findIndex((option) => option.value === value);
+    if (key === "ArrowUp") {
+      e.preventDefault();
+
+      const prevIndex = index - 1 < 0 ? options.length - 1 : index - 1;
+
+      updateFunc(field, options[prevIndex].value as number);
+
+      console.log("업");
+    } else if (key === "ArrowDown") {
+      e.preventDefault();
+      const nextIndex = index + 1 > options.length - 1 ? 0 : index + 1;
+
+      updateFunc(field, options[nextIndex].value as number);
+    }
+  };
   const {
-    handleKeyDown,
+    // handleKeyDown,
     isOpen,
     onClose,
     optionSelected,
     toggleListbox,
-    updateValue,
+    // updateValue,
   } = useSelect({
     value,
     options,
@@ -63,7 +122,7 @@ const SelectSchedule = ({
             className={selectCond ? optionSelected : undefined}
             key={option.value}
             ariaSelected={selectCond}
-            onMouseDown={(e) => updateValue(e, option.value)}
+            onMouseDown={() => updateFunc(field, option.value as number)}
             value={value}
           >
             {option.text}

@@ -2,23 +2,22 @@ import styles from "./ScheduleText.module.css";
 import { Text } from "@shared/@common/ui/components";
 import { joinClassNames } from "@shared/@common/utils";
 import { LuCalendarDays } from "react-icons/lu";
-import { ISchedule } from "../../types";
 
 interface ScheduleTextProps {
-  schedule: ISchedule;
+  schedule: Date;
 }
 
 const ScheduleText = ({ schedule }: ScheduleTextProps) => {
   const classNames = joinClassNames([styles["schedule__text"]]);
 
-  const { year, month, date, hour, minute, amPm } = schedule;
+  console.log(schedule);
 
   const time = new Intl.DateTimeFormat(navigator.language, {
     dateStyle: "full",
     timeStyle: "short",
-  }).format(
-    new Date(year, month - 1, date, amPm === "am" ? hour : hour + 12, minute)
-  );
+  }).format(schedule);
+
+  console.log(time);
 
   return (
     <Text type="expl" className={classNames}>

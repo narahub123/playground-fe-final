@@ -11,8 +11,8 @@ interface ISchedule {
 type AmPmType = "am" | "pm";
 
 interface IScheduleContext {
-  schedule: ISchedule;
-  setSchedule: React.Dispatch<React.SetStateAction<ISchedule>>;
+  schedule: Date;
+  setSchedule: React.Dispatch<React.SetStateAction<Date>>;
 }
 
 export type { ISchedule, AmPmType, IScheduleContext };
