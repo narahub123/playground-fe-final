@@ -22,17 +22,16 @@ const MonthDownButton = ({
 
   const handleClick = () => {
     const newSchedule = new Date(schedule);
-    console.log(newSchedule);
 
     const curDate = newSchedule.getDate();
-    console.log(curDate);
+    const curMonth = newSchedule.getMonth();
 
     newSchedule.setMonth(newSchedule.getMonth() + 1);
 
-    console.log(newSchedule);
-    const newDate = newSchedule.getDate();
-
-    console.log(newDate);
+    if (curMonth + 2 === newSchedule.getMonth()) {
+      newSchedule.setMonth(newSchedule.getMonth() - 1);
+      newSchedule.setDate(curDate - 1);
+    }
 
     setSchedule(newSchedule);
   };

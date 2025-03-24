@@ -32,6 +32,15 @@ const SelectSchedule = ({
 }: SelectScheduleProps) => {
   const { schedule } = useScheduleContext();
 
+  const { isOpen, setIsOpen, onClose, optionSelected, toggleListbox } =
+    useSelect({
+      value,
+      options,
+      field,
+      setFunc,
+      setIsValid,
+    });
+
   const updateFunc = (field: string, value: number | string) => {
     if (field === "year") {
       const newSchedule = new Date(schedule);
@@ -47,7 +56,7 @@ const SelectSchedule = ({
       const newSchedule = new Date(schedule);
       newSchedule.setDate(value as number);
 
-      setFunc(newSchedule);   
+      setFunc(newSchedule);
     } else if (field === "hour") {
       const newSchedule = new Date(schedule);
       newSchedule.setHours(value as number);
@@ -78,29 +87,19 @@ const SelectSchedule = ({
       const prevIndex = index - 1 < 0 ? options.length - 1 : index - 1;
 
       updateFunc(field, options[prevIndex].value as number);
-
-      console.log("업");
     } else if (key === "ArrowDown") {
       e.preventDefault();
       const nextIndex = index + 1 > options.length - 1 ? 0 : index + 1;
 
       updateFunc(field, options[nextIndex].value as number);
+    } else if (key === "Enter") {
+      setIsOpen(!isOpen);
+    } else if (key === "Escape") {
+      e.preventDefault();
+      e.stopPropagation();
+      setIsOpen(false);
     }
   };
-  const {
-    // handleKeyDown,
-    isOpen,
-    onClose,
-    optionSelected,
-    toggleListbox,
-    // updateValue,
-  } = useSelect({
-    value,
-    options,
-    field,
-    setFunc,
-    setIsValid,
-  });
 
   return (
     <Select
@@ -122,7 +121,9 @@ const SelectSchedule = ({
             className={selectCond ? optionSelected : undefined}
             key={option.value}
             ariaSelected={selectCond}
-            onMouseDown={() => updateFunc(field, option.value as number)}
+            onMouseDown={() => {
+              updateFunc(field, option.value as number);
+            }}
             value={value}
           >
             {option.text}

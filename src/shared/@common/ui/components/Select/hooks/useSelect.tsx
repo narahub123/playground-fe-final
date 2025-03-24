@@ -150,6 +150,7 @@ const useSelect = ({
     updateValue,
     optionSelected,
     convertValueToText,
+    setIsOpen,
   };
 };
 
