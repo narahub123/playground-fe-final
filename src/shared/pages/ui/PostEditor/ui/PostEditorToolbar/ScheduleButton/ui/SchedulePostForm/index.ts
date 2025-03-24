@@ -18,6 +18,8 @@ import {
   CalendarAccordian,
   YearButton,
   MonthButton,
+  Calendar,
+  DateButton,
 } from "./ui";
 import { ISchedule, AmPmType, IScheduleContext } from "./types";
 import {
@@ -59,5 +61,7 @@ export {
   CalendarAccordian,
   YearButton,
   MonthButton,
+  Calendar,
+  DateButton,
 };
 export type { AmPmType, ISchedule, IScheduleContext, IRect, ICalendarDropdown };

@@ -55,6 +55,7 @@ const CalendarAccordian = ({
       >
         {months.map((month) => (
           <MonthButton
+            key={`${year}__${month}`}
             month={month}
             year={year}
             isOpen={isAccordianOpen}

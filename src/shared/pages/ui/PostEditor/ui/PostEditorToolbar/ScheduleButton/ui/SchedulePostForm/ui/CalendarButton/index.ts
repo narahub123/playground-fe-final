@@ -14,6 +14,8 @@ import {
   CalendarAccordian,
   YearButton,
   MonthButton,
+  Calendar,
+  DateButton,
 } from "./ui";
 import { IRect } from "./types";
 
@@ -32,6 +34,8 @@ export {
   CalendarAccordian,
   YearButton,
   MonthButton,
+  Calendar,
+  DateButton,
 };
 
 export type { IRect, ICalendarDropdown };

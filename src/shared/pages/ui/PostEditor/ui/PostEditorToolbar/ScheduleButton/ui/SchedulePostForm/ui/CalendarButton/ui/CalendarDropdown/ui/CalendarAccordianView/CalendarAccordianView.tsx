@@ -28,6 +28,7 @@ const CalendarAccordianView = ({ className }: CalendarAccordianViewProps) => {
     <div className={classNames} id={"calendar-accordian-view"} role="region">
       {years.map((year) => (
         <CalendarAccordian
+          key={year.text}
           year={year.value}
           isAccordianOpen={openedAccordian === year.value}
           setOpenedAccordian={setOpenedAccordian}

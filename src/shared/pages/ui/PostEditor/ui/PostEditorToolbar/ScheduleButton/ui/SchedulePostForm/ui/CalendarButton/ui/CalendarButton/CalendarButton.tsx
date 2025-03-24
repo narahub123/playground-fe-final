@@ -31,7 +31,7 @@ const CalendarButton = ({ className }: CalendarButtonProps) => {
 
     setRect({
       top: top + 34,
-      right: right - 150,
+      right: right - 200,
     });
   }, []);
 

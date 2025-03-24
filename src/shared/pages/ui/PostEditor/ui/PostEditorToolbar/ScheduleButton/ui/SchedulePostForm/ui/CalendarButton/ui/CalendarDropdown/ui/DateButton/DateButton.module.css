@@ -1,0 +1,35 @@
+.date__button {
+  padding: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+}
+
+.date__button:not(.date__button--selected):hover {
+  border: 1px solid #000;
+  background-color: #e9e9e9;
+}
+
+.date__button:not(.date__button--selected):focus-visible {
+  border: 1px solid #000;
+  background-color: #e9e9e9;
+}
+
+.date__button--selected {
+  background-color: var(--colorTheme-color-primary);
+  color: white;
+}
+
+.date__button--selected {
+  border: 1px solid #000;
+}
+
+.date__button--prev {
+  color: #ccc;
+}
+
+.date__button--next {
+  color: #ccc;
+}

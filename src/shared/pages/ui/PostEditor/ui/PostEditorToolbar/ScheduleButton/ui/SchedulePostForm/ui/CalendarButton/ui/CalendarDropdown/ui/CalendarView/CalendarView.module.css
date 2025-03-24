@@ -1,0 +1,14 @@
+.calendar__view {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;  
+}
+
+.calendar__wrapper {
+}
+
+.btns__wrapper {
+  display: flex;
+  justify-content: space-between;
+  color: var(--colorTheme-color-primary);
+}
