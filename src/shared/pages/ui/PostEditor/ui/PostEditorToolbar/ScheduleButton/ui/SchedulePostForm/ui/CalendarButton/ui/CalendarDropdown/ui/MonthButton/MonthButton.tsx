@@ -28,7 +28,8 @@ const MonthButton = ({
   const { schedule, setSchedule } = useScheduleContext();
   const { setIsCalendarView } = useCalendarDropdownContext();
 
-  const selectedCond = schedule.year === year && schedule.month === month;
+  const selectedCond =
+    schedule.getFullYear() === year && schedule.getMonth() + 1 === month;
 
   useEffect(() => {
     if (!monthRef.current) return;
@@ -51,11 +52,10 @@ const MonthButton = ({
     today.getFullYear() === year && today.getMonth() + 1 === month;
 
   const handleClick = () => {
-    setSchedule((prev) => ({
-      ...prev,
-      year: year,
-      month: month,
-    }));
+    const date = schedule.getDate();
+
+    const selectedDate = new Date(year, month - 1, date);
+    setSchedule(selectedDate);
     setIsCalendarView(true);
   };
 

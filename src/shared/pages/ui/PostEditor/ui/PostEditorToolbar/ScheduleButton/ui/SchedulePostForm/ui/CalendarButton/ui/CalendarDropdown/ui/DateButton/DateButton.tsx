@@ -2,7 +2,7 @@ import styles from "./DateButton.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
 import { useScheduleContext } from "../../../../../../hooks";
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 interface DateButtonProps {
   date: Date;
@@ -15,17 +15,28 @@ const DateButton = ({ date }: DateButtonProps) => {
 
   const { schedule, setSchedule } = useScheduleContext();
 
-  const firstDateOfCurMonth = new Date(schedule.year, schedule.month - 1, 1);
-  const lastDateOfCurMonth = new Date(schedule.year, schedule.month, 0);
+  const firstDateOfCurMonth = new Date(schedule);
+  firstDateOfCurMonth.setDate(1);
+
+  const lastDateOfCurMonth = new Date(schedule);
+  const curMonth = lastDateOfCurMonth.getMonth();
+
+  lastDateOfCurMonth.setMonth(lastDateOfCurMonth.getMonth() + 1);
+
+  if (curMonth + 2 === lastDateOfCurMonth.getMonth()) {
+    lastDateOfCurMonth.setMonth(lastDateOfCurMonth.getMonth() - 1);
+  }
+
+  lastDateOfCurMonth.setDate(0);
 
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
   const curDate = date.getDate();
 
   const selectedCond =
-    schedule.year === year &&
-    schedule.month === month &&
-    schedule.date === curDate;
+    schedule.getFullYear() === year &&
+    schedule.getMonth() + 1 === month &&
+    schedule.getDate() === curDate;
 
   useEffect(() => {
     if (!buttonRef.current) return;
@@ -40,6 +51,8 @@ const DateButton = ({ date }: DateButtonProps) => {
     month === today.getMonth() + 1 &&
     curDate === today.getDate();
 
+  const disabledCond = today.getTime() > date.getTime();
+
   const prevMonthCond = date.getTime() < firstDateOfCurMonth.getTime();
 
   const nextMonthCond = date.getTime() > lastDateOfCurMonth.getTime();
@@ -50,23 +63,69 @@ const DateButton = ({ date }: DateButtonProps) => {
     todayCond ? styles["date__button--today"] : "",
     prevMonthCond ? styles["date__button--prev"] : "",
     nextMonthCond ? styles["date__button--next"] : "",
+    date.getDay() === 0 ? styles["date__button--sunday"] : "",
+    date.getDay() === 6 ? styles["date__button--saturday"] : "",
+    disabledCond ? styles["date__button--disabled"] : "",
   ]);
 
   const handleClick = () => {
-    setSchedule((prev) => ({
-      ...prev,
-      year,
-      month,
-      date: curDate,
-    }));
+    setSchedule((prev) => {
+      if (prev.getTime() !== date.getTime()) {
+        return date;
+      } else return prev;
+    });
 
     setTimeout(() => {
       buttonRef.current?.focus();
     }, 1000);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+    const key = e.key;
+    const newSchedule = new Date(schedule);
+    console.log(newSchedule);
+
+    if (key === "ArrowUp") {
+      e.preventDefault();
+      newSchedule.setDate(newSchedule.getDate() - 7);
+
+      if (today.getTime() > newSchedule.getTime()) {
+        return;
+      }
+
+      setSchedule(newSchedule);
+    } else if (key === "ArrowDown") {
+      e.preventDefault();
+      newSchedule.setDate(newSchedule.getDate() + 7);
+
+      setSchedule(newSchedule);
+    } else if (key === "ArrowLeft") {
+      e.preventDefault();
+      console.log(newSchedule.getDate());
+
+      newSchedule.setDate(newSchedule.getDate() - 1);
+
+      if (today.getTime() > newSchedule.getTime()) {
+        return;
+      }
+
+      setSchedule(newSchedule);
+    } else if (key === "ArrowRight") {
+      e.preventDefault();
+      newSchedule.setDate(newSchedule.getDate() + 1);
+
+      setSchedule(newSchedule);
+    }
+  };
+
   return (
-    <button className={classNames} onClick={handleClick} ref={buttonRef}>
+    <button
+      className={classNames}
+      onClick={handleClick}
+      ref={buttonRef}
+      onKeyDown={handleKeyDown}
+      disabled={disabledCond}
+    >
       {curDate}
     </button>
   );

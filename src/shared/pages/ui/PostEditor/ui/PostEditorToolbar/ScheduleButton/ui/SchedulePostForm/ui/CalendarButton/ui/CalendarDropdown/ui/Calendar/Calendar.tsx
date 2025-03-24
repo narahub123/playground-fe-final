@@ -21,40 +21,54 @@ const Calendar = ({ className }: CalendarProps) => {
   const { schedule } = useScheduleContext();
 
   useEffect(() => {
-    const firstDayOfMonth = new Date(
-      schedule.year,
-      schedule.month - 1,
-      1
-    ).getDay();
-    const lastDateOfPreMonth = new Date(
-      schedule.year,
-      schedule.month - 1,
-      0
-    ).getDate();
+    const prevDate = new Date(schedule);
+
+    prevDate.setDate(1);
+    const firstDayOfMonth = prevDate.getDay();
+
+    prevDate.setDate(0);
+    const lastDateOfPrevMonth = prevDate.getDate();
 
     const prevMonthDates = Array.from({ length: firstDayOfMonth })
-      .map((_, index) => lastDateOfPreMonth - index)
+      .map((_, index) => lastDateOfPrevMonth - index)
       .reverse()
-      .map((date) => new Date(schedule.year, schedule.month - 2, date));
+      .map((date) => new Date(prevDate.setDate(date)));
 
-    console.log(prevMonthDates);
+    const targetDate = new Date(schedule);
 
-    const curMonthDates = scheduleDate(schedule.year, schedule.month).map(
-      (date) => new Date(schedule.year, schedule.month - 1, date.value)
+    const curMonth = targetDate.getMonth();
+
+    targetDate.setMonth(targetDate.getMonth() + 1);
+
+    if (curMonth + 2 === targetDate.getMonth()) {
+      targetDate.setMonth(targetDate.getMonth() - 1);
+    }
+    targetDate.setDate(0);
+
+    const lastDateOfMonth = targetDate.getDate();
+
+    const curMonthDates = Array.from({ length: lastDateOfMonth }).map(
+      (_, index) => new Date(targetDate.setDate(index + 1))
     );
 
-    const lastDayOfMOnth = new Date(schedule.year, schedule.month, 0).getDay();
-    console.log(lastDayOfMOnth);
+    const nextDate = new Date(schedule);
 
-    const nextMonthDates = Array.from({ length: 6 - lastDayOfMOnth }).map(
-      (_, index) => new Date(schedule.year, schedule.month, index + 1)
+    const nextMonth = nextDate.getMonth();
+    nextDate.setMonth(nextDate.getMonth() + 1);
+
+    if (nextMonth + 2 === nextDate.getMonth()) {
+      nextDate.setMonth(nextDate.getMonth() - 1);
+    }
+    nextDate.setDate(0);
+
+    const lastDayOfMonth = nextDate.getDay();
+
+    const nextMonthDates = Array.from({ length: 6 - lastDayOfMonth }).map(
+      (_) => new Date(nextDate.setDate(nextDate.getDate() + 1))
     );
-
-    console.log(nextMonthDates);
 
     const dates = [...prevMonthDates, ...curMonthDates, ...nextMonthDates];
 
-    console.log(dates);
     setDates(dates);
   }, [schedule]);
 
@@ -62,7 +76,7 @@ const Calendar = ({ className }: CalendarProps) => {
 
   return (
     <div className={classNames}>
-      {dates.map((date, index) => (
+      {dates.map((date) => (
         <DateButton key={date.toDateString()} date={date} />
       ))}
     </div>

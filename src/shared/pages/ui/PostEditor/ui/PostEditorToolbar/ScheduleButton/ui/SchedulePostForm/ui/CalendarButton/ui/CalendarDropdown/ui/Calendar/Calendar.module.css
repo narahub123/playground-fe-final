@@ -1,4 +1,6 @@
 .calendar {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
+
+  transition: all 0.3s ease-in-out;
 }

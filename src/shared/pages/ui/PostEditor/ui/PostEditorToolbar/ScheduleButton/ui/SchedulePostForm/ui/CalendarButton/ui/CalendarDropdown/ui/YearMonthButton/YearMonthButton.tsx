@@ -17,12 +17,10 @@ const YearMonthButton = ({ className }: YearMonthButtonProps) => {
   const { schedule } = useScheduleContext();
   const { isCalendarView, setIsCalendarView } = useCalendarDropdownContext();
 
-  const { year, month } = schedule;
-
   const scheduledYearMonth = Intl.DateTimeFormat(navigator.language, {
     year: "numeric",
     month: "long",
-  }).format(new Date(year, month - 1));
+  }).format(schedule);
 
   const classNames = joinClassNames([styles["year__month__button"], className]);
 

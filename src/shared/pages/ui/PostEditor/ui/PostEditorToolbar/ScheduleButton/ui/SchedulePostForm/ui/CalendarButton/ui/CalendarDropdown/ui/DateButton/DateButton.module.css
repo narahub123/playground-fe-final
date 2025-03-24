@@ -17,6 +17,13 @@
   background-color: #e9e9e9;
 }
 
+.date__button--sunday {
+  color: red;
+}
+.date__button--saturday {
+  color: blue;
+} 
+
 .date__button--selected {
   background-color: var(--colorTheme-color-primary);
   color: white;
@@ -31,5 +38,9 @@
 }
 
 .date__button--next {
+  color: #ccc;
+}
+
+.date__button--disabled {
   color: #ccc;
 }
