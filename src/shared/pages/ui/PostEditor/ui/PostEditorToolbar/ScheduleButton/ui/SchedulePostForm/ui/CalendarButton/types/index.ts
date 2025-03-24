@@ -1,6 +1,6 @@
 interface IRect {
   top?: number;
-  left?: number;
+  right?: number;
 }
 
 export type { IRect };

@@ -23,6 +23,11 @@ import {
   CalendarIcon,
   CalendarDropdown,
   IRect,
+  YearMonthButton,
+  MonthDownButton,
+  MonthUpButton,
+  CalendarView,
+  CalendarAccordianView,
 } from "./ui";
 
 export {
@@ -46,6 +51,11 @@ export {
   CalendarButton,
   CalendarIcon,
   CalendarDropdown,
+  YearMonthButton,
+  MonthDownButton,
+  MonthUpButton,
+  CalendarView,
+  CalendarAccordianView,
 };
 
 export type { AmPmType, ISchedule, IScheduleContext, IRect };

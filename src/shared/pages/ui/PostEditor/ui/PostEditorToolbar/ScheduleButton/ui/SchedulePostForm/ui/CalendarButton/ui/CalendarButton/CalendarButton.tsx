@@ -25,11 +25,13 @@ const CalendarButton = ({ className }: CalendarButtonProps) => {
     if (!btnRef.current) return;
     const button = btnRef.current;
 
-    const { top, left } = button.getBoundingClientRect();
+    const { top, right } = button.getBoundingClientRect();
+
+    console.log(right);
 
     setRect({
       top: top + 34,
-      left: left - 100,
+      right: right - 150,
     });
   }, []);
 
@@ -53,7 +55,7 @@ const CalendarButton = ({ className }: CalendarButtonProps) => {
         onClose={onClose}
         lastClickedRef={btnRef}
         top={rect?.top}
-        left={rect?.left}
+        left={rect?.right}
       />
     </div>
   );

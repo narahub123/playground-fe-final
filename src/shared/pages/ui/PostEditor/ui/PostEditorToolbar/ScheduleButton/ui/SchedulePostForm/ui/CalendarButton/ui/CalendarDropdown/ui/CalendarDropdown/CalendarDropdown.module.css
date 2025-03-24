@@ -1,0 +1,17 @@
+.calendar__dropdown {
+  width: 200px;
+}
+
+.calendar__dropdown__header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+}
+
+.calendar__dropdown__arrow__btns {
+  display: flex;
+}
+
+.calendar__dropdown__body {
+  padding: 0 0.5rem 0.5rem;
+}

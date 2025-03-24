@@ -1,7 +1,15 @@
 import styles from "./CalendarDropdown.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Dropdown } from "@shared/@common/ui/components";
+import { useState } from "react";
 import { joinClassNames } from "@shared/@common/utils";
+import {
+  YearMonthButton,
+  MonthDownButton,
+  MonthUpButton,
+  CalendarView,
+  CalendarAccordianView,
+} from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/ScheduleButton";
 
 interface CalendarDropdownProps {
   className?: string;
@@ -23,6 +31,8 @@ const CalendarDropdown = ({
   // 언어 설정
   // const {} = useLanguageContent(["", "CalendarDropdown"]);
 
+  const [isCalendarView, setIsCalendarView] = useState(true);
+
   const classNames = joinClassNames([styles["calendar__dropdown"], className]);
 
   return (
@@ -35,7 +45,20 @@ const CalendarDropdown = ({
       top={top}
       left={left}
     >
-      하하
+      <div className={styles["calendar__dropdown__header"]}>
+        <YearMonthButton isCalendarAccordianView={!isCalendarView} />
+        <span className={styles["calendar__dropdown__arrow__btns"]}>
+          <MonthUpButton />
+          <MonthDownButton />
+        </span>
+      </div>
+      <div className={styles["calendar__dropdown__body"]}>
+        {isCalendarView ? (
+          <CalendarView isCalendarView={isCalendarView} />
+        ) : (
+          <CalendarAccordianView isCalendarAccordianView={!isCalendarView} />
+        )}
+      </div>
     </Dropdown>
   );
 };

@@ -1,6 +1,4 @@
 import {
-  CalendarButton,
-  CalendarIcon,
   CalendarDropdown,
   YearMonthButton,
   MonthDownButton,
@@ -8,11 +6,8 @@ import {
   CalendarView,
   CalendarAccordianView,
 } from "./ui";
-import { IRect } from "./types";
 
 export {
-  CalendarButton,
-  CalendarIcon,
   CalendarDropdown,
   YearMonthButton,
   MonthDownButton,
@@ -20,5 +15,3 @@ export {
   CalendarView,
   CalendarAccordianView,
 };
-
-export type { IRect };
