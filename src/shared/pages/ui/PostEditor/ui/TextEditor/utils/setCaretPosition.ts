@@ -7,6 +7,8 @@ const setCaretPosition = (node: Node, offset: number) => {
   let caretNode;
 
   if ((node as HTMLElement).className.includes("line")) {
+    console.log("노드가 라인인 경우");
+
     const segment = node.firstChild;
 
     if (!segment) return;
@@ -16,7 +18,7 @@ const setCaretPosition = (node: Node, offset: number) => {
 
     caretNode = textNode;
   } else if ((node as HTMLElement).className.includes("segment")) {
-    console.log("여기");
+    console.log("노드가 세그먼트인 경우");
     const textNode = node.firstChild;
 
     console.log("텍스트", textNode);
@@ -27,6 +29,8 @@ const setCaretPosition = (node: Node, offset: number) => {
   } else {
     caretNode = node;
   }
+
+  console.log("현재 커서 위치", caretNode);
 
   range.setStart(caretNode, offset);
   range.collapse(true);

@@ -1,5 +1,9 @@
 import { TextEditor } from "./ui";
-import { useCaretInfo, useMaintainTextEditorStructure } from "./hooks";
+import {
+  useCaretInfo,
+  useMaintainTextEditorStructure,
+  useNewLine,
+} from "./hooks";
 import { ICaretInfo, ILine, ISegment } from "./types";
 import {
   handleSelectionChange,
@@ -13,6 +17,7 @@ export {
   TextEditor,
   useCaretInfo,
   useMaintainTextEditorStructure,
+  useNewLine,
   handleSelectionChange,
   createLine,
   createSegment,

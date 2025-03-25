@@ -10,7 +10,7 @@ const createTextSpan = (text?: string) => {
     textSpan.textContent = text;
   }
 
-  textSpan.setAttribute("date-text", "true");
+  textSpan.setAttribute("data-text", "true");
 
   return textSpan;
 };
@@ -20,19 +20,29 @@ const createSegment = ({ text, row, col }: ISegment) => {
 
   const segment = document.createElement("span");
   segment.setAttribute("class", styles["segment"]);
-  segment.setAttribute("date-offset", `${row ? row : 0}-${col ? col : 0}`);
+  segment.setAttribute("data-offset", `${row ? row : 0}-${col ? col : 0}`);
   segment.appendChild(textSpan);
 
   return segment;
 };
 
-const createLine = ({ text, row, col }: ILine) => {
+const createLine = ({ text, row, col, siblings }: ILine) => {
   const segment = createSegment({ text, row, col });
 
   const line = document.createElement("div");
   line.setAttribute("class", styles["line"]);
-  line.setAttribute("date-offset", `${row ? row : 0}`);
+  line.setAttribute("data-offset", `${row ? row : 0}`);
   line.appendChild(segment);
+
+  if (siblings && siblings.length > 0) {
+    const nextNodes = Array.from(siblings);
+
+    nextNodes.forEach((node, index) => {
+      (node as HTMLElement).dataset["offset"] = `${row}-${col + index + 1}`;
+
+      line.appendChild(node);
+    });
+  }
 
   return line;
 };
