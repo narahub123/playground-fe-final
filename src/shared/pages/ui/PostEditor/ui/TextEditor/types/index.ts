@@ -2,7 +2,7 @@ interface ICaretInfo {
   curPos: number;
   curText: string;
   curNode: Node;
-  curElem: Node;
+  curSegment: Node;
   curLine: Node;
   nextLine: Node | null;
   textEditor: Node;

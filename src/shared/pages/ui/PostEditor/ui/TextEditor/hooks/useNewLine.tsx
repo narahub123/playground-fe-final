@@ -5,10 +5,10 @@ const useNewLine = () => {
   const createNewLine = (caretInfo?: ICaretInfo) => {
     if (!caretInfo) return;
     console.log("여깁니다.");
-    const { curLine, nextLine, textEditor, curPos, curText, curElem } =
+    const { curLine, nextLine, textEditor, curPos, curText, curSegment } =
       caretInfo;
 
-    const [row, col] = (curElem as HTMLDivElement).dataset["offset"]
+    const [row, col] = (curSegment as HTMLDivElement).dataset["offset"]
       ?.split("-")
       .map(Number) || [0, 0];
 
@@ -28,7 +28,7 @@ const useNewLine = () => {
     console.log("커서 이후 요소들", nextSegments);
 
     // 남는 텍스트를 현재 요소에 삽입
-    curElem.textContent = remainedText;
+    curSegment.textContent = remainedText;
 
     // 삽입될 새 줄
     const newLine = createLine({

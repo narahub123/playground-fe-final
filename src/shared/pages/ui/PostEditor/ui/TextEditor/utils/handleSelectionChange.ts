@@ -16,14 +16,28 @@ const handleSelectionChange = (
   const curText = curNode.textContent || "";
   console.log("현재 텍스트", curText);
 
+  const curWrapperElem = curNode.parentElement;
+  if (!curWrapperElem) return;
+  console.log("현재 노드를 감싸는 요소", curWrapperElem);
+
+  const containerElem = curWrapperElem.parentNode;
+  if (!containerElem) return;
+
   // 현재 노드가 텍스트 노드인 경우 부모 노드 아닌 경우 현재 노드가 현재 요소가 됨
-  const curElem = curNode.nodeType === 3 ? curNode.parentNode : curNode;
-  if (!curElem || !(curElem as HTMLElement).className.includes("segment")) {
+  const curSegment = curWrapperElem.dataset["text"]
+    ? containerElem
+    : curWrapperElem;
+  if (
+    !curSegment ||
+    !(curSegment as HTMLElement).className.includes("segment")
+  ) {
+    console.log("에러", curSegment);
+
     return;
   }
-  console.log("현재 요소", curElem);
+  console.log("현재 요소", curSegment);
 
-  const curLine = curElem.parentNode;
+  const curLine = curSegment.parentNode;
   if (!curLine) return;
   console.log("현재 라인", curLine);
 
@@ -40,7 +54,7 @@ const handleSelectionChange = (
     curPos,
     curNode,
     curText,
-    curElem,
+    curSegment,
     curLine,
     nextLine,
     textEditor,
