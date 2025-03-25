@@ -28,7 +28,21 @@ const useNewLine = () => {
     console.log("커서 이후 요소들", nextSegments);
 
     // 남는 텍스트를 현재 요소에 삽입
-    curSegment.textContent = remainedText;
+    if (remainedText) {
+      curSegment.textContent = remainedText;
+    } else {
+      const [row, col] = (curSegment as HTMLElement).dataset["offset"]
+        ?.split("-")
+        .map(Number) || [0, 0];
+
+      // 현재 세그먼트 이전 세그먼트가 있는 경우: 현재 세그먼트 삭제
+      if (col > 0) {
+        (curSegment as HTMLElement).remove();
+      } else {
+        // 현재 세그먼트 이전 세그먼트가 없는 경우: br 추가
+        (curSegment as HTMLElement).innerHTML = `<br data-text={true} />`;
+      }
+    }
 
     // 삽입될 새 줄
     const newLine = createLine({

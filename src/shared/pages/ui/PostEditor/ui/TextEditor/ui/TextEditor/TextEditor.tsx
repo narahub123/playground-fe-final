@@ -38,15 +38,15 @@ const TextEditor = ({}: TextEditorProps) => {
       onKeyDown={handleKeyDown}
     >
       <div className={styles["line"]} data-offset="0">
-        <span className={styles["segment"]} data-offset="0-0">
-          <br data-text={true} />
-        </span>
         {/* <span className={styles["segment"]} data-offset="0-0">
+          <br data-text={true} />
+        </span> */}
+        <span className={styles["segment"]} data-offset="0-0">
           sdfsdf
         </span>
         <span className={styles["segment"]} data-offset="0-1">
           adkjljf
-        </span> */}
+        </span>
       </div>
     </div>
   );

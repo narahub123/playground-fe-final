@@ -1,5 +1,5 @@
-import { ILine, ISegment } from "../types";
 import styles from "../ui/TextEditor/TextEditor.module.css";
+import { ILine, ISegment } from "../types";
 
 const createTextSpan = (text?: string) => {
   let textSpan;
