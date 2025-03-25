@@ -29,7 +29,7 @@ const useNewLine = () => {
 
     // 남는 텍스트를 현재 요소에 삽입
     if (remainedText) {
-      curSegment.textContent = remainedText;
+      curSegment.firstChild!.textContent = remainedText;
     } else {
       const [row, col] = (curSegment as HTMLElement).dataset["offset"]
         ?.split("-")

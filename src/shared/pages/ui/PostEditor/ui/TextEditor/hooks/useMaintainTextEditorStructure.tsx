@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import {
   createLine,
   createSegment,
+  createTextSpan,
   setCaretPosition,
   useCaretInfo,
 } from "@shared/pages/ui/PostEditor/ui/TextEditor";
@@ -12,7 +13,7 @@ const useMaintainTextEditorStructure = () => {
   useEffect(() => {
     if (!caretInfo) return;
 
-    const { curNode } = caretInfo;
+    const { curNode, curSegment, curText } = caretInfo;
 
     // 현재 노드가 text__editor인 경우
     if (
@@ -39,6 +40,18 @@ const useMaintainTextEditorStructure = () => {
       curNode.appendChild(segment);
 
       setCaretPosition(segment, 0);
+    } else if (curNode.nodeType === 3) {
+      const wrapperElem = curNode.parentElement!;
+      if (wrapperElem.className.includes("segment")) {
+        console.log("여기");
+
+        curSegment.textContent = "";
+        const textSpan = createTextSpan(curText);
+
+        curSegment.appendChild(textSpan);
+
+        setCaretPosition(textSpan, curText.length);
+      }
     }
   }, [caretInfo]);
 };
