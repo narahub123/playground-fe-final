@@ -1,7 +1,7 @@
 import styles from "./SchedulePostForm.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Modal, Text } from "@shared/@common/ui/components";
 import { PRIMARY_LINK } from "@shared/@common/constants";
@@ -12,6 +12,7 @@ import {
   ScheduleText,
   CalendarButton,
   ScheduleContextProvider,
+  distructDate,
 } from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/ScheduleButton";
 
 interface SchedulePostFormProps {
@@ -31,8 +32,6 @@ const SchedulePostForm = ({ className }: SchedulePostFormProps) => {
 
   const [schedule, setSchedule] = useState<Date>(initialSchedule());
 
-  console.log(schedule);
-
   const [isValid, setIsValid] = useState<{ [key: string]: boolean } | boolean>(
     true
   );
@@ -47,6 +46,42 @@ const SchedulePostForm = ({ className }: SchedulePostFormProps) => {
     "components",
     "SchedulePostForm",
   ]);
+
+  useEffect(() => {
+    const today = new Date();
+
+    const {
+      year: thisYear,
+      month: thisMonth,
+      date: thisDate,
+      hour: thisHour,
+      minute: thisMinute,
+    } = distructDate(today);
+
+    const { year, month, date, hour, minute } = distructDate(schedule);
+
+    if (thisYear === year && thisMonth === month && thisDate > date) {
+      setError({ date: "게시일을 과거 날짜로 예약할 수 없습니다.", time: "" });
+
+      return;
+    }
+
+    if (
+      thisYear === year &&
+      thisMonth === month &&
+      thisDate === date &&
+      (thisHour > hour || (thisHour === hour && thisMinute > minute))
+    ) {
+      setError({
+        date: "",
+        time: "게시일을 과거 날짜로 예약할 수 없습니다.",
+      });
+
+      return;
+    }
+
+    setError({ date: "", time: "" });
+  }, [schedule]);
 
   const scheduleData = useScheduleData();
 

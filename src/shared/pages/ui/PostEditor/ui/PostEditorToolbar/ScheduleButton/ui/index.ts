@@ -36,6 +36,7 @@ import {
   MonthButton,
   Calendar,
   DateButton,
+  distructDate,
 } from "./SchedulePostForm";
 
 import { UnsentPost } from "./UnsentPost";
@@ -74,6 +75,7 @@ export {
   MonthButton,
   Calendar,
   DateButton,
+  distructDate,
 };
 
 export type { AmPmType, ISchedule, IScheduleContext, IRect, ICalendarDropdown };

@@ -32,6 +32,7 @@ import {
 } from "./data";
 import { useScheduleData, useScheduleContext } from "./hooks";
 import { ScheduleContext, ScheduleContextProvider } from "./context";
+import { distructDate } from "./utils";
 
 export {
   SchedulePostForm,
@@ -63,5 +64,6 @@ export {
   MonthButton,
   Calendar,
   DateButton,
+  distructDate,
 };
 export type { AmPmType, ISchedule, IScheduleContext, IRect, ICalendarDropdown };

@@ -37,6 +37,7 @@ import {
   MonthButton,
   Calendar,
   DateButton,
+  distructDate,
 } from "./ui";
 
 export {
@@ -73,6 +74,7 @@ export {
   MonthButton,
   Calendar,
   DateButton,
+  distructDate,
 };
 
 export type { AmPmType, ISchedule, IScheduleContext, IRect, ICalendarDropdown };
