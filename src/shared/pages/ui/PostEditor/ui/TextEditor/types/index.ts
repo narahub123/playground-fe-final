@@ -23,4 +23,6 @@ interface ILine {
 
 interface ISegment extends ILine {}
 
-export type { ICaretInfo, ILine, ISegment, ISegmentOffset };
+type InlineType = "hashtag" | "mention" | "url" | null;
+
+export type { ICaretInfo, ILine, ISegment, ISegmentOffset, InlineType };

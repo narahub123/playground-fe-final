@@ -1,7 +1,18 @@
 import handleSelectionChange from "./handleSelectionChange";
 import setCaretPosition from "./setCaretPosition";
-import { createTextSpan, createLine, createSegment } from "./createElement";
-import { isInlineSegment, isSegment, isLine } from "./elementChecker";
+import {
+  createTextSpan,
+  createLine,
+  createSegment,
+  createInlineSegment,
+} from "./createElement";
+import {
+  isInlineSegment,
+  isSegment,
+  isLine,
+  isTextSpan,
+} from "./elementChecker";
+import { processInlineElements } from "./inlineUtils";
 
 export {
   handleSelectionChange,
@@ -12,4 +23,7 @@ export {
   isInlineSegment,
   isSegment,
   isLine,
+  isTextSpan,
+  processInlineElements,
+  createInlineSegment,
 };

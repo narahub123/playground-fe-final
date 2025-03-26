@@ -4,7 +4,13 @@ import {
   useMaintainTextEditorStructure,
   useNewLine,
 } from "./hooks";
-import { ICaretInfo, ILine, ISegment, ISegmentOffset } from "./types";
+import {
+  ICaretInfo,
+  ILine,
+  ISegment,
+  ISegmentOffset,
+  InlineType,
+} from "./types";
 import {
   handleSelectionChange,
   createLine,
@@ -14,7 +20,11 @@ import {
   isInlineSegment,
   isSegment,
   isLine,
+  isTextSpan,
+  processInlineElements,
+  createInlineSegment,
 } from "./utils";
+import { HASHTAG_REGEX, MENTION_REGEX, URL_REGEX } from "./constants";
 
 export {
   TextEditor,
@@ -29,6 +39,14 @@ export {
   isInlineSegment,
   isSegment,
   isLine,
+  isTextSpan,
+  processInlineElements,
+  createInlineSegment,
+
+  // constant
+  HASHTAG_REGEX,
+  MENTION_REGEX,
+  URL_REGEX,
 };
 
-export type { ICaretInfo, ILine, ISegment, ISegmentOffset };
+export type { ICaretInfo, ILine, ISegment, ISegmentOffset, InlineType };

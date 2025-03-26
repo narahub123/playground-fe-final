@@ -26,6 +26,16 @@ const createSegment = ({ text, row, col }: ISegment) => {
   return segment;
 };
 
+const createInlineSegment = ({ text, row, col }: ISegment) => {
+  const segment = createSegment({ text, row, col });
+  const inline = document.createElement("span");
+  inline.setAttribute("class", styles["inline"]);
+
+  inline.appendChild(segment);
+
+  return inline;
+};
+
 const createLine = ({ text, row, col, siblings }: ILine) => {
   const segment = createSegment({ text, row, col });
 
@@ -47,4 +57,4 @@ const createLine = ({ text, row, col, siblings }: ILine) => {
   return line;
 };
 
-export { createTextSpan, createSegment, createLine };
+export { createTextSpan, createSegment, createInlineSegment, createLine };

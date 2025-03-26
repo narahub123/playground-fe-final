@@ -1,6 +1,6 @@
 import {
   ICaretInfo,
-  isSegment,
+  isInlineSegment,
 } from "@shared/pages/ui/PostEditor/ui/TextEditor";
 
 const handleSelectionChange = (
@@ -47,7 +47,9 @@ const handleSelectionChange = (
     ?.split("-")
     .map(Number) || [0, 0];
 
-  const curLine = curSegment.parentNode;
+  const curLine = isInlineSegment(curSegment.parentNode!)
+    ? curSegment.parentNode!.parentNode
+    : curSegment.parentNode;
   if (!curLine) return;
   console.log("현재 라인", curLine);
 

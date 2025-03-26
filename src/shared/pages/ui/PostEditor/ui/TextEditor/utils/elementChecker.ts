@@ -18,4 +18,8 @@ const isLine = (elem: Node | HTMLElement) => {
   );
 };
 
-export { isInlineSegment, isSegment, isLine };
+const isTextSpan = (elem: Node | HTMLElement) => {
+  return (elem as HTMLElement).dataset["text"];
+};
+
+export { isInlineSegment, isSegment, isLine, isTextSpan };

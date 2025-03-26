@@ -1,8 +1,11 @@
 import { useEffect } from "react";
 import {
+  processInlineElements,
   createLine,
   createSegment,
   createTextSpan,
+  isSegment,
+  isTextSpan,
   setCaretPosition,
   useCaretInfo,
 } from "@shared/pages/ui/PostEditor/ui/TextEditor";
@@ -56,6 +59,14 @@ const useMaintainTextEditorStructure = () => {
         curSegment.appendChild(textSpan);
 
         setCaretPosition(textSpan, curText.length);
+      } else if (isTextSpan(wrapperElem)) {
+        // 현재 노드가 textSpan 안에 있는 경우
+        console.log("현재 노드가 textSpan 안에 있는 경우");
+
+        if (isSegment(curSegment)) {
+          console.log("현재 세그먼트가 inline이 아닌 경우");
+          processInlineElements(caretInfo);
+        }
       }
     }
   }, [caretInfo]);
