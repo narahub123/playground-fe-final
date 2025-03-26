@@ -1,6 +1,8 @@
 import { HASHTAG_REGEX } from "../constants";
 import { ICaretInfo, InlineType } from "../types";
 import { createInlineSegment, createSegment } from "./createElement";
+import { isInlineSegment } from "./elementChecker";
+import rearrangeOffset from "./rearrangeOffset";
 import setCaretPosition from "./setCaretPosition";
 
 // 텍스트에서 inline을 제외한 텍스트 분리하기
@@ -47,7 +49,11 @@ const insertNewSegments = (inlines: string[], caretInfo: ICaretInfo) => {
   let cursorPos = 0;
   let caretCol = 0;
 
-  const nextSegment = curSegment.nextSibling;
+  const nextSegments = Array.from(curLine.childNodes).filter(
+    (_, idx) => col < idx
+  );
+
+  const nextSegment = nextSegments[0];
 
   for (let i = 0; i < textArr.length; i++) {
     const text = textArr[i];
@@ -103,6 +109,11 @@ const insertNewSegments = (inlines: string[], caretInfo: ICaretInfo) => {
     }
   }
 
+  if (nextSegments.length > 0) {
+    const newCol = col + textArr.length + inlines.length;
+    rearrangeOffset(nextSegments, row, newCol);
+  }
+
   return { cursorPos, caretCol };
 };
 
@@ -138,6 +149,8 @@ const processInlineElements = (caretInfo: ICaretInfo) => {
 
   const caretNode = curLine.childNodes[caretCol];
 
+  console.log("cursorPos", cursorPos);
+
   // 커서 위치 지정하기
   setCaretPosition(caretNode, cursorPos);
 
@@ -145,4 +158,87 @@ const processInlineElements = (caretInfo: ICaretInfo) => {
     console.log("해시 태그인 경우");
   }
 };
-export { processInlineElements };
+
+const handleInlineSegment = (caretInfo: ICaretInfo) => {
+  const { curText, curSegment, curSegmentOffset, curPos, curLine } = caretInfo;
+  const { row, col } = curSegmentOffset;
+
+  const inlineType = detectInlineType(curText);
+  console.log("인라인 타입", inlineType);
+
+  const inlines = extractInlineMatches(curText, inlineType);
+  if (!inlines) {
+    // 인라인 배열이 없는 경우 : 인라인을 세그먼트로 변경
+    console.log("인라인 배열이 없는 경우");
+
+    return;
+  }
+
+  console.log("인라인 배열", inlines);
+
+  const textArr = extractTextArr(curText, inlines);
+  textArr.splice(0, 1); // 해시태그 이전 텍스트 삭제
+  console.log("인라인이 아닌 텍스트 배열", textArr);
+
+  //인라인이 아닌 텍스트가 존재하는 경우
+  if (textArr.length > 0) {
+    let sumOfTextLength = inlines[0].length;
+    let cursorPos = 0;
+    let caretCol = col;
+
+    curSegment.firstChild!.textContent = inlines[0];
+
+    const nextSegments = Array.from(curLine.childNodes).filter(
+      (_, index) => index > col
+    );
+
+    const nextSegment = nextSegments[0];
+
+    console.log("현재 요소 이후의 형제 요소들", nextSegments);
+
+    for (let i = 0; i < textArr.length; i++) {
+      const text = textArr[i];
+      const newCol = col + i + 1;
+      console.log("새로운 col", newCol);
+
+      const segment = createSegment({ text, row, col: newCol });
+
+      // 다음 세그먼트가 있는 경우
+      if (nextSegment) {
+        // 다음 요소가 inlineSegment인 경우
+        if (isInlineSegment(nextSegment)) {
+          curLine.insertBefore(segment, nextSegment);
+        } else {
+          // 다음 요소가 세그먼트인 경우
+          const nextText = nextSegment.textContent || "";
+          const combinedText = text + nextText;
+
+          nextSegment.firstChild!.textContent = combinedText;
+        }
+
+        rearrangeOffset(nextSegments, row, newCol);
+      } else {
+        curLine.appendChild(segment);
+      }
+
+      if (curPos <= sumOfTextLength + textArr[i].length) {
+        cursorPos = curPos - sumOfTextLength;
+        caretCol = newCol;
+      } else {
+        sumOfTextLength += textArr[i].length;
+      }
+    }
+
+    console.log(cursorPos);
+    console.log(caretCol);
+
+    console.log(curLine);
+
+    const caretNode = curLine.childNodes[caretCol];
+    console.log("커서가 놓일 세그먼트", caretNode);
+
+    setCaretPosition(caretNode, cursorPos);
+  }
+};
+
+export { processInlineElements, handleInlineSegment };

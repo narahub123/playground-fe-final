@@ -8,6 +8,7 @@ import {
   isTextSpan,
   setCaretPosition,
   useCaretInfo,
+  handleInlineSegment,
 } from "@shared/pages/ui/PostEditor/ui/TextEditor";
 
 const useMaintainTextEditorStructure = () => {
@@ -66,6 +67,9 @@ const useMaintainTextEditorStructure = () => {
         if (isSegment(curSegment)) {
           console.log("현재 세그먼트가 inline이 아닌 경우");
           processInlineElements(caretInfo);
+        } else {
+          console.log("현재 세그먼트가 inline인 경우");
+          handleInlineSegment(caretInfo);
         }
       }
     }

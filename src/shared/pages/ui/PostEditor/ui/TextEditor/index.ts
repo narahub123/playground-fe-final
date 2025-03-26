@@ -23,6 +23,8 @@ import {
   isTextSpan,
   processInlineElements,
   createInlineSegment,
+  handleInlineSegment,
+  rearrangeOffsets,
 } from "./utils";
 import { HASHTAG_REGEX, MENTION_REGEX, URL_REGEX } from "./constants";
 
@@ -42,6 +44,8 @@ export {
   isTextSpan,
   processInlineElements,
   createInlineSegment,
+  handleInlineSegment,
+  rearrangeOffsets,
 
   // constant
   HASHTAG_REGEX,

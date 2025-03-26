@@ -12,7 +12,8 @@ import {
   isLine,
   isTextSpan,
 } from "./elementChecker";
-import { processInlineElements } from "./inlineUtils";
+import { processInlineElements, handleInlineSegment } from "./inlineUtils";
+import rearrangeOffsets from "./rearrangeOffset";
 
 export {
   handleSelectionChange,
@@ -26,4 +27,6 @@ export {
   isTextSpan,
   processInlineElements,
   createInlineSegment,
+  handleInlineSegment,
+  rearrangeOffsets,
 };
