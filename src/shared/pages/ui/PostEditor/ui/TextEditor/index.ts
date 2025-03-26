@@ -4,13 +4,16 @@ import {
   useMaintainTextEditorStructure,
   useNewLine,
 } from "./hooks";
-import { ICaretInfo, ILine, ISegment } from "./types";
+import { ICaretInfo, ILine, ISegment, ISegmentOffset } from "./types";
 import {
   handleSelectionChange,
   createLine,
   createTextSpan,
   createSegment,
   setCaretPosition,
+  isInlineSegment,
+  isSegment,
+  isLine,
 } from "./utils";
 
 export {
@@ -23,6 +26,9 @@ export {
   createSegment,
   createTextSpan,
   setCaretPosition,
+  isInlineSegment,
+  isSegment,
+  isLine,
 };
 
-export type { ICaretInfo, ILine, ISegment };
+export type { ICaretInfo, ILine, ISegment, ISegmentOffset };

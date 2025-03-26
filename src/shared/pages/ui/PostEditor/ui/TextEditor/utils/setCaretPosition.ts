@@ -1,3 +1,5 @@
+import { isInlineSegment, isLine, isSegment } from "./elementChecker";
+
 const setCaretPosition = (node: Node, offset: number) => {
   const selection = window.getSelection();
   if (!selection) return;
@@ -6,31 +8,58 @@ const setCaretPosition = (node: Node, offset: number) => {
 
   let caretNode;
 
-  if ((node as HTMLElement).className.includes("line")) {
+  if (isLine(node)) {
     console.log("노드가 라인인 경우");
+    const firstChild = node.firstChild!;
 
-    const segment = node.firstChild;
+    let segment: ChildNode;
 
-    if (!segment) return;
+    if (isInlineSegment(firstChild)) {
+      segment = firstChild.firstChild!;
+    } else {
+      segment = firstChild;
+    }
 
-    const textNode = segment?.firstChild;
-    if (!textNode) return;
+    const textSpan = segment.firstChild!;
+
+    let textNode;
+    if (textSpan.nodeName === "BR") {
+      textNode = textSpan;
+    } else {
+      textNode = textSpan.firstChild!;
+    }
 
     caretNode = textNode;
-  } else if ((node as HTMLElement).className.includes("segment")) {
+  } else if (isSegment(node)) {
     console.log("노드가 세그먼트인 경우");
-    const textNode = node.firstChild;
 
-    console.log("텍스트", textNode);
+    const textSpan = node.firstChild!;
 
-    if (!textNode) return;
+    let textNode: ChildNode;
+    if (textSpan.nodeName === "BR") {
+      textNode = textSpan;
+    } else {
+      textNode = textSpan.firstChild!;
+    }
+
+    caretNode = textNode;
+  } else if (isInlineSegment(node)) {
+    console.log("노드가 인라인 세그먼트인 경우");
+    const segment = node.firstChild!;
+
+    const textSpan = segment.firstChild!;
+
+    let textNode;
+    if (textSpan.nodeName === "BR") {
+      textNode = textSpan;
+    } else {
+      textNode = textSpan.firstChild!;
+    }
 
     caretNode = textNode;
   } else {
     caretNode = node;
   }
-
-  console.log("현재 커서 위치", caretNode);
 
   range.setStart(caretNode, offset);
   range.collapse(true);

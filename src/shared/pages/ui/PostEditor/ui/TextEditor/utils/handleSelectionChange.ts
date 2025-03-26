@@ -1,4 +1,7 @@
-import { ICaretInfo } from "@shared/pages/ui/PostEditor/ui/TextEditor";
+import {
+  ICaretInfo,
+  isSegment,
+} from "@shared/pages/ui/PostEditor/ui/TextEditor";
 
 const handleSelectionChange = (
   setCaretInfo: React.Dispatch<React.SetStateAction<ICaretInfo | undefined>>
@@ -26,6 +29,9 @@ const handleSelectionChange = (
   // 현재 노드가 텍스트 노드인 경우 부모 노드 아닌 경우 현재 노드가 현재 요소가 됨
   const curSegment = curWrapperElem.dataset["text"]
     ? containerElem
+    : curNode.nodeType === 1 &&
+      (curNode as HTMLElement).className.includes("segment")
+    ? curNode
     : curWrapperElem;
   if (
     !curSegment ||
@@ -36,6 +42,10 @@ const handleSelectionChange = (
     return;
   }
   console.log("현재 요소", curSegment);
+
+  const [row, col] = (curSegment as HTMLElement).dataset["offset"]
+    ?.split("-")
+    .map(Number) || [0, 0];
 
   const curLine = curSegment.parentNode;
   if (!curLine) return;
@@ -55,6 +65,7 @@ const handleSelectionChange = (
     curNode,
     curText,
     curSegment,
+    curSegmentOffset: { row, col },
     curLine,
     nextLine,
     textEditor,

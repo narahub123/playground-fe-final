@@ -41,9 +41,14 @@ const useMaintainTextEditorStructure = () => {
 
       setCaretPosition(segment, 0);
     } else if (curNode.nodeType === 3) {
+      // 현재 노드가 텍스트 노드인 경우
+
+      // 현재 노드의 부모 요소
       const wrapperElem = curNode.parentElement!;
+
+      // 현재 노드의 부모 요소가 segment인 경우 : 즉 textSpan이 없는 경우
       if (wrapperElem.className.includes("segment")) {
-        console.log("여기");
+        console.log("textSpan이 없는 경우");
 
         curSegment.textContent = "";
         const textSpan = createTextSpan(curText);

@@ -1,8 +1,14 @@
+interface ISegmentOffset {
+  row: number;
+  col: number;
+}
+
 interface ICaretInfo {
   curPos: number;
   curText: string;
   curNode: Node;
   curSegment: Node;
+  curSegmentOffset: ISegmentOffset;
   curLine: Node;
   nextLine: Node | null;
   textEditor: Node;
@@ -17,4 +23,4 @@ interface ILine {
 
 interface ISegment extends ILine {}
 
-export type { ICaretInfo, ILine, ISegment };
+export type { ICaretInfo, ILine, ISegment, ISegmentOffset };

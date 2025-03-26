@@ -5,8 +5,15 @@ const useNewLine = () => {
   const createNewLine = (caretInfo?: ICaretInfo) => {
     if (!caretInfo) return;
     console.log("여깁니다.");
-    const { curLine, nextLine, textEditor, curPos, curText, curSegment } =
-      caretInfo;
+    const {
+      curLine,
+      nextLine,
+      textEditor,
+      curPos,
+      curText,
+      curSegment,
+      curSegmentOffset,
+    } = caretInfo;
 
     const [row, col] = (curSegment as HTMLDivElement).dataset["offset"]
       ?.split("-")
@@ -31,9 +38,7 @@ const useNewLine = () => {
     if (remainedText) {
       curSegment.firstChild!.textContent = remainedText;
     } else {
-      const [row, col] = (curSegment as HTMLElement).dataset["offset"]
-        ?.split("-")
-        .map(Number) || [0, 0];
+      const { col } = curSegmentOffset;
 
       // 현재 세그먼트 이전 세그먼트가 있는 경우: 현재 세그먼트 삭제
       if (col > 0) {
