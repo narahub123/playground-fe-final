@@ -313,4 +313,4 @@ const handleInlineSegment = (caretInfo: ICaretInfo) => {
   }
 };
 
-export { processInlineElements, handleInlineSegment };
+export { processInlineElements, handleInlineSegment, detectInlineType };

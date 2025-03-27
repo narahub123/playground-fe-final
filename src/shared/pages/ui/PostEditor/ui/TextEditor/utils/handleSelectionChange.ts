@@ -62,12 +62,21 @@ const handleSelectionChange = (
 
   console.log("업데이트 됨");
 
+  const childSegments = Array.from(curLine.childNodes);
+
+  const nextSegments = childSegments.slice(col + 1);
+  console.log("다음 형제 세그먼트", nextSegments);
+
+  const prevSegment = col > 0 ? childSegments[col - 1] : null;
+
   const caretInfo: ICaretInfo = {
     curPos,
     curNode,
     curText,
     curSegment,
     curSegmentOffset: { row, col },
+    nextSegments,
+    prevSegment,
     curLine,
     nextLine,
     textEditor,

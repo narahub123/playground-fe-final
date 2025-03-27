@@ -9,6 +9,8 @@ interface ICaretInfo {
   curNode: Node;
   curSegment: Node;
   curSegmentOffset: ISegmentOffset;
+  nextSegments: Node[];
+  prevSegment: Node | null;
   curLine: Node;
   nextLine: Node | null;
   textEditor: Node;

@@ -1,6 +1,7 @@
 import styles from "./TextEditor.module.css";
 import { useRef } from "react";
 import {
+  handleBackspace,
   useCaretInfo,
   useMaintainTextEditorStructure,
   useNewLine,
@@ -25,6 +26,10 @@ const TextEditor = ({}: TextEditorProps) => {
       e.preventDefault();
       console.log("새줄 만들기");
       createNewLine(caretInfo);
+    }
+    if (key === "Backspace") {
+      console.log("백 스페이스 눌림");
+      handleBackspace(e, caretInfo);
     }
   };
 

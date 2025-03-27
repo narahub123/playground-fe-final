@@ -25,6 +25,8 @@ import {
   createInlineSegment,
   handleInlineSegment,
   rearrangeOffsets,
+  handleBackspace,
+  detectInlineType,
 } from "./utils";
 import { HASHTAG_REGEX, MENTION_REGEX, URL_REGEX } from "./constants";
 
@@ -46,6 +48,8 @@ export {
   createInlineSegment,
   handleInlineSegment,
   rearrangeOffsets,
+  handleBackspace,
+  detectInlineType,
 
   // constant
   HASHTAG_REGEX,
