@@ -4,6 +4,7 @@ const isInlineSegment = (elem: Node | HTMLElement) => {
 
 const isSegment = (elem: Node | HTMLElement) => {
   const wrapperElem = elem.parentElement!;
+  console.log(wrapperElem);
 
   return (
     (elem as HTMLElement).className.includes("segment") &&

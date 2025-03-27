@@ -1,7 +1,7 @@
 import { HASHTAG_REGEX } from "../constants";
 import { ICaretInfo, InlineType } from "../types";
 import { createInlineSegment, createSegment } from "./createElement";
-import { isInlineSegment } from "./elementChecker";
+import { isInlineSegment, isSegment } from "./elementChecker";
 import rearrangeOffset from "./rearrangeOffset";
 import setCaretPosition from "./setCaretPosition";
 
@@ -102,7 +102,7 @@ const insertNewSegments = (inlines: string[], caretInfo: ICaretInfo) => {
 
     console.log("현재 위치", curPos);
     if (curPos <= sumOfLength + textLength + inlineLength) {
-      cursorPos = curPos - sumOfLength - textLength;
+      cursorPos = curPos - sumOfLength - textLength; // -1이 나오는 오류
       caretCol = newCol + 1;
     } else {
       sumOfLength += textLength + inlineLength;
@@ -165,11 +165,90 @@ const handleInlineSegment = (caretInfo: ICaretInfo) => {
 
   const inlineType = detectInlineType(curText);
   console.log("인라인 타입", inlineType);
+  const inlineSegment: Node = curSegment.parentNode!;
+
+  const prevSegment = inlineSegment.previousSibling;
+  const nextSegments = Array.from(curLine.childNodes).filter(
+    (_, index) => index > col
+  );
+
+  const nextSegment = nextSegments[0];
 
   const inlines = extractInlineMatches(curText, inlineType);
   if (!inlines) {
     // 인라인 배열이 없는 경우 : 인라인을 세그먼트로 변경
     console.log("인라인 배열이 없는 경우");
+
+    let combintedText: string = curText;
+    let caretPos = 0;
+    let caretNode = inlineSegment;
+
+    let newCol = col;
+    // 1) 다음 세그먼트가 있는지 확인
+    // 다음 세그먼트가 있고 세그먼트인 경우
+    if (nextSegment && isSegment(nextSegment)) {
+      console.log("다음 세그먼트가 있고 세그먼트인 경우");
+      const nextText = nextSegment.textContent || "";
+
+      // 다음 텍스트를 현재 텍스트에 병합
+      combintedText += nextText;
+
+      // 다음 세그먼트 삭제
+      nextSegment.remove();
+
+      // 다음 형제 세그먼트는 현재 세그먼트보다 하나 큰 숫자부터 시작해야 함
+      newCol += 1;
+
+      // nextSegments도 수정
+      nextSegments.splice(0, 1);
+
+      // 커서 위치 및 커서 노드
+      caretPos = curPos; // 현재 위치 유지
+      caretNode = inlineSegment; // 현재 노드 유지
+    }
+
+    // 이전 세그먼트가 있고 세그먼트인 경우
+    if (prevSegment && isSegment(prevSegment)) {
+      console.log("이전 세그먼트가 있고 세그먼트인 경우");
+
+      const prevText = prevSegment.textContent || "";
+
+      // 이전 텍스트와 현재 텍스트 병합
+      const newText = prevText + combintedText;
+
+      // 종합 텍스트를 이전 세그먼트에 삽입
+      prevSegment.firstChild!.textContent = newText;
+
+      // 현재 세그먼트 삭제
+      (inlineSegment as HTMLElement).remove();
+
+      // 다음 형제 세그먼트는 현재 세그먼트가 삭제된 것을 반영해서 -1 작은 숫자로 시작함
+      newCol -= 1;
+
+      // 커서 위치 및 노드
+      // 이전 텍스트에서 현재 텍스트를 합한 값
+      caretPos = prevText.length + curPos;
+      // 이전 세그먼트로 이동
+      caretNode = prevSegment;
+    } else {
+      // 이전 세그먼트가 없거나 이전 세그먼트가 세그먼트가 아닌 경우
+      // 합친 텍스트를 현재 세그먼트에 삽입
+      const segment = createSegment({ text: combintedText, row, col });
+
+      // 현재 세그먼트를 인라인에서 세그먼트로 변경
+      curLine.replaceChild(segment, inlineSegment);
+
+      // 변경된 것이 없으므로 형제 세그먼트는 현재의 번호를 유지
+      // 현재 세그먼트: 세그먼트로 변경된 세그먼트여야 함, 현재 위치 유지
+      caretPos = curPos;
+      caretNode = segment;
+    }
+
+    // 커서 위치 수정
+    setCaretPosition(caretNode, caretPos);
+
+    // 다음 세그먼트 col 수정
+    rearrangeOffset(nextSegments, row, newCol);
 
     return;
   }
@@ -188,18 +267,11 @@ const handleInlineSegment = (caretInfo: ICaretInfo) => {
 
     curSegment.firstChild!.textContent = inlines[0];
 
-    const nextSegments = Array.from(curLine.childNodes).filter(
-      (_, index) => index > col
-    );
-
-    const nextSegment = nextSegments[0];
-
     console.log("현재 요소 이후의 형제 요소들", nextSegments);
 
     for (let i = 0; i < textArr.length; i++) {
       const text = textArr[i];
       const newCol = col + i + 1;
-      console.log("새로운 col", newCol);
 
       const segment = createSegment({ text, row, col: newCol });
 
