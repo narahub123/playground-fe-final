@@ -1,35 +1,15 @@
 import styles from "./TextEditor.module.css";
-import { useRef } from "react";
-import {
-  handleBackspace,
-  useCaretInfo,
-  useMaintainTextEditorStructure,
-  useNewLine,
-} from "@shared/pages/ui/PostEditor/ui/TextEditor";
+import React, { useRef } from "react";
 
 interface TextEditorProps {}
 
 const TextEditor = ({}: TextEditorProps) => {
   const textEditorRef = useRef<HTMLDivElement>(null);
 
-  const caretInfo = useCaretInfo();
-
-  // 구조 유지하기
-  useMaintainTextEditorStructure();
-
-  // 새 줄 만들기
-  const createNewLine = useNewLine();
-
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
     const key = e.key;
     if (key === "Enter") {
       e.preventDefault();
-      console.log("새줄 만들기");
-      createNewLine(caretInfo);
-    }
-    if (key === "Backspace") {
-      console.log("백 스페이스 눌림");
-      handleBackspace(e, caretInfo);
     }
   };
 
@@ -41,19 +21,7 @@ const TextEditor = ({}: TextEditorProps) => {
       data-ph={"안녕"}
       ref={textEditorRef}
       onKeyDown={handleKeyDown}
-    >
-      <div className={styles["line"]} data-offset="0">
-        <span className={styles["segment"]} data-offset="0-0">
-          <br data-text={true} />
-        </span>
-        {/* <span className={styles["segment"]} data-offset="0-0">
-          sdfsdf
-        </span>
-        <span className={styles["segment"]} data-offset="0-1">
-          adkjljf
-        </span> */}
-      </div>
-    </div>
+    ></div>
   );
 };
 
