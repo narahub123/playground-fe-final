@@ -13,6 +13,13 @@ const TextEditor = ({}: TextEditorProps) => {
     }
   };
 
+  const handleInput = (e: React.FormEvent<HTMLDivElement>) => {
+    const textEditor = e.currentTarget;
+    console.log("onInput이 사용되는 요소", textEditor);
+
+    
+  };
+
   return (
     <div
       className={styles["text__editor"]}
@@ -21,7 +28,14 @@ const TextEditor = ({}: TextEditorProps) => {
       data-ph={"안녕"}
       ref={textEditorRef}
       onKeyDown={handleKeyDown}
-    ></div>
+      onInput={handleInput}
+    >
+      <div className={styles["line"]}>
+        <span className={styles["segment"]}>
+          <br data-text={true} />
+        </span>
+      </div>
+    </div>
   );
 };
 
