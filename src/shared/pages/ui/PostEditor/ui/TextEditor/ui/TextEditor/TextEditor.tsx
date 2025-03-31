@@ -52,7 +52,7 @@ const TextEditor = ({}: TextEditorProps) => {
       {segments.map((line, row) => (
         <div className={styles["line"]} key={row}>
           {line.map((segment, col) => (
-            <PlainSegment text={segment.text} row={row} col={col} />
+            <PlainSegment text={segment.text} row={row} col={col} key={col} />
           ))}
         </div>
       ))}

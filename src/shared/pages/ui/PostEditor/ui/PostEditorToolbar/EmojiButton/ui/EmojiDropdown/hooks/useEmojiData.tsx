@@ -36,31 +36,31 @@ const useEmojiData = () => {
         }
 
         if (emoji.codes.includes("1F3FB")) {
-          console.log("light");
+          // console.log("light");
 
           baseEmoji.skintone[0] = emoji.char;
 
           return;
         } else if (emoji.codes.includes("1F3FC")) {
-          console.log("mediumLight");
+          // console.log("mediumLight");
 
           baseEmoji.skintone[1] = emoji.char;
 
           return;
         } else if (emoji.codes.includes("1F3FD")) {
-          console.log("medium");
+          // console.log("medium");
 
           baseEmoji.skintone[2] = emoji.char;
 
           return;
         } else if (emoji.codes.includes("1F3FE")) {
-          console.log("mediumDark");
+          // console.log("mediumDark");
 
           baseEmoji.skintone[3] = emoji.char;
 
           return;
         } else if (emoji.codes.includes("1F3FF")) {
-          console.log("dark");
+          // console.log("dark");
 
           baseEmoji.skintone[4] = emoji.char;
 
@@ -129,7 +129,7 @@ const useEmojiData = () => {
     ]);
   }, []);
 
-  console.log(emojiArr);
+  // console.log(emojiArr);
   return emojiArr;
 };
 
