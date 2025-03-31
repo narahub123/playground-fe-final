@@ -1,14 +1,18 @@
 import styles from "./TextEditor.module.css";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import {
   getLines,
   getSegments,
+  ISegment,
+  PlainSegment,
 } from "@shared/pages/ui/PostEditor/ui/TextEditor";
 
 interface TextEditorProps {}
 
 const TextEditor = ({}: TextEditorProps) => {
   const textEditorRef = useRef<HTMLDivElement>(null);
+  const initialLine: ISegment[] = [{ text: "", type: "plain" }];
+  const [segments, setSegments] = useState<ISegment[][]>([initialLine]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
     const key = e.key;
@@ -24,10 +28,15 @@ const TextEditor = ({}: TextEditorProps) => {
     const lines = getLines(textEditor);
     console.log("줄 들", lines);
 
+    const newSegments: ISegment[][] = [];
     for (const line of lines) {
       const segments = getSegments(line);
       console.log("각 줄의 세그먼트", segments);
+
+      newSegments.push(segments);
     }
+
+    setSegments(newSegments);
   };
 
   return (
@@ -40,11 +49,13 @@ const TextEditor = ({}: TextEditorProps) => {
       onKeyDown={handleKeyDown}
       onInput={handleInput}
     >
-      <div className={styles["line"]}>
-        <span className={styles["segment"]}>
-          <br data-text={true} />
-        </span>
-      </div>
+      {segments.map((line, row) => (
+        <div className={styles["line"]} key={row}>
+          {line.map((segment, col) => (
+            <PlainSegment text={segment.text} row={row} col={col} />
+          ))}
+        </div>
+      ))}
     </div>
   );
 };
