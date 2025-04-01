@@ -19,23 +19,56 @@ const useCaretPosition = ({
 
     const { caretPos, row, col } = caretPosition;
 
+    // 현재 커서 위치
+    let curPos = caretPos;
+
+    // 현재 세그먼트
+    let curCol = col;
+
     const segment = textEditor.children[row].children[col] as HTMLElement;
+
+    let curSegment = segment;
+
+    // 세그먼트가 사라진 경우
+    if (!segment) {
+      curSegment = textEditor.children[row].children[col - 1] as HTMLElement;
+
+      const prevText = curSegment.textContent || "";
+
+      // 이미 dom에 반영이 되어 있기 때문에 문자열의 길이를 넣어야 함 주의할 것!
+      curPos = prevText.length;
+    }
+
+    const curText = curSegment.textContent || "";
+
+    // 현재 문자열의 길이가 현재 커서의 위치보다 작은 경우
+    // 다음 세그먼트로 이동해야 함
+    if (segment && curText.length < curPos) {
+      // 커서 위치를 다음 세그먼트로 이동
+      curCol += 1;
+
+      // 다음 세그먼트
+      curSegment = textEditor.children[row].children[col + 1] as HTMLElement;
+
+      // 다음 세그먼트에서의 커서의 위치
+      curPos = caretPos - curText.length;
+    }
 
     let textNode: Node;
 
     // inline 세그먼트
     if (
-      segment instanceof HTMLSpanElement &&
-      segment.className.includes("inline")
+      curSegment instanceof HTMLSpanElement &&
+      curSegment.className.includes("inline")
     ) {
-      textNode = segment.firstChild!.firstChild!.firstChild!;
+      textNode = curSegment.firstChild!.firstChild!.firstChild!;
     } else {
       // plain 세그먼트
-      textNode = segment.firstChild!.firstChild!;
+      textNode = curSegment.firstChild!.firstChild!;
     }
 
     const range = document.createRange();
-    range.setStart(textNode, caretPos);
+    range.setStart(textNode, curPos);
     range.collapse(true);
 
     selection.removeAllRanges();

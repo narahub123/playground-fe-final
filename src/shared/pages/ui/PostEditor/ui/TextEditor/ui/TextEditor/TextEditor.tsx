@@ -3,8 +3,6 @@ import React, { useRef, useState } from "react";
 import {
   createInnerHtml,
   getCaretPosition,
-  getLines,
-  getSegments,
   ICaretPosition,
   useCaretPosition,
 } from "@shared/pages/ui/PostEditor/ui/TextEditor";

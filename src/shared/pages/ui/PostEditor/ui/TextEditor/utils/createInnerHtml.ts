@@ -22,7 +22,9 @@ const createInnerHtml = (target: HTMLDivElement): string => {
       }
     });
 
-    const newLine = `<div class=${styles["line"]}>${newSegments}</div>`;
+    const newLine = `<div class=${styles["line"]}>${newSegments.join(
+      ""
+    )}</div>`;
     newLines.push(newLine);
   }
 
