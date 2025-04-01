@@ -1,6 +1,7 @@
 import styles from "./TextEditor.module.css";
 import React, { useRef, useState } from "react";
 import {
+  createInnerHtml,
   getCaretPosition,
   getLines,
   getSegments,
@@ -34,36 +35,9 @@ const TextEditor = ({}: TextEditorProps) => {
     const textEditor = e.currentTarget;
     console.log("onInput이 사용되는 요소", textEditor);
 
-    const lines = getLines(textEditor);
-    console.log("줄 들", lines);
+    const innerHtml = createInnerHtml(textEditor);
 
-    const lineSegments: string[][] = [];
-    for (let row = 0; row < lines.length; row++) {
-      const line = lines[row];
-      const segments = getSegments(line);
-      console.log(segments);
-
-      const newSegments = segments.map((segment, col) => {
-        if (segment.type === "plain") {
-          return `<span class=${styles["segment"]} data-offset='${row}-${col}'><span data-text="true">${segment.text}</span></span>`;
-        } else {
-          return `<span class=${styles["inline"]}><span class=${styles["segment"]} data-offset='${row}-${col}'><span data-text="true">${segment.text}</span></span></span>`;
-        }
-      });
-
-      lineSegments.push(newSegments);
-    }
-
-    const newLines: string[] = [];
-    for (let row = 0; row < lines.length; row++) {
-      const segments = lineSegments[row].join("");
-
-      const newLine = `<div class=${styles["line"]}>${segments}</div>`;
-
-      newLines.push(newLine);
-    }
-
-    textEditor.innerHTML = `${newLines.join("")}`;
+    textEditor.innerHTML = innerHtml;
 
     setCaretPosition(caretPosition);
   };

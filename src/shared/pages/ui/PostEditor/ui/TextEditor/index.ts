@@ -8,6 +8,7 @@ import {
   getSegments,
   getInlineTexts,
   getCaretPosition,
+  createInnerHtml,
 } from "./utils";
 
 export {
@@ -32,6 +33,7 @@ export {
   getSegments,
   getInlineTexts,
   getCaretPosition,
+  createInnerHtml,
 };
 
 export type { InlineType, ISegment, SegmentType, ICaretPosition };
