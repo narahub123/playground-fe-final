@@ -3,6 +3,7 @@ import React, { useRef, useState } from "react";
 import {
   getLines,
   getSegments,
+  InlineSegment,
   ISegment,
   PlainSegment,
 } from "@shared/pages/ui/PostEditor/ui/TextEditor";
@@ -51,9 +52,26 @@ const TextEditor = ({}: TextEditorProps) => {
     >
       {segments.map((line, row) => (
         <div className={styles["line"]} key={row}>
-          {line.map((segment, col) => (
-            <PlainSegment text={segment.text} row={row} col={col} key={col} />
-          ))}
+          {line.map((segment, col) => {
+            if (segment.type === "plain")
+              return (
+                <PlainSegment
+                  text={segment.text}
+                  row={row}
+                  col={col}
+                  key={col}
+                />
+              );
+            else
+              return (
+                <InlineSegment
+                  text={segment.text}
+                  row={row}
+                  col={col}
+                  key={col}
+                />
+              );
+          })}
         </div>
       ))}
     </div>

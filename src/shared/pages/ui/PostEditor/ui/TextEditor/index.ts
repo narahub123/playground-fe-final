@@ -1,5 +1,5 @@
 import { HASHTAG_REGEX, MENTION_REGEX, URL_REGEX } from "./constants";
-import { TextEditor, PlainSegment } from "./ui";
+import { TextEditor, PlainSegment, InlineSegment } from "./ui";
 import {} from "./hooks";
 import { InlineType, ISegment, SegmentType } from "./types";
 import { inlineRegExpArr } from "./data";
@@ -9,6 +9,7 @@ export {
   // ui
   TextEditor,
   PlainSegment,
+  InlineSegment,
 
   // constant
   HASHTAG_REGEX,
