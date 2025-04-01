@@ -7,4 +7,10 @@ interface ISegment {
   text: string;
 }
 
-export type { InlineType, SegmentType, ISegment };
+interface ICaretPosition {
+  caretPos: number;
+  row: number;
+  col: number;
+}
+
+export type { InlineType, SegmentType, ISegment, ICaretPosition };

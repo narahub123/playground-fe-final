@@ -1,9 +1,14 @@
 import { HASHTAG_REGEX, MENTION_REGEX, URL_REGEX } from "./constants";
 import { TextEditor, PlainSegment, InlineSegment } from "./ui";
-import {} from "./hooks";
-import { InlineType, ISegment, SegmentType } from "./types";
+import { useCaretPosition } from "./hooks";
+import { InlineType, ISegment, SegmentType, ICaretPosition } from "./types";
 import { inlineRegExpArr } from "./data";
-import { getLines, getSegments, getInlineTexts } from "./utils";
+import {
+  getLines,
+  getSegments,
+  getInlineTexts,
+  getCaretPosition,
+} from "./utils";
 
 export {
   // ui
@@ -19,10 +24,14 @@ export {
   // data
   inlineRegExpArr,
 
+  // hooks
+  useCaretPosition,
+
   // utils
   getLines,
   getSegments,
   getInlineTexts,
+  getCaretPosition,
 };
 
-export type { InlineType, ISegment, SegmentType };
+export type { InlineType, ISegment, SegmentType, ICaretPosition };
