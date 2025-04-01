@@ -12,9 +12,7 @@ const getCaretPosition = (): ICaretPosition => {
   console.log(node);
 
   let caretPos = range.startOffset;
-  let caertPoss = selection.focusOffset;
   console.log("caretPos", caretPos);
-  console.log(caertPoss);
 
   if (node.nodeType === Node.TEXT_NODE) {
     console.log("현재 노드", node);
