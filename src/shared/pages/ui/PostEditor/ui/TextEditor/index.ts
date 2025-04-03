@@ -9,6 +9,9 @@ import {
   getInlineTexts,
   getCaretPosition,
   createInnerHtml,
+  handlePaste,
+  convertToHtmlSegments,
+  convertToHtmlLine,
 } from "./utils";
 
 export {
@@ -34,6 +37,9 @@ export {
   getInlineTexts,
   getCaretPosition,
   createInnerHtml,
+  handlePaste,
+  convertToHtmlSegments,
+  convertToHtmlLine,
 };
 
 export type { InlineType, ISegment, SegmentType, ICaretPosition };
