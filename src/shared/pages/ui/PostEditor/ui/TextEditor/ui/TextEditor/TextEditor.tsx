@@ -4,9 +4,12 @@ import {
   createInnerHtml,
   getCaretPosition,
   handlePaste,
+  handlePlaceholder,
   ICaretPosition,
   useCaretPosition,
 } from "@shared/pages/ui/PostEditor/ui/TextEditor";
+import { useLanguageContent } from "@shared/@common/models/hooks";
+import { Text } from "@shared/@common/ui/components";
 
 interface TextEditorProps {}
 
@@ -18,6 +21,9 @@ const TextEditor = ({}: TextEditorProps) => {
     row: 0,
     col: 0,
   });
+  const [isShowingPH, setIsShowingPH] = useState(true);
+
+  const { placeholder } = useLanguageContent(["components", "TextEditor"]);
 
   useCaretPosition({ textEditorRef, caretPosition });
 
@@ -36,7 +42,9 @@ const TextEditor = ({}: TextEditorProps) => {
     }
     const caretPosition = getCaretPosition();
     const textEditor = e.currentTarget;
-    console.log("onInput이 사용되는 요소", textEditor);
+    console.log("onInput이 사용되x는 요소", textEditor);
+
+    handlePlaceholder(textEditor, setIsShowingPH);
 
     const innerHtml = createInnerHtml(textEditor);
 
@@ -56,22 +64,29 @@ const TextEditor = ({}: TextEditorProps) => {
   };
 
   return (
-    <div
-      className={styles["text__editor"]}
-      contentEditable
-      suppressContentEditableWarning={true}
-      data-ph={"안녕"}
-      ref={textEditorRef}
-      onKeyDown={handleKeyDown}
-      onInput={handleInput}
-      onCompositionStart={handleCompositionStart}
-      onCompositionEnd={handleCompositionEnd}
-      onPaste={(e) => handlePaste(e, setCaretPosition)}
-    >
-      <div className={styles["line"]}>
-        <span className={styles["segment"]} data-offset="0-0">
-          <br data-text="true" />
-        </span>
+    <div className={styles["text__editor__container"]}>
+      {isShowingPH && (
+        <div className={styles["placeholder"]}>
+          <Text>{placeholder}</Text>
+        </div>
+      )}
+      <div
+        className={styles["text__editor"]}
+        contentEditable
+        suppressContentEditableWarning={true}
+        data-ph={"안녕"}
+        ref={textEditorRef}
+        onKeyDown={handleKeyDown}
+        onInput={handleInput}
+        onCompositionStart={handleCompositionStart}
+        onCompositionEnd={handleCompositionEnd}
+        onPaste={(e) => handlePaste(e, setCaretPosition)}
+      >
+        <div className={styles["line"]}>
+          <span className={styles["segment"]} data-offset="0-0">
+            <br data-text="true" />
+          </span>
+        </div>
       </div>
     </div>
   );

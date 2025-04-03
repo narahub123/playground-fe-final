@@ -12,6 +12,7 @@ import {
   handlePaste,
   convertToHtmlSegments,
   convertToHtmlLine,
+  handlePlaceholder,
 } from "./utils";
 
 export {
@@ -40,6 +41,7 @@ export {
   handlePaste,
   convertToHtmlSegments,
   convertToHtmlLine,
+  handlePlaceholder,
 };
 
 export type { InlineType, ISegment, SegmentType, ICaretPosition };

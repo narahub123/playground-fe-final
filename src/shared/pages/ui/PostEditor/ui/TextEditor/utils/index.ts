@@ -5,6 +5,7 @@ import getCaretPosition from "./getCaretPosition";
 import createInnerHtml from "./createInnerHtml";
 import handlePaste from "./handlePaste";
 import { convertToHtmlSegments, convertToHtmlLine } from "./convertToHtml";
+import handlePlaceholder from "./handlePlaceholder";
 
 export {
   getLines,
@@ -15,4 +16,5 @@ export {
   handlePaste,
   convertToHtmlSegments,
   convertToHtmlLine,
+  handlePlaceholder,
 };

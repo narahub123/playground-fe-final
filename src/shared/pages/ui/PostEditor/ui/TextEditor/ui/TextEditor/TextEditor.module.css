@@ -1,20 +1,20 @@
-.text__editor {
+.text__editor__container {
+  position: relative;
   padding: 0.25em;
+}
+
+.text__editor {
+  white-space: pre-wrap;
 }
 
 .text__editor:focus {
   outline: none;
 }
 
-[contenteditable="true"]:empty::before {
-  content: attr(data-ph);
-}
-
 .line {
   width: 100%;
   padding: 0.125rem 0;
   color: var(--bgTheme-color-primary);
-  white-space: pre-wrap;
 }
 
 .segment {
@@ -24,4 +24,14 @@
 
 .inline {
   color: var(--colorTheme-color-primary);
+}
+
+.placeholder {
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  padding: 0.125rem 0;
+  font-size: 1.25em;
+  color: #536471;
+  z-index: 1;
 }

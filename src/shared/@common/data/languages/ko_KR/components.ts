@@ -595,6 +595,9 @@ const components = {
     },
   },
   CalendarIcon: {},
+  TextEditor: {
+    placeholder: "무슨일이 일어나고 있나요?",
+  },
 };
 
 export default components;
