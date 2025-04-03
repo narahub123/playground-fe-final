@@ -16,7 +16,10 @@ const createInnerHtml = (target: HTMLDivElement): string => {
 
     const newSegments = segments.map((segment, col) => {
       if (segment.type === "plain") {
-        return `<span class=${styles["segment"]} data-offset='${row}-${col}'><span data-text="true">${segment.text}</span></span>`;
+        if (segment.text) {
+          return `<span class=${styles["segment"]} data-offset='${row}-${col}'><span data-text="true">${segment.text}</span></span>`;
+        } else
+          return `<span class=${styles["segment"]} data-offset='${row}-${col}'><br data-text="true" /></span>`;
       } else {
         return `<span class=${styles["inline"]}><span class=${styles["segment"]} data-offset='${row}-${col}'><span data-text="true">${segment.text}</span></span></span>`;
       }

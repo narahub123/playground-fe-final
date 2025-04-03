@@ -45,6 +45,15 @@ const getSegments = (line: string): ISegment[] => {
     });
   }
 
+  // 라인이 없는 경우
+  if (!line) {
+    // 인라인 이후의 일반 세그먼트 추가
+    segments.push({
+      type: "plain",
+      text: "",
+    });
+  }
+
   console.log("----------------- getSegments 종료 -----------------------");
   return segments;
 };
