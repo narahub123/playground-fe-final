@@ -6,6 +6,7 @@ import createInnerHtml from "./createInnerHtml";
 import handlePaste from "./handlePaste";
 import { convertToHtmlSegments, convertToHtmlLine } from "./convertToHtml";
 import handlePlaceholder from "./handlePlaceholder";
+import handleNewLine from "./handleNewLine";
 
 export {
   getLines,
@@ -17,4 +18,5 @@ export {
   convertToHtmlSegments,
   convertToHtmlLine,
   handlePlaceholder,
+  handleNewLine,
 };

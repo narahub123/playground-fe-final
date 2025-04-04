@@ -14,10 +14,15 @@ const useCaretPosition = ({
     if (!textEditorRef.current) return;
     const selection = window.getSelection();
     if (!selection || selection.rangeCount === 0) return;
+    console.log(
+      "----------------- useCaretPosition 시작 -----------------------"
+    );
 
     const textEditor = textEditorRef.current;
+    console.log(textEditor);
 
     const { caretPos, row, col } = caretPosition;
+    console.log(caretPos, row, col);
 
     // 현재 커서 위치
     let curPos = caretPos;
@@ -28,6 +33,7 @@ const useCaretPosition = ({
     const segment = textEditor.children[row].children[col] as HTMLElement;
 
     let curSegment = segment;
+    console.log(curSegment);
 
     // 세그먼트가 사라진 경우
     if (!segment) {
@@ -64,8 +70,14 @@ const useCaretPosition = ({
       textNode = curSegment.firstChild!.firstChild!.firstChild!;
     } else {
       // plain 세그먼트
-      textNode = curSegment.firstChild!.firstChild!;
+      if (curSegment.firstChild && curSegment.firstChild.nodeName === "BR") {
+        textNode = curSegment;
+      } else {
+        textNode = curSegment.firstChild!.firstChild!;
+      }
     }
+
+    console.log("텍스트 노드", textNode);
 
     const range = document.createRange();
     range.setStart(textNode, curPos);
@@ -73,6 +85,10 @@ const useCaretPosition = ({
 
     selection.removeAllRanges();
     selection.addRange(range);
+
+    console.log(
+      "----------------- useCaretPosition 종료 -----------------------"
+    );
   }, [caretPosition]);
 };
 

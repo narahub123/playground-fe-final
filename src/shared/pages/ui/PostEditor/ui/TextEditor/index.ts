@@ -13,6 +13,7 @@ import {
   convertToHtmlSegments,
   convertToHtmlLine,
   handlePlaceholder,
+  handleNewLine,
 } from "./utils";
 
 export {
@@ -42,6 +43,7 @@ export {
   convertToHtmlSegments,
   convertToHtmlLine,
   handlePlaceholder,
+  handleNewLine,
 };
 
 export type { InlineType, ISegment, SegmentType, ICaretPosition };

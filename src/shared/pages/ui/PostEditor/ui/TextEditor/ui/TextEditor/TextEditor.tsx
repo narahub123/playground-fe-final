@@ -3,6 +3,7 @@ import React, { useRef, useState } from "react";
 import {
   createInnerHtml,
   getCaretPosition,
+  handleNewLine,
   handlePaste,
   handlePlaceholder,
   ICaretPosition,
@@ -31,6 +32,10 @@ const TextEditor = ({}: TextEditorProps) => {
     const key = e.key;
     if (key === "Enter") {
       e.preventDefault();
+      const textEditor = e.currentTarget;
+
+      handleNewLine(textEditor, caretPosition, setCaretPosition);
+      handlePlaceholder(textEditor, setIsShowingPH);
     }
   };
 
