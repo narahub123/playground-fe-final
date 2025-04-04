@@ -33,10 +33,11 @@ const useCaretPosition = ({
     const segment = textEditor.children[row].children[col] as HTMLElement;
 
     let curSegment = segment;
-    console.log(curSegment);
+    console.log("현재 세그먼트", curSegment);
 
     // 세그먼트가 사라진 경우
-    if (!segment) {
+    if (!curSegment) {
+      console.log("현재 세그먼트가 사라진 경우");
       curSegment = textEditor.children[row].children[col - 1] as HTMLElement;
 
       const prevText = curSegment.textContent || "";
@@ -49,7 +50,8 @@ const useCaretPosition = ({
 
     // 현재 문자열의 길이가 현재 커서의 위치보다 작은 경우
     // 다음 세그먼트로 이동해야 함
-    if (segment && curText.length < curPos) {
+    if (curSegment && curText.length < curPos) {
+      console.log("현재 문자열의 길이가 현재 커서의 위치보다 작은 경우");
       // 커서 위치를 다음 세그먼트로 이동
       curCol += 1;
 
@@ -67,8 +69,10 @@ const useCaretPosition = ({
       curSegment instanceof HTMLSpanElement &&
       curSegment.className.includes("inline")
     ) {
+      console.log("인라인 세그먼트인 경우");
       textNode = curSegment.firstChild!.firstChild!.firstChild!;
     } else {
+      console.log("일반 세그먼트인 경우");
       // plain 세그먼트
       if (curSegment.firstChild && curSegment.firstChild.nodeName === "BR") {
         textNode = curSegment;

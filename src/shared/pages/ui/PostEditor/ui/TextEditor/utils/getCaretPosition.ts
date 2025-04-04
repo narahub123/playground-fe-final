@@ -42,6 +42,16 @@ const getCaretPosition = (): ICaretPosition => {
     };
   }
 
+  if (node instanceof HTMLDivElement && node.dataset.offset) {
+    const row = Number(node.dataset.offset);
+
+    return {
+      caretPos: 0,
+      row,
+      col: 0,
+    };
+  }
+
   console.log("node", node);
   console.log("caretPos", caretPos);
 

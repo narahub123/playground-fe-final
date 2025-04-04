@@ -25,9 +25,9 @@ const createInnerHtml = (target: HTMLDivElement): string => {
       }
     });
 
-    const newLine = `<div class=${styles["line"]}>${newSegments.join(
-      ""
-    )}</div>`;
+    const newLine = `<div class=${
+      styles["line"]
+    } data-offset="${row}">${newSegments.join("")}</div>`;
     newLines.push(newLine);
   }
 
