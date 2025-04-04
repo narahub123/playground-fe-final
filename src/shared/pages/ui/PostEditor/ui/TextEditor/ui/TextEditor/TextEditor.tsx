@@ -1,8 +1,11 @@
 import styles from "./TextEditor.module.css";
 import React, { useRef, useState } from "react";
 import {
-  createInnerHtml,
+  convertToHtmlLine,
+  convertToHtmlSegments,
   getCaretPosition,
+  getLines,
+  getSegments,
   handleNewLine,
   handlePaste,
   handlePlaceholder,
@@ -41,22 +44,59 @@ const TextEditor = ({}: TextEditorProps) => {
 
   const handleInput = (e: React.FormEvent<HTMLDivElement>) => {
     console.log("--------------- handleInput 시작 ---------------");
+
+    const caretPosition = getCaretPosition();
+    const textEditor = e.currentTarget;
+
+    handlePlaceholder(textEditor, setIsShowingPH);
+
     if (isComposing) {
       console.log("--------------- handleInput 종료 ---------------");
       return;
     }
-    const caretPosition = getCaretPosition();
-    const textEditor = e.currentTarget;
-    console.log("onInput이 사용되x는 요소", textEditor);
 
-    handlePlaceholder(textEditor, setIsShowingPH);
+    const lines = getLines(textEditor);
 
-    const innerHtml = createInnerHtml(textEditor);
+    const { caretPos, row: curRow, col: curCol } = caretPosition;
 
-    textEditor.innerHTML = innerHtml;
+    // 새로운 커서 위치
+    let newCaretPos = caretPos;
+    let newCol = curCol;
 
-    setCaretPosition(caretPosition);
+    const htmlLines: string[] = [];
+    for (let row = 0; row < lines.length; row++) {
+      const line = lines[row];
 
+      const segments = getSegments(line);
+
+      if (row === curRow) {
+        const targetSegmentText = segments[newCol].text;
+        console.log("현재 세그먼트", targetSegmentText);
+        if (targetSegmentText.length < newCaretPos) {
+          console.log("타겟 세그먼트의 길이가 커서 위치보다 짧은 경우");
+          // 커서 위치: 현재 커서 위치에서 타겟 세그먼트의 길이를 뺌
+          newCaretPos -= targetSegmentText.length;
+          // 세그먼트: 세그먼트 위치를 하나 더 함
+          newCol += 1;
+        }
+      }
+
+      const htmlSegments = convertToHtmlSegments(segments, row);
+
+      const htmlLine = convertToHtmlLine(htmlSegments, row);
+
+      htmlLines.push(htmlLine);
+    }
+
+    const newCaretPosition = {
+      caretPos: newCaretPos,
+      row: curRow,
+      col: newCol,
+    };
+
+    textEditor.innerHTML = `${htmlLines.join("")}`;
+
+    setCaretPosition(newCaretPosition);
     console.log("--------------- handleInput 종료 ---------------");
   };
 
