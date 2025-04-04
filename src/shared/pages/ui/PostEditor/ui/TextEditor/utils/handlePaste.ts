@@ -9,7 +9,8 @@ import {
 
 const handlePaste = (
   e: React.ClipboardEvent<HTMLDivElement>,
-  setCaretPosition: React.Dispatch<React.SetStateAction<ICaretPosition>>
+  setCaretPosition: React.Dispatch<React.SetStateAction<ICaretPosition>>,
+  setIsShowingPH: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   console.log("--------------- handlePaste 시작 ---------------");
   e.preventDefault();
@@ -163,6 +164,11 @@ const handlePaste = (
   console.log("새로운 커서 위치", newCaretPosition);
 
   setCaretPosition({ caretPos: newCaretPos, row: newRow, col: newCol });
+
+  // textEditor에 텍스트가 있는 경우 placeholder 없앰
+  if (textEditor.textContent) {
+    setIsShowingPH(false);
+  }
 
   console.log("--------------- handlePaste 종료 ---------------");
 };

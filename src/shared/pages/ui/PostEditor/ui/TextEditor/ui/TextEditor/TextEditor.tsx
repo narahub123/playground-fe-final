@@ -125,7 +125,7 @@ const TextEditor = ({}: TextEditorProps) => {
         onInput={handleInput}
         onCompositionStart={handleCompositionStart}
         onCompositionEnd={handleCompositionEnd}
-        onPaste={(e) => handlePaste(e, setCaretPosition)}
+        onPaste={(e) => handlePaste(e, setCaretPosition, setIsShowingPH)}
       >
         <div className={styles["line"]}>
           <span className={styles["segment"]} data-offset="0-0">
