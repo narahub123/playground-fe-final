@@ -34,7 +34,7 @@ const TextEditor = ({}: TextEditorProps) => {
       e.preventDefault();
       const textEditor = e.currentTarget;
 
-      handleNewLine(textEditor, caretPosition, setCaretPosition);
+      handleNewLine(textEditor, setCaretPosition);
       handlePlaceholder(textEditor, setIsShowingPH);
     }
   };
