@@ -1,7 +1,13 @@
 import { HASHTAG_REGEX, MENTION_REGEX, URL_REGEX } from "./constants";
-import { TextEditor } from "./ui";
-import { useCaretPosition } from "./hooks";
-import { InlineType, ISegment, SegmentType, ICaretPosition } from "./types";
+import { TextEditor, InlineDropdown } from "./ui";
+import { useCaretPosition, useInlineAutoComplete } from "./hooks";
+import {
+  InlineType,
+  ISegment,
+  SegmentType,
+  ICaretPosition,
+  IRect,
+} from "./types";
 import { inlineRegExpArr } from "./data";
 import {
   getLines,
@@ -14,11 +20,14 @@ import {
   convertToHtmlLine,
   handlePlaceholder,
   handleNewLine,
+  detectInlineType,
+  handleSelectOption,
 } from "./utils";
 
 export {
   // ui
   TextEditor,
+  InlineDropdown,
 
   // constant
   HASHTAG_REGEX,
@@ -30,6 +39,7 @@ export {
 
   // hooks
   useCaretPosition,
+  useInlineAutoComplete,
 
   // utils
   getLines,
@@ -42,6 +52,8 @@ export {
   convertToHtmlLine,
   handlePlaceholder,
   handleNewLine,
+  detectInlineType,
+  handleSelectOption,
 };
 
-export type { InlineType, ISegment, SegmentType, ICaretPosition };
+export type { InlineType, ISegment, SegmentType, ICaretPosition, IRect };

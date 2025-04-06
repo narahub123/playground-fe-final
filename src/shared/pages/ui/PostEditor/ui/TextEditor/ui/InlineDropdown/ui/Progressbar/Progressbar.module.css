@@ -1,0 +1,8 @@
+.bar {
+  background-color: var(--colorTheme-color-primary);
+  height: 5px;
+}
+
+.empty {
+  background-color: transparent;
+}

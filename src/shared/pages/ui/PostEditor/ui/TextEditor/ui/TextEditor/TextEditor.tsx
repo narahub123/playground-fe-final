@@ -10,10 +10,16 @@ import {
   handlePaste,
   handlePlaceholder,
   ICaretPosition,
+  // InlineDropdown,
   useCaretPosition,
+  useInlineAutoComplete,
+  IRect,
+  handleSelectOption,
 } from "@shared/pages/ui/PostEditor/ui/TextEditor";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Text } from "@shared/@common/ui/components";
+import { IAccount } from "@shared/@common/types";
+import InlineDropdown from "../InlineDropdown/ui/InlineDropdown/InlineDropdown";
 
 interface TextEditorProps {}
 
@@ -26,19 +32,71 @@ const TextEditor = ({}: TextEditorProps) => {
     col: 0,
   });
   const [isShowingPH, setIsShowingPH] = useState(true);
+  // dropdown 관련 상태
+  const [isOpen, setIsOpen] = useState(false);
+  const [rect, setRect] = useState<IRect | undefined>();
+  const [options, setOptions] = useState<(string | IAccount)[]>([]);
+  const [curText, setCurText] = useState("");
+  const [curIndex, setCurIndex] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const onClose = () => {
+    setIsOpen(false);
+  };
 
   const { placeholder } = useLanguageContent(["components", "TextEditor"]);
 
   useCaretPosition({ textEditorRef, caretPosition });
 
+  useInlineAutoComplete({
+    textEditorRef,
+    caretPosition,
+    setRect,
+    setIsOpen,
+    setOptions,
+    setCurText,
+    setIsLoading,
+  });
+
+  const handleOption = (index?: number) =>
+    handleSelectOption(
+      textEditorRef.current,
+      caretPosition,
+      options,
+      curIndex,
+      setCaretPosition,
+      setIsOpen,
+      index
+    );
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
     const key = e.key;
-    if (key === "Enter") {
-      e.preventDefault();
-      const textEditor = e.currentTarget;
+    if (isOpen) {
+      if (key === "Enter") {
+        e.preventDefault();
+        handleOption();
+      } else if (key === "Tab") {
+        e.preventDefault();
+        handleOption();
+      } else if (key === "ArrowUp") {
+        e.preventDefault();
+        const prevIndex = curIndex - 1 < 0 ? options.length - 1 : curIndex - 1;
 
-      handleNewLine(textEditor, setCaretPosition);
-      handlePlaceholder(textEditor, setIsShowingPH);
+        setCurIndex(prevIndex);
+      } else if (key === "ArrowDown") {
+        e.preventDefault();
+        const nextIndex = curIndex + 1 > options.length - 1 ? 0 : curIndex + 1;
+
+        setCurIndex(nextIndex);
+      }
+    } else {
+      if (key === "Enter") {
+        e.preventDefault();
+        const textEditor = e.currentTarget;
+
+        handleNewLine(textEditor, setCaretPosition);
+        handlePlaceholder(textEditor, setIsShowingPH);
+      }
     }
   };
 
@@ -114,6 +172,18 @@ const TextEditor = ({}: TextEditorProps) => {
         <div className={styles["placeholder"]}>
           <Text>{placeholder}</Text>
         </div>
+      )}
+      {isOpen && options.length && (
+        <InlineDropdown
+          curIndex={curIndex}
+          curText={curText}
+          isLoading={isLoading}
+          onClick={handleOption}
+          onClose={onClose}
+          options={options}
+          top={rect?.top}
+          left={rect?.left}
+        />
       )}
       <div
         className={styles["text__editor"]}

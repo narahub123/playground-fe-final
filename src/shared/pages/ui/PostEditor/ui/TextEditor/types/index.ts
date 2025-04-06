@@ -13,4 +13,11 @@ interface ICaretPosition {
   col: number;
 }
 
-export type { InlineType, SegmentType, ISegment, ICaretPosition };
+interface IRect {
+  top?: number;
+  bottom?: number;
+  left?: number;
+  right?: number;
+}
+
+export type { InlineType, SegmentType, ISegment, ICaretPosition, IRect };

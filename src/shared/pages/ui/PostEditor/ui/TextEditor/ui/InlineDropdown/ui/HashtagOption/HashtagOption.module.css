@@ -1,0 +1,17 @@
+.hashtag__option {
+  width: 20rem;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.hashtag__option:hover {
+  background-color: #f9f9f9;
+}
+
+.rest__text {
+  font-weight: bold;
+}
+
+.selected {
+  background-color: #f9f9f9;
+}

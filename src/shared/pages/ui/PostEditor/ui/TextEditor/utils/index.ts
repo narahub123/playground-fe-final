@@ -7,6 +7,8 @@ import handlePaste from "./handlePaste";
 import { convertToHtmlSegments, convertToHtmlLine } from "./convertToHtml";
 import handlePlaceholder from "./handlePlaceholder";
 import handleNewLine from "./handleNewLine";
+import detectInlineType from "./detectInlineType";
+import handleSelectOption from "./handleSelectOption";
 
 export {
   getLines,
@@ -19,4 +21,6 @@ export {
   convertToHtmlLine,
   handlePlaceholder,
   handleNewLine,
+  detectInlineType,
+  handleSelectOption,
 };
