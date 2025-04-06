@@ -1,5 +1,5 @@
 import { HASHTAG_REGEX, MENTION_REGEX, URL_REGEX } from "./constants";
-import { TextEditor, PlainSegment, InlineSegment } from "./ui";
+import { TextEditor } from "./ui";
 import { useCaretPosition } from "./hooks";
 import { InlineType, ISegment, SegmentType, ICaretPosition } from "./types";
 import { inlineRegExpArr } from "./data";
@@ -19,8 +19,6 @@ import {
 export {
   // ui
   TextEditor,
-  PlainSegment,
-  InlineSegment,
 
   // constant
   HASHTAG_REGEX,
