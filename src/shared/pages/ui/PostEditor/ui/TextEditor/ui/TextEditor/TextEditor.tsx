@@ -22,6 +22,8 @@ import { Text } from "@shared/@common/ui/components";
 import { IAccount } from "@shared/@common/types";
 import { setCaretPosition } from "@shared/pages/ui/PostEditor/models/slices/postEditorSlice";
 import { useAppDispatch } from "@app/store";
+import { useSelector } from "react-redux";
+import { selectCaretPosition } from "@shared/pages/ui/PostEditor/models/selectors";
 
 interface TextEditorProps {}
 
@@ -71,6 +73,8 @@ const TextEditor = ({}: TextEditorProps) => {
       index
     );
 
+  const caretPosition = useSelector(selectCaretPosition);
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
     const key = e.key;
     if (isOpen) {
@@ -106,17 +110,35 @@ const TextEditor = ({}: TextEditorProps) => {
   const handleKeyUp = (e: React.KeyboardEvent<HTMLDivElement>) => {
     const key = e.key;
     if (key === "ArrowUp") {
-      const caretPosition = getCaretPosition();
-      dispatch(setCaretPosition(caretPosition));
+      console.log("--------------- ArrowUp 시작 ---------------");
+      const { row } = caretPosition;
+      const textEditor = e.target as HTMLElement;
+      const line = textEditor.children[row];
+      const segments = getSegments(line.textContent || "");
+      const htmlSegments = convertToHtmlSegments(segments, row);
+      line.innerHTML = htmlSegments;
+
+      const newCaretPosition = getCaretPosition();
+      dispatch(setCaretPosition(newCaretPosition));
+      console.log("--------------- ArrowUp 종료 ---------------");
     } else if (key === "ArrowDown") {
-      const caretPosition = getCaretPosition();
-      dispatch(setCaretPosition(caretPosition));
+      console.log("--------------- ArrowDown 시작 ---------------");
+      const { row } = caretPosition;
+      const textEditor = e.target as HTMLElement;
+      const line = textEditor.children[row];
+      const segments = getSegments(line.textContent || "");
+      const htmlSegments = convertToHtmlSegments(segments, row);
+      line.innerHTML = htmlSegments;
+
+      const newCaretPosition = getCaretPosition();
+      dispatch(setCaretPosition(newCaretPosition));
+      console.log("--------------- ArrowDown 종료 ---------------");
     } else if (key === "ArrowLeft") {
-      const caretPosition = getCaretPosition();
-      dispatch(setCaretPosition(caretPosition));
+      const newCaretPosition = getCaretPosition();
+      dispatch(setCaretPosition(newCaretPosition));
     } else if (key === "ArrowRight") {
-      const caretPosition = getCaretPosition();
-      dispatch(setCaretPosition(caretPosition));
+      const newCaretPosition = getCaretPosition();
+      dispatch(setCaretPosition(newCaretPosition));
     }
   };
 
@@ -125,6 +147,7 @@ const TextEditor = ({}: TextEditorProps) => {
 
     const caretPosition = getCaretPosition();
     const textEditor = e.currentTarget;
+    const prevTextEditor = textEditorRef.current as HTMLElement;
 
     handlePlaceholder(textEditor, setIsShowingPH);
 
@@ -148,7 +171,22 @@ const TextEditor = ({}: TextEditorProps) => {
       const segments = getSegments(line);
 
       if (row === curRow) {
-        const targetSegmentText = segments[newCol].text;
+        let targetSegmentText;
+        // 현재 세그먼트가 존재하는 경우
+        if (segments[newCol]) {
+          targetSegmentText = segments[newCol].text;
+        } else {
+          // 현재 세그먼트가 존재하지 않는 경우
+          targetSegmentText = segments[newCol - 1].text; // 이부분은 아직 확실한 코드는 아님
+          const prevSegment = prevTextEditor.children[curRow].children[
+            curCol - 1
+          ] as HTMLElement; // 변경 전 전 세그먼트
+          const prevSegmentText = prevSegment.textContent || ""; // 변경 전 전 세그먼트의 텍스트
+
+          newCaretPos = prevSegmentText.length + 1; // 변경 전 전 세그먼트의 텍스트의 길이 + 1
+          newCol -= 1;
+        }
+
         console.log("현재 세그먼트", targetSegmentText);
         if (targetSegmentText.length < newCaretPos) {
           console.log("타겟 세그먼트의 길이가 커서 위치보다 짧은 경우");
