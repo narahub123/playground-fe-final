@@ -35,8 +35,6 @@ interface IEmojiContext {
   setKeyword: React.Dispatch<React.SetStateAction<string>>;
   curEmoji: IEmoji | null;
   setCurEmoji: React.Dispatch<React.SetStateAction<IEmoji | null>>;
-  curSkinTone: ISkinTone;
-  setCurSkinTon: React.Dispatch<React.SetStateAction<ISkinTone>>;
   headersRefs: React.MutableRefObject<(HTMLDivElement | null)[]>;
   tabs: IEmoji[];
 }

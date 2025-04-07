@@ -10,8 +10,6 @@ import {
   EmojiTabs,
   IEmoji,
   IEmojiContext,
-  ISkinTone,
-  skinTones,
   useEmojiData,
 } from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/EmojiButton";
 import { useCallback, useRef, useState } from "react";
@@ -48,7 +46,6 @@ const EmojiDropdown = ({
   const [curTab, setCurTab] = useState(intialTab);
   const [keyword, setKeyword] = useState("");
   const [curEmoji, setCurEmoji] = useState<IEmoji | null>(null);
-  const [curSkinTone, setCurSkinTon] = useState<ISkinTone>(skinTones[0]);
 
   const emojis = useEmojiData();
 
@@ -63,8 +60,6 @@ const EmojiDropdown = ({
     setKeyword,
     curEmoji,
     setCurEmoji,
-    curSkinTone,
-    setCurSkinTon,
     headersRefs,
     tabs,
   };

@@ -4,7 +4,6 @@ import {
   ISkinTone,
   SkintoneDot,
   skinTones,
-  useEmojiContext,
 } from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/EmojiButton";
 import { useSelector } from "react-redux";
 import { selectSkintone } from "@shared/pages/ui/PostEditor/models/selectors";
@@ -16,12 +15,8 @@ const SkintonePicker = () => {
   const [isOpen, setIsOpen] = useState(false);
   const skintoneType = useSelector(selectSkintone);
 
-  const { setCurSkinTon } = useEmojiContext();
-
   const handleClick = (skintone?: ISkinTone) => {
     if (skintone?.name) {
-      // 스킨톤 선택
-      setCurSkinTon(skintone);
       dispatch(setSkintone(skintone?.name));
     }
 
