@@ -7,7 +7,12 @@ import {
   useEmojiContext,
 } from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/EmojiButton";
 import { useAppDispatch } from "@app/store";
-import { setEmoji } from "@shared/pages/ui/PostEditor/models/slices/postEditorSlice";
+import {
+  setEmoji,
+  setRecentEmojis,
+} from "@shared/pages/ui/PostEditor/models/slices/postEditorSlice";
+import { selectSkintone } from "@shared/pages/ui/PostEditor/models/selectors";
+import { useSelector } from "react-redux";
 
 interface EmojiProps {
   className?: string;
@@ -18,8 +23,9 @@ interface EmojiProps {
 const Emoji = ({ className, disabled = false, emoji }: EmojiProps) => {
   const dispatch = useAppDispatch();
   const classNames = joinClassNames([styles["emoji"], className]);
+  const skintoneType = useSelector(selectSkintone);
 
-  const { curSkinTone, setCurEmoji } = useEmojiContext();
+  const { setCurEmoji } = useEmojiContext();
 
   const handleMouseEnter = () => {
     setCurEmoji(emoji);
@@ -33,8 +39,10 @@ const Emoji = ({ className, disabled = false, emoji }: EmojiProps) => {
     <Button
       onClick={() => {
         // 최근 이모지 목록에 추가
+        dispatch(setRecentEmojis(emoji));
+
         // 텍스트에 이모지 추가
-        const selectedEmoji = emoji.char;
+        const selectedEmoji = getEmojiWithSkinTone(emoji, skintoneType);
         dispatch(setEmoji(selectedEmoji));
       }}
       isValid={!disabled}
@@ -45,7 +53,7 @@ const Emoji = ({ className, disabled = false, emoji }: EmojiProps) => {
       onMouseLeave={handleMouseLeave}
     >
       <span className={styles["emoji__icon"]}>
-        {getEmojiWithSkinTone(emoji, curSkinTone.name)}
+        {getEmojiWithSkinTone(emoji, skintoneType)}
       </span>
     </Button>
   );

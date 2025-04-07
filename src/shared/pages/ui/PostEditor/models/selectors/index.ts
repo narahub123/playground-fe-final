@@ -3,6 +3,8 @@ import {
   selectPostEditorMedia,
   selectPostEditorToolbar,
   selectEmoji,
+  selectSkintone,
+  selectRecentEmojis,
 } from "./postEditorSelector";
 
 export {
@@ -10,4 +12,6 @@ export {
   selectPostEditorMedia,
   selectPostEditorToolbar,
   selectEmoji,
+  selectSkintone,
+  selectRecentEmojis,
 };

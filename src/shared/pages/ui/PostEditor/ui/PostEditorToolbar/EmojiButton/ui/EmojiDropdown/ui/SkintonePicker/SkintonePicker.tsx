@@ -6,16 +6,23 @@ import {
   skinTones,
   useEmojiContext,
 } from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/EmojiButton";
+import { useSelector } from "react-redux";
+import { selectSkintone } from "@shared/pages/ui/PostEditor/models/selectors";
+import { useAppDispatch } from "@app/store";
+import { setSkintone } from "@shared/pages/ui/PostEditor/models/slices/postEditorSlice";
 
 const SkintonePicker = () => {
+  const dispatch = useAppDispatch();
   const [isOpen, setIsOpen] = useState(false);
+  const skintoneType = useSelector(selectSkintone);
 
-  const { curSkinTone, setCurSkinTon } = useEmojiContext();
+  const { setCurSkinTon } = useEmojiContext();
 
   const handleClick = (skintone?: ISkinTone) => {
     if (skintone?.name) {
       // 스킨톤 선택
       setCurSkinTon(skintone);
+      dispatch(setSkintone(skintone?.name));
     }
 
     setIsOpen(!isOpen);
@@ -30,13 +37,13 @@ const SkintonePicker = () => {
               key={skintone.name}
               skintone={skintone}
               onClick={() => handleClick(skintone)}
-              isCurSkinTone={curSkinTone.name === skintone.name}
+              isCurSkinTone={skintoneType === skintone.name}
             />
           ))}
         </div>
       ) : (
         <SkintoneDot
-          skintone={curSkinTone}
+          skintone={skinTones.find((tone) => tone.name === skintoneType)!}
           onClick={handleClick}
           isCurSkinTone={true}
         />

@@ -6,6 +6,8 @@ import {
   postEditorToolbarButtonOn,
   setPostEditorVote,
   setEmoji,
+  setSkintone,
+  setRecentEmojis,
 } from "./postEditorSlice";
 
 export {
@@ -16,4 +18,6 @@ export {
   postEditorToolbarButtonOn,
   setPostEditorVote,
   setEmoji,
+  setSkintone,
+  setRecentEmojis,
 };
