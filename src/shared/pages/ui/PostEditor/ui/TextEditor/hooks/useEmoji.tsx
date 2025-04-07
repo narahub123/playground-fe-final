@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import {
   convertToHtmlSegments,
   getSegments,
+  handlePlaceholder,
   ICaretPosition,
 } from "@shared/pages/ui/PostEditor/ui/TextEditor";
 import { useAppDispatch } from "@app/store";
@@ -13,12 +14,14 @@ interface useEmojiProps {
   textEditorRef: React.RefObject<HTMLDivElement>;
   caretPosition: ICaretPosition;
   setCaretPosition: React.Dispatch<React.SetStateAction<ICaretPosition>>;
+  setIsShowingPH: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const useEmoji = ({
   textEditorRef,
   caretPosition,
   setCaretPosition,
+  setIsShowingPH,
 }: useEmojiProps) => {
   const dispatch = useAppDispatch();
   const emoji = useSelector(selectEmoji);
@@ -76,6 +79,8 @@ const useEmoji = ({
           };
 
     setCaretPosition(newCaretPostion);
+
+    handlePlaceholder(textEditor, setIsShowingPH);
 
     // 이모지 삭제
     dispatch(setEmoji(undefined));
