@@ -7,6 +7,7 @@ import {
   useNewLine,
   usePaste,
   useSelectOption,
+  useTextLength,
 } from "./hooks";
 import {
   InlineType,
@@ -48,6 +49,7 @@ export {
   useNewLine,
   usePaste,
   useSelectOption,
+  useTextLength,
 
   // utils
   getLines,

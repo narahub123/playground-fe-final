@@ -7,6 +7,7 @@ import {
   selectRecentEmojis,
   selectCaretPosition,
   selectCursorPosition,
+  selectPostEditorTextLength,
 } from "./postEditorSelector";
 
 export {
@@ -18,4 +19,5 @@ export {
   selectRecentEmojis,
   selectCaretPosition,
   selectCursorPosition,
+  selectPostEditorTextLength,
 };

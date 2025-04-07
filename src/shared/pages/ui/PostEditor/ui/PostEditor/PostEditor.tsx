@@ -17,7 +17,10 @@ import {
   Vote,
 } from "@shared/pages/ui/PostEditor/ui";
 import { ReplyOptionType } from "@shared/pages/ui/PostEditor/types";
-import { selectPostEditor } from "../../models/selectors";
+import {
+  selectPostEditor,
+  selectPostEditorTextLength,
+} from "../../models/selectors";
 
 interface PostEditorProps {
   className?: string;
@@ -30,6 +33,7 @@ const PostEditor = ({ className }: PostEditorProps) => {
 
   const user = useSelector(selectUser);
   const postEditorContent = useSelector(selectPostEditor);
+  const textLength = useSelector(selectPostEditorTextLength);
   const { post, toolbar } = postEditorContent;
   const { media, vote } = toolbar;
 
@@ -83,7 +87,7 @@ const PostEditor = ({ className }: PostEditorProps) => {
               <PostEditorToolbar />
             </span>
             <span className={styles["btns__wrapper"]}>
-              <CircularProgressBar textLength={0} />
+              <CircularProgressBar textLength={textLength} />
               <div className={styles["vertical__divider"]} />
               <AddPostLink />
               <PostButton isValid={isValid} />

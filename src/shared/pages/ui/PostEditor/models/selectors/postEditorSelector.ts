@@ -10,6 +10,8 @@ const selectCaretPosition = (state: RootState) =>
   state.postEditor.caretPosition;
 const selectCursorPosition = (state: RootState) =>
   state.postEditor.cursorPosition;
+const selectPostEditorTextLength = (state: RootState) =>
+  state.postEditor.post.textLength;
 
 export {
   selectPostEditor,
@@ -20,4 +22,5 @@ export {
   selectRecentEmojis,
   selectCaretPosition,
   selectCursorPosition,
+  selectPostEditorTextLength,
 };

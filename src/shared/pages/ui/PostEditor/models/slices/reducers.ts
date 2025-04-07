@@ -10,6 +10,7 @@ import {
   setRecentEmojis,
   setCaretPosition,
   setCursorPosition,
+  setPostEditorTextLength,
 } from "./postEditorSlice";
 
 export {
@@ -24,4 +25,5 @@ export {
   setRecentEmojis,
   setCaretPosition,
   setCursorPosition,
+  setPostEditorTextLength,
 };

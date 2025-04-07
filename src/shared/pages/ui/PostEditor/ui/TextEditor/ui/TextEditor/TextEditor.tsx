@@ -1,5 +1,5 @@
 import styles from "./TextEditor.module.css";
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import {
   convertToHtmlLine,
   convertToHtmlSegments,
@@ -7,7 +7,6 @@ import {
   getLines,
   getSegments,
   handlePlaceholder,
-  // InlineDropdown,
   useCaretPosition,
   useInlineAutoComplete,
   IRect,
@@ -15,11 +14,12 @@ import {
   useSelectOption,
   useNewLine,
   usePaste,
+  InlineDropdown,
+  useTextLength,
 } from "@shared/pages/ui/PostEditor/ui/TextEditor";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Text } from "@shared/@common/ui/components";
 import { IAccount } from "@shared/@common/types";
-import InlineDropdown from "../InlineDropdown/ui/InlineDropdown/InlineDropdown";
 import { setCaretPosition } from "@shared/pages/ui/PostEditor/models/slices/postEditorSlice";
 import { useAppDispatch } from "@app/store";
 
@@ -43,6 +43,8 @@ const TextEditor = ({}: TextEditorProps) => {
   };
 
   const { placeholder } = useLanguageContent(["components", "TextEditor"]);
+
+  useTextLength({ textEditorRef });
 
   useCaretPosition({ textEditorRef });
 

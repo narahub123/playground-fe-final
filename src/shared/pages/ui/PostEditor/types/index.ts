@@ -16,6 +16,7 @@ interface IVote {
 }
 
 interface IPostEditorPost {
+  textLength: number;
   media: string[];
   vote: {
     options: string[];

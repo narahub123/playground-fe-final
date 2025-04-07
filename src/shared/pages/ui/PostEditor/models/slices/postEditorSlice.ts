@@ -20,6 +20,7 @@ interface PostEditorState {
 
 const initialState: PostEditorState = {
   post: {
+    textLength: 0,
     media: [],
     vote: {
       options: [],
@@ -41,9 +42,12 @@ const initialState: PostEditorState = {
 
 const postEditorSlice = createSlice({
   name: "postEditor",
-  initialState,
+  initialState, 
   reducers: {
     clearPostEditor: () => initialState,
+    setPostEditorTextLength: (state, action: PayloadAction<number>) => {
+      state.post.textLength = action.payload;
+    },
     setPostEditorMedia: (state, action: PayloadAction<string[]>) => {
       const prevMedia = [...state.post.media];
 
@@ -103,6 +107,7 @@ const postEditorSlice = createSlice({
 export default postEditorSlice.reducer;
 export const {
   clearPostEditor,
+  setPostEditorTextLength,
   setPostEditorMedia,
   removePostEditorMedia,
   postEditorToolbarButtonOff,
