@@ -173,7 +173,7 @@ const TextEditor = ({}: TextEditorProps) => {
           <Text>{placeholder}</Text>
         </div>
       )}
-      {isOpen && options.length && (
+      {isOpen && options.length > 0 && (
         <InlineDropdown
           curIndex={curIndex}
           curText={curText}
