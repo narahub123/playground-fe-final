@@ -100,6 +100,23 @@ const TextEditor = ({}: TextEditorProps) => {
     }
   };
 
+  const handleKeyUp = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    const key = e.key;
+    if (key === "ArrowUp") {
+      const caretPosition = getCaretPosition();
+      dispatch(setCaretPosition(caretPosition));
+    } else if (key === "ArrowDown") {
+      const caretPosition = getCaretPosition();
+      dispatch(setCaretPosition(caretPosition));
+    } else if (key === "ArrowLeft") {
+      const caretPosition = getCaretPosition();
+      dispatch(setCaretPosition(caretPosition));
+    } else if (key === "ArrowRight") {
+      const caretPosition = getCaretPosition();
+      dispatch(setCaretPosition(caretPosition));
+    }
+  };
+
   const handleInput = (e: React.FormEvent<HTMLDivElement>) => {
     console.log("--------------- handleInput 시작 ---------------");
 
@@ -166,6 +183,10 @@ const TextEditor = ({}: TextEditorProps) => {
     setIsComposing(false);
   };
 
+  const handleClick = () => {
+    const caretPosition = getCaretPosition();
+    dispatch(setCaretPosition(caretPosition));
+  };
   return (
     <div className={styles["text__editor__container"]}>
       {isShowingPH && (
@@ -196,6 +217,8 @@ const TextEditor = ({}: TextEditorProps) => {
         onCompositionStart={handleCompositionStart}
         onCompositionEnd={handleCompositionEnd}
         onPaste={(e) => handlePaste(e, setIsShowingPH)}
+        onClick={handleClick}
+        onKeyUp={handleKeyUp}
       >
         <div className={styles["line"]}>
           <span className={styles["segment"]} data-offset="0-0">
