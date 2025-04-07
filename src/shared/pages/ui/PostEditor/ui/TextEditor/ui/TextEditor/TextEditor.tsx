@@ -81,13 +81,14 @@ const TextEditor = ({}: TextEditorProps) => {
       } else if (key === "ArrowUp") {
         e.preventDefault();
         const prevIndex = curIndex - 1 < 0 ? options.length - 1 : curIndex - 1;
-
         setCurIndex(prevIndex);
       } else if (key === "ArrowDown") {
         e.preventDefault();
         const nextIndex = curIndex + 1 > options.length - 1 ? 0 : curIndex + 1;
-
         setCurIndex(nextIndex);
+      } else if (key === "Escape") {
+        e.preventDefault();
+        setIsOpen(false);
       }
     } else {
       if (key === "Enter") {
