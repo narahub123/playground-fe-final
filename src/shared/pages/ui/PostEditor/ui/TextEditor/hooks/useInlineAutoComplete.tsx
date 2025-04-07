@@ -1,7 +1,6 @@
 import { IAccount } from "@shared/@common/types";
 import {
   detectInlineType,
-  ICaretPosition,
   IRect,
 } from "@shared/pages/ui/PostEditor/ui/TextEditor";
 import { useEffect } from "react";
@@ -72,15 +71,19 @@ const useInlineAutoComplete = ({
         );
       }
 
-      setOptions(options);
-      const curLine = textEditor.children[row] as HTMLElement;
+      if (options.length === 0) {
+        setIsOpen(false);
+      } else {
+        setIsOpen(true);
+        setOptions(options);
+        const curLine = textEditor.children[row] as HTMLElement;
 
-      const { top, left } = curLine.getBoundingClientRect();
+        const { top, left } = curLine.getBoundingClientRect();
 
-      setCurText(curText);
-      setRect({ top: top + 50, left });
-      setIsOpen(true);
-      setIsLoading(false);
+        setCurText(curText);
+        setRect({ top: top + 50, left });
+        setIsLoading(false);
+      }
     } else {
       setCurText("");
       setRect(undefined);

@@ -2,7 +2,6 @@ import { IAccount } from "@shared/@common/types";
 import {
   convertToHtmlSegments,
   getSegments,
-  ICaretPosition,
 } from "@shared/pages/ui/PostEditor/ui/TextEditor";
 import { useSelector } from "react-redux";
 import { selectCaretPosition } from "../../../models/selectors";
@@ -20,11 +19,15 @@ const useSelectOption = () => {
     index?: number
   ) => {
     if (!textEditor) return;
+
     const selectedInline = options[index || curIndex];
 
     const { row, col } = caretPosition;
 
     const curLine = textEditor.children[row];
+
+    const curSegment = curLine.children[col] as HTMLElement;
+    if (!curSegment.className.includes("inline")) return;
 
     const curLineText = curLine.textContent || "";
 
