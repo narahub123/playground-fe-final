@@ -1,37 +1,43 @@
 import { useSelector } from "react-redux";
-import { selectEmoji } from "../../../models/selectors";
+import {
+  selectCaretPosition,
+  selectCursorPosition,
+  selectEmoji,
+} from "../../../models/selectors";
 import { useEffect } from "react";
 import {
   convertToHtmlSegments,
   getSegments,
   handlePlaceholder,
-  ICaretPosition,
 } from "@shared/pages/ui/PostEditor/ui/TextEditor";
 import { useAppDispatch } from "@app/store";
-import { setEmoji } from "../../../models/slices/postEditorSlice";
+import {
+  setCursorPosition,
+  setEmoji,
+} from "../../../models/slices/postEditorSlice";
 
 interface useEmojiProps {
   textEditorRef: React.RefObject<HTMLDivElement>;
-  caretPosition: ICaretPosition;
-  setCaretPosition: React.Dispatch<React.SetStateAction<ICaretPosition>>;
   setIsShowingPH: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const useEmoji = ({
-  textEditorRef,
-  caretPosition,
-  setCaretPosition,
-  setIsShowingPH,
-}: useEmojiProps) => {
+const useEmoji = ({ textEditorRef, setIsShowingPH }: useEmojiProps) => {
   const dispatch = useAppDispatch();
   const emoji = useSelector(selectEmoji);
+  const cursorPosition = useSelector(selectCursorPosition);
+  const caretPosition = useSelector(selectCaretPosition);
+
+  // caretPostion과 cursorPosition의 일치
+  useEffect(() => {
+    dispatch(setCursorPosition(caretPosition));
+  }, [caretPosition]);
 
   useEffect(() => {
     if (!emoji || !textEditorRef.current) return;
 
     const textEditor = textEditorRef.current;
 
-    const { caretPos, row, col } = caretPosition;
+    const { caretPos, row, col } = cursorPosition;
 
     const line = textEditor.children[row];
 
@@ -67,18 +73,19 @@ const useEmoji = ({
       // 현재 세그먼트가 inline인 경우
       newSegments[col].type === "inline"
         ? {
-            caretPos: 1,
+            caretPos: 2,
             row,
             col: col + 1,
           }
         : // 현재 세그먼트가 inline가 아닌 경우
           {
-            caretPos: caretPos + 1,
+            caretPos: caretPos + 2,
             row,
             col,
           };
 
-    setCaretPosition(newCaretPostion);
+    // cursorPosition만 업데이트
+    dispatch(setCursorPosition(newCaretPostion));
 
     handlePlaceholder(textEditor, setIsShowingPH);
 

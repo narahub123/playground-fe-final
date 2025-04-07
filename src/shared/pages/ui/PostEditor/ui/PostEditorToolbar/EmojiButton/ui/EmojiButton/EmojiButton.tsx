@@ -4,13 +4,21 @@ import { useLanguageContent } from "@shared/@common/models/hooks";
 import { RiUserSmileLine } from "react-icons/ri";
 import { ToolbarButton } from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar";
 import { EmojiDropdown } from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/EmojiButton";
+import { useSelector } from "react-redux";
+import { selectCursorPosition } from "@shared/pages/ui/PostEditor/models/selectors";
+import { setCaretPosition } from "@shared/pages/ui/PostEditor/models/slices/postEditorSlice";
+import { useAppDispatch } from "@app/store";
 
 interface EmojiButtonProps {}
 
 const EmojiButton = ({}: EmojiButtonProps) => {
+  const dispatch = useAppDispatch();
   const btnRef = useRef<HTMLButtonElement>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [rect, setRect] = useState({ top: 0, left: 0 });
+
+  const cursorPosition = useSelector(selectCursorPosition);
+  console.log("커서 위치", cursorPosition);
 
   // 언어 설정
   const { title } = useLanguageContent(["components", "EmojiButton"]);
@@ -26,6 +34,8 @@ const EmojiButton = ({}: EmojiButtonProps) => {
 
   const onClose = () => {
     setIsOpen(false);
+    // 드롭다운이 닫힐 때 caretPosition을 cursorPosition으로 업데이트
+    dispatch(setCaretPosition(cursorPosition));
   };
 
   console.log(rect);
@@ -41,7 +51,6 @@ const EmojiButton = ({}: EmojiButtonProps) => {
       <EmojiDropdown
         isOpen={isOpen}
         onClose={onClose}
-        lastClickedRef={btnRef}
         top={rect.top + 40}
         left={rect.left}
       />

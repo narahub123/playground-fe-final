@@ -3,12 +3,9 @@ import getSegments from "./getSegments";
 import getInlineTexts from "./getInlineTexts";
 import getCaretPosition from "./getCaretPosition";
 import createInnerHtml from "./createInnerHtml";
-import handlePaste from "./handlePaste";
 import { convertToHtmlSegments, convertToHtmlLine } from "./convertToHtml";
 import handlePlaceholder from "./handlePlaceholder";
-import handleNewLine from "./handleNewLine";
 import detectInlineType from "./detectInlineType";
-import handleSelectOption from "./handleSelectOption";
 
 export {
   getLines,
@@ -16,11 +13,8 @@ export {
   getInlineTexts,
   getCaretPosition,
   createInnerHtml,
-  handlePaste,
   convertToHtmlSegments,
   convertToHtmlLine,
   handlePlaceholder,
-  handleNewLine,
   detectInlineType,
-  handleSelectOption,
 };

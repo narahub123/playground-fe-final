@@ -5,10 +5,11 @@ import {
   IRect,
 } from "@shared/pages/ui/PostEditor/ui/TextEditor";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { selectCaretPosition } from "../../../models/selectors";
 
 interface useInlineAutoCompleteProps {
   textEditorRef: React.RefObject<HTMLDivElement>;
-  caretPosition: ICaretPosition;
   setRect: React.Dispatch<React.SetStateAction<IRect | undefined>>;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setOptions: React.Dispatch<React.SetStateAction<(string | IAccount)[]>>;
@@ -26,13 +27,13 @@ const mentionList: IAccount[] = [
 
 const useInlineAutoComplete = ({
   textEditorRef,
-  caretPosition,
   setRect,
   setIsOpen,
   setOptions,
   setCurText,
   setIsLoading,
 }: useInlineAutoCompleteProps) => {
+  const caretPosition = useSelector(selectCaretPosition);
   useEffect(() => {
     if (!textEditorRef.current) return;
     setIsLoading(true);

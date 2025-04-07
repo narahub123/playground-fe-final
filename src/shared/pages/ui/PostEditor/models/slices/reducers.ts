@@ -8,6 +8,8 @@ import {
   setEmoji,
   setSkintone,
   setRecentEmojis,
+  setCaretPosition,
+  setCursorPosition,
 } from "./postEditorSlice";
 
 export {
@@ -20,4 +22,6 @@ export {
   setEmoji,
   setSkintone,
   setRecentEmojis,
+  setCaretPosition,
+  setCursorPosition,
 };

@@ -1,6 +1,13 @@
 import { HASHTAG_REGEX, MENTION_REGEX, URL_REGEX } from "./constants";
 import { TextEditor, InlineDropdown } from "./ui";
-import { useCaretPosition, useInlineAutoComplete, useEmoji } from "./hooks";
+import {
+  useCaretPosition,
+  useInlineAutoComplete,
+  useEmoji,
+  useNewLine,
+  usePaste,
+  useSelectOption,
+} from "./hooks";
 import {
   InlineType,
   ISegment,
@@ -15,13 +22,10 @@ import {
   getInlineTexts,
   getCaretPosition,
   createInnerHtml,
-  handlePaste,
   convertToHtmlSegments,
   convertToHtmlLine,
   handlePlaceholder,
-  handleNewLine,
   detectInlineType,
-  handleSelectOption,
 } from "./utils";
 
 export {
@@ -41,6 +45,9 @@ export {
   useCaretPosition,
   useInlineAutoComplete,
   useEmoji,
+  useNewLine,
+  usePaste,
+  useSelectOption,
 
   // utils
   getLines,
@@ -48,13 +55,10 @@ export {
   getInlineTexts,
   getCaretPosition,
   createInnerHtml,
-  handlePaste,
   convertToHtmlSegments,
   convertToHtmlLine,
   handlePlaceholder,
-  handleNewLine,
   detectInlineType,
-  handleSelectOption,
 };
 
 export type { InlineType, ISegment, SegmentType, ICaretPosition, IRect };

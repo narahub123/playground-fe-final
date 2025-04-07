@@ -6,6 +6,10 @@ const selectPostEditorToolbar = (state: RootState) => state.postEditor.toolbar;
 const selectEmoji = (state: RootState) => state.postEditor.emoji;
 const selectSkintone = (state: RootState) => state.postEditor.skintoneType;
 const selectRecentEmojis = (state: RootState) => state.postEditor.recentEmojis;
+const selectCaretPosition = (state: RootState) =>
+  state.postEditor.caretPosition;
+const selectCursorPosition = (state: RootState) =>
+  state.postEditor.cursorPosition;
 
 export {
   selectPostEditor,
@@ -14,4 +18,6 @@ export {
   selectEmoji,
   selectSkintone,
   selectRecentEmojis,
+  selectCaretPosition,
+  selectCursorPosition,
 };

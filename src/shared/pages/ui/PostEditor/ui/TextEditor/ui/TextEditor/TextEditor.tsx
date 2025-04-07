@@ -6,32 +6,29 @@ import {
   getCaretPosition,
   getLines,
   getSegments,
-  handleNewLine,
-  handlePaste,
   handlePlaceholder,
-  ICaretPosition,
   // InlineDropdown,
   useCaretPosition,
   useInlineAutoComplete,
   IRect,
-  handleSelectOption,
   useEmoji,
+  useSelectOption,
+  useNewLine,
+  usePaste,
 } from "@shared/pages/ui/PostEditor/ui/TextEditor";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Text } from "@shared/@common/ui/components";
 import { IAccount } from "@shared/@common/types";
 import InlineDropdown from "../InlineDropdown/ui/InlineDropdown/InlineDropdown";
+import { setCaretPosition } from "@shared/pages/ui/PostEditor/models/slices/postEditorSlice";
+import { useAppDispatch } from "@app/store";
 
 interface TextEditorProps {}
 
 const TextEditor = ({}: TextEditorProps) => {
+  const dispatch = useAppDispatch();
   const textEditorRef = useRef<HTMLDivElement>(null);
   const [isComposing, setIsComposing] = useState(false);
-  const [caretPosition, setCaretPosition] = useState<ICaretPosition>({
-    caretPos: 0,
-    row: 0,
-    col: 0,
-  });
   const [isShowingPH, setIsShowingPH] = useState(true);
   // dropdown 관련 상태
   const [isOpen, setIsOpen] = useState(false);
@@ -47,11 +44,10 @@ const TextEditor = ({}: TextEditorProps) => {
 
   const { placeholder } = useLanguageContent(["components", "TextEditor"]);
 
-  useCaretPosition({ textEditorRef, caretPosition });
+  useCaretPosition({ textEditorRef });
 
   useInlineAutoComplete({
     textEditorRef,
-    caretPosition,
     setRect,
     setIsOpen,
     setOptions,
@@ -59,15 +55,16 @@ const TextEditor = ({}: TextEditorProps) => {
     setIsLoading,
   });
 
-  useEmoji({ textEditorRef, caretPosition, setCaretPosition, setIsShowingPH });
+  useEmoji({ textEditorRef, setIsShowingPH });
+  const handleSelectOption = useSelectOption();
+  const handleNewLine = useNewLine();
+  const handlePaste = usePaste();
 
   const handleOption = (index?: number) =>
     handleSelectOption(
       textEditorRef.current,
-      caretPosition,
       options,
       curIndex,
-      setCaretPosition,
       setIsOpen,
       index
     );
@@ -97,7 +94,7 @@ const TextEditor = ({}: TextEditorProps) => {
         e.preventDefault();
         const textEditor = e.currentTarget;
 
-        handleNewLine(textEditor, setCaretPosition);
+        handleNewLine(textEditor);
         handlePlaceholder(textEditor, setIsShowingPH);
       }
     }
@@ -157,7 +154,7 @@ const TextEditor = ({}: TextEditorProps) => {
 
     textEditor.innerHTML = `${htmlLines.join("")}`;
 
-    setCaretPosition(newCaretPosition);
+    dispatch(setCaretPosition(newCaretPosition));
     console.log("--------------- handleInput 종료 ---------------");
   };
 
@@ -198,7 +195,7 @@ const TextEditor = ({}: TextEditorProps) => {
         onInput={handleInput}
         onCompositionStart={handleCompositionStart}
         onCompositionEnd={handleCompositionEnd}
-        onPaste={(e) => handlePaste(e, setCaretPosition, setIsShowingPH)}
+        onPaste={(e) => handlePaste(e, setIsShowingPH)}
       >
         <div className={styles["line"]}>
           <span className={styles["segment"]} data-offset="0-0">

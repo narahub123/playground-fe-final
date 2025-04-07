@@ -5,6 +5,8 @@ import {
   selectEmoji,
   selectSkintone,
   selectRecentEmojis,
+  selectCaretPosition,
+  selectCursorPosition,
 } from "./postEditorSelector";
 
 export {
@@ -14,4 +16,6 @@ export {
   selectEmoji,
   selectSkintone,
   selectRecentEmojis,
+  selectCaretPosition,
+  selectCursorPosition,
 };

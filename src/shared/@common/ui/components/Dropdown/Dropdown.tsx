@@ -6,7 +6,7 @@ interface DropdownProps {
   name: string;
   isOpen: boolean;
   onClose: () => void;
-  lastClickedRef: React.RefObject<HTMLElement>;
+  lastClickedRef?: React.RefObject<HTMLElement>;
   children: ReactNode;
   top?: number;
   bottom?: number;

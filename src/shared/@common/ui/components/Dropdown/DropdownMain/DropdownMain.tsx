@@ -6,7 +6,7 @@ import { useClickOutside, useFocusTrap } from "@shared/@common/models/hooks";
 interface DropdownMainProps {
   children: ReactNode;
   onClose: () => void;
-  lastClickedRef: React.RefObject<HTMLElement>;
+  lastClickedRef?: React.RefObject<HTMLElement>;
   top?: number;
   bottom?: number;
   left?: number;
@@ -42,9 +42,10 @@ const DropdownMain = ({
       onKeyDown={(e) => {
         if (e.key === "Escape") {
           onClose();
-          setTimeout(() => {
-            lastClickedRef.current?.focus();
-          }, 100);
+          if (lastClickedRef)
+            setTimeout(() => {
+              lastClickedRef.current?.focus();
+            }, 100);
         }
       }}
     >

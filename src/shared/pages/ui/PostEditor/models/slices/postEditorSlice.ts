@@ -6,6 +6,7 @@ import {
   PostEditorToolbarButtonType,
 } from "../../types";
 import { IEmoji, SkintoneType } from "../../ui/PostEditorToolbar/EmojiButton";
+import { ICaretPosition } from "../../ui/TextEditor";
 
 interface PostEditorState {
   post: IPostEditorPost;
@@ -13,6 +14,8 @@ interface PostEditorState {
   emoji?: string;
   skintoneType: SkintoneType;
   recentEmojis: IEmoji[];
+  caretPosition: ICaretPosition;
+  cursorPosition: ICaretPosition;
 }
 
 const initialState: PostEditorState = {
@@ -32,6 +35,8 @@ const initialState: PostEditorState = {
   },
   skintoneType: "default",
   recentEmojis: [],
+  caretPosition: { caretPos: 0, row: 0, col: 0 },
+  cursorPosition: { caretPos: 0, row: 0, col: 0 },
 };
 
 const postEditorSlice = createSlice({
@@ -86,6 +91,12 @@ const postEditorSlice = createSlice({
 
       state.recentEmojis = newRecentEmojis;
     },
+    setCaretPosition: (state, action: PayloadAction<ICaretPosition>) => {
+      state.caretPosition = action.payload;
+    },
+    setCursorPosition: (state, action: PayloadAction<ICaretPosition>) => {
+      state.cursorPosition = action.payload;
+    },
   },
 });
 
@@ -100,4 +111,6 @@ export const {
   setEmoji,
   setSkintone,
   setRecentEmojis,
+  setCaretPosition,
+  setCursorPosition,
 } = postEditorSlice.actions;

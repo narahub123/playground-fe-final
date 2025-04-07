@@ -20,7 +20,6 @@ interface EmojiDropdownProps {
   disabled?: boolean;
   isOpen: boolean;
   onClose: () => void;
-  lastClickedRef: React.RefObject<HTMLElement>;
   top?: number;
   bottom?: number;
   left?: number;
@@ -31,7 +30,6 @@ const EmojiDropdown = ({
   disabled = false,
   isOpen,
   onClose,
-  lastClickedRef,
   top,
   bottom,
   left,
@@ -75,7 +73,6 @@ const EmojiDropdown = ({
     <EmojiContextProvider value={value}>
       <Dropdown
         isOpen={isOpen}
-        lastClickedRef={lastClickedRef}
         name="emoji"
         onClose={onClose}
         top={top}
