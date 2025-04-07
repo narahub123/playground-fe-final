@@ -59,7 +59,7 @@ const TextEditor = ({}: TextEditorProps) => {
     setIsLoading,
   });
 
-  useEmoji({ textEditorRef, caretPosition });
+  useEmoji({ textEditorRef, caretPosition, setCaretPosition });
 
   const handleOption = (index?: number) =>
     handleSelectOption(
