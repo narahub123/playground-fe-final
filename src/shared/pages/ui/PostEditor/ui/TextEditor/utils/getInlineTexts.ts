@@ -8,13 +8,18 @@ const getInlineTexts = (line: string): string[] => {
   }[] = [];
 
   for (const regExp of inlineRegExpArr) {
+    let curIndex = 0;
     // 인라인 텍스트를 추출해서 inlines 배열에 추가하기
     // 추출할 때 해당 단어의 위치도 같이 저장
     line.match(regExp)?.forEach((inline) => {
+      const index = line.indexOf(inline, curIndex);
+
       inlines.push({
         text: inline,
-        index: line.indexOf(inline),
+        index,
       });
+
+      curIndex = index + inline.length;
     });
   }
 
