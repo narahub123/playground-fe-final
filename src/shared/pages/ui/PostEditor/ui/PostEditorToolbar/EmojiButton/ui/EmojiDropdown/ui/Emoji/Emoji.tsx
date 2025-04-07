@@ -6,6 +6,8 @@ import {
   IEmoji,
   useEmojiContext,
 } from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/EmojiButton";
+import { useAppDispatch } from "@app/store";
+import { setEmoji } from "@shared/pages/ui/PostEditor/models/slices/postEditorSlice";
 
 interface EmojiProps {
   className?: string;
@@ -14,6 +16,7 @@ interface EmojiProps {
 }
 
 const Emoji = ({ className, disabled = false, emoji }: EmojiProps) => {
+  const dispatch = useAppDispatch();
   const classNames = joinClassNames([styles["emoji"], className]);
 
   const { curSkinTone, setCurEmoji } = useEmojiContext();
@@ -31,6 +34,8 @@ const Emoji = ({ className, disabled = false, emoji }: EmojiProps) => {
       onClick={() => {
         // 최근 이모지 목록에 추가
         // 텍스트에 이모지 추가
+        const selectedEmoji = emoji.char;
+        dispatch(setEmoji(selectedEmoji));
       }}
       isValid={!disabled}
       className={classNames}

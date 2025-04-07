@@ -1,6 +1,6 @@
 import { HASHTAG_REGEX, MENTION_REGEX, URL_REGEX } from "./constants";
 import { TextEditor, InlineDropdown } from "./ui";
-import { useCaretPosition, useInlineAutoComplete } from "./hooks";
+import { useCaretPosition, useInlineAutoComplete, useEmoji } from "./hooks";
 import {
   InlineType,
   ISegment,
@@ -40,6 +40,7 @@ export {
   // hooks
   useCaretPosition,
   useInlineAutoComplete,
+  useEmoji,
 
   // utils
   getLines,

@@ -44,6 +44,14 @@ const useInlineAutoComplete = ({
     // 커서가 놓은 현재 세그먼트
     const curSegment = textEditor.children[row].children[col] as HTMLElement;
 
+    if (!curSegment) {
+      setCurText("");
+      setRect(undefined);
+      setIsOpen(false);
+      setIsLoading(false);
+      return;
+    }
+
     const curText = curSegment.textContent || "";
 
     const inlineType = detectInlineType(curText);

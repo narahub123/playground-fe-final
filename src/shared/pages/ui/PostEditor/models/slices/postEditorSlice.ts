@@ -9,6 +9,7 @@ import {
 interface PostEditorState {
   post: IPostEditorPost;
   toolbar: IPostEditorToolbar;
+  emoji?: string;
 }
 
 const initialState: PostEditorState = {
@@ -64,6 +65,9 @@ const postEditorSlice = createSlice({
         state.toolbar = { ...state.toolbar, [action.payload]: false };
       }
     },
+    setEmoji: (state, action: PayloadAction<string | undefined>) => {
+      state.emoji = action.payload;
+    },
   },
 });
 
@@ -75,4 +79,5 @@ export const {
   postEditorToolbarButtonOff,
   postEditorToolbarButtonOn,
   setPostEditorVote,
+  setEmoji,
 } = postEditorSlice.actions;

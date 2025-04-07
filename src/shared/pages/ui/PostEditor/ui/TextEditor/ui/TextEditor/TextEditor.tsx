@@ -15,6 +15,7 @@ import {
   useInlineAutoComplete,
   IRect,
   handleSelectOption,
+  useEmoji,
 } from "@shared/pages/ui/PostEditor/ui/TextEditor";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Text } from "@shared/@common/ui/components";
@@ -57,6 +58,8 @@ const TextEditor = ({}: TextEditorProps) => {
     setCurText,
     setIsLoading,
   });
+
+  useEmoji({ textEditorRef, caretPosition });
 
   const handleOption = (index?: number) =>
     handleSelectOption(
