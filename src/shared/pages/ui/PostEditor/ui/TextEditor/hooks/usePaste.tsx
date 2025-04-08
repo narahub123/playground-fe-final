@@ -5,9 +5,11 @@ import {
   getCaretPosition,
   getLines,
   getSegments,
-  ICaretPosition,
 } from "@shared/pages/ui/PostEditor/ui/TextEditor";
-import { setCaretPosition } from "../../../models/slices/postEditorSlice";
+import {
+  setCaretPosition,
+  setInnerHtml,
+} from "../../../models/slices/postEditorSlice";
 
 const usePaste = () => {
   const dispatch = useAppDispatch();
@@ -144,8 +146,6 @@ const usePaste = () => {
     // 나머지 라인 추가
     newLines.splice(curRow + 1, 0, ...splitRestLines);
 
-    console.log("새로운 줄", newLines);
-
     const htmlLines: string[] = [];
     for (let row = 0; row < newLines.length; row++) {
       const line = newLines[row];
@@ -155,26 +155,20 @@ const usePaste = () => {
       // 세그먼트들을 html로 변경하기
       const htmlSegments = convertToHtmlSegments(segments, row);
 
-      console.log("세그먼트 html", htmlSegments);
-
       const htmlLine = convertToHtmlLine(htmlSegments, row);
 
       htmlLines.push(htmlLine);
     }
 
-    console.log(htmlLines);
+    dispatch(setInnerHtml(htmlLines.join("")));
 
-    textEditor.innerHTML = `${htmlLines.join("")}`;
     const newCaretPosition = {
       caretPos: newCaretPos,
       row: newRow,
       col: newCol,
     };
-    console.log("새로운 커서 위치", newCaretPosition);
 
-    dispatch(
-      setCaretPosition({ caretPos: newCaretPos, row: newRow, col: newCol })
-    );
+    dispatch(setCaretPosition(newCaretPosition));
 
     // textEditor에 텍스트가 있는 경우 placeholder 없앰
     if (textEditor.textContent) {

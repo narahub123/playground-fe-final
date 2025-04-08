@@ -6,6 +6,8 @@ import createInnerHtml from "./createInnerHtml";
 import { convertToHtmlSegments, convertToHtmlLine } from "./convertToHtml";
 import handlePlaceholder from "./handlePlaceholder";
 import detectInlineType from "./detectInlineType";
+import convertToInnerHtml from "./convertToInnerHtml";
+import updateLine from "./updateLine";
 
 export {
   getLines,
@@ -17,4 +19,6 @@ export {
   convertToHtmlLine,
   handlePlaceholder,
   detectInlineType,
+  convertToInnerHtml,
+  updateLine,
 };

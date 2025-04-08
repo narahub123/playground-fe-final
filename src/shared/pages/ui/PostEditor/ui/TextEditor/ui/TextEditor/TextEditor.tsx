@@ -1,5 +1,5 @@
 import styles from "./TextEditor.module.css";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   convertToHtmlLine,
   convertToHtmlSegments,
@@ -16,6 +16,8 @@ import {
   usePaste,
   InlineDropdown,
   useTextLength,
+  convertToInnerHtml,
+  updateLine,
 } from "@shared/pages/ui/PostEditor/ui/TextEditor";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Text } from "@shared/@common/ui/components";
@@ -23,13 +25,11 @@ import { IAccount } from "@shared/@common/types";
 import {
   setCaretPosition,
   setCursorPosition,
+  setInnerHtml,
 } from "@shared/pages/ui/PostEditor/models/slices/postEditorSlice";
 import { useAppDispatch } from "@app/store";
 import { useSelector } from "react-redux";
-import {
-  selectCaretPosition,
-  selectCursorPosition,
-} from "@shared/pages/ui/PostEditor/models/selectors";
+import { selectPostEditor } from "@shared/pages/ui/PostEditor/models/selectors";
 
 interface TextEditorProps {}
 
@@ -50,9 +50,18 @@ const TextEditor = ({}: TextEditorProps) => {
     setIsOpen(false);
   };
 
-  const cursorPosition = useSelector(selectCursorPosition);
+  const { post, caretPosition, cursorPosition } = useSelector(selectPostEditor);
 
   const { placeholder } = useLanguageContent(["components", "TextEditor"]);
+
+  // textEditor의 innerHtml update
+  useEffect(() => {
+    if (!post.innerHtml || !textEditorRef.current) return;
+
+    const textEditor = textEditorRef.current;
+
+    textEditor.innerHTML = post.innerHtml;
+  }, [post.innerHtml]);
 
   useTextLength({ textEditorRef });
 
@@ -80,8 +89,6 @@ const TextEditor = ({}: TextEditorProps) => {
       setIsOpen,
       index
     );
-
-  const caretPosition = useSelector(selectCaretPosition);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
     console.log("--------------- handleKeyDown 시작 ---------------");
@@ -111,8 +118,7 @@ const TextEditor = ({}: TextEditorProps) => {
         e.preventDefault();
         const textEditor = e.currentTarget;
 
-        handleNewLine(textEditor);
-        handlePlaceholder(textEditor, setIsShowingPH);
+        handleNewLine(textEditor, setIsShowingPH);
       }
     }
     console.log("--------------- handleKeyDown 종료 ---------------");
@@ -120,15 +126,15 @@ const TextEditor = ({}: TextEditorProps) => {
 
   const handleKeyUp = (e: React.KeyboardEvent<HTMLDivElement>) => {
     const key = e.key;
-    if (!e.shiftKey)
+    if (!e.shiftKey && !isOpen)
       if (key === "ArrowUp") {
         console.log("--------------- ArrowUp 시작 ---------------");
         const { row } = caretPosition;
-        const textEditor = e.target as HTMLElement;
-        const line = textEditor.children[row];
-        const segments = getSegments(line.textContent || "");
-        const htmlSegments = convertToHtmlSegments(segments, row);
-        line.innerHTML = htmlSegments;
+        const textEditor = e.target as HTMLDivElement;
+        updateLine(textEditor, row);
+
+        const innerHtml = convertToInnerHtml(textEditor);
+        dispatch(setInnerHtml(innerHtml));
 
         const newCaretPosition = getCaretPosition();
         dispatch(setCaretPosition(newCaretPosition));
@@ -136,21 +142,41 @@ const TextEditor = ({}: TextEditorProps) => {
       } else if (key === "ArrowDown") {
         console.log("--------------- ArrowDown 시작 ---------------");
         const { row } = caretPosition;
-        const textEditor = e.target as HTMLElement;
-        const line = textEditor.children[row];
-        const segments = getSegments(line.textContent || "");
-        const htmlSegments = convertToHtmlSegments(segments, row);
-        line.innerHTML = htmlSegments;
+        const textEditor = e.target as HTMLDivElement;
+        updateLine(textEditor, row);
+
+        const innerHtml = convertToInnerHtml(textEditor);
+        dispatch(setInnerHtml(innerHtml));
 
         const newCaretPosition = getCaretPosition();
         dispatch(setCaretPosition(newCaretPosition));
         console.log("--------------- ArrowDown 종료 ---------------");
       } else if (key === "ArrowLeft") {
+        console.log("--------------- ArrowRight 시작 ---------------");
         const newCaretPosition = getCaretPosition();
+
         dispatch(setCaretPosition(newCaretPosition));
+
+        const { row } = caretPosition;
+        const textEditor = e.target as HTMLDivElement;
+        updateLine(textEditor, row);
+
+        const innerHTML = convertToInnerHtml(textEditor);
+        dispatch(setInnerHtml(innerHTML));
+        console.log("--------------- ArrowLeft 종료 ---------------");
       } else if (key === "ArrowRight") {
+        console.log("--------------- ArrowRight 시작 ---------------");
         const newCaretPosition = getCaretPosition();
         dispatch(setCaretPosition(newCaretPosition));
+
+        const { row } = caretPosition;
+        const textEditor = e.target as HTMLDivElement;
+        updateLine(textEditor, row);
+
+        const innerHTML = convertToInnerHtml(textEditor);
+        dispatch(setInnerHtml(innerHTML));
+
+        console.log("--------------- ArrowRight 종료 ---------------");
       }
   };
 
@@ -234,7 +260,7 @@ const TextEditor = ({}: TextEditorProps) => {
       col: newCol,
     };
 
-    textEditor.innerHTML = `${htmlLines.join("")}`;
+    dispatch(setInnerHtml(htmlLines.join("")));
 
     dispatch(setCaretPosition(newCaretPosition));
     console.log("--------------- handleInput 종료 ---------------");
@@ -270,6 +296,9 @@ const TextEditor = ({}: TextEditorProps) => {
 
     line.innerHTML = htmlSegments;
 
+    const innerHTML = convertToInnerHtml(textEditor);
+    dispatch(setInnerHtml(innerHTML));
+
     let newCaretPos = caretPos;
     let newCol = col;
     let length = caretPos;
@@ -302,7 +331,7 @@ const TextEditor = ({}: TextEditorProps) => {
 
   return (
     <div className={styles["text__editor__container"]}>
-      {isShowingPH && (
+      {isShowingPH && post.textLength === 0 && (
         <div className={styles["placeholder"]}>
           <Text>{placeholder}</Text>
         </div>

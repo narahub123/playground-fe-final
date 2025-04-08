@@ -20,6 +20,7 @@ interface PostEditorState {
 
 const initialState: PostEditorState = {
   post: {
+    innerHtml: "",
     textLength: 0,
     media: [],
     vote: {
@@ -104,6 +105,9 @@ const postEditorSlice = createSlice({
     setPostEditorSchedule: (state, action: PayloadAction<Date>) => {
       state.post.schedule = action.payload;
     },
+    setInnerHtml: (state, action: PayloadAction<string>) => {
+      state.post.innerHtml = action.payload;
+    },
   },
 });
 
@@ -122,4 +126,5 @@ export const {
   setCaretPosition,
   setCursorPosition,
   setPostEditorSchedule,
+  setInnerHtml,
 } = postEditorSlice.actions;

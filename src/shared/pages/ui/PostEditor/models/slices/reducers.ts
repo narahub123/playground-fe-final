@@ -12,6 +12,7 @@ import {
   setCursorPosition,
   setPostEditorTextLength,
   setPostEditorSchedule,
+  setInnerHtml,
 } from "./postEditorSlice";
 
 export {
@@ -28,4 +29,5 @@ export {
   setCursorPosition,
   setPostEditorTextLength,
   setPostEditorSchedule,
+  setInnerHtml,
 };

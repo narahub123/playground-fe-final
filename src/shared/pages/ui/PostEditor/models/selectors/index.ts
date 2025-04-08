@@ -9,6 +9,7 @@ import {
   selectCursorPosition,
   selectPostEditorTextLength,
   selectPostEditorSchedule,
+  selectInnerHtml,
 } from "./postEditorSelector";
 
 export {
@@ -22,4 +23,5 @@ export {
   selectCursorPosition,
   selectPostEditorTextLength,
   selectPostEditorSchedule,
+  selectInnerHtml,
 };

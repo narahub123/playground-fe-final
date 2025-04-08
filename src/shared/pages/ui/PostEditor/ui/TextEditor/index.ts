@@ -27,6 +27,8 @@ import {
   convertToHtmlLine,
   handlePlaceholder,
   detectInlineType,
+  convertToInnerHtml,
+  updateLine,
 } from "./utils";
 
 export {
@@ -61,6 +63,8 @@ export {
   convertToHtmlLine,
   handlePlaceholder,
   detectInlineType,
+  convertToInnerHtml,
+  updateLine,
 };
 
 export type { InlineType, ISegment, SegmentType, ICaretPosition, IRect };

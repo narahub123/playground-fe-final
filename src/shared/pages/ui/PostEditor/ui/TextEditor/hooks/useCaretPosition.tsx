@@ -1,6 +1,9 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { selectCaretPosition } from "../../../models/selectors";
+import {
+  selectCaretPosition,
+  selectInnerHtml,
+} from "../../../models/selectors";
 
 interface useCaretPositionProps {
   textEditorRef: React.RefObject<HTMLDivElement>;
@@ -8,6 +11,7 @@ interface useCaretPositionProps {
 
 const useCaretPosition = ({ textEditorRef }: useCaretPositionProps) => {
   const caretPosition = useSelector(selectCaretPosition);
+  const innertHtml = useSelector(selectInnerHtml);
   useEffect(() => {
     if (!textEditorRef.current) return;
     const selection = window.getSelection();
@@ -17,7 +21,10 @@ const useCaretPosition = ({ textEditorRef }: useCaretPositionProps) => {
     );
 
     const textEditor = textEditorRef.current;
-    console.log(textEditor);
+
+    if (innertHtml) {
+      textEditor.innerHTML = innertHtml;
+    }
 
     const { caretPos, row, col } = caretPosition;
     console.log(caretPos, row, col);

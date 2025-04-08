@@ -1,12 +1,16 @@
 import { IAccount } from "@shared/@common/types";
 import {
   convertToHtmlSegments,
+  convertToInnerHtml,
   getSegments,
 } from "@shared/pages/ui/PostEditor/ui/TextEditor";
 import { useSelector } from "react-redux";
 import { selectCaretPosition } from "../../../models/selectors";
 import { useAppDispatch } from "@app/store";
-import { setCaretPosition } from "../../../models/slices/postEditorSlice";
+import {
+  setCaretPosition,
+  setInnerHtml,
+} from "../../../models/slices/postEditorSlice";
 
 const useSelectOption = () => {
   const dispatch = useAppDispatch();
@@ -51,6 +55,10 @@ const useSelectOption = () => {
     console.log(htmlSegments);
 
     curLine.innerHTML = htmlSegments;
+
+    const innerHtml = convertToInnerHtml(textEditor);
+
+    dispatch(setInnerHtml(innerHtml));
 
     dispatch(setCaretPosition({ caretPos: 1, row, col: col + 1 }));
 

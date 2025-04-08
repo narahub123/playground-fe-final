@@ -7,11 +7,17 @@ import {
   getSegments,
   ICaretPosition,
 } from "@shared/pages/ui/PostEditor/ui/TextEditor";
-import { setCaretPosition } from "../../../models/slices/postEditorSlice";
+import {
+  setCaretPosition,
+  setInnerHtml,
+} from "../../../models/slices/postEditorSlice";
 
 const useNewLine = () => {
   const dispatch = useAppDispatch();
-  const handleNewLine = (textEditor: HTMLDivElement) => {
+  const handleNewLine = (
+    textEditor: HTMLDivElement,
+    setIsShowingPH: React.Dispatch<React.SetStateAction<boolean>>
+  ) => {
     console.log("----------------- handleNewLine 시작 -----------------------");
     const lines = getLines(textEditor);
 
@@ -69,7 +75,9 @@ const useNewLine = () => {
       htmlLines.push(htmlLine);
     }
 
-    textEditor.innerHTML = `${htmlLines.join("")}`;
+    dispatch(setInnerHtml(htmlLines.join("")));
+
+    setIsShowingPH(false);
 
     const newCaretPosition: ICaretPosition = {
       caretPos: 0,
