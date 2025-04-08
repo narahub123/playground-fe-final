@@ -147,10 +147,24 @@ const TextEditor = ({}: TextEditorProps) => {
     console.log("--------------- handleInput 시작 ---------------");
 
     const caretPosition = getCaretPosition();
+    const { caretPos, row: curRow, col: curCol } = caretPosition;
     const textEditor = e.currentTarget;
     const prevTextEditor = textEditorRef.current as HTMLElement;
 
     handlePlaceholder(textEditor, setIsShowingPH);
+
+    // textEdior의 구조 유지
+    if (textEditor.children.length === 0) {
+      console.log("텍스트 에디터에 children이 없는 경우");
+      const htmlLine = `<div class="${styles}['line']" data-offset='0'><span class=${styles["segment"]} data-offset='0-0'><br data-text="true" /></span></div>`;
+
+      textEditor.innerHTML = htmlLine;
+    } else if (textEditor.children[curRow].children[0].nodeName === "BR") {
+      console.log("현재 라인에 세그먼트가 없는 경우");
+      textEditor.children[
+        curRow
+      ].innerHTML = `<span class=${styles["segment"]} data-offset='${curRow}-0'><br data-text="true" /></span>`;
+    }
 
     if (isComposing) {
       console.log("--------------- handleInput 종료 ---------------");
@@ -158,8 +172,6 @@ const TextEditor = ({}: TextEditorProps) => {
     }
 
     const lines = getLines(textEditor);
-
-    const { caretPos, row: curRow, col: curCol } = caretPosition;
 
     // 새로운 커서 위치
     let newCaretPos = caretPos;
