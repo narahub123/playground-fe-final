@@ -231,6 +231,48 @@ const TextEditor = ({}: TextEditorProps) => {
       dispatch(setCaretPosition(caretPosition));
     }
   };
+
+  const handleBlur = (e: React.FocusEvent<HTMLDivElement, Element>) => {
+    console.log("--------------- handleBlur 시작 ---------------");
+    const textEditor = e.target;
+
+    const { caretPos, row, col } = getCaretPosition();
+
+    const line = textEditor.children[row];
+    const lineText = line.textContent || "";
+
+    const segments = getSegments(lineText);
+
+    const htmlSegments = convertToHtmlSegments(segments, row);
+
+    line.innerHTML = htmlSegments;
+
+    let newCaretPos = caretPos;
+    let newCol = col;
+    let length = caretPos;
+
+    while (length > 0) {
+      const curSegment = segments[newCol].text;
+
+      if (curSegment.length < newCaretPos) {
+        newCol += 1;
+        newCaretPos -= curSegment.length;
+      }
+
+      length -= curSegment.length;
+    }
+
+    const newCaretPosition = {
+      caretPos: newCaretPos,
+      row,
+      col: newCol,
+    };
+
+    dispatch(setCaretPosition(newCaretPosition));
+
+    console.log("--------------- handleBlur 종료 ---------------");
+  };
+
   return (
     <div className={styles["text__editor__container"]}>
       {isShowingPH && (
@@ -256,6 +298,7 @@ const TextEditor = ({}: TextEditorProps) => {
         suppressContentEditableWarning={true}
         data-ph={"안녕"}
         ref={textEditorRef}
+        tabIndex={-1}
         onKeyDown={handleKeyDown}
         onInput={handleInput}
         onCompositionStart={handleCompositionStart}
@@ -263,6 +306,7 @@ const TextEditor = ({}: TextEditorProps) => {
         onPaste={(e) => handlePaste(e, setIsShowingPH)}
         onClick={handleClick}
         onKeyUp={handleKeyUp}
+        onBlur={handleBlur}
       >
         <div className={styles["line"]}>
           <span className={styles["segment"]} data-offset="0-0">
