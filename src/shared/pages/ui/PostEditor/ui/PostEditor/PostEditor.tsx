@@ -38,9 +38,18 @@ const PostEditor = ({ className }: PostEditorProps) => {
   const { media, vote } = toolbar;
 
   useEffect(() => {
-    const { textLength, media } = post;
+    const { textLength, media, vote } = post;
 
-    if (textLength > 0 || media.length > 0)
+    if (
+      // vote가 닫힌 경우 text 혹은 media가 존재하면 유효
+      (!toolbar.vote && (textLength > 0 || media.length > 0)) ||
+      // vote가 열린 경우 vote options의 길이가 2 이상이고
+      // duration이 설정되어있고 text 길이가 0이상이면 유효
+      (toolbar.vote &&
+        textLength > 0 &&
+        vote.options.length >= 2 &&
+        vote.duration)
+    )
       setIsValid((prev) => {
         if (prev === false) return true;
         else return prev;

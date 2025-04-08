@@ -310,7 +310,7 @@ const TextEditor = ({}: TextEditorProps) => {
         suppressContentEditableWarning={true}
         data-ph={"안녕"}
         ref={textEditorRef}
-        tabIndex={-1}
+        tabIndex={0}
         onKeyDown={handleKeyDown}
         onInput={handleInput}
         onCompositionStart={handleCompositionStart}
