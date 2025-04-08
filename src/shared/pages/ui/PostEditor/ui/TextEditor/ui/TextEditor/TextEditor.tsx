@@ -129,6 +129,9 @@ const TextEditor = ({}: TextEditorProps) => {
     if (!e.shiftKey && !isOpen)
       if (key === "ArrowUp") {
         console.log("--------------- ArrowUp 시작 ---------------");
+        const newCaretPosition = getCaretPosition();
+        dispatch(setCaretPosition(newCaretPosition));
+
         const { row } = caretPosition;
         const textEditor = e.target as HTMLDivElement;
         updateLine(textEditor, row);
@@ -136,11 +139,12 @@ const TextEditor = ({}: TextEditorProps) => {
         const innerHtml = convertToInnerHtml(textEditor);
         dispatch(setInnerHtml(innerHtml));
 
-        const newCaretPosition = getCaretPosition();
-        dispatch(setCaretPosition(newCaretPosition));
         console.log("--------------- ArrowUp 종료 ---------------");
       } else if (key === "ArrowDown") {
         console.log("--------------- ArrowDown 시작 ---------------");
+        const newCaretPosition = getCaretPosition();
+        dispatch(setCaretPosition(newCaretPosition));
+
         const { row } = caretPosition;
         const textEditor = e.target as HTMLDivElement;
         updateLine(textEditor, row);
@@ -148,8 +152,6 @@ const TextEditor = ({}: TextEditorProps) => {
         const innerHtml = convertToInnerHtml(textEditor);
         dispatch(setInnerHtml(innerHtml));
 
-        const newCaretPosition = getCaretPosition();
-        dispatch(setCaretPosition(newCaretPosition));
         console.log("--------------- ArrowDown 종료 ---------------");
       } else if (key === "ArrowLeft") {
         console.log("--------------- ArrowRight 시작 ---------------");
