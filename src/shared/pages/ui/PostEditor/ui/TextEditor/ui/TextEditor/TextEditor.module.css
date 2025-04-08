@@ -5,6 +5,7 @@
 
 .text__editor {
   white-space: pre-wrap;
+  word-break: break-all;
 }
 
 .text__editor:focus {
