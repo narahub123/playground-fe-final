@@ -22,6 +22,7 @@ interface IPostEditorPost {
     options: string[];
     duration: IVoteDuration | null;
   };
+  schedule?: Date;
 }
 
 type PostEditorToolbarButtonType =

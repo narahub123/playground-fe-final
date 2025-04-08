@@ -8,6 +8,7 @@ import {
   selectCaretPosition,
   selectCursorPosition,
   selectPostEditorTextLength,
+  selectPostEditorSchedule,
 } from "./postEditorSelector";
 
 export {
@@ -20,4 +21,5 @@ export {
   selectCaretPosition,
   selectCursorPosition,
   selectPostEditorTextLength,
+  selectPostEditorSchedule,
 };

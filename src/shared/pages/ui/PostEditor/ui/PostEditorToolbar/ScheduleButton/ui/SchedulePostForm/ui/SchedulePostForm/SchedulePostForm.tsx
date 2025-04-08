@@ -14,12 +14,15 @@ import {
   ScheduleContextProvider,
   distructDate,
 } from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/ScheduleButton";
+import { useAppDispatch } from "@app/store";
+import { setPostEditorSchedule } from "@shared/pages/ui/PostEditor/models/slices/postEditorSlice";
 
 interface SchedulePostFormProps {
   className?: string;
 }
 
 const SchedulePostForm = ({ className }: SchedulePostFormProps) => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const initialSchedule = () => {
@@ -109,6 +112,11 @@ const SchedulePostForm = ({ className }: SchedulePostFormProps) => {
     };
   };
 
+  const handleClick = () => {
+    dispatch(setPostEditorSchedule(schedule));
+    navigate(-1);
+  };
+
   return (
     <ScheduleContextProvider value={{ schedule, setSchedule }}>
       <Modal.Container width={85}>
@@ -117,7 +125,7 @@ const SchedulePostForm = ({ className }: SchedulePostFormProps) => {
           <Modal.Header className={styles["schedule__form__header"]}>
             <Text type="heading3">{header.title}</Text>
             <Button
-              onClick={() => {}}
+              onClick={handleClick}
               className={styles["schedule__form__header__btn"]}
               rounded="2xl"
               isValid={isValid as boolean}

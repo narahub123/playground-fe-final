@@ -11,6 +11,7 @@ import {
   setCaretPosition,
   setCursorPosition,
   setPostEditorTextLength,
+  setPostEditorSchedule,
 } from "./postEditorSlice";
 
 export {
@@ -26,4 +27,5 @@ export {
   setCaretPosition,
   setCursorPosition,
   setPostEditorTextLength,
+  setPostEditorSchedule,
 };

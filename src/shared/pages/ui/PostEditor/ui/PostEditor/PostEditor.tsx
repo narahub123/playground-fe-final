@@ -21,6 +21,7 @@ import {
   selectPostEditor,
   selectPostEditorTextLength,
 } from "../../models/selectors";
+import { ScheduleText } from "../PostEditorToolbar/ScheduleButton";
 
 interface PostEditorProps {
   className?: string;
@@ -85,6 +86,9 @@ const PostEditor = ({ className }: PostEditorProps) => {
       </span>
       <span className={styles["post__editor__right"]}>
         <div className={styles["text__editor__container"]}>
+          <div className={styles["schedule__wrapper"]}>
+            {post.schedule && <ScheduleText schedule={post.schedule} />}
+          </div>
           <div className={styles["text__editor__wrapper"]}>
             <TextEditor />
           </div>

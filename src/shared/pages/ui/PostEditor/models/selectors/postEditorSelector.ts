@@ -12,6 +12,8 @@ const selectCursorPosition = (state: RootState) =>
   state.postEditor.cursorPosition;
 const selectPostEditorTextLength = (state: RootState) =>
   state.postEditor.post.textLength;
+const selectPostEditorSchedule = (state: RootState) =>
+  state.postEditor.post.schedule;
 
 export {
   selectPostEditor,
@@ -23,4 +25,5 @@ export {
   selectCaretPosition,
   selectCursorPosition,
   selectPostEditorTextLength,
+  selectPostEditorSchedule,
 };

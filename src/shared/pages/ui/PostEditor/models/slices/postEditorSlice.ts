@@ -42,7 +42,7 @@ const initialState: PostEditorState = {
 
 const postEditorSlice = createSlice({
   name: "postEditor",
-  initialState, 
+  initialState,
   reducers: {
     clearPostEditor: () => initialState,
     setPostEditorTextLength: (state, action: PayloadAction<number>) => {
@@ -101,6 +101,9 @@ const postEditorSlice = createSlice({
     setCursorPosition: (state, action: PayloadAction<ICaretPosition>) => {
       state.cursorPosition = action.payload;
     },
+    setPostEditorSchedule: (state, action: PayloadAction<Date>) => {
+      state.post.schedule = action.payload;
+    },
   },
 });
 
@@ -118,4 +121,5 @@ export const {
   setRecentEmojis,
   setCaretPosition,
   setCursorPosition,
+  setPostEditorSchedule,
 } = postEditorSlice.actions;
