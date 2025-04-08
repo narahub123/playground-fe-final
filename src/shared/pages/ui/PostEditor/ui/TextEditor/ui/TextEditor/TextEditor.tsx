@@ -20,10 +20,16 @@ import {
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Text } from "@shared/@common/ui/components";
 import { IAccount } from "@shared/@common/types";
-import { setCaretPosition } from "@shared/pages/ui/PostEditor/models/slices/postEditorSlice";
+import {
+  setCaretPosition,
+  setCursorPosition,
+} from "@shared/pages/ui/PostEditor/models/slices/postEditorSlice";
 import { useAppDispatch } from "@app/store";
 import { useSelector } from "react-redux";
-import { selectCaretPosition } from "@shared/pages/ui/PostEditor/models/selectors";
+import {
+  selectCaretPosition,
+  selectCursorPosition,
+} from "@shared/pages/ui/PostEditor/models/selectors";
 
 interface TextEditorProps {}
 
@@ -43,6 +49,8 @@ const TextEditor = ({}: TextEditorProps) => {
   const onClose = () => {
     setIsOpen(false);
   };
+
+  const cursorPosition = useSelector(selectCursorPosition);
 
   const { placeholder } = useLanguageContent(["components", "TextEditor"]);
 
@@ -76,8 +84,10 @@ const TextEditor = ({}: TextEditorProps) => {
   const caretPosition = useSelector(selectCaretPosition);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    console.log("--------------- handleKeyDown 시작 ---------------");
     const key = e.key;
     if (isOpen) {
+      console.log("인라인 드롭다운이 열린 경우");
       if (key === "Enter") {
         e.preventDefault();
         handleOption();
@@ -105,6 +115,7 @@ const TextEditor = ({}: TextEditorProps) => {
         handlePlaceholder(textEditor, setIsShowingPH);
       }
     }
+    console.log("--------------- handleKeyDown 종료 ---------------");
   };
 
   const handleKeyUp = (e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -280,9 +291,13 @@ const TextEditor = ({}: TextEditorProps) => {
       col: newCol,
     };
 
-    dispatch(setCaretPosition(newCaretPosition));
+    dispatch(setCursorPosition(newCaretPosition));
 
     console.log("--------------- handleBlur 종료 ---------------");
+  };
+
+  const handleFocus = () => {
+    dispatch(setCaretPosition(cursorPosition));
   };
 
   return (
@@ -319,6 +334,7 @@ const TextEditor = ({}: TextEditorProps) => {
         onClick={handleClick}
         onKeyUp={handleKeyUp}
         onBlur={handleBlur}
+        onFocus={handleFocus}
       >
         <div className={styles["line"]}>
           <span className={styles["segment"]} data-offset="0-0">
