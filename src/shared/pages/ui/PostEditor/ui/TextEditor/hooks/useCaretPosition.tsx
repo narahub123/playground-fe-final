@@ -1,6 +1,4 @@
 import { useEffect } from "react";
-import { ICaretPosition } from "../types";
-import { useAppDispatch } from "@app/store";
 import { useSelector } from "react-redux";
 import { selectCaretPosition } from "../../../models/selectors";
 
@@ -9,7 +7,6 @@ interface useCaretPositionProps {
 }
 
 const useCaretPosition = ({ textEditorRef }: useCaretPositionProps) => {
-  const dispatch = useAppDispatch();
   const caretPosition = useSelector(selectCaretPosition);
   useEffect(() => {
     if (!textEditorRef.current) return;
