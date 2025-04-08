@@ -109,37 +109,38 @@ const TextEditor = ({}: TextEditorProps) => {
 
   const handleKeyUp = (e: React.KeyboardEvent<HTMLDivElement>) => {
     const key = e.key;
-    if (key === "ArrowUp") {
-      console.log("--------------- ArrowUp 시작 ---------------");
-      const { row } = caretPosition;
-      const textEditor = e.target as HTMLElement;
-      const line = textEditor.children[row];
-      const segments = getSegments(line.textContent || "");
-      const htmlSegments = convertToHtmlSegments(segments, row);
-      line.innerHTML = htmlSegments;
+    if (!e.shiftKey)
+      if (key === "ArrowUp") {
+        console.log("--------------- ArrowUp 시작 ---------------");
+        const { row } = caretPosition;
+        const textEditor = e.target as HTMLElement;
+        const line = textEditor.children[row];
+        const segments = getSegments(line.textContent || "");
+        const htmlSegments = convertToHtmlSegments(segments, row);
+        line.innerHTML = htmlSegments;
 
-      const newCaretPosition = getCaretPosition();
-      dispatch(setCaretPosition(newCaretPosition));
-      console.log("--------------- ArrowUp 종료 ---------------");
-    } else if (key === "ArrowDown") {
-      console.log("--------------- ArrowDown 시작 ---------------");
-      const { row } = caretPosition;
-      const textEditor = e.target as HTMLElement;
-      const line = textEditor.children[row];
-      const segments = getSegments(line.textContent || "");
-      const htmlSegments = convertToHtmlSegments(segments, row);
-      line.innerHTML = htmlSegments;
+        const newCaretPosition = getCaretPosition();
+        dispatch(setCaretPosition(newCaretPosition));
+        console.log("--------------- ArrowUp 종료 ---------------");
+      } else if (key === "ArrowDown") {
+        console.log("--------------- ArrowDown 시작 ---------------");
+        const { row } = caretPosition;
+        const textEditor = e.target as HTMLElement;
+        const line = textEditor.children[row];
+        const segments = getSegments(line.textContent || "");
+        const htmlSegments = convertToHtmlSegments(segments, row);
+        line.innerHTML = htmlSegments;
 
-      const newCaretPosition = getCaretPosition();
-      dispatch(setCaretPosition(newCaretPosition));
-      console.log("--------------- ArrowDown 종료 ---------------");
-    } else if (key === "ArrowLeft") {
-      const newCaretPosition = getCaretPosition();
-      dispatch(setCaretPosition(newCaretPosition));
-    } else if (key === "ArrowRight") {
-      const newCaretPosition = getCaretPosition();
-      dispatch(setCaretPosition(newCaretPosition));
-    }
+        const newCaretPosition = getCaretPosition();
+        dispatch(setCaretPosition(newCaretPosition));
+        console.log("--------------- ArrowDown 종료 ---------------");
+      } else if (key === "ArrowLeft") {
+        const newCaretPosition = getCaretPosition();
+        dispatch(setCaretPosition(newCaretPosition));
+      } else if (key === "ArrowRight") {
+        const newCaretPosition = getCaretPosition();
+        dispatch(setCaretPosition(newCaretPosition));
+      }
   };
 
   const handleInput = (e: React.FormEvent<HTMLDivElement>) => {
@@ -224,9 +225,11 @@ const TextEditor = ({}: TextEditorProps) => {
     setIsComposing(false);
   };
 
-  const handleClick = () => {
-    const caretPosition = getCaretPosition();
-    dispatch(setCaretPosition(caretPosition));
+  const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (!e.shiftKey) {
+      const caretPosition = getCaretPosition();
+      dispatch(setCaretPosition(caretPosition));
+    }
   };
   return (
     <div className={styles["text__editor__container"]}>
