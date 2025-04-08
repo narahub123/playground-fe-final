@@ -15,7 +15,7 @@ const useTextLength = ({ textEditorRef }: useTextLengthProps) => {
     if (!textEditorRef.current) return;
     const textEditor = textEditorRef.current;
 
-    const text = textEditor.innerText;
+    const text = textEditor.textContent || "";
 
     dispatch(setPostEditorTextLength(text.length));
   }, [caretPosition]);

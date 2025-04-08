@@ -5,7 +5,7 @@ import { ProfileImage } from "@shared/@common/ui/components";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUser } from "@shared/@common/models/selectors";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   AddPostLink,
   CircularProgressBar,
@@ -36,6 +36,21 @@ const PostEditor = ({ className }: PostEditorProps) => {
   const textLength = useSelector(selectPostEditorTextLength);
   const { post, toolbar } = postEditorContent;
   const { media, vote } = toolbar;
+
+  useEffect(() => {
+    const { textLength, media } = post;
+
+    if (textLength > 0 || media.length > 0)
+      setIsValid((prev) => {
+        if (prev === false) return true;
+        else return prev;
+      });
+    else
+      setIsValid((prev) => {
+        if (prev === true) return false;
+        else return prev;
+      });
+  }, [post]);
 
   console.log(toolbar);
   console.log(post);
