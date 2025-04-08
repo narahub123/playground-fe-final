@@ -16,6 +16,8 @@ import {
 } from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/ScheduleButton";
 import { useAppDispatch } from "@app/store";
 import { setPostEditorSchedule } from "@shared/pages/ui/PostEditor/models/slices/postEditorSlice";
+import { useSelector } from "react-redux";
+import { selectPostEditor } from "@shared/pages/ui/PostEditor/models/selectors";
 
 interface SchedulePostFormProps {
   className?: string;
@@ -33,7 +35,11 @@ const SchedulePostForm = ({ className }: SchedulePostFormProps) => {
     return targetDate;
   };
 
-  const [schedule, setSchedule] = useState<Date>(initialSchedule());
+  const { post } = useSelector(selectPostEditor);
+
+  const [schedule, setSchedule] = useState<Date>(
+    post.schedule ? post.schedule : initialSchedule()
+  );
 
   const [isValid, setIsValid] = useState<{ [key: string]: boolean } | boolean>(
     true
@@ -112,7 +118,17 @@ const SchedulePostForm = ({ className }: SchedulePostFormProps) => {
     };
   };
 
-  const handleClick = () => {
+  const handleConfirm = () => {
+    dispatch(setPostEditorSchedule(schedule));
+    navigate(-1);
+  };
+
+  const handleDelete = () => {
+    dispatch(setPostEditorSchedule(undefined));
+    navigate(-1);
+  };
+
+  const handleUpdate = () => {
     dispatch(setPostEditorSchedule(schedule));
     navigate(-1);
   };
@@ -124,14 +140,36 @@ const SchedulePostForm = ({ className }: SchedulePostFormProps) => {
         <Modal.Content className={classNames}>
           <Modal.Header className={styles["schedule__form__header"]}>
             <Text type="heading3">{header.title}</Text>
-            <Button
-              onClick={handleClick}
-              className={styles["schedule__form__header__btn"]}
-              rounded="2xl"
-              isValid={isValid as boolean}
-            >
-              {header.btn}
-            </Button>
+            {post.schedule ? (
+              <div className={styles["schedule__form__header__btns"]}>
+                <Button
+                  onClick={handleDelete}
+                  className={styles["schedule__form__header__btn"]}
+                  rounded="2xl"
+                  variant="plain"
+                  isValid={isValid as boolean}
+                >
+                  {header.btn.delete}
+                </Button>
+                <Button
+                  onClick={handleUpdate}
+                  className={styles["schedule__form__header__btn"]}
+                  rounded="2xl"
+                  isValid={isValid as boolean}
+                >
+                  {header.btn.update}
+                </Button>
+              </div>
+            ) : (
+              <Button
+                onClick={handleConfirm}
+                className={styles["schedule__form__header__btn"]}
+                rounded="2xl"
+                isValid={isValid as boolean}
+              >
+                {header.btn.confirm}
+              </Button>
+            )}
           </Modal.Header>
           <Modal.Body className={styles["schedule__form__body"]}>
             <div className={styles["schedule__form__body__indicator"]}>

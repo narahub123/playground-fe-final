@@ -558,7 +558,11 @@ const components = {
   SchedulePostForm: {
     header: {
       title: "예약하기",
-      btn: "확인",
+      btn: {
+        confirm: "확인",
+        delete: "지우기",
+        update: "업데이트",
+      },
     },
     scheduleDay: {
       year: "년",

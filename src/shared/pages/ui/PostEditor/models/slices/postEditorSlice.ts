@@ -102,7 +102,7 @@ const postEditorSlice = createSlice({
     setCursorPosition: (state, action: PayloadAction<ICaretPosition>) => {
       state.cursorPosition = action.payload;
     },
-    setPostEditorSchedule: (state, action: PayloadAction<Date>) => {
+    setPostEditorSchedule: (state, action: PayloadAction<Date | undefined>) => {
       state.post.schedule = action.payload;
     },
     setInnerHtml: (state, action: PayloadAction<string>) => {

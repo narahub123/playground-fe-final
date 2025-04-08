@@ -1,4 +1,5 @@
 .schedule__form {
+  opacity: 1;
 }
 
 .schedule__form__header {
@@ -11,6 +12,12 @@
   display: flex;
   align-items: center;
   gap: 0.3rem;
+}
+
+.schedule__form__header__btns {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .schedule__form__header__btn {
