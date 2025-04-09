@@ -26,6 +26,8 @@ const selectLockStatus = (state: RootState) => state.user.data.lockStatus;
 const selectUserLoading = (state: RootState) => state.user.loading;
 const selectUserField = (field: keyof IUser) => (state: RootState) =>
   state.user.data[field];
+const selectSkintoneType = (state: RootState) => state.user.data.skintoneType;
+const selectRecentEmojis = (state: RootState) => state.user.data.recentEmojis;
 
 export {
   selectUser,
@@ -50,4 +52,6 @@ export {
   selectLockStatus,
   selectProfileCoverImage,
   selectUserRole,
+  selectSkintoneType,
+  selectRecentEmojis,
 };

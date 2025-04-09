@@ -5,15 +5,12 @@ import {
   IVote,
   PostEditorToolbarButtonType,
 } from "../../types";
-import { IEmoji, SkintoneType } from "../../ui/PostEditorToolbar/EmojiButton";
 import { ICaretPosition } from "../../ui/TextEditor";
 
 interface PostEditorState {
   post: IPostEditorPost;
   toolbar: IPostEditorToolbar;
   emoji?: string;
-  skintoneType: SkintoneType;
-  recentEmojis: IEmoji[];
   caretPosition: ICaretPosition;
   cursorPosition: ICaretPosition;
 }
@@ -35,8 +32,6 @@ const initialState: PostEditorState = {
     schedule: false,
     location: false,
   },
-  skintoneType: "default",
-  recentEmojis: [],
   caretPosition: { caretPos: 0, row: 0, col: 0 },
   cursorPosition: { caretPos: 0, row: 0, col: 0 },
 };
@@ -83,19 +78,7 @@ const postEditorSlice = createSlice({
     setEmoji: (state, action: PayloadAction<string | undefined>) => {
       state.emoji = action.payload;
     },
-    setSkintone: (state, action: PayloadAction<SkintoneType>) => {
-      state.skintoneType = action.payload;
-    },
-    setRecentEmojis: (state, action: PayloadAction<IEmoji>) => {
-      let recentEmojis = state.recentEmojis;
 
-      // 최근 목록에서 추가되는 이모지와 같은 이모지는 삭제
-      recentEmojis = recentEmojis.filter((e) => e.name !== action.payload.name);
-
-      const newRecentEmojis = [action.payload, ...recentEmojis];
-
-      state.recentEmojis = newRecentEmojis;
-    },
     setCaretPosition: (state, action: PayloadAction<ICaretPosition>) => {
       state.caretPosition = action.payload;
     },
@@ -121,8 +104,6 @@ export const {
   postEditorToolbarButtonOn,
   setPostEditorVote,
   setEmoji,
-  setSkintone,
-  setRecentEmojis,
   setCaretPosition,
   setCursorPosition,
   setPostEditorSchedule,

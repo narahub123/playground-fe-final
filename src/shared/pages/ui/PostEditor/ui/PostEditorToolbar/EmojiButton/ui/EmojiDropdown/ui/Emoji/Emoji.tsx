@@ -7,12 +7,10 @@ import {
   useEmojiContext,
 } from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/EmojiButton";
 import { useAppDispatch } from "@app/store";
-import {
-  setEmoji,
-  setRecentEmojis,
-} from "@shared/pages/ui/PostEditor/models/slices/postEditorSlice";
-import { selectSkintone } from "@shared/pages/ui/PostEditor/models/selectors";
+import { setEmoji } from "@shared/pages/ui/PostEditor/models/slices/postEditorSlice";
 import { useSelector } from "react-redux";
+import { selectSkintoneType } from "@shared/@common/models/selectors";
+import { setRecentEmojis } from "@shared/@common/models/slices/userSlice";
 
 interface EmojiProps {
   className?: string;
@@ -23,7 +21,7 @@ interface EmojiProps {
 const Emoji = ({ className, disabled = false, emoji }: EmojiProps) => {
   const dispatch = useAppDispatch();
   const classNames = joinClassNames([styles["emoji"], className]);
-  const skintoneType = useSelector(selectSkintone);
+  const skintoneType = useSelector(selectSkintoneType);
 
   const { setCurEmoji } = useEmojiContext();
 

@@ -3,8 +3,8 @@ import { forwardRef } from "react";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Button, Text } from "@shared/@common/ui/components";
 import { Emoji } from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/EmojiButton";
-import { selectRecentEmojis } from "@shared/pages/ui/PostEditor/models/selectors";
 import { useSelector } from "react-redux";
+import { selectRecentEmojis } from "@shared/@common/models/selectors";
 
 interface EmojiRecentProps {}
 

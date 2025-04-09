@@ -9,6 +9,10 @@ import {
 } from "@shared/@common/types";
 import { GenderType } from "@shared/auth/types";
 import { validateDate } from "@shared/auth/utils";
+import {
+  IEmoji,
+  SkintoneType,
+} from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/EmojiButton";
 
 export interface UserState {
   data: IUser;
@@ -49,6 +53,8 @@ const initialState: UserState = {
       lockReason: null,
       lockedAt: null,
     },
+    skintoneType: "default",
+    recentEmojis: [],
     createdAt: new Date(),
   },
   loading: true,
@@ -197,6 +203,21 @@ const userSlice = createSlice({
     setLockStatus: (state, action: PayloadAction<ILockStatus>) => {
       state.data.lockStatus = action.payload;
     },
+
+    setSkintoneType: (state, action: PayloadAction<SkintoneType>) => {
+      state.data.skintoneType = action.payload;
+    },
+
+    setRecentEmojis: (state, action: PayloadAction<IEmoji>) => {
+      let recentEmojis = state.data.recentEmojis;
+
+      // 최근 목록에서 추가되는 이모지와 같은 이모지는 삭제
+      recentEmojis = recentEmojis.filter((e) => e.name !== action.payload.name);
+
+      const newRecentEmojis = [action.payload, ...recentEmojis];
+
+      state.data.recentEmojis = newRecentEmojis;
+    },
   },
 });
 
@@ -227,4 +248,6 @@ export const {
   setProfileCoverImage,
   setUserLoading,
   setUserRole,
+  setSkintoneType,
+  setRecentEmojis,
 } = userSlice.actions;

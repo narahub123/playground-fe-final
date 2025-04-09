@@ -29,6 +29,8 @@ import {
   selectUserRole,
   selectUserLoading,
   selectUserField,
+  selectSkintoneType,
+  selectRecentEmojis,
 } from "./userSelectors";
 
 import {
@@ -81,6 +83,8 @@ export {
   selectUserRole,
   selectUserLoading,
   selectUserField,
+  selectSkintoneType,
+  selectRecentEmojis,
 
   // modal
   getParallelModals,

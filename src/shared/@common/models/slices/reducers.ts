@@ -31,6 +31,8 @@ import {
   setProfileCoverImage,
   setUserLoading,
   setUserRole,
+  setSkintoneType,
+  setRecentEmojis,
 } from "./userSlice";
 
 import {
@@ -82,6 +84,8 @@ export {
   setProfileCoverImage,
   setUserLoading,
   setUserRole,
+  setSkintoneType,
+  setRecentEmojis,
 
   // modal
   onParallelModalOpen,

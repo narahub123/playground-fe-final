@@ -1,4 +1,8 @@
 import { GenderType } from "@shared/auth/types";
+import {
+  IEmoji,
+  SkintoneType,
+} from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/EmojiButton";
 
 type BgThemeType = "light" | "dark" | "darkest";
 type ColorThemeType =
@@ -101,6 +105,8 @@ interface IUser {
   isAuthorized: boolean;
   isAuthenticated: boolean;
   lockStatus: ILockStatus;
+  skintoneType: SkintoneType;
+  recentEmojis: IEmoji[];
   createdAt: Date;
 }
 

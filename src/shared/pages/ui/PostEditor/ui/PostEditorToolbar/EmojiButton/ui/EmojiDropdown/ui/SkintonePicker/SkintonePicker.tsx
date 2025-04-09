@@ -6,18 +6,18 @@ import {
   skinTones,
 } from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/EmojiButton";
 import { useSelector } from "react-redux";
-import { selectSkintone } from "@shared/pages/ui/PostEditor/models/selectors";
 import { useAppDispatch } from "@app/store";
-import { setSkintone } from "@shared/pages/ui/PostEditor/models/slices/postEditorSlice";
+import { selectSkintoneType } from "@shared/@common/models/selectors";
+import { setSkintoneType } from "@shared/@common/models/slices/userSlice";
 
 const SkintonePicker = () => {
   const dispatch = useAppDispatch();
   const [isOpen, setIsOpen] = useState(false);
-  const skintoneType = useSelector(selectSkintone);
+  const skintoneType = useSelector(selectSkintoneType);
 
   const handleClick = (skintone?: ISkinTone) => {
     if (skintone?.name) {
-      dispatch(setSkintone(skintone?.name));
+      dispatch(setSkintoneType(skintone?.name));
     }
 
     setIsOpen(!isOpen);

@@ -4,8 +4,6 @@ const selectPostEditor = (state: RootState) => state.postEditor;
 const selectPostEditorMedia = (state: RootState) => state.postEditor.post.media;
 const selectPostEditorToolbar = (state: RootState) => state.postEditor.toolbar;
 const selectEmoji = (state: RootState) => state.postEditor.emoji;
-const selectSkintone = (state: RootState) => state.postEditor.skintoneType;
-const selectRecentEmojis = (state: RootState) => state.postEditor.recentEmojis;
 const selectCaretPosition = (state: RootState) =>
   state.postEditor.caretPosition;
 const selectCursorPosition = (state: RootState) =>
@@ -21,8 +19,6 @@ export {
   selectPostEditorMedia,
   selectPostEditorToolbar,
   selectEmoji,
-  selectSkintone,
-  selectRecentEmojis,
   selectCaretPosition,
   selectCursorPosition,
   selectPostEditorTextLength,

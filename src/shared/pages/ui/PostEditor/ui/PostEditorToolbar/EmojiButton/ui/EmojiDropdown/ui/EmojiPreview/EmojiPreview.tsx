@@ -6,10 +6,10 @@ import {
   SkintonePicker,
   useEmojiContext,
 } from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/EmojiButton";
-import { selectSkintone } from "@shared/pages/ui/PostEditor/models/selectors";
+import { selectSkintoneType } from "@shared/@common/models/selectors";
 
 const EmojiPreview = () => {
-  const skintoneType = useSelector(selectSkintone);
+  const skintoneType = useSelector(selectSkintoneType);
   const { curEmoji } = useEmojiContext();
   const defaultPreview = defaultEmojiPreviews.find(
     (item) => item.name === skintoneType
