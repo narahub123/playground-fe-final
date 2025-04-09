@@ -33,6 +33,7 @@ import {
   setUserRole,
   setSkintoneType,
   setRecentEmojis,
+  clearRecentEmojis,
 } from "./userSlice";
 
 import {
@@ -86,6 +87,7 @@ export {
   setUserRole,
   setSkintoneType,
   setRecentEmojis,
+  clearRecentEmojis,
 
   // modal
   onParallelModalOpen,

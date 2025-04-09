@@ -218,6 +218,9 @@ const userSlice = createSlice({
 
       state.data.recentEmojis = newRecentEmojis;
     },
+    clearRecentEmojis: (state) => {
+      state.data.recentEmojis = [];
+    },
   },
 });
 
@@ -250,4 +253,5 @@ export const {
   setUserRole,
   setSkintoneType,
   setRecentEmojis,
+  clearRecentEmojis,
 } = userSlice.actions;

@@ -1,17 +1,46 @@
 import styles from "./EmojiRecent.module.css";
 import { forwardRef } from "react";
-import { useLanguageContent } from "@shared/@common/models/hooks";
+import { useAPIError, useLanguageContent } from "@shared/@common/models/hooks";
 import { Button, Text } from "@shared/@common/ui/components";
 import { Emoji } from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/EmojiButton";
 import { useSelector } from "react-redux";
 import { selectRecentEmojis } from "@shared/@common/models/selectors";
+import { fetchWithAuth } from "@shared/pages/utils";
+import { useAppDispatch } from "@app/store";
+import { ErrorTitleCodeType } from "@shared/@common/types";
+import { useToast } from "@shared/@common/ui/components/Toast/hooks";
+import { clearRecentEmojis } from "@shared/@common/models/slices/userSlice";
 
 interface EmojiRecentProps {}
 
 const EmojiRecent = forwardRef<HTMLDivElement, EmojiRecentProps>(({}, ref) => {
+  const dispatch = useAppDispatch();
   const recentEmojis = useSelector(selectRecentEmojis);
   // 언어 설정
   const { title, clearBtn } = useLanguageContent(["components", "EmojiRecent"]);
+
+  const toast = useToast();
+  const { getErrorTitle } = useAPIError();
+
+  const handleClearRecentEmojis = async () => {
+    const result = await fetchWithAuth("/users/recent-emojis", {
+      method: "DELETE",
+    });
+    try {
+      if (result.success) {
+        dispatch(clearRecentEmojis());
+      } else {
+        const errorCode = result.code as ErrorTitleCodeType;
+
+        if (errorCode === "CLEAR_RECENT_EMOJIS_FAILED") {
+          toast({
+            description: getErrorTitle(errorCode),
+            type: "error",
+          });
+        }
+      }
+    } catch (error) {}
+  };
 
   return (
     <div className={styles["emoji__recent"]} ref={ref}>
@@ -20,9 +49,7 @@ const EmojiRecent = forwardRef<HTMLDivElement, EmojiRecentProps>(({}, ref) => {
         <Button
           variant="ghost"
           isValid
-          onClick={() => {
-            // 최근 이모지 목록 비우기
-          }}
+          onClick={handleClearRecentEmojis}
           fontColor="colorTheme"
           className={styles["clear__button"]}
         >
