@@ -110,6 +110,19 @@ interface IUser {
   createdAt: Date;
 }
 
+interface IPost {
+  text?: string;
+  media?: string[];
+  vote?: {
+    options: {
+      option: string;
+      count: number;
+    }[];
+    duration: Date;
+  };
+  schedule?: Date;
+}
+
 export type {
   BgThemeType,
   ColorThemeType,
@@ -133,4 +146,5 @@ export type {
   ILockStatus,
   UserRoleType,
   VerificationModals,
+  IPost,
 };

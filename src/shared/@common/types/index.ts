@@ -21,6 +21,7 @@ import {
   ILockStatus,
   UserRoleType,
   VerificationModals,
+  IPost,
 } from "./slices";
 
 import {
@@ -68,6 +69,7 @@ export type {
   ILockStatus,
   UserRoleType,
   VerificationModals,
+  IPost,
 
   // components
   DropdownItemType, // dropdown item

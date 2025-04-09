@@ -52,6 +52,8 @@ import { setPrivacy, clearPrivacyState } from "./privacySlice";
 
 import { setNotification, clearNotificationState } from "./notificationSlice";
 
+import { setPosts } from "./postSlice";
+
 export {
   // display
   setDisplay,
@@ -109,4 +111,7 @@ export {
   // notification
   setNotification,
   clearNotificationState,
+
+  // post
+  setPosts,
 };

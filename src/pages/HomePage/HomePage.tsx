@@ -4,6 +4,8 @@ import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
 import { useState } from "react";
 import { PostEditor } from "@shared/pages/ui";
+import { useSelector } from "react-redux";
+import { selectPosts } from "@shared/@common/models/selectors";
 
 interface IHomeTab {
   text: string;
@@ -11,6 +13,7 @@ interface IHomeTab {
 }
 
 const HomePage = () => {
+  const posts = useSelector(selectPosts);
   const [tabSelection, setTabSelection] = useState("following");
   // 언어 설정
   const { tabs } = useLanguageContent(["home", "HomePage"]);
@@ -38,7 +41,11 @@ const HomePage = () => {
         </div>
       </div>
       <div>광고</div>
-      <div>피드</div>
+      <div>
+        {posts.map((post) => (
+          <>{post?.text}</>
+        ))}
+      </div>
     </div>
   );
 };

@@ -52,6 +52,8 @@ import { getPrivacy } from "./privacySelectors";
 
 import { getNotification } from "./notificationSelectors";
 
+import { selectPosts } from "./postSelectors";
+
 export {
   // display
   getDisplay,
@@ -106,4 +108,7 @@ export {
 
   // notification
   getNotification,
+
+  // post
+  selectPosts,
 };

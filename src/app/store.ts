@@ -11,6 +11,7 @@ import {
   securitySlice as security,
   privacySlice as privacy,
   notificationSlice as notification,
+  postSlice as post,
 } from "@shared/@common/models/slices";
 
 import { postEditorSlice as postEditor } from "@shared/pages/ui/PostEditor/models/slices";
@@ -26,6 +27,7 @@ const store = configureStore({
     privacy, // 개인 정보 설정
     notification, // 알림 설정
     postEditor, // 포스트 작성
+    post, // 포스트 목록
   },
 
   // serializableCheck 옵션을 false로 설정하여
