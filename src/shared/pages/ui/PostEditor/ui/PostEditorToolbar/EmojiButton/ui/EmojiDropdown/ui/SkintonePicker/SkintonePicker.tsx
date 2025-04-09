@@ -9,15 +9,44 @@ import { useSelector } from "react-redux";
 import { useAppDispatch } from "@app/store";
 import { selectSkintoneType } from "@shared/@common/models/selectors";
 import { setSkintoneType } from "@shared/@common/models/slices/userSlice";
+import { fetchWithAuth } from "@shared/pages/utils";
+import { useToast } from "@shared/@common/ui/components/Toast/hooks";
+import { ErrorDescriptionCodeType } from "@shared/@common/types";
+import { useAPIError } from "@shared/@common/models/hooks";
 
 const SkintonePicker = () => {
   const dispatch = useAppDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const skintoneType = useSelector(selectSkintoneType);
 
-  const handleClick = (skintone?: ISkinTone) => {
+  const toast = useToast();
+  const { getErrorDescription } = useAPIError();
+
+  const handleClick = async (skintone?: ISkinTone) => {
     if (skintone?.name) {
-      dispatch(setSkintoneType(skintone?.name));
+      const result = await fetchWithAuth(
+        "/users/me",
+        { method: "PATCH" },
+        {
+          skintoneType: skintone?.name,
+        }
+      );
+      try {
+        if (result.success) {
+          dispatch(setSkintoneType(skintone?.name));
+        } else {
+          const errorCode = Object.values(
+            result.error.details
+          )[0] as ErrorDescriptionCodeType;
+
+          if (errorCode === "UPDATE_SKINTONE_FAILED") {
+            toast({
+              description: getErrorDescription(errorCode),
+              type: "error",
+            });
+          }
+        }
+      } catch (error) {}
     }
 
     setIsOpen(!isOpen);

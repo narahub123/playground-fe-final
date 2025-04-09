@@ -53,6 +53,7 @@ const ERROR_DESCRIPTION_CODE = {
 
   // update failed
   LOCK_PROCESS_FAILED: "계정 잠금 처리 중 에러가 발생했습니다.",
+  UPDATE_SKINTONE_FAILED: "스킨톤 업데이트에 실패했습니다.",
 
   // delete failed
   PARTIAL_DELETION_FAILED: "일부 로그인 실패 기록이 삭제되지 않았습니다.",
