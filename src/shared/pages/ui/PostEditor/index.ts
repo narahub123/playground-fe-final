@@ -9,6 +9,8 @@ import {
   Vote,
 } from "./ui";
 
+import { convertDurationToDate, convertVoteFormat } from "./utils";
+
 export {
   AddPostLink,
   CircularProgressBar,
@@ -18,4 +20,6 @@ export {
   ReplyPermissionControl,
   TextEditor,
   Vote,
+  convertDurationToDate,
+  convertVoteFormat,
 };

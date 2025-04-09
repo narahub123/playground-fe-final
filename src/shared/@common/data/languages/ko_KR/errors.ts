@@ -11,6 +11,7 @@ const ERROR_TITLE_CODE = {
   VERIFY_PASSWORD_FAILED: "비밀 번호 인증 실패",
   PASSWORD_CHANGE_FAILED: "비밀 번호 변경 실패",
   CLEAR_RECENT_EMOJIS_FAILED: "최근 이모지 비우기에 실패했습니다.",
+  POST_CREATION_FAILED: "포스트 생성에 실패했습니다.",
 } as const;
 
 const ERROR_DESCRIPTION_CODE = {
