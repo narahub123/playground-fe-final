@@ -16,6 +16,7 @@ import PostVote from "./PostVote/PostVote";
 import PostStats from "./PostStats/PostStats";
 import PostActions from "./PostActions/PostActions";
 import RepostIcon from "./RepostIcon/RepostIcon";
+import LineConnector from "./LineConnector/LineConnector";
 
 const Post = Object.assign(PostContainer, {
   Content: PostContent,
@@ -39,4 +40,5 @@ export {
   PostStats,
   PostActions,
   RepostIcon,
+  LineConnector,
 };

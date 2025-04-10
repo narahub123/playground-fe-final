@@ -51,7 +51,7 @@ const HomePage = () => {
                 <Post.Left />
                 <Post.Right />
               </Post.Main>
-              <Post.Footer />
+              {/* <Post.Footer /> */}
             </Post.Content>
           </Post>
         ))}

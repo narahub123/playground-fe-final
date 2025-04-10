@@ -12,6 +12,8 @@ const PostLeft = ({ className }: PostLeftProps) => {
   const navigate = useNavigate();
   const classNames = joinClassNames([styles["post__left"], className]);
 
+  const isShowingConnector = false;
+
   return (
     <div className={classNames}>
       <ProfileImage
@@ -22,7 +24,7 @@ const PostLeft = ({ className }: PostLeftProps) => {
         }}
         className={styles["profile_image"]}
       />
-      <ProfileConnector />
+      {isShowingConnector && <ProfileConnector />}
     </div>
   );
 };

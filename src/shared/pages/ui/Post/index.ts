@@ -8,6 +8,7 @@ import Post, {
   PostStats,
   PostActions,
   RepostIcon,
+  LineConnector,
 } from "./ui";
 import { PostContext, PostContextProvider } from "./context";
 import { IPostContext } from "./types";
@@ -26,6 +27,7 @@ export {
   PostStats,
   PostActions,
   RepostIcon,
+  LineConnector,
 
   // context
   PostContext,

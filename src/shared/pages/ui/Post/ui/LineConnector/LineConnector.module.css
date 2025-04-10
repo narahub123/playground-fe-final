@@ -1,12 +1,11 @@
-.profile__connector {
-  height: 100%;
+.line__connector {
+  width: 100%;
   display: flex;
   justify-content: center;
+  height: 0.5rem;
 }
 
 .line {
   width: 2px;
-  height: 100%;
   background-color: #ddd;
-  margin-top: 4px;
 }
