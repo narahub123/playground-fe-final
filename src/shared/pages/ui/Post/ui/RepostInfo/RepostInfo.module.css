@@ -1,3 +1,15 @@
 .repost__info {
-  width: 100%;
+  display: flex;
+}
+
+.button {
+  line-height: 1rem;
+  font-size: 0.85rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: #666;
+}
+
+.button:hover {
+  text-decoration: underline;
 }

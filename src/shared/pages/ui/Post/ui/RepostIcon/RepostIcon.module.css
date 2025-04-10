@@ -1,0 +1,14 @@
+.repost__icon {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  line-height: 16px;
+  font-weight: bold;
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #666;
+}

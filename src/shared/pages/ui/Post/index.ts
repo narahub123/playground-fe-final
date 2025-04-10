@@ -7,10 +7,11 @@ import Post, {
   PostVote,
   PostStats,
   PostActions,
+  RepostIcon,
 } from "./ui";
 import { PostContext, PostContextProvider } from "./context";
 import { IPostContext } from "./types";
-import {} from "./utils";
+import { findFirstReposter } from "./utils";
 import { usePostContext } from "./hooks";
 
 export {
@@ -24,12 +25,14 @@ export {
   PostVote,
   PostStats,
   PostActions,
+  RepostIcon,
 
   // context
   PostContext,
   PostContextProvider,
 
   // utils
+  findFirstReposter,
 
   // hooks
   usePostContext,

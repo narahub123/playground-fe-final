@@ -15,6 +15,7 @@ import PostMedia from "./PostMedia/PostMedia";
 import PostVote from "./PostVote/PostVote";
 import PostStats from "./PostStats/PostStats";
 import PostActions from "./PostActions/PostActions";
+import RepostIcon from "./RepostIcon/RepostIcon";
 
 const Post = Object.assign(PostContainer, {
   Content: PostContent,
@@ -37,4 +38,5 @@ export {
   PostVote,
   PostStats,
   PostActions,
+  RepostIcon,
 };

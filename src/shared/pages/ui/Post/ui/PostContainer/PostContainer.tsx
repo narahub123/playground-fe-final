@@ -3,16 +3,18 @@ import { ReactNode } from "react";
 import { joinClassNames } from "@shared/@common/utils";
 import { PostContextProvider } from "../../context";
 import { IPostContext } from "../../types";
+import { IPost } from "@shared/@common/types";
 
 interface PostContainerProps {
   className?: string;
+  post: IPost;
   children: ReactNode;
 }
 
-const PostContainer = ({ className, children }: PostContainerProps) => {
+const PostContainer = ({ className, children, post }: PostContainerProps) => {
   const classNames = joinClassNames([styles["post__container"], className]);
 
-  const value: IPostContext = {};
+  const value: IPostContext = post;
 
   return (
     <PostContextProvider value={value}>

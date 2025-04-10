@@ -1,3 +1,14 @@
 .post__header {
   width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+.left {
+  width: 2.5rem;
+  margin-right: 0.5rem;
+}
+
+.right {
+  flex: 1;
 }

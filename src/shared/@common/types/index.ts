@@ -23,6 +23,7 @@ import {
   VerificationModals,
   IPost,
   IPostActions,
+  IRepost,
 } from "./slices";
 
 import {
@@ -72,6 +73,7 @@ export type {
   VerificationModals,
   IPost,
   IPostActions,
+  IRepost,
 
   // components
   DropdownItemType, // dropdown item

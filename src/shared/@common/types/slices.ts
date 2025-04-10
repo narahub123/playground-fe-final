@@ -110,14 +110,22 @@ interface IUser {
   createdAt: Date;
 }
 
+interface IRepost {
+  userId: string;
+  username: string;
+}
+
 interface IPostActions {
   comments: string[];
-  reposts: string[];
+  reposts: IRepost[];
   likes: string[];
   views: number;
 }
 
 interface IPost {
+  _id: string;
+  userId: string;
+  createdAt: string;
   text?: string;
   media?: string[];
   vote?: {
@@ -156,4 +164,5 @@ export type {
   VerificationModals,
   IPost,
   IPostActions,
+  IRepost,
 };
