@@ -6,6 +6,7 @@ import { useState } from "react";
 import { PostEditor } from "@shared/pages/ui";
 import { useSelector } from "react-redux";
 import { selectPosts } from "@shared/@common/models/selectors";
+import { Post } from "@shared/pages/ui/Post";
 
 interface IHomeTab {
   text: string;
@@ -42,8 +43,17 @@ const HomePage = () => {
       </div>
       <div>광고</div>
       <div>
-        {posts.map((post) => (
-          <>{post?.text}</>
+        {posts.map((post, index) => (
+          <Post key={index}>
+            <Post.Content>
+              <Post.Header />
+              <Post.Main>
+                <Post.Left />
+                <Post.Right />
+              </Post.Main>
+              <Post.Footer />
+            </Post.Content>
+          </Post>
         ))}
       </div>
     </div>
