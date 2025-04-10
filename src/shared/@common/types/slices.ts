@@ -110,6 +110,13 @@ interface IUser {
   createdAt: Date;
 }
 
+interface IPostActions {
+  comments: string[];
+  reposts: string[];
+  likes: string[];
+  views: number;
+}
+
 interface IPost {
   text?: string;
   media?: string[];
@@ -121,6 +128,7 @@ interface IPost {
     duration: Date;
   };
   schedule?: Date;
+  actions: IPostActions;
 }
 
 export type {
@@ -147,4 +155,5 @@ export type {
   UserRoleType,
   VerificationModals,
   IPost,
+  IPostActions,
 };

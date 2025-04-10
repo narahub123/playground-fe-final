@@ -22,6 +22,7 @@ import {
   UserRoleType,
   VerificationModals,
   IPost,
+  IPostActions,
 } from "./slices";
 
 import {
@@ -70,6 +71,7 @@ export type {
   UserRoleType,
   VerificationModals,
   IPost,
+  IPostActions,
 
   // components
   DropdownItemType, // dropdown item
