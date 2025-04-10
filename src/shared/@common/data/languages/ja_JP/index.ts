@@ -11,7 +11,9 @@ const settings = settings_lang["jp"];
 const sectionTextMap = sectionTextMap_all["jp"];
 import auths from "./auths";
 import { home_lang } from "@features/home/data";
+import { post_lang } from "@shared/pages/ui/Post/data";
 const home = home_lang["jp"];
+const post = post_lang["jp"];
 
 const ja_JP = {
   pages,
@@ -23,6 +25,7 @@ const ja_JP = {
   sectionTextMap,
   auths,
   home,
+  post,
 };
 
 export default ja_JP;

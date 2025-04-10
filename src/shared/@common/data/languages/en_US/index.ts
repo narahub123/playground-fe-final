@@ -11,7 +11,9 @@ const settings = settings_lang["us"];
 const sectionTextMap = sectionTextMap_all["us"];
 import auths from "./auths";
 import { home_lang } from "@features/home/data";
+import { post_lang } from "@shared/pages/ui/Post/data";
 const home = home_lang["us"];
+const post = post_lang["us"];
 
 const en_US = {
   pages,
@@ -23,6 +25,7 @@ const en_US = {
   sectionTextMap,
   auths,
   home,
+  post,
 };
 
 export default en_US;

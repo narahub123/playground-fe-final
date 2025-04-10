@@ -8,10 +8,13 @@ import {
   sectionTextMap_all,
 } from "@features/settings/common/data";
 import { home_lang } from "@features/home/data";
+import auths from "./auths";
+import { post_lang } from "@shared/pages/ui/Post/data";
+
 const home = home_lang["kr"];
 const settings = settings_lang["kr"];
 const sectionTextMap = sectionTextMap_all["kr"];
-import auths from "./auths";
+const post = post_lang["kr"];
 
 const ko_kR = {
   pages,
@@ -23,6 +26,7 @@ const ko_kR = {
   sectionTextMap,
   auths,
   home,
+  post,
 };
 
 export default ko_kR;
