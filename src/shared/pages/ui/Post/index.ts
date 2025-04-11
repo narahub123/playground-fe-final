@@ -12,8 +12,8 @@ import Post, {
 } from "./ui";
 import { PostContext, PostContextProvider } from "./context";
 import { IPostContext } from "./types";
-import { findFirstReposter } from "./utils";
-import { usePostContext } from "./hooks";
+import { findFirstReposter, convertToLocalTime } from "./utils";
+import { usePostContext, useRelativeTime } from "./hooks";
 
 export {
   // ui
@@ -35,9 +35,11 @@ export {
 
   // utils
   findFirstReposter,
+  convertToLocalTime,
 
   // hooks
   usePostContext,
+  useRelativeTime,
 };
 
 // types

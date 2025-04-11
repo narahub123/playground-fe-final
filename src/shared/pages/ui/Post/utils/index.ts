@@ -1,3 +1,4 @@
 import findFirstReposter from "./findFirstReposter";
+import convertToLocalTime from "./convertToLocalTime";
 
-export { findFirstReposter };
+export { findFirstReposter, convertToLocalTime };

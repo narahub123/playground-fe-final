@@ -1,9 +1,13 @@
-import { Text } from "@shared/@common/ui/components";
 import styles from "./PostMeta.module.css";
 import { joinClassNames } from "@shared/@common/utils";
-import { usePostContext } from "@shared/pages/ui/Post";
-import { IoIosMore } from "react-icons/io";
 import { Link } from "react-router-dom";
+import { Text } from "@shared/@common/ui/components";
+import {
+  convertToLocalTime,
+  usePostContext,
+  useRelativeTime,
+} from "@shared/pages/ui/Post";
+import { IoIosMore } from "react-icons/io";
 
 interface PostMetaProps {
   className?: string;
@@ -12,10 +16,10 @@ interface PostMetaProps {
 const PostMeta = ({ className }: PostMetaProps) => {
   const classNames = joinClassNames([styles["post__meta"], className]);
 
-  const { author, createdAt } = usePostContext();
-
+  const { _id, author, createdAt } = usePostContext();
   const { username, userId } = author;
 
+  const convertToRelativeTime = useRelativeTime();
   return (
     <div className={classNames}>
       <div className={styles["wrapper"]}>
@@ -29,7 +33,13 @@ const PostMeta = ({ className }: PostMetaProps) => {
               <Text>{`@${userId}`}</Text>
             </Link>
             <Text>·</Text>
-            <Text>{createdAt}</Text>
+            <Link
+              to={`/${userId}/status/${_id}`}
+              data-title={convertToLocalTime(createdAt)}
+              className={styles["time"]}
+            >
+              <Text>{convertToRelativeTime(createdAt)}</Text>
+            </Link>
           </div>
         </div>
         <div className={styles["button"]}>
