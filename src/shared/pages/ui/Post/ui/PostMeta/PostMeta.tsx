@@ -1,18 +1,39 @@
+import { Text } from "@shared/@common/ui/components";
 import styles from "./PostMeta.module.css";
-import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
+import { usePostContext } from "@shared/pages/ui/Post";
+import { IoIosMore } from "react-icons/io";
 
 interface PostMetaProps {
   className?: string;
 }
 
 const PostMeta = ({ className }: PostMetaProps) => {
-  // 언어 설정
-  //   const {} = useLanguageContent(["", "PostMeta"]);
-
   const classNames = joinClassNames([styles["post__meta"], className]);
 
-  return <div className={classNames}>PostMeta</div>;
+  const { author, createdAt } = usePostContext();
+
+  const { username, userId } = author;
+
+  return (
+    <div className={classNames}>
+      <div className={styles["wrapper"]}>
+        <div className={styles["info"]}>
+          <div className={styles["username__wrapper"]}>
+            <Text className={styles["username"]}>{username}</Text>
+          </div>
+          <div className={styles["rest__wrapper"]}>
+            <Text>{`@${userId}`}</Text>
+            <p>·</p>
+            <Text>{createdAt}</Text>
+          </div>
+        </div>
+        <div className={styles["button"]}>
+          <IoIosMore />
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default PostMeta;

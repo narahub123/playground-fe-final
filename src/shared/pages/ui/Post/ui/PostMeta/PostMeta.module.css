@@ -1,3 +1,30 @@
 .post__meta {
   width: 100%;
 }
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.95rem;
+}
+
+.username__wrapper {
+}
+
+.username {
+  font-weight: bold;
+}
+
+.rest__wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #777;
+}
