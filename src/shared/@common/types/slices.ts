@@ -131,7 +131,7 @@ interface IAuthor {
 
 interface IPost {
   _id: string;
-  authro: IAuthor;
+  author: IAuthor;
   createdAt: string;
   text?: string;
   media?: string[];
@@ -172,5 +172,5 @@ export type {
   IPost,
   IPostActions,
   IRepost,
-  IAuthor
+  IAuthor,
 };
