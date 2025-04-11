@@ -3,6 +3,7 @@ import styles from "./PostMeta.module.css";
 import { joinClassNames } from "@shared/@common/utils";
 import { usePostContext } from "@shared/pages/ui/Post";
 import { IoIosMore } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 interface PostMetaProps {
   className?: string;
@@ -19,9 +20,10 @@ const PostMeta = ({ className }: PostMetaProps) => {
     <div className={classNames}>
       <div className={styles["wrapper"]}>
         <div className={styles["info"]}>
-          <div className={styles["username__wrapper"]}>
+          <Link to={`/${userId}`} className={styles["username__wrapper"]}>
             <Text className={styles["username"]}>{username}</Text>
-          </div>
+            <div className={styles["badge"]}>배지</div>
+          </Link>
           <div className={styles["rest__wrapper"]}>
             <Text>{`@${userId}`}</Text>
             <p>·</p>

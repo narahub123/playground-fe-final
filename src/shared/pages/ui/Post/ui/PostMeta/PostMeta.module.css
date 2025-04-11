@@ -16,10 +16,24 @@
 }
 
 .username__wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+}
+
+.username__wrapper:hover .username {
+  text-decoration: underline;
+}
+
+.username__wrapper:hover .badge {
+  text-decoration: none;
 }
 
 .username {
   font-weight: bold;
+}
+
+.badge {
 }
 
 .rest__wrapper {
