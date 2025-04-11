@@ -122,9 +122,16 @@ interface IPostActions {
   views: number;
 }
 
-interface IPost {
+interface IAuthor {
   _id: string;
   userId: string;
+  username: string;
+  profileImage: string;
+}
+
+interface IPost {
+  _id: string;
+  authro: IAuthor;
   createdAt: string;
   text?: string;
   media?: string[];
@@ -165,4 +172,5 @@ export type {
   IPost,
   IPostActions,
   IRepost,
+  IAuthor
 };

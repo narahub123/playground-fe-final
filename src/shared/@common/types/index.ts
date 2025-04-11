@@ -24,6 +24,7 @@ import {
   IPost,
   IPostActions,
   IRepost,
+  IAuthor,
 } from "./slices";
 
 import {
@@ -74,6 +75,7 @@ export type {
   IPost,
   IPostActions,
   IRepost,
+  IAuthor,
 
   // components
   DropdownItemType, // dropdown item
