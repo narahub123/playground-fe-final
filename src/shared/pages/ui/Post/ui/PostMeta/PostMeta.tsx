@@ -25,8 +25,10 @@ const PostMeta = ({ className }: PostMetaProps) => {
             <div className={styles["badge"]}>배지</div>
           </Link>
           <div className={styles["rest__wrapper"]}>
-            <Text>{`@${userId}`}</Text>
-            <p>·</p>
+            <Link to={`/${userId}`} className={styles["userId"]}>
+              <Text>{`@${userId}`}</Text>
+            </Link>
+            <Text>·</Text>
             <Text>{createdAt}</Text>
           </div>
         </div>

@@ -34,6 +34,7 @@
 }
 
 .badge {
+  opacity: 1;
 }
 
 .rest__wrapper {
@@ -41,4 +42,8 @@
   align-items: center;
   gap: 0.25rem;
   color: #777;
+}
+
+.userId {
+  opacity: 1;
 }
