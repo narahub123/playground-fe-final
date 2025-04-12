@@ -14,9 +14,10 @@ import Post, {
   MoreDropdown,
 } from "./ui";
 import { PostContext, PostContextProvider } from "./context";
-import { IPostContext, IRect } from "./types";
+import { IPostContext, IRect, MoreOptionType } from "./types";
 import { findFirstReposter, convertToLocalTime } from "./utils";
 import { usePostContext, useRelativeTime } from "./hooks";
+import { post_lang, moreOptions } from "./data";
 
 export {
   // ui
@@ -39,6 +40,10 @@ export {
   PostContext,
   PostContextProvider,
 
+  // data
+  post_lang,
+  moreOptions,
+
   // utils
   findFirstReposter,
   convertToLocalTime,
@@ -49,4 +54,4 @@ export {
 };
 
 // types
-export type { IPostContext, IRect };
+export type { IPostContext, IRect, MoreOptionType };

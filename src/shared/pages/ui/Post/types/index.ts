@@ -9,4 +9,14 @@ interface IRect {
   right?: number;
 }
 
-export type { IPostContext, IRect };
+type MoreOptionType =
+  | "following"
+  | "list"
+  | "mute"
+  | "block"
+  | "view"
+  | "embed"
+  | "report"
+  | "groupNote";
+
+export type { IPostContext, IRect, MoreOptionType };
