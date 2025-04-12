@@ -6,6 +6,7 @@ import {
   MoreOptionIcon,
   MoreOptionType,
   usePostContext,
+  useUserRelationStatus,
 } from "@shared/pages/ui/Post";
 
 interface MoreOptionProps {
@@ -26,7 +27,16 @@ const MoreOption = ({
   const { author } = usePostContext();
   const { userId } = author;
 
-  const toggle = true;
+  const { isFollowing, isMuting, isBlocking } = useUserRelationStatus();
+
+  const toggle =
+    option === "following"
+      ? isFollowing(userId)
+      : option === "mute"
+      ? isMuting(userId)
+      : option === "block"
+      ? isBlocking(userId)
+      : undefined;
 
   return (
     <button className={classNames} type="button" disabled={disabled}>

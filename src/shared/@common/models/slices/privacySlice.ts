@@ -25,8 +25,8 @@ interface PrivacyState {
   interests: string[];
 
   // 뮤트 및 차단
-  blockedAccounts: [];
-  mutedAccounts: [];
+  blockedUsers: string[];
+  mutedUsers: string[];
   mutedWords: string[];
   muteSettings: {
     isHomeFeedMuted: boolean;
@@ -73,8 +73,8 @@ const initialState: PrivacyState = {
   interests: [],
 
   // 뮤트 및 차단
-  blockedAccounts: [],
-  mutedAccounts: [],
+  blockedUsers: [],
+  mutedUsers: [],
   mutedWords: [],
   muteSettings: {
     isHomeFeedMuted: false,

@@ -48,7 +48,11 @@ import {
 
 import { getSecurity } from "./securitySelectors";
 
-import { getPrivacy } from "./privacySelectors";
+import {
+  getPrivacy,
+  selectBlockedUsers,
+  selectMutedUsers,
+} from "./privacySelectors";
 
 import { getNotification } from "./notificationSelectors";
 
@@ -105,6 +109,8 @@ export {
 
   // privacy
   getPrivacy,
+  selectBlockedUsers,
+  selectMutedUsers,
 
   // notification
   getNotification,

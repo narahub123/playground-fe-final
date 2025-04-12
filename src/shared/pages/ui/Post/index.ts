@@ -18,7 +18,11 @@ import Post, {
 import { PostContext, PostContextProvider } from "./context";
 import { IPostContext, IRect, MoreOptionType } from "./types";
 import { findFirstReposter, convertToLocalTime } from "./utils";
-import { usePostContext, useRelativeTime } from "./hooks";
+import {
+  usePostContext,
+  useRelativeTime,
+  useUserRelationStatus,
+} from "./hooks";
 import { post_lang, moreOptions } from "./data";
 
 export {
@@ -55,6 +59,7 @@ export {
   // hooks
   usePostContext,
   useRelativeTime,
+  useUserRelationStatus,
 };
 
 // types

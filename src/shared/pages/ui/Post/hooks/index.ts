@@ -1,4 +1,5 @@
 import usePostContext from "./usePostContext";
 import useRelativeTime from "./useRelativeTime";
+import useUserRelationStatus from "./useUserRelationStatus";
 
-export { usePostContext, useRelativeTime };
+export { usePostContext, useRelativeTime, useUserRelationStatus };
