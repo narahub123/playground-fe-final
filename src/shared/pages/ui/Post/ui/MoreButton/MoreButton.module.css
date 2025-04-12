@@ -1,7 +1,11 @@
-.more__button {
+.more__button__wrapper {
   position: absolute;
   top: -5px;
   right: 0;
+}
+
+.more__button {
+  opacity: 1;
 }
 
 .more__button[data-title]::after {

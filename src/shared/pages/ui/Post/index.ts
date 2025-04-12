@@ -12,7 +12,7 @@ import Post, {
   MoreButton,
 } from "./ui";
 import { PostContext, PostContextProvider } from "./context";
-import { IPostContext } from "./types";
+import { IPostContext, IRect } from "./types";
 import { findFirstReposter, convertToLocalTime } from "./utils";
 import { usePostContext, useRelativeTime } from "./hooks";
 
@@ -45,4 +45,4 @@ export {
 };
 
 // types
-export type { IPostContext };
+export type { IPostContext, IRect };
