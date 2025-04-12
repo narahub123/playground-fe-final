@@ -1,7 +1,7 @@
 import styles from "./MoreMenu.module.css";
 import { joinClassNames } from "@shared/@common/utils";
 import { useEffect, useRef, useState } from "react";
-import { IRect, MoreButton } from "@shared/pages/ui/Post";
+import { IRect, MoreButton, MoreDropdown } from "@shared/pages/ui/Post";
 
 interface MoreMenuProps {
   className?: string;
@@ -11,7 +11,7 @@ const MoreMenu = ({ className }: MoreMenuProps) => {
   const classNames = joinClassNames([styles["more__menu"], className]);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [isOpen, setIsOpen] = useState(false);
-  const [rect, setRect] = useState<IRect>();
+  const [rect, setRect] = useState<IRect>({});
 
   // 드롭다운 위치 지정
   useEffect(() => {
@@ -21,7 +21,9 @@ const MoreMenu = ({ className }: MoreMenuProps) => {
 
       const { top, bottom, left, right } = button.getBoundingClientRect();
 
-      setRect({ top, bottom, left, right });
+      const innerWidth = window.innerWidth;
+
+      setRect({ top, bottom, left, right: innerWidth - right });
     };
 
     getButtonPosition();
@@ -49,6 +51,12 @@ const MoreMenu = ({ className }: MoreMenuProps) => {
   return (
     <div className={classNames}>
       <MoreButton ref={buttonRef} onClick={onOpen} />
+      <MoreDropdown
+        isOpen={isOpen}
+        onClose={onClose}
+        top={rect.top}
+        right={rect.right}
+      />
     </div>
   );
 };

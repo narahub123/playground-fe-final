@@ -11,6 +11,7 @@ import Post, {
   LineConnector,
   MoreMenu,
   MoreButton,
+  MoreDropdown,
 } from "./ui";
 import { PostContext, PostContextProvider } from "./context";
 import { IPostContext, IRect } from "./types";
@@ -32,6 +33,7 @@ export {
   LineConnector,
   MoreMenu,
   MoreButton,
+  MoreDropdown,
 
   // context
   PostContext,

@@ -19,6 +19,7 @@ import RepostIcon from "./RepostIcon/RepostIcon";
 import LineConnector from "./LineConnector/LineConnector";
 import MoreMenu from "./MoreMenu/MoreMenu";
 import MoreButton from "./MoreButton/MoreButton";
+import MoreDropdown from "./MoreDropdown/MoreDropdown";
 
 const Post = Object.assign(PostContainer, {
   Content: PostContent,
@@ -45,4 +46,5 @@ export {
   LineConnector,
   MoreMenu,
   MoreButton,
+  MoreDropdown,
 };
