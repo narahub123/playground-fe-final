@@ -2,7 +2,11 @@ import styles from "./MoreOption.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Text } from "@shared/@common/ui/components";
 import { joinClassNames } from "@shared/@common/utils";
-import { MoreOptionType, usePostContext } from "@shared/pages/ui/Post";
+import {
+  MoreOptionIcon,
+  MoreOptionType,
+  usePostContext,
+} from "@shared/pages/ui/Post";
 
 interface MoreOptionProps {
   className?: string;
@@ -26,7 +30,8 @@ const MoreOption = ({
 
   return (
     <button className={classNames} type="button" disabled={disabled}>
-      아이콘 <Text>{text(option, userId, toggle)}</Text>
+      <MoreOptionIcon option={option} toggle={toggle} />
+      <Text>{text(option, userId, toggle)}</Text>
     </button>
   );
 };

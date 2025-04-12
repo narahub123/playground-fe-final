@@ -1,0 +1,12 @@
+.more__option__icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 0.75rem;
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
