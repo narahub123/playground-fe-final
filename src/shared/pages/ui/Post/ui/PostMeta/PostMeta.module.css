@@ -6,6 +6,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 
 .info {
@@ -26,6 +27,18 @@
 }
 
 .username__wrapper:hover .badge {
+  text-decoration: none;
+}
+
+.username__wrapper:focus-visible {
+  outline: none;
+}
+
+.username__wrapper:focus-visible .username {
+  text-decoration: underline;
+}
+
+.username__wrapper:focus-visible .badge {
   text-decoration: none;
 }
 
@@ -78,4 +91,14 @@
 
 .time:hover {
   text-decoration: underline;
+}
+
+.time:focus-visible {
+  text-decoration: underline;
+  outline: none;
+}
+
+.time[data-title]:focus::after {
+  opacity: 1;
+  transition-delay: 0.1s;
 }

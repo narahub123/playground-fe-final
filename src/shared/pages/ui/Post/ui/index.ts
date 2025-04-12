@@ -17,6 +17,7 @@ import PostStats from "./PostStats/PostStats";
 import PostActions from "./PostActions/PostActions";
 import RepostIcon from "./RepostIcon/RepostIcon";
 import LineConnector from "./LineConnector/LineConnector";
+import MoreButton from "./MoreButton/MoreButton";
 
 const Post = Object.assign(PostContainer, {
   Content: PostContent,
@@ -41,4 +42,5 @@ export {
   PostActions,
   RepostIcon,
   LineConnector,
+  MoreButton,
 };

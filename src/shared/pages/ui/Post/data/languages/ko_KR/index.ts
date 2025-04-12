@@ -7,6 +7,9 @@ const post_kr = {
     min: "분",
     hour: "시간",
   },
+  MoreButton: {
+    title: "더 보기",
+  },
 };
 
 export default post_kr;

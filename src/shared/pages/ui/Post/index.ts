@@ -9,6 +9,7 @@ import Post, {
   PostActions,
   RepostIcon,
   LineConnector,
+  MoreButton,
 } from "./ui";
 import { PostContext, PostContextProvider } from "./context";
 import { IPostContext } from "./types";
@@ -28,6 +29,7 @@ export {
   PostActions,
   RepostIcon,
   LineConnector,
+  MoreButton,
 
   // context
   PostContext,

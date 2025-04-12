@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 import { Text } from "@shared/@common/ui/components";
 import {
   convertToLocalTime,
+  MoreButton,
   usePostContext,
   useRelativeTime,
 } from "@shared/pages/ui/Post";
-import { IoIosMore } from "react-icons/io";
 
 interface PostMetaProps {
   className?: string;
@@ -43,7 +43,7 @@ const PostMeta = ({ className }: PostMetaProps) => {
           </div>
         </div>
         <div className={styles["button"]}>
-          <IoIosMore />
+          <MoreButton />
         </div>
       </div>
     </div>
