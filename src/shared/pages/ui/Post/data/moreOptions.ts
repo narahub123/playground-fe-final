@@ -1,4 +1,5 @@
 import { MoreOptionType } from "@shared/pages/ui/Post";
+import { MoreMyOptionType } from "../types";
 
 const moreOptions: MoreOptionType[] = [
   "following",
@@ -11,4 +12,15 @@ const moreOptions: MoreOptionType[] = [
   "groupNote",
 ];
 
-export { moreOptions };
+const moreMyOptions: MoreMyOptionType[] = [
+  "delete",
+  "main",
+  "list",
+  "replyOption",
+  "view",
+  "embed",
+  "analytics",
+  "groupNote",
+];
+
+export { moreOptions, moreMyOptions };

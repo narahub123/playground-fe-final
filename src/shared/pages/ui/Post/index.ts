@@ -16,14 +16,14 @@ import Post, {
   MoreOptionIcon,
 } from "./ui";
 import { PostContext, PostContextProvider } from "./context";
-import { IPostContext, IRect, MoreOptionType } from "./types";
+import { IPostContext, IRect, MoreOptionType, MoreMyOptionType } from "./types";
 import { findFirstReposter, convertToLocalTime } from "./utils";
 import {
   usePostContext,
   useRelativeTime,
   useUserRelationStatus,
 } from "./hooks";
-import { post_lang, moreOptions } from "./data";
+import { post_lang, moreOptions, moreMyOptions } from "./data";
 
 export {
   // ui
@@ -51,6 +51,7 @@ export {
   // data
   post_lang,
   moreOptions,
+  moreMyOptions,
 
   // utils
   findFirstReposter,
@@ -63,4 +64,4 @@ export {
 };
 
 // types
-export type { IPostContext, IRect, MoreOptionType };
+export type { IPostContext, IRect, MoreOptionType, MoreMyOptionType };

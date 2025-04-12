@@ -1,4 +1,4 @@
-import { MoreOptionType } from "../../../types";
+import { MoreMyOptionType, MoreOptionType } from "../../../types";
 
 const post_kr = {
   RepostInfo: {
@@ -13,7 +13,11 @@ const post_kr = {
     title: "더 보기",
   },
   MoreOption: {
-    text: (option: MoreOptionType, userId?: string, toggle?: boolean) => {
+    text: (
+      option: MoreOptionType | MoreMyOptionType,
+      userId?: string,
+      toggle?: boolean
+    ) => {
       switch (option) {
         case "following":
           return `@${userId} 님 ${toggle ? "언팔로우" : "팔로우"}하기`;
@@ -31,6 +35,14 @@ const post_kr = {
           return `게시물 신고하기`;
         case "groupNote":
           return `그룹 노트 요청하기`;
+        case "delete":
+          return `삭제하기`;
+        case "main":
+          return `내 프로필 메인에 올리기`;
+        case "replyOption":
+          return `답글을 달 수 있는 사람변경하기`;
+        case "analytics":
+          return `게시물 애널리틱스 조회`;
       }
     },
   },

@@ -1,5 +1,11 @@
 import { Dropdown } from "@shared/@common/ui/components";
-import { MoreOption, moreOptions } from "@shared/pages/ui/Post";
+import {
+  moreMyOptions,
+  MoreOption,
+  moreOptions,
+  usePostContext,
+  useUserRelationStatus,
+} from "@shared/pages/ui/Post";
 
 interface MoreDropdownProps {
   isOpen: boolean;
@@ -9,6 +15,11 @@ interface MoreDropdownProps {
 }
 
 const MoreDropdown = ({ isOpen, onClose, top, right }: MoreDropdownProps) => {
+  const { isMyself } = useUserRelationStatus();
+
+  const { author } = usePostContext();
+  const { userId } = author;
+
   return (
     <Dropdown
       name="more"
@@ -17,7 +28,7 @@ const MoreDropdown = ({ isOpen, onClose, top, right }: MoreDropdownProps) => {
       top={top}
       right={right}
     >
-      {moreOptions.map((option) => (
+      {(isMyself(userId) ? moreMyOptions : moreOptions).map((option) => (
         <MoreOption option={option} key={option} />
       ))}
     </Dropdown>

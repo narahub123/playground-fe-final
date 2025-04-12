@@ -3,6 +3,7 @@ import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Text } from "@shared/@common/ui/components";
 import { joinClassNames } from "@shared/@common/utils";
 import {
+  MoreMyOptionType,
   MoreOptionIcon,
   MoreOptionType,
   usePostContext,
@@ -12,7 +13,7 @@ import {
 interface MoreOptionProps {
   className?: string;
   disabled?: boolean;
-  option: MoreOptionType;
+  option: MoreOptionType | MoreMyOptionType;
 }
 
 const MoreOption = ({
@@ -22,7 +23,11 @@ const MoreOption = ({
 }: MoreOptionProps) => {
   // 언어 설정
   const { text } = useLanguageContent(["post", "MoreOption"]);
-  const classNames = joinClassNames([styles["more__option"], className]);
+  const classNames = joinClassNames([
+    styles["more__option"],
+    option === "delete" ? styles["delete"] : "",
+    className,
+  ]);
 
   const { author } = usePostContext();
   const { userId } = author;
@@ -64,6 +69,18 @@ const MoreOption = ({
         break;
       case "groupNote":
         // communityNote 모달을 엶
+        break;
+      case "delete":
+        // 현재 게시물 삭제
+        break;
+      case "main":
+        // 현재 게시물를 프로필 페이지의 상태에 배치
+        break;
+      case "replyOption":
+        // 댓글 작성 옵션 드롭 다운이 열림
+        break;
+      case "analytics":
+        // 게시물 애너리틱스 드롭다운 엶
         break;
     }
   };

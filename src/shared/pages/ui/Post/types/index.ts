@@ -19,4 +19,14 @@ type MoreOptionType =
   | "report"
   | "groupNote";
 
-export type { IPostContext, IRect, MoreOptionType };
+type MoreMyOptionType =
+  | "delete"
+  | "main"
+  | "list"
+  | "replyOption"
+  | "view"
+  | "embed"
+  | "analytics"
+  | "groupNote";
+
+export type { IPostContext, IRect, MoreOptionType, MoreMyOptionType };
