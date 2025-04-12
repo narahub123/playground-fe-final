@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Text } from "@shared/@common/ui/components";
 import {
   convertToLocalTime,
-  MoreButton,
+  MoreMenu,
   usePostContext,
   useRelativeTime,
 } from "@shared/pages/ui/Post";
@@ -43,7 +43,7 @@ const PostMeta = ({ className }: PostMetaProps) => {
           </div>
         </div>
         <div className={styles["button"]}>
-          <MoreButton />
+          <MoreMenu />
         </div>
       </div>
     </div>
