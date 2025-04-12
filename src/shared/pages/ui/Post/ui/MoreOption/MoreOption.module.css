@@ -1,0 +1,14 @@
+.more__option {
+  padding: 0.75rem 1rem;
+  display: flex;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.more__option:hover {
+  background-color: #f5f5f5;
+}
+
+.more__option:focus-visible {
+  background-color: #f5f5f5;
+}

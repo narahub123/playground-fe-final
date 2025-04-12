@@ -20,6 +20,7 @@ import LineConnector from "./LineConnector/LineConnector";
 import MoreMenu from "./MoreMenu/MoreMenu";
 import MoreButton from "./MoreButton/MoreButton";
 import MoreDropdown from "./MoreDropdown/MoreDropdown";
+import MoreOption from "./MoreOption/MoreOption";
 
 const Post = Object.assign(PostContainer, {
   Content: PostContent,
@@ -47,4 +48,5 @@ export {
   MoreMenu,
   MoreButton,
   MoreDropdown,
+  MoreOption,
 };

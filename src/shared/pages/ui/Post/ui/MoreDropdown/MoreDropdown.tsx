@@ -1,4 +1,5 @@
 import { Dropdown } from "@shared/@common/ui/components";
+import { MoreOption, moreOptions } from "@shared/pages/ui/Post";
 
 interface MoreDropdownProps {
   isOpen: boolean;
@@ -16,7 +17,9 @@ const MoreDropdown = ({ isOpen, onClose, top, right }: MoreDropdownProps) => {
       top={top}
       right={right}
     >
-      MoreDropdown
+      {moreOptions.map((option) => (
+        <MoreOption option={option} key={option} />
+      ))}
     </Dropdown>
   );
 };

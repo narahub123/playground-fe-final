@@ -12,6 +12,7 @@ import Post, {
   MoreMenu,
   MoreButton,
   MoreDropdown,
+  MoreOption,
 } from "./ui";
 import { PostContext, PostContextProvider } from "./context";
 import { IPostContext, IRect, MoreOptionType } from "./types";
@@ -35,6 +36,7 @@ export {
   MoreMenu,
   MoreButton,
   MoreDropdown,
+  MoreOption,
 
   // context
   PostContext,
