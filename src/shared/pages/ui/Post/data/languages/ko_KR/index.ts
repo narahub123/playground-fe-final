@@ -61,6 +61,16 @@ const post_kr = {
       unblock: "차단해제",
     },
   },
+  CoFollowings: {
+    text: (followings: string[]) => {
+      const presentors = followings
+        .filter((_, idx) => idx < 3)
+        .map((f) => `${f} 님`)
+        .join(", ");
+
+      return `${presentors} 외 ${followings.length}명이 팔로우했습니다.`;
+    },
+  },
 };
 
 export default post_kr;

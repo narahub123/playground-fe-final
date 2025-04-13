@@ -3,6 +3,7 @@ import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
 import { Dropdown, ProfileImage, Text } from "@shared/@common/ui/components";
 import {
+  CoFollowings,
   formatNumber,
   StatusButton,
   usePostContext,
@@ -62,21 +63,20 @@ const ProfileDropdown = ({}: ProfileDropdownProps) => {
             <em className={styles["emphasis"]}>{`${formatNumber(
               followings.length
             )}`}</em>
-            <span>{` ${stats.followings}`}</span>
+            <span className={styles["unit"]}>{` ${stats.followings}`}</span>
           </Text>
           <Text className={styles["followers"]}>
             <em className={styles["emphasis"]}>{`${formatNumber(
               followers.length
             )}`}</em>
-            <span>{` ${stats.followers}`}</span>
+            <span className={styles["unit"]}>{` ${stats.followers}`}</span>
           </Text>
         </div>
         {/* 본인의 계정의 경우 보이지 않음 */}
-        {!isMyself(userId) && (
-          <div className={styles["co-followers"]}>
-            내가 팔로우한 사람 중 이 계정을 팔로우한 사람 표시
-          </div>
-        )}
+        {
+          // !isMyself(userId) &&
+          <CoFollowings />
+        }
       </div>
     </Dropdown>
   );

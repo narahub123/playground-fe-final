@@ -1,0 +1,16 @@
+.cofollowings {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.images {
+  position: relative;
+  min-width: 2rem;
+  height: 2rem;
+}
+
+.text {
+  color: #555;
+  font-size: 0.9rem;
+}

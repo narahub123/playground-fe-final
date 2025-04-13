@@ -16,6 +16,7 @@ import Post, {
   MoreOptionIcon,
   ProfileDropdown,
   StatusButton,
+  CoFollowings,
 } from "./ui";
 import { PostContext, PostContextProvider } from "./context";
 import { IPostContext, IRect, MoreOptionType, MoreMyOptionType } from "./types";
@@ -47,6 +48,7 @@ export {
   MoreOptionIcon,
   ProfileDropdown,
   StatusButton,
+  CoFollowings,
 
   // context
   PostContext,
