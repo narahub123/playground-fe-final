@@ -46,6 +46,16 @@ const post_kr = {
       }
     },
   },
+  ProfileDropdown: {
+    btn: {
+      follow: "팔로우",
+      following: "팔로잉",
+    },
+    stats: {
+      followings: "팔로우 중",
+      followers: "팔로워",
+    },
+  },
 };
 
 export default post_kr;

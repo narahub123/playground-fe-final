@@ -1,0 +1,40 @@
+.profile__dropdown {
+  padding: 1rem;
+  width: 300px;
+}
+
+.image__section {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
+
+.button {
+  padding: 0.5rem 1rem;
+}
+
+.info {
+  margin-top: 0.5rem;
+}
+
+.username {
+  font-weight: bold;
+}
+
+.userId {
+  color: #777;
+}
+
+.bio {
+  margin: 0.75rem 0;
+}
+
+.stats {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.co-followers {
+  margin-top: 0.75rem;
+}

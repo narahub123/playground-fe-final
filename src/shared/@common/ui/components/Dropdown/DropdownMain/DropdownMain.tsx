@@ -12,6 +12,7 @@ interface DropdownMainProps {
   left?: number;
   right?: number;
   className?: string;
+  zIndex?: number;
 }
 
 const DropdownMain = ({
@@ -23,6 +24,7 @@ const DropdownMain = ({
   left,
   right,
   className,
+  zIndex,
 }: DropdownMainProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const classNames = joinClassNames([styles["dropdown"], className]);
@@ -36,7 +38,7 @@ const DropdownMain = ({
   return (
     <div
       className={classNames}
-      style={{ top, bottom, left, right }}
+      style={{ top, bottom, left, right, zIndex }}
       ref={containerRef}
       onClick={(e) => e.stopPropagation()}
       onKeyDown={(e) => {

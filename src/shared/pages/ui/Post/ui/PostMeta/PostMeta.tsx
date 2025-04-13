@@ -5,6 +5,7 @@ import { Text } from "@shared/@common/ui/components";
 import {
   convertToLocalTime,
   MoreMenu,
+  ProfileDropdown,
   usePostContext,
   useRelativeTime,
 } from "@shared/pages/ui/Post";
@@ -26,6 +27,7 @@ const PostMeta = ({ className }: PostMetaProps) => {
         <div className={styles["info"]}>
           <Link to={`/${userId}`} className={styles["username__wrapper"]}>
             <Text className={styles["username"]}>{username}</Text>
+            <ProfileDropdown />
             <div className={styles["badge"]}>배지</div>
           </Link>
           <div className={styles["rest__wrapper"]}>

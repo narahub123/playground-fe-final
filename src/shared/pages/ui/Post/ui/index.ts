@@ -22,6 +22,7 @@ import MoreButton from "./MoreButton/MoreButton";
 import MoreDropdown from "./MoreDropdown/MoreDropdown";
 import MoreOption from "./MoreOption/MoreOption";
 import MoreOptionIcon from "./MoreOptionIcon/MoreOptionIcon";
+import ProfileDropdown from "./ProfileDropdown/ProfileDropdown";
 
 const Post = Object.assign(PostContainer, {
   Content: PostContent,
@@ -51,4 +52,5 @@ export {
   MoreDropdown,
   MoreOption,
   MoreOptionIcon,
+  ProfileDropdown,
 };

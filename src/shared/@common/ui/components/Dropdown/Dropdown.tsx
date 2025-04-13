@@ -13,6 +13,7 @@ interface DropdownProps {
   left?: number;
   right?: number;
   className?: string;
+  zIndex?: number;
   disabled?: boolean;
 }
 
@@ -28,6 +29,7 @@ const Dropdown = ({
   right,
   className,
   disabled = false,
+  zIndex,
 }: DropdownProps) => {
   // 드롭다운이 닫힌 경우 실행 안함
   if (!isOpen || disabled) return null;
@@ -42,6 +44,7 @@ const Dropdown = ({
         right={right}
         className={className}
         lastClickedRef={lastClickedRef}
+        zIndex={zIndex}
       >
         {children}
       </DropdownMain>
