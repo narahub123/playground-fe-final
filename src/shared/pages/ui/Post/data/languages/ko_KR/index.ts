@@ -47,13 +47,18 @@ const post_kr = {
     },
   },
   ProfileDropdown: {
-    btn: {
-      follow: "팔로우",
-      following: "팔로잉",
-    },
     stats: {
       followings: "팔로우 중",
       followers: "팔로워",
+    },
+  },
+  StatusButton: {
+    text: {
+      follow: "팔로우",
+      following: "팔로잉",
+      unfollow: "언팔로우",
+      blocking: "차단 중",
+      unblock: "차단해제",
     },
   },
 };

@@ -1,31 +1,28 @@
 import styles from "./ProfileDropdown.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
-import {
-  Button,
-  Dropdown,
-  ProfileImage,
-  Text,
-} from "@shared/@common/ui/components";
+import { Dropdown, ProfileImage, Text } from "@shared/@common/ui/components";
 import {
   formatNumber,
+  StatusButton,
   usePostContext,
   useUserRelationStatus,
 } from "@shared/pages/ui/Post";
+import { defaultProfileImage } from "@shared/@common/assets";
 
 interface ProfileDropdownProps {}
 
 const ProfileDropdown = ({}: ProfileDropdownProps) => {
   // 언어 설정
-  const { btn, stats } = useLanguageContent(["post", "ProfileDropdown"]);
+  const { stats } = useLanguageContent(["post", "ProfileDropdown"]);
   const classNames = joinClassNames([styles["profile__dropdown"]]);
 
   const { author } = usePostContext();
   const { profileImage, userId, username, intro, followings, followers } =
     author;
 
-  const { isMyself, isFollowing, isMuting, isBlocking } =
-    useUserRelationStatus();
+  const { isMyself } = useUserRelationStatus();
+
   return (
     <Dropdown
       name="profile"
@@ -37,18 +34,18 @@ const ProfileDropdown = ({}: ProfileDropdownProps) => {
     >
       <div className={classNames}>
         <div className={styles["image__section"]}>
-          <ProfileImage width={"4rem"} height={"4rem"} rounded="full" />
+          <ProfileImage
+            width={"4rem"}
+            height={"4rem"}
+            rounded="full"
+            src={profileImage || defaultProfileImage}
+          />
           {/* 본인의 계정의 경우 보이지 않음 */}
-          {!isMyself(userId) && (
-            <Button
-              isValid
-              onClick={() => {}}
-              rounded="2xl"
-              className={styles["button"]}
-            >
-              {isFollowing(userId) ? btn.following : btn.follow}
-            </Button>
-          )}
+
+          {
+            //   !isMyself(userId) &&
+            <StatusButton userId={userId} />
+          }
         </div>
         <div className={styles["info"]}>
           <Text className={styles["username"]}>{username}</Text>

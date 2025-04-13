@@ -9,10 +9,6 @@
   align-items: start;
 }
 
-.button {
-  padding: 0.5rem 1rem;
-}
-
 .info {
   margin-top: 0.5rem;
 }
@@ -41,4 +37,8 @@
 
 .emphasis {
   font-weight: bold;
+}
+
+.text__wrapper {
+  position: relative;
 }
