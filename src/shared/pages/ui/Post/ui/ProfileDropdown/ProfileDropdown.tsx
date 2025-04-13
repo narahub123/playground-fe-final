@@ -7,7 +7,11 @@ import {
   ProfileImage,
   Text,
 } from "@shared/@common/ui/components";
-import { usePostContext, useUserRelationStatus } from "@shared/pages/ui/Post";
+import {
+  formatNumber,
+  usePostContext,
+  useUserRelationStatus,
+} from "@shared/pages/ui/Post";
 
 interface ProfileDropdownProps {}
 
@@ -58,11 +62,15 @@ const ProfileDropdown = ({}: ProfileDropdownProps) => {
         )}
         <div className={styles["stats"]}>
           <Text className={styles["followings"]}>
-            <em className={styles["emphasis"]}>{`${followings.length}`}</em>
+            <em className={styles["emphasis"]}>{`${formatNumber(
+              followings.length
+            )}`}</em>
             <span>{` ${stats.followings}`}</span>
           </Text>
           <Text className={styles["followers"]}>
-            <em className={styles["emphasis"]}>{`${followers.length}`}</em>
+            <em className={styles["emphasis"]}>{`${formatNumber(
+              followers.length
+            )}`}</em>
             <span>{` ${stats.followers}`}</span>
           </Text>
         </div>

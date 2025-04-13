@@ -18,7 +18,7 @@ import Post, {
 } from "./ui";
 import { PostContext, PostContextProvider } from "./context";
 import { IPostContext, IRect, MoreOptionType, MoreMyOptionType } from "./types";
-import { findFirstReposter, convertToLocalTime } from "./utils";
+import { findFirstReposter, convertToLocalTime, formatNumber } from "./utils";
 import {
   usePostContext,
   useRelativeTime,
@@ -58,6 +58,7 @@ export {
   // utils
   findFirstReposter,
   convertToLocalTime,
+  formatNumber,
 
   // hooks
   usePostContext,
