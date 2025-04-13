@@ -17,7 +17,8 @@ const ProfileDropdown = ({}: ProfileDropdownProps) => {
   const classNames = joinClassNames([styles["profile__dropdown"]]);
 
   const { author } = usePostContext();
-  const { profileImage, userId, username } = author;
+  const { profileImage, userId, username, intro, followings, followers } =
+    author;
 
   const { isMyself, isFollowing, isMuting, isBlocking } =
     useUserRelationStatus();
@@ -33,33 +34,44 @@ const ProfileDropdown = ({}: ProfileDropdownProps) => {
       <div className={classNames}>
         <div className={styles["image__section"]}>
           <ProfileImage width={"4rem"} height={"4rem"} rounded="full" />
-          <Button
-            isValid
-            onClick={() => {}}
-            rounded="2xl"
-            className={styles["button"]}
-          >
-            {isFollowing(userId) ? btn.following : btn.follow}
-          </Button>
+          {/* 본인의 계정의 경우 보이지 않음 */}
+          {!isMyself(userId) && (
+            <Button
+              isValid
+              onClick={() => {}}
+              rounded="2xl"
+              className={styles["button"]}
+            >
+              {isFollowing(userId) ? btn.following : btn.follow}
+            </Button>
+          )}
         </div>
         <div className={styles["info"]}>
           <Text className={styles["username"]}>{username}</Text>
           <Text className={styles["userId"]}>{`@${userId}`}</Text>
         </div>
-        <div className={styles["bio"]}>
-          <Text className={styles["intro"]}>{`소개글`}</Text>
-        </div>
+        {/* 유저에 소개글이 없는 경우 표시 안됨 */}
+        {intro && (
+          <div className={styles["bio"]}>
+            <Text className={styles["intro"]}>{`소개글`}</Text>
+          </div>
+        )}
         <div className={styles["stats"]}>
-          <Text className={styles["followings"]}>{`${0} ${
-            stats.followings
-          }`}</Text>
-          <Text className={styles["followers"]}>{`${1} ${
-            stats.followers
-          }`}</Text>
+          <Text className={styles["followings"]}>
+            <em className={styles["emphasis"]}>{`${followings.length}`}</em>
+            <span>{` ${stats.followings}`}</span>
+          </Text>
+          <Text className={styles["followers"]}>
+            <em className={styles["emphasis"]}>{`${followers.length}`}</em>
+            <span>{` ${stats.followers}`}</span>
+          </Text>
         </div>
-        <div className={styles["co-followers"]}>
-          내가 팔로우한 사람 중 이 계정을 팔로우한 사람 표시
-        </div>
+        {/* 본인의 계정의 경우 보이지 않음 */}
+        {!isMyself(userId) && (
+          <div className={styles["co-followers"]}>
+            내가 팔로우한 사람 중 이 계정을 팔로우한 사람 표시
+          </div>
+        )}
       </div>
     </Dropdown>
   );
