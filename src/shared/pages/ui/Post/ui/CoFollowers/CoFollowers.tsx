@@ -1,7 +1,7 @@
 import { defaultProfileImage } from "@shared/@common/assets";
 import styles from "./CoFollowers.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
-import { ProfileImage } from "@shared/@common/ui/components";
+import { ProfileImage, Text } from "@shared/@common/ui/components";
 import { joinClassNames } from "@shared/@common/utils";
 import { useNavigate } from "react-router-dom";
 
@@ -31,14 +31,13 @@ const CoFollowers = ({ className, userId }: CoFollowersProps) => {
   };
 
   return (
-    <div className={classNames}>
+    <div className={classNames} onClick={handleClick}>
       <div
         className={styles["avatars"]}
         style={{
           width: `${2 + gap * (coFollowers.length - 1)}rem`,
           height: "2rem",
         }}
-        onClick={handleClick}
       >
         {coFollowers.map((follower, idx) => (
           <div
@@ -60,7 +59,7 @@ const CoFollowers = ({ className, userId }: CoFollowersProps) => {
         ))}
       </div>
       <div className={styles["text"]}>
-        {text(coFollowers.map((f) => f.username))}
+        <Text>{text(coFollowers.map((f) => f.username))}</Text>
       </div>
     </div>
   );

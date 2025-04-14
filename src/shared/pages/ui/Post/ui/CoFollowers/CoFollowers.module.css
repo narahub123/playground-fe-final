@@ -1,11 +1,16 @@
 .cofollowers {
   display: flex;
   align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.cofollowers:hover .text {
+  text-decoration: underline;
 }
 
 .avatars {
   position: relative;
-  cursor: pointer;
 }
 
 .wrapper {
