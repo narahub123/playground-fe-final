@@ -9,6 +9,10 @@
   align-items: start;
 }
 
+.image {
+  cursor: pointer;
+}
+
 .info {
   margin-top: 0.5rem;
 }
@@ -19,6 +23,7 @@
 
 .userId {
   color: #777;
+  cursor: pointer;
 }
 
 .bio {
@@ -42,4 +47,9 @@
 
 .text__wrapper {
   position: relative;
+}
+
+.link:focus-visible {
+  outline: none;
+  text-decoration: underline;
 }
