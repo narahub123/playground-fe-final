@@ -10,12 +10,15 @@ import {
   usePostContext,
   useRelativeTime,
 } from "@shared/pages/ui/Post";
+import { useRef } from "react";
 
 interface PostMetaProps {
   className?: string;
 }
 
 const PostMeta = ({ className }: PostMetaProps) => {
+  const usernameRef = useRef<HTMLAnchorElement>(null);
+  const userIdRef = useRef<HTMLAnchorElement>(null);
   const classNames = joinClassNames([styles["post__meta"], className]);
 
   const { _id, author, createdAt } = usePostContext();
@@ -23,22 +26,27 @@ const PostMeta = ({ className }: PostMetaProps) => {
 
   const convertToRelativeTime = useRelativeTime();
 
-  const { isOpen, handleMouseEnter, handleMouseLeave } = useHoverDropdown();
+  const { rect, isOpen, handleMouseEnter, handleMouseLeave, onClose } =
+    useHoverDropdown();
 
   return (
     <div className={classNames}>
       <ProfileDropdown
         isOpen={isOpen}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
+        onMouseEnter={() => handleMouseEnter()}
+        onMouseLeave={() => handleMouseLeave()}
+        top={rect.top}
+        left={rect.left}
+        onClose={onClose}
       />
       <div className={styles["wrapper"]}>
         <div className={styles["info"]}>
           <Link
             to={`/${userId}`}
             className={styles["username__wrapper"]}
-            onMouseEnter={handleMouseEnter}
+            onMouseEnter={() => handleMouseEnter(usernameRef)}
             onMouseLeave={handleMouseLeave}
+            ref={usernameRef}
           >
             <Text className={styles["username"]}>{username}</Text>
             <div className={styles["badge"]}>배지</div>
@@ -47,8 +55,9 @@ const PostMeta = ({ className }: PostMetaProps) => {
             <Link
               to={`/${userId}`}
               className={styles["userId"]}
-              onMouseEnter={handleMouseEnter}
+              onMouseEnter={() => handleMouseEnter(userIdRef)}
               onMouseLeave={handleMouseLeave}
+              ref={userIdRef}
             >
               <Text>{`@${userId}`}</Text>
             </Link>

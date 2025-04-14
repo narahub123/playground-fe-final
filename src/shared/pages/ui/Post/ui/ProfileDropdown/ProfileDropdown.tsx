@@ -15,14 +15,20 @@ import { Link } from "react-router-dom";
 
 interface ProfileDropdownProps {
   isOpen: boolean;
+  onClose: () => void;
   onMouseEnter: () => void;
   onMouseLeave: () => void;
+  top?: number;
+  left?: number;
 }
 
 const ProfileDropdown = ({
   isOpen,
+  onClose,
   onMouseEnter,
   onMouseLeave,
+  top,
+  left,
 }: ProfileDropdownProps) => {
   const navigate = useNavigate();
   // 언어 설정
@@ -35,15 +41,13 @@ const ProfileDropdown = ({
 
   const { isMyself } = useUserRelationStatus();
 
-  
-
   return (
     <Dropdown
       name="profile"
       isOpen={isOpen}
-      onClose={() => {}}
-      top={10}
-      left={10}
+      onClose={onClose}
+      top={top}
+      left={left}
       zIndex={5}
     >
       <div

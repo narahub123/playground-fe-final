@@ -9,6 +9,7 @@ import {
   usePostContext,
 } from "@shared/pages/ui/Post";
 import { defaultProfileImage } from "@shared/@common/assets";
+import { useRef } from "react";
 
 interface PostLeftProps {
   className?: string;
@@ -16,20 +17,25 @@ interface PostLeftProps {
 
 const PostLeft = ({ className }: PostLeftProps) => {
   const navigate = useNavigate();
+  const containerRef = useRef<HTMLDivElement>(null);
   const classNames = joinClassNames([styles["post__left"], className]);
   const { author } = usePostContext();
   const { userId, profileImage } = author;
 
   const isShowingConnector = false;
 
-  const { isOpen, handleMouseEnter, handleMouseLeave } = useHoverDropdown();
+  const { rect, isOpen, onClose, handleMouseEnter, handleMouseLeave } =
+    useHoverDropdown();
 
   return (
-    <div className={classNames}>
+    <div className={classNames} ref={containerRef}>
       <ProfileDropdown
         isOpen={isOpen}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
+        onMouseEnter={() => handleMouseEnter()}
+        onMouseLeave={() => handleMouseLeave()}
+        top={rect.top}
+        left={rect.left}
+        onClose={onClose}
       />
       <ProfileImage
         width={"40px"}
@@ -39,7 +45,7 @@ const PostLeft = ({ className }: PostLeftProps) => {
         }}
         src={profileImage || defaultProfileImage}
         className={styles["profile_image"]}
-        onMouseEnter={handleMouseEnter}
+        onMouseEnter={() => handleMouseEnter(containerRef)}
         onMouseLeave={handleMouseLeave}
       />
       {isShowingConnector && <ProfileConnector />}
