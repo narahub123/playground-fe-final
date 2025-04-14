@@ -13,9 +13,17 @@ import { defaultProfileImage } from "@shared/@common/assets";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-interface ProfileDropdownProps {}
+interface ProfileDropdownProps {
+  isOpen: boolean;
+  onMouseEnter: () => void;
+  onMouseLeave: () => void;
+}
 
-const ProfileDropdown = ({}: ProfileDropdownProps) => {
+const ProfileDropdown = ({
+  isOpen,
+  onMouseEnter,
+  onMouseLeave,
+}: ProfileDropdownProps) => {
   const navigate = useNavigate();
   // 언어 설정
   const { stats } = useLanguageContent(["post", "ProfileDropdown"]);
@@ -27,16 +35,22 @@ const ProfileDropdown = ({}: ProfileDropdownProps) => {
 
   const { isMyself } = useUserRelationStatus();
 
+  
+
   return (
     <Dropdown
       name="profile"
-      isOpen={true}
+      isOpen={isOpen}
       onClose={() => {}}
       top={10}
       left={10}
       zIndex={5}
     >
-      <div className={classNames}>
+      <div
+        className={classNames}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
+      >
         <div className={styles["image__section"]}>
           <ProfileImage
             width={"4rem"}
@@ -47,7 +61,6 @@ const ProfileDropdown = ({}: ProfileDropdownProps) => {
             onClick={() => navigate(`/${userId}`)}
           />
           {/* 본인의 계정의 경우 보이지 않음 */}
-
           {
             //   !isMyself(userId) &&
             <StatusButton userId={userId} />

@@ -25,6 +25,7 @@ import {
   usePostContext,
   useRelativeTime,
   useUserRelationStatus,
+  useHoverDropdown,
 } from "./hooks";
 import { post_lang, moreOptions, moreMyOptions } from "./data";
 
@@ -68,6 +69,7 @@ export {
   usePostContext,
   useRelativeTime,
   useUserRelationStatus,
+  useHoverDropdown,
 };
 
 // types

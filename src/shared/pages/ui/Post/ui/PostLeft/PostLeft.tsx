@@ -2,7 +2,12 @@ import styles from "./PostLeft.module.css";
 import { joinClassNames } from "@shared/@common/utils";
 import { ProfileImage } from "@shared/@common/ui/components";
 import { useNavigate } from "react-router-dom";
-import { ProfileConnector, usePostContext } from "@shared/pages/ui/Post";
+import {
+  ProfileConnector,
+  ProfileDropdown,
+  useHoverDropdown,
+  usePostContext,
+} from "@shared/pages/ui/Post";
 import { defaultProfileImage } from "@shared/@common/assets";
 
 interface PostLeftProps {
@@ -17,8 +22,15 @@ const PostLeft = ({ className }: PostLeftProps) => {
 
   const isShowingConnector = false;
 
+  const { isOpen, handleMouseEnter, handleMouseLeave } = useHoverDropdown();
+
   return (
     <div className={classNames}>
+      <ProfileDropdown
+        isOpen={isOpen}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      />
       <ProfileImage
         width={"40px"}
         rounded="full"
@@ -27,6 +39,8 @@ const PostLeft = ({ className }: PostLeftProps) => {
         }}
         src={profileImage || defaultProfileImage}
         className={styles["profile_image"]}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       />
       {isShowingConnector && <ProfileConnector />}
     </div>

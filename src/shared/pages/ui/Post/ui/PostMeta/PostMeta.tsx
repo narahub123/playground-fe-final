@@ -6,6 +6,7 @@ import {
   convertToLocalTime,
   MoreMenu,
   ProfileDropdown,
+  useHoverDropdown,
   usePostContext,
   useRelativeTime,
 } from "@shared/pages/ui/Post";
@@ -21,17 +22,34 @@ const PostMeta = ({ className }: PostMetaProps) => {
   const { username, userId } = author;
 
   const convertToRelativeTime = useRelativeTime();
+
+  const { isOpen, handleMouseEnter, handleMouseLeave } = useHoverDropdown();
+
   return (
     <div className={classNames}>
+      <ProfileDropdown
+        isOpen={isOpen}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      />
       <div className={styles["wrapper"]}>
         <div className={styles["info"]}>
-          <Link to={`/${userId}`} className={styles["username__wrapper"]}>
+          <Link
+            to={`/${userId}`}
+            className={styles["username__wrapper"]}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
             <Text className={styles["username"]}>{username}</Text>
-            <ProfileDropdown />
             <div className={styles["badge"]}>배지</div>
           </Link>
           <div className={styles["rest__wrapper"]}>
-            <Link to={`/${userId}`} className={styles["userId"]}>
+            <Link
+              to={`/${userId}`}
+              className={styles["userId"]}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
               <Text>{`@${userId}`}</Text>
             </Link>
             <Text>·</Text>
