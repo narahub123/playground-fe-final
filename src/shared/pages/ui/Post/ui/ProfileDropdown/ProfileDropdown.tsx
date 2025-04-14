@@ -3,7 +3,6 @@ import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
 import { Dropdown, ProfileImage, Text } from "@shared/@common/ui/components";
 import {
-  CoFollowings,
   formatNumber,
   StatusButton,
   usePostContext,
@@ -75,7 +74,6 @@ const ProfileDropdown = ({}: ProfileDropdownProps) => {
         {/* 본인의 계정의 경우 보이지 않음 */}
         {
           // !isMyself(userId) &&
-          <CoFollowings userId={userId} />
         }
       </div>
     </Dropdown>
