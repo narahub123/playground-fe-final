@@ -4,7 +4,7 @@ import { joinClassNames } from "@shared/@common/utils";
 import { fetchWithAuth } from "@shared/pages/utils";
 import { useSelector } from "react-redux";
 import { selectPostEditor } from "../../models/selectors";
-import { convertDurationToDate, convertVoteFormat } from "../../utils";
+import { convertVoteFormat } from "../../utils";
 import { useToast } from "@shared/@common/ui/components/Toast/hooks";
 import { ErrorTitleCodeType } from "@shared/@common/types";
 

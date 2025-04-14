@@ -16,7 +16,7 @@ const useRelativeTime = () => {
       return `${now}`;
     } else if (60 <= seconds && seconds < 3600) {
       // 1분 이상 1시간 미만인 경우
-      return `${Math.floor(timeGap / 60)}${min}`;
+      return `${Math.floor(seconds / 60)}${min}`;
     } else if (3600 <= seconds && seconds < 86400) {
       // 1시간 이상 1일 미만인 경우
       return `${Math.floor(seconds / 60 / 60)}${hour}`;
