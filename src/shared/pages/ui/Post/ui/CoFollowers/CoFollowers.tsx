@@ -1,0 +1,69 @@
+import { defaultProfileImage } from "@shared/@common/assets";
+import styles from "./CoFollowers.module.css";
+import { useLanguageContent } from "@shared/@common/models/hooks";
+import { ProfileImage } from "@shared/@common/ui/components";
+import { joinClassNames } from "@shared/@common/utils";
+import { useNavigate } from "react-router-dom";
+
+interface CoFollowersProps {
+  className?: string;
+  userId: string;
+}
+
+const CoFollowers = ({ className, userId }: CoFollowersProps) => {
+  const navigate = useNavigate();
+  // 언어 설정
+  const { text } = useLanguageContent(["post", "CoFollowers"]);
+
+  const classNames = joinClassNames([styles["cofollowers"], className]);
+
+  const coFollowers = [
+    { profileIamge: "", username: "1" },
+    { profileIamge: "", username: "2" },
+    { profileIamge: "", username: "3" },
+  ];
+
+  const gap = 0.75;
+
+  // 클릭 시 내가 아는 팔로워로 이동
+  const handleClick = () => {
+    navigate(`/${userId}/followers_you_follow`);
+  };
+
+  return (
+    <div className={classNames}>
+      <div
+        className={styles["avatars"]}
+        style={{
+          width: `${2 + gap * (coFollowers.length - 1)}rem`,
+          height: "2rem",
+        }}
+        onClick={handleClick}
+      >
+        {coFollowers.map((follower, idx) => (
+          <div
+            key={idx}
+            className={styles["wrapper"]}
+            style={{
+              left: `${gap * idx}rem`,
+              zIndex: `${coFollowers.length - idx}`,
+            }}
+          >
+            <ProfileImage
+              className={styles["avatar"]}
+              width={"2rem"}
+              height={"2rem"}
+              rounded="full"
+              src={follower.profileIamge || defaultProfileImage}
+            />
+          </div>
+        ))}
+      </div>
+      <div className={styles["text"]}>
+        {text(coFollowers.map((f) => f.username))}
+      </div>
+    </div>
+  );
+};
+
+export default CoFollowers;

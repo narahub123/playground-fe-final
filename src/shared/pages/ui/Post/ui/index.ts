@@ -24,6 +24,7 @@ import MoreOption from "./MoreOption/MoreOption";
 import MoreOptionIcon from "./MoreOptionIcon/MoreOptionIcon";
 import ProfileDropdown from "./ProfileDropdown/ProfileDropdown";
 import StatusButton from "./StatusButton/StatusButton";
+import CoFollowers from "./CoFollowers/CoFollowers";
 
 const Post = Object.assign(PostContainer, {
   Content: PostContent,
@@ -55,4 +56,5 @@ export {
   MoreOptionIcon,
   ProfileDropdown,
   StatusButton,
+  CoFollowers,
 };

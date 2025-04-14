@@ -1,0 +1,23 @@
+.cofollowers {
+  display: flex;
+  align-items: center;
+}
+
+.avatars {
+  position: relative;
+  cursor: pointer;
+}
+
+.wrapper {
+  position: absolute;
+}
+
+.avatar {
+  border: 2px solid #fff;
+}
+
+.text {
+  flex: 1;
+  font-size: 0.8rem;
+  color: #777;
+}
