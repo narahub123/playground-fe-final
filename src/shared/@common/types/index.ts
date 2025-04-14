@@ -25,6 +25,8 @@ import {
   IPostActions,
   IRepost,
   IAuthor,
+  IFollower,
+  IFollowing,
 } from "./slices";
 
 import {
@@ -76,6 +78,8 @@ export type {
   IPostActions,
   IRepost,
   IAuthor,
+  IFollower,
+  IFollowing,
 
   // components
   DropdownItemType, // dropdown item

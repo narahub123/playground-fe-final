@@ -85,6 +85,20 @@ interface ILockStatus {
   lockedAt: Date | null;
 }
 
+interface IFollowing {
+  userId: string;
+  username: string;
+  profileImage: string;
+  followedAt: Date;
+}
+
+interface IFollower {
+  userId: string;
+  username: string;
+  profileImage: string;
+  followedAt: Date;
+}
+
 interface IUser {
   userId: string;
   username: string;
@@ -100,8 +114,8 @@ interface IUser {
   profileCoverImage: string;
   intro: string;
   accountGroup: IAccount[];
-  followings: string[];
-  followers: string[];
+  followings: IFollowing[];
+  followers: IFollower[];
   isAuthorized: boolean;
   isAuthenticated: boolean;
   lockStatus: ILockStatus;
@@ -128,8 +142,8 @@ interface IAuthor {
   username: string;
   profileImage: string;
   intro: string;
-  followings: string[];
-  followers: string[];
+  followings: IFollowing[];
+  followers: IFollower[];
 }
 
 interface IPost {
@@ -176,4 +190,6 @@ export type {
   IPostActions,
   IRepost,
   IAuthor,
+  IFollower,
+  IFollowing,
 };

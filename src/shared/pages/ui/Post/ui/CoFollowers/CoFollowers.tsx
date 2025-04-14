@@ -4,27 +4,25 @@ import { useLanguageContent } from "@shared/@common/models/hooks";
 import { ProfileImage, Text } from "@shared/@common/ui/components";
 import { joinClassNames } from "@shared/@common/utils";
 import { useNavigate } from "react-router-dom";
+import { IFollower } from "@shared/@common/types";
+import { useCofollowers } from "@shared/pages/hooks";
 
 interface CoFollowersProps {
   className?: string;
   userId: string;
+  followers: IFollower[];
 }
 
-const CoFollowers = ({ className, userId }: CoFollowersProps) => {
+const CoFollowers = ({ className, userId, followers }: CoFollowersProps) => {
   const navigate = useNavigate();
   // 언어 설정
   const { text } = useLanguageContent(["post", "CoFollowers"]);
 
   const classNames = joinClassNames([styles["cofollowers"], className]);
 
-  const coFollowers = [
-    { profileIamge: "", username: "1", followedAt: "1" },
-    { profileIamge: "", username: "2", followedAt: "2" },
-    { profileIamge: "", username: "3", followedAt: "3" },
-    { profileIamge: "", username: "4", followedAt: "4" },
-    { profileIamge: "", username: "5", followedAt: "5" },
-    { profileIamge: "", username: "6", followedAt: "6" },
-  ];
+  const getCofollowers = useCofollowers();
+
+  const coFollowers = getCofollowers(followers);
 
   const avatarFiltered = coFollowers.slice(0, 3);
 
@@ -34,6 +32,8 @@ const CoFollowers = ({ className, userId }: CoFollowersProps) => {
   const handleClick = () => {
     navigate(`/${userId}/followers_you_follow`);
   };
+
+  if (coFollowers.length === 0) return null;
 
   return (
     <div className={classNames} onClick={handleClick}>
@@ -58,7 +58,7 @@ const CoFollowers = ({ className, userId }: CoFollowersProps) => {
               width={"2rem"}
               height={"2rem"}
               rounded="full"
-              src={follower.profileIamge || defaultProfileImage}
+              src={follower.profileImage || defaultProfileImage}
             />
           </div>
         ))}

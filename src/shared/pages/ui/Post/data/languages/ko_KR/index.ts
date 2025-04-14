@@ -63,6 +63,7 @@ const post_kr = {
   },
   CoFollowers: {
     text: (coFollowers: string[]) => {
+      if (coFollowers.length === 0) return "";
       const presentors = coFollowers
         .filter((_, idx) => idx < 2)
         .map((f) => `${f} 님`)

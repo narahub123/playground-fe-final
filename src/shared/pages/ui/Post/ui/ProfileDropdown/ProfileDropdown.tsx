@@ -75,7 +75,7 @@ const ProfileDropdown = ({}: ProfileDropdownProps) => {
         {/* 본인의 계정의 경우 보이지 않음 */}
         {
           // !isMyself(userId) &&
-          <CoFollowers userId={userId} />
+          <CoFollowers userId={userId} followers={followers} />
         }
       </div>
     </Dropdown>
