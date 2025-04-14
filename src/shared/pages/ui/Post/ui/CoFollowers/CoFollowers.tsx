@@ -18,10 +18,15 @@ const CoFollowers = ({ className, userId }: CoFollowersProps) => {
   const classNames = joinClassNames([styles["cofollowers"], className]);
 
   const coFollowers = [
-    { profileIamge: "", username: "1" },
-    { profileIamge: "", username: "2" },
-    { profileIamge: "", username: "3" },
+    { profileIamge: "", username: "1", followedAt: "1" },
+    { profileIamge: "", username: "2", followedAt: "2" },
+    { profileIamge: "", username: "3", followedAt: "3" },
+    { profileIamge: "", username: "4", followedAt: "4" },
+    { profileIamge: "", username: "5", followedAt: "5" },
+    { profileIamge: "", username: "6", followedAt: "6" },
   ];
+
+  const avatarFiltered = coFollowers.slice(0, 3);
 
   const gap = 0.75;
 
@@ -35,17 +40,17 @@ const CoFollowers = ({ className, userId }: CoFollowersProps) => {
       <div
         className={styles["avatars"]}
         style={{
-          width: `${2 + gap * (coFollowers.length - 1)}rem`,
+          width: `${2 + gap * (avatarFiltered.length - 1)}rem`,
           height: "2rem",
         }}
       >
-        {coFollowers.map((follower, idx) => (
+        {avatarFiltered.map((follower, idx) => (
           <div
             key={idx}
             className={styles["wrapper"]}
             style={{
               left: `${gap * idx}rem`,
-              zIndex: `${coFollowers.length - idx}`,
+              zIndex: `${avatarFiltered.length - idx}`,
             }}
           >
             <ProfileImage

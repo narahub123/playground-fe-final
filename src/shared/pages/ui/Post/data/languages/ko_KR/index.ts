@@ -64,11 +64,13 @@ const post_kr = {
   CoFollowers: {
     text: (coFollowers: string[]) => {
       const presentors = coFollowers
-        .filter((_, idx) => idx < 3)
+        .filter((_, idx) => idx < 2)
         .map((f) => `${f} 님`)
         .join(", ");
 
-      return `${presentors} 외 ${coFollowers.length}명이 팔로우했습니다.`;
+      return `${presentors}${coFollowers.length > 2 ? " 외 " : ""}${
+        coFollowers.length > 2 ? coFollowers.length - 2 + "명" : ""
+      }이 팔로우했습니다.`;
     },
   },
 };
