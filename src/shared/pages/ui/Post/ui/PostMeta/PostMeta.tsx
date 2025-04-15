@@ -33,12 +33,14 @@ const PostMeta = ({ className }: PostMetaProps) => {
     handleMouseLeave,
     onClose,
     profileInfo,
+    isLoading,
   } = useHoverDropdown();
 
   return (
     <div className={classNames}>
       <ProfileDropdown
         isOpen={isOpen}
+        isLoading={isLoading}
         onMouseEnter={() => handleMouseEnter()}
         onMouseLeave={() => handleMouseLeave()}
         top={rect.top}
@@ -52,7 +54,7 @@ const PostMeta = ({ className }: PostMetaProps) => {
             to={`/${userId}`}
             className={styles["username__wrapper"]}
             onMouseEnter={() => handleMouseEnter(usernameRef, author.userId)}
-            onMouseLeave={handleMouseLeave}
+            onMouseLeave={() => handleMouseLeave()}
             ref={usernameRef}
           >
             <Text className={styles["username"]}>{username}</Text>
@@ -63,7 +65,7 @@ const PostMeta = ({ className }: PostMetaProps) => {
               to={`/${userId}`}
               className={styles["userId"]}
               onMouseEnter={() => handleMouseEnter(userIdRef, author.userId)}
-              onMouseLeave={handleMouseLeave}
+              onMouseLeave={() => handleMouseLeave()}
               ref={userIdRef}
             >
               <Text>{`@${userId}`}</Text>

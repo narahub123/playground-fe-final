@@ -82,10 +82,12 @@
   white-space: nowrap; /* 부모 너비보다 크게 */
 
   opacity: 0;
+  height: 0;
 }
 
 .time[data-title]:hover::after {
   opacity: 1;
+  height: 100%;
   transition-delay: 0.1s;
 }
 
@@ -100,5 +102,6 @@
 
 .time[data-title]:focus::after {
   opacity: 1;
+  height: 100%;
   transition-delay: 0.1s;
 }

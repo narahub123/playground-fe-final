@@ -45,9 +45,6 @@ const MoreMenu = ({ className }: MoreMenuProps) => {
     setIsOpen(false);
   };
 
-  console.log(isOpen);
-  console.log(rect);
-
   return (
     <div className={classNames}>
       <MoreButton ref={buttonRef} onClick={onOpen} />

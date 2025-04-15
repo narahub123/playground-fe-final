@@ -15,21 +15,25 @@ import { IUser } from "@shared/@common/types";
 
 interface ProfileDropdownProps {
   isOpen: boolean;
+  isLoading: boolean;
   onClose: () => void;
   onMouseEnter: () => void;
   onMouseLeave: () => void;
   top?: number;
+  bottom?: number;
   left?: number;
   profileInfo: IUser | null;
 }
 
 const ProfileDropdown = ({
   isOpen,
+  isLoading,
   onClose,
   onMouseEnter,
   onMouseLeave,
   top,
   left,
+  bottom,
   profileInfo,
 }: ProfileDropdownProps) => {
   const navigate = useNavigate();
@@ -46,10 +50,11 @@ const ProfileDropdown = ({
   return (
     <Dropdown
       name="profile"
-      isOpen={isOpen}
+      isOpen={isOpen && !isLoading}
       onClose={onClose}
       top={top}
       left={left}
+      bottom={bottom}
       zIndex={5}
     >
       <div

@@ -14,10 +14,12 @@ interface PostTextProps {
 const PostText = ({ className }: PostTextProps) => {
   const classNames = joinClassNames([styles["post__text"], className]);
   const textRef = useRef<HTMLDivElement>(null);
+  const inlineRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
   const { text } = usePostContext();
 
   const {
+    isLoading,
     isOpen,
     onClose,
     rect,
@@ -54,7 +56,8 @@ const PostText = ({ className }: PostTextProps) => {
         }
       };
 
-      for (const el of inlineSegments) {
+      for (let i = 0; i < inlineSegments.length; i++) {
+        const el = inlineSegments[i];
         const innerText = el.textContent || "";
         const inlineType = detectInlineType(innerText);
 
@@ -87,9 +90,14 @@ const PostText = ({ className }: PostTextProps) => {
 
         if (inlineType === "mention") {
           newEl.addEventListener("mouseenter", () =>
-            handleMouseEnter(textRef, innerText.slice(1))
+            handleMouseEnter(
+              { current: inlineRefs.current[i] },
+              innerText.slice(1)
+            )
           );
-          newEl.addEventListener("mouseleave", handleMouseLeave);
+          newEl.addEventListener("mouseleave", () => handleMouseLeave());
+
+          inlineRefs.current[i] = newEl;
         }
 
         el.replaceWith(newEl);
@@ -103,11 +111,13 @@ const PostText = ({ className }: PostTextProps) => {
     <div className={classNames} ref={textRef}>
       <ProfileDropdown
         isOpen={isOpen}
+        isLoading={isLoading}
         onClose={onClose}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
+        onMouseEnter={() => handleMouseEnter()}
+        onMouseLeave={() => handleMouseLeave()}
         top={rect.top}
         left={rect.left}
+        bottom={rect.bottom}
         profileInfo={profileInfo}
       />
     </div>
