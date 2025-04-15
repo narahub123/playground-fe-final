@@ -7,6 +7,7 @@ import { LinkPreview, ProfileDropdown } from "@shared/pages/ui/Post";
 import { fetchWithAuth } from "@shared/pages/utils";
 import { IUser } from "@shared/@common/types";
 
+
 interface PostTextProps {
   className?: string;
 }

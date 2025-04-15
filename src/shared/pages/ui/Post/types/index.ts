@@ -32,7 +32,7 @@ type MoreMyOptionType =
 interface IOgtags {
   image: string;
   title: string;
-  description: string;
+  desc: string;
 }
 
 export type { IPostContext, IRect, MoreOptionType, MoreMyOptionType, IOgtags };
