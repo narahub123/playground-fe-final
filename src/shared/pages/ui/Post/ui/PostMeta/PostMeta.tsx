@@ -26,8 +26,14 @@ const PostMeta = ({ className }: PostMetaProps) => {
 
   const convertToRelativeTime = useRelativeTime();
 
-  const { rect, isOpen, handleMouseEnter, handleMouseLeave, onClose } =
-    useHoverDropdown();
+  const {
+    rect,
+    isOpen,
+    handleMouseEnter,
+    handleMouseLeave,
+    onClose,
+    profileInfo,
+  } = useHoverDropdown();
 
   return (
     <div className={classNames}>
@@ -38,13 +44,14 @@ const PostMeta = ({ className }: PostMetaProps) => {
         top={rect.top}
         left={rect.left}
         onClose={onClose}
+        profileInfo={profileInfo}
       />
       <div className={styles["wrapper"]}>
         <div className={styles["info"]}>
           <Link
             to={`/${userId}`}
             className={styles["username__wrapper"]}
-            onMouseEnter={() => handleMouseEnter(usernameRef)}
+            onMouseEnter={() => handleMouseEnter(usernameRef, author.userId)}
             onMouseLeave={handleMouseLeave}
             ref={usernameRef}
           >
@@ -55,7 +62,7 @@ const PostMeta = ({ className }: PostMetaProps) => {
             <Link
               to={`/${userId}`}
               className={styles["userId"]}
-              onMouseEnter={() => handleMouseEnter(userIdRef)}
+              onMouseEnter={() => handleMouseEnter(userIdRef, author.userId)}
               onMouseLeave={handleMouseLeave}
               ref={userIdRef}
             >

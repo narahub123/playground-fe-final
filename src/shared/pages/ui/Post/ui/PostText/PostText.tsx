@@ -17,8 +17,14 @@ const PostText = ({ className }: PostTextProps) => {
 
   const { text } = usePostContext();
 
-  const { isOpen, onClose, rect, handleMouseEnter, handleMouseLeave } =
-    useHoverDropdown();
+  const {
+    isOpen,
+    onClose,
+    rect,
+    handleMouseEnter,
+    handleMouseLeave,
+    profileInfo,
+  } = useHoverDropdown();
 
   useEffect(() => {
     if (!textRef.current) return;
@@ -80,7 +86,9 @@ const PostText = ({ className }: PostTextProps) => {
         newEl.setAttribute("href", url);
 
         if (inlineType === "mention") {
-          newEl.addEventListener("mouseenter", () => handleMouseEnter(textRef));
+          newEl.addEventListener("mouseenter", () =>
+            handleMouseEnter(textRef, innerText.slice(1))
+          );
           newEl.addEventListener("mouseleave", handleMouseLeave);
         }
 
@@ -100,6 +108,7 @@ const PostText = ({ className }: PostTextProps) => {
         onMouseLeave={handleMouseLeave}
         top={rect.top}
         left={rect.left}
+        profileInfo={profileInfo}
       />
     </div>
   );

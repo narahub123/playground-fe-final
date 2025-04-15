@@ -24,8 +24,14 @@ const PostLeft = ({ className }: PostLeftProps) => {
 
   const isShowingConnector = false;
 
-  const { rect, isOpen, onClose, handleMouseEnter, handleMouseLeave } =
-    useHoverDropdown();
+  const {
+    rect,
+    isOpen,
+    onClose,
+    handleMouseEnter,
+    handleMouseLeave,
+    profileInfo,
+  } = useHoverDropdown();
 
   return (
     <div className={classNames} ref={containerRef}>
@@ -36,6 +42,7 @@ const PostLeft = ({ className }: PostLeftProps) => {
         top={rect.top}
         left={rect.left}
         onClose={onClose}
+        profileInfo={profileInfo}
       />
       <ProfileImage
         width={"40px"}
@@ -45,7 +52,7 @@ const PostLeft = ({ className }: PostLeftProps) => {
         }}
         src={profileImage || defaultProfileImage}
         className={styles["profile_image"]}
-        onMouseEnter={() => handleMouseEnter(containerRef)}
+        onMouseEnter={() => handleMouseEnter(containerRef, userId)}
         onMouseLeave={handleMouseLeave}
       />
       {isShowingConnector && <ProfileConnector />}

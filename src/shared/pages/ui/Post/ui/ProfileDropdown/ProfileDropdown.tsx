@@ -6,12 +6,12 @@ import {
   CoFollowers,
   formatNumber,
   StatusButton,
-  usePostContext,
   useUserRelationStatus,
 } from "@shared/pages/ui/Post";
 import { defaultProfileImage } from "@shared/@common/assets";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { IUser } from "@shared/@common/types";
 
 interface ProfileDropdownProps {
   isOpen: boolean;
@@ -20,6 +20,7 @@ interface ProfileDropdownProps {
   onMouseLeave: () => void;
   top?: number;
   left?: number;
+  profileInfo: IUser | null;
 }
 
 const ProfileDropdown = ({
@@ -29,17 +30,18 @@ const ProfileDropdown = ({
   onMouseLeave,
   top,
   left,
+  profileInfo,
 }: ProfileDropdownProps) => {
   const navigate = useNavigate();
   // 언어 설정
   const { stats } = useLanguageContent(["post", "ProfileDropdown"]);
   const classNames = joinClassNames([styles["profile__dropdown"]]);
 
-  const { author } = usePostContext();
-  const { profileImage, userId, username, intro, followings, followers } =
-    author;
-
   const { isMyself } = useUserRelationStatus();
+
+  if (!profileInfo) return;
+  const { profileImage, userId, username, intro, followings, followers } =
+    profileInfo;
 
   return (
     <Dropdown
