@@ -4,6 +4,8 @@ import styles from "./PostText.module.css";
 import { joinClassNames } from "@shared/@common/utils";
 import { detectInlineType } from "@shared/pages/ui/PostEditor/ui/TextEditor";
 import ProfileDropdown from "../ProfileDropdown/ProfileDropdown";
+import { fetchWithAuth } from "@shared/pages/utils";
+import { IUser } from "@shared/@common/types";
 
 interface PostTextProps {
   className?: string;
@@ -23,20 +25,51 @@ const PostText = ({ className }: PostTextProps) => {
 
     const postText = textRef.current;
 
-    if (text) {
-      postText.innerHTML = text;
+    const processInlineSegments = async () => {
+      if (!text) return;
 
+      postText.innerHTML = text;
       const inlineSegments = postText.querySelectorAll('[class*="inline"]');
 
-      inlineSegments.forEach((el) => {
+      const getUserInfo = async (userId: string): Promise<IUser | null> => {
+        const result = await fetchWithAuth(`/users/${userId}`);
+
+        try {
+          if (result.success) {
+            // 유저 정보 반환
+            return result.data.user as IUser;
+          } else {
+            console.error("사용자 정보가 유효하지 않음");
+            return null;
+          }
+        } catch (error) {
+          console.error("사용자 정보를 가져오는 도중 에러 발생", error);
+          return null;
+        }
+      };
+
+      for (const el of inlineSegments) {
+        const innerText = el.textContent || "";
+        const inlineType = detectInlineType(innerText);
+
+        if (inlineType === "mention") {
+          const result = await getUserInfo(innerText.slice(1));
+          // 반환값이 존재하지 않는 경우(멘션이 유효하지 않는 경우)
+          if (!result) {
+            const segment = el.firstChild!;
+
+            // inline을 plain으로 변경
+            el.replaceWith(segment);
+            continue;
+          }
+        }
+
         const newEl = document.createElement("a");
         newEl.className = el.className;
         newEl.innerHTML = el.innerHTML;
-        const innerText = el.textContent || "";
 
-        const inlineType = detectInlineType(innerText);
+        if (!inlineType) continue;
 
-        if (!inlineType) return;
         const url =
           inlineType === "hashtag"
             ? `/hashtag/${innerText}?src=hashtag_click`
@@ -49,11 +82,13 @@ const PostText = ({ className }: PostTextProps) => {
         if (inlineType === "mention") {
           newEl.addEventListener("mouseenter", () => handleMouseEnter(textRef));
           newEl.addEventListener("mouseleave", handleMouseLeave);
-        } else if (inlineType === "url") {
         }
+
         el.replaceWith(newEl);
-      });
-    }
+      }
+    };
+
+    processInlineSegments();
   }, []);
 
   return (
