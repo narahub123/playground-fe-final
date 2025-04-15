@@ -17,9 +17,16 @@ import Post, {
   ProfileDropdown,
   StatusButton,
   CoFollowers,
+  LinkPreview,
 } from "./ui";
 import { PostContext, PostContextProvider } from "./context";
-import { IPostContext, IRect, MoreOptionType, MoreMyOptionType } from "./types";
+import {
+  IPostContext,
+  IRect,
+  MoreOptionType,
+  MoreMyOptionType,
+  IOgtags,
+} from "./types";
 import { findFirstReposter, convertToLocalTime, formatNumber } from "./utils";
 import {
   usePostContext,
@@ -50,6 +57,7 @@ export {
   ProfileDropdown,
   StatusButton,
   CoFollowers,
+  LinkPreview,
 
   // context
   PostContext,
@@ -73,4 +81,4 @@ export {
 };
 
 // types
-export type { IPostContext, IRect, MoreOptionType, MoreMyOptionType };
+export type { IPostContext, IRect, MoreOptionType, MoreMyOptionType, IOgtags };

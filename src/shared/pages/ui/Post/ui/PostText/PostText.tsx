@@ -1,9 +1,9 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useHoverDropdown, usePostContext } from "../../hooks";
 import styles from "./PostText.module.css";
 import { joinClassNames } from "@shared/@common/utils";
 import { detectInlineType } from "@shared/pages/ui/PostEditor/ui/TextEditor";
-import ProfileDropdown from "../ProfileDropdown/ProfileDropdown";
+import { LinkPreview, ProfileDropdown } from "@shared/pages/ui/Post";
 import { fetchWithAuth } from "@shared/pages/utils";
 import { IUser } from "@shared/@common/types";
 
@@ -15,6 +15,7 @@ const PostText = ({ className }: PostTextProps) => {
   const classNames = joinClassNames([styles["post__text"], className]);
   const textRef = useRef<HTMLDivElement>(null);
   const inlineRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+  const [link, setLink] = useState("");
 
   const { text } = usePostContext();
 
@@ -98,6 +99,11 @@ const PostText = ({ className }: PostTextProps) => {
           newEl.addEventListener("mouseleave", () => handleMouseLeave());
 
           inlineRefs.current[i] = newEl;
+        } else if (inlineType === "url") {
+          // 저장된 링크가 없는 경우에만 추가: 즉 하나의 링크만 표시됨 의미
+          if (!link) {
+            setLink(innerText);
+          }
         }
 
         el.replaceWith(newEl);
@@ -108,18 +114,21 @@ const PostText = ({ className }: PostTextProps) => {
   }, []);
 
   return (
-    <div className={classNames} ref={textRef}>
-      <ProfileDropdown
-        isOpen={isOpen}
-        isLoading={isLoading}
-        onClose={onClose}
-        onMouseEnter={() => handleMouseEnter()}
-        onMouseLeave={() => handleMouseLeave()}
-        top={rect.top}
-        left={rect.left}
-        bottom={rect.bottom}
-        profileInfo={profileInfo}
-      />
+    <div>
+      <div className={classNames} ref={textRef}>
+        <ProfileDropdown
+          isOpen={isOpen}
+          isLoading={isLoading}
+          onClose={onClose}
+          onMouseEnter={() => handleMouseEnter()}
+          onMouseLeave={() => handleMouseLeave()}
+          top={rect.top}
+          left={rect.left}
+          bottom={rect.bottom}
+          profileInfo={profileInfo}
+        />
+      </div>
+      {link && <LinkPreview link={link} />}
     </div>
   );
 };

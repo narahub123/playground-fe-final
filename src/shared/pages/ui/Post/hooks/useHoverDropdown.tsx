@@ -71,8 +71,6 @@ const useHoverDropdown = () => {
     console.log("-------------- handleMouseLeave 종료 ---------------");
   };
 
-  console.log("모달창의 위치", rect);
-
   return {
     isLoading,
     isOpen,

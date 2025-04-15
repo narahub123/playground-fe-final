@@ -29,4 +29,10 @@ type MoreMyOptionType =
   | "analytics"
   | "groupNote";
 
-export type { IPostContext, IRect, MoreOptionType, MoreMyOptionType };
+interface IOgtags {
+  image: string;
+  title: string;
+  description: string;
+}
+
+export type { IPostContext, IRect, MoreOptionType, MoreMyOptionType, IOgtags };
