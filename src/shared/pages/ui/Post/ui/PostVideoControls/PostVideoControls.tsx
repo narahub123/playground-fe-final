@@ -12,9 +12,16 @@ import {
 interface PostVideoControlsProps {
   className?: string;
   controls: IVideoControls;
+  setControls: React.Dispatch<React.SetStateAction<IVideoControls>>;
+  videoRef: React.RefObject<HTMLVideoElement>;
 }
 
-const PostVideoControls = ({ className, controls }: PostVideoControlsProps) => {
+const PostVideoControls = ({
+  className,
+  controls,
+  setControls,
+  videoRef,
+}: PostVideoControlsProps) => {
   // 언어 설정
   const {} = useLanguageContent(["post", "PostVideoControls"]);
 
@@ -23,12 +30,32 @@ const PostVideoControls = ({ className, controls }: PostVideoControlsProps) => {
     className,
   ]);
 
+  const handlePlay = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (!videoRef.current) return;
+    console.log("----------------- handlePlay 시작 -----------------");
+
+    e.preventDefault();
+
+    if (controls.isPlaying) {
+      videoRef.current.pause();
+    } else {
+      videoRef.current.play();
+    }
+
+    setControls((prev) => ({
+      ...prev,
+      isPlaying: !controls.isPlaying,
+    }));
+
+    console.log("----------------- handlePlay 시작 -----------------");
+  };
+
   return (
     <div className={classNames}>
       <Progressbar />
       <div className={styles["btn__wrapper"]}>
         <div className={styles["left"]}>
-          <div className={styles["icon__container"]}>
+          <div className={styles["icon__container"]} onClick={handlePlay}>
             {controls.isPlaying ? (
               <PostVideoIcon iconName="pause" />
             ) : (

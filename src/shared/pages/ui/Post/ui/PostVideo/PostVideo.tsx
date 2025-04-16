@@ -79,7 +79,11 @@ const PostVideo = ({ className, medium, index, distance }: PostVideoProps) => {
           controls={false}
           ref={videoRef}
         />
-        <PostVideoControls controls={controls} />
+        <PostVideoControls
+          controls={controls}
+          setControls={setControls}
+          videoRef={videoRef}
+        />
       </Link>
     </div>
   );
