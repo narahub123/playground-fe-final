@@ -40,27 +40,51 @@ const PostVideo = ({ className, medium, index, distance }: PostVideoProps) => {
   };
   const [controls, setControls] = useState<IVideoControls>(intialState);
 
+  // 시간 표시
   useEffect(() => {
     if (!videoRef.current) return;
 
     const video = videoRef.current;
 
     const getTime = () => {
-      setControls((prev) => ({
-        ...prev,
-        time: {
-          currentTime: video.currentTime,
-          duration: video.duration,
-        },
-      }));
+      setControls((prev) => {
+        if (video.currentTime === video.duration) {
+          return {
+            ...prev,
+            isPlaying: false,
+            time: {
+              currentTime: video.currentTime,
+              duration: video.duration,
+            },
+          };
+        } else
+          return {
+            ...prev,
+            time: {
+              currentTime: video.currentTime,
+              duration: video.duration,
+            },
+          };
+      });
     };
+
+    getTime();
+
+    // 재생 중인 경우
+    if (controls.isPlaying) {
+      const interval = setInterval(() => {
+        getTime();
+      }, 1000);
+
+      return () => clearInterval(interval);
+    }
 
     video.addEventListener("loadedmetadata", getTime);
 
     return () => {
       video.removeEventListener("loadedmetadata", getTime);
     };
-  }, []);
+  }, [controls.isPlaying]);
 
   // pip 모드를 벗어난 경우 pip 모드 변경하기
   useEffect(() => {
@@ -91,6 +115,8 @@ const PostVideo = ({ className, medium, index, distance }: PostVideoProps) => {
       video.removeEventListener("fullscreenchange", onExitFullscreen);
     };
   }, [controls.isFullscreen]);
+
+  useEffect(() => {}, []);
 
   const { author, _id } = usePostContext();
   const { userId } = author;
@@ -228,6 +254,7 @@ const PostVideo = ({ className, medium, index, distance }: PostVideoProps) => {
     });
     console.log("----------------- handleSpeed 종료 -----------------");
   };
+
   const handleQuality = (quality: VideoQuality) => {
     if (!videoRef.current) return;
     console.log("----------------- handleQuality 시작 -----------------");

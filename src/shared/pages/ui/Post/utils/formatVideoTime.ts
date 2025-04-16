@@ -1,5 +1,5 @@
 const formatVideoTime = (time: number): string => {
-  let target = Math.ceil(time);
+  let target = Math.floor(time);
 
   const secs = target % 60;
 
