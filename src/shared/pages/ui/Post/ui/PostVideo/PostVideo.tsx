@@ -58,6 +58,25 @@ const PostVideo = ({ className, medium, index, distance }: PostVideoProps) => {
     };
   }, []);
 
+  // pip 모드를 벗어난 경우 pip 모드 변경하기
+  useEffect(() => {
+    if (!videoRef.current) return;
+
+    const video = videoRef.current;
+    const onExipPip = () => {
+      setControls((prev) => {
+        if (prev.isPipMode) return { ...prev, isPipMode: false };
+        else return prev;
+      });
+    };
+
+    video.addEventListener("leavepictureinpicture", onExipPip);
+
+    return () => {
+      video.removeEventListener("leavepictureinpicture", onExipPip);
+    };
+  }, []);
+
   const { author, _id } = usePostContext();
   const { userId } = author;
 
@@ -105,9 +124,62 @@ const PostVideo = ({ className, medium, index, distance }: PostVideoProps) => {
     console.log("----------------- handleMute 종료 -----------------");
   };
 
+  const handleSettings = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (!videoRef.current) return;
+    console.log("----------------- handleMute 시작 -----------------");
+
+    e.preventDefault();
+
+    setControls((prev) => ({
+      ...prev,
+      isSettingsOpen: !prev.isSettingsOpen,
+    }));
+
+    console.log("----------------- handleMute 종료 -----------------");
+  };
+
+  const handlePipMode = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (!videoRef.current) return;
+    console.log("----------------- handleMute 시작 -----------------");
+
+    e.preventDefault();
+
+    if (controls.isPipMode) {
+      document.exitPictureInPicture();
+    } else {
+      videoRef.current.requestPictureInPicture();
+    }
+
+    setControls((prev) => ({
+      ...prev,
+      isPipMode: !prev.isPipMode,
+    }));
+
+    console.log("----------------- handleMute 종료 -----------------");
+  };
+
+  const handleFullScreen = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
+    if (!videoRef.current) return;
+    console.log("----------------- handleMute 시작 -----------------");
+
+    e.preventDefault();
+
+    setControls((prev) => ({
+      ...prev,
+      isFullscreen: !prev.isFullscreen,
+    }));
+
+    console.log("----------------- handleMute 종료 -----------------");
+  };
+
   const handleClick = {
     play: handlePlay,
     mute: handleMute,
+    settings: handleSettings,
+    pip: handlePipMode,
+    fullscreen: handleFullScreen,
   };
 
   return (

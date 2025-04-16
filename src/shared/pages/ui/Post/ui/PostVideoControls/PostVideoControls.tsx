@@ -57,13 +57,19 @@ const PostVideoControls = ({
               <PostVideoIcon iconName="unmute" />
             )}
           </div>
-          <div className={styles["icon__container"]}>
+          <div
+            className={styles["icon__container"]}
+            onClick={onClick["settings"]}
+          >
             <PostVideoIcon iconName="settings" />
           </div>
-          <div className={styles["icon__container"]}>
+          <div className={styles["icon__container"]} onClick={onClick["pip"]}>
             <PostVideoIcon iconName="pip" />
           </div>
-          <div className={styles["icon__container"]}>
+          <div
+            className={styles["icon__container"]}
+            onClick={onClick["fullscreen"]}
+          >
             {controls.isFullscreen ? (
               <PostVideoIcon iconName="closeFullscreen" />
             ) : (
