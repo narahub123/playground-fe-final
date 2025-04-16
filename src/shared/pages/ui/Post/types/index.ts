@@ -35,4 +35,13 @@ interface IOgtags {
   desc: string;
 }
 
-export type { IPostContext, IRect, MoreOptionType, MoreMyOptionType, IOgtags };
+type MediaType = "image" | "video";
+
+export type {
+  IPostContext,
+  IRect,
+  MoreOptionType,
+  MoreMyOptionType,
+  IOgtags,
+  MediaType,
+};

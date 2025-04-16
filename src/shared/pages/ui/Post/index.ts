@@ -18,6 +18,8 @@ import Post, {
   StatusButton,
   CoFollowers,
   LinkPreview,
+  PostImage,
+  PostVideo,
 } from "./ui";
 import { PostContext, PostContextProvider } from "./context";
 import {
@@ -26,15 +28,27 @@ import {
   MoreOptionType,
   MoreMyOptionType,
   IOgtags,
+  MediaType,
 } from "./types";
-import { findFirstReposter, convertToLocalTime, formatNumber } from "./utils";
+import {
+  findFirstReposter,
+  convertToLocalTime,
+  formatNumber,
+  detectMedia,
+} from "./utils";
 import {
   usePostContext,
   useRelativeTime,
   useUserRelationStatus,
   useHoverDropdown,
 } from "./hooks";
-import { post_lang, moreOptions, moreMyOptions } from "./data";
+import {
+  post_lang,
+  moreOptions,
+  moreMyOptions,
+  imageTypes,
+  videoTypes,
+} from "./data";
 
 export {
   // ui
@@ -58,6 +72,8 @@ export {
   StatusButton,
   CoFollowers,
   LinkPreview,
+  PostImage,
+  PostVideo,
 
   // context
   PostContext,
@@ -67,11 +83,14 @@ export {
   post_lang,
   moreOptions,
   moreMyOptions,
+  imageTypes,
+  videoTypes,
 
   // utils
   findFirstReposter,
   convertToLocalTime,
   formatNumber,
+  detectMedia,
 
   // hooks
   usePostContext,
@@ -81,4 +100,11 @@ export {
 };
 
 // types
-export type { IPostContext, IRect, MoreOptionType, MoreMyOptionType, IOgtags };
+export type {
+  IPostContext,
+  IRect,
+  MoreOptionType,
+  MoreMyOptionType,
+  IOgtags,
+  MediaType,
+};

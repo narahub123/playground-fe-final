@@ -74,6 +74,12 @@ const post_kr = {
       }이 팔로우했습니다.`;
     },
   },
+  PostImage: {
+    imageAlt: "",
+  },
+  PostVideo: {
+    videoTitle: "",
+  },
 };
 
 export default post_kr;
