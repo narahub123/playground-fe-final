@@ -70,12 +70,23 @@ const PostVideo = ({ className, medium, index, distance }: PostVideoProps) => {
       });
     };
 
+    const onExitFullscreen = () => {
+      if (controls.isFullscreen && !document.fullscreenElement) {
+        setControls((prev) => ({
+          ...prev,
+          isFullscreen: false,
+        }));
+      }
+    };
+
     video.addEventListener("leavepictureinpicture", onExipPip);
+    video.addEventListener("fullscreenchange", onExitFullscreen);
 
     return () => {
       video.removeEventListener("leavepictureinpicture", onExipPip);
+      video.removeEventListener("fullscreenchange", onExitFullscreen);
     };
-  }, []);
+  }, [controls.isFullscreen]);
 
   const { author, _id } = usePostContext();
   const { userId } = author;
@@ -126,7 +137,7 @@ const PostVideo = ({ className, medium, index, distance }: PostVideoProps) => {
 
   const handleSettings = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (!videoRef.current) return;
-    console.log("----------------- handleMute 시작 -----------------");
+    console.log("----------------- handleSettings 시작 -----------------");
 
     e.preventDefault();
 
@@ -135,12 +146,12 @@ const PostVideo = ({ className, medium, index, distance }: PostVideoProps) => {
       isSettingsOpen: !prev.isSettingsOpen,
     }));
 
-    console.log("----------------- handleMute 종료 -----------------");
+    console.log("----------------- handleSettings 종료 -----------------");
   };
 
   const handlePipMode = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (!videoRef.current) return;
-    console.log("----------------- handleMute 시작 -----------------");
+    console.log("----------------- handlePipMode 시작 -----------------");
 
     e.preventDefault();
 
@@ -155,23 +166,29 @@ const PostVideo = ({ className, medium, index, distance }: PostVideoProps) => {
       isPipMode: !prev.isPipMode,
     }));
 
-    console.log("----------------- handleMute 종료 -----------------");
+    console.log("----------------- handlePipMode 종료 -----------------");
   };
 
   const handleFullScreen = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => {
     if (!videoRef.current) return;
-    console.log("----------------- handleMute 시작 -----------------");
+    console.log("----------------- handleFullScreen 시작 -----------------");
 
     e.preventDefault();
+
+    if (controls.isFullscreen) {
+      document.exitFullscreen();
+    } else {
+      videoRef.current.requestFullscreen();
+    }
 
     setControls((prev) => ({
       ...prev,
       isFullscreen: !prev.isFullscreen,
     }));
 
-    console.log("----------------- handleMute 종료 -----------------");
+    console.log("----------------- handleFullScreen 종료 -----------------");
   };
 
   const handleClick = {
