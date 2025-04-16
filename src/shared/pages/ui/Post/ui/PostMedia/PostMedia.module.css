@@ -1,3 +1,38 @@
 .post__media {
+  position: relative;
   width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+
+.leading__icon {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.leading__icon--visible {
+  display: flex;
+}
+
+.leading__icon--invisible {
+  display: none;
+}
+
+.trailing__icon {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.trailing__icon--visible {
+  display: flex;
+}
+.trailing__icon--invisible {
+  display: none;
 }

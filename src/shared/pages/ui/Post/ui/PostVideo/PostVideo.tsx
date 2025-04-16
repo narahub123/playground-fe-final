@@ -9,9 +9,10 @@ interface PostVideoProps {
   className?: string;
   medium: string;
   index: number;
+  distance: number;
 }
 
-const PostVideo = ({ className, medium, index }: PostVideoProps) => {
+const PostVideo = ({ className, medium, index, distance }: PostVideoProps) => {
   // 언어 설정
   const { videoTitle } = useLanguageContent(["post", "PostVideo"]);
   const classNames = joinClassNames([styles["post__video"], className]);
@@ -20,7 +21,13 @@ const PostVideo = ({ className, medium, index }: PostVideoProps) => {
   const { userId } = author;
 
   return (
-    <div className={classNames}>
+    <div
+      className={classNames}
+      style={{
+        transform: `translateX(${-distance}px)`,
+        transition: "transform 0.3s ease",
+      }}
+    >
       <Link to={`/${userId}/status/${_id}/video/${index}`}>
         <Video
           src={medium}

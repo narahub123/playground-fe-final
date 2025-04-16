@@ -1,4 +1,6 @@
 .post__video {
+  width: 100%;
+  flex-shrink: 0;
 }
 
 .video {

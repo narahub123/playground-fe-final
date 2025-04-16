@@ -9,9 +9,10 @@ interface PostImageProps {
   className?: string;
   medium: string;
   index: number;
+  distance: number;
 }
 
-const PostImage = ({ className, medium, index }: PostImageProps) => {
+const PostImage = ({ className, medium, index, distance }: PostImageProps) => {
   // 언어 설정
   const { imageAlt } = useLanguageContent(["post", "PostImage"]);
 
@@ -21,7 +22,13 @@ const PostImage = ({ className, medium, index }: PostImageProps) => {
   const { userId } = author;
 
   return (
-    <div className={classNames}>
+    <div
+      className={classNames}
+      style={{
+        transform: `translateX(${-distance}px)`,
+        transition: "transform 0.3s ease",
+      }}
+    >
       <Link to={`/${userId}/status/${_id}/photo/${index}`}>
         <Image
           src={medium}
