@@ -1,6 +1,9 @@
 .post__video {
+  position: relative;
   width: 100%;
   flex-shrink: 0;
+  background: #000;
+  border-radius: 15px;
 }
 
 .video {

@@ -18,7 +18,7 @@ const EmojiButton = ({}: EmojiButtonProps) => {
   const [rect, setRect] = useState({ top: 0, left: 0 });
 
   const cursorPosition = useSelector(selectCursorPosition);
-  console.log("커서 위치", cursorPosition);
+  // console.log("커서 위치", cursorPosition);
 
   // 언어 설정
   const { title } = useLanguageContent(["components", "EmojiButton"]);
@@ -38,7 +38,7 @@ const EmojiButton = ({}: EmojiButtonProps) => {
     dispatch(setCaretPosition(cursorPosition));
   };
 
-  console.log(rect);
+  // console.log(rect);
 
   return (
     <ToolbarButton

@@ -37,6 +37,20 @@ interface IOgtags {
 
 type MediaType = "image" | "video";
 
+interface IVideoTime {
+  currentTime: number;
+  duration: number;
+}
+
+interface IVideoControls {
+  isPlaying: boolean;
+  isMuting: boolean;
+  isSettingsOpen: boolean;
+  isPipMode: boolean;
+  isFullscreen: boolean;
+  time: IVideoTime;
+}
+
 export type {
   IPostContext,
   IRect,
@@ -44,4 +58,5 @@ export type {
   MoreMyOptionType,
   IOgtags,
   MediaType,
+  IVideoControls,
 };

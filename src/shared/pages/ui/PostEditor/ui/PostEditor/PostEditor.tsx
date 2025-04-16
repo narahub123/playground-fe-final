@@ -62,8 +62,8 @@ const PostEditor = ({ className }: PostEditorProps) => {
       });
   }, [post]);
 
-  console.log(toolbar);
-  console.log(post);
+  // console.log(toolbar);
+  // console.log(post);
 
   // 언어 설정
   const {} = useLanguageContent(["components", "PostEditor"]);

@@ -1,0 +1,41 @@
+.post__video__controls {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  color: #fff;
+  width: 100%;
+  padding: 0 4px 2px;
+}
+
+.btn__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.left {
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  height: 40px;
+}
+
+.time {
+  margin: 0 4px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+}
+
+.icon__container {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

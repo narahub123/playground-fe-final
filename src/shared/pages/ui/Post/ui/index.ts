@@ -28,6 +28,9 @@ import CoFollowers from "./CoFollowers/CoFollowers";
 import LinkPreview from "./LinkPreview/LinkPreview";
 import PostImage from "./PostImage/PostImage";
 import PostVideo from "./PostVideo/PostVideo";
+import PostVideoControls from "./PostVideoControls/PostVideoControls";
+import PostVideoIcon from "./PostVideoIcon/PostVideoIcon";
+import Progressbar from "./Progressbar/Progressbar";
 
 const Post = Object.assign(PostContainer, {
   Content: PostContent,
@@ -63,4 +66,7 @@ export {
   LinkPreview,
   PostImage,
   PostVideo,
+  PostVideoControls,
+  PostVideoIcon,
+  Progressbar,
 };

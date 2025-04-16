@@ -20,6 +20,9 @@ import Post, {
   LinkPreview,
   PostImage,
   PostVideo,
+  PostVideoControls,
+  PostVideoIcon,
+  Progressbar,
 } from "./ui";
 import { PostContext, PostContextProvider } from "./context";
 import {
@@ -29,12 +32,14 @@ import {
   MoreMyOptionType,
   IOgtags,
   MediaType,
+  IVideoControls,
 } from "./types";
 import {
   findFirstReposter,
   convertToLocalTime,
   formatNumber,
   detectMedia,
+  formatVideoTime,
 } from "./utils";
 import {
   usePostContext,
@@ -48,6 +53,7 @@ import {
   moreMyOptions,
   imageTypes,
   videoTypes,
+  postVideoIcons,
 } from "./data";
 
 export {
@@ -74,6 +80,9 @@ export {
   LinkPreview,
   PostImage,
   PostVideo,
+  PostVideoControls,
+  PostVideoIcon,
+  Progressbar,
 
   // context
   PostContext,
@@ -85,12 +94,14 @@ export {
   moreMyOptions,
   imageTypes,
   videoTypes,
+  postVideoIcons,
 
   // utils
   findFirstReposter,
   convertToLocalTime,
   formatNumber,
   detectMedia,
+  formatVideoTime,
 
   // hooks
   usePostContext,
@@ -107,4 +118,5 @@ export type {
   MoreMyOptionType,
   IOgtags,
   MediaType,
+  IVideoControls,
 };

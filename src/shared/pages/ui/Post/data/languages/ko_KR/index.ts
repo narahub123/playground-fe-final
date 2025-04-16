@@ -80,6 +80,8 @@ const post_kr = {
   PostVideo: {
     videoTitle: "",
   },
+  PostVideoControls: {},
+  PostVideoIcon: {},
 };
 
 export default post_kr;

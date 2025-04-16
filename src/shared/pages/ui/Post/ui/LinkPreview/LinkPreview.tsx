@@ -40,7 +40,7 @@ const LinkPreview = ({ className, link }: LinkPreviewProps) => {
     getOgtags();
   }, [link]);
 
-  console.log(ogtags);
+  // console.log(ogtags);
 
   return (
     // 새창 띄우기

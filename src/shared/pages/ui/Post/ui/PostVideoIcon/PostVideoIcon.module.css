@@ -1,0 +1,14 @@
+.post__video__icon {
+  width: 1.9rem;
+  height: 1.9rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.25rem;
+}
