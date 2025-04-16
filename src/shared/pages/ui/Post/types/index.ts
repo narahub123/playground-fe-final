@@ -49,7 +49,13 @@ interface IVideoControls {
   isPipMode: boolean;
   isFullscreen: boolean;
   time: IVideoTime;
+  speed: VideoSpeed;
+  quality: VideoQuality;
 }
+
+type VideoSpeed = 0.25 | 0.5 | 0.75 | 1 | 1.25 | 1.5 | 1.75 | 2;
+
+type VideoQuality = "auto" | "320p" | "480p" | "720p" | "1080p";
 
 export type {
   IPostContext,
@@ -59,4 +65,6 @@ export type {
   IOgtags,
   MediaType,
   IVideoControls,
+  VideoSpeed,
+  VideoQuality,
 };

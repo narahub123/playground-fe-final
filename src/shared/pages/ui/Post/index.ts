@@ -23,6 +23,7 @@ import Post, {
   PostVideoControls,
   PostVideoIcon,
   Progressbar,
+  PostVideoSettingsDropdown,
 } from "./ui";
 import { PostContext, PostContextProvider } from "./context";
 import {
@@ -33,6 +34,8 @@ import {
   IOgtags,
   MediaType,
   IVideoControls,
+  VideoSpeed,
+  VideoQuality,
 } from "./types";
 import {
   findFirstReposter,
@@ -54,6 +57,8 @@ import {
   imageTypes,
   videoTypes,
   postVideoIcons,
+  videoSpeedOptions,
+  videoQualityOptions,
 } from "./data";
 
 export {
@@ -83,6 +88,7 @@ export {
   PostVideoControls,
   PostVideoIcon,
   Progressbar,
+  PostVideoSettingsDropdown,
 
   // context
   PostContext,
@@ -95,6 +101,8 @@ export {
   imageTypes,
   videoTypes,
   postVideoIcons,
+  videoSpeedOptions,
+  videoQualityOptions,
 
   // utils
   findFirstReposter,
@@ -119,4 +127,6 @@ export type {
   IOgtags,
   MediaType,
   IVideoControls,
+  VideoSpeed,
+  VideoQuality,
 };

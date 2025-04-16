@@ -1,9 +1,21 @@
+import { VideoQuality, VideoSpeed } from "@shared/pages/ui/Post";
 import { post_lang } from "./languages";
 import { moreOptions, moreMyOptions } from "./moreOptions";
 import postVideoIcons from "./postVideoIcons";
 
 const imageTypes = ["jpg"];
 const videoTypes = ["mp4"];
+
+const videoSpeedOptions: VideoSpeed[] = [
+  0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2,
+];
+const videoQualityOptions: VideoQuality[] = [
+  "auto",
+  "320p",
+  "480p",
+  "720p",
+  "1080p",
+];
 
 export {
   post_lang,
@@ -12,4 +24,6 @@ export {
   imageTypes,
   videoTypes,
   postVideoIcons,
+  videoSpeedOptions,
+  videoQualityOptions,
 };

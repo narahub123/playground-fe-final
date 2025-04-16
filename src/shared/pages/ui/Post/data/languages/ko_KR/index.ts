@@ -82,6 +82,14 @@ const post_kr = {
   },
   PostVideoControls: {},
   PostVideoIcon: {},
+  PostVideoSettingsDropdown: {
+    settings: { speed: "재생속도", quality: "동영상 속도" },
+    speedWithUnit: (speed: number) => {
+      if ([0.25, 0.75].includes(speed)) {
+        return `${speed}배속`;
+      } else return `${speed}x`;
+    },
+  },
 };
 
 export default post_kr;

@@ -5,6 +5,8 @@ import {
   IVideoControls,
   PostVideoControls,
   usePostContext,
+  VideoQuality,
+  VideoSpeed,
 } from "@shared/pages/ui/Post";
 import Video from "@shared/pages/ui/Video/Video";
 import { useEffect, useRef, useState } from "react";
@@ -33,6 +35,8 @@ const PostVideo = ({ className, medium, index, distance }: PostVideoProps) => {
       currentTime: 0,
       duration: 0,
     },
+    speed: 1,
+    quality: "auto",
   };
   const [controls, setControls] = useState<IVideoControls>(intialState);
 
@@ -191,6 +195,53 @@ const PostVideo = ({ className, medium, index, distance }: PostVideoProps) => {
     console.log("----------------- handleFullScreen 종료 -----------------");
   };
 
+  const onClose = () => {
+    setControls((prev) => {
+      if (prev.isSettingsOpen) {
+        return {
+          ...prev,
+          isSettingsOpen: false,
+        };
+      } else return prev;
+    });
+  };
+
+  const handleSpeed = (speed: VideoSpeed) => {
+    if (!videoRef.current) return;
+    console.log("----------------- handleSpeed 시작 -----------------");
+
+    const video = videoRef.current;
+
+    console.log(video.playbackRate);
+
+    if (video.playbackRate !== speed) {
+      video.playbackRate = speed;
+    }
+
+    setControls((prev) => {
+      if (prev.speed !== speed) {
+        return {
+          ...prev,
+          speed,
+        };
+      } else return prev;
+    });
+    console.log("----------------- handleSpeed 종료 -----------------");
+  };
+  const handleQuality = (quality: VideoQuality) => {
+    if (!videoRef.current) return;
+    console.log("----------------- handleQuality 시작 -----------------");
+    setControls((prev) => {
+      if (prev.quality !== quality) {
+        return {
+          ...prev,
+          quality,
+        };
+      } else return prev;
+    });
+    console.log("----------------- handleQuality 종료 -----------------");
+  };
+
   const handleClick = {
     play: handlePlay,
     mute: handleMute,
@@ -218,7 +269,13 @@ const PostVideo = ({ className, medium, index, distance }: PostVideoProps) => {
           ref={videoRef}
           onClick={handlePlay}
         />
-        <PostVideoControls controls={controls} onClick={handleClick} />
+        <PostVideoControls
+          controls={controls}
+          onClick={handleClick}
+          onClose={onClose}
+          handleSpeed={handleSpeed}
+          handleQuality={handleQuality}
+        />
       </Link>
     </div>
   );
