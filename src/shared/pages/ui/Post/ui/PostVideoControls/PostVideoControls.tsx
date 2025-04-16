@@ -12,15 +12,16 @@ import {
 interface PostVideoControlsProps {
   className?: string;
   controls: IVideoControls;
-  setControls: React.Dispatch<React.SetStateAction<IVideoControls>>;
-  videoRef: React.RefObject<HTMLVideoElement>;
+  onClick: Record<
+    string,
+    (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
+  >;
 }
 
 const PostVideoControls = ({
   className,
   controls,
-  setControls,
-  videoRef,
+  onClick,
 }: PostVideoControlsProps) => {
   // 언어 설정
   const {} = useLanguageContent(["post", "PostVideoControls"]);
@@ -30,32 +31,12 @@ const PostVideoControls = ({
     className,
   ]);
 
-  const handlePlay = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    if (!videoRef.current) return;
-    console.log("----------------- handlePlay 시작 -----------------");
-
-    e.preventDefault();
-
-    if (controls.isPlaying) {
-      videoRef.current.pause();
-    } else {
-      videoRef.current.play();
-    }
-
-    setControls((prev) => ({
-      ...prev,
-      isPlaying: !controls.isPlaying,
-    }));
-
-    console.log("----------------- handlePlay 시작 -----------------");
-  };
-
   return (
     <div className={classNames}>
       <Progressbar />
       <div className={styles["btn__wrapper"]}>
         <div className={styles["left"]}>
-          <div className={styles["icon__container"]} onClick={handlePlay}>
+          <div className={styles["icon__container"]} onClick={onClick["play"]}>
             {controls.isPlaying ? (
               <PostVideoIcon iconName="pause" />
             ) : (
@@ -69,11 +50,11 @@ const PostVideoControls = ({
               controls.time.currentTime
             )} / ${formatVideoTime(controls.time.duration)}`}</Text>
           </div>
-          <div className={styles["icon__container"]}>
+          <div className={styles["icon__container"]} onClick={onClick["mute"]}>
             {controls.isMuting ? (
-              <PostVideoIcon iconName="unmute" />
-            ) : (
               <PostVideoIcon iconName="mute" />
+            ) : (
+              <PostVideoIcon iconName="unmute" />
             )}
           </div>
           <div className={styles["icon__container"]}>

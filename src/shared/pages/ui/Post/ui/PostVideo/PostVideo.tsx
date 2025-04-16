@@ -61,6 +61,55 @@ const PostVideo = ({ className, medium, index, distance }: PostVideoProps) => {
   const { author, _id } = usePostContext();
   const { userId } = author;
 
+  const handlePlay = (
+    e: React.MouseEvent<HTMLDivElement | HTMLVideoElement, MouseEvent>
+  ) => {
+    if (!videoRef.current) return;
+    console.log("----------------- handlePlay 시작 -----------------");
+
+    e.preventDefault();
+
+    if (controls.isPlaying) {
+      videoRef.current.pause();
+    } else {
+      videoRef.current.play();
+    }
+
+    setControls((prev) => ({
+      ...prev,
+      isPlaying: !prev.isPlaying,
+    }));
+
+    console.log("----------------- handlePlay 종료 -----------------");
+  };
+
+  const handleMute = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (!videoRef.current) return;
+    console.log("----------------- handleMute 시작 -----------------");
+
+    e.preventDefault();
+
+    // 현재 묵음인 경우
+    if (controls.isMuting) {
+      videoRef.current.setAttribute("muted", "false");
+    } else {
+      // 현재 묵음이 아닌 경우
+      videoRef.current.setAttribute("muted", "true");
+    }
+
+    setControls((prev) => ({
+      ...prev,
+      isMuting: !prev.isMuting,
+    }));
+
+    console.log("----------------- handleMute 종료 -----------------");
+  };
+
+  const handleClick = {
+    play: handlePlay,
+    mute: handleMute,
+  };
+
   return (
     <div
       className={classNames}
@@ -78,12 +127,9 @@ const PostVideo = ({ className, medium, index, distance }: PostVideoProps) => {
           title={videoTitle}
           controls={false}
           ref={videoRef}
+          onClick={handlePlay}
         />
-        <PostVideoControls
-          controls={controls}
-          setControls={setControls}
-          videoRef={videoRef}
-        />
+        <PostVideoControls controls={controls} onClick={handleClick} />
       </Link>
     </div>
   );
