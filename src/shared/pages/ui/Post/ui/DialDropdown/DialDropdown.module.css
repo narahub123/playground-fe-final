@@ -22,6 +22,7 @@
   height: 100%;
   display: flex;
   justify-content: center;
+  cursor: pointer;
 }
 
 .bars {
@@ -60,6 +61,7 @@
   height: 1rem;
   border-radius: 50%;
   background-color: #fff;
+  cursor: pointer;
 }
 
 .thumb:active {
