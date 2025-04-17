@@ -51,6 +51,8 @@ interface IVideoControls {
   time: IVideoTime;
   speed: VideoSpeed;
   quality: VideoQuality;
+  volume: number;
+  isDialOpen: boolean;
 }
 
 type VideoSpeed = 0.25 | 0.5 | 0.75 | 1 | 1.25 | 1.5 | 1.75 | 2;
@@ -67,5 +69,5 @@ export type {
   IVideoControls,
   VideoSpeed,
   VideoQuality,
-  IVideoTime
+  IVideoTime,
 };

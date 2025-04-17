@@ -23,9 +23,12 @@ interface PostVideoControlsProps {
     (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
   >;
   onClose: () => void;
+  onDialClose: () => void;
+  onDialOpen: () => void;
   handleSpeed: (speed: VideoSpeed) => void;
   handleQuality: (quality: VideoQuality) => void;
   handleCurrentTime: (newCurrentTime: number) => void;
+  handleCurrentVolume: (newVolume: number) => void;
 }
 
 const PostVideoControls = ({
@@ -36,6 +39,9 @@ const PostVideoControls = ({
   handleQuality,
   handleSpeed,
   handleCurrentTime,
+  handleCurrentVolume,
+  onDialClose,
+  onDialOpen,
 }: PostVideoControlsProps) => {
   const settingsRef = useRef<HTMLDivElement>(null);
   // 언어 설정
@@ -113,17 +119,32 @@ const PostVideoControls = ({
               controls.time.currentTime
             )} / ${formatVideoTime(controls.time.duration)}`}</Text>
           </div>
-          <div className={styles["volume"]}>
+          <div
+            className={styles["volume"]}
+            onMouseEnter={onDialOpen}
+            onMouseLeave={onDialClose}
+          >
             <div className={styles["dial"]}></div>
-            <DialDropdown />
+            <DialDropdown
+              volume={controls.volume}
+              handleVolume={onClick["volume"]}
+              handleCurrentVolume={handleCurrentVolume}
+              isOpen={controls.isDialOpen}
+            />
             <div
               className={styles["icon__container"]}
               onClick={onClick["mute"]}
             >
               {controls.isMuting ? (
                 <PostVideoIcon iconName="mute" />
+              ) : controls.volume === 0 ? (
+                <PostVideoIcon iconName="off" />
+              ) : 0 < controls.volume && controls.volume < 0.33 ? (
+                <PostVideoIcon iconName="low" />
+              ) : 0.33 <= controls.volume && controls.volume < 0.75 ? (
+                <PostVideoIcon iconName="medium" />
               ) : (
-                <PostVideoIcon iconName="unmute" />
+                <PostVideoIcon iconName="high" />
               )}
             </div>
           </div>

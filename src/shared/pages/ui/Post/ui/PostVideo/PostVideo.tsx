@@ -4,22 +4,19 @@ import { joinClassNames } from "@shared/@common/utils";
 import {
   IVideoControls,
   PostVideoControls,
-  usePostContext,
   VideoQuality,
   VideoSpeed,
 } from "@shared/pages/ui/Post";
 import Video from "@shared/pages/ui/Video/Video";
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
 
 interface PostVideoProps {
   className?: string;
   medium: string;
-  index: number;
   distance: number;
 }
 
-const PostVideo = ({ className, medium, index, distance }: PostVideoProps) => {
+const PostVideo = ({ className, medium, distance }: PostVideoProps) => {
   // 언어 설정
   const { videoTitle } = useLanguageContent(["post", "PostVideo"]);
   const classNames = joinClassNames([styles["post__video"], className]);
@@ -37,6 +34,8 @@ const PostVideo = ({ className, medium, index, distance }: PostVideoProps) => {
     },
     speed: 1,
     quality: "auto",
+    volume: 1,
+    isDialOpen: false,
   };
   const [controls, setControls] = useState<IVideoControls>(intialState);
 
@@ -117,9 +116,6 @@ const PostVideo = ({ className, medium, index, distance }: PostVideoProps) => {
   }, [controls.isFullscreen]);
 
   useEffect(() => {}, []);
-
-  const { author, _id } = usePostContext();
-  const { userId } = author;
 
   const handlePlay = (
     e: React.MouseEvent<HTMLDivElement | HTMLVideoElement, MouseEvent>
@@ -296,6 +292,25 @@ const PostVideo = ({ className, medium, index, distance }: PostVideoProps) => {
     console.log("----------------- handleTime 종료 -----------------");
   };
 
+  const handleVolume = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (!videoRef.current) return;
+    console.log("----------------- handleVolue 시작 -----------------");
+    e.preventDefault();
+    e.stopPropagation();
+
+    const video = videoRef.current;
+
+    const yPos = e.nativeEvent.offsetY;
+
+    const volume = (96 - yPos) / 96;
+
+    video.volume = volume;
+
+    handleCurrentVolume(volume);
+
+    console.log("----------------- handleVolue 종료 -----------------");
+  };
+
   const handleCurrentTime = (newCurrentTime: number) => {
     console.log("----------------- handleThumb 시작 -----------------");
 
@@ -310,6 +325,38 @@ const PostVideo = ({ className, medium, index, distance }: PostVideoProps) => {
     console.log("----------------- handleThumb 종료 -----------------");
   };
 
+  const handleCurrentVolume = (newVolume: number) => {
+    setControls((prev) => {
+      if (prev.volume !== newVolume) {
+        return {
+          ...prev,
+          volume: newVolume,
+        };
+      } else return prev;
+    });
+  };
+
+  const onDialOpen = () => {
+    setControls((prev) => {
+      if (!prev.isDialOpen) {
+        return {
+          ...prev,
+          isDialOpen: true,
+        };
+      } else return prev;
+    });
+  };
+  const onDialClose = () => {
+    setControls((prev) => {
+      if (prev.isDialOpen) {
+        return {
+          ...prev,
+          isDialOpen: false,
+        };
+      } else return prev;
+    });
+  };
+
   const handleClick = {
     play: handlePlay,
     mute: handleMute,
@@ -317,6 +364,7 @@ const PostVideo = ({ className, medium, index, distance }: PostVideoProps) => {
     pip: handlePipMode,
     fullscreen: handleFullScreen,
     time: handleTime,
+    volume: handleVolume,
   };
 
   return (
@@ -327,26 +375,27 @@ const PostVideo = ({ className, medium, index, distance }: PostVideoProps) => {
         transition: "transform 0.3s ease",
       }}
     >
-      <Link to={`/${userId}/status/${_id}/video/${index}`}>
-        <Video
-          src={medium}
-          fit="contain"
-          rounded="25px"
-          className={styles["video"]}
-          title={videoTitle}
-          controls={false}
-          ref={videoRef}
-          onClick={handlePlay}
-        />
-        <PostVideoControls
-          controls={controls}
-          onClick={handleClick}
-          onClose={onClose}
-          handleSpeed={handleSpeed}
-          handleQuality={handleQuality}
-          handleCurrentTime={handleCurrentTime}
-        />
-      </Link>
+      <Video
+        src={medium}
+        fit="contain"
+        rounded="25px"
+        className={styles["video"]}
+        title={videoTitle}
+        controls={false}
+        ref={videoRef}
+        onClick={handlePlay}
+      />
+      <PostVideoControls
+        controls={controls}
+        onClick={handleClick}
+        onClose={onClose}
+        handleSpeed={handleSpeed}
+        handleQuality={handleQuality}
+        handleCurrentTime={handleCurrentTime}
+        handleCurrentVolume={handleCurrentVolume}
+        onDialClose={onDialClose}
+        onDialOpen={onDialOpen}
+      />
     </div>
   );
 };

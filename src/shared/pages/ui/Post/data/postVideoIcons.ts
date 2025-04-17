@@ -4,7 +4,7 @@ import {
   LuSettings as settings,
   LuArrowLeft as backward,
 } from "react-icons/lu";
-import { VscMute as mute, VscUnmute as unmute } from "react-icons/vsc";
+import { VscUnmute as unmute } from "react-icons/vsc";
 import { PiArrowSquareOutLight as pip } from "react-icons/pi";
 import { CgArrowsExpandRight as openFullscreen } from "react-icons/cg";
 import { MdCloseFullscreen as closeFullscreen } from "react-icons/md";
@@ -14,11 +14,22 @@ import {
   GoCircle as unselect,
   GoCheckCircleFill as select,
 } from "react-icons/go";
+import {
+  IoVolumeMuteOutline as mute,
+  IoVolumeHighOutline as high,
+  IoVolumeMediumOutline as medium,
+  IoVolumeLowOutline as low,
+  IoVolumeOffOutline as off,
+} from "react-icons/io5";
 
 const postVideoIcons = {
   pause,
   play,
   mute,
+  high,
+  medium,
+  low,
+  off,
   unmute,
   pip,
   openFullscreen,

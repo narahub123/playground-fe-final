@@ -84,7 +84,6 @@ const PostMedia = ({ className }: PostMediaProps) => {
             <PostVideo
               key={index}
               medium={medium}
-              index={index}
               distance={width * curIndex}
             />
           );
