@@ -1,5 +1,6 @@
 import styles from "./PostVideo.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
+import { getDisplay } from "@shared/@common/models/selectors";
 import { joinClassNames } from "@shared/@common/utils";
 import {
   IVideoControls,
@@ -9,6 +10,7 @@ import {
 } from "@shared/pages/ui/Post";
 import Video from "@shared/pages/ui/Video/Video";
 import { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
 
 interface PostVideoProps {
   className?: string;
@@ -39,49 +41,106 @@ const PostVideo = ({ className, medium, distance }: PostVideoProps) => {
   };
   const [controls, setControls] = useState<IVideoControls>(intialState);
 
+  const { isAutoplayEnabled } = useSelector(getDisplay);
+
+  const getTime = (video: HTMLVideoElement) => {
+    setControls((prev) => {
+      if (video.currentTime === video.duration) {
+        return {
+          ...prev,
+          isPlaying: false,
+          time: {
+            currentTime: video.currentTime,
+            duration: video.duration,
+          },
+        };
+      } else
+        return {
+          ...prev,
+          time: {
+            currentTime: video.currentTime,
+            duration: video.duration,
+          },
+        };
+    });
+  };
+
+  // autoplay 설정이 되어 있는 경우 동영상이 화면안에 들어오면 재생하기
+  useEffect(() => {
+    const observeVideos = () => {
+      if (!videoRef.current) return;
+      const video = videoRef.current;
+
+      const options: IntersectionObserverInit = {
+        root: null,
+        rootMargin: "",
+        threshold: 1,
+      };
+
+      const callback: IntersectionObserverCallback = (entries) => {
+        if (entries[0].isIntersecting) {
+          if (isAutoplayEnabled) {
+            video.play();
+            getTime(video);
+            setControls((prev) => {
+              if (!prev.isPlaying) {
+                return {
+                  ...prev,
+                  isPlaying: true,
+                };
+              } else return prev;
+            });
+          }
+        } else {
+          video.pause();
+        }
+      };
+
+      const observer = new IntersectionObserver(callback, options);
+
+      observer.observe(video);
+
+      return observer;
+    };
+
+    // 즉시 실행
+    let observer = observeVideos();
+
+    // 비디오가 동적으로 렌더링될 수 있는 경우 load 이벤트도 사용
+    const handleLoad = () => {
+      if (observer) observer.disconnect();
+      observer = observeVideos();
+    };
+
+    window.addEventListener("loadeddata", handleLoad);
+
+    return () => {
+      window.removeEventListener("loadeddata", handleLoad);
+      if (observer) observer.disconnect();
+    };
+  }, []);
+
   // 시간 표시
   useEffect(() => {
     if (!videoRef.current) return;
 
     const video = videoRef.current;
 
-    const getTime = () => {
-      setControls((prev) => {
-        if (video.currentTime === video.duration) {
-          return {
-            ...prev,
-            isPlaying: false,
-            time: {
-              currentTime: video.currentTime,
-              duration: video.duration,
-            },
-          };
-        } else
-          return {
-            ...prev,
-            time: {
-              currentTime: video.currentTime,
-              duration: video.duration,
-            },
-          };
-      });
-    };
-
-    getTime();
+    getTime(video);
 
     // 재생 중인 경우
     if (controls.isPlaying) {
       const interval = setInterval(() => {
-        getTime();
+        getTime(video);
       }, 1000);
 
       return () => clearInterval(interval);
     }
 
-    video.addEventListener("loadedmetadata", getTime);
+    video.addEventListener("loadedmetadata", () => getTime(video));
 
     return () => {
-      video.removeEventListener("loadedmetadata", getTime);
+      video.removeEventListener("loadedmetadata", () => getTime(video));
     };
   }, [controls.isPlaying]);
 
