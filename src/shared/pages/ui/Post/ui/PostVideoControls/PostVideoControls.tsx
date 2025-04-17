@@ -73,7 +73,13 @@ const PostVideoControls = ({
   ]);
 
   return (
-    <div className={classNames}>
+    <div
+      className={classNames}
+      onClick={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+      }}
+    >
       <PostVideoSettingsDropdown
         isOpen={controls.isSettingsOpen}
         onClose={onClose}
@@ -83,7 +89,7 @@ const PostVideoControls = ({
         handleSpeed={handleSpeed}
         controls={controls}
       />
-      <Progressbar time={controls.time} />
+      <Progressbar time={controls.time} handleTime={onClick["time"]} />
       <div className={styles["btn__wrapper"]}>
         <div className={styles["left"]}>
           <div className={styles["icon__container"]} onClick={onClick["play"]}>

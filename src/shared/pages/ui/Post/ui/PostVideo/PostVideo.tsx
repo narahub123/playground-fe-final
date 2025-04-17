@@ -269,12 +269,46 @@ const PostVideo = ({ className, medium, index, distance }: PostVideoProps) => {
     console.log("----------------- handleQuality 종료 -----------------");
   };
 
+  const handleTime = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (!videoRef.current) return;
+    console.log("----------------- handleTime 시작 -----------------");
+    e.preventDefault();
+    e.stopPropagation();
+
+    const video = videoRef.current;
+
+    const target = e.currentTarget;
+
+    // rail의 너비
+    const { width } = target.getBoundingClientRect();
+
+    // 클릭한 위치
+    const xPos = e.nativeEvent.offsetX;
+
+    // 변경 시간 계산
+    const newCurrentTime = (xPos / width) * controls.time.duration;
+
+    // 변경된 시간 적용
+    video.currentTime = newCurrentTime;
+
+    setControls((prev) => ({
+      ...prev,
+      time: {
+        ...prev.time,
+        currentTime: newCurrentTime,
+      },
+    }));
+
+    console.log("----------------- handleTime 종료 -----------------");
+  };
+
   const handleClick = {
     play: handlePlay,
     mute: handleMute,
     settings: handleSettings,
     pip: handlePipMode,
     fullscreen: handleFullScreen,
+    time: handleTime,
   };
 
   return (

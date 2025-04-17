@@ -19,9 +19,12 @@
   opacity: 1;
 }
 
-/* .bars__wrapper {
-  position: relative;
-} */
+.bars__wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
 
 .bars {
   position: relative;
