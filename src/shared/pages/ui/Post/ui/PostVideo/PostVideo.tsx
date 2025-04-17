@@ -291,6 +291,14 @@ const PostVideo = ({ className, medium, index, distance }: PostVideoProps) => {
     // 변경된 시간 적용
     video.currentTime = newCurrentTime;
 
+    handleCurrentTime(newCurrentTime);
+
+    console.log("----------------- handleTime 종료 -----------------");
+  };
+
+  const handleCurrentTime = (newCurrentTime: number) => {
+    console.log("----------------- handleThumb 시작 -----------------");
+
     setControls((prev) => ({
       ...prev,
       time: {
@@ -299,7 +307,7 @@ const PostVideo = ({ className, medium, index, distance }: PostVideoProps) => {
       },
     }));
 
-    console.log("----------------- handleTime 종료 -----------------");
+    console.log("----------------- handleThumb 종료 -----------------");
   };
 
   const handleClick = {
@@ -336,6 +344,7 @@ const PostVideo = ({ className, medium, index, distance }: PostVideoProps) => {
           onClose={onClose}
           handleSpeed={handleSpeed}
           handleQuality={handleQuality}
+          handleCurrentTime={handleCurrentTime}
         />
       </Link>
     </div>

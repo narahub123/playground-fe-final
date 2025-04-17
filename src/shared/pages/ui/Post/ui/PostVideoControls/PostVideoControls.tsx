@@ -24,6 +24,7 @@ interface PostVideoControlsProps {
   onClose: () => void;
   handleSpeed: (speed: VideoSpeed) => void;
   handleQuality: (quality: VideoQuality) => void;
+  handleCurrentTime: (newCurrentTime: number) => void;
 }
 
 const PostVideoControls = ({
@@ -33,6 +34,7 @@ const PostVideoControls = ({
   onClose,
   handleQuality,
   handleSpeed,
+  handleCurrentTime,
 }: PostVideoControlsProps) => {
   const settingsRef = useRef<HTMLDivElement>(null);
   // 언어 설정
@@ -89,7 +91,11 @@ const PostVideoControls = ({
         handleSpeed={handleSpeed}
         controls={controls}
       />
-      <Progressbar time={controls.time} handleTime={onClick["time"]} />
+      <Progressbar
+        time={controls.time}
+        handleTime={onClick["time"]}
+        handleCurrentTime={handleCurrentTime}
+      />
       <div className={styles["btn__wrapper"]}>
         <div className={styles["left"]}>
           <div className={styles["icon__container"]} onClick={onClick["play"]}>
