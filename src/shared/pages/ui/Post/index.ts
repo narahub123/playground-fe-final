@@ -24,6 +24,7 @@ import Post, {
   PostVideoIcon,
   Progressbar,
   PostVideoSettingsDropdown,
+  DialDropdown,
 } from "./ui";
 import { PostContext, PostContextProvider } from "./context";
 import {
@@ -90,6 +91,7 @@ export {
   PostVideoIcon,
   Progressbar,
   PostVideoSettingsDropdown,
+  DialDropdown,
 
   // context
   PostContext,

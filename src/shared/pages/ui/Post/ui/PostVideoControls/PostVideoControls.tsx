@@ -11,6 +11,7 @@ import {
   Progressbar,
   VideoQuality,
   VideoSpeed,
+  DialDropdown,
 } from "@shared/pages/ui/Post";
 import { useLayoutEffect, useRef, useState } from "react";
 
@@ -112,12 +113,19 @@ const PostVideoControls = ({
               controls.time.currentTime
             )} / ${formatVideoTime(controls.time.duration)}`}</Text>
           </div>
-          <div className={styles["icon__container"]} onClick={onClick["mute"]}>
-            {controls.isMuting ? (
-              <PostVideoIcon iconName="mute" />
-            ) : (
-              <PostVideoIcon iconName="unmute" />
-            )}
+          <div className={styles["volume"]}>
+            <div className={styles["dial"]}></div>
+            <DialDropdown />
+            <div
+              className={styles["icon__container"]}
+              onClick={onClick["mute"]}
+            >
+              {controls.isMuting ? (
+                <PostVideoIcon iconName="mute" />
+              ) : (
+                <PostVideoIcon iconName="unmute" />
+              )}
+            </div>
           </div>
           <div
             className={styles["icon__container"]}
