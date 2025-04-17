@@ -83,7 +83,7 @@ const PostVideoControls = ({
         handleSpeed={handleSpeed}
         controls={controls}
       />
-      <Progressbar />
+      <Progressbar time={controls.time} />
       <div className={styles["btn__wrapper"]}>
         <div className={styles["left"]}>
           <div className={styles["icon__container"]} onClick={onClick["play"]}>

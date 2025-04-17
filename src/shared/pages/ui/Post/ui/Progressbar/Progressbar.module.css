@@ -1,18 +1,27 @@
 .progressbar {
-  position: relative;
-  display: flex;
-  align-items: center;
   height: 20px;
   padding: 0 4px;
 }
 
-.progressbar:hover .bars {
+.wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.wrapper:hover .bars {
   height: 4px;
 }
 
-.progressbar:hover .circle__wrapper {
+.wrapper:hover .thumb__wrapper {
   opacity: 1;
 }
+
+/* .bars__wrapper {
+  position: relative;
+} */
 
 .bars {
   position: relative;
@@ -41,7 +50,7 @@
   display: flex;
 }
 
-.circle__wrapper {
+.thumb__wrapper {
   position: absolute;
   display: flex;
   justify-content: center;
@@ -53,11 +62,11 @@
   transition: 0.3s opacity ease-in-out;
 }
 
-.circle__wrapper:hover {
+.thumb__wrapper:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-.circle {
+.thumb {
   width: 15px;
   height: 15px;
   background-color: #fff;

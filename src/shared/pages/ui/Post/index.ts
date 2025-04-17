@@ -36,6 +36,7 @@ import {
   IVideoControls,
   VideoSpeed,
   VideoQuality,
+  IVideoTime,
 } from "./types";
 import {
   findFirstReposter,
@@ -129,4 +130,5 @@ export type {
   IVideoControls,
   VideoSpeed,
   VideoQuality,
+  IVideoTime,
 };

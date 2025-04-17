@@ -67,4 +67,5 @@ export type {
   IVideoControls,
   VideoSpeed,
   VideoQuality,
+  IVideoTime
 };
