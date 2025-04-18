@@ -1,4 +1,4 @@
-import { MoreMyOptionType, MoreOptionType } from "../../../types";
+import { MoreMyOptionType, MoreOptionType } from "@shared/pages/ui/Post";
 
 const post_kr = {
   RepostInfo: {
@@ -93,8 +93,27 @@ const post_kr = {
   PostVote: {
     stats: {
       vote: "표",
-      voteTime: (time: Date) => {
-        return `${time} 남음`;
+      voteTime: (duration: string): string => {
+        const now = Date.now();
+        const end = new Date(duration).getTime();
+        const diffInSeconds = Math.floor((end - now) / 1000);
+
+        if (diffInSeconds <= 0) {
+          return "최종 투표";
+        }
+
+        const days = Math.floor(diffInSeconds / 86400);
+        if (days >= 1) {
+          return `${days}일 남음`;
+        }
+
+        const hours = Math.floor((diffInSeconds % 86400) / 3600);
+        if (hours >= 1) {
+          return `${hours}시간 남음`;
+        }
+
+        const minutes = Math.ceil(((diffInSeconds % 86400) % 3600) / 60);
+        return `${minutes}분 남음`;
       },
     },
   },

@@ -3,6 +3,7 @@ import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
 import { Text } from "@shared/@common/ui/components";
 import {
+  calculateTotalVotes,
   PostVoteOption,
   PostVoteResult,
   usePostContext,
@@ -56,9 +57,9 @@ const PostVote = ({ className }: PostVoteProps) => {
         </ul>
       </div>
       <div className={styles["text__wrapper"]}>
-        <Text className={styles["stats"]}>{`${stats.vote} · ${stats.voteTime(
-          duration
-        )}`}</Text>
+        <Text className={styles["stats"]}>{`${calculateTotalVotes(options)}${
+          stats.vote
+        } · ${stats.voteTime(duration)}`}</Text>
       </div>
     </div>
   );

@@ -47,6 +47,7 @@ import {
   formatNumber,
   detectMedia,
   formatVideoTime,
+  calculateTotalVotes,
 } from "./utils";
 import {
   usePostContext,
@@ -117,6 +118,7 @@ export {
   formatNumber,
   detectMedia,
   formatVideoTime,
+  calculateTotalVotes,
 
   // hooks
   usePostContext,
