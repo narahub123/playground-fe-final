@@ -27,7 +27,8 @@ const PostVote = ({ className }: PostVoteProps) => {
   const { stats } = useLanguageContent(["post", "PostVote"]);
 
   const { _id } = useSelector(selectUser);
-  const { vote, _id: postId } = usePostContext();
+  const { vote, _id: postId, author } = usePostContext();
+  const { _id: authorId } = author;
   if (!vote) return null;
 
   const { options, duration } = vote;
@@ -50,8 +51,6 @@ const PostVote = ({ className }: PostVoteProps) => {
   const [height, setHeight] = useState(0);
 
   useEffect(() => {
-    // 본인은 투표하지 못하게 하는 코드 추가 필요
-
     // 투표 여부 확인
     const index = options.findIndex((option) => option.voters.includes(_id));
     if (index !== -1) setVotedOption(index);
@@ -115,8 +114,12 @@ const PostVote = ({ className }: PostVoteProps) => {
         ) : (
           <ul className={styles["list"]} ref={listRef}>
             {options.map((option, index) => {
-              // 이미 투표를 한 경우 혹은 투표 종료된 경우
-              if (typeof votedOption === "number" || isTimeUp) {
+              // 이미 투표를 한 경우 혹은 투표 종료된 경우 혹은 사용자 본인의 투표인 경우
+              if (
+                typeof votedOption === "number" ||
+                isTimeUp ||
+                authorId === _id
+              ) {
                 return (
                   <PostVoteResult
                     key={index}
