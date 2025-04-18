@@ -27,6 +27,8 @@ import Post, {
   DialDropdown,
   PostVoteOption,
   PostVoteResult,
+  PostActionIcon,
+  PostAction,
 } from "./ui";
 import { PostContext, PostContextProvider } from "./context";
 import {
@@ -40,6 +42,7 @@ import {
   VideoSpeed,
   VideoQuality,
   IVideoTime,
+  PostActionType,
 } from "./types";
 import {
   findFirstReposter,
@@ -65,6 +68,7 @@ import {
   postVideoIcons,
   videoSpeedOptions,
   videoQualityOptions,
+  postActionIcons,
 } from "./data";
 
 export {
@@ -98,6 +102,8 @@ export {
   DialDropdown,
   PostVoteOption,
   PostVoteResult,
+  PostActionIcon,
+  PostAction,
 
   // context
   PostContext,
@@ -112,6 +118,7 @@ export {
   postVideoIcons,
   videoSpeedOptions,
   videoQualityOptions,
+  postActionIcons,
 
   // utils
   findFirstReposter,
@@ -141,4 +148,5 @@ export type {
   VideoSpeed,
   VideoQuality,
   IVideoTime,
+  PostActionType,
 };

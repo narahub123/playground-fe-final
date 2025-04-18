@@ -1,0 +1,68 @@
+.post__action {
+  opacity: 1;
+}
+
+.action__wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.action__wrapper:hover .cornflower {
+  color: cornflowerblue;
+  background-color: rgba(100, 149, 237, 0.1);
+}
+
+.extra {
+  position: relative;
+  width: 2.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.extra__icon {
+  color: #333;
+}
+
+.extra__icon:hover {
+  color: cornflowerblue;
+  background-color: rgba(100, 149, 237, 0.1);
+}
+
+.stat {
+  margin-left: 1.5rem;
+  font-size: 0.95rem;
+  color: #777;
+}
+
+.icon {
+  color: #333;
+}
+
+.cornflower:hover .icon {
+  color: cornflowerblue;
+  background-color: rgba(100, 149, 237, 0.1);
+}
+
+.cornflower:hover .stat {
+  color: cornflowerblue;
+}
+
+.green:hover .icon {
+  color: hsl(120, 50%, 50%);
+  background-color: rgba(0, 128, 0, 0.1);
+}
+
+.green:hover .stat {
+  color: hsl(120, 50%, 50%);
+}
+
+.red:hover .icon {
+  color: hsl(0, 100%, 50%);
+  background-color: rgba(255, 0, 0, 0.1);
+}
+
+.red:hover .stat {
+  color: hsl(0, 100%, 50%);
+}

@@ -120,6 +120,16 @@ const post_kr = {
   PostStats: {
     views: "조회수",
   },
+  PostAction: {
+    title: {
+      comments: "답글",
+      reposts: "재게시",
+      likes: "좋아요",
+      views: "보기",
+      bookmarks: "북마크",
+      share: "공유",
+    },
+  },
 };
 
 export default post_kr;

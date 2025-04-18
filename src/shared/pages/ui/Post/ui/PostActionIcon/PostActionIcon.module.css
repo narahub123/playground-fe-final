@@ -1,0 +1,46 @@
+.post__action__icon {
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+}
+
+.post__action__icon[data-title]::after {
+  content: attr(data-title);
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, 2px);
+  padding: 3px;
+  font-size: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  color: var(--bgTheme-icon-color-primary);
+  background: var(--bgTheme-icon-bgColor-primary);
+  white-space: nowrap; /* 부모 너비보다 크게 */
+  z-index: 1;
+
+  opacity: 0;
+}
+
+.post__action__icon[data-title]:focus::after {
+  opacity: 1;
+}
+
+.post__action__icon[data-title]:hover::after {
+  opacity: 1;
+  transition-delay: 0.4s;
+}

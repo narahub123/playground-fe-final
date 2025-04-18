@@ -59,6 +59,8 @@ type VideoSpeed = 0.25 | 0.5 | 0.75 | 1 | 1.25 | 1.5 | 1.75 | 2;
 
 type VideoQuality = "auto" | "320p" | "480p" | "720p" | "1080p";
 
+type PostActionType = "comments" | "reposts" | "likes" | "views" | "extra";
+
 export type {
   IPostContext,
   IRect,
@@ -70,4 +72,5 @@ export type {
   VideoSpeed,
   VideoQuality,
   IVideoTime,
+  PostActionType,
 };
