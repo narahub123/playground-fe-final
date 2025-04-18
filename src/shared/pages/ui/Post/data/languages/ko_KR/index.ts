@@ -117,6 +117,9 @@ const post_kr = {
       },
     },
   },
+  PostStats: {
+    views: "조회수",
+  },
 };
 
 export default post_kr;

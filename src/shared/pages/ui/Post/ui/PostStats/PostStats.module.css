@@ -1,3 +1,20 @@
 .post__stats {
   width: 100%;
+  display: flex;
+  align-items: center;
+  color: #777;
+  font-size: 0.95rem;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.emphasize {
+  font-weight: bold;
+  color: #000;
+}
+
+.dot {
+  padding: 0 0.25rem;
 }
