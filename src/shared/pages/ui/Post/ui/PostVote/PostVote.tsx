@@ -9,7 +9,7 @@ import {
   PostVoteResult,
   usePostContext,
 } from "@shared/pages/ui/Post";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectUser } from "@shared/@common/models/selectors";
 import { fetchWithAuth } from "@shared/pages/utils";
@@ -22,6 +22,7 @@ interface PostVoteProps {
 
 const PostVote = ({ className }: PostVoteProps) => {
   const dispatch = useAppDispatch();
+  const listRef = useRef<HTMLUListElement>(null);
   // 언어 설정
   const { stats } = useLanguageContent(["post", "PostVote"]);
 
@@ -45,6 +46,8 @@ const PostVote = ({ className }: PostVoteProps) => {
 
   // loading
   const [isLoading, setisLoading] = useState(false);
+
+  const [height, setHeight] = useState(0);
 
   useEffect(() => {
     // 본인은 투표하지 못하게 하는 코드 추가 필요
@@ -73,6 +76,13 @@ const PostVote = ({ className }: PostVoteProps) => {
     }
   }, [options]);
 
+  useLayoutEffect(() => {
+    if (!listRef.current) return;
+    const height = listRef.current.getBoundingClientRect().height;
+
+    setHeight(height);
+  }, []);
+
   const classNames = joinClassNames([styles["post__vote"], className]);
 
   const handleVote = async (index: number) => {
@@ -99,11 +109,11 @@ const PostVote = ({ className }: PostVoteProps) => {
     <div className={classNames}>
       <div className={styles["main"]}>
         {isLoading ? (
-          <div className={styles["spinner__wrapper"]}>
+          <div className={styles["spinner__wrapper"]} style={{ height }}>
             <Spinner />
           </div>
         ) : (
-          <ul className={styles["list"]}>
+          <ul className={styles["list"]} ref={listRef}>
             {options.map((option, index) => {
               // 이미 투표를 한 경우 혹은 투표 종료된 경우
               if (typeof votedOption === "number" || isTimeUp) {
