@@ -48,6 +48,7 @@ import {
   detectMedia,
   formatVideoTime,
   calculateTotalVotes,
+  getBestOptions,
 } from "./utils";
 import {
   usePostContext,
@@ -119,6 +120,7 @@ export {
   detectMedia,
   formatVideoTime,
   calculateTotalVotes,
+  getBestOptions,
 
   // hooks
   usePostContext,

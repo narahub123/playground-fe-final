@@ -11,6 +11,11 @@
   height: 2rem;
   border-radius: 0.5rem;
   z-index: -1;
+  background-color: #ccc;
+}
+
+.winning {
+  background-color: var(--colorTheme-color-primary);
 }
 
 .wrapper {

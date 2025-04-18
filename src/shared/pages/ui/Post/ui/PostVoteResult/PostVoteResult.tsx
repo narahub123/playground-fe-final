@@ -3,13 +3,14 @@ import { joinClassNames } from "@shared/@common/utils";
 import { IPostVoteOption } from "@shared/@common/types";
 import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 import { Text } from "@shared/@common/ui/components";
-import { useCallback } from "react";
 
 interface PostVoteResultProps {
   className?: string;
   option: IPostVoteOption;
   isSelected: boolean;
   totalVoters: number;
+  isTimeUp: boolean;
+  isWinning: boolean;
 }
 
 const PostVoteResult = ({
@@ -17,20 +18,24 @@ const PostVoteResult = ({
   option,
   isSelected,
   totalVoters,
+  isTimeUp,
+  isWinning,
 }: PostVoteResultProps) => {
   const classNames = joinClassNames([styles["post__vote__result"], className]);
 
   return (
     <li className={classNames}>
       <div
-        className={styles["background"]}
+        className={joinClassNames([
+          styles["background"],
+          isTimeUp && isWinning ? styles["winning"] : "",
+        ])}
         style={{
           width: `${
             option.voters.length === 0
               ? "0.5rem"
               : Math.floor((option.voters.length / totalVoters) * 100) + "%"
           }`,
-          backgroundColor: `#ccc`,
         }}
       />
       <div className={styles["wrapper"]}>

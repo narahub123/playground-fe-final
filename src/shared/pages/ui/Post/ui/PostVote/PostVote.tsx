@@ -4,6 +4,7 @@ import { joinClassNames } from "@shared/@common/utils";
 import { Text } from "@shared/@common/ui/components";
 import {
   calculateTotalVotes,
+  getBestOptions,
   PostVoteOption,
   PostVoteResult,
   usePostContext,
@@ -27,29 +28,49 @@ const PostVote = ({ className }: PostVoteProps) => {
   const { options, duration } = vote;
 
   // 투표를 했는지 여부 상태
-  const [votedOption, setVotedOption] = useState<number | null>(null);
+  const [votedOption, setVotedOption] = useState<number | undefined>(undefined);
 
   // 총 투표자 수
   const [totalVoters, setTotalVoters] = useState(0);
+
+  // 투표 종료 여부
+  const [isTimeUp, setIsTimeUp] = useState(false);
+
+  // 최고 투표 옵션
+  const [winningOptions, setWinningOptions] = useState<number[] | null>(null);
 
   useEffect(() => {
     // 본인은 투표하지 못하게 하는 코드 추가 필요
 
     // 투표 여부 확인
-    options.forEach((option, index) => {
-      if (option.voters.includes(_id)) {
-        return setVotedOption(index);
-      }
-    });
+    const index = options.findIndex((option) => option.voters.includes(_id));
+    if (index !== -1) setVotedOption(index);
 
+    // 총 투표자 계산
     const totalVoters = calculateTotalVotes(options);
 
     setTotalVoters(totalVoters);
+
+    // 투표 종료 여부 확인
+    const now = Date.now();
+    const end = new Date(duration).getTime();
+    const diffInSeconds = Math.floor((end - now) / 1000);
+
+    // 투표 종료된 경우
+    if (diffInSeconds <= 0) {
+      // 투표 종료 상태 변경
+      setIsTimeUp((prev) => (prev === false ? true : prev));
+
+      // 최고 투표 옵션 상태 변경
+      setWinningOptions(getBestOptions(options));
+    }
   }, [options]);
 
   const classNames = joinClassNames([styles["post__vote"], className]);
 
   const handleVote = (index: number) => {
+    console.log(index);
+
     // api 추가 필요
     setVotedOption(index);
   };
@@ -59,14 +80,20 @@ const PostVote = ({ className }: PostVoteProps) => {
       <div className={styles["main"]}>
         <ul className={styles["list"]}>
           {options.map((option, index) => {
-            // 이미 투표를 한 경우
-            if (votedOption) {
+            // 이미 투표를 한 경우 혹은 투표 종료된 경우
+            if (typeof votedOption === "number" || isTimeUp) {
               return (
                 <PostVoteResult
                   key={index}
                   option={option}
                   isSelected={index === votedOption}
                   totalVoters={totalVoters}
+                  isTimeUp={isTimeUp}
+                  isWinning={
+                    winningOptions && winningOptions.length > 0
+                      ? winningOptions.includes(index)
+                      : false
+                  }
                 />
               );
             }
