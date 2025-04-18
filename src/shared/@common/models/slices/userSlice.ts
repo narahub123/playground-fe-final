@@ -2,6 +2,8 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
   IAccount,
   IBirth,
+  IFollower,
+  IFollowing,
   ILockStatus,
   IUser,
   LocationType,
@@ -182,11 +184,11 @@ const userSlice = createSlice({
     },
 
     // 팔로잉
-    setFollowings: (state, action: PayloadAction<string>) => {
+    setFollowings: (state, action: PayloadAction<IFollowing>) => {
       state.data.followings = [...state.data.followings, action.payload];
     },
     // 팔로워
-    setFollowers: (state, action: PayloadAction<string>) => {
+    setFollowers: (state, action: PayloadAction<IFollower>) => {
       state.data.followers = [...state.data.followers, action.payload];
     },
     // 유료 계정

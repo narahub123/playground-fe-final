@@ -27,6 +27,8 @@ import {
   IAuthor,
   IFollower,
   IFollowing,
+  IPostVote,
+  IPostVoteOption,
 } from "./slices";
 
 import {
@@ -80,6 +82,8 @@ export type {
   IAuthor,
   IFollower,
   IFollowing,
+  IPostVote,
+  IPostVoteOption,
 
   // components
   DropdownItemType, // dropdown item

@@ -146,19 +146,23 @@ interface IAuthor {
   followers: IFollower[];
 }
 
+interface IPostVoteOption {
+  option: string;
+  voters: string[];
+}
+
+interface IPostVote {
+  options: IPostVoteOption[];
+  duration: Date;
+}
+
 interface IPost {
   _id: string;
   author: IAuthor;
   createdAt: string;
   text?: string;
   media?: string[];
-  vote?: {
-    options: {
-      option: string;
-      count: number;
-    }[];
-    duration: Date;
-  };
+  vote?: IPostVote;
   schedule?: Date;
   actions: IPostActions;
 }
@@ -192,4 +196,6 @@ export type {
   IAuthor,
   IFollower,
   IFollowing,
+  IPostVote,
+  IPostVoteOption,
 };

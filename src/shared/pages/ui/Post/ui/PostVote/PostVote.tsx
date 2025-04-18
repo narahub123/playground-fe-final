@@ -52,7 +52,7 @@ const PostVote = ({ className }: PostVoteProps) => {
                   <IoIosCheckmarkCircleOutline className={styles["icon"]} />
                 </div>
                 <div className={styles["right"]}>
-                  <Text>{`${option.count}%`}</Text>
+                  <Text>{`${option.voters.length}%`}</Text>
                 </div>
               </div>
             </li>
