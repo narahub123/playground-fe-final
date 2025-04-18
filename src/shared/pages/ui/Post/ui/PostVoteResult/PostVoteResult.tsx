@@ -3,17 +3,20 @@ import { joinClassNames } from "@shared/@common/utils";
 import { IPostVoteOption } from "@shared/@common/types";
 import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 import { Text } from "@shared/@common/ui/components";
+import { useCallback } from "react";
 
 interface PostVoteResultProps {
   className?: string;
   option: IPostVoteOption;
   isSelected: boolean;
+  totalVoters: number;
 }
 
 const PostVoteResult = ({
   className,
   option,
   isSelected,
+  totalVoters,
 }: PostVoteResultProps) => {
   const classNames = joinClassNames([styles["post__vote__result"], className]);
 
@@ -22,8 +25,11 @@ const PostVoteResult = ({
       <div
         className={styles["background"]}
         style={{
-          // width: `${option.count === 0 ? "0.5rem" : "100%"}`,
-          width: `100%`,
+          width: `${
+            option.voters.length === 0
+              ? "0.5rem"
+              : Math.floor((option.voters.length / totalVoters) * 100) + "%"
+          }`,
           backgroundColor: `#ccc`,
         }}
       />
@@ -35,7 +41,11 @@ const PostVoteResult = ({
           )}
         </div>
         <div className={styles["right"]}>
-          <Text>{`${option.voters.length}%`}</Text>
+          <Text>{`${
+            option.voters.length === 0
+              ? 0
+              : Math.floor((option.voters.length / totalVoters) * 100)
+          }%`}</Text>
         </div>
       </div>
     </li>

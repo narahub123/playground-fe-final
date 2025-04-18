@@ -29,16 +29,23 @@ const PostVote = ({ className }: PostVoteProps) => {
   // 투표를 했는지 여부 상태
   const [votedOption, setVotedOption] = useState<number | null>(null);
 
-  // 투표 여부를 확인하는 훅
+  // 총 투표자 수
+  const [totalVoters, setTotalVoters] = useState(0);
+
   useEffect(() => {
     // 본인은 투표하지 못하게 하는 코드 추가 필요
 
+    // 투표 여부 확인
     options.forEach((option, index) => {
       if (option.voters.includes(_id)) {
         return setVotedOption(index);
       }
     });
-  }, [vote]);
+
+    const totalVoters = calculateTotalVotes(options);
+
+    setTotalVoters(totalVoters);
+  }, [options]);
 
   const classNames = joinClassNames([styles["post__vote"], className]);
 
@@ -52,15 +59,19 @@ const PostVote = ({ className }: PostVoteProps) => {
       <div className={styles["main"]}>
         <ul className={styles["list"]}>
           {options.map((option, index) => {
+            // 이미 투표를 한 경우
             if (votedOption) {
               return (
                 <PostVoteResult
                   key={index}
                   option={option}
                   isSelected={index === votedOption}
+                  totalVoters={totalVoters}
                 />
               );
-            } else
+            }
+            // 투표를 하지 않은 경우
+            else
               return (
                 <PostVoteOption
                   key={index}
@@ -73,7 +84,7 @@ const PostVote = ({ className }: PostVoteProps) => {
         </ul>
       </div>
       <div className={styles["text__wrapper"]}>
-        <Text className={styles["stats"]}>{`${calculateTotalVotes(options)}${
+        <Text className={styles["stats"]}>{`${totalVoters}${
           stats.vote
         } · ${stats.voteTime(duration)}`}</Text>
       </div>
