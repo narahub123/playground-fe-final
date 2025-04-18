@@ -7,9 +7,14 @@ import { Text } from "@shared/@common/ui/components";
 interface PostVoteResultProps {
   className?: string;
   option: IPostVoteOption;
+  isSelected: boolean;
 }
 
-const PostVoteResult = ({ className, option }: PostVoteResultProps) => {
+const PostVoteResult = ({
+  className,
+  option,
+  isSelected,
+}: PostVoteResultProps) => {
   const classNames = joinClassNames([styles["post__vote__result"], className]);
 
   return (
@@ -25,7 +30,9 @@ const PostVoteResult = ({ className, option }: PostVoteResultProps) => {
       <div className={styles["wrapper"]}>
         <div className={styles["left"]}>
           <Text className={styles["option__text"]}>{option.option}</Text>
-          <IoIosCheckmarkCircleOutline className={styles["icon"]} />
+          {isSelected && (
+            <IoIosCheckmarkCircleOutline className={styles["icon"]} />
+          )}
         </div>
         <div className={styles["right"]}>
           <Text>{`${option.voters.length}%`}</Text>

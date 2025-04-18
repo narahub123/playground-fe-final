@@ -8,7 +8,9 @@ import {
   PostVoteResult,
   usePostContext,
 } from "@shared/pages/ui/Post";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { selectUser } from "@shared/@common/models/selectors";
 
 interface PostVoteProps {
   className?: string;
@@ -18,42 +20,56 @@ const PostVote = ({ className }: PostVoteProps) => {
   // 언어 설정
   const { stats } = useLanguageContent(["post", "PostVote"]);
 
+  const { _id } = useSelector(selectUser);
   const { vote } = usePostContext();
-
   if (!vote) return null;
 
   const { options, duration } = vote;
 
   // 투표를 했는지 여부 상태
-  const [hasVoted, setHasVoted] = useState(false);
+  const [votedOption, setVotedOption] = useState<number | null>(null);
+
+  // 투표 여부를 확인하는 훅
+  useEffect(() => {
+    // 본인은 투표하지 못하게 하는 코드 추가 필요
+
+    options.forEach((option, index) => {
+      if (option.voters.includes(_id)) {
+        return setVotedOption(index);
+      }
+    });
+  }, [vote]);
 
   const classNames = joinClassNames([styles["post__vote"], className]);
 
   const handleVote = (index: number) => {
-    console.log("누름");
-    console.log(index);
-
-    setHasVoted(true);
+    // api 추가 필요
+    setVotedOption(index);
   };
 
   return (
     <div className={classNames}>
       <div className={styles["main"]}>
-        <ul className={styles["list"]}></ul>
         <ul className={styles["list"]}>
-          {options.map((option, index) => (
-            <PostVoteResult key={index} option={option} />
-          ))}
-        </ul>
-        <ul className={styles["list"]}>
-          {options.map((option, index) => (
-            <PostVoteOption
-              key={index}
-              option={option.option}
-              index={index}
-              onClick={() => handleVote(index)}
-            />
-          ))}
+          {options.map((option, index) => {
+            if (votedOption) {
+              return (
+                <PostVoteResult
+                  key={index}
+                  option={option}
+                  isSelected={index === votedOption}
+                />
+              );
+            } else
+              return (
+                <PostVoteOption
+                  key={index}
+                  option={option.option}
+                  index={index}
+                  onClick={() => handleVote(index)}
+                />
+              );
+          })}
         </ul>
       </div>
       <div className={styles["text__wrapper"]}>

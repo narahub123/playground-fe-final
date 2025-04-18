@@ -100,6 +100,7 @@ interface IFollower {
 }
 
 interface IUser {
+  _id: string;
   userId: string;
   username: string;
   phones: string[];

@@ -23,6 +23,7 @@ export interface UserState {
 
 const initialState: UserState = {
   data: {
+    _id: "",
     userId: "",
     username: "",
     phones: [],
