@@ -1,0 +1,13 @@
+.post__vote__option {
+  width: 100%;
+}
+
+.option__btn {
+  width: 100%;
+  border: 1px solid var(--colorTheme-color-primary);
+  padding: 0.25rem;
+  font-weight: bold;
+}
+.option__btn:hover {
+  background-color: var(--colorTheme-bgColor-hover-light);
+}

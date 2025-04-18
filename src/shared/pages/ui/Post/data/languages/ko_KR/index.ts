@@ -90,6 +90,14 @@ const post_kr = {
       } else return `${speed}x`;
     },
   },
+  PostVote: {
+    stats: {
+      vote: "표",
+      voteTime: (time: Date) => {
+        return `${time} 남음`;
+      },
+    },
+  },
 };
 
 export default post_kr;

@@ -25,6 +25,8 @@ import Post, {
   Progressbar,
   PostVideoSettingsDropdown,
   DialDropdown,
+  PostVoteOption,
+  PostVoteResult,
 } from "./ui";
 import { PostContext, PostContextProvider } from "./context";
 import {
@@ -92,6 +94,8 @@ export {
   Progressbar,
   PostVideoSettingsDropdown,
   DialDropdown,
+  PostVoteOption,
+  PostVoteResult,
 
   // context
   PostContext,

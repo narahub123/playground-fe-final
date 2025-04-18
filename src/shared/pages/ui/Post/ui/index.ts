@@ -33,6 +33,8 @@ import PostVideoIcon from "./PostVideoIcon/PostVideoIcon";
 import Progressbar from "./Progressbar/Progressbar";
 import PostVideoSettingsDropdown from "./PostVideoSettingsDropdown/PostVideoSettingsDropdown";
 import DialDropdown from "./DialDropdown/DialDropdown";
+import PostVoteOption from "./PostVoteOption/PostVoteOption";
+import PostVoteResult from "./PostVoteResult/PostVoteResult";
 
 const Post = Object.assign(PostContainer, {
   Content: PostContent,
@@ -73,4 +75,6 @@ export {
   Progressbar,
   PostVideoSettingsDropdown,
   DialDropdown,
+  PostVoteOption,
+  PostVoteResult,
 };
