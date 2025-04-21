@@ -58,6 +58,7 @@ const initialState: UserState = {
     },
     skintoneType: "default",
     recentEmojis: [],
+    bookmarks: [],
     createdAt: new Date(),
   },
   loading: true,
@@ -221,6 +222,27 @@ const userSlice = createSlice({
 
       state.data.recentEmojis = newRecentEmojis;
     },
+
+    setBookmark: (state, action: PayloadAction<string>) => {
+      const prevBookmarks = state.data.bookmarks;
+
+      const postId = action.payload;
+
+      // 이미 존재하는 경우
+      if (prevBookmarks.includes(postId)) {
+        // 해당 포스타 삭제
+        const filteredBookmarks = prevBookmarks.filter(
+          (bookmark) => bookmark !== postId
+        );
+
+        state.data.bookmarks = filteredBookmarks;
+      } else {
+        // 존재하지 않는 경우
+
+        // 해당 포스트 추가
+        state.data.bookmarks = [...state.data.bookmarks, postId];
+      }
+    },
     clearRecentEmojis: (state) => {
       state.data.recentEmojis = [];
     },
@@ -256,5 +278,6 @@ export const {
   setUserRole,
   setSkintoneType,
   setRecentEmojis,
+  setBookmark,
   clearRecentEmojis,
 } = userSlice.actions;

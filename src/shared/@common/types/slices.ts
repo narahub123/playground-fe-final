@@ -122,6 +122,7 @@ interface IUser {
   lockStatus: ILockStatus;
   skintoneType: SkintoneType;
   recentEmojis: IEmoji[];
+  bookmarks: string[];
   createdAt: Date;
 }
 
@@ -130,8 +131,10 @@ interface IRepost {
   username: string;
 }
 
+interface IPostActonComment {}
+
 interface IPostActions {
-  comments: string[];
+  comments: IPostActonComment[];
   reposts: IRepost[];
   likes: string[];
   views: number;

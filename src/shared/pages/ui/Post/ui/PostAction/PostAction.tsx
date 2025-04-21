@@ -1,15 +1,26 @@
+import { PRIMARY_LINK } from "@shared/@common/constants";
 import styles from "./PostAction.module.css";
 import { Text } from "@shared/@common/ui/components";
 import { joinClassNames } from "@shared/@common/utils";
 import {
   formatNumber,
   PostActionIcon,
+  postActionIcons,
   PostActionType,
   RepostDropdown,
   ShareDropdown,
   usePostContext,
 } from "@shared/pages/ui/Post";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import {
+  selectBookmarks,
+  selectUserId,
+} from "@shared/@common/models/selectors";
+import { useDispatch } from "react-redux";
+import { setLike } from "@shared/@common/models/slices/postSlice";
+import { setBookmark } from "@shared/@common/models/slices/userSlice";
 
 interface PostActionProps {
   className?: string;
@@ -17,10 +28,17 @@ interface PostActionProps {
 }
 
 const PostAction = ({ action }: PostActionProps) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [isRepostOpen, setIsRepostOpen] = useState(false);
   const [isShareOpen, setIsShareOpen] = useState(false);
 
-  const { actions } = usePostContext();
+  const userId = useSelector(selectUserId);
+  const bookmarks = useSelector(selectBookmarks);
+
+  const { actions, _id: postId } = usePostContext();
+
+  const { comments, reposts, likes, views } = actions;
 
   const className =
     action === "reposts"
@@ -36,14 +54,49 @@ const PostAction = ({ action }: PostActionProps) => {
     setIsShareOpen(!isShareOpen);
   };
 
+  const isLiking = (userId: string) => {
+    return likes.includes(userId);
+  };
+
+  const handleLikes = () => {
+    dispatch(setLike({ postId, userId }));
+  };
+
+  const isBookmarking = (postId: string) => {
+    return bookmarks.includes(postId);
+  };
+
+  const handleBookmark = () => {
+    dispatch(setBookmark(postId));
+  };
+
   const handleClick: Record<PostActionType, () => void> = {
-    comments: () => {},
+    comments: () => {
+      navigate(PRIMARY_LINK.COMPOSE_POST);
+    },
     reposts: handleRepostOpen,
-    likes: () => {},
+    likes: handleLikes,
     views: () => {},
-    bookmarks: () => {},
+    bookmarks: handleBookmark,
     share: handleShareOpen,
   };
+
+  const iconName: keyof typeof postActionIcons =
+    action === "comments"
+      ? "commentOutline"
+      : action === "reposts"
+      ? "repost"
+      : action === "likes"
+      ? isLiking(userId)
+        ? "likeFill"
+        : "likeOutline"
+      : action === "bookmarks"
+      ? isBookmarking(postId)
+        ? "bookmarkFill"
+        : "bookmarkOutline"
+      : action === "share"
+      ? "share"
+      : "view";
 
   return (
     <span className={joinClassNames([styles["action__wrapper"], className])}>
@@ -55,6 +108,7 @@ const PostAction = ({ action }: PostActionProps) => {
         className={styles["icon"]}
         onClick={handleClick[action]}
         action={action}
+        iconName={iconName}
       />
       {action !== "bookmarks" && action !== "share" && (
         <Text className={styles["stat"]}>

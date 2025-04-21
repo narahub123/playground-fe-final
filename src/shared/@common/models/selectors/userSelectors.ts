@@ -28,6 +28,7 @@ const selectUserField = (field: keyof IUser) => (state: RootState) =>
   state.user.data[field];
 const selectSkintoneType = (state: RootState) => state.user.data.skintoneType;
 const selectRecentEmojis = (state: RootState) => state.user.data.recentEmojis;
+const selectBookmarks = (state: RootState) => state.user.data.bookmarks;
 
 export {
   selectUser,
@@ -54,4 +55,5 @@ export {
   selectUserRole,
   selectSkintoneType,
   selectRecentEmojis,
+  selectBookmarks,
 };

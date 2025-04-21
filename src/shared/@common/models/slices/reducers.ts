@@ -34,6 +34,7 @@ import {
   setSkintoneType,
   setRecentEmojis,
   clearRecentEmojis,
+  setBookmark,
 } from "./userSlice";
 
 import {
@@ -52,7 +53,7 @@ import { setPrivacy, clearPrivacyState } from "./privacySlice";
 
 import { setNotification, clearNotificationState } from "./notificationSlice";
 
-import { setPosts } from "./postSlice";
+import { setPosts, setLike } from "./postSlice";
 
 export {
   // display
@@ -90,6 +91,7 @@ export {
   setSkintoneType,
   setRecentEmojis,
   clearRecentEmojis,
+  setBookmark,
 
   // modal
   onParallelModalOpen,
@@ -114,4 +116,5 @@ export {
 
   // post
   setPosts,
+  setLike,
 };

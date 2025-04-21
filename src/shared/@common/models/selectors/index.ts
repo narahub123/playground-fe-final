@@ -31,6 +31,7 @@ import {
   selectUserField,
   selectSkintoneType,
   selectRecentEmojis,
+  selectBookmarks,
 } from "./userSelectors";
 
 import {
@@ -91,6 +92,7 @@ export {
   selectUserField,
   selectSkintoneType,
   selectRecentEmojis,
+  selectBookmarks,
 
   // modal
   getParallelModals,
