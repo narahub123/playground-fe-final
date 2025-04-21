@@ -3,7 +3,10 @@ import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Text } from "@shared/@common/ui/components";
 import { joinClassNames } from "@shared/@common/utils";
 import PostActionIcon from "../PostActionIcon/PostActionIcon";
-import { postActionIcons } from "../..";
+import { postActionIcons, usePostContext } from "../..";
+import { fetchWithAuth } from "@shared/pages/utils";
+import { useAppDispatch } from "@app/store";
+import { setPost } from "@shared/@common/models/slices/postSlice";
 
 interface RepostDropdownProps {
   className?: string;
@@ -15,12 +18,36 @@ interface OptionProps {
 }
 
 const Option = ({ text, option }: OptionProps) => {
+  const dispatch = useAppDispatch();
+  const { _id: postId } = usePostContext();
+  const handleClick = {
+    repost: async () => {
+      try {
+        const result = await fetchWithAuth(`/posts/${postId}/repost`, {
+          method: "POST",
+        });
+
+        if (result.success) {
+          dispatch(setPost(result.data.post));
+        } else {
+          console.error("리포스트 실패");
+        }
+      } catch (error) {
+        console.error("리포스트 도중 에러 발생", error);
+      }
+    },
+    quote: () => {},
+  };
+
   return (
-    <div className={styles["option"]}>
+    <div
+      className={styles["option"]}
+      onClick={handleClick[option as keyof typeof handleClick]}
+    >
       <PostActionIcon
         iconName={option as keyof typeof postActionIcons}
-        iconTitle=""
         onClick={() => {}}
+        action="reposts"
       />
       <Text className={styles["text"]}>{text}</Text>
     </div>

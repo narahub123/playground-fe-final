@@ -39,9 +39,12 @@ const postSlice = createSlice({
         };
       });
     },
+    setPost: (state, action: PayloadAction<IPost>) => {
+      state.posts = [action.payload, ...state.posts];
+    },
   },
 });
 
 export default postSlice.reducer;
 
-export const { setPosts, setLike } = postSlice.actions;
+export const { setPosts, setLike, setPost } = postSlice.actions;

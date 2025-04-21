@@ -53,7 +53,7 @@ import { setPrivacy, clearPrivacyState } from "./privacySlice";
 
 import { setNotification, clearNotificationState } from "./notificationSlice";
 
-import { setPosts, setLike } from "./postSlice";
+import { setPosts, setLike, setPost } from "./postSlice";
 
 export {
   // display
@@ -117,4 +117,5 @@ export {
   // post
   setPosts,
   setLike,
+  setPost,
 };

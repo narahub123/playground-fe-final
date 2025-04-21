@@ -44,7 +44,7 @@ const HomePage = () => {
       <div>광고</div>
       <div>
         {posts.map((post, index) => (
-          <Post key={index} post={post}>
+          <Post key={`${post._id}${index}`} post={post}>
             <Post.Content>
               <Post.Header />
               <Post.Main>

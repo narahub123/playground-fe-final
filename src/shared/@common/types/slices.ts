@@ -160,6 +160,13 @@ interface IPostVote {
   duration: Date;
 }
 
+interface IRepostUser {
+  _id: string;
+  userId: string;
+  username: string;
+  repostId: string;
+}
+
 interface IPost {
   _id: string;
   author: IAuthor;
@@ -169,6 +176,7 @@ interface IPost {
   vote?: IPostVote;
   schedule?: Date;
   actions: IPostActions;
+  repostUser?: IRepostUser;
 }
 
 export type {
