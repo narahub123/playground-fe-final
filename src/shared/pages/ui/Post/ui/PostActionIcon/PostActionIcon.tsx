@@ -4,9 +4,9 @@ import { joinClassNames } from "@shared/@common/utils";
 import { postActionIcons, PostActionType } from "@shared/pages/ui/Post";
 
 interface PostActionIconProps {
-  className?: string;
   iconName: keyof typeof postActionIcons;
   action: PostActionType;
+  className?: string;
   left?: string;
   right?: string;
   onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;

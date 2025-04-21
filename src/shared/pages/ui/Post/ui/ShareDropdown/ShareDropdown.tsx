@@ -2,7 +2,7 @@ import styles from "./ShareDropdown.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
 import PostActionIcon from "../PostActionIcon/PostActionIcon";
-import { postActionIcons } from "../..";
+import { postActionIcons, usePostContext } from "../..";
 import { Text } from "@shared/@common/ui/components";
 
 interface ShareDropdownProps {
@@ -16,9 +16,30 @@ interface ShareOptionProps {
 const ShareOption = ({ option }: ShareOptionProps) => {
   // 언어 설정
   const { options } = useLanguageContent(["post", "ShareDropdown"]);
+
+  const { author, _id } = usePostContext();
+
+  const handleWebShare = async () => {
+    const shareData = {
+      url: `/${author.userId}/status/${_id}`,
+    };
+
+    await navigator.share(shareData);
+  };
+
+  const handleClick: Record<keyof typeof options, () => void> = {
+    link: () => {},
+    share: handleWebShare,
+    message: () => {},
+  };
+
   return (
-    <div className={styles["option"]}>
-      <PostActionIcon iconName={option} iconTitle="" onClick={() => {}} />
+    <div className={styles["option"]} onClick={handleClick[option]}>
+      <PostActionIcon
+        iconName={option}
+        onClick={handleClick[option]}
+        action="share"
+      />
       <Text className={styles["text"]}>{options[option]}</Text>
     </div>
   );
