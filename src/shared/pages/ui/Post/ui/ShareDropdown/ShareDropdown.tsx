@@ -4,6 +4,7 @@ import { joinClassNames } from "@shared/@common/utils";
 import PostActionIcon from "../PostActionIcon/PostActionIcon";
 import { postActionIcons, usePostContext } from "../..";
 import { Text } from "@shared/@common/ui/components";
+import { useNavigate } from "react-router-dom";
 
 interface ShareDropdownProps {
   className?: string;
@@ -14,6 +15,7 @@ interface ShareOptionProps {
 }
 
 const ShareOption = ({ option }: ShareOptionProps) => {
+  const navigate = useNavigate();
   // 언어 설정
   const { options } = useLanguageContent(["post", "ShareDropdown"]);
 
@@ -40,10 +42,14 @@ const ShareOption = ({ option }: ShareOptionProps) => {
     }
   };
 
+  const moveToMessage = () => {
+    navigate(`/messages/compose`);
+  };
+
   const handleClick: Record<keyof typeof options, () => void> = {
     link: handleClipboard,
     share: handleWebShare,
-    message: () => {},
+    message: moveToMessage,
   };
 
   return (
