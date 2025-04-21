@@ -13,6 +13,11 @@ import {
   BsBookmarkFill as bookmarkFill,
 } from "react-icons/bs";
 import { RiShareForward2Fill as share } from "react-icons/ri";
+import {
+  LuPenLine as quote,
+  LuLink as link,
+  LuMail as message,
+} from "react-icons/lu";
 
 const postActionIcons = {
   commentOutline,
@@ -24,6 +29,9 @@ const postActionIcons = {
   bookmarkOutline,
   bookmarkFill,
   share,
+  quote,
+  link,
+  message,
 };
 
 export default postActionIcons;

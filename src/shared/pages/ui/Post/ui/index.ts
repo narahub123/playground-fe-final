@@ -37,6 +37,8 @@ import PostVoteOption from "./PostVoteOption/PostVoteOption";
 import PostVoteResult from "./PostVoteResult/PostVoteResult";
 import PostActionIcon from "./PostActionIcon/PostActionIcon";
 import PostAction from "./PostAction/PostAction";
+import RepostDropdown from "./RepostDropdown/RepostDropdown";
+import ShareDropdown from "./ShareDropdown/ShareDropdown";
 
 const Post = Object.assign(PostContainer, {
   Content: PostContent,
@@ -81,4 +83,6 @@ export {
   PostVoteResult,
   PostActionIcon,
   PostAction,
+  RepostDropdown,
+  ShareDropdown,
 };

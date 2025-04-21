@@ -19,15 +19,7 @@
   width: 2.5rem;
   display: flex;
   align-items: center;
-}
-
-.extra__icon {
-  color: #333;
-}
-
-.extra__icon:hover {
-  color: cornflowerblue;
-  background-color: rgba(100, 149, 237, 0.1);
+  justify-content: space-between;
 }
 
 .stat {

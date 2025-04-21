@@ -1,0 +1,31 @@
+.repost__dropdown {
+  position: absolute;
+  left: 50%;
+  bottom: 30px;
+  transform: translateX(-50%);
+
+  min-width: 100px;
+  background-color: #fff;
+  z-index: 1;
+  border-radius: 1rem;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.11), 0 2px 2px rgba(0, 0, 0, 0.11),
+    0 4px 4px rgba(0, 0, 0, 0.11), 0 8px 8px rgba(0, 0, 0, 0.11),
+    0 16px 16px rgba(0, 0, 0, 0.11), 0 32px 32px rgba(0, 0, 0, 0.11);
+
+  overflow: hidden;
+}
+
+.option {
+  width: 100%;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.option:hover {
+  background-color: #e1e1e1;
+}
+
+.text {
+  margin-left: 2rem;
+}

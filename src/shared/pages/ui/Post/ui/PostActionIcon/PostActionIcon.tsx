@@ -8,6 +8,7 @@ interface PostActionIconProps {
   iconTitle: string;
   left?: string;
   right?: string;
+  onClick: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 
 const PostActionIcon = ({
@@ -16,6 +17,7 @@ const PostActionIcon = ({
   iconTitle,
   left,
   right,
+  onClick,
 }: PostActionIconProps) => {
   // 언어 설정
 
@@ -24,7 +26,12 @@ const PostActionIcon = ({
   const Comp = postActionIcons[iconName];
 
   return (
-    <div className={classNames} style={{ left, right }} data-title={iconTitle}>
+    <div
+      className={classNames}
+      style={{ left, right }}
+      data-title={iconTitle}
+      onClick={ onClick}
+    >
       <Comp className={styles["icon"]} />
     </div>
   );

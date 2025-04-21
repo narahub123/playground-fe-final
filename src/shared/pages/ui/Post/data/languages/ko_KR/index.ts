@@ -130,6 +130,19 @@ const post_kr = {
       share: "공유",
     },
   },
+  RepostDropdown: {
+    options: {
+      repost: (toggle: boolean) => (toggle ? "재게시 취소" : "재게시"),
+      quote: (toggle: boolean) => "인용",
+    },
+  },
+  ShareDropdown: {
+    options: {
+      link: "링크 복사",
+      share: "게시물 공유하기",
+      message: "쪽지로 보내기",
+    },
+  },
 };
 
 export default post_kr;

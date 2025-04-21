@@ -29,6 +29,8 @@ import Post, {
   PostVoteResult,
   PostActionIcon,
   PostAction,
+  RepostDropdown,
+  ShareDropdown,
 } from "./ui";
 import { PostContext, PostContextProvider } from "./context";
 import {
@@ -104,6 +106,8 @@ export {
   PostVoteResult,
   PostActionIcon,
   PostAction,
+  RepostDropdown,
+  ShareDropdown,
 
   // context
   PostContext,
