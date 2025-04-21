@@ -23,7 +23,7 @@ const LinkPreview = ({ className, link }: LinkPreviewProps) => {
   useEffect(() => {
     const getOgtags = async () => {
       const result = await fetchWithAuth(
-        `/preview?url=${encodeURIComponent(link)}`
+        `/posts/preview?url=${encodeURIComponent(link)}`
       );
 
       try {
