@@ -5,7 +5,6 @@ import { postActionIcons, PostActionType } from "@shared/pages/ui/Post";
 
 interface PostActionIconProps {
   className?: string;
-  iconName: keyof typeof postActionIcons;
   action: PostActionType;
   left?: string;
   right?: string;
@@ -14,7 +13,6 @@ interface PostActionIconProps {
 
 const PostActionIcon = ({
   className,
-  iconName,
   left,
   right,
   onClick,
@@ -24,6 +22,19 @@ const PostActionIcon = ({
   const { title } = useLanguageContent(["post", "PostActionIcon"]);
 
   const classNames = joinClassNames([styles["post__action__icon"], className]);
+
+  const iconName: keyof typeof postActionIcons =
+    action === "comments"
+      ? "commentOutline"
+      : action === "reposts"
+      ? "repost"
+      : action === "likes"
+      ? "likeOutline"
+      : action === "bookmarks"
+      ? "bookmarkOutline"
+      : action === "share"
+      ? "share"
+      : "view";
 
   const Comp = postActionIcons[iconName];
 

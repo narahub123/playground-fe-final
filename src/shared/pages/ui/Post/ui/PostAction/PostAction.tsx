@@ -4,11 +4,12 @@ import { joinClassNames } from "@shared/@common/utils";
 import {
   formatNumber,
   PostActionIcon,
-  postActionIcons,
   PostActionType,
   RepostDropdown,
   ShareDropdown,
+  usePostContext,
 } from "@shared/pages/ui/Post";
+import { useState } from "react";
 
 interface PostActionProps {
   className?: string;
@@ -16,18 +17,10 @@ interface PostActionProps {
 }
 
 const PostAction = ({ action }: PostActionProps) => {
-  const iconName: keyof typeof postActionIcons =
-    action === "comments"
-      ? "commentOutline"
-      : action === "reposts"
-      ? "repost"
-      : action === "likes"
-      ? "likeOutline"
-      : action === "bookmarks"
-      ? "bookmarkOutline"
-      : action === "share"
-      ? "share"
-      : "view";
+  const [isRepostOpen, setIsRepostOpen] = useState(false);
+  const [isShareOpen, setIsShareOpen] = useState(false);
+
+  const { actions } = usePostContext();
 
   const className =
     action === "reposts"
@@ -36,18 +29,39 @@ const PostAction = ({ action }: PostActionProps) => {
       ? styles["red"]
       : styles["cornflower"];
 
+  const handleRepostOpen = () => {
+    setIsRepostOpen(!isRepostOpen);
+  };
+  const handleShareOpen = () => {
+    setIsShareOpen(!isShareOpen);
+  };
+
+  const handleClick: Record<PostActionType, () => void> = {
+    comments: () => {},
+    reposts: handleRepostOpen,
+    likes: () => {},
+    views: () => {},
+    bookmarks: () => {},
+    share: handleShareOpen,
+  };
+
   return (
     <span className={joinClassNames([styles["action__wrapper"], className])}>
+      {action === "reposts" && isRepostOpen && <RepostDropdown />}
+      {action === "share" && isShareOpen && <ShareDropdown />}
       <PostActionIcon
-        iconName={iconName}
         left={action === "share" ? undefined : "-0.5rem"}
         right={action === "share" ? "-0.5rem" : undefined}
         className={styles["icon"]}
-        // onClick={handleClick[action]}
+        onClick={handleClick[action]}
         action={action}
       />
       {action !== "bookmarks" && action !== "share" && (
-        <Text className={styles["stat"]}>{formatNumber(1000)}</Text>
+        <Text className={styles["stat"]}>
+          {formatNumber(
+            action === "views" ? actions[action] : actions[action].length
+          )}
+        </Text>
       )}
     </span>
   );

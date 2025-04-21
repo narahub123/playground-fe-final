@@ -2,7 +2,6 @@ import styles from "./PostActions.module.css";
 import { joinClassNames } from "@shared/@common/utils";
 import {
   PostAction,
-  PostActionIcon,
   PostActionType,
   usePostContext,
 } from "@shared/pages/ui/Post";
