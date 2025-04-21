@@ -17,18 +17,31 @@ const ShareOption = ({ option }: ShareOptionProps) => {
   // 언어 설정
   const { options } = useLanguageContent(["post", "ShareDropdown"]);
 
-  const { author, _id } = usePostContext();
+  const { author, _id: postId } = usePostContext();
 
   const handleWebShare = async () => {
+    const url = `/${author.userId}/status/${postId}`;
     const shareData = {
-      url: `/${author.userId}/status/${_id}`,
+      url,
     };
 
     await navigator.share(shareData);
   };
 
+  const handleClipboard = async () => {
+    const url = `http://localhost:5173/${author.userId}/status/${postId}`;
+    try {
+      await navigator.clipboard.writeText(url);
+
+      // 나중에 표시할 모달 추가할 것
+      alert("됨");
+    } catch (error) {
+      alert("안 됨");
+    }
+  };
+
   const handleClick: Record<keyof typeof options, () => void> = {
-    link: () => {},
+    link: handleClipboard,
     share: handleWebShare,
     message: () => {},
   };
