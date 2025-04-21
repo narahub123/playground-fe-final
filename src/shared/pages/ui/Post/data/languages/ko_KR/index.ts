@@ -120,7 +120,7 @@ const post_kr = {
   PostStats: {
     views: "조회수",
   },
-  PostAction: {
+  PostActionIcon: {
     title: {
       comments: "답글",
       reposts: "재게시",

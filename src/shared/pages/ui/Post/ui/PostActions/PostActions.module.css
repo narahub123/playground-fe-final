@@ -5,3 +5,26 @@
   justify-content: space-between;
   margin-top: 0.75rem;
 }
+
+.right {
+  display: flex;
+  align-items: center;
+  width: 4rem;
+  justify-content: space-between;
+}
+
+.wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon {
+  color: #333;
+}
+
+.icon:hover {
+  color: cornflowerblue;
+  background-color: rgba(100, 149, 237, 0.1);
+}

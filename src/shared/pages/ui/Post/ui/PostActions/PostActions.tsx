@@ -1,32 +1,40 @@
 import styles from "./PostActions.module.css";
 import { joinClassNames } from "@shared/@common/utils";
-import { PostAction, PostActionType } from "@shared/pages/ui/Post";
-import { useState } from "react";
+import {
+  PostAction,
+  PostActionIcon,
+  PostActionType,
+  usePostContext,
+} from "@shared/pages/ui/Post";
 
 interface PostActionsProps {
   className?: string;
 }
 
-const postActions: PostActionType[] = [
-  "comments",
-  "reposts",
-  "likes",
-  "views",
-  "extra",
-];
-
-interface IPostAction {}
-
 const PostActions = ({ className }: PostActionsProps) => {
   const classNames = joinClassNames([styles["post__actions"], className]);
 
-  const [actions, setActions] = useState();
+  const { actions } = usePostContext();
 
   return (
     <div className={classNames}>
-      {postActions.map((action, index) => (
-        <PostAction key={index} action={action} />
+      {Object.keys(actions).map((action) => (
+        <PostAction key={action} action={action as PostActionType} />
       ))}
+      <div className={styles["right"]}>
+        {(["bookmarks", "share"] as PostActionType[]).map((action) => (
+          <div className={styles["wrapper"]} key={action}>
+            <PostActionIcon
+              iconName={action === "bookmarks" ? "bookmarkOutline" : "share"}
+              onClick={() => {}}
+              left={action === "bookmarks" ? "0" : undefined}
+              right={action === "share" ? "0" : undefined}
+              className={styles["icon"]}
+              action={action}
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
