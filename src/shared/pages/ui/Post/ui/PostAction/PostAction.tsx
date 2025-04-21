@@ -1,5 +1,4 @@
 import styles from "./PostAction.module.css";
-import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Text } from "@shared/@common/ui/components";
 import { joinClassNames } from "@shared/@common/utils";
 import {
@@ -24,6 +23,10 @@ const PostAction = ({ action }: PostActionProps) => {
       ? "repost"
       : action === "likes"
       ? "likeOutline"
+      : action === "bookmarks"
+      ? "bookmarkOutline"
+      : action === "share"
+      ? "share"
       : "view";
 
   const className =
@@ -37,12 +40,15 @@ const PostAction = ({ action }: PostActionProps) => {
     <span className={joinClassNames([styles["action__wrapper"], className])}>
       <PostActionIcon
         iconName={iconName}
-        left={"-0.5rem"}
+        left={action === "share" ? undefined : "-0.5rem"}
+        right={action === "share" ? "-0.5rem" : undefined}
         className={styles["icon"]}
         // onClick={handleClick[action]}
         action={action}
       />
-      <Text className={styles["stat"]}>{formatNumber(1000)}</Text>
+      {action !== "bookmarks" && action !== "share" && (
+        <Text className={styles["stat"]}>{formatNumber(1000)}</Text>
+      )}
     </span>
   );
 };

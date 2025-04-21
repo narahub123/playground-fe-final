@@ -23,16 +23,7 @@ const PostActions = ({ className }: PostActionsProps) => {
       ))}
       <div className={styles["right"]}>
         {(["bookmarks", "share"] as PostActionType[]).map((action) => (
-          <div className={styles["wrapper"]} key={action}>
-            <PostActionIcon
-              iconName={action === "bookmarks" ? "bookmarkOutline" : "share"}
-              onClick={() => {}}
-              left={action === "bookmarks" ? "0" : undefined}
-              right={action === "share" ? "0" : undefined}
-              className={styles["icon"]}
-              action={action}
-            />
-          </div>
+          <PostAction key={action} action={action as PostActionType} />
         ))}
       </div>
     </div>
