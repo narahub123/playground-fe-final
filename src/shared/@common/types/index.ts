@@ -29,6 +29,7 @@ import {
   IFollowing,
   IPostVote,
   IPostVoteOption,
+  IRepostUser,
 } from "./slices";
 
 import {
@@ -84,6 +85,7 @@ export type {
   IFollowing,
   IPostVote,
   IPostVoteOption,
+  IRepostUser,
 
   // components
   DropdownItemType, // dropdown item

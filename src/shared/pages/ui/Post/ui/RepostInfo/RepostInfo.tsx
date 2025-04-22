@@ -3,29 +3,30 @@ import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Text } from "@shared/@common/ui/components";
 import { joinClassNames } from "@shared/@common/utils";
 import { useNavigate } from "react-router-dom";
-import { IRepost } from "@shared/@common/types";
+import { usePostContext } from "../../hooks";
 
 interface RepostInfoProps {
   className?: string;
-  firstReposter: IRepost;
 }
 
-const RepostInfo = ({ className, firstReposter }: RepostInfoProps) => {
+const RepostInfo = ({ className }: RepostInfoProps) => {
+  const navigate = useNavigate();
   // 언어 설정
   const { text } = useLanguageContent(["post", "RepostInfo"]);
-
-  const navigate = useNavigate();
-
   const classNames = joinClassNames([styles["repost__info"], className]);
 
+  const { repostUser } = usePostContext();
+
+  if (!repostUser) return null;
+
   const handleClick = () => {
-    navigate(`/${firstReposter.userId}`);
+    navigate(`/${repostUser.userId}`);
   };
 
   return (
     <div className={classNames}>
       <button className={styles["button"]} onClick={handleClick}>
-        <Text>{`${firstReposter.userId} ${text}`}</Text>
+        <Text>{`${repostUser.userId} ${text}`}</Text>
       </button>
     </div>
   );

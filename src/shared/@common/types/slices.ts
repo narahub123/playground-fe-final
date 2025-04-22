@@ -210,4 +210,5 @@ export type {
   IFollowing,
   IPostVote,
   IPostVoteOption,
+  IRepostUser,
 };

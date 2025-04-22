@@ -47,7 +47,6 @@ import {
   PostActionType,
 } from "./types";
 import {
-  findFirstReposter,
   convertToLocalTime,
   formatNumber,
   detectMedia,
@@ -125,7 +124,6 @@ export {
   postActionIcons,
 
   // utils
-  findFirstReposter,
   convertToLocalTime,
   formatNumber,
   detectMedia,
