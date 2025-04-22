@@ -46,3 +46,7 @@
 .red:hover .stat {
   color: hsl(0, 100%, 50%);
 }
+
+.liking {
+  color: red;
+}

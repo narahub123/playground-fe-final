@@ -14,10 +14,7 @@ import {
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import {
-  selectBookmarks,
-  selectUserId,
-} from "@shared/@common/models/selectors";
+import { selectBookmarks, selectUser } from "@shared/@common/models/selectors";
 import { useDispatch } from "react-redux";
 import { setLike } from "@shared/@common/models/slices/postSlice";
 import { setBookmark } from "@shared/@common/models/slices/userSlice";
@@ -28,25 +25,18 @@ interface PostActionProps {
   action: PostActionType;
 }
 
-const PostAction = ({ action }: PostActionProps) => {
+const PostAction = ({ className, action }: PostActionProps) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isRepostOpen, setIsRepostOpen] = useState(false);
   const [isShareOpen, setIsShareOpen] = useState(false);
 
-  const userId = useSelector(selectUserId);
+  const { _id: userId } = useSelector(selectUser);
   const bookmarks = useSelector(selectBookmarks);
 
   const { actions, _id: postId } = usePostContext();
 
   const { comments, reposts, likes, views } = actions;
-
-  const className =
-    action === "reposts"
-      ? styles["green"]
-      : action === "likes"
-      ? styles["red"]
-      : styles["cornflower"];
 
   const handleRepostOpen = () => {
     setIsRepostOpen(!isRepostOpen);
@@ -79,7 +69,7 @@ const PostAction = ({ action }: PostActionProps) => {
     return bookmarks.includes(postId);
   };
 
-  const handleBookmark = () => {
+  const handleBookmark = async () => {
     dispatch(setBookmark(postId));
   };
 
@@ -112,19 +102,37 @@ const PostAction = ({ action }: PostActionProps) => {
       : "view";
 
   return (
-    <span className={joinClassNames([styles["action__wrapper"], className])}>
+    <span
+      className={joinClassNames([
+        styles["action__wrapper"],
+        action === "reposts"
+          ? styles["green"]
+          : action === "likes"
+          ? styles["red"]
+          : styles["cornflower"],
+        className,
+      ])}
+    >
       {action === "reposts" && isRepostOpen && <RepostDropdown />}
       {action === "share" && isShareOpen && <ShareDropdown />}
       <PostActionIcon
         left={action === "share" ? undefined : "-0.5rem"}
         right={action === "share" ? "-0.5rem" : undefined}
-        className={styles["icon"]}
+        className={joinClassNames([
+          styles["icon"],
+          action === "likes" && isLiking(userId) ? styles["liking"] : "",
+        ])}
         onClick={handleClick[action]}
         action={action}
         iconName={iconName}
       />
       {action !== "bookmarks" && action !== "share" && (
-        <Text className={styles["stat"]}>
+        <Text
+          className={joinClassNames([
+            styles["stat"],
+            action === "likes" && isLiking(userId) ? styles["liking"] : "",
+          ])}
+        >
           {formatNumber(
             action === "views" ? actions[action] : actions[action].length
           )}

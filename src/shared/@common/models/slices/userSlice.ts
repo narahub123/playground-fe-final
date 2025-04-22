@@ -60,6 +60,7 @@ const initialState: UserState = {
     recentEmojis: [],
     bookmarks: [],
     createdAt: new Date(),
+    likes: []
   },
   loading: true,
 };

@@ -123,6 +123,7 @@ interface IUser {
   skintoneType: SkintoneType;
   recentEmojis: IEmoji[];
   bookmarks: string[];
+  likes: string[];
   createdAt: Date;
 }
 
