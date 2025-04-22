@@ -21,6 +21,7 @@ import {
 import { useDispatch } from "react-redux";
 import { setLike } from "@shared/@common/models/slices/postSlice";
 import { setBookmark } from "@shared/@common/models/slices/userSlice";
+import { fetchWithAuth } from "@shared/pages/utils";
 
 interface PostActionProps {
   className?: string;
@@ -58,8 +59,20 @@ const PostAction = ({ action }: PostActionProps) => {
     return likes.includes(userId);
   };
 
-  const handleLikes = () => {
-    dispatch(setLike({ postId, userId }));
+  const handleLikes = async () => {
+    try {
+      const result = await fetchWithAuth(`/posts/${postId}/likes`, {
+        method: "PATCH",
+      });
+
+      if (result.success) {
+        dispatch(setLike({ postId, userId }));
+      } else {
+        console.error("좋아요 업데이트 실패");
+      }
+    } catch (error) {
+      console.error("좋아요 업데이트 중 에러 발생");
+    }
   };
 
   const isBookmarking = (postId: string) => {
