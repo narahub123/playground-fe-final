@@ -70,7 +70,21 @@ const PostAction = ({ className, action }: PostActionProps) => {
   };
 
   const handleBookmark = async () => {
-    dispatch(setBookmark(postId));
+    try {
+      const result = await fetchWithAuth(
+        `/users/me`,
+        { method: "PATCH" },
+        { bookmarks: postId }
+      );
+
+      if (result.success) {
+        dispatch(setBookmark(postId));
+      } else {
+        console.error("북마크 업데이트 실패");
+      }
+    } catch (error) {
+      console.error("북마크 업데이트 중 에러 발생");
+    }
   };
 
   const handleClick: Record<PostActionType, () => void> = {
@@ -121,6 +135,9 @@ const PostAction = ({ className, action }: PostActionProps) => {
         className={joinClassNames([
           styles["icon"],
           action === "likes" && isLiking(userId) ? styles["liking"] : "",
+          action === "bookmarks" && isBookmarking(postId)
+            ? styles["bookmarking"]
+            : "",
         ])}
         onClick={handleClick[action]}
         action={action}
