@@ -1,6 +1,11 @@
 import styles from "./PostHeader.module.css";
 import { joinClassNames } from "@shared/@common/utils";
-import { LineConnector, RepostIcon, RepostInfo } from "@shared/pages/ui/Post";
+import {
+  LineConnector,
+  RepostIcon,
+  RepostInfo,
+  usePostContext,
+} from "@shared/pages/ui/Post";
 
 interface PostHeaderProps {
   className?: string;
@@ -9,7 +14,11 @@ interface PostHeaderProps {
 const PostHeader = ({ className }: PostHeaderProps) => {
   const classNames = joinClassNames([styles["post__header"], className]);
 
+  const { repostUser } = usePostContext();
+
   const isShowingConnector = false;
+
+  if (!repostUser) return null;
 
   return (
     <header className={classNames}>
