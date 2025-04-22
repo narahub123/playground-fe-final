@@ -54,3 +54,7 @@
 .bookmarking {
   color: cornflowerblue;
 }
+
+.reposting {
+  color: hsl(120, 50%, 50%);
+}

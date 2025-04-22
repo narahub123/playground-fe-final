@@ -128,15 +128,15 @@ interface IUser {
 }
 
 interface IRepost {
-  userId: string;
-  username: string;
+  count: number;
+  isReposted: boolean;
 }
 
 interface IPostActonComment {}
 
 interface IPostActions {
   comments: IPostActonComment[];
-  reposts: IRepost[];
+  reposts: IRepost;
   likes: string[];
   views: number;
 }
@@ -166,6 +166,7 @@ interface IRepostUser {
   userId: string;
   username: string;
   repostId: string;
+  repostedAt: string;
 }
 
 interface IPost {
