@@ -14,6 +14,7 @@ import { fetchWithAuth } from "@shared/pages/utils";
 import {
   deletePost,
   deleteRepost,
+  updatePin,
 } from "@shared/@common/models/slices/postSlice";
 
 interface MoreOptionProps {
@@ -82,6 +83,24 @@ const MoreOption = ({
     }
   };
 
+  const handlePin = async () => {
+    const api = repostUser
+      ? `/reposts/${repostUser.repostId}/pin`
+      : `/posts/${postId}/pin`;
+
+    try {
+      const result = await fetchWithAuth(api, { method: "PATCH" });
+
+      if (result.success) {
+        dispatch(updatePin(postId));
+      } else {
+        console.error("핀 업데이트 실패");
+      }
+    } catch (error) {
+      console.error("핀 업데이트 중 에러 발생", error);
+    }
+  };
+
   // 나중에 hook으로 변경할 것
   const handleClick = () => {
     switch (option) {
@@ -115,6 +134,7 @@ const MoreOption = ({
         break;
       case "main":
         // 현재 게시물를 프로필 페이지의 상태에 배치
+        handlePin();
         break;
       case "replyOption":
         // 댓글 작성 옵션 드롭 다운이 열림

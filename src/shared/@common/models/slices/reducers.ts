@@ -59,6 +59,7 @@ import {
   setPost,
   deletePost,
   deleteRepost,
+  updatePin,
 } from "./postSlice";
 
 export {
@@ -126,4 +127,5 @@ export {
   setPost,
   deletePost,
   deleteRepost,
+  updatePin,
 };

@@ -177,6 +177,7 @@ interface IPost {
   media?: string[];
   vote?: IPostVote;
   schedule?: Date;
+  pin: boolean;
   actions: IPostActions;
   repostUser?: IRepostUser;
 }

@@ -58,10 +58,23 @@ const postSlice = createSlice({
 
       state.posts = filtered;
     },
+    updatePin: (state, action: PayloadAction<string>) => {
+      const postId = action.payload;
+
+      state.posts = state.posts.map((post) =>
+        post._id === postId ? { ...post, pin: !post.pin } : post
+      );
+    },
   },
 });
 
 export default postSlice.reducer;
 
-export const { setPosts, setLike, setPost, deletePost, deleteRepost } =
-  postSlice.actions;
+export const {
+  setPosts,
+  setLike,
+  setPost,
+  deletePost,
+  deleteRepost,
+  updatePin,
+} = postSlice.actions;
