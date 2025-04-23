@@ -136,7 +136,7 @@ interface IPostActonComment {}
 
 interface IPostActions {
   comments: IPostActonComment[];
-  reposts: IRepost;
+  reposts: string[];
   likes: string[];
   views: number;
 }
@@ -169,17 +169,24 @@ interface IRepostUser {
   repostedAt: string;
 }
 
+type PostType = "post" | "repost" | "quote" | "comment";
+
 interface IPost {
   _id: string;
+  type: PostType;
   author: IAuthor;
-  createdAt: string;
   text?: string;
   media?: string[];
   vote?: IPostVote;
   schedule?: Date;
   pin: boolean;
   actions: IPostActions;
-  repostUser?: IRepostUser;
+  originalPost?: IPost;
+  repostedAt?: string;
+  quotedAt?: string;
+  commentedAt?: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export type {

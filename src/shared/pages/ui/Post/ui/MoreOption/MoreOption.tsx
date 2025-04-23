@@ -11,11 +11,7 @@ import {
   useUserRelationStatus,
 } from "@shared/pages/ui/Post";
 import { fetchWithAuth } from "@shared/pages/utils";
-import {
-  deletePost,
-  deleteRepost,
-  updatePin,
-} from "@shared/@common/models/slices/postSlice";
+import { deletePost, updatePin } from "@shared/@common/models/slices/postSlice";
 
 interface MoreOptionProps {
   className?: string;
@@ -37,7 +33,7 @@ const MoreOption = ({
     className,
   ]);
 
-  const { _id: postId, author, repostUser } = usePostContext();
+  const { _id: postId, author, type } = usePostContext();
   const { userId } = author;
 
   const { isFollowing, isMuting, isBlocking } = useUserRelationStatus();
@@ -50,46 +46,29 @@ const MoreOption = ({
       : option === "block"
       ? isBlocking(userId)
       : option === "delete"
-      ? Boolean(repostUser)
+      ? type === "repost"
       : undefined;
 
   const handleDelete = async () => {
-    if (repostUser) {
-      try {
-        const result = await fetchWithAuth(`/reposts/${repostUser!.repostId}`, {
-          method: "DELETE",
-        });
-        if (result.success) {
-          dispatch(deleteRepost(repostUser!.repostId));
-        } else {
-          console.error("재게시 삭제 실패");
-        }
-      } catch (error) {
-        console.error("재게시 삭제 중 에러 발생", error);
+    try {
+      const result = await fetchWithAuth(`/posts/${postId}`, {
+        method: "DELETE",
+      });
+      if (result.success) {
+        dispatch(deletePost(postId));
+      } else {
+        console.error("삭제 실패");
       }
-    } else {
-      try {
-        const result = await fetchWithAuth(`/posts/${postId}`, {
-          method: "DELETE",
-        });
-        if (result.success) {
-          dispatch(deletePost(postId));
-        } else {
-          console.error("삭제 실패");
-        }
-      } catch (error) {
-        console.error("삭제 도중 에러 발생", error);
-      }
+    } catch (error) {
+      console.error("삭제 도중 에러 발생", error);
     }
   };
 
   const handlePin = async () => {
-    const api = repostUser
-      ? `/reposts/${repostUser.repostId}/pin`
-      : `/posts/${postId}/pin`;
-
     try {
-      const result = await fetchWithAuth(api, { method: "PATCH" });
+      const result = await fetchWithAuth(`/posts/${postId}/pin`, {
+        method: "PATCH",
+      });
 
       if (result.success) {
         dispatch(updatePin(postId));

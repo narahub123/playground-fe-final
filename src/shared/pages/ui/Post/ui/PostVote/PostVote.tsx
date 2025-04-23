@@ -27,8 +27,16 @@ const PostVote = ({ className }: PostVoteProps) => {
   const { stats } = useLanguageContent(["post", "PostVote"]);
 
   const { _id } = useSelector(selectUser);
-  const { vote, _id: postId, author } = usePostContext();
+  const {
+    vote: postVote,
+    _id: postId,
+    author,
+    originalPost,
+  } = usePostContext();
   const { _id: authorId } = author;
+
+  const vote = originalPost ? originalPost.vote : postVote;
+
   if (!vote) return null;
 
   const { options, duration } = vote;

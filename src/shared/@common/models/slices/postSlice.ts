@@ -52,11 +52,11 @@ const postSlice = createSlice({
     deleteRepost: (state, action: PayloadAction<string>) => {
       const posts = state.posts;
 
-      const filtered = posts.filter(
-        (post) => post.repostUser?._id !== action.payload
-      );
+      // const filtered = posts.filter(
+      //   (post) => post.repostUser?._id !== action.payload
+      // );
 
-      state.posts = filtered;
+      // state.posts = filtered;
     },
     updatePin: (state, action: PayloadAction<string>) => {
       const postId = action.payload;

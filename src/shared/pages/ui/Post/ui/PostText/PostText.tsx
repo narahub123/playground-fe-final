@@ -7,7 +7,6 @@ import { LinkPreview, ProfileDropdown } from "@shared/pages/ui/Post";
 import { fetchWithAuth } from "@shared/pages/utils";
 import { IUser } from "@shared/@common/types";
 
-
 interface PostTextProps {
   className?: string;
 }
@@ -18,7 +17,9 @@ const PostText = ({ className }: PostTextProps) => {
   const inlineRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const [link, setLink] = useState("");
 
-  const { text } = usePostContext();
+  const { text: postText, originalPost } = usePostContext();
+
+  const text = originalPost ? originalPost.text : postText;
 
   const {
     isLoading,

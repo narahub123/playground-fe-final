@@ -15,18 +15,18 @@ const RepostInfo = ({ className }: RepostInfoProps) => {
   const { text } = useLanguageContent(["post", "RepostInfo"]);
   const classNames = joinClassNames([styles["repost__info"], className]);
 
-  const { repostUser } = usePostContext();
+  const { type, author } = usePostContext();
 
-  if (!repostUser) return null;
+  if (type === "comment" || type === "post") return null;
 
   const handleClick = () => {
-    navigate(`/${repostUser.userId}`);
+    navigate(`/${author.userId}`);
   };
 
   return (
     <div className={classNames}>
       <button className={styles["button"]} onClick={handleClick}>
-        <Text>{`${repostUser.userId} ${text}`}</Text>
+        <Text>{`${author.userId} ${text}`}</Text>
       </button>
     </div>
   );

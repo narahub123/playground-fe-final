@@ -14,11 +14,11 @@ interface PostHeaderProps {
 const PostHeader = ({ className }: PostHeaderProps) => {
   const classNames = joinClassNames([styles["post__header"], className]);
 
-  const { repostUser } = usePostContext();
+  const { type } = usePostContext();
 
   const isShowingConnector = false;
 
-  if (!repostUser) return null;
+  if (type === "comment" || type === "post") return null;
 
   return (
     <header className={classNames}>

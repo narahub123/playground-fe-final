@@ -31,7 +31,9 @@ const PostMedia = ({ className }: PostMediaProps) => {
     setWidth(width);
   }, []);
 
-  const { media } = usePostContext();
+  const { media: postMedia, originalPost } = usePostContext();
+
+  const media = originalPost ? originalPost.media : postMedia;
 
   if (!media || media.length === 0) return null;
 
