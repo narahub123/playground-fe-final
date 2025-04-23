@@ -18,7 +18,7 @@ const PostHeader = ({ className }: PostHeaderProps) => {
 
   const isShowingConnector = false;
 
-  if (type === "comment" || type === "post") return null;
+  if (type === "comment" || type === "post" || !type) return null;
 
   return (
     <header className={classNames}>

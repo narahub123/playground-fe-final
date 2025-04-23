@@ -87,6 +87,10 @@ const PostAction = ({ className, action }: PostActionProps) => {
     }
   };
 
+  const isReposting = (userId: string) => {
+    return reposts.includes(userId);
+  };
+
   const handleClick: Record<PostActionType, () => void> = {
     comments: () => {
       navigate(PRIMARY_LINK.COMPOSE_POST);
@@ -138,7 +142,7 @@ const PostAction = ({ className, action }: PostActionProps) => {
           action === "bookmarks" && isBookmarking(postId)
             ? styles["bookmarking"]
             : "",
-          action === "reposts" && actions[action].isReposted
+          action === "reposts" && isReposting(userId)
             ? styles["reposting"]
             : "",
         ])}
@@ -151,17 +155,13 @@ const PostAction = ({ className, action }: PostActionProps) => {
           className={joinClassNames([
             styles["stat"],
             action === "likes" && isLiking(userId) ? styles["liking"] : "",
-            action === "reposts" && actions[action].isReposted
+            action === "reposts" && isReposting(userId)
               ? styles["reposting"]
               : "",
           ])}
         >
           {formatNumber(
-            action === "views"
-              ? actions[action]
-              : action === "reposts"
-              ? actions[action].count
-              : actions[action].length
+            action === "views" ? actions[action] : actions[action].length
           )}
         </Text>
       )}

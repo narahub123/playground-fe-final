@@ -17,7 +17,7 @@ const RepostInfo = ({ className }: RepostInfoProps) => {
 
   const { type, author } = usePostContext();
 
-  if (type === "comment" || type === "post") return null;
+  if (type === "comment" || type === "post" || !type) return null;
 
   const handleClick = () => {
     navigate(`/${author.userId}`);
