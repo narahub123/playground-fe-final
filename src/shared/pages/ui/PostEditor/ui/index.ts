@@ -7,6 +7,7 @@ import ReplyPermissionControl from "./ReplyPermissionControl/ReplyPermissionCont
 import { TextEditor } from "./TextEditor";
 import { MediaPreviewContainer } from "./MediaPreviewContainer";
 import { Vote } from "./Vote";
+import ReplyPermissionDropdown from "./ReplyPermissionDropdown/ReplyPermissionDropdown";
 
 export {
   AddPostLink,
@@ -18,4 +19,5 @@ export {
   TextEditor,
   MediaPreviewContainer,
   Vote,
+  ReplyPermissionDropdown,
 };

@@ -2,14 +2,14 @@ import styles from "./ReplyPermissionControl.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
 import { useLayoutEffect, useRef, useState } from "react";
-import { LuCheck } from "react-icons/lu";
 
 import {
   IReplyOption,
   ReplyOptionType,
 } from "@shared/pages/ui/PostEditor/types";
 import { Icon } from "@shared/@common/ui/icons";
-import { Button, Dropdown, Text } from "@shared/@common/ui/components";
+import { Button, Text } from "@shared/@common/ui/components";
+import ReplyPermissionDropdown from "../ReplyPermissionDropdown/ReplyPermissionDropdown";
 
 interface ReplyPermissionControlProps {
   className?: string;
@@ -88,50 +88,15 @@ const ReplyPermissionControl = ({
           </>
         )}
       </Button>
-      <Dropdown
-        className={styles["permission__dropdown"]}
-        name="reply-dropdown"
+      <ReplyPermissionDropdown
         isOpen={isOpen}
-        onClose={() => {
-          setIsOpen(false);
-        }}
+        setIsOpen={setIsOpen}
+        replyOption={replyOption}
+        setReplyOption={setReplyOption}
         lastClickedRef={replyRef}
         top={rect.top}
         left={rect.left}
-      >
-        <div className={styles["header"]}>
-          <Text className={styles["header__text"]}>{header.text}</Text>
-          <Text className={styles["header__description"]}>
-            {header.description}
-          </Text>
-        </div>
-        <div>
-          <ul>
-            {(replyOptions as IReplyOption[]).map((option) => (
-              <li
-                className={styles["option"]}
-                key={option.value}
-                onClick={() => setReplyOption(option.value)}
-                tabIndex={0}
-              >
-                <div className={styles["option__leading__icon__container"]}>
-                  <div className={styles["option__leading__icon__wrapper"]}>
-                    <Icon
-                      className={styles["option__leading__icon"]}
-                      iconName={option.icon}
-                      bgColor="transparent"
-                    />
-                  </div>
-                </div>
-                <Text className={styles["option__text"]}>{option.text}</Text>
-                {option.value === replyOption && (
-                  <LuCheck className={styles["option__trailing__icon"]} />
-                )}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </Dropdown>
+      />
     </div>
   );
 };

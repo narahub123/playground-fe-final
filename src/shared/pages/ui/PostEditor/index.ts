@@ -7,6 +7,7 @@ import {
   ReplyPermissionControl,
   TextEditor,
   Vote,
+  ReplyPermissionDropdown,
 } from "./ui";
 
 import { convertDurationToDate, convertVoteFormat } from "./utils";
@@ -22,4 +23,5 @@ export {
   Vote,
   convertDurationToDate,
   convertVoteFormat,
+  ReplyPermissionDropdown,
 };
