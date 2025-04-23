@@ -38,7 +38,9 @@ const post_kr = {
         case "delete":
           return `${toggle ? "재게시 삭제하기" : "삭제하기"}`;
         case "main":
-          return `내 프로필 메인에 올리기`;
+          return `${
+            toggle ? "내 프로필 메인에서 삭제" : "내 프로필 메인에 올리기"
+          }`;
         case "replyOption":
           return `답글을 달 수 있는 사람변경하기`;
         case "analytics":

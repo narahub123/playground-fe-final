@@ -35,6 +35,7 @@ import {
   setRecentEmojis,
   clearRecentEmojis,
   setBookmark,
+  setPinnedPost,
 } from "./userSlice";
 
 import {
@@ -99,6 +100,7 @@ export {
   setRecentEmojis,
   clearRecentEmojis,
   setBookmark,
+  setPinnedPost,
 
   // modal
   onParallelModalOpen,

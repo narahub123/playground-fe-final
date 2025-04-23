@@ -60,7 +60,7 @@ const initialState: UserState = {
     recentEmojis: [],
     bookmarks: [],
     createdAt: new Date(),
-    likes: []
+    likes: [],
   },
   loading: true,
 };
@@ -244,6 +244,15 @@ const userSlice = createSlice({
         state.data.bookmarks = [...state.data.bookmarks, postId];
       }
     },
+    setPinnedPost: (state, action: PayloadAction<string>) => {
+      const pinnedPost = state.data.pinnedPost;
+
+      if (pinnedPost && pinnedPost === action.payload) {
+        state.data.pinnedPost = undefined;
+      } else {
+        state.data.pinnedPost = action.payload;
+      }
+    },
     clearRecentEmojis: (state) => {
       state.data.recentEmojis = [];
     },
@@ -281,4 +290,5 @@ export const {
   setRecentEmojis,
   setBookmark,
   clearRecentEmojis,
+  setPinnedPost,
 } = userSlice.actions;

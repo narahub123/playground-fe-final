@@ -32,6 +32,7 @@ import {
   selectSkintoneType,
   selectRecentEmojis,
   selectBookmarks,
+  selectPinnedPost,
 } from "./userSelectors";
 
 import {
@@ -93,6 +94,7 @@ export {
   selectSkintoneType,
   selectRecentEmojis,
   selectBookmarks,
+  selectPinnedPost,
 
   // modal
   getParallelModals,

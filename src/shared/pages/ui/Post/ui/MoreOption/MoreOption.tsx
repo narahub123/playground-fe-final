@@ -11,7 +11,10 @@ import {
   useUserRelationStatus,
 } from "@shared/pages/ui/Post";
 import { fetchWithAuth } from "@shared/pages/utils";
-import { deletePost, updatePin } from "@shared/@common/models/slices/postSlice";
+import { deletePost } from "@shared/@common/models/slices/postSlice";
+import { setPinnedPost } from "@shared/@common/models/slices/userSlice";
+import { useSelector } from "react-redux";
+import { selectPinnedPost } from "@shared/@common/models/selectors";
 
 interface MoreOptionProps {
   className?: string;
@@ -35,6 +38,7 @@ const MoreOption = ({
 
   const { _id: postId, author, type } = usePostContext();
   const { userId } = author;
+  const pinnedPost = useSelector(selectPinnedPost);
 
   const { isFollowing, isMuting, isBlocking } = useUserRelationStatus();
 
@@ -47,6 +51,8 @@ const MoreOption = ({
       ? isBlocking(userId)
       : option === "delete"
       ? type === "repost"
+      : option === "main"
+      ? Boolean(pinnedPost) && pinnedPost === postId
       : undefined;
 
   const handleDelete = async () => {
@@ -69,12 +75,18 @@ const MoreOption = ({
 
   const handlePin = async () => {
     try {
-      const result = await fetchWithAuth(`/posts/${postId}/pin`, {
-        method: "PATCH",
-      });
+      const result = await fetchWithAuth(
+        `/users/me`,
+        {
+          method: "PATCH",
+        },
+        {
+          pinnedPost: postId,
+        }
+      );
 
       if (result.success) {
-        dispatch(updatePin(postId));
+        dispatch(setPinnedPost(postId));
       } else {
         console.error("핀 업데이트 실패");
       }

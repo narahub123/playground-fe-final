@@ -125,6 +125,7 @@ interface IUser {
   bookmarks: string[];
   likes: string[];
   createdAt: Date;
+  pinnedPost?: string;
 }
 
 interface IRepost {
