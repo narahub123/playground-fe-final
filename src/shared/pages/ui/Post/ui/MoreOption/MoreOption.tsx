@@ -55,7 +55,10 @@ const MoreOption = ({
         method: "DELETE",
       });
       if (result.success) {
-        dispatch(deletePost(postId));
+        const postIds = result.data.postIds;
+        for (const postId of postIds) {
+          dispatch(deletePost(postId));
+        }
       } else {
         console.error("삭제 실패");
       }
