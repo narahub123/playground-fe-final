@@ -36,7 +36,7 @@ const post_kr = {
         case "groupNote":
           return `그룹 노트 요청하기`;
         case "delete":
-          return `삭제하기`;
+          return `${toggle ? "재게시 삭제하기" : "삭제하기"}`;
         case "main":
           return `내 프로필 메인에 올리기`;
         case "replyOption":

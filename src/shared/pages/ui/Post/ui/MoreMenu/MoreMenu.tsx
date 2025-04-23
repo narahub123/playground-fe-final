@@ -23,7 +23,12 @@ const MoreMenu = ({ className }: MoreMenuProps) => {
 
       const innerWidth = window.innerWidth;
 
-      setRect({ top, bottom, left, right: innerWidth - right });
+      setRect({
+        top: top + window.scrollY,
+        bottom,
+        left,
+        right: innerWidth - right,
+      });
     };
 
     getButtonPosition();

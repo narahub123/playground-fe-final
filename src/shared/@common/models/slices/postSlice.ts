@@ -42,9 +42,26 @@ const postSlice = createSlice({
     setPost: (state, action: PayloadAction<IPost>) => {
       state.posts = [action.payload, ...state.posts];
     },
+    deletePost: (state, action: PayloadAction<string>) => {
+      const posts = state.posts;
+
+      const filtered = posts.filter((post) => post._id !== action.payload);
+
+      state.posts = filtered;
+    },
+    deleteRepost: (state, action: PayloadAction<string>) => {
+      const posts = state.posts;
+
+      const filtered = posts.filter(
+        (post) => post.repostUser?._id !== action.payload
+      );
+
+      state.posts = filtered;
+    },
   },
 });
 
 export default postSlice.reducer;
 
-export const { setPosts, setLike, setPost } = postSlice.actions;
+export const { setPosts, setLike, setPost, deletePost, deleteRepost } =
+  postSlice.actions;

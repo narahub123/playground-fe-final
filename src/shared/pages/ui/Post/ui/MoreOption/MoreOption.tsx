@@ -1,3 +1,4 @@
+import { useAppDispatch } from "@app/store";
 import styles from "./MoreOption.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Text } from "@shared/@common/ui/components";
@@ -9,6 +10,11 @@ import {
   usePostContext,
   useUserRelationStatus,
 } from "@shared/pages/ui/Post";
+import { fetchWithAuth } from "@shared/pages/utils";
+import {
+  deletePost,
+  deleteRepost,
+} from "@shared/@common/models/slices/postSlice";
 
 interface MoreOptionProps {
   className?: string;
@@ -21,6 +27,7 @@ const MoreOption = ({
   disabled = false,
   option,
 }: MoreOptionProps) => {
+  const dispatch = useAppDispatch();
   // 언어 설정
   const { text } = useLanguageContent(["post", "MoreOption"]);
   const classNames = joinClassNames([
@@ -29,7 +36,7 @@ const MoreOption = ({
     className,
   ]);
 
-  const { author } = usePostContext();
+  const { _id: postId, author, repostUser } = usePostContext();
   const { userId } = author;
 
   const { isFollowing, isMuting, isBlocking } = useUserRelationStatus();
@@ -41,7 +48,39 @@ const MoreOption = ({
       ? isMuting(userId)
       : option === "block"
       ? isBlocking(userId)
+      : option === "delete"
+      ? Boolean(repostUser)
       : undefined;
+
+  const handleDelete = async () => {
+    if (repostUser) {
+      try {
+        const result = await fetchWithAuth(`/reposts/${repostUser!.repostId}`, {
+          method: "DELETE",
+        });
+        if (result.success) {
+          dispatch(deleteRepost(repostUser!.repostId));
+        } else {
+          console.error("재게시 삭제 실패");
+        }
+      } catch (error) {
+        console.error("재게시 삭제 중 에러 발생", error);
+      }
+    } else {
+      try {
+        const result = await fetchWithAuth(`/posts/${postId}`, {
+          method: "DELETE",
+        });
+        if (result.success) {
+          dispatch(deletePost(postId));
+        } else {
+          console.error("삭제 실패");
+        }
+      } catch (error) {
+        console.error("삭제 도중 에러 발생", error);
+      }
+    }
+  };
 
   // 나중에 hook으로 변경할 것
   const handleClick = () => {
@@ -72,6 +111,7 @@ const MoreOption = ({
         break;
       case "delete":
         // 현재 게시물 삭제
+        handleDelete();
         break;
       case "main":
         // 현재 게시물를 프로필 페이지의 상태에 배치
