@@ -491,7 +491,7 @@ const components = {
         description: "모든 사람이 답글을 달 수 있습니다.",
       },
       {
-        value: "following",
+        value: "followings",
         text: "내가 팔로우하는 계정",
         icon: "followingIcon",
         description: "내가 팔로우하는 계정은 답글을 쓸 수 있습니다.",

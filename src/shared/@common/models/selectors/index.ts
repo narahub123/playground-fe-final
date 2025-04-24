@@ -54,6 +54,7 @@ import {
   getPrivacy,
   selectBlockedUsers,
   selectMutedUsers,
+  selectReplyOption,
 } from "./privacySelectors";
 
 import { getNotification } from "./notificationSelectors";
@@ -115,6 +116,7 @@ export {
   getPrivacy,
   selectBlockedUsers,
   selectMutedUsers,
+  selectReplyOption,
 
   // notification
   getNotification,

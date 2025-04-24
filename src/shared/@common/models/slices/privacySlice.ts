@@ -5,6 +5,7 @@ import {
   MuteTarget,
   TagTarget,
 } from "@shared/@common/types";
+import { ReplyOptionType } from "@shared/pages/ui/PostEditor/types";
 
 interface PrivacyState {
   // 오디언스
@@ -52,6 +53,9 @@ interface PrivacyState {
   // 위치 정보
   isLocationBasedAdsEnabled: boolean;
   visitedLocations: string[];
+
+  // 댓글 옵션
+  replyOption: ReplyOptionType;
 }
 
 const initialState: PrivacyState = {
@@ -100,6 +104,9 @@ const initialState: PrivacyState = {
   // 위치 정보
   isLocationBasedAdsEnabled: false,
   visitedLocations: [],
+
+  // 댓글 옵션
+  replyOption: "all",
 };
 
 const privacySlice = createSlice({
@@ -110,9 +117,13 @@ const privacySlice = createSlice({
     setPrivacy: (state, action: PayloadAction<PrivacyState>) => {
       return action.payload;
     },
+    setReplyOption: (state, action: PayloadAction<ReplyOptionType>) => {
+      state.replyOption = action.payload;
+    },
   },
 });
 
 export default privacySlice.reducer;
 
-export const { setPrivacy, clearPrivacyState } = privacySlice.actions;
+export const { setPrivacy, clearPrivacyState, setReplyOption } =
+  privacySlice.actions;

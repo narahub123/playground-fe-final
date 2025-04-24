@@ -1,7 +1,7 @@
 import { Icons } from "@shared/@common/ui/icons";
 import { IVoteDuration } from "../ui/Vote";
 
-type ReplyOptionType = "all" | "following" | "authenticated" | "mentioned";
+type ReplyOptionType = "all" | "followings" | "authenticated" | "mentioned";
 
 interface IReplyOption {
   value: ReplyOptionType;

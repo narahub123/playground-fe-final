@@ -3,25 +3,18 @@ import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
 import { useLayoutEffect, useRef, useState } from "react";
 
-import {
-  IReplyOption,
-  ReplyOptionType,
-} from "@shared/pages/ui/PostEditor/types";
+import { IReplyOption } from "@shared/pages/ui/PostEditor/types";
 import { Icon } from "@shared/@common/ui/icons";
 import { Button, Text } from "@shared/@common/ui/components";
 import ReplyPermissionDropdown from "../ReplyPermissionDropdown/ReplyPermissionDropdown";
+import { useSelector } from "react-redux";
+import { selectReplyOption } from "@shared/@common/models/selectors";
 
 interface ReplyPermissionControlProps {
   className?: string;
-  replyOption: ReplyOptionType;
-  setReplyOption: React.Dispatch<ReplyOptionType>;
 }
 
-const ReplyPermissionControl = ({
-  className,
-  replyOption,
-  setReplyOption,
-}: ReplyPermissionControlProps) => {
+const ReplyPermissionControl = ({ className }: ReplyPermissionControlProps) => {
   const replyRef = useRef<HTMLButtonElement>(null);
   const [rect, setRect] = useState<{
     top?: number;
@@ -33,8 +26,10 @@ const ReplyPermissionControl = ({
 
   const [isOpen, setIsOpen] = useState(false);
 
+  const replyOption = useSelector(selectReplyOption);
+
   // 언어 설정
-  const { replyOptions, header } = useLanguageContent([
+  const { replyOptions } = useLanguageContent([
     "components",
     "ReplyPermissionControl",
   ]);
@@ -91,8 +86,6 @@ const ReplyPermissionControl = ({
       <ReplyPermissionDropdown
         isOpen={isOpen}
         setIsOpen={setIsOpen}
-        replyOption={replyOption}
-        setReplyOption={setReplyOption}
         lastClickedRef={replyRef}
         top={rect.top}
         left={rect.left}

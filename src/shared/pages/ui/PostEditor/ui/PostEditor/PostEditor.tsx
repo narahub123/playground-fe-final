@@ -16,7 +16,6 @@ import {
   TextEditor,
   Vote,
 } from "@shared/pages/ui/PostEditor/ui";
-import { ReplyOptionType } from "@shared/pages/ui/PostEditor/types";
 import {
   selectPostEditor,
   selectPostEditorTextLength,
@@ -30,7 +29,6 @@ interface PostEditorProps {
 const PostEditor = ({ className }: PostEditorProps) => {
   const navigate = useNavigate();
   const [isValid, setIsValid] = useState(false);
-  const [replyOption, setReplyOption] = useState<ReplyOptionType>("all");
 
   const user = useSelector(selectUser);
   const postEditorContent = useSelector(selectPostEditor);
@@ -105,10 +103,7 @@ const PostEditor = ({ className }: PostEditorProps) => {
         </div>
         <div className={styles["controls__wrapper"]}>
           <div className={styles["reply__permission__control__wrapper"]}>
-            <ReplyPermissionControl
-              replyOption={replyOption}
-              setReplyOption={setReplyOption}
-            />
+            <ReplyPermissionControl />
           </div>
           <div className={styles["toolbar__container"]}>
             <span className={styles["toolbar__wrapper"]}>

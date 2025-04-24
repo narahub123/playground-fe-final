@@ -50,7 +50,7 @@ import {
 
 import { setSecurity, clearSecurityState } from "./securitySlice";
 
-import { setPrivacy, clearPrivacyState } from "./privacySlice";
+import { setPrivacy, clearPrivacyState, setReplyOption } from "./privacySlice";
 
 import { setNotification, clearNotificationState } from "./notificationSlice";
 
@@ -118,6 +118,7 @@ export {
   // privacy
   setPrivacy,
   clearPrivacyState,
+  setReplyOption,
 
   // notification
   setNotification,

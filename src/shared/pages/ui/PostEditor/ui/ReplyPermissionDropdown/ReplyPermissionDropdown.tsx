@@ -5,38 +5,47 @@ import { joinClassNames } from "@shared/@common/utils";
 import { IReplyOption, ReplyOptionType } from "../../types";
 import { Icon } from "@shared/@common/ui/icons";
 import { LuCheck } from "react-icons/lu";
+import { useSelector } from "react-redux";
+import { useAppDispatch } from "@app/store";
+import { selectReplyOption } from "@shared/@common/models/selectors";
+import { setReplyOption } from "@shared/@common/models/slices/privacySlice";
 
 interface ReplyPermissionDropdownProps {
   className?: string;
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  setReplyOption: React.Dispatch<ReplyOptionType>;
   lastClickedRef?: React.RefObject<HTMLButtonElement>;
-  replyOption: ReplyOptionType;
   top?: number;
   left?: number;
+  right?: number;
 }
 
 const ReplyPermissionDropdown = ({
   className,
   isOpen,
   setIsOpen,
-  setReplyOption,
   lastClickedRef,
   top,
   left,
-  replyOption,
+  right,
 }: ReplyPermissionDropdownProps) => {
+  const dispatch = useAppDispatch();
   // 언어 설정
   const { replyOptions, header } = useLanguageContent([
     "components",
     "ReplyPermissionControl",
   ]);
 
+  const replyOption = useSelector(selectReplyOption);
+
   const classNames = joinClassNames([
     styles["reply__permission__dropdown"],
     className,
   ]);
+
+  const handleClick = (option: ReplyOptionType) => {
+    dispatch(setReplyOption(option));
+  };
 
   return (
     <Dropdown
@@ -49,6 +58,7 @@ const ReplyPermissionDropdown = ({
       lastClickedRef={lastClickedRef}
       top={top}
       left={left}
+      right={right}
     >
       <div className={styles["header"]}>
         <Text className={styles["header__text"]}>{header.text}</Text>
@@ -62,7 +72,7 @@ const ReplyPermissionDropdown = ({
             <li
               className={styles["option"]}
               key={option.value}
-              onClick={() => setReplyOption(option.value)}
+              onClick={() => handleClick(option.value)}
               tabIndex={0}
             >
               <div className={styles["option__leading__icon__container"]}>
