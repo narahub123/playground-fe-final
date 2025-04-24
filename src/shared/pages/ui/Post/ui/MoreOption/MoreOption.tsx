@@ -12,7 +12,11 @@ import {
 } from "@shared/pages/ui/Post";
 import { fetchWithAuth } from "@shared/pages/utils";
 import { deletePost } from "@shared/@common/models/slices/postSlice";
-import { setPinnedPost } from "@shared/@common/models/slices/userSlice";
+import {
+  setFollowing,
+  setPinnedPost,
+  setUnfollowing,
+} from "@shared/@common/models/slices/userSlice";
 import { useSelector } from "react-redux";
 import { selectPinnedPost } from "@shared/@common/models/selectors";
 
@@ -41,18 +45,18 @@ const MoreOption = ({
   ]);
 
   const { _id: postId, author, type } = usePostContext();
-  const { userId } = author;
+  const { _id: user_id, userId } = author;
   const pinnedPost = useSelector(selectPinnedPost);
 
   const { isFollowing, isMuting, isBlocking } = useUserRelationStatus();
 
   const toggle =
     option === "following"
-      ? isFollowing(userId)
+      ? isFollowing(user_id)
       : option === "mute"
-      ? isMuting(userId)
+      ? isMuting(user_id)
       : option === "block"
-      ? isBlocking(userId)
+      ? isBlocking(user_id)
       : option === "delete"
       ? type === "repost"
       : option === "main"
@@ -104,11 +108,35 @@ const MoreOption = ({
     setIsReplyOpen(true);
   };
 
+  const handleFollowing = async () => {
+    try {
+      const result = await fetchWithAuth(
+        "/users/me",
+        { method: "PATCH" },
+        { following: user_id }
+      );
+      if (result.success) {
+        if (result.data.following) {
+          dispatch(setFollowing(result.data.following));
+        }
+
+        if (result.data.unfollowing) {
+          dispatch(setUnfollowing(result.data.unfollowing));
+        }
+      } else {
+        console.error("팔로잉 실패");
+      }
+    } catch (error) {
+      console.error("팔로잉 처리 중 에러 발생", error);
+    }
+  };
+
   // 나중에 hook으로 변경할 것
   const handleClick = () => {
     switch (option) {
       case "following":
         // 팔로잉 중인 경우 언팔로우, 팔로잉을 하지 않는 경우 팔로잉
+        handleFollowing();
         break;
       case "list":
         // 리스트에 있는 경우 삭제, 없는 경우 추가

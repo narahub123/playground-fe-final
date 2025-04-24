@@ -86,6 +86,7 @@ interface ILockStatus {
 }
 
 interface IFollowing {
+  _id: string;
   userId: string;
   username: string;
   profileImage: string;

@@ -13,7 +13,8 @@ const useUserRelationStatus = () => {
   const blockedUsers = useSelector(selectBlockedUsers);
 
   const isMyself = (userId: string) => currentUserId === userId;
-  const isFollowing = (userId: string) => followings.includes(userId);
+  const isFollowing = (userId: string) =>
+    followings.some((f) => f._id === userId);
   const isMuting = (userId: string) => mutedUsers.includes(userId);
   const isBlocking = (userId: string) => blockedUsers.includes(userId);
 

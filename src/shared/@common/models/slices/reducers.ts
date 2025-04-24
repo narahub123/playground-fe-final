@@ -24,6 +24,7 @@ import {
   clearUserState,
   setFollowers,
   setFollowings,
+  setFollowing,
   setIntro,
   setIsAuthenticated,
   setIsAuthorized,
@@ -36,6 +37,7 @@ import {
   clearRecentEmojis,
   setBookmark,
   setPinnedPost,
+  setUnfollowing,
 } from "./userSlice";
 
 import {
@@ -89,6 +91,7 @@ export {
   clearUserState,
   setFollowers,
   setFollowings,
+  setFollowing,
   setIntro,
   setIsAuthenticated,
   setIsAuthorized,
@@ -101,6 +104,7 @@ export {
   clearRecentEmojis,
   setBookmark,
   setPinnedPost,
+  setUnfollowing,
 
   // modal
   onParallelModalOpen,

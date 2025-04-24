@@ -190,6 +190,15 @@ const userSlice = createSlice({
     setFollowings: (state, action: PayloadAction<IFollowing>) => {
       state.data.followings = [...state.data.followings, action.payload];
     },
+
+    setFollowing: (state, action: PayloadAction<IFollowing>) => {
+      state.data.followings = [...state.data.followings, action.payload];
+    },
+    setUnfollowing: (state, action: PayloadAction<string>) => {
+      state.data.followings = state.data.followings.filter(
+        (f) => f._id !== action.payload
+      );
+    },
     // 팔로워
     setFollowers: (state, action: PayloadAction<IFollower>) => {
       state.data.followers = [...state.data.followers, action.payload];
@@ -279,6 +288,8 @@ export const {
   clearUserState,
   setFollowers,
   setFollowings,
+  setFollowing,
+  setUnfollowing,
   setIntro,
   setIsAuthenticated,
   setIsAuthorized,
