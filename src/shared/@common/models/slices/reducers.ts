@@ -57,6 +57,7 @@ import {
   clearPrivacyState,
   setReplyOption,
   setMutedUser,
+  setBlockedUser,
 } from "./privacySlice";
 
 import { setNotification, clearNotificationState } from "./notificationSlice";
@@ -129,6 +130,7 @@ export {
   clearPrivacyState,
   setReplyOption,
   setMutedUser,
+  setBlockedUser,
 
   // notification
   setNotification,

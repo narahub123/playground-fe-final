@@ -19,7 +19,10 @@ import {
 } from "@shared/@common/models/slices/userSlice";
 import { useSelector } from "react-redux";
 import { selectPinnedPost } from "@shared/@common/models/selectors";
-import { setMutedUser } from "@shared/@common/models/slices/privacySlice";
+import {
+  setBlockedUser,
+  setMutedUser,
+} from "@shared/@common/models/slices/privacySlice";
 
 interface MoreOptionProps {
   className?: string;
@@ -150,6 +153,24 @@ const MoreOption = ({
     }
   };
 
+  const handleBlock = async () => {
+    try {
+      const result = await fetchWithAuth(
+        "/privacies/me",
+        { method: "PATCH" },
+        { blockedUser: user_id }
+      );
+
+      if (result.success) {
+        dispatch(setBlockedUser(user_id));
+      } else {
+        console.error("차단 처리 실패");
+      }
+    } catch (error) {
+      console.error("차단 처리 중 에러 발생", error);
+    }
+  };
+
   // 나중에 hook으로 변경할 것
   const handleClick = () => {
     switch (option) {
@@ -166,6 +187,7 @@ const MoreOption = ({
         break;
       case "block":
         // 차단 중인 경우 차단 해제, 차단 중이 아닌 경우 차단
+        handleBlock();
         break;
       case "view":
         // post 페이지 url/quote로 이동해서 통계를 보여줌

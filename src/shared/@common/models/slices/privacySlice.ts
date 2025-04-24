@@ -132,10 +132,27 @@ const privacySlice = createSlice({
         state.mutedUsers = [...state.mutedUsers, opponent];
       }
     },
+    setBlockedUser: (state, action: PayloadAction<string>) => {
+      const blockedUsers = state.blockedUsers;
+      const opponent = action.payload;
+
+      if (blockedUsers.includes(opponent)) {
+        state.blockedUsers = state.blockedUsers.filter(
+          (blockedUser) => blockedUser !== opponent
+        );
+      } else {
+        state.blockedUsers = [...state.blockedUsers, opponent];
+      }
+    },
   },
 });
 
 export default privacySlice.reducer;
 
-export const { setPrivacy, clearPrivacyState, setReplyOption, setMutedUser } =
-  privacySlice.actions;
+export const {
+  setPrivacy,
+  clearPrivacyState,
+  setReplyOption,
+  setMutedUser,
+  setBlockedUser,
+} = privacySlice.actions;
