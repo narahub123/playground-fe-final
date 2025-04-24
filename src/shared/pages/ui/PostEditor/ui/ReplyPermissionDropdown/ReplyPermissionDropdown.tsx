@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { useAppDispatch } from "@app/store";
 import { selectReplyOption } from "@shared/@common/models/selectors";
 import { setReplyOption } from "@shared/@common/models/slices/privacySlice";
+import { fetchWithAuth } from "@shared/pages/utils";
 
 interface ReplyPermissionDropdownProps {
   className?: string;
@@ -43,8 +44,23 @@ const ReplyPermissionDropdown = ({
     className,
   ]);
 
-  const handleClick = (option: ReplyOptionType) => {
-    dispatch(setReplyOption(option));
+  const handleClick = async (option: ReplyOptionType) => {
+    if (replyOption === option) return;
+
+    try {
+      const result = await fetchWithAuth(
+        `/privacies/me`,
+        { method: "PATCH" },
+        { replyOption: option }
+      );
+      if (result.success) {
+        dispatch(setReplyOption(option));
+      } else {
+        console.error("개인 정보 업데이트 실패");
+      }
+    } catch (error) {
+      console.error("개인 정보 업데이트 도중 에러 발생", error);
+    }
   };
 
   return (
