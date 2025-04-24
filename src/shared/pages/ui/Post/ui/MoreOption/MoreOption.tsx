@@ -20,12 +20,16 @@ interface MoreOptionProps {
   className?: string;
   disabled?: boolean;
   option: MoreOptionType | MoreMyOptionType;
+  setIsReplyOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  onClose: () => void;
 }
 
 const MoreOption = ({
   className,
   disabled = false,
   option,
+  setIsReplyOpen,
+  onClose,
 }: MoreOptionProps) => {
   const dispatch = useAppDispatch();
   // 언어 설정
@@ -95,6 +99,11 @@ const MoreOption = ({
     }
   };
 
+  const handleReplyOption = () => {
+    onClose();
+    setIsReplyOpen(true);
+  };
+
   // 나중에 hook으로 변경할 것
   const handleClick = () => {
     switch (option) {
@@ -132,6 +141,7 @@ const MoreOption = ({
         break;
       case "replyOption":
         // 댓글 작성 옵션 드롭 다운이 열림
+        handleReplyOption();
         break;
       case "analytics":
         // 게시물 애너리틱스 드롭다운 엶

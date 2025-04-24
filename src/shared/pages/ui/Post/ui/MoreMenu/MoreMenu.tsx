@@ -60,6 +60,7 @@ const MoreMenu = ({ className }: MoreMenuProps) => {
         onClose={onClose}
         top={rect.top}
         right={rect.right}
+        setIsReplyOpen={setIsReplyOpen}
       />
       <ReplyPermissionDropdown
         isOpen={isReplyOpen}

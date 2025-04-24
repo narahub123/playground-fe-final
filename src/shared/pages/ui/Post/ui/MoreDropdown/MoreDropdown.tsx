@@ -10,11 +10,18 @@ import {
 interface MoreDropdownProps {
   isOpen: boolean;
   onClose: () => void;
+  setIsReplyOpen: React.Dispatch<React.SetStateAction<boolean>>;
   top?: number;
   right?: number;
 }
 
-const MoreDropdown = ({ isOpen, onClose, top, right }: MoreDropdownProps) => {
+const MoreDropdown = ({
+  isOpen,
+  onClose,
+  top,
+  right,
+  setIsReplyOpen,
+}: MoreDropdownProps) => {
   const { isMyself } = useUserRelationStatus();
 
   const { author } = usePostContext();
@@ -29,7 +36,12 @@ const MoreDropdown = ({ isOpen, onClose, top, right }: MoreDropdownProps) => {
       right={right}
     >
       {(isMyself(userId) ? moreMyOptions : moreOptions).map((option) => (
-        <MoreOption option={option} key={option} />
+        <MoreOption
+          option={option}
+          key={option}
+          setIsReplyOpen={setIsReplyOpen}
+          onClose={onClose}
+        />
       ))}
     </Dropdown>
   );
