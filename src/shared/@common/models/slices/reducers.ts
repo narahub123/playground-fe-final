@@ -52,7 +52,12 @@ import {
 
 import { setSecurity, clearSecurityState } from "./securitySlice";
 
-import { setPrivacy, clearPrivacyState, setReplyOption } from "./privacySlice";
+import {
+  setPrivacy,
+  clearPrivacyState,
+  setReplyOption,
+  setMutedUser,
+} from "./privacySlice";
 
 import { setNotification, clearNotificationState } from "./notificationSlice";
 
@@ -123,6 +128,7 @@ export {
   setPrivacy,
   clearPrivacyState,
   setReplyOption,
+  setMutedUser,
 
   // notification
   setNotification,

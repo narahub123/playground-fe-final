@@ -19,6 +19,7 @@ import {
 } from "@shared/@common/models/slices/userSlice";
 import { useSelector } from "react-redux";
 import { selectPinnedPost } from "@shared/@common/models/selectors";
+import { setMutedUser } from "@shared/@common/models/slices/privacySlice";
 
 interface MoreOptionProps {
   className?: string;
@@ -131,6 +132,24 @@ const MoreOption = ({
     }
   };
 
+  const handleMute = async () => {
+    try {
+      const result = await fetchWithAuth(
+        "/privacies/me",
+        { method: "PATCH" },
+        { mutedUser: user_id }
+      );
+
+      if (result.success) {
+        dispatch(setMutedUser(user_id));
+      } else {
+        console.error("뮤트 처리 실패");
+      }
+    } catch (error) {
+      console.error("뮤트 처리 중 에러 발생", error);
+    }
+  };
+
   // 나중에 hook으로 변경할 것
   const handleClick = () => {
     switch (option) {
@@ -143,6 +162,7 @@ const MoreOption = ({
         break;
       case "mute":
         // mute 중인 경우 뮤트 해제, 뮤트 중이 아닌 경우 뮤트
+        handleMute();
         break;
       case "block":
         // 차단 중인 경우 차단 해제, 차단 중이 아닌 경우 차단
