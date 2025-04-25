@@ -5,6 +5,7 @@ import {
   LogoutPage,
   MessagesPage,
   NotificationsPage,
+  PostPage,
   ProfilePage,
   SettingsPage,
 } from "@pages";
@@ -42,6 +43,24 @@ const userRouter = createBrowserRouter([
         path: PRIMARY_LINK.HOME,
         element: <HomePage />,
         children: [],
+      },
+      {
+        path: PRIMARY_LINK.POSTPAGE,
+        element: <PostPage />,
+        children: [
+          {
+            index: true,
+            element: <>기본</>,
+          },
+          {
+            path: PRIMARY_LINK.POSTPAGE_QUOTES,
+            element: <>게시물 참여 조회수</>,
+          },
+          {
+            path: PRIMARY_LINK.POSTPAGE_ANALYTICS,
+            element: <>애널리틱스</>,
+          },
+        ],
       },
       {
         path: PRIMARY_LINK.EXPLORE,

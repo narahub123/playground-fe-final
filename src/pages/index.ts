@@ -10,6 +10,7 @@ import NotificationsPage from "./NotificationsPage/NotificationsPage";
 import MessagesPage from "./MessagesPage/MessagesPage";
 import ProfilePage from "./ProfilePage/ProfilePage";
 import SettingsPage from "./SettingsPage/SettingsPage";
+import PostPage from "./PostPage/PostPage";
 
 export {
   PlayGround,
@@ -24,4 +25,5 @@ export {
   MessagesPage,
   ProfilePage,
   SettingsPage,
+  PostPage,
 };

@@ -18,6 +18,9 @@ const PRIMARY_LINK = {
   ACCOUNT_MANAGE: "/account/manage",
   PASSWORD_RESET: "/i/flow/password_reset",
   VERIFY_OWNERSHIP: "/i/flow/verify_account_ownership",
+  POSTPAGE: "/:userId/status/:postId",
+  POSTPAGE_QUOTES: "quotes",
+  POSTPAGE_ANALYTICS: "analytics",
 };
 
 export default PRIMARY_LINK;
