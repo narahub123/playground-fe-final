@@ -33,6 +33,11 @@ import {
   SchedulePostForm,
   UnsentPost,
 } from "@shared/pages/ui/PostEditor/ui/PostEditorToolbar/ScheduleButton";
+import {
+  PostPageAnalytics,
+  PostPageMain,
+  PostPageQuotes,
+} from "@features/post-page";
 
 const userRouter = createBrowserRouter([
   {
@@ -50,15 +55,15 @@ const userRouter = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <>기본</>,
+            element: <PostPageMain />,
           },
           {
             path: PRIMARY_LINK.POSTPAGE_QUOTES,
-            element: <>게시물 참여 조회수</>,
+            element: <PostPageQuotes />,
           },
           {
             path: PRIMARY_LINK.POSTPAGE_ANALYTICS,
-            element: <>애널리틱스</>,
+            element: <PostPageAnalytics />,
           },
         ],
       },
