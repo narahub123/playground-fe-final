@@ -56,10 +56,40 @@ const postSlice = createSlice({
         post._id === postId ? { ...post, pin: !post.pin } : post
       );
     },
+    updatePostBookmarks: (
+      state,
+      action: PayloadAction<{ postId: string; userId: string }>
+    ) => {
+      const { postId, userId } = action.payload;
+
+      state.posts = state.posts.map((post) => {
+        if (post._id === postId) {
+          const bookmarks = post.actions.bookmarks;
+
+          const newBookmarks = bookmarks.includes(userId)
+            ? bookmarks.filter((bookmark) => bookmark !== userId)
+            : [...bookmarks, userId];
+
+          return {
+            ...post,
+            actions: {
+              ...post.actions,
+              bookmarks: newBookmarks,
+            },
+          };
+        } else return post;
+      });
+    },
   },
 });
 
 export default postSlice.reducer;
 
-export const { setPosts, setLike, setPost, deletePost, updatePin } =
-  postSlice.actions;
+export const {
+  setPosts,
+  setLike,
+  setPost,
+  deletePost,
+  updatePin,
+  updatePostBookmarks,
+} = postSlice.actions;

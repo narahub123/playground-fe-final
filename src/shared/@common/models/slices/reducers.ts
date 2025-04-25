@@ -35,7 +35,7 @@ import {
   setSkintoneType,
   setRecentEmojis,
   clearRecentEmojis,
-  setBookmark,
+  updateUserBookmarks,
   setPinnedPost,
   setUnfollowing,
 } from "./userSlice";
@@ -62,7 +62,14 @@ import {
 
 import { setNotification, clearNotificationState } from "./notificationSlice";
 
-import { setPosts, setLike, setPost, deletePost, updatePin } from "./postSlice";
+import {
+  setPosts,
+  setLike,
+  setPost,
+  deletePost,
+  updatePin,
+  updatePostBookmarks,
+} from "./postSlice";
 
 export {
   // display
@@ -101,7 +108,7 @@ export {
   setSkintoneType,
   setRecentEmojis,
   clearRecentEmojis,
-  setBookmark,
+  updateUserBookmarks,
   setPinnedPost,
   setUnfollowing,
 
@@ -135,4 +142,5 @@ export {
   setPost,
   deletePost,
   updatePin,
+  updatePostBookmarks,
 };

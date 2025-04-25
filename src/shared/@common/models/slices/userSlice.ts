@@ -233,7 +233,7 @@ const userSlice = createSlice({
       state.data.recentEmojis = newRecentEmojis;
     },
 
-    setBookmark: (state, action: PayloadAction<string>) => {
+    updateUserBookmarks: (state, action: PayloadAction<string>) => {
       const prevBookmarks = state.data.bookmarks;
 
       const postId = action.payload;
@@ -299,7 +299,7 @@ export const {
   setUserRole,
   setSkintoneType,
   setRecentEmojis,
-  setBookmark,
+  updateUserBookmarks,
   clearRecentEmojis,
   setPinnedPost,
 } = userSlice.actions;

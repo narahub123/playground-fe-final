@@ -13,10 +13,13 @@ import {
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { selectBookmarks, selectUser } from "@shared/@common/models/selectors";
+import { selectUser } from "@shared/@common/models/selectors";
 import { useDispatch } from "react-redux";
-import { setLike } from "@shared/@common/models/slices/postSlice";
-import { setBookmark } from "@shared/@common/models/slices/userSlice";
+import {
+  setLike,
+  updatePostBookmarks,
+} from "@shared/@common/models/slices/postSlice";
+import { updateUserBookmarks } from "@shared/@common/models/slices/userSlice";
 import { fetchWithAuth } from "@shared/pages/utils";
 
 interface PostActionProps {
@@ -37,11 +40,10 @@ const PostAction = ({
   const [isRepostOpen, setIsRepostOpen] = useState(false);
 
   const { _id: userId } = useSelector(selectUser);
-  const bookmarks = useSelector(selectBookmarks);
 
   const { actions, _id: postId } = usePostContext();
 
-  const { comments, reposts, likes, views } = actions;
+  const { comments, reposts, likes, views, bookmarks } = actions;
 
   const handleRepostOpen = () => {
     setIsRepostOpen(!isRepostOpen);
@@ -67,20 +69,21 @@ const PostAction = ({
     }
   };
 
-  const isBookmarking = (postId: string) => {
-    return bookmarks.includes(postId);
+  const isBookmarking = (userId: string) => {
+    return bookmarks.includes(userId);
   };
 
   const handleBookmark = async () => {
     try {
       const result = await fetchWithAuth(
-        `/users/me`,
+        `/posts/${postId}/bookmarks`,
         { method: "PATCH" },
         { bookmarks: postId }
       );
 
       if (result.success) {
-        dispatch(setBookmark(postId));
+        dispatch(updateUserBookmarks(postId));
+        dispatch(updatePostBookmarks({ postId, userId }));
       } else {
         console.error("북마크 업데이트 실패");
       }
@@ -113,7 +116,7 @@ const PostAction = ({
         ? "likeFill"
         : "likeOutline"
       : action === "bookmarks"
-      ? isBookmarking(postId)
+      ? isBookmarking(userId)
         ? "bookmarkFill"
         : "bookmarkOutline"
       : "view";
@@ -138,7 +141,7 @@ const PostAction = ({
         className={joinClassNames([
           styles["icon"],
           action === "likes" && isLiking(userId) ? styles["liking"] : "",
-          action === "bookmarks" && isBookmarking(postId)
+          action === "bookmarks" && isBookmarking(userId)
             ? styles["bookmarking"]
             : "",
           action === "reposts" && isReposting(userId)
