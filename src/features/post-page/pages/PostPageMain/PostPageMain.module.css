@@ -1,0 +1,26 @@
+.post__page__main {
+  width: 100%;
+}
+
+.post {
+  padding: 0 1rem;
+}
+
+.comment__editor {
+  padding: 0 1rem;
+}
+
+.comment__list {
+  height: 500px;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.comment__wrapper {
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+}
+
+.comment {
+  padding: 0 1rem;
+}

@@ -7,12 +7,14 @@ import { IPost } from "@shared/@common/types";
 
 interface PostContainerProps {
   className?: string;
-  post: IPost;
+  post: IPost | undefined;
   children: ReactNode;
 }
 
 const PostContainer = ({ className, children, post }: PostContainerProps) => {
   const classNames = joinClassNames([styles["post__container"], className]);
+
+  if (!post) return null;
 
   const value: IPostContext = post;
 
