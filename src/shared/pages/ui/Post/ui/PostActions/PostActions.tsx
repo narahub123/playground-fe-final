@@ -8,9 +8,10 @@ import {
 
 interface PostActionsProps {
   className?: string;
+  isPostPage?: boolean;
 }
 
-const PostActions = ({ className }: PostActionsProps) => {
+const PostActions = ({ className, isPostPage = false }: PostActionsProps) => {
   const classNames = joinClassNames([styles["post__actions"], className]);
 
   const { actions } = usePostContext();

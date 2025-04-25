@@ -1,31 +1,16 @@
 import styles from "./PostRight.module.css";
 import { joinClassNames } from "@shared/@common/utils";
-import {
-  PostText,
-  PostMeta,
-  PostMedia,
-  PostVote,
-  PostStats,
-  PostActions,
-} from "@shared/pages/ui/Post";
+import { ReactNode } from "react";
 
 interface PostRightProps {
   className?: string;
+  children: ReactNode;
 }
 
-const PostRight = ({ className }: PostRightProps) => {
+const PostRight = ({ className, children }: PostRightProps) => {
   const classNames = joinClassNames([styles["post__right"], className]);
 
-  return (
-    <div className={classNames}>
-      <PostMeta />
-      <PostText />
-      <PostMedia />
-      <PostVote />
-      <PostStats />
-      <PostActions />
-    </div>
-  );
+  return <div className={classNames}>{children}</div>;
 };
 
 export default PostRight;

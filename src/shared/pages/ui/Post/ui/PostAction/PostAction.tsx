@@ -23,9 +23,10 @@ import { fetchWithAuth } from "@shared/pages/utils";
 interface PostActionProps {
   className?: string;
   action: PostActionType;
+  isPostPage?: boolean;
 }
 
-const PostAction = ({ className, action }: PostActionProps) => {
+const PostAction = ({ className, action, isPostPage }: PostActionProps) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isRepostOpen, setIsRepostOpen] = useState(false);

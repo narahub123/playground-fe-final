@@ -49,15 +49,6 @@ const postSlice = createSlice({
 
       state.posts = filtered;
     },
-    deleteRepost: (state, action: PayloadAction<string>) => {
-      const posts = state.posts;
-
-      // const filtered = posts.filter(
-      //   (post) => post.repostUser?._id !== action.payload
-      // );
-
-      // state.posts = filtered;
-    },
     updatePin: (state, action: PayloadAction<string>) => {
       const postId = action.payload;
 
@@ -70,11 +61,5 @@ const postSlice = createSlice({
 
 export default postSlice.reducer;
 
-export const {
-  setPosts,
-  setLike,
-  setPost,
-  deletePost,
-  deleteRepost,
-  updatePin,
-} = postSlice.actions;
+export const { setPosts, setLike, setPost, deletePost, updatePin } =
+  postSlice.actions;

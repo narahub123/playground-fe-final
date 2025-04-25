@@ -140,6 +140,7 @@ interface IPostActions {
   comments: IPostActonComment[];
   reposts: string[];
   likes: string[];
+  bookmarks: string[];
   views: number;
 }
 

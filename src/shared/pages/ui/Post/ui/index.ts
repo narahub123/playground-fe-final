@@ -49,6 +49,12 @@ const Post = Object.assign(PostContainer, {
   Footer: PostFooter,
   Left: PostLeft,
   Right: PostRight,
+  Meta: PostMeta,
+  Text: PostText,
+  Media: PostMedia,
+  Vote: PostVote,
+  Stats: PostStats,
+  Actions: PostActions,
 });
 
 export default Post;

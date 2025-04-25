@@ -62,14 +62,7 @@ import {
 
 import { setNotification, clearNotificationState } from "./notificationSlice";
 
-import {
-  setPosts,
-  setLike,
-  setPost,
-  deletePost,
-  deleteRepost,
-  updatePin,
-} from "./postSlice";
+import { setPosts, setLike, setPost, deletePost, updatePin } from "./postSlice";
 
 export {
   // display
@@ -141,6 +134,5 @@ export {
   setLike,
   setPost,
   deletePost,
-  deleteRepost,
   updatePin,
 };

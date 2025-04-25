@@ -4,6 +4,7 @@ import { joinClassNames } from "@shared/@common/utils";
 import { IPost } from "@shared/@common/types";
 import { useLocation } from "react-router-dom";
 import { fetchWithAuth } from "@shared/pages";
+import { Post } from "@shared/pages/ui/Post";
 
 interface PostPageMainProps {
   className?: string;
@@ -39,7 +40,22 @@ const PostPageMain = ({ className }: PostPageMainProps) => {
 
   return (
     <div className={classNames}>
-      <div className={styles["post"]}>포스트</div>
+      <div className={styles["post"]}>
+        <Post post={post}>
+          <Post.Content>
+            <Post.Main>
+              <Post.Right>
+                <Post.Meta isPostPage={true} />
+                <Post.Text className={styles["margin"]} />
+                <Post.Media className={styles["margin"]} />
+                <Post.Vote className={styles["margin"]} />
+                <Post.Stats />
+                <Post.Actions className={styles["actions"]} isPostPage={true} />
+              </Post.Right>
+            </Post.Main>
+          </Post.Content>
+        </Post>
+      </div>
       <div className={styles["comment__editor"]}>댓글 쓰기</div>
       <div className={styles["comment__list"]}>
         <div className={styles["comment__wrapper"]}>

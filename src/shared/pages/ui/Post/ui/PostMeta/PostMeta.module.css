@@ -2,17 +2,30 @@
   width: 100%;
 }
 
-.wrapper {
+.container {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   position: relative;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.image {
+  margin-right: 0.5rem;
 }
 
 .info {
   display: flex;
   align-items: center;
   gap: 0.25rem;
+  font-size: 0.95rem;
+}
+
+.info--postpage {
   font-size: 0.95rem;
 }
 
@@ -104,4 +117,9 @@
   opacity: 1;
   height: 100%;
   transition-delay: 0.1s;
+}
+
+.button {
+  position: absolute;
+  right: 0;
 }

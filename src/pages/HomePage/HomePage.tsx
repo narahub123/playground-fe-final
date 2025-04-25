@@ -49,7 +49,13 @@ const HomePage = () => {
               <Post.Header />
               <Post.Main>
                 <Post.Left />
-                <Post.Right />
+                <Post.Right>
+                  <Post.Meta />
+                  <Post.Text />
+                  <Post.Media />
+                  <Post.Vote />
+                  <Post.Actions className={styles["actions"]} />
+                </Post.Right>
               </Post.Main>
             </Post.Content>
           </Post>
