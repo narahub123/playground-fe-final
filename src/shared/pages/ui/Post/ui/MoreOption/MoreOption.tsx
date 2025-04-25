@@ -23,6 +23,7 @@ import {
   setBlockedUser,
   setMutedUser,
 } from "@shared/@common/models/slices/privacySlice";
+import { useNavigate } from "react-router-dom";
 
 interface MoreOptionProps {
   className?: string;
@@ -40,6 +41,7 @@ const MoreOption = ({
   onClose,
 }: MoreOptionProps) => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   // 언어 설정
   const { text } = useLanguageContent(["post", "MoreOption"]);
   const classNames = joinClassNames([
@@ -171,15 +173,19 @@ const MoreOption = ({
     }
   };
 
+  const handleQuotes = () => {
+    navigate(`/${userId}/status/${postId}/quotes`);
+  };
+  const handleAnalytics = () => {
+    navigate(`/${userId}/status/${postId}/analytics`);
+  };
+
   // 나중에 hook으로 변경할 것
   const handleClick = () => {
     switch (option) {
       case "following":
         // 팔로잉 중인 경우 언팔로우, 팔로잉을 하지 않는 경우 팔로잉
         handleFollowing();
-        break;
-      case "list":
-        // 리스트에 있는 경우 삭제, 없는 경우 추가
         break;
       case "mute":
         // mute 중인 경우 뮤트 해제, 뮤트 중이 아닌 경우 뮤트
@@ -190,16 +196,11 @@ const MoreOption = ({
         handleBlock();
         break;
       case "view":
-        // post 페이지 url/quote로 이동해서 통계를 보여줌
-        break;
-      case "embed":
-        // embed 페이지로 이동
+        // post 페이지 url/quotes로 이동해서 통계를 보여줌
+        handleQuotes();
         break;
       case "report":
         // 신고 모달을 엶
-        break;
-      case "groupNote":
-        // communityNote 모달을 엶
         break;
       case "delete":
         // 현재 게시물 삭제
@@ -215,6 +216,7 @@ const MoreOption = ({
         break;
       case "analytics":
         // 게시물 애너리틱스 드롭다운 엶
+        handleAnalytics();
         break;
     }
   };

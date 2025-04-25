@@ -9,25 +9,14 @@ interface IRect {
   right?: number;
 }
 
-type MoreOptionType =
-  | "following"
-  | "list"
-  | "mute"
-  | "block"
-  | "view"
-  | "embed"
-  | "report"
-  | "groupNote";
+type MoreOptionType = "following" | "mute" | "block" | "view" | "report";
 
 type MoreMyOptionType =
   | "delete"
   | "main"
-  | "list"
   | "replyOption"
   | "view"
-  | "embed"
-  | "analytics"
-  | "groupNote";
+  | "analytics";
 
 interface IOgtags {
   image: string;
