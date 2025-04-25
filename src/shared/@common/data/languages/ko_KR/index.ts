@@ -10,7 +10,7 @@ import {
 import { home_lang } from "@features/home/data";
 import auths from "./auths";
 import { post_lang } from "@shared/pages/ui/Post/data";
-import { postpage_lang } from "@features/post-page/data";
+import { postpage_lang } from "@features/post-page";
 
 const home = home_lang["kr"];
 const settings = settings_lang["kr"];

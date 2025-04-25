@@ -10,7 +10,7 @@ import {
 import auths from "./auths";
 import { home_lang } from "@features/home/data";
 import { post_lang } from "@shared/pages/ui/Post/data";
-import { postpage_lang } from "@features/post-page/data";
+import { postpage_lang } from "@features/post-page";
 
 const settings = settings_lang["tw"];
 const sectionTextMap = sectionTextMap_all["tw"];
