@@ -1,5 +1,9 @@
+import { useEffect, useState } from "react";
 import styles from "./PostPageMain.module.css";
 import { joinClassNames } from "@shared/@common/utils";
+import { IPost } from "@shared/@common/types";
+import { useLocation } from "react-router-dom";
+import { fetchWithAuth } from "@shared/pages";
 
 interface PostPageMainProps {
   className?: string;
@@ -7,6 +11,31 @@ interface PostPageMainProps {
 
 const PostPageMain = ({ className }: PostPageMainProps) => {
   const classNames = joinClassNames([styles["post__page__main"], className]);
+  const { pathname } = useLocation();
+  const [post, setPost] = useState<IPost>();
+
+  // 포스트 정보 가져오기
+  useEffect(() => {
+    if (!pathname) return;
+
+    const postId = pathname.split("status/")[1];
+
+    const getPost = async () => {
+      try {
+        const result = await fetchWithAuth(`/posts/${postId}`);
+
+        if (result.success) {
+          setPost(result.data.post);
+        } else {
+          console.error("포스트 조회 실패");
+        }
+      } catch (error) {
+        console.error("포스트 조회 도중 에러 발생", error);
+      }
+    };
+
+    getPost();
+  }, []);
 
   return (
     <div className={classNames}>
