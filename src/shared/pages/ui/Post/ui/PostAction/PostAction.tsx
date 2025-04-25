@@ -8,7 +8,6 @@ import {
   postActionIcons,
   PostActionType,
   RepostDropdown,
-  ShareDropdown,
   usePostContext,
 } from "@shared/pages/ui/Post";
 import { useState } from "react";
@@ -24,13 +23,18 @@ interface PostActionProps {
   className?: string;
   action: PostActionType;
   isPostPage?: boolean;
+  handleShareOpen: () => void;
 }
 
-const PostAction = ({ className, action, isPostPage }: PostActionProps) => {
+const PostAction = ({
+  className,
+  action,
+  isPostPage,
+  handleShareOpen,
+}: PostActionProps) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isRepostOpen, setIsRepostOpen] = useState(false);
-  const [isShareOpen, setIsShareOpen] = useState(false);
 
   const { _id: userId } = useSelector(selectUser);
   const bookmarks = useSelector(selectBookmarks);
@@ -41,9 +45,6 @@ const PostAction = ({ className, action, isPostPage }: PostActionProps) => {
 
   const handleRepostOpen = () => {
     setIsRepostOpen(!isRepostOpen);
-  };
-  const handleShareOpen = () => {
-    setIsShareOpen(!isShareOpen);
   };
 
   const isLiking = (userId: string) => {
@@ -100,7 +101,6 @@ const PostAction = ({ className, action, isPostPage }: PostActionProps) => {
     likes: handleLikes,
     views: () => {},
     bookmarks: handleBookmark,
-    share: handleShareOpen,
   };
 
   const iconName: keyof typeof postActionIcons =
@@ -116,8 +116,6 @@ const PostAction = ({ className, action, isPostPage }: PostActionProps) => {
       ? isBookmarking(postId)
         ? "bookmarkFill"
         : "bookmarkOutline"
-      : action === "share"
-      ? "share"
       : "view";
 
   return (
@@ -128,15 +126,15 @@ const PostAction = ({ className, action, isPostPage }: PostActionProps) => {
           ? styles["green"]
           : action === "likes"
           ? styles["red"]
+          : action === "bookmarks" && !isPostPage
+          ? ""
           : styles["cornflower"],
         className,
       ])}
     >
       {action === "reposts" && isRepostOpen && <RepostDropdown />}
-      {action === "share" && isShareOpen && <ShareDropdown />}
       <PostActionIcon
-        left={action === "share" ? undefined : "-0.5rem"}
-        right={action === "share" ? "-0.5rem" : undefined}
+        left={"-0.5rem"}
         className={joinClassNames([
           styles["icon"],
           action === "likes" && isLiking(userId) ? styles["liking"] : "",
@@ -146,12 +144,24 @@ const PostAction = ({ className, action, isPostPage }: PostActionProps) => {
           action === "reposts" && isReposting(userId)
             ? styles["reposting"]
             : "",
+          action === "bookmarks" && !isPostPage ? styles["irregular"] : "",
         ])}
         onClick={handleClick[action]}
         action={action}
         iconName={iconName}
       />
-      {action !== "bookmarks" && action !== "share" && (
+
+      {action === "bookmarks" && !isPostPage ? (
+        <div className={styles["share__wrapper"]}>
+          <PostActionIcon
+            iconName="share"
+            action={"share"}
+            left={"-0.5rem"}
+            className={joinClassNames([styles["icon"], styles["irregular"]])}
+            onClick={handleShareOpen}
+          />
+        </div>
+      ) : (
         <Text
           className={joinClassNames([
             styles["stat"],

@@ -5,7 +5,7 @@ import { postActionIcons, PostActionType } from "@shared/pages/ui/Post";
 
 interface PostActionIconProps {
   iconName: keyof typeof postActionIcons;
-  action: PostActionType;
+  action: PostActionType | "share";
   className?: string;
   left?: string;
   right?: string;

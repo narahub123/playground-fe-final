@@ -16,11 +16,25 @@
   color: #777;
 }
 
+.share__wrapper {
+  position: relative;
+  margin-left: 1.5rem;
+  font-size: 0.95rem;
+  color: #777;
+  width: 1rem;
+  height: 2rem;
+}
+
 .icon {
   color: #333;
 }
 
 .cornflower:hover .icon {
+  color: cornflowerblue;
+  background-color: rgba(100, 149, 237, 0.1);
+}
+
+.irregular:hover {
   color: cornflowerblue;
   background-color: rgba(100, 149, 237, 0.1);
 }
