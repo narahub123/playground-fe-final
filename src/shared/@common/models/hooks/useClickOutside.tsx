@@ -11,30 +11,28 @@ const useClickOutside = ({
   toggle,
   lastClickedRef,
 }: useClickOutsideProps) => {
-  const clickOutside = (e: MouseEvent) => {
-    if (
-      lastClickedRef &&
-      containerRef.current &&
-      !containerRef.current.contains(e.target as Node) &&
-      !lastClickedRef.current?.contains(e.target as Node)
-    ) {
-      toggle();
-      if (lastClickedRef) {
-        setTimeout(() => {
-          lastClickedRef.current?.focus();
-        }, 100);
-      }
-    } else if (
-      !lastClickedRef &&
-      containerRef.current &&
-      !containerRef.current.contains(e.target as Node)
-    ) {
-      toggle();
-    }
-  };
-
   useEffect(() => {
-    if (!containerRef.current) return;
+    const clickOutside = (e: MouseEvent) => {
+      if (
+        lastClickedRef &&
+        containerRef.current &&
+        !containerRef.current.contains(e.target as Node) &&
+        !lastClickedRef.current?.contains(e.target as Node)
+      ) {
+        toggle();
+        if (lastClickedRef) {
+          setTimeout(() => {
+            lastClickedRef.current?.focus();
+          }, 100);
+        }
+      } else if (
+        !lastClickedRef &&
+        containerRef.current &&
+        !containerRef.current.contains(e.target as Node)
+      ) {
+        toggle();
+      }
+    };
     window.addEventListener("mousedown", clickOutside);
     window.addEventListener("click", clickOutside);
 

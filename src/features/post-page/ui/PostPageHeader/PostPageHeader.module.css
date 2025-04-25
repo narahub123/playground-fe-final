@@ -32,3 +32,12 @@
   display: flex;
   align-items: center;
 }
+
+.header__comment {
+  display: flex;
+  align-items: center;
+}
+
+.comment__btn {
+  font-size: 0.9rem;
+}
