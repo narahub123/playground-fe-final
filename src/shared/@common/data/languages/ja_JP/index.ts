@@ -7,13 +7,16 @@ import {
   settings_lang,
   sectionTextMap_all,
 } from "@features/settings/common/data";
-const settings = settings_lang["jp"];
-const sectionTextMap = sectionTextMap_all["jp"];
 import auths from "./auths";
 import { home_lang } from "@features/home/data";
 import { post_lang } from "@shared/pages/ui/Post/data";
+import { postpage_lang } from "@features/post-page/data";
+
+const settings = settings_lang["jp"];
+const sectionTextMap = sectionTextMap_all["jp"];
 const home = home_lang["jp"];
 const post = post_lang["jp"];
+const postpage = postpage_lang["jp"];
 
 const ja_JP = {
   pages,
@@ -26,6 +29,7 @@ const ja_JP = {
   auths,
   home,
   post,
+  postpage,
 };
 
 export default ja_JP;

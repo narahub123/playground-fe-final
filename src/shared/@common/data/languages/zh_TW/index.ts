@@ -7,13 +7,16 @@ import {
   settings_lang,
   sectionTextMap_all,
 } from "@features/settings/common/data";
-const settings = settings_lang["tw"];
-const sectionTextMap = sectionTextMap_all["tw"];
 import auths from "./auths";
 import { home_lang } from "@features/home/data";
 import { post_lang } from "@shared/pages/ui/Post/data";
+import { postpage_lang } from "@features/post-page/data";
+
+const settings = settings_lang["tw"];
+const sectionTextMap = sectionTextMap_all["tw"];
 const home = home_lang["tw"];
 const post = post_lang["tw"];
+const postpage = postpage_lang["tw"];
 
 const zh_TW = {
   pages,
@@ -26,6 +29,7 @@ const zh_TW = {
   auths,
   home,
   post,
+  postpage,
 };
 
 export default zh_TW;

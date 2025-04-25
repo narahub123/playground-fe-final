@@ -7,13 +7,16 @@ import {
   settings_lang,
   sectionTextMap_all,
 } from "@features/settings/common/data";
-const settings = settings_lang["cn"];
-const sectionTextMap = sectionTextMap_all["cn"];
 import auths from "./auths";
 import { home_lang } from "@features/home/data";
 import { post_lang } from "@shared/pages/ui/Post/data";
+import { postpage_lang } from "@features/post-page/data";
+
+const settings = settings_lang["cn"];
+const sectionTextMap = sectionTextMap_all["cn"];
 const home = home_lang["cn"];
 const post = post_lang["cn"];
+const postpage = postpage_lang["cn"];
 
 const zh_CN = {
   pages,
@@ -26,6 +29,7 @@ const zh_CN = {
   auths,
   home,
   post,
+  postpage,
 };
 
 export default zh_CN;
