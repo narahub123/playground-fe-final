@@ -19,7 +19,6 @@ import {
   convertToInnerHtml,
   updateLine,
 } from "@shared/pages/ui/PostEditor/ui/TextEditor";
-import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Text } from "@shared/@common/ui/components";
 import { IAccount } from "@shared/@common/types";
 import {
@@ -31,9 +30,11 @@ import { useAppDispatch } from "@app/store";
 import { useSelector } from "react-redux";
 import { selectPostEditor } from "@shared/pages/ui/PostEditor/models/selectors";
 
-interface TextEditorProps {}
+interface TextEditorProps {
+  placeholder: string;
+}
 
-const TextEditor = ({}: TextEditorProps) => {
+const TextEditor = ({ placeholder }: TextEditorProps) => {
   const dispatch = useAppDispatch();
   const textEditorRef = useRef<HTMLDivElement>(null);
   const [isComposing, setIsComposing] = useState(false);
@@ -51,8 +52,6 @@ const TextEditor = ({}: TextEditorProps) => {
   };
 
   const { post, caretPosition, cursorPosition } = useSelector(selectPostEditor);
-
-  const { placeholder } = useLanguageContent(["components", "TextEditor"]);
 
   // textEditor의 innerHtml update
   useEffect(() => {

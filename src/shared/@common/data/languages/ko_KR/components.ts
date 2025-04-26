@@ -464,11 +464,13 @@ const components = {
     logoutBtn: "로그아웃",
     cancelBtn: "취소",
   },
-  PostEditor: {},
+  PostEditor: {
+    placeholder: "무슨일이 일어나고 있나요?",
+    text: "게시하기",
+  },
   ProfileImage: {
     imageAlt: "프로필 이미지",
   },
-  PostButton: { text: "게시하기" },
   MediaButton: { title: "미디어" },
   VoteButton: { title: "투표" },
   EmojiButton: { title: "이모티콘" },
@@ -599,9 +601,6 @@ const components = {
     },
   },
   CalendarIcon: {},
-  TextEditor: {
-    placeholder: "무슨일이 일어나고 있나요?",
-  },
 };
 
 export default components;

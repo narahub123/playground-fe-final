@@ -1,5 +1,5 @@
 import styles from "./PostButton.module.css";
-import { useAPIError, useLanguageContent } from "@shared/@common/models/hooks";
+import { useAPIError } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
 import { fetchWithAuth } from "@shared/pages/utils";
 import { useSelector } from "react-redux";
@@ -10,13 +10,12 @@ import { ErrorTitleCodeType } from "@shared/@common/types";
 
 interface PostButtonProps {
   disabled?: boolean;
+  text: string;
   isValid: boolean;
 }
 
-const PostButton = ({ isValid }: PostButtonProps) => {
+const PostButton = ({ isValid, text }: PostButtonProps) => {
   const { post } = useSelector(selectPostEditor);
-  // 언어 설정
-  const { text } = useLanguageContent(["components", "PostButton"]);
 
   const toast = useToast();
   const { getErrorTitle } = useAPIError();

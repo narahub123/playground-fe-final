@@ -1,3 +1,63 @@
 .post__comment__editor {
   width: 100%;
+  padding-top: 0.25rem;
+  padding-bottom: 0.75rem;
+}
+
+.mention {
+  display: flex;
+}
+
+.empty {
+  width: 40px;
+  height: 20px;
+  margin-right: 0.5rem;
+}
+
+.container {
+  display: flex;
+}
+
+.side {
+  margin-right: 0.5rem;
+}
+
+.avatar {
+  padding-top: 20px;
+}
+
+.main {
+  flex: 1;
+}
+
+.editor__container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 0.25rem;
+}
+
+.input {
+  padding: 0.75rem 0;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+
+.toolbar__wrapper {
+}
+
+.btns__wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.vertical__divider {
+  border-left: 1px solid #aaa;
+  width: 1px;
+  height: 35px;
 }

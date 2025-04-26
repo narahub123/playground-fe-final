@@ -139,6 +139,13 @@ const post_kr = {
       message: "쪽지로 보내기",
     },
   },
+  PostCommentEditor: {
+    mention: () => {
+      return `에게 보내는 답글`;
+    },
+    placeholder: "답글 게시하기",
+    btn: "답글",
+  },
 };
 
 export default post_kr;

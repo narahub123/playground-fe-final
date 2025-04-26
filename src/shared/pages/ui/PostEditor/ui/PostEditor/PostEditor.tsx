@@ -64,7 +64,10 @@ const PostEditor = ({ className }: PostEditorProps) => {
   // console.log(post);
 
   // 언어 설정
-  const {} = useLanguageContent(["components", "PostEditor"]);
+  const { placeholder, text } = useLanguageContent([
+    "components",
+    "PostEditor",
+  ]);
 
   const classNames = joinClassNames([styles["post__editor"], className]);
 
@@ -88,7 +91,7 @@ const PostEditor = ({ className }: PostEditorProps) => {
             {post.schedule && <ScheduleText schedule={post.schedule} />}
           </div>
           <div className={styles["text__editor__wrapper"]}>
-            <TextEditor />
+            <TextEditor placeholder={placeholder} />
           </div>
           {media && (
             <div className={styles["media__preview__wrapper"]}>
@@ -113,7 +116,7 @@ const PostEditor = ({ className }: PostEditorProps) => {
               <CircularProgressBar textLength={textLength} />
               <div className={styles["vertical__divider"]} />
               <AddPostLink />
-              <PostButton isValid={isValid} />
+              <PostButton isValid={isValid} text={text} />
             </span>
           </div>
         </div>

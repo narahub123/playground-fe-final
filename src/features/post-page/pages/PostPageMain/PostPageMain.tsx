@@ -61,6 +61,7 @@ const PostPageMain = ({ className }: PostPageMainProps) => {
                 <Post.Vote className={styles["margin"]} />
                 <Post.Stats />
                 <Post.Actions className={styles["actions"]} isPostPage={true} />
+                <Post.CommentEditor />
               </Post.Right>
             </Post.Main>
           </Post.Content>
