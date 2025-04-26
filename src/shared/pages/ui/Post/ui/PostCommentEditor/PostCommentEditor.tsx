@@ -7,7 +7,7 @@ import { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ProfileDropdown from "../ProfileDropdown/ProfileDropdown";
-import { useHoverDropdown } from "../../hooks";
+import { useHoverDropdown, usePostContext } from "../../hooks";
 import { defaultProfileImage } from "@shared/@common/assets";
 import {
   CircularProgressBar,
@@ -23,6 +23,7 @@ interface PostCommentEditorProps {
 
 const PostCommentEditor = ({ className }: PostCommentEditorProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const mentionsRef = useRef<(HTMLAnchorElement | null)[]>([]);
   const textLength = useSelector(selectPostEditorTextLength);
 
   const [isValid, setIsValid] = useState(false);
@@ -34,6 +35,9 @@ const PostCommentEditor = ({ className }: PostCommentEditorProps) => {
   ]);
   const user = useSelector(selectUser);
   const { userId, profileImage } = user;
+
+  const { mentions, author } = usePostContext();
+  const { userId: authorId } = author;
 
   const classNames = joinClassNames([
     styles["post__comment__editor"],
@@ -54,6 +58,35 @@ const PostCommentEditor = ({ className }: PostCommentEditorProps) => {
     setIsShowing(true);
   };
 
+  const authorHandle = "@" + authorId;
+
+  const filteredMentions = mentions.includes(authorHandle)
+    ? [authorHandle, ...mentions.filter((m) => m !== authorHandle)]
+    : [authorHandle, ...mentions];
+
+  const { prefix, suffix } = mention(filteredMentions);
+
+  const renderPart = (part: string[] | string) => {
+    return typeof part === "string" ? (
+      <Text className={styles["mentions__text"]}>{part}</Text>
+    ) : (
+      part.map((mention, index) => (
+        <Link
+          key={mention}
+          to={`/${mention.slice(1)}`}
+          className={styles["mentions__mention"]}
+          onMouseEnter={() =>
+            handleMouseEnter(mentionsRef.current[index], mention.slice(1))
+          }
+          onMouseLeave={() => handleMouseLeave()}
+          ref={(el) => (mentionsRef.current[index] = el)}
+        >
+          {mention}
+        </Link>
+      ))
+    );
+  };
+
   return (
     <div className={classNames} ref={containerRef}>
       <ProfileDropdown
@@ -67,9 +100,16 @@ const PostCommentEditor = ({ className }: PostCommentEditorProps) => {
         profileInfo={profileInfo}
       />
       {isShowing && (
-        <div className={styles["mention"]}>
+        <div className={styles["mentions__wrapper"]}>
           <div className={styles["empty"]} />
-          <Text>{mention()}</Text>
+          <div className={styles["mentions"]}>
+            <span className={styles["mentions__fix"]}>
+              {renderPart(prefix)}
+            </span>
+            <span className={styles["mentions__fix"]}>
+              {renderPart(suffix)}
+            </span>
+          </div>
         </div>
       )}
       <div className={styles["container"]}>
@@ -93,7 +133,6 @@ const PostCommentEditor = ({ className }: PostCommentEditorProps) => {
               className={styles["input"]}
               style={{
                 width: `${isShowing ? 100 : 85}%`,
-                
               }}
             >
               <TextEditor placeholder={placeholder} onFocus={handleFocus} />

@@ -17,7 +17,7 @@ const PostText = ({ className }: PostTextProps) => {
   const inlineRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const [link, setLink] = useState("");
 
-  const { text: postText, originalPost } = usePostContext();
+  const { text: postText, originalPost, setMentions } = usePostContext();
 
   const text = originalPost ? originalPost.text : postText;
 
@@ -65,6 +65,16 @@ const PostText = ({ className }: PostTextProps) => {
         const inlineType = detectInlineType(innerText);
 
         if (inlineType === "mention") {
+          console.log(innerText);
+
+          // 이미 존재하는 멘션인지 확인
+          setMentions((prev) => {
+            if (!prev.includes(innerText)) {
+              return [...prev, innerText]; // 중복된 멘션은 추가하지 않음
+            }
+            return prev;
+          });
+
           const result = await getUserInfo(innerText.slice(1));
           // 반환값이 존재하지 않는 경우(멘션이 유효하지 않는 경우)
           if (!result) {

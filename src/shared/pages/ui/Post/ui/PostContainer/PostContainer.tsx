@@ -1,5 +1,5 @@
 import styles from "./PostContainer.module.css";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import { joinClassNames } from "@shared/@common/utils";
 import { PostContextProvider } from "../../context";
 import { IPostContext } from "../../types";
@@ -13,10 +13,11 @@ interface PostContainerProps {
 
 const PostContainer = ({ className, children, post }: PostContainerProps) => {
   const classNames = joinClassNames([styles["post__container"], className]);
+  const [mentions, setMentions] = useState<string[]>([]);
 
   if (!post) return null;
 
-  const value: IPostContext = post;
+  const value: IPostContext = { ...post, mentions, setMentions };
 
   return (
     <PostContextProvider value={value}>

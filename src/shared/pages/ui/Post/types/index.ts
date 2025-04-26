@@ -1,6 +1,9 @@
 import { IPost } from "@shared/@common/types";
 
-interface IPostContext extends IPost {}
+interface IPostContext extends IPost {
+  mentions: string[];
+  setMentions: React.Dispatch<React.SetStateAction<string[]>>;
+}
 
 interface IRect {
   top?: number;

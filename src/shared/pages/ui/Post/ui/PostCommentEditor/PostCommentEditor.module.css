@@ -4,7 +4,7 @@
   padding-bottom: 0.75rem;
 }
 
-.mention {
+.mentions__wrapper {
   display: flex;
 }
 
@@ -12,6 +12,30 @@
   width: 40px;
   height: 20px;
   margin-right: 0.5rem;
+}
+
+.mentions {
+  display: flex;
+  align-items: center;
+}
+
+.mentions__fix {
+  display: flex;
+  align-items: center;
+}
+
+.mentions__text {
+  color: #777;
+  font-size: 0.9rem;
+}
+
+.mentions__mention {
+  color: var(--colorTheme-color-primary);
+}
+
+.mentions__mention:not(:last-child)::after {
+  content: ", ";
+  margin-right: 0.25rem;
 }
 
 .container {

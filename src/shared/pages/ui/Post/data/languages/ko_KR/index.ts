@@ -140,8 +140,12 @@ const post_kr = {
     },
   },
   PostCommentEditor: {
-    mention: () => {
-      return `에게 보내는 답글`;
+    mention: (mentions: string[]) => {
+      // 어순이 달라지는 경우도 prefix와 suffix로 구분함
+      return {
+        prefix: mentions,
+        suffix: `에게 보내는 답글`,
+      };
     },
     placeholder: "답글 게시하기",
     btn: "답글",

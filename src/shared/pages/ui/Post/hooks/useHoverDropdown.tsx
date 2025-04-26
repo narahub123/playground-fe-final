@@ -35,7 +35,7 @@ const useHoverDropdown = () => {
   };
 
   const handleMouseEnter = async (
-    ref?: React.RefObject<HTMLElement>,
+    ref?: React.RefObject<HTMLElement> | HTMLElement | null,
     userId?: string
   ) => {
     console.log("-------------- handleMouseEnter 시작 ---------------");
@@ -44,7 +44,18 @@ const useHoverDropdown = () => {
     }
 
     if (ref && userId) {
-      const target = ref.current!;
+      let target: HTMLElement;
+
+      // ref가 React.RefObject인 경우
+      if (ref instanceof HTMLElement) {
+        target = ref; // ref가 바로 HTMLElement라면
+      } else if (ref.current) {
+        target = ref.current; // ref가 React.RefObject이면 .current로 접근
+      } else {
+        return; // ref가 null인 경우, 반환
+      }
+
+      console.log(target);
 
       const { top, left } = target.getBoundingClientRect();
 
