@@ -26,6 +26,7 @@ const PostCommentEditor = ({ className }: PostCommentEditorProps) => {
   const textLength = useSelector(selectPostEditorTextLength);
 
   const [isValid, setIsValid] = useState(false);
+  const [isShowing, setIsShowing] = useState(false);
   // 언어 설정
   const { mention, placeholder, btn } = useLanguageContent([
     "post",
@@ -49,6 +50,10 @@ const PostCommentEditor = ({ className }: PostCommentEditorProps) => {
     isLoading,
   } = useHoverDropdown();
 
+  const handleFocus = () => {
+    setIsShowing(true);
+  };
+
   return (
     <div className={classNames} ref={containerRef}>
       <ProfileDropdown
@@ -61,10 +66,12 @@ const PostCommentEditor = ({ className }: PostCommentEditorProps) => {
         onClose={onClose}
         profileInfo={profileInfo}
       />
-      <div className={styles["mention"]}>
-        <div className={styles["empty"]} />
-        <Text>{mention()}</Text>
-      </div>
+      {isShowing && (
+        <div className={styles["mention"]}>
+          <div className={styles["empty"]} />
+          <Text>{mention()}</Text>
+        </div>
+      )}
       <div className={styles["container"]}>
         <div className={styles["side"]}>
           <div className={styles["avatar"]} ref={containerRef}>
@@ -82,10 +89,21 @@ const PostCommentEditor = ({ className }: PostCommentEditorProps) => {
         </div>
         <div className={styles["main"]}>
           <div className={styles["editor__container"]}>
-            <div className={styles["input"]}>
-              <TextEditor placeholder={placeholder} />
+            <div
+              className={styles["input"]}
+              style={{
+                width: `${isShowing ? 100 : 85}%`,
+                
+              }}
+            >
+              <TextEditor placeholder={placeholder} onFocus={handleFocus} />
             </div>
-            <div className={styles["toolbar"]}>
+            <div
+              className={styles["toolbar"]}
+              style={{
+                marginTop: isShowing ? "0px" : "-60px",
+              }}
+            >
               <span className={styles["toolbar__wrapper"]}>
                 <PostEditorToolbar />
               </span>

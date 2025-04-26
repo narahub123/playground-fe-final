@@ -32,9 +32,10 @@ import { selectPostEditor } from "@shared/pages/ui/PostEditor/models/selectors";
 
 interface TextEditorProps {
   placeholder: string;
+  onFocus?: () => void;
 }
 
-const TextEditor = ({ placeholder }: TextEditorProps) => {
+const TextEditor = ({ placeholder, onFocus }: TextEditorProps) => {
   const dispatch = useAppDispatch();
   const textEditorRef = useRef<HTMLDivElement>(null);
   const [isComposing, setIsComposing] = useState(false);
@@ -328,6 +329,9 @@ const TextEditor = ({ placeholder }: TextEditorProps) => {
 
   const handleFocus = () => {
     dispatch(setCaretPosition(cursorPosition));
+    if (onFocus) {
+      onFocus();
+    }
   };
 
   return (
