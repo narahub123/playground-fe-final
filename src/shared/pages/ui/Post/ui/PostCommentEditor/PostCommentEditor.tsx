@@ -175,7 +175,7 @@ const PostCommentEditor = ({ className }: PostCommentEditorProps) => {
               }}
             >
               <span className={styles["toolbar__wrapper"]}>
-                <PostEditorToolbar />
+                <PostEditorToolbar isVoteOn={false} isScheduleOn={false} />
               </span>
               <span className={styles["btns__wrapper"]}>
                 <CircularProgressBar textLength={textLength} />

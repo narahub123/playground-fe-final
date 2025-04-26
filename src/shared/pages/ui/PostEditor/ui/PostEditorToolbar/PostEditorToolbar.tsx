@@ -13,9 +13,21 @@ import { selectPostEditorToolbar } from "../../models/selectors";
 
 interface PostEditorToolbarProps {
   className?: string;
+  isMediaOn?: boolean;
+  isVoteOn?: boolean;
+  isEmojiOn?: boolean;
+  isScheduleOn?: boolean;
+  isLocationOn?: boolean;
 }
 
-const PostEditorToolbar = ({ className }: PostEditorToolbarProps) => {
+const PostEditorToolbar = ({
+  className,
+  isMediaOn = true,
+  isVoteOn = true,
+  isEmojiOn = true,
+  isScheduleOn = true,
+  isLocationOn = true,
+}: PostEditorToolbarProps) => {
   const { media, vote } = useSelector(selectPostEditorToolbar);
 
   const classNames = joinClassNames([
@@ -26,11 +38,11 @@ const PostEditorToolbar = ({ className }: PostEditorToolbarProps) => {
   return (
     <div className={classNames}>
       <nav className={styles["post__editor__toolbar__list"]}>
-        <MediaButton disabled={vote ? true : false} />
-        <VoteButton disabled={vote || media ? true : false} />
-        <EmojiButton />
-        <ScheduleButton disabled={vote ? true : false} />
-        <LocationTagButton />
+        {isMediaOn && <MediaButton disabled={vote ? true : false} />}
+        {isVoteOn && <VoteButton disabled={vote || media ? true : false} />}
+        {isEmojiOn && <EmojiButton />}
+        {isScheduleOn && <ScheduleButton disabled={vote ? true : false} />}
+        {isLocationOn && <LocationTagButton />}
       </nav>
     </div>
   );
