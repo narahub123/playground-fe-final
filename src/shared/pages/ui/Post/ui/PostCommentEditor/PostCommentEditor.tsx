@@ -20,6 +20,7 @@ import {
   selectPostEditorTextLength,
 } from "@shared/pages/ui/PostEditor/models/selectors";
 import { MediaPreviewContainer } from "@shared/pages/ui/PostEditor/ui";
+import { POST_LENGTH_MAX } from "@shared/@common/constants";
 
 interface PostCommentEditorProps {
   className?: string;
@@ -39,7 +40,7 @@ const PostCommentEditor = ({ className }: PostCommentEditorProps) => {
   // 유효성 검사
   useEffect(() => {
     // 문자 혹은 미디어가 존재하는 경우 valid
-    if (textLength > 0 || media.length > 0) {
+    if ((textLength > 0 && textLength <= POST_LENGTH_MAX) || media.length > 0) {
       setIsValid((prev) => {
         if (prev === false) return true;
         else return prev;
