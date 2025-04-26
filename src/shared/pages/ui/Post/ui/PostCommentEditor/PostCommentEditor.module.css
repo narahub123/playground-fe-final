@@ -67,6 +67,10 @@
   transition-delay: 0.3s;
 }
 
+.media__preview__wrapper {
+  opacity: 1;
+}
+
 .toolbar {
   width: 100%;
   display: flex;

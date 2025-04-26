@@ -3,7 +3,7 @@ import styles from "./PostCommentEditor.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { ProfileImage, Text } from "@shared/@common/ui/components";
 import { joinClassNames } from "@shared/@common/utils";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ProfileDropdown from "../ProfileDropdown/ProfileDropdown";
@@ -15,7 +15,11 @@ import {
   PostEditorToolbar,
   TextEditor,
 } from "@shared/pages/ui/PostEditor";
-import { selectPostEditorTextLength } from "@shared/pages/ui/PostEditor/models/selectors";
+import {
+  selectPostEditor,
+  selectPostEditorTextLength,
+} from "@shared/pages/ui/PostEditor/models/selectors";
+import { MediaPreviewContainer } from "@shared/pages/ui/PostEditor/ui";
 
 interface PostCommentEditorProps {
   className?: string;
@@ -25,9 +29,28 @@ const PostCommentEditor = ({ className }: PostCommentEditorProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const mentionsRef = useRef<(HTMLAnchorElement | null)[]>([]);
   const textLength = useSelector(selectPostEditorTextLength);
+  const commentEditor = useSelector(selectPostEditor);
+  const { post } = commentEditor;
+  const { media } = post;
 
   const [isValid, setIsValid] = useState(false);
   const [isShowing, setIsShowing] = useState(false);
+
+  // 유효성 검사
+  useEffect(() => {
+    // 문자 혹은 미디어가 존재하는 경우 valid
+    if (textLength > 0 || media.length > 0) {
+      setIsValid((prev) => {
+        if (prev === false) return true;
+        else return prev;
+      });
+    } else {
+      setIsValid((prev) => {
+        if (prev === true) return false;
+        else return prev;
+      });
+    }
+  }, [textLength, media]);
   // 언어 설정
   const { mention, placeholder, btn } = useLanguageContent([
     "post",
@@ -58,6 +81,7 @@ const PostCommentEditor = ({ className }: PostCommentEditorProps) => {
     setIsShowing(true);
   };
 
+  // 멘션 처리
   const authorHandle = "@" + authorId;
 
   const filteredMentions = mentions.includes(authorHandle)
@@ -129,13 +153,20 @@ const PostCommentEditor = ({ className }: PostCommentEditorProps) => {
         </div>
         <div className={styles["main"]}>
           <div className={styles["editor__container"]}>
-            <div
-              className={styles["input"]}
-              style={{
-                width: `${isShowing ? 100 : 85}%`,
-              }}
-            >
-              <TextEditor placeholder={placeholder} onFocus={handleFocus} />
+            <div>
+              <div
+                className={styles["input"]}
+                style={{
+                  width: `${isShowing ? 100 : 85}%`,
+                }}
+              >
+                <TextEditor placeholder={placeholder} onFocus={handleFocus} />
+              </div>
+              {media && (
+                <div className={styles["media__preview__wrapper"]}>
+                  <MediaPreviewContainer />
+                </div>
+              )}
             </div>
             <div
               className={styles["toolbar"]}
