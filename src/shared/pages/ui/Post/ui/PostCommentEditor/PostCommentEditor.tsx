@@ -11,7 +11,6 @@ import { useHoverDropdown, usePostContext } from "../../hooks";
 import { defaultProfileImage } from "@shared/@common/assets";
 import {
   CircularProgressBar,
-  PostButton,
   PostEditorToolbar,
   TextEditor,
 } from "@shared/pages/ui/PostEditor";
@@ -19,7 +18,10 @@ import {
   selectPostEditor,
   selectPostEditorTextLength,
 } from "@shared/pages/ui/PostEditor/models/selectors";
-import { MediaPreviewContainer } from "@shared/pages/ui/PostEditor/ui";
+import {
+  CommentButton,
+  MediaPreviewContainer,
+} from "@shared/pages/ui/PostEditor/ui";
 import { POST_LENGTH_MAX } from "@shared/@common/constants";
 
 interface PostCommentEditorProps {
@@ -181,7 +183,7 @@ const PostCommentEditor = ({ className }: PostCommentEditorProps) => {
               <span className={styles["btns__wrapper"]}>
                 <CircularProgressBar textLength={textLength} />
                 <div className={styles["vertical__divider"]} />
-                <PostButton isValid={isValid} text={btn} />
+                <CommentButton isValid={isValid} text={btn} />
               </span>
             </div>
           </div>
