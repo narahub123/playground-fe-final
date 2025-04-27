@@ -3,6 +3,7 @@ import styles from "./PostCommentContainer.module.css";
 import { joinClassNames } from "@shared/@common/utils";
 import { useEffect, useState } from "react";
 import { fetchWithAuth } from "@shared/pages/utils";
+import Post from "..";
 
 interface PostCommentContainerProps {
   className?: string;
@@ -38,9 +39,27 @@ const PostCommentContainer = ({
     className,
   ]);
 
-  console.log(comments);
+  if (comments.length === 0) return null;
 
-  return <div className={classNames}>PostCommentContainer</div>;
+  return (
+    <div className={classNames}>
+      {comments.map((comment, index) => (
+        <Post post={comment} key={index} className={styles["post"]}>
+          <Post.Content>
+            <Post.Main>
+              <Post.Left />
+              <Post.Right>
+                <Post.Meta />
+                <Post.Text className={styles["margin"]} />
+                <Post.Media className={styles["margin"]} />
+                <Post.Actions className={styles["actions"]} />
+              </Post.Right>
+            </Post.Main>
+          </Post.Content>
+        </Post>
+      ))}
+    </div>
+  );
 };
 
 export default PostCommentContainer;

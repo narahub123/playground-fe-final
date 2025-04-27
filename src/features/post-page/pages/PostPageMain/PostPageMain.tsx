@@ -62,9 +62,11 @@ const PostPageMain = ({ className }: PostPageMainProps) => {
                 <Post.Stats />
                 <Post.Actions className={styles["actions"]} isPostPage={true} />
                 <Post.CommentEditor />
-                <Post.CommentContainer postId={pathname.split("status/")[1]} />
               </Post.Right>
             </Post.Main>
+            <Post.Footer>
+              <Post.CommentContainer postId={pathname.split("status/")[1]} />
+            </Post.Footer>
           </Post.Content>
         </Post>
       </div>

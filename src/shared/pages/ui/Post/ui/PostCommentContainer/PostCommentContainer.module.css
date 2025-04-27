@@ -1,3 +1,8 @@
 .post__comment__container {
   width: 100%;
 }
+
+.post {
+  border-top: 1px solid #f1f1f1;
+  padding: 0.75rem 0;
+}
