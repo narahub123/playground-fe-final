@@ -3,6 +3,7 @@
   display: flex;
   align-items: center;
   margin-bottom: 0.25rem;
+  padding: 0 1rem;
 }
 .left {
   width: 2.5rem;
@@ -12,4 +13,3 @@
 .right {
   flex: 1;
 }
-

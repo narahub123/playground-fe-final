@@ -13,16 +13,15 @@ import { useRef } from "react";
 
 interface PostLeftProps {
   className?: string;
+  isShowingConnector?: boolean;
 }
 
-const PostLeft = ({ className }: PostLeftProps) => {
+const PostLeft = ({ className, isShowingConnector = false }: PostLeftProps) => {
   const navigate = useNavigate();
   const containerRef = useRef<HTMLDivElement>(null);
   const classNames = joinClassNames([styles["post__left"], className]);
   const { author } = usePostContext();
   const { userId, profileImage } = author;
-
-  const isShowingConnector = false;
 
   const {
     isLoading,

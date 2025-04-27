@@ -16,16 +16,14 @@ const PostHeader = ({ className }: PostHeaderProps) => {
 
   const { type } = usePostContext();
 
-  const isShowingConnector = false;
-
-  if (type === "comment" || type === "post" || !type) return null;
+  if (type === "post" || !type) return null;
 
   return (
     <header className={classNames}>
       {/* 비어 있거나 , repost 아이콘 혹은 connector가 올 수 있음 */}
       <div className={styles["left"]}>
-        {<RepostIcon />}
-        {isShowingConnector && <LineConnector />}
+        {type === "repost" && <RepostIcon />}
+        {type === "comment" && <LineConnector />}
       </div>
       {/* 비어 있거나 혹은 repost info가 올 수 있음 */}
       <div className={styles["right"]}>{<RepostInfo />}</div>

@@ -5,8 +5,6 @@ import { IPost } from "@shared/@common/types";
 import { useLocation } from "react-router-dom";
 import { fetchWithAuth } from "@shared/pages";
 import { Post } from "@shared/pages/ui/Post";
-import { useSelector } from "react-redux";
-import { selectPosts } from "@shared/@common/models/selectors";
 
 interface PostPageMainProps {
   className?: string;
@@ -16,15 +14,22 @@ const PostPageMain = ({ className }: PostPageMainProps) => {
   const classNames = joinClassNames([styles["post__page__main"], className]);
   const { pathname } = useLocation();
   const [post, setPost] = useState<IPost>();
-
-  const posts = useSelector(selectPosts);
+  const [comment, setComment] = useState<IPost>();
 
   const getPost = async (postId: string) => {
     try {
       const result = await fetchWithAuth(`/posts/${postId}`);
 
       if (result.success) {
-        setPost(result.data.post);
+        const post: IPost = result.data.post;
+
+        if (post.type === "comment") {
+          const { originalPost, ...rest } = post;
+          setPost(originalPost);
+          setComment(rest);
+        } else {
+          setPost(result.data.post);
+        }
       } else {
         console.error("포스트 조회 실패");
       }
@@ -39,14 +44,10 @@ const PostPageMain = ({ className }: PostPageMainProps) => {
 
     const postId = pathname.split("status/")[1];
 
-    const post = posts.find((p) => p._id === postId);
+    getPost(postId);
+  }, [pathname]);
 
-    if (post) {
-      setPost(post);
-    } else {
-      getPost(postId);
-    }
-  }, [posts]);
+  if (!post) return null;
 
   return (
     <div className={classNames}>
@@ -54,37 +55,54 @@ const PostPageMain = ({ className }: PostPageMainProps) => {
         <Post post={post}>
           <Post.Content>
             <Post.Main>
+              {comment && <Post.Left isShowingConnector={true} />}
               <Post.Right>
-                <Post.Meta isPostPage={true} />
+                <Post.Meta isPostPage={comment ? false : true} />
                 <Post.Text className={styles["margin"]} />
                 <Post.Media className={styles["margin"]} />
                 <Post.Vote className={styles["margin"]} />
                 <Post.Stats />
-                <Post.Actions className={styles["actions"]} isPostPage={true} />
-                <Post.CommentEditor />
+                <Post.Actions
+                  className={styles["actions"]}
+                  isPostPage={comment ? false : true}
+                />
+                {!comment && <Post.CommentEditor />}
               </Post.Right>
             </Post.Main>
-            <Post.Footer>
-              <Post.CommentContainer postId={pathname.split("status/")[1]} />
-            </Post.Footer>
+            {!comment && (
+              <Post.Footer>
+                <Post.CommentContainer postId={pathname.split("status/")[1]} />
+              </Post.Footer>
+            )}
           </Post.Content>
         </Post>
       </div>
-      <div className={styles["comment__editor"]}>댓글 쓰기</div>
-      <div className={styles["comment__list"]}>
-        <div className={styles["comment__wrapper"]}>
-          <div className={styles["comment"]}>댓글</div>
+      {comment && (
+        <div className={styles["comment"]}>
+          <Post post={comment}>
+            <Post.Content>
+              <Post.Header />
+              <Post.Main>
+                <Post.Right>
+                  <Post.Meta isPostPage={true} />
+                  <Post.Text className={styles["margin"]} />
+                  <Post.Media className={styles["margin"]} />
+                  <Post.Vote className={styles["margin"]} />
+                  <Post.Stats />
+                  <Post.Actions
+                    className={styles["actions"]}
+                    isPostPage={true}
+                  />
+                  <Post.CommentEditor />
+                </Post.Right>
+              </Post.Main>
+              <Post.Footer>
+                <Post.CommentContainer postId={pathname.split("status/")[1]} />
+              </Post.Footer>
+            </Post.Content>
+          </Post>
         </div>
-        <div className={styles["comment__wrapper"]}>
-          <div className={styles["comment"]}>댓글</div>
-        </div>
-        <div className={styles["comment__wrapper"]}>
-          <div className={styles["comment"]}>댓글</div>
-        </div>
-        <div className={styles["comment__wrapper"]}>
-          <div className={styles["comment"]}>댓글</div>
-        </div>
-      </div>
+      )}
     </div>
   );
 };
