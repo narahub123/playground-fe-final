@@ -7,7 +7,7 @@ import {
   ShareDropdown,
   usePostContext,
 } from "@shared/pages/ui/Post";
-import { useState } from "react";
+import React, { useState } from "react";
 
 interface PostActionsProps {
   className?: string;
@@ -25,7 +25,9 @@ const PostActions = ({ className, isPostPage = false }: PostActionsProps) => {
     ? Object.keys(actions).filter((action) => action !== "views")
     : Object.keys(actions);
 
-  const handleShareOpen = () => {
+  const handleShareOpen = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
     setIsShareOpen(!isShareOpen);
   };
 

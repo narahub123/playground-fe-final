@@ -10,7 +10,7 @@ import {
   RepostDropdown,
   usePostContext,
 } from "@shared/pages/ui/Post";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUser } from "@shared/@common/models/selectors";
@@ -21,12 +21,13 @@ import {
 } from "@shared/@common/models/slices/postSlice";
 import { updateUserBookmarks } from "@shared/@common/models/slices/userSlice";
 import { fetchWithAuth } from "@shared/pages/utils";
+import { IPost } from "@shared/@common/types";
 
 interface PostActionProps {
   className?: string;
   action: PostActionType;
   isPostPage?: boolean;
-  handleShareOpen: () => void;
+  handleShareOpen: (e: React.MouseEvent) => void;
 }
 
 const PostAction = ({
@@ -41,11 +42,24 @@ const PostAction = ({
 
   const { _id: userId } = useSelector(selectUser);
 
-  const { actions, _id: postId } = usePostContext();
+  const { actions, _id: postId, comments: pComments, type } = usePostContext();
 
   const { comments, reposts, likes, views, bookmarks } = actions;
 
-  const handleRepostOpen = () => {
+  // 코멘트 여부
+  const isCommenting = (pComments: IPost[]) => {
+    if (!pComments) return false;
+    const pCommentsIds = pComments.map((c) => c._id);
+
+    return (
+      new Set([...comments, ...pCommentsIds]).size <
+      comments.length + pCommentsIds.length
+    );
+  };
+
+  const handleRepostOpen = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
     setIsRepostOpen(!isRepostOpen);
   };
 
@@ -53,7 +67,9 @@ const PostAction = ({
     return likes.includes(userId);
   };
 
-  const handleLikes = async () => {
+  const handleLikes = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
     try {
       const result = await fetchWithAuth(`/posts/${postId}/likes`, {
         method: "PATCH",
@@ -73,7 +89,10 @@ const PostAction = ({
     return bookmarks.includes(userId);
   };
 
-  const handleBookmark = async () => {
+  const handleBookmark = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+    alert(type);
     try {
       const result = await fetchWithAuth(
         `/posts/${postId}/bookmarks`,
@@ -96,8 +115,9 @@ const PostAction = ({
     return reposts.includes(userId);
   };
 
-  const handleClick: Record<PostActionType, () => void> = {
-    comments: () => {
+  const handleClick: Record<PostActionType, (e: React.MouseEvent) => void> = {
+    comments: (e: React.MouseEvent) => {
+      e.preventDefault();
       navigate(PRIMARY_LINK.COMPOSE_POST);
     },
     reposts: handleRepostOpen,
@@ -148,6 +168,9 @@ const PostAction = ({
             ? styles["reposting"]
             : "",
           action === "bookmarks" && !isPostPage ? styles["irregular"] : "",
+          action === "comments" && isCommenting(pComments)
+            ? styles["commenting"]
+            : "",
         ])}
         onClick={handleClick[action]}
         action={action}
@@ -171,6 +194,9 @@ const PostAction = ({
             action === "likes" && isLiking(userId) ? styles["liking"] : "",
             action === "reposts" && isReposting(userId)
               ? styles["reposting"]
+              : "",
+            action === "comments" && isCommenting(pComments)
+              ? styles["commenting"]
               : "",
           ])}
         >

@@ -48,7 +48,9 @@ const HomePage = () => {
             <Post.Content>
               <Post.Header />
               <Post.Main>
-                <Post.Left />
+                <Post.Left
+                  isShowingConnector={post.comments && post.comments.length > 0}
+                />
                 <Post.Right>
                   <Post.Meta />
                   <Post.Text />
@@ -57,6 +59,9 @@ const HomePage = () => {
                   <Post.Actions className={styles["actions"]} />
                 </Post.Right>
               </Post.Main>
+              <Post.Footer>
+                <Post.CommentContainer />
+              </Post.Footer>
             </Post.Content>
           </Post>
         ))}

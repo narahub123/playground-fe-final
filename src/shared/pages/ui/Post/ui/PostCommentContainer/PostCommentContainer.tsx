@@ -2,37 +2,22 @@ import { IPost } from "@shared/@common/types";
 import styles from "./PostCommentContainer.module.css";
 import { joinClassNames } from "@shared/@common/utils";
 import { useEffect, useState } from "react";
-import { fetchWithAuth } from "@shared/pages/utils";
 import Post from "..";
+import { usePostContext } from "../../hooks";
 
 interface PostCommentContainerProps {
   className?: string;
-  postId: string;
 }
 
-const PostCommentContainer = ({
-  className,
-  postId,
-}: PostCommentContainerProps) => {
+const PostCommentContainer = ({ className }: PostCommentContainerProps) => {
   const [comments, setComments] = useState<IPost[]>([]);
 
-  const getComments = async (postId: string) => {
-    try {
-      const result = await fetchWithAuth(`/posts/${postId}/comments`);
-      if (result.success) {
-        setComments(result.data.comments);
-      } else {
-        console.error("댓글 조회 실패");
-      }
-    } catch (error) {
-      console.error("댓글 조회 중 에러 발생", error);
-    }
-  };
+  const { comments: initialComments } = usePostContext();
 
   useEffect(() => {
     // 댓글 불러오기
-    getComments(postId);
-  }, []);
+    setComments(initialComments);
+  }, [initialComments]);
 
   const classNames = joinClassNames([
     styles["post__comment__container"],
@@ -44,8 +29,9 @@ const PostCommentContainer = ({
   return (
     <div className={classNames}>
       {comments.map((comment, index) => (
-        <Post post={comment} key={index} className={styles["post"]}>
+        <Post post={comment} key={index}>
           <Post.Content>
+            <Post.Header />
             <Post.Main>
               <Post.Left />
               <Post.Right>
