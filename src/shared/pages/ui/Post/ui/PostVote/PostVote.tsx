@@ -35,7 +35,7 @@ const PostVote = ({ className }: PostVoteProps) => {
   } = usePostContext();
   const { _id: authorId } = author;
 
-  const vote = originalPost ? originalPost.vote : postVote;
+  const vote = originalPost?.vote ? originalPost.vote : postVote;
 
   if (!vote) return null;
 

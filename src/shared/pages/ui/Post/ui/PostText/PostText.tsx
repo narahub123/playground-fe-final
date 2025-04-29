@@ -19,7 +19,7 @@ const PostText = ({ className }: PostTextProps) => {
 
   const { text: postText, originalPost, setMentions } = usePostContext();
 
-  const text = originalPost ? originalPost.text : postText;
+  const text = originalPost?.text ? originalPost.text : postText;
 
   const {
     isLoading,

@@ -33,7 +33,7 @@ const PostMedia = ({ className }: PostMediaProps) => {
 
   const { media: postMedia, originalPost } = usePostContext();
 
-  const media = originalPost ? originalPost.media : postMedia;
+  const media = originalPost?.media ? originalPost.media : postMedia;
 
   if (!media || media.length === 0) return null;
 

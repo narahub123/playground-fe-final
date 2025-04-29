@@ -190,6 +190,7 @@ interface IPost {
   commentedAt?: string;
   createdAt: string;
   updatedAt: string;
+  comments: IPost[];
 }
 
 export type {
