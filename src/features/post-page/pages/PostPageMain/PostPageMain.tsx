@@ -14,22 +14,16 @@ const PostPageMain = ({ className }: PostPageMainProps) => {
   const classNames = joinClassNames([styles["post__page__main"], className]);
   const { pathname } = useLocation();
   const [post, setPost] = useState<IPost>();
-  const [comment, setComment] = useState<IPost>();
+  const [isCommentType, setIsCommentType] = useState(false);
 
   const getPost = async (postId: string) => {
     try {
       const result = await fetchWithAuth(`/posts/${postId}`);
 
       if (result.success) {
-        const post: IPost = result.data.post;
-
-        if (post.type === "comment") {
-          const { originalPost, ...rest } = post;
-          setPost(originalPost);
-          setComment(rest);
-        } else {
-          setPost(result.data.post);
-        }
+        const post = result.data.post;
+        setPost(post);
+        setIsCommentType(postId !== post._id);
       } else {
         console.error("포스트 조회 실패");
       }
@@ -54,55 +48,34 @@ const PostPageMain = ({ className }: PostPageMainProps) => {
       <div className={styles["post"]}>
         <Post post={post}>
           <Post.Content>
+            <Post.Header />
             <Post.Main>
-              {comment && <Post.Left isShowingConnector={true} />}
+              {isCommentType && (
+                <Post.Left isShowingConnector={isCommentType} />
+              )}
               <Post.Right>
-                <Post.Meta isPostPage={comment ? false : true} />
+                <Post.Meta isPostPage={!isCommentType} />
                 <Post.Text className={styles["margin"]} />
                 <Post.Media className={styles["margin"]} />
                 <Post.Vote className={styles["margin"]} />
                 <Post.Stats />
                 <Post.Actions
                   className={styles["actions"]}
-                  isPostPage={comment ? false : true}
+                  isPostPage={!isCommentType}
                 />
-                {!comment && <Post.CommentEditor />}
+                {!isCommentType && <Post.CommentEditor />}
               </Post.Right>
             </Post.Main>
-            {!comment && (
-              <Post.Footer>
-                <Post.CommentContainer postId={pathname.split("status/")[1]} />
-              </Post.Footer>
-            )}
+
+            <Post.Footer>
+              <Post.CommentContainer isCommentType={isCommentType} />
+              {isCommentType && (
+                <Post.CommentEditor className={styles["commentEditor"]} />
+              )}
+            </Post.Footer>
           </Post.Content>
         </Post>
       </div>
-      {comment && (
-        <div className={styles["comment"]}>
-          <Post post={comment}>
-            <Post.Content>
-              <Post.Header />
-              <Post.Main>
-                <Post.Right>
-                  <Post.Meta isPostPage={true} />
-                  <Post.Text className={styles["margin"]} />
-                  <Post.Media className={styles["margin"]} />
-                  <Post.Vote className={styles["margin"]} />
-                  <Post.Stats />
-                  <Post.Actions
-                    className={styles["actions"]}
-                    isPostPage={true}
-                  />
-                  <Post.CommentEditor />
-                </Post.Right>
-              </Post.Main>
-              <Post.Footer>
-                <Post.CommentContainer postId={pathname.split("status/")[1]} />
-              </Post.Footer>
-            </Post.Content>
-          </Post>
-        </div>
-      )}
     </div>
   );
 };

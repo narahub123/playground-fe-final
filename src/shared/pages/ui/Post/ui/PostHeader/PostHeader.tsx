@@ -9,24 +9,32 @@ import {
 
 interface PostHeaderProps {
   className?: string;
+  isCommentType?: boolean;
 }
 
-const PostHeader = ({ className }: PostHeaderProps) => {
+const PostHeader = ({ className, isCommentType = false }: PostHeaderProps) => {
   const classNames = joinClassNames([styles["post__header"], className]);
 
   const { type } = usePostContext();
 
   if (type === "post" || !type) return null;
 
+  console.log("타입", type);
+
   return (
     <header className={classNames}>
       {/* 비어 있거나 , repost 아이콘 혹은 connector가 올 수 있음 */}
       <div className={styles["left"]}>
         {type === "repost" && <RepostIcon />}
-        {type === "comment" && <LineConnector />}
+        {type === "comment" && isCommentType && <LineConnector />}
       </div>
       {/* 비어 있거나 혹은 repost info가 올 수 있음 */}
-      <div className={styles["right"]}>{<RepostInfo />}</div>
+      {type === "repost" && (
+        <div className={styles["right"]}>{<RepostInfo />}</div>
+      )}
+      {type === "comment" && isCommentType && (
+        <div className={styles["empty"]} />
+      )}
     </header>
   );
 };

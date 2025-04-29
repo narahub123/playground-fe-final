@@ -43,28 +43,32 @@ const HomePage = () => {
       </div>
       <div>광고</div>
       <div>
-        {posts.map((post, index) => (
-          <Post key={`${post._id}${index}`} post={post}>
-            <Post.Content>
-              <Post.Header />
-              <Post.Main>
-                <Post.Left
-                  isShowingConnector={post.comments && post.comments.length > 0}
-                />
-                <Post.Right>
-                  <Post.Meta />
-                  <Post.Text />
-                  <Post.Media />
-                  <Post.Vote />
-                  <Post.Actions className={styles["actions"]} />
-                </Post.Right>
-              </Post.Main>
-              <Post.Footer>
-                <Post.CommentContainer />
-              </Post.Footer>
-            </Post.Content>
-          </Post>
-        ))}
+        {posts.map((post, index) => {
+          return (
+            <Post key={`${post._id}${index}`} post={post}>
+              <Post.Content>
+                <Post.Header />
+                <Post.Main>
+                  <Post.Left
+                    isShowingConnector={
+                      post.comments && post.comments.length > 0
+                    }
+                  />
+                  <Post.Right>
+                    <Post.Meta />
+                    <Post.Text />
+                    <Post.Media />
+                    <Post.Vote />
+                    <Post.Actions className={styles["actions"]} />
+                  </Post.Right>
+                </Post.Main>
+                <Post.Footer>
+                  <Post.CommentContainer isCommentType={true} />
+                </Post.Footer>
+              </Post.Content>
+            </Post>
+          );
+        })}
       </div>
     </div>
   );
