@@ -39,6 +39,79 @@ const postSlice = createSlice({
         };
       });
     },
+    setCommentLike: (
+      state,
+      action: PayloadAction<{
+        originalPostId: string;
+        commentId: string;
+        userId: string;
+      }>
+    ) => {
+      const { originalPostId, commentId, userId } = action.payload;
+
+      state.posts = state.posts.map((post) => {
+        if (post._id !== originalPostId) return post;
+
+        const updatedComments = post.comments.map((comment) => {
+          if (comment._id !== commentId) return comment;
+
+          const likes = comment.actions.likes;
+          const newLikes = likes.includes(userId)
+            ? likes.filter((like) => like !== userId)
+            : [...likes, userId];
+
+          return {
+            ...comment,
+            actions: {
+              ...comment.actions,
+              likes: newLikes,
+            },
+          };
+        });
+
+        return {
+          ...post,
+          comments: updatedComments,
+        };
+      });
+    },
+    setCommentBookmark: (
+      state,
+      action: PayloadAction<{
+        originalPostId: string;
+        commentId: string;
+        userId: string;
+      }>
+    ) => {
+      const { originalPostId, commentId, userId } = action.payload;
+
+      state.posts = state.posts.map((post) => {
+        if (post._id !== originalPostId) return post;
+
+        const updatedComments = post.comments.map((comment) => {
+          if (comment._id !== commentId) return comment;
+
+          const bookmarks = comment.actions.bookmarks;
+          const newBookmarks = bookmarks.includes(userId)
+            ? bookmarks.filter((bookmark) => bookmark !== userId)
+            : [...bookmarks, userId];
+
+          return {
+            ...comment,
+            actions: {
+              ...comment.actions,
+              bookmarks: newBookmarks,
+            },
+          };
+        });
+
+        return {
+          ...post,
+          comments: updatedComments,
+        };
+      });
+    },
+
     setPost: (state, action: PayloadAction<IPost>) => {
       state.posts = [action.payload, ...state.posts];
     },
@@ -92,4 +165,6 @@ export const {
   deletePost,
   updatePin,
   updatePostBookmarks,
+  setCommentLike,
+  setCommentBookmark,
 } = postSlice.actions;

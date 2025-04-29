@@ -16,6 +16,8 @@ import { useSelector } from "react-redux";
 import { selectUser } from "@shared/@common/models/selectors";
 import { useDispatch } from "react-redux";
 import {
+  setCommentBookmark,
+  setCommentLike,
   setLike,
   updatePostBookmarks,
 } from "@shared/@common/models/slices/postSlice";
@@ -42,7 +44,13 @@ const PostAction = ({
 
   const { _id: userId } = useSelector(selectUser);
 
-  const { actions, _id: postId, comments: pComments, type } = usePostContext();
+  const {
+    actions,
+    _id: postId,
+    comments: pComments,
+    type,
+    originalPostId,
+  } = usePostContext();
 
   const { comments, reposts, likes, views, bookmarks } = actions;
 
@@ -76,7 +84,13 @@ const PostAction = ({
       });
 
       if (result.success) {
-        dispatch(setLike({ postId, userId }));
+        if (type === "comment") {
+          dispatch(
+            setCommentLike({ originalPostId, commentId: postId, userId })
+          );
+        } else {
+          dispatch(setLike({ postId, userId }));
+        }
       } else {
         console.error("좋아요 업데이트 실패");
       }
@@ -92,7 +106,7 @@ const PostAction = ({
   const handleBookmark = async (e: React.MouseEvent) => {
     e.stopPropagation();
     e.preventDefault();
-    alert(type);
+
     try {
       const result = await fetchWithAuth(
         `/posts/${postId}/bookmarks`,
@@ -101,8 +115,14 @@ const PostAction = ({
       );
 
       if (result.success) {
-        dispatch(updateUserBookmarks(postId));
-        dispatch(updatePostBookmarks({ postId, userId }));
+        if (type === "comment") {
+          dispatch(
+            setCommentBookmark({ originalPostId, commentId: postId, userId })
+          );
+        } else {
+          dispatch(updateUserBookmarks(postId));
+          dispatch(updatePostBookmarks({ postId, userId }));
+        }
       } else {
         console.error("북마크 업데이트 실패");
       }

@@ -184,6 +184,7 @@ interface IPost {
   schedule?: Date;
   pin: boolean;
   actions: IPostActions;
+  originalPostId: string;
   originalPost?: IPost;
   repostedAt?: string;
   quotedAt?: string;

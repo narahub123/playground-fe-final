@@ -69,6 +69,8 @@ import {
   deletePost,
   updatePin,
   updatePostBookmarks,
+  setCommentLike,
+  setCommentBookmark,
 } from "./postSlice";
 
 export {
@@ -143,4 +145,6 @@ export {
   deletePost,
   updatePin,
   updatePostBookmarks,
+  setCommentLike,
+  setCommentBookmark,
 };
