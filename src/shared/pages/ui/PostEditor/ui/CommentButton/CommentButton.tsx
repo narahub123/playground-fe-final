@@ -12,18 +12,26 @@ interface CommentButtonProps {
   className?: string;
   text: string;
   isValid: boolean;
+  isCommentType?: boolean;
 }
 
-const CommentButton = ({ isValid, text }: CommentButtonProps) => {
+const CommentButton = ({
+  isValid,
+  text,
+  isCommentType = false,
+}: CommentButtonProps) => {
   const { post } = useSelector(selectPostEditor);
 
-  const { _id: postId } = usePostContext();
+  const { _id, thread } = usePostContext();
 
   const toast = useToast();
   const { getErrorTitle } = useAPIError();
 
   const handleClick = async () => {
     const { innerHtml, media } = post;
+
+    // comment 타입인 경우 thread의 마지막 요소의 _id를 이니면 원포스트의 _id를 삽입
+    const postId = isCommentType ? thread[thread.length - 1]._id : _id;
 
     try {
       const result = await fetchWithAuth(

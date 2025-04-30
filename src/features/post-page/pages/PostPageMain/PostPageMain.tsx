@@ -63,14 +63,17 @@ const PostPageMain = ({ className }: PostPageMainProps) => {
                   className={styles["actions"]}
                   isPostPage={!isCommentType}
                 />
-                {!isCommentType && <Post.CommentEditor />}
+                {!isCommentType && <Post.CommentEditor isCommentType={false} />}
               </Post.Right>
             </Post.Main>
 
             <Post.Footer>
               <Post.Thread isCommentType={isCommentType} />
               {isCommentType && (
-                <Post.CommentEditor className={styles["commentEditor"]} />
+                <Post.CommentEditor
+                  className={styles["commentEditor"]}
+                  isCommentType={true}
+                />
               )}
               <Post.Comments isCommentType={isCommentType} />
             </Post.Footer>

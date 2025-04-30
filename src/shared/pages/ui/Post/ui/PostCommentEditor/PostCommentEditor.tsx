@@ -26,9 +26,13 @@ import { POST_LENGTH_MAX } from "@shared/@common/constants";
 
 interface PostCommentEditorProps {
   className?: string;
+  isCommentType?: boolean;
 }
 
-const PostCommentEditor = ({ className }: PostCommentEditorProps) => {
+const PostCommentEditor = ({
+  className,
+  isCommentType = false,
+}: PostCommentEditorProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const mentionsRef = useRef<(HTMLAnchorElement | null)[]>([]);
   const textLength = useSelector(selectPostEditorTextLength);
@@ -190,7 +194,11 @@ const PostCommentEditor = ({ className }: PostCommentEditorProps) => {
               <span className={styles["btns__wrapper"]}>
                 <CircularProgressBar textLength={textLength} />
                 <div className={styles["vertical__divider"]} />
-                <CommentButton isValid={isValid} text={btn} />
+                <CommentButton
+                  isValid={isValid}
+                  text={btn}
+                  isCommentType={isCommentType}
+                />
               </span>
             </div>
           </div>
