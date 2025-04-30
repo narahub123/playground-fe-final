@@ -68,10 +68,11 @@ const PostPageMain = ({ className }: PostPageMainProps) => {
             </Post.Main>
 
             <Post.Footer>
-              <Post.CommentContainer isCommentType={isCommentType} />
+              <Post.Thread isCommentType={isCommentType} />
               {isCommentType && (
                 <Post.CommentEditor className={styles["commentEditor"]} />
               )}
+              <Post.Comments isCommentType={isCommentType} />
             </Post.Footer>
           </Post.Content>
         </Post>

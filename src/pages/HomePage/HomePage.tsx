@@ -63,7 +63,7 @@ const HomePage = () => {
                   </Post.Right>
                 </Post.Main>
                 <Post.Footer>
-                  <Post.CommentContainer isCommentType={true} />
+                  <Post.Thread isCommentType={true} />
                 </Post.Footer>
               </Post.Content>
             </Post>

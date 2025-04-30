@@ -39,11 +39,13 @@ import PostActionIcon from "./PostActionIcon/PostActionIcon";
 import PostAction from "./PostAction/PostAction";
 import RepostDropdown from "./RepostDropdown/RepostDropdown";
 import ShareDropdown from "./ShareDropdown/ShareDropdown";
+import PostThreadContainer from "./PostThreadContainer/PostThreadContainer";
 
 const Post = Object.assign(PostContainer, {
   Content: PostContent,
+  Thread: PostThreadContainer,
   CommentEditor: PostCommentEditor,
-  CommentContainer: PostCommentContainer,
+  Comments: PostCommentContainer,
   Header: PostHeader,
   Main: PostMain,
   Footer: PostFooter,

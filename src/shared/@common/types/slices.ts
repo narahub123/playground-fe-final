@@ -191,6 +191,7 @@ interface IPost {
   commentedAt?: string;
   createdAt: string;
   updatedAt: string;
+  thread: IPost[];
   comments: IPost[];
 }
 
