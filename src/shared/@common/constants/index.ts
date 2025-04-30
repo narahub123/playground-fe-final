@@ -51,6 +51,7 @@ import {
   POST_IMAGE_SIZE_MAX,
   POST_VIDEO_SIZE_MAX,
   VOTE_OPTION_MAX,
+  POST_THREAD_MAX,
 } from "./constants"; // 상수
 
 import PRIMARY_LINK from "./primary-links";
@@ -111,6 +112,7 @@ export {
   POST_IMAGE_SIZE_MAX,
   POST_VIDEO_SIZE_MAX,
   VOTE_OPTION_MAX,
+  POST_THREAD_MAX,
 
   // links
   PRIMARY_LINK,

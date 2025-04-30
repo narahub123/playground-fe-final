@@ -40,9 +40,11 @@ import PostAction from "./PostAction/PostAction";
 import RepostDropdown from "./RepostDropdown/RepostDropdown";
 import ShareDropdown from "./ShareDropdown/ShareDropdown";
 import PostThreadContainer from "./PostThreadContainer/PostThreadContainer";
+import MoreThread from "./MoreThread/MoreThread";
 
 const Post = Object.assign(PostContainer, {
   Content: PostContent,
+  MoreThread,
   Thread: PostThreadContainer,
   CommentEditor: PostCommentEditor,
   Comments: PostCommentContainer,

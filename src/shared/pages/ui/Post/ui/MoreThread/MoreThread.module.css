@@ -1,0 +1,38 @@
+.more__thread {
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.left {
+  width: 40px;
+  margin-right: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dash {
+  width: 2px;
+  height: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.line {
+  width: 2px;
+  height: 2px;
+  background-color: #ddd;
+}
+
+.right {
+  flex: 1;
+  padding: 0.5rem 0;
+}
+
+.text {
+  color: var(--colorTheme-color-primary);
+}

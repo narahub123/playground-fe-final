@@ -3,15 +3,18 @@ import { joinClassNames } from "@shared/@common/utils";
 import { useEffect, useState } from "react";
 import { Post, usePostContext } from "@shared/pages/ui/Post";
 import { IPost } from "@shared/@common/types";
+import { POST_THREAD_MAX } from "@shared/@common/constants";
 
 interface PostThreadContainerProps {
   className?: string;
   isCommentType?: boolean;
+  isPostPage?: boolean;
 }
 
 const PostThreadContainer = ({
   className,
   isCommentType = false,
+  isPostPage = true,
 }: PostThreadContainerProps) => {
   const [entries, setEntries] = useState<IPost[]>([]);
 
@@ -28,16 +31,20 @@ const PostThreadContainer = ({
 
   if (!entries || entries.length === 0) return null;
 
+  const filteredEntries = isPostPage
+    ? entries
+    : entries.slice(entries.length - POST_THREAD_MAX);
+
   return (
     <div className={classNames}>
-      {entries.map((entry, index) => (
+      {filteredEntries.map((entry, index) => (
         <Post post={entry} key={index}>
           <Post.Content>
             <Post.Header isCommentType={isCommentType} />
             <Post.Main>
               <Post.Left
                 isShowingConnector={
-                  isCommentType && index !== entries.length - 1
+                  isCommentType && index !== filteredEntries.length - 1
                 }
               />
               <Post.Right>

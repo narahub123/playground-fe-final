@@ -150,6 +150,9 @@ const post_kr = {
     placeholder: "답글 게시하기",
     btn: "답글",
   },
+  MoreThread: {
+    text: "더 많은 답글 보기",
+  },
 };
 
 export default post_kr;

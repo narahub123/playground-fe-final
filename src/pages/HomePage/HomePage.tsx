@@ -61,7 +61,8 @@ const HomePage = () => {
                   </Post.Right>
                 </Post.Main>
                 <Post.Footer>
-                  <Post.Thread isCommentType={true} />
+                  <Post.MoreThread />
+                  <Post.Thread isCommentType={true} isPostPage={false} />
                 </Post.Footer>
               </Post.Content>
             </Post>
