@@ -75,7 +75,7 @@ const PostPageMain = ({ className }: PostPageMainProps) => {
                   isCommentType={true}
                 />
               )}
-              <Post.Comments isCommentType={isCommentType} />
+              <Post.Comments />
             </Post.Footer>
           </Post.Content>
         </Post>

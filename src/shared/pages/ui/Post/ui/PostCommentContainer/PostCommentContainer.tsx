@@ -7,13 +7,9 @@ import { usePostContext } from "../../hooks";
 
 interface PostCommentContainerProps {
   className?: string;
-  isCommentType?: boolean;
 }
 
-const PostCommentContainer = ({
-  className,
-  isCommentType = false,
-}: PostCommentContainerProps) => {
+const PostCommentContainer = ({ className }: PostCommentContainerProps) => {
   const [comments, setComments] = useState<IPost[]>([]);
 
   const { comments: initialComments } = usePostContext();
@@ -35,7 +31,7 @@ const PostCommentContainer = ({
       {comments.map((comment, index) => (
         <Post post={comment} key={index}>
           <Post.Content>
-            <Post.Header isCommentType={isCommentType} />
+            <Post.Header />
             <Post.Main>
               <Post.Left />
               <Post.Right>
