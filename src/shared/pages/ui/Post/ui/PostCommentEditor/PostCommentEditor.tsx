@@ -115,7 +115,14 @@ const PostCommentEditor = ({ className }: PostCommentEditorProps) => {
   };
 
   return (
-    <div className={classNames} ref={containerRef}>
+    <div
+      className={classNames}
+      ref={containerRef}
+      onClick={(e) => {
+        e.stopPropagation();
+        e.preventDefault();
+      }}
+    >
       <ProfileDropdown
         isOpen={isOpen}
         isLoading={isLoading}
