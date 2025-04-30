@@ -50,9 +50,7 @@ const HomePage = () => {
                 <Post.Header />
                 <Post.Main>
                   <Post.Left
-                    isShowingConnector={
-                      post.comments && post.comments.length > 0
-                    }
+                    isShowingConnector={post.thread && post.thread.length > 0}
                   />
                   <Post.Right>
                     <Post.Meta />
