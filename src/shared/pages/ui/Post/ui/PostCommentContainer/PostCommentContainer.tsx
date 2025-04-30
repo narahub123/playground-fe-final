@@ -42,6 +42,7 @@ const PostCommentContainer = ({ className }: PostCommentContainerProps) => {
               </Post.Right>
             </Post.Main>
           </Post.Content>
+          <Post.Bottom />
         </Post>
       ))}
     </div>
