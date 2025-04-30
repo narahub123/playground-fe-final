@@ -35,7 +35,11 @@ const PostThreadContainer = ({
           <Post.Content>
             <Post.Header isCommentType={isCommentType} />
             <Post.Main>
-              <Post.Left />
+              <Post.Left
+                isShowingConnector={
+                  isCommentType && index !== entries.length - 1
+                }
+              />
               <Post.Right>
                 <Post.Meta />
                 <Post.Text className={styles["margin"]} />
