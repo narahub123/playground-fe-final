@@ -46,6 +46,7 @@ const HomePage = () => {
         {posts.map((post, index) => {
           return (
             <Post key={`${post._id}${index}`} post={post}>
+              <Post.Top />
               <Post.Content>
                 <Post.Header />
                 <Post.Main>
@@ -65,6 +66,7 @@ const HomePage = () => {
                   <Post.Thread isCommentType={true} isPostPage={false} />
                 </Post.Footer>
               </Post.Content>
+              <Post.Bottom />
             </Post>
           );
         })}
