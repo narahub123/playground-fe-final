@@ -6,8 +6,10 @@ import {
   postSlice,
   setPost,
   setPostLoading,
+  setIsCommentType,
   selectPost,
   selectPostLoading,
+  selectIsCommentType,
 } from "./models";
 
 export {
@@ -29,10 +31,12 @@ export {
   // reducers
   setPost,
   setPostLoading,
+  setIsCommentType,
 
   // selectors
   selectPost,
   selectPostLoading,
+  selectIsCommentType,
 };
 
 export type { CommentSortType };
