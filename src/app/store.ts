@@ -15,6 +15,7 @@ import {
 } from "@shared/@common/models/slices";
 
 import { postEditorSlice as postEditor } from "@shared/pages/ui/PostEditor/models/slices";
+import { postSlice as post } from "@features/post-page";
 
 const store = configureStore({
   reducer: {
@@ -28,6 +29,7 @@ const store = configureStore({
     notification, // 알림 설정
     postEditor, // 포스트 작성
     feed, // 포스트 목록
+    post,
   },
 
   // serializableCheck 옵션을 false로 설정하여
