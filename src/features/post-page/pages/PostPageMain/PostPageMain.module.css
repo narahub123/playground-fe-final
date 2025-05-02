@@ -21,3 +21,10 @@
 .commentEditor {
   padding: 0 1rem;
 }
+
+.trigger {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
+}

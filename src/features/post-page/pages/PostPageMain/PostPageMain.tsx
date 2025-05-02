@@ -2,7 +2,13 @@ import styles from "./PostPageMain.module.css";
 import { joinClassNames } from "@shared/@common/utils";
 import { Post } from "@shared/pages/ui/Post";
 import { useSelector } from "react-redux";
-import { selectIsCommentType, selectPost } from "@features/post-page/models";
+import {
+  PostPageCensor,
+  selectIsCommentLoading,
+  selectIsCommentType,
+  selectPost,
+} from "@features/post-page";
+import { Spinner } from "@shared/@common/ui/components";
 
 interface PostPageMainProps {
   className?: string;
@@ -12,6 +18,7 @@ const PostPageMain = ({ className }: PostPageMainProps) => {
   const classNames = joinClassNames([styles["post__page__main"], className]);
   const post = useSelector(selectPost);
   const isCommentType = useSelector(selectIsCommentType);
+  const isLoading = useSelector(selectIsCommentLoading);
 
   if (!post) return null;
 
@@ -51,6 +58,13 @@ const PostPageMain = ({ className }: PostPageMainProps) => {
             </Post.Footer>
           </Post.Content>
         </Post>
+      </div>
+      <div className={styles["trigger"]}>
+        {isLoading ? (
+          <Spinner color="cornflowerblue" size={1.5} />
+        ) : (
+          <PostPageCensor />
+        )}
       </div>
     </div>
   );

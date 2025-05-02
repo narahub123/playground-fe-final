@@ -1,5 +1,5 @@
 import { postpage_lang } from "./data";
-import { PostPageHeader, CommentSortDropdown } from "./ui";
+import { PostPageHeader, CommentSortDropdown, PostPageCensor } from "./ui";
 import { PostPageMain, PostPageQuotes, PostPageAnalytics } from "./pages";
 import { CommentSortType } from "./types";
 import {
@@ -23,6 +23,7 @@ export {
   // ui
   PostPageHeader,
   CommentSortDropdown,
+  PostPageCensor,
 
   // data
   postpage_lang,
