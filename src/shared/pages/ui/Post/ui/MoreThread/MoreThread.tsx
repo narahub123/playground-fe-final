@@ -4,12 +4,14 @@ import { joinClassNames } from "@shared/@common/utils";
 import { usePostContext } from "../../hooks";
 import { Text } from "@shared/@common/ui/components";
 import { POST_THREAD_MAX } from "@shared/@common/constants";
+import { useNavigate } from "react-router-dom";
 
 interface MoreThreadProps {
   className?: string;
 }
 
 const MoreThread = ({ className }: MoreThreadProps) => {
+  const navigate = useNavigate();
   // 언어 설정
   const { text } = useLanguageContent(["post", "MoreThread"]);
 
@@ -19,8 +21,18 @@ const MoreThread = ({ className }: MoreThreadProps) => {
 
   if (!thread || thread.length <= POST_THREAD_MAX) return null;
 
+  const handleClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+
+    const last = thread[thread.length - 1];
+    const { author, _id: postId } = last;
+    
+    navigate(`/${author.userId}/status/${postId}`);
+  };
+
   return (
-    <div className={classNames}>
+    <div className={classNames} onClick={handleClick}>
       <div className={styles["left"]}>
         <div className={styles["dash"]}>
           {Array.from({ length: 3 }).map((_, index) => (
