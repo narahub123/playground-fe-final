@@ -1,10 +1,8 @@
-import { useEffect, useState } from "react";
 import styles from "./PostPageMain.module.css";
 import { joinClassNames } from "@shared/@common/utils";
-import { IPost } from "@shared/@common/types";
-import { useLocation } from "react-router-dom";
-import { fetchWithAuth } from "@shared/pages";
 import { Post } from "@shared/pages/ui/Post";
+import { useSelector } from "react-redux";
+import { selectIsCommentType, selectPost } from "@features/post-page/models";
 
 interface PostPageMainProps {
   className?: string;
@@ -12,36 +10,8 @@ interface PostPageMainProps {
 
 const PostPageMain = ({ className }: PostPageMainProps) => {
   const classNames = joinClassNames([styles["post__page__main"], className]);
-  const { pathname } = useLocation();
-  // 포스트 관련 상태
-  const [post, setPost] = useState<IPost>();
-  const [isCommentType, setIsCommentType] = useState(false);
-
-  const getPost = async (postId: string) => {
-    try {
-      const result = await fetchWithAuth(`/posts/${postId}`);
-
-      if (result.success) {
-        const response = result.data.post;
-
-        setPost((prev) => (response._id !== prev?._id ? response : prev));
-        setIsCommentType((prev) => (postId !== response._id ? true : prev));
-      } else {
-        console.error("포스트 조회 실패");
-      }
-    } catch (error) {
-      console.error("포스트 조회 도중 에러 발생", error);
-    }
-  };
-
-  // 포스트 정보 가져오기
-  useEffect(() => {
-    if (!pathname) return;
-
-    const postId = pathname.split("status/")[1];
-
-    getPost(postId);
-  }, [pathname]);
+  const post = useSelector(selectPost);
+  const isCommentType = useSelector(selectIsCommentType);
 
   if (!post) return null;
 

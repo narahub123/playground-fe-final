@@ -1,3 +1,7 @@
-import postSlice, { setPost, setPostLoading } from "./postSlice";
+import postSlice, {
+  setPost,
+  setPostLoading,
+  setIsCommentType,
+} from "./postSlice";
 
-export { postSlice, setPost, setPostLoading };
+export { postSlice, setPost, setPostLoading, setIsCommentType };

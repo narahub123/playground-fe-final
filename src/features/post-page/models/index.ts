@@ -1,6 +1,10 @@
-import { postSlice, setPost, setPostLoading } from "./slices";
+import { postSlice, setPost, setPostLoading, setIsCommentType } from "./slices";
 
-import { selectPost, selectPostLoading } from "./selectors";
+import {
+  selectPost,
+  selectPostLoading,
+  selectIsCommentType,
+} from "./selectors";
 
 export {
   // slices
@@ -9,8 +13,10 @@ export {
   // reducers
   setPost,
   setPostLoading,
+  setIsCommentType,
 
   // selectors
   selectPost,
   selectPostLoading,
+  selectIsCommentType,
 };

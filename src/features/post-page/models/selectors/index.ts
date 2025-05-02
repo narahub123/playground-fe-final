@@ -1,3 +1,7 @@
-import { selectPost, selectPostLoading } from "./postSelector";
+import {
+  selectPost,
+  selectPostLoading,
+  selectIsCommentType,
+} from "./postSelector";
 
-export { selectPost, selectPostLoading };
+export { selectPost, selectPostLoading, selectIsCommentType };
