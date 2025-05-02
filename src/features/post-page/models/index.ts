@@ -1,9 +1,21 @@
-import { postSlice, setPost, setPostLoading, setIsCommentType } from "./slices";
+import {
+  postSlice,
+  setPost,
+  setPostLoading,
+  setIsCommentType,
+  setSkip,
+  setCommentLoading,
+  setComments,
+  setIsEnd,
+} from "./slices";
 
 import {
   selectPost,
   selectPostLoading,
   selectIsCommentType,
+  selectSkip,
+  selectIsCommentLoading,
+  selectIsEnd,
 } from "./selectors";
 
 export {
@@ -14,9 +26,16 @@ export {
   setPost,
   setPostLoading,
   setIsCommentType,
+  setSkip,
+  setCommentLoading,
+  setComments,
+  setIsEnd,
 
   // selectors
   selectPost,
   selectPostLoading,
   selectIsCommentType,
+  selectSkip,
+  selectIsCommentLoading,
+  selectIsEnd,
 };

@@ -36,8 +36,6 @@ const PostPageHeader = ({ className }: PostPageHeaderProps) => {
     navigate(PRIMARY_LINK.COMPOSE_POST);
   };
 
-  console.log(isOpen);
-
   return (
     <header className={classNames}>
       <div className={styles["wrapper"]}>

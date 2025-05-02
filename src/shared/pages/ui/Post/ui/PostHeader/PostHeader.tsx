@@ -19,8 +19,6 @@ const PostHeader = ({ className, isCommentType = false }: PostHeaderProps) => {
 
   if (type === "post" || !type) return null;
 
-  console.log("타입", type);
-
   return (
     <header className={classNames}>
       {/* 비어 있거나 , repost 아이콘 혹은 connector가 올 수 있음 */}

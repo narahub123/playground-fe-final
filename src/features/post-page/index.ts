@@ -7,9 +7,16 @@ import {
   setPost,
   setPostLoading,
   setIsCommentType,
+  setSkip,
   selectPost,
   selectPostLoading,
   selectIsCommentType,
+  selectSkip,
+  setCommentLoading,
+  selectIsCommentLoading,
+  setComments,
+  setIsEnd,
+  selectIsEnd,
 } from "./models";
 
 export {
@@ -32,11 +39,18 @@ export {
   setPost,
   setPostLoading,
   setIsCommentType,
+  setSkip,
+  setCommentLoading,
+  setComments,
+  setIsEnd,
 
   // selectors
   selectPost,
   selectPostLoading,
   selectIsCommentType,
+  selectSkip,
+  selectIsCommentLoading,
+  selectIsEnd,
 };
 
 export type { CommentSortType };

@@ -1,17 +1,19 @@
-import { Outlet, useLocation } from "react-router-dom";
 import styles from "./PostPage.module.css";
 import {
   PostPageHeader,
   selectPostLoading,
   setIsCommentType,
+  setIsEnd,
   setPost,
   setPostLoading,
 } from "@features/post-page";
 import { useEffect } from "react";
+import { Outlet, useLocation } from "react-router-dom";
 import { useAppDispatch } from "@app/store";
 import { fetchWithAuth } from "@shared/pages";
 import { useSelector } from "react-redux";
 import { Spinner } from "@shared/@common/ui/components";
+import { COMMENT_LENGTH } from "@shared/@common/constants";
 
 const PostPage = () => {
   const dispatch = useAppDispatch();
@@ -26,8 +28,16 @@ const PostPage = () => {
       if (result.success) {
         const response = result.data.post;
 
+        // 포스트 정보 추가
         dispatch(setPost(response));
+
+        // 포스트가 comment 타입인지 여부
         dispatch(setIsCommentType(postId !== response._id));
+
+        // 댓글 추가 요청 가능 여부
+        if (!response.comments || response.comments.length < COMMENT_LENGTH) {
+          dispatch(setIsEnd(true));
+        }
       } else {
         console.error("포스트 조회 실패");
       }
