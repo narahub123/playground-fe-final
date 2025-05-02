@@ -25,6 +25,7 @@ import {
   setCaretPosition,
   setCursorPosition,
   setInnerHtml,
+  setShouldClearEditor,
 } from "@shared/pages/ui/PostEditor/models/slices/postEditorSlice";
 import { useAppDispatch } from "@app/store";
 import { useSelector } from "react-redux";
@@ -52,7 +53,20 @@ const TextEditor = ({ placeholder, onFocus }: TextEditorProps) => {
     setIsOpen(false);
   };
 
-  const { post, caretPosition, cursorPosition } = useSelector(selectPostEditor);
+  const { post, caretPosition, cursorPosition, shouldClearEditor } =
+    useSelector(selectPostEditor);
+
+  useEffect(() => {
+    if (!shouldClearEditor || !textEditorRef.current) return;
+
+    const textEditor = textEditorRef.current;
+    const htmlLine = `<div class="${styles}['line']" data-offset='0'><span class=${styles["segment"]} data-offset='0-0'><br data-text="true" /></span></div>`;
+
+    textEditor.innerHTML = htmlLine;
+
+    dispatch(setShouldClearEditor());
+    setIsShowingPH(true);
+  }, [shouldClearEditor]);
 
   // textEditor의 innerHtml update
   useEffect(() => {

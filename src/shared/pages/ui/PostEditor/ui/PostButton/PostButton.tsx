@@ -7,6 +7,10 @@ import { selectPostEditor } from "../../models/selectors";
 import { convertVoteFormat } from "../../utils";
 import { useToast } from "@shared/@common/ui/components/Toast/hooks";
 import { ErrorTitleCodeType } from "@shared/@common/types";
+import { useAppDispatch } from "@app/store";
+import { clearPostEditor } from "../../models/slices";
+import { setShouldClearEditor } from "../../models/slices/postEditorSlice";
+import { setPost } from "@shared/@common/models/slices/feedSlice";
 
 interface PostButtonProps {
   disabled?: boolean;
@@ -15,6 +19,7 @@ interface PostButtonProps {
 }
 
 const PostButton = ({ isValid, text }: PostButtonProps) => {
+  const dispatch = useAppDispatch();
   const { post } = useSelector(selectPostEditor);
 
   const toast = useToast();
@@ -37,7 +42,9 @@ const PostButton = ({ isValid, text }: PostButtonProps) => {
     );
     try {
       if (result.success) {
-        console.log(result.data);
+        dispatch(setPost(result.data.post));
+        dispatch(clearPostEditor());
+        dispatch(setShouldClearEditor());
       } else {
         const errorCode = result.code as ErrorTitleCodeType;
 

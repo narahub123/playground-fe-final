@@ -11,6 +11,7 @@ import {
   setPostEditorTextLength,
   setPostEditorSchedule,
   setInnerHtml,
+  setShouldClearEditor,
 } from "./postEditorSlice";
 
 export {
@@ -26,4 +27,5 @@ export {
   setPostEditorTextLength,
   setPostEditorSchedule,
   setInnerHtml,
+  setShouldClearEditor,
 };

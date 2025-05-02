@@ -13,6 +13,7 @@ interface PostEditorState {
   emoji?: string;
   caretPosition: ICaretPosition;
   cursorPosition: ICaretPosition;
+  shouldClearEditor: boolean;
 }
 
 const initialState: PostEditorState = {
@@ -34,6 +35,7 @@ const initialState: PostEditorState = {
   },
   caretPosition: { caretPos: 0, row: 0, col: 0 },
   cursorPosition: { caretPos: 0, row: 0, col: 0 },
+  shouldClearEditor: false,
 };
 
 const postEditorSlice = createSlice({
@@ -91,6 +93,9 @@ const postEditorSlice = createSlice({
     setInnerHtml: (state, action: PayloadAction<string>) => {
       state.post.innerHtml = action.payload;
     },
+    setShouldClearEditor: (state) => {
+      state.shouldClearEditor = !state.shouldClearEditor;
+    },
   },
 });
 
@@ -108,4 +113,5 @@ export const {
   setCursorPosition,
   setPostEditorSchedule,
   setInnerHtml,
+  setShouldClearEditor,
 } = postEditorSlice.actions;
