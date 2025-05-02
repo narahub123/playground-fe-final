@@ -18,7 +18,7 @@ import { checkLogin, joinClassNames } from "@shared/@common/utils";
 import { useSelector } from "react-redux";
 import { selectUserLoading } from "@shared/@common/models/selectors";
 import { Spinner } from "@shared/@common/ui/components";
-import { setPosts } from "@shared/@common/models/slices/postSlice";
+import { setPosts } from "@shared/@common/models/slices/feedSlice";
 
 const PagesLayout = () => {
   const dispatch = useAppDispatch();

@@ -71,7 +71,7 @@ import {
   updatePostBookmarks,
   setCommentLike,
   setCommentBookmark,
-} from "./postSlice";
+} from "./feedSlice";
 
 export {
   // display

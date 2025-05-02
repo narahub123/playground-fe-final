@@ -6,7 +6,7 @@ import PostActionIcon from "../PostActionIcon/PostActionIcon";
 import { postActionIcons, usePostContext } from "../..";
 import { fetchWithAuth } from "@shared/pages/utils";
 import { useAppDispatch } from "@app/store";
-import { setPost } from "@shared/@common/models/slices/postSlice";
+import { setPost } from "@shared/@common/models/slices/feedSlice";
 
 interface RepostDropdownProps {
   className?: string;

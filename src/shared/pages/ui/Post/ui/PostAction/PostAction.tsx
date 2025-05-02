@@ -20,7 +20,7 @@ import {
   setCommentLike,
   setLike,
   updatePostBookmarks,
-} from "@shared/@common/models/slices/postSlice";
+} from "@shared/@common/models/slices/feedSlice";
 import { updateUserBookmarks } from "@shared/@common/models/slices/userSlice";
 import { fetchWithAuth } from "@shared/pages/utils";
 import { IPost } from "@shared/@common/types";

@@ -4,7 +4,7 @@ import modalSlice from "./modalSlice";
 import securitySlice from "./securitySlice";
 import privacySlice from "./privacySlice";
 import notificationSlice from "./notificationSlice";
-import postSlice from "./postSlice";
+import feedSlice from "./feedSlice";
 
 export {
   displaySlice,
@@ -13,5 +13,5 @@ export {
   securitySlice,
   privacySlice,
   notificationSlice,
-  postSlice,
+  feedSlice,
 };

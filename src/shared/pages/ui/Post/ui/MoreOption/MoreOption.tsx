@@ -11,7 +11,7 @@ import {
   useUserRelationStatus,
 } from "@shared/pages/ui/Post";
 import { fetchWithAuth } from "@shared/pages/utils";
-import { deletePost } from "@shared/@common/models/slices/postSlice";
+import { deletePost } from "@shared/@common/models/slices/feedSlice";
 import {
   setFollowing,
   setPinnedPost,

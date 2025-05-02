@@ -14,7 +14,7 @@ import { useSelector } from "react-redux";
 import { selectUser } from "@shared/@common/models/selectors";
 import { fetchWithAuth } from "@shared/pages/utils";
 import { useAppDispatch } from "@app/store";
-import { setPosts } from "@shared/@common/models/slices/postSlice";
+import { setPosts } from "@shared/@common/models/slices/feedSlice";
 
 interface PostVoteProps {
   className?: string;

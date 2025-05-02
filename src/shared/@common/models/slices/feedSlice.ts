@@ -9,7 +9,7 @@ const initialState: PostState = {
   posts: [],
 };
 
-const postSlice = createSlice({
+const feedSlice = createSlice({
   name: "post",
   initialState,
   reducers: {
@@ -156,7 +156,7 @@ const postSlice = createSlice({
   },
 });
 
-export default postSlice.reducer;
+export default feedSlice.reducer;
 
 export const {
   setPosts,
@@ -167,4 +167,4 @@ export const {
   updatePostBookmarks,
   setCommentLike,
   setCommentBookmark,
-} = postSlice.actions;
+} = feedSlice.actions;

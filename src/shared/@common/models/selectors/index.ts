@@ -59,7 +59,7 @@ import {
 
 import { getNotification } from "./notificationSelectors";
 
-import { selectPosts } from "./postSelectors";
+import { selectPosts } from "./feedSelectors";
 
 export {
   // display
