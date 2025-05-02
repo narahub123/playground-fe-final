@@ -8,6 +8,7 @@ import {
   selectPostEditorTextLength,
   selectPostEditorSchedule,
   selectInnerHtml,
+  selectIsPostEditorLoading,
 } from "./postEditorSelector";
 
 export {
@@ -20,4 +21,5 @@ export {
   selectPostEditorTextLength,
   selectPostEditorSchedule,
   selectInnerHtml,
+  selectIsPostEditorLoading,
 };

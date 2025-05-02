@@ -43,6 +43,7 @@ import PostThreadContainer from "./PostThreadContainer/PostThreadContainer";
 import MoreThread from "./MoreThread/MoreThread";
 import PostTop from "./PostTop/PostTop";
 import PostBottom from "./PostBottom/PostBottom";
+import PostProgressbar from "./PostProgressbar/PostProgressbar";
 
 const Post = Object.assign(PostContainer, {
   Content: PostContent,
@@ -99,4 +100,5 @@ export {
   PostAction,
   RepostDropdown,
   ShareDropdown,
+  PostProgressbar,
 };

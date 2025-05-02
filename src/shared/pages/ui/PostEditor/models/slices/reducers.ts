@@ -12,6 +12,7 @@ import {
   setPostEditorSchedule,
   setInnerHtml,
   setShouldClearEditor,
+  setIsPostEditorLoading,
 } from "./postEditorSlice";
 
 export {
@@ -28,4 +29,5 @@ export {
   setPostEditorSchedule,
   setInnerHtml,
   setShouldClearEditor,
+  setIsPostEditorLoading,
 };

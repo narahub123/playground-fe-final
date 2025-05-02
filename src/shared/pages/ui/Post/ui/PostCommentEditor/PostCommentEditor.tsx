@@ -23,6 +23,7 @@ import {
   MediaPreviewContainer,
 } from "@shared/pages/ui/PostEditor/ui";
 import { POST_LENGTH_MAX } from "@shared/@common/constants";
+import PostProgressbar from "../PostProgressbar/PostProgressbar";
 
 interface PostCommentEditorProps {
   className?: string;
@@ -137,6 +138,7 @@ const PostCommentEditor = ({
         onClose={onClose}
         profileInfo={profileInfo}
       />
+      <PostProgressbar />
       {isShowing && (
         <div className={styles["mentions__wrapper"]}>
           <div className={styles["empty"]} />

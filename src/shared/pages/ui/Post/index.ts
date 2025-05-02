@@ -31,6 +31,7 @@ import Post, {
   PostAction,
   RepostDropdown,
   ShareDropdown,
+  PostProgressbar,
 } from "./ui";
 import { PostContext, PostContextProvider } from "./context";
 import {
@@ -107,6 +108,7 @@ export {
   PostAction,
   RepostDropdown,
   ShareDropdown,
+  PostProgressbar,
 
   // context
   PostContext,

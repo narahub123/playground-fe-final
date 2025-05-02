@@ -13,6 +13,8 @@ const selectPostEditorTextLength = (state: RootState) =>
 const selectPostEditorSchedule = (state: RootState) =>
   state.postEditor.post.schedule;
 const selectInnerHtml = (state: RootState) => state.postEditor.post.innerHtml;
+const selectIsPostEditorLoading = (state: RootState) =>
+  state.postEditor.isLoading;
 
 export {
   selectPostEditor,
@@ -24,4 +26,5 @@ export {
   selectPostEditorTextLength,
   selectPostEditorSchedule,
   selectInnerHtml,
+  selectIsPostEditorLoading,
 };

@@ -14,6 +14,7 @@ interface PostEditorState {
   caretPosition: ICaretPosition;
   cursorPosition: ICaretPosition;
   shouldClearEditor: boolean;
+  isLoading?: boolean;
 }
 
 const initialState: PostEditorState = {
@@ -36,6 +37,7 @@ const initialState: PostEditorState = {
   caretPosition: { caretPos: 0, row: 0, col: 0 },
   cursorPosition: { caretPos: 0, row: 0, col: 0 },
   shouldClearEditor: false,
+  isLoading: false,
 };
 
 const postEditorSlice = createSlice({
@@ -96,6 +98,9 @@ const postEditorSlice = createSlice({
     setShouldClearEditor: (state) => {
       state.shouldClearEditor = !state.shouldClearEditor;
     },
+    setIsPostEditorLoading: (state, action: PayloadAction<boolean>) => {
+      state.isLoading = action.payload;
+    },
   },
 });
 
@@ -114,4 +119,5 @@ export const {
   setPostEditorSchedule,
   setInnerHtml,
   setShouldClearEditor,
+  setIsPostEditorLoading,
 } = postEditorSlice.actions;

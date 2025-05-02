@@ -9,7 +9,10 @@ import { useToast } from "@shared/@common/ui/components/Toast/hooks";
 import { ErrorTitleCodeType } from "@shared/@common/types";
 import { useAppDispatch } from "@app/store";
 import { clearPostEditor } from "../../models/slices";
-import { setShouldClearEditor } from "../../models/slices/postEditorSlice";
+import {
+  setIsPostEditorLoading,
+  setShouldClearEditor,
+} from "../../models/slices/postEditorSlice";
 import { setPost } from "@shared/@common/models/slices/feedSlice";
 
 interface PostButtonProps {
@@ -30,17 +33,19 @@ const PostButton = ({ isValid, text }: PostButtonProps) => {
 
     const newVote = convertVoteFormat(vote);
 
-    const result = await fetchWithAuth(
-      "/posts",
-      { method: "POST" },
-      {
-        text: innerHtml,
-        media,
-        schedule,
-        vote: newVote,
-      }
-    );
+    dispatch(setIsPostEditorLoading(true));
+
     try {
+      const result = await fetchWithAuth(
+        "/posts",
+        { method: "POST" },
+        {
+          text: innerHtml,
+          media,
+          schedule,
+          vote: newVote,
+        }
+      );
       if (result.success) {
         dispatch(setPost(result.data.post));
         dispatch(clearPostEditor());
@@ -55,7 +60,10 @@ const PostButton = ({ isValid, text }: PostButtonProps) => {
           });
         }
       }
-    } catch (error) {}
+    } catch (error) {
+    } finally {
+      dispatch(setIsPostEditorLoading(false));
+    }
   };
 
   return (

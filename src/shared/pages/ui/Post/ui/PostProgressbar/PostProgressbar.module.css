@@ -1,0 +1,10 @@
+.post__progressbar {
+  width: 100%;
+  height: 4px;
+  background-color: transparent;
+}
+
+.progress {
+  height: 4px;
+  background: var(--colorTheme-color-primary);
+}

@@ -10,7 +10,10 @@ import { usePostContext } from "@shared/pages/ui/Post/hooks";
 import { useAppDispatch } from "@app/store";
 import { addActionsComments, addComment } from "@features/post-page";
 import { clearPostEditor } from "../../models/slices";
-import { setShouldClearEditor } from "../../models/slices/postEditorSlice";
+import {
+  setIsPostEditorLoading,
+  setShouldClearEditor,
+} from "../../models/slices/postEditorSlice";
 
 interface CommentButtonProps {
   className?: string;
@@ -38,6 +41,8 @@ const CommentButton = ({
     // comment 타입인 경우 thread의 마지막 요소의 _id를 이니면 원포스트의 _id를 삽입
     const postId = isCommentType ? thread[thread.length - 1]._id : _id;
 
+    dispatch(setIsPostEditorLoading(true));
+
     try {
       const result = await fetchWithAuth(
         `/posts/${postId}/comment`,
@@ -63,7 +68,10 @@ const CommentButton = ({
           });
         }
       }
-    } catch (error) {}
+    } catch (error) {
+    } finally {
+      dispatch(setIsPostEditorLoading(false));
+    }
   };
 
   return (
