@@ -13,6 +13,7 @@ interface PostPageMainProps {
 const PostPageMain = ({ className }: PostPageMainProps) => {
   const classNames = joinClassNames([styles["post__page__main"], className]);
   const { pathname } = useLocation();
+  // 포스트 관련 상태
   const [post, setPost] = useState<IPost>();
   const [isCommentType, setIsCommentType] = useState(false);
 
@@ -21,9 +22,10 @@ const PostPageMain = ({ className }: PostPageMainProps) => {
       const result = await fetchWithAuth(`/posts/${postId}`);
 
       if (result.success) {
-        const post = result.data.post;
-        setPost(post);
-        setIsCommentType(postId !== post._id);
+        const response = result.data.post;
+
+        setPost((prev) => (response._id !== prev?._id ? response : prev));
+        setIsCommentType((prev) => (postId !== response._id ? true : prev));
       } else {
         console.error("포스트 조회 실패");
       }
