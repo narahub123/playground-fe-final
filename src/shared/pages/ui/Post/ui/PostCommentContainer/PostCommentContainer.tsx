@@ -29,7 +29,7 @@ const PostCommentContainer = ({ className }: PostCommentContainerProps) => {
   return (
     <div className={classNames}>
       {comments.map((comment, index) => (
-        <Post post={comment} key={index}>
+        <Post post={comment} key={`${comment._id}comment${index}`}>
           <Post.Content>
             <Post.Header />
             <Post.Main>

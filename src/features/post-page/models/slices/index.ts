@@ -6,6 +6,8 @@ import postSlice, {
   setCommentLoading,
   setComments,
   setIsEnd,
+  addComment,
+  addActionsComments,
 } from "./postSlice";
 
 export {
@@ -17,4 +19,6 @@ export {
   setCommentLoading,
   setComments,
   setIsEnd,
+  addComment,
+  addActionsComments,
 };

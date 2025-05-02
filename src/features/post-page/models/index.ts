@@ -7,6 +7,8 @@ import {
   setCommentLoading,
   setComments,
   setIsEnd,
+  addComment,
+  addActionsComments,
 } from "./slices";
 
 import {
@@ -30,6 +32,8 @@ export {
   setCommentLoading,
   setComments,
   setIsEnd,
+  addComment,
+  addActionsComments,
 
   // selectors
   selectPost,

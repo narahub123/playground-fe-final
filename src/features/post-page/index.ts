@@ -17,6 +17,8 @@ import {
   setComments,
   setIsEnd,
   selectIsEnd,
+  addComment,
+  addActionsComments,
 } from "./models";
 
 export {
@@ -44,6 +46,8 @@ export {
   setCommentLoading,
   setComments,
   setIsEnd,
+  addComment,
+  addActionsComments,
 
   // selectors
   selectPost,

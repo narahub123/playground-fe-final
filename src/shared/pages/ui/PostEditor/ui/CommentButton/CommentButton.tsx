@@ -7,6 +7,10 @@ import { selectPostEditor } from "../../models/selectors";
 import { useToast } from "@shared/@common/ui/components/Toast/hooks";
 import { ErrorTitleCodeType } from "@shared/@common/types";
 import { usePostContext } from "@shared/pages/ui/Post/hooks";
+import { useAppDispatch } from "@app/store";
+import { addActionsComments, addComment } from "@features/post-page";
+import { clearPostEditor } from "../../models/slices";
+import { setShouldClearEditor } from "../../models/slices/postEditorSlice";
 
 interface CommentButtonProps {
   className?: string;
@@ -20,6 +24,7 @@ const CommentButton = ({
   text,
   isCommentType = false,
 }: CommentButtonProps) => {
+  const dispatch = useAppDispatch();
   const { post } = useSelector(selectPostEditor);
 
   const { _id, thread } = usePostContext();
@@ -44,7 +49,10 @@ const CommentButton = ({
         }
       );
       if (result.success) {
-        console.log(result.data);
+        dispatch(addComment(result.data.comment));
+        dispatch(clearPostEditor());
+        dispatch(setShouldClearEditor());
+        dispatch(addActionsComments(result.data.comment._id));
       } else {
         const errorCode = result.code as ErrorTitleCodeType;
 

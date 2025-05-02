@@ -48,6 +48,28 @@ const postSlice = createSlice({
     setIsEnd: (state, action: PayloadAction<boolean>) => {
       state.isEnd = action.payload;
     },
+    addComment: (state, action: PayloadAction<IPost>) => {
+      if (state.data) {
+        state.data.comments = [action.payload, ...state.data.comments];
+      }
+    },
+    addActionsComments: (state, action: PayloadAction<string>) => {
+      if (state.data) {
+        const thread = state.data.thread;
+
+        state.data.thread = state.data.thread.map((entry, index) => {
+          if (index !== thread.length - 1) return entry;
+
+          return {
+            ...entry,
+            actions: {
+              ...entry.actions,
+              comments: [...entry.actions.comments, action.payload],
+            },
+          };
+        });
+      }
+    },
   },
 });
 
@@ -61,4 +83,6 @@ export const {
   setCommentLoading,
   setComments,
   setIsEnd,
+  addComment,
+  addActionsComments,
 } = postSlice.actions;
