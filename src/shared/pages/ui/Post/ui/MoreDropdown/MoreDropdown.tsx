@@ -35,20 +35,14 @@ const MoreDropdown = ({
       top={top}
       right={right}
     >
-      {
-        // (isMyself(userId) ?
-        // moreMyOptions: 
-          moreOptions
-          // )
-          .map((option) => (
-            <MoreOption
-              option={option}
-              key={option}
-              setIsReplyOpen={setIsReplyOpen}
-              onClose={onClose}
-            />
-          ))
-      }
+      {(isMyself(userId) ? moreMyOptions : moreOptions).map((option) => (
+        <MoreOption
+          option={option}
+          key={option}
+          setIsReplyOpen={setIsReplyOpen}
+          onClose={onClose}
+        />
+      ))}
     </Dropdown>
   );
 };

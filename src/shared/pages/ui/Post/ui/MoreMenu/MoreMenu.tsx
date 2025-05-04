@@ -1,6 +1,6 @@
 import styles from "./MoreMenu.module.css";
 import { joinClassNames } from "@shared/@common/utils";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { IRect, MoreButton, MoreDropdown } from "@shared/pages/ui/Post";
 import { ReplyPermissionDropdown } from "@shared/pages/ui/PostEditor";
 
@@ -44,7 +44,8 @@ const MoreMenu = ({ className }: MoreMenuProps) => {
     };
   }, []);
 
-  const onOpen = () => {
+  const onOpen = (e: React.MouseEvent) => {
+    e.stopPropagation();
     setIsOpen(true);
   };
 

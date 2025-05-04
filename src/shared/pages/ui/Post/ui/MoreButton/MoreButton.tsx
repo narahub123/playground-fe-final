@@ -6,7 +6,7 @@ import { IoIosMore } from "react-icons/io";
 
 interface MoreButtonProps {
   className?: string;
-  onClick: () => void;
+  onClick: (e: React.MouseEvent) => void;
 }
 
 const MoreButton = forwardRef<HTMLButtonElement, MoreButtonProps>(
