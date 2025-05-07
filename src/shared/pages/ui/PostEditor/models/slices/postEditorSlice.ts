@@ -6,6 +6,7 @@ import {
   PostEditorToolbarButtonType,
 } from "../../types";
 import { ICaretPosition } from "../../ui/TextEditor";
+import { IPost } from "@shared/@common/types";
 
 interface PostEditorState {
   post: IPostEditorPost;
@@ -101,6 +102,9 @@ const postEditorSlice = createSlice({
     setIsPostEditorLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;
     },
+    setOriginalPost: (state, action: PayloadAction<IPost>) => {
+      state.post.originalPost = action.payload;
+    },
   },
 });
 
@@ -120,4 +124,5 @@ export const {
   setInnerHtml,
   setShouldClearEditor,
   setIsPostEditorLoading,
+  setOriginalPost,
 } = postEditorSlice.actions;

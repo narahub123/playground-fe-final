@@ -1,4 +1,38 @@
 .write__post {
+}
+
+.header {
+  padding: 1rem;
   display: flex;
+  align-items: center;
   justify-content: end;
+}
+
+.body {
+  padding: 0 1rem;
+  width: 100%;
+}
+
+.wrapper {
+  display: flex;
+}
+.left {
+  margin-right: 0.5rem;
+}
+
+.right {
+  flex: 1;
+}
+
+.control__wrapper {
+  width: 100%;
+  padding: 0.5rem 0;
+}
+
+.footer {
+  border-top: 1px solid #f1f1f1;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }

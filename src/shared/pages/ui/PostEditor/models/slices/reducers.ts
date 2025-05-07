@@ -13,6 +13,7 @@ import {
   setInnerHtml,
   setShouldClearEditor,
   setIsPostEditorLoading,
+  setOriginalPost,
 } from "./postEditorSlice";
 
 export {
@@ -30,4 +31,5 @@ export {
   setInnerHtml,
   setShouldClearEditor,
   setIsPostEditorLoading,
+  setOriginalPost,
 };

@@ -15,6 +15,8 @@ const selectPostEditorSchedule = (state: RootState) =>
 const selectInnerHtml = (state: RootState) => state.postEditor.post.innerHtml;
 const selectIsPostEditorLoading = (state: RootState) =>
   state.postEditor.isLoading;
+const selectOriginalPost = (state: RootState) =>
+  state.postEditor.post.originalPost;
 
 export {
   selectPostEditor,
@@ -27,4 +29,5 @@ export {
   selectPostEditorSchedule,
   selectInnerHtml,
   selectIsPostEditorLoading,
+  selectOriginalPost,
 };

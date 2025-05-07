@@ -1,5 +1,6 @@
 import { Icons } from "@shared/@common/ui/icons";
 import { IVoteDuration } from "../ui/Vote";
+import { IPost } from "@shared/@common/types";
 
 type ReplyOptionType = "all" | "followings" | "authenticated" | "mentioned";
 
@@ -24,6 +25,7 @@ interface IPostEditorPost {
     duration: IVoteDuration | null;
   };
   schedule?: Date;
+  originalPost?: IPost;
 }
 
 type PostEditorToolbarButtonType =

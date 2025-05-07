@@ -9,6 +9,7 @@ import {
   selectPostEditorSchedule,
   selectInnerHtml,
   selectIsPostEditorLoading,
+  selectOriginalPost,
 } from "./postEditorSelector";
 
 export {
@@ -22,4 +23,5 @@ export {
   selectPostEditorSchedule,
   selectInnerHtml,
   selectIsPostEditorLoading,
+  selectOriginalPost,
 };

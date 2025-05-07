@@ -9,6 +9,7 @@ import { onParallelModalClose } from "@shared/@common/models/slices/modalSlice";
 import { Modal } from "@shared/@common/ui/components";
 import { useSelector } from "react-redux";
 import { Outlet, useNavigate } from "react-router-dom";
+import { clearPostEditor } from "../PostEditor/models/slices";
 
 interface WritePostModalProps {}
 
@@ -18,6 +19,7 @@ const WritePostModal = ({}: WritePostModalProps) => {
   const isOpen = useSelector(getWritePostModal);
   const onClose = () => {
     dispatch(onParallelModalClose("write"));
+    dispatch(clearPostEditor());
     navigate(-1);
   };
 
