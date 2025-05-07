@@ -96,7 +96,7 @@ const PostVote = ({ className }: PostVoteProps) => {
     setisLoading(true);
 
     try {
-      const result = await fetchWithAuth(`/posts/${postId}/${index}`, {
+      const result = await fetchWithAuth(`/posts/${postId}/vote/${index}`, {
         method: "POST",
       });
       if (result.success) {

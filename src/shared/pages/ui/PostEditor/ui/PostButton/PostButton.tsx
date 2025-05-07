@@ -29,7 +29,7 @@ const PostButton = ({ isValid, text }: PostButtonProps) => {
   const { getErrorTitle } = useAPIError();
 
   const handleClick = async () => {
-    const { innerHtml, media, schedule, vote } = post;
+    const { innerHtml, media, schedule, vote, textLength } = post;
 
     const newVote = convertVoteFormat(vote);
 
@@ -40,7 +40,7 @@ const PostButton = ({ isValid, text }: PostButtonProps) => {
         "/posts",
         { method: "POST" },
         {
-          text: innerHtml,
+          text: textLength > 0 ? innerHtml : undefined,
           media,
           schedule,
           vote: newVote,

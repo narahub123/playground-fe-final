@@ -36,7 +36,7 @@ const CommentButton = ({
   const { getErrorTitle } = useAPIError();
 
   const handleClick = async () => {
-    const { innerHtml, media } = post;
+    const { innerHtml, media, textLength } = post;
 
     // comment 타입인 경우 thread의 마지막 요소의 _id를 이니면 원포스트의 _id를 삽입
     const postId = isCommentType ? thread[thread.length - 1]._id : _id;
@@ -49,7 +49,7 @@ const CommentButton = ({
         { method: "POST" },
         {
           type: "comment",
-          text: innerHtml,
+          text: textLength > 0 ? innerHtml : undefined,
           media,
         }
       );
