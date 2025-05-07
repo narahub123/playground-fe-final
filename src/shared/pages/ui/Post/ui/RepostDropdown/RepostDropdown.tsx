@@ -7,6 +7,9 @@ import { postActionIcons, usePostContext } from "../..";
 import { fetchWithAuth } from "@shared/pages/utils";
 import { useAppDispatch } from "@app/store";
 import { setPost } from "@shared/@common/models/slices/feedSlice";
+import { onParallelModalOpen } from "@shared/@common/models/slices/modalSlice";
+import { useNavigate } from "react-router-dom";
+import { PRIMARY_LINK } from "@shared/@common/constants";
 
 interface RepostDropdownProps {
   className?: string;
@@ -21,6 +24,7 @@ interface OptionProps {
 
 const Option = ({ text, option, setIsRepostOpen }: OptionProps) => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { _id: postId } = usePostContext();
   const handleClick = {
     repost: async (e: React.MouseEvent) => {
@@ -42,7 +46,13 @@ const Option = ({ text, option, setIsRepostOpen }: OptionProps) => {
         setIsRepostOpen(false);
       }
     },
-    quote: () => {},
+    quote: async (e: React.MouseEvent) => {
+      e.stopPropagation();
+
+      dispatch(onParallelModalOpen("write"));
+      navigate(PRIMARY_LINK.COMPOSE_POST, { state: { type: "quote", postId } });
+      setIsRepostOpen(false);
+    },
   };
 
   return (
