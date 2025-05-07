@@ -49,18 +49,20 @@ const HomePage = () => {
               <Post.Top />
               <Post.Content>
                 <Post.Header />
-                <Post.Main>
-                  <Post.Left
-                    isShowingConnector={post.thread && post.thread.length > 0}
-                  />
-                  <Post.Right>
-                    <Post.Meta />
-                    <Post.Text />
-                    <Post.Media />
-                    <Post.Vote />
-                    <Post.Actions className={styles["actions"]} />
-                  </Post.Right>
-                </Post.Main>
+                {(post._id || post.originalPost?._id) && (
+                  <Post.Main>
+                    <Post.Left
+                      isShowingConnector={post.thread && post.thread.length > 0}
+                    />
+                    <Post.Right>
+                      <Post.Meta />
+                      <Post.Text />
+                      <Post.Media />
+                      <Post.Vote />
+                      <Post.Actions className={styles["actions"]} />
+                    </Post.Right>
+                  </Post.Main>
+                )}
                 <Post.Footer>
                   <Post.MoreThread />
                   <Post.Thread isCommentType={true} isPostPage={false} />
