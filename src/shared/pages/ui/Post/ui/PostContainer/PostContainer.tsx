@@ -10,9 +10,15 @@ interface PostContainerProps {
   className?: string;
   post: IPost | undefined;
   children: ReactNode;
+  linkDisabled?: boolean;
 }
 
-const PostContainer = ({ className, children, post }: PostContainerProps) => {
+const PostContainer = ({
+  className,
+  children,
+  post,
+  linkDisabled = false,
+}: PostContainerProps) => {
   const classNames = joinClassNames([styles["post__container"], className]);
   const [mentions, setMentions] = useState<string[]>([]);
   const navigate = useNavigate();
@@ -30,7 +36,10 @@ const PostContainer = ({ className, children, post }: PostContainerProps) => {
 
   return (
     <PostContextProvider value={value}>
-      <article className={classNames} onClick={(e) => handleClick(e)}>
+      <article
+        className={classNames}
+        onClick={linkDisabled ? undefined : (e) => handleClick(e)}
+      >
         {children}
       </article>
     </PostContextProvider>

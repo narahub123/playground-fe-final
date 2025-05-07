@@ -32,7 +32,6 @@ const PostImage = ({ className, medium, index, distance }: PostImageProps) => {
       <Link to={`/${userId}/status/${_id}/photo/${index}`}>
         <Image
           src={medium}
-          rounded="xl"
           fit="contain"
           className={styles["image"]}
           alt={imageAlt}

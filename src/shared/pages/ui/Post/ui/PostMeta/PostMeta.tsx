@@ -16,9 +16,14 @@ import { defaultProfileImage } from "@shared/@common/assets";
 interface PostMetaProps {
   className?: string;
   isPostPage?: boolean;
+  isQuote?: boolean;
 }
 
-const PostMeta = ({ className, isPostPage = false }: PostMetaProps) => {
+const PostMeta = ({
+  className,
+  isPostPage = false,
+  isQuote = false,
+}: PostMetaProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const usernameRef = useRef<HTMLAnchorElement>(null);
   const userIdRef = useRef<HTMLAnchorElement>(null);
@@ -67,48 +72,74 @@ const PostMeta = ({ className, isPostPage = false }: PostMetaProps) => {
               </Link>
             </div>
           )}
-          <div
-            className={isPostPage ? styles["info--postpage"] : styles["info"]}
-          >
-            <Link
-              to={`/${userId}`}
-              className={styles["username__wrapper"]}
-              onMouseEnter={() => handleMouseEnter(usernameRef, author.userId)}
-              onMouseLeave={() => handleMouseLeave()}
-              ref={usernameRef}
+          {isQuote ? (
+            <div className={styles["info"]}>
+              <ProfileImage
+                width={"25px"}
+                rounded="full"
+                src={profileImage || defaultProfileImage}
+                className={styles["profile_image"]}
+              />
+              <div className={styles["username__wrapper"]}>
+                <Text className={styles["username"]}>{username}</Text>
+                <div className={styles["badge"]}>배지</div>
+              </div>
+              <div className={styles["rest__wrapper"]}>
+                <Text>{`@${userId}`}</Text>
+                <Text>·</Text>
+                <Text>{convertToRelativeTime(createdAt)}</Text>
+              </div>
+            </div>
+          ) : (
+            <div
+              className={isPostPage ? styles["info--postpage"] : styles["info"]}
             >
-              <Text className={styles["username"]}>{username}</Text>
-              <div className={styles["badge"]}>배지</div>
-            </Link>
-            <div className={styles["rest__wrapper"]}>
               <Link
                 to={`/${userId}`}
-                className={styles["userId"]}
-                onMouseEnter={() => handleMouseEnter(userIdRef, author.userId)}
+                className={styles["username__wrapper"]}
+                onMouseEnter={() =>
+                  handleMouseEnter(usernameRef, author.userId)
+                }
                 onMouseLeave={() => handleMouseLeave()}
-                ref={userIdRef}
+                ref={usernameRef}
               >
-                <Text>{`@${userId}`}</Text>
+                <Text className={styles["username"]}>{username}</Text>
+                <div className={styles["badge"]}>배지</div>
               </Link>
-              {!isPostPage && <Text>·</Text>}
-              {!isPostPage && (
+              <div className={styles["rest__wrapper"]}>
                 <Link
-                  to={`/${userId}/status/${_id}`}
-                  data-title={convertToLocalTime(createdAt)}
-                  className={styles["time"]}
+                  to={`/${userId}`}
+                  className={styles["userId"]}
+                  onMouseEnter={() =>
+                    handleMouseEnter(userIdRef, author.userId)
+                  }
+                  onMouseLeave={() => handleMouseLeave()}
+                  ref={userIdRef}
                 >
-                  <Text>{convertToRelativeTime(createdAt)}</Text>
+                  <Text>{`@${userId}`}</Text>
                 </Link>
-              )}
+                {!isPostPage && <Text>·</Text>}
+                {!isPostPage && (
+                  <Link
+                    to={`/${userId}/status/${_id}`}
+                    data-title={convertToLocalTime(createdAt)}
+                    className={styles["time"]}
+                  >
+                    <Text>{convertToRelativeTime(createdAt)}</Text>
+                  </Link>
+                )}
+              </div>
             </div>
+          )}
+        </div>
+        {!isQuote && (
+          <div
+            className={styles["button"]}
+            style={{ top: `${isPostPage ? "6px" : "-5px"}` }}
+          >
+            <MoreMenu />
           </div>
-        </div>
-        <div
-          className={styles["button"]}
-          style={{ top: `${isPostPage ? "6px" : "-5px"}` }}
-        >
-          <MoreMenu />
-        </div>
+        )}
       </div>
     </div>
   );

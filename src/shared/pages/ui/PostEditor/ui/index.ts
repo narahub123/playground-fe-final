@@ -9,6 +9,7 @@ import { MediaPreviewContainer } from "./MediaPreviewContainer";
 import { Vote } from "./Vote";
 import ReplyPermissionDropdown from "./ReplyPermissionDropdown/ReplyPermissionDropdown";
 import CommentButton from "./CommentButton/CommentButton";
+import OriginalPostContainer from "./OriginalPostContainer/OriginalPostContainer";
 
 export {
   AddPostLink,
@@ -22,4 +23,5 @@ export {
   Vote,
   ReplyPermissionDropdown,
   CommentButton,
+  OriginalPostContainer,
 };

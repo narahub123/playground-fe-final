@@ -5,15 +5,16 @@ import { joinClassNames } from "@shared/@common/utils";
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { selectPosts } from "@shared/@common/models/selectors";
+import { selectPosts, selectUser } from "@shared/@common/models/selectors";
 import {
+  OriginalPostContainer,
   PostEditorToolbar,
   ReplyPermissionControl,
   TextEditor,
 } from "../PostEditor";
 import { useAppDispatch } from "@app/store";
 import { setOriginalPost } from "../PostEditor/models/slices/postEditorSlice";
-import { selectOriginalPost } from "../PostEditor/models/selectors";
+import { defaultProfileImage } from "@shared/@common/assets";
 
 interface WritePostProps {
   className?: string;
@@ -26,7 +27,7 @@ const WritePost = ({ className }: WritePostProps) => {
 
   const posts = useSelector(selectPosts);
 
-  const originalPost = useSelector(selectOriginalPost);
+  const { profileImage } = useSelector(selectUser);
 
   useEffect(() => {
     if (!state) return;
@@ -46,8 +47,6 @@ const WritePost = ({ className }: WritePostProps) => {
   const {} = useLanguageContent(["components", "WritePost"]);
 
   const classNames = joinClassNames([styles["write__post"], className]);
-
-  console.log(originalPost);
 
   return (
     <Modal.Container width={85} className={classNames}>
@@ -69,28 +68,30 @@ const WritePost = ({ className }: WritePostProps) => {
         <Modal.Body className={styles["body"]}>
           <div className={styles["wrapper"]}>
             <span className={styles["left"]}>
-              <ProfileImage
-                width={"40px"}
-                rounded="full"
-                className={styles["profile_image"]}
-              />
+              <div className={styles["profile_image"]}>
+                <ProfileImage
+                  width={"40px"}
+                  rounded="full"
+                  src={profileImage || defaultProfileImage}
+                />
+              </div>
             </span>
             <span className={styles["right"]}>
-              <TextEditor placeholder="내용 추가하기" />
-              {originalPost && (
-                <div className={styles["original__post__contaienr"]}>
-                  원 포스트
-                </div>
-              )}
+              <div className={styles["editor__wrapper"]}>
+                <TextEditor placeholder="내용 추가하기" />
+              </div>
+              <OriginalPostContainer />
             </span>
-          </div>
-          <div className={styles["control__wrapper"]}>
-            <ReplyPermissionControl />
           </div>
         </Modal.Body>
         <Modal.Footer className={styles["footer"]}>
-          <PostEditorToolbar />
-          <button>인용하기</button>
+          <div className={styles["control__wrapper"]}>
+            <ReplyPermissionControl />
+          </div>
+          <div className={styles["toolbar__wrapper"]}>
+            <PostEditorToolbar />
+            <button>인용하기</button>
+          </div>
         </Modal.Footer>
       </Modal.Content>
     </Modal.Container>

@@ -1,0 +1,33 @@
+.original__post__container {
+  margin: 0.25rem 0;
+  border: 1px solid #ccc;
+  width: 100%;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.upper {
+  margin: 0.5rem 0.5rem 0;
+}
+
+.lower {
+  margin: 0 0.5rem 0.5rem;
+}
+
+.lower__with__image {
+  margin: 0 0.5rem;
+}
+
+.text {
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}
+
+.media {
+  border-radius: 0 !important;
+}
+
+.vote {
+  font-size: 0.9rem;
+  color: var(--colorTheme-color-primary);
+}

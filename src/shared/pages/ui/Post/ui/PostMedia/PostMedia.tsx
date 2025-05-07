@@ -53,6 +53,7 @@ const PostMedia = ({ className }: PostMediaProps) => {
         iconColor="white"
         className={joinClassNames([
           styles["leading__icon"],
+
           curIndex > 0
             ? styles["leading__icon--visible"]
             : styles["leading__icon--invisible"],
