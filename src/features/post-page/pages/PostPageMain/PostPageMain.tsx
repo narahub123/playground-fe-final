@@ -28,23 +28,27 @@ const PostPageMain = ({ className }: PostPageMainProps) => {
         <Post post={post}>
           <Post.Content>
             <Post.Header />
-            <Post.Main>
-              {isCommentType && (
-                <Post.Left isShowingConnector={isCommentType} />
-              )}
-              <Post.Right>
-                <Post.Meta isPostPage={!isCommentType} />
-                <Post.Text className={styles["margin"]} />
-                <Post.Media className={styles["margin"]} />
-                <Post.Vote className={styles["margin"]} />
-                <Post.Stats />
-                <Post.Actions
-                  className={styles["actions"]}
-                  isPostPage={!isCommentType}
-                />
-                {!isCommentType && <Post.CommentEditor isCommentType={false} />}
-              </Post.Right>
-            </Post.Main>
+            {(post._id || post.originalPost?._id) && (
+              <Post.Main>
+                {isCommentType && (
+                  <Post.Left isShowingConnector={isCommentType} />
+                )}
+                <Post.Right>
+                  <Post.Meta isPostPage={!isCommentType} />
+                  <Post.Text className={styles["margin"]} />
+                  <Post.Media className={styles["margin"]} />
+                  <Post.Vote className={styles["margin"]} />
+                  <Post.Stats />
+                  <Post.Actions
+                    className={styles["actions"]}
+                    isPostPage={!isCommentType}
+                  />
+                  {!isCommentType && (
+                    <Post.CommentEditor isCommentType={false} />
+                  )}
+                </Post.Right>
+              </Post.Main>
+            )}
 
             <Post.Footer>
               <Post.Thread isCommentType={isCommentType} />
