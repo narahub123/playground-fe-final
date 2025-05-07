@@ -21,6 +21,8 @@ const PostActions = ({ className, isPostPage = false }: PostActionsProps) => {
 
   const { actions } = usePostContext();
 
+  if (!actions) return null;
+
   const filteredActions = isPostPage
     ? Object.keys(actions).filter((action) => action !== "views")
     : Object.keys(actions);
