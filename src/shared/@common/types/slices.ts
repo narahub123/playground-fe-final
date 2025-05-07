@@ -100,6 +100,17 @@ interface IFollower {
   followedAt: Date;
 }
 
+interface IUserPostAction {
+  _id: string;
+  userId: string;
+  postId: string;
+  type: "like" | "bookmark"; // enum이 아니라 string literal union 으로 표현
+  isDeleted: boolean;
+  deletedAt: string | null; // ISO string
+  createdAt: string;
+  updatedAt: string;
+}
+
 interface IUser {
   _id: string;
   userId: string;
@@ -123,8 +134,8 @@ interface IUser {
   lockStatus: ILockStatus;
   skintoneType: SkintoneType;
   recentEmojis: IEmoji[];
-  bookmarks: string[];
-  likes: string[];
+  bookmarks: IUserPostAction[];
+  likes: IUserPostAction[];
   createdAt: Date;
   pinnedPost?: string;
 }
