@@ -1,0 +1,20 @@
+.quote__button {
+  color: white;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+}
+
+.quote__button--valid {
+  cursor: pointer;
+  background-color: hsl(0, 0%, 0%);
+}
+
+.quote__button--valid:hover,
+.quote__button--valid:focus {
+  background-color: hsl(0, 0%, 20%);
+}
+
+.quote__button--invalid {
+  background-color: #888;
+}

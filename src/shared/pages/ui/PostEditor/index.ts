@@ -10,6 +10,7 @@ import {
   ReplyPermissionDropdown,
   CommentButton,
   OriginalPostContainer,
+  QuoteButton,
 } from "./ui";
 
 import { convertDurationToDate, convertVoteFormat } from "./utils";
@@ -28,4 +29,5 @@ export {
   ReplyPermissionDropdown,
   CommentButton,
   OriginalPostContainer,
+  QuoteButton,
 };

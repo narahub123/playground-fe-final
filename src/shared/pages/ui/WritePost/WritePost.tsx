@@ -9,6 +9,7 @@ import { selectPosts, selectUser } from "@shared/@common/models/selectors";
 import {
   OriginalPostContainer,
   PostEditorToolbar,
+  QuoteButton,
   ReplyPermissionControl,
   TextEditor,
 } from "../PostEditor";
@@ -90,7 +91,7 @@ const WritePost = ({ className }: WritePostProps) => {
           </div>
           <div className={styles["toolbar__wrapper"]}>
             <PostEditorToolbar />
-            <button>인용하기</button>
+            <QuoteButton isValid={true} text={"인용하기"} />
           </div>
         </Modal.Footer>
       </Modal.Content>

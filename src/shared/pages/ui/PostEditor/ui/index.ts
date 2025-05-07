@@ -10,6 +10,7 @@ import { Vote } from "./Vote";
 import ReplyPermissionDropdown from "./ReplyPermissionDropdown/ReplyPermissionDropdown";
 import CommentButton from "./CommentButton/CommentButton";
 import OriginalPostContainer from "./OriginalPostContainer/OriginalPostContainer";
+import QuoteButton from "./QuoteButton/QuoteButton";
 
 export {
   AddPostLink,
@@ -24,4 +25,5 @@ export {
   ReplyPermissionDropdown,
   CommentButton,
   OriginalPostContainer,
+  QuoteButton,
 };
