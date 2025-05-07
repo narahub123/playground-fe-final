@@ -4,7 +4,7 @@ import { moreOptions, moreMyOptions } from "./moreOptions";
 import postVideoIcons from "./postVideoIcons";
 import postActionIcons from "./postActionIcons";
 
-const imageTypes = ["jpg"];
+const imageTypes = ["jpg", "gif", "webp"];
 const videoTypes = ["mp4"];
 
 const videoSpeedOptions: VideoSpeed[] = [
