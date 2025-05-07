@@ -10,18 +10,22 @@ import { setPost } from "@shared/@common/models/slices/feedSlice";
 
 interface RepostDropdownProps {
   className?: string;
+  setIsRepostOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface OptionProps {
   text: string;
   option: string;
+  setIsRepostOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Option = ({ text, option }: OptionProps) => {
+const Option = ({ text, option, setIsRepostOpen }: OptionProps) => {
   const dispatch = useAppDispatch();
   const { _id: postId } = usePostContext();
   const handleClick = {
-    repost: async () => {
+    repost: async (e: React.MouseEvent) => {
+      e.stopPropagation();
+
       try {
         const result = await fetchWithAuth(`/posts/${postId}/repost`, {
           method: "POST",
@@ -34,6 +38,8 @@ const Option = ({ text, option }: OptionProps) => {
         }
       } catch (error) {
         console.error("리포스트 도중 에러 발생", error);
+      } finally {
+        setIsRepostOpen(false);
       }
     },
     quote: () => {},
@@ -54,7 +60,10 @@ const Option = ({ text, option }: OptionProps) => {
   );
 };
 
-const RepostDropdown = ({ className }: RepostDropdownProps) => {
+const RepostDropdown = ({
+  className,
+  setIsRepostOpen,
+}: RepostDropdownProps) => {
   // 언어 설정
   const { options } = useLanguageContent(["post", "RepostDropdown"]);
 
@@ -63,7 +72,12 @@ const RepostDropdown = ({ className }: RepostDropdownProps) => {
   return (
     <div className={classNames}>
       {Object.keys(options).map((key) => (
-        <Option key={key} option={key} text={options[key](false)} />
+        <Option
+          key={key}
+          option={key}
+          text={options[key](false)}
+          setIsRepostOpen={setIsRepostOpen}
+        />
       ))}
     </div>
   );

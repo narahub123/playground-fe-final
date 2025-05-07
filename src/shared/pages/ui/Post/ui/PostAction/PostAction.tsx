@@ -171,7 +171,9 @@ const PostAction = ({
         className,
       ])}
     >
-      {action === "reposts" && isRepostOpen && <RepostDropdown />}
+      {action === "reposts" && isRepostOpen && (
+        <RepostDropdown setIsRepostOpen={setIsRepostOpen} />
+      )}
       <PostActionIcon
         left={"-0.5rem"}
         className={joinClassNames([
