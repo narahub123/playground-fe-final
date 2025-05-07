@@ -23,7 +23,6 @@ import {
 } from "@shared/@common/models/slices/feedSlice";
 import { updateUserBookmarks } from "@shared/@common/models/slices/userSlice";
 import { fetchWithAuth } from "@shared/pages/utils";
-import { IPost } from "@shared/@common/types";
 
 interface PostActionProps {
   className?: string;
@@ -42,27 +41,22 @@ const PostAction = ({
   const navigate = useNavigate();
   const [isRepostOpen, setIsRepostOpen] = useState(false);
 
-  const { _id: userId } = useSelector(selectUser);
+  const { _id: userId, bookmarks, likes } = useSelector(selectUser);
 
   const {
     actions,
     _id: postId,
-    comments: pComments,
     type,
     originalPostId,
+    thread,
   } = usePostContext();
 
-  const { comments, reposts, likes, views, bookmarks } = actions;
-
   // 코멘트 여부
-  const isCommenting = (pComments: IPost[]) => {
-    if (!pComments) return false;
-    const pCommentsIds = pComments.map((c) => c._id);
-
-    return (
-      new Set([...comments, ...pCommentsIds]).size <
-      comments.length + pCommentsIds.length
-    );
+  const isCommenting = (): boolean => {
+    // 해당 포스트가 post 타입인 경우
+    if (type === "post" && thread.length > 0) return true;
+    // 포스트가 comment 타입인 경우
+    return false;
   };
 
   const handleRepostOpen = (e: React.MouseEvent) => {
@@ -71,8 +65,8 @@ const PostAction = ({
     setIsRepostOpen(!isRepostOpen);
   };
 
-  const isLiking = (userId: string) => {
-    return likes.includes(userId);
+  const isLiking = (postId: string) => {
+    return likes.some((like) => like._id === postId && !like.isDeleted);
   };
 
   const handleLikes = async (e: React.MouseEvent) => {
@@ -99,8 +93,10 @@ const PostAction = ({
     }
   };
 
-  const isBookmarking = (userId: string) => {
-    return bookmarks.includes(userId);
+  const isBookmarking = (postId: string) => {
+    return bookmarks.some(
+      (bookmark) => bookmark._id === postId && bookmark.isDeleted
+    );
   };
 
   const handleBookmark = async (e: React.MouseEvent) => {
@@ -132,7 +128,7 @@ const PostAction = ({
   };
 
   const isReposting = (userId: string) => {
-    return reposts.includes(userId);
+    return false;
   };
 
   const handleClick: Record<PostActionType, (e: React.MouseEvent) => void> = {
@@ -188,9 +184,7 @@ const PostAction = ({
             ? styles["reposting"]
             : "",
           action === "bookmarks" && !isPostPage ? styles["irregular"] : "",
-          action === "comments" && isCommenting(pComments)
-            ? styles["commenting"]
-            : "",
+          action === "comments" && isCommenting() ? styles["commenting"] : "",
         ])}
         onClick={handleClick[action]}
         action={action}
@@ -215,14 +209,10 @@ const PostAction = ({
             action === "reposts" && isReposting(userId)
               ? styles["reposting"]
               : "",
-            action === "comments" && isCommenting(pComments)
-              ? styles["commenting"]
-              : "",
+            action === "comments" && isCommenting() ? styles["commenting"] : "",
           ])}
         >
-          {formatNumber(
-            action === "views" ? actions[action] : actions[action].length
-          )}
+          {formatNumber(actions[action])}
         </Text>
       )}
     </span>
