@@ -134,13 +134,11 @@ interface IRepost {
   isReposted: boolean;
 }
 
-interface IPostActonComment {}
-
 interface IPostActions {
-  comments: IPostActonComment[];
-  reposts: string[];
-  likes: string[];
-  bookmarks: string[];
+  comments: number;
+  reposts: number;
+  likes: number;
+  bookmarks: number;
   views: number;
 }
 
