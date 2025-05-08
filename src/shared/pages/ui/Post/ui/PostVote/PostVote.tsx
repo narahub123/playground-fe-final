@@ -28,6 +28,7 @@ const PostVote = ({ className }: PostVoteProps) => {
 
   const { _id } = useSelector(selectUser);
   const {
+    type,
     vote: postVote,
     _id: postId,
     author,
@@ -35,7 +36,8 @@ const PostVote = ({ className }: PostVoteProps) => {
   } = usePostContext();
   const { _id: authorId } = author;
 
-  const vote = originalPost?.vote ? originalPost.vote : postVote;
+  const vote =
+    type === "repost" && originalPost?.vote ? originalPost.vote : postVote;
 
   if (!vote) return null;
 

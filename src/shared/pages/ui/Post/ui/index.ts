@@ -44,6 +44,7 @@ import MoreThread from "./MoreThread/MoreThread";
 import PostTop from "./PostTop/PostTop";
 import PostBottom from "./PostBottom/PostBottom";
 import PostProgressbar from "./PostProgressbar/PostProgressbar";
+import PostOriginalPost from "./PostOriginalPost/PostOriginalPost";
 
 const Post = Object.assign(PostContainer, {
   Content: PostContent,
@@ -64,6 +65,7 @@ const Post = Object.assign(PostContainer, {
   Vote: PostVote,
   Stats: PostStats,
   Actions: PostActions,
+  OriginalPost: PostOriginalPost,
 });
 
 export default Post;

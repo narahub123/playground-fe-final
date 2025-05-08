@@ -31,9 +31,10 @@ const PostMedia = ({ className }: PostMediaProps) => {
     setWidth(width);
   }, []);
 
-  const { media: postMedia, originalPost } = usePostContext();
+  const { type, media: postMedia, originalPost } = usePostContext();
 
-  const media = originalPost?.media ? originalPost.media : postMedia;
+  const media =
+    type === "repost" && originalPost?.media ? originalPost.media : postMedia;
 
   if (!media || media.length === 0) return null;
 

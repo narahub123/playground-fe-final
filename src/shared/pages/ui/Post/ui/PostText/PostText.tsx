@@ -17,9 +17,10 @@ const PostText = ({ className }: PostTextProps) => {
   const inlineRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const [link, setLink] = useState("");
 
-  const { text: postText, originalPost, setMentions } = usePostContext();
+  const { type, text: postText, originalPost, setMentions } = usePostContext();
 
-  const text = originalPost?.text ? originalPost.text : postText;
+  const text =
+    type === "repost" && originalPost?.text ? originalPost.text : postText;
 
   const {
     isLoading,

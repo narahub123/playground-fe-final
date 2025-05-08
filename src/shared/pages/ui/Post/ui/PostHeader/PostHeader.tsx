@@ -17,7 +17,7 @@ const PostHeader = ({ className, isCommentType = false }: PostHeaderProps) => {
 
   const { type } = usePostContext();
 
-  if (type === "post" || !type) return null;
+  if (type === "post" || !type || type === "quote") return null;
 
   return (
     <header className={classNames}>

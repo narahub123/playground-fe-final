@@ -59,6 +59,7 @@ const HomePage = () => {
                       <Post.Text />
                       <Post.Media />
                       <Post.Vote />
+                      <Post.OriginalPost />
                       <Post.Actions className={styles["actions"]} />
                     </Post.Right>
                   </Post.Main>
