@@ -64,7 +64,7 @@ const postSlice = createSlice({
             ...entry,
             actions: {
               ...entry.actions,
-              comments: [...entry.actions.comments, action.payload],
+              comments: entry.actions.comments + 1,
             },
           };
         });
