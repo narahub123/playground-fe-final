@@ -53,32 +53,29 @@ const postSlice = createSlice({
         state.data.comments = [action.payload, ...state.data.comments];
       }
     },
-    addActionsComments: (state) => {
-      if (state.data) {
-        // 해당 포스트에 thread가 있는 경우: thread의 마지막 요소에 추가
-        if (state.data.thread.length > 0) {
-          const newThread = state.data.thread.map((entry, index) => {
-            if (index === state.data!.thread.length - 1) {
-              return {
-                ...entry,
-                actions: {
-                  ...entry.actions,
-                  comments: entry.actions.comments + 1,
-                },
-              };
-            } else return entry;
-          });
 
-          state.data.thread = newThread;
-        } else {
-          // 없는 경우 포스트에 추가
-          state.data.actions = {
-            ...state.data.actions,
-            comments: state.data.actions.comments + 1,
-          };
-        }
+    addActionsComments: (state) => {
+      const post = state.data;
+      if (!post) return;
+
+      if (post.thread.length > 0) {
+        const lastIndex = post.thread.length - 1;
+        const lastEntry = post.thread[lastIndex];
+
+        const updatedEntry = {
+          ...lastEntry,
+          actions: {
+            ...lastEntry.actions,
+            comments: lastEntry.actions.comments + 1,
+          },
+        };
+
+        post.thread = [...post.thread.slice(0, lastIndex), updatedEntry];
+      } else {
+        post.actions.comments += 1;
       }
     },
+
     togglePostLike: (state, action: PayloadAction<{ isAdding: boolean }>) => {
       if (!state.data) return;
 
