@@ -51,7 +51,11 @@ const PostThreadContainer = ({
                 <Post.Meta />
                 <Post.Text className={styles["margin"]} />
                 <Post.Media className={styles["margin"]} />
-                <Post.Actions className={styles["actions"]} />
+                {isPostPage && index === thread.length - 1 && <Post.Stats />}
+                <Post.Actions
+                  className={styles["actions"]}
+                  isPostPage={isPostPage && index === thread.length - 1}
+                />
               </Post.Right>
             </Post.Main>
           </Post.Content>
