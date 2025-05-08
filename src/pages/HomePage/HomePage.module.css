@@ -19,3 +19,16 @@
 .actions {
   margin-top: 0.75rem;
 }
+
+.posts__wrapper {
+  opacity: 1;
+}
+
+.spinner__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-height: 400px;
+}
