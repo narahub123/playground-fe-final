@@ -57,7 +57,7 @@ const CommentButton = ({
         dispatch(addComment(result.data.comment));
         dispatch(clearPostEditor());
         dispatch(setShouldClearEditor());
-        dispatch(addActionsComments(result.data.comment._id));
+        dispatch(addActionsComments());
       } else {
         const errorCode = result.code as ErrorTitleCodeType;
 
