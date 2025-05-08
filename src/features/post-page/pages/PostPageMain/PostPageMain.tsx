@@ -38,6 +38,7 @@ const PostPageMain = ({ className }: PostPageMainProps) => {
                   <Post.Text className={styles["margin"]} />
                   <Post.Media className={styles["margin"]} />
                   <Post.Vote className={styles["margin"]} />
+                  <Post.OriginalPost />
                   <Post.Stats />
                   <Post.Actions
                     className={styles["actions"]}
