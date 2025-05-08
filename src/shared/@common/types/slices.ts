@@ -202,6 +202,7 @@ interface IPost {
   updatedAt: string;
   thread: IPost[];
   comments: IPost[];
+  basePostId: string;
 }
 
 export type {

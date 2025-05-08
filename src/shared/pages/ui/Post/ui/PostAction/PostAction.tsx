@@ -27,7 +27,6 @@ import {
 } from "@shared/@common/models/slices/userSlice";
 import { fetchWithAuth } from "@shared/pages/utils";
 import {
-  selectPost,
   togglePostBookmark,
   togglePostCommentBookmark,
   togglePostCommentLike,
@@ -55,13 +54,11 @@ const PostAction = ({
 
   const { _id: userId, bookmarks, likes } = useSelector(selectUser);
 
-  const orignalPost = useSelector(selectPost);
-
   const {
     actions,
     _id: postId,
     type,
-    originalPostId,
+    basePostId,
     thread,
     postType,
   } = usePostContext();
@@ -106,7 +103,7 @@ const PostAction = ({
         } else if (postType === "thread") {
           dispatch(
             toggleFeedThreadLike({
-              postId: orignalPost?._id || originalPostId,
+              postId: basePostId,
               threadCommentId: postId,
               isAdding,
             })
@@ -125,7 +122,7 @@ const PostAction = ({
 
   const isBookmarking = (postId: string) => {
     return bookmarks.some(
-      (bookmark) => bookmark.postId === postId && bookmark.isDeleted
+      (bookmark) => bookmark.postId === postId && !bookmark.isDeleted
     );
   };
 
@@ -152,7 +149,7 @@ const PostAction = ({
         } else if (postType === "thread") {
           dispatch(
             toggleFeedThreadBookmark({
-              postId: orignalPost?._id || originalPostId,
+              postId: basePostId,
               threadCommentId: postId,
               isAdding,
             })
