@@ -59,7 +59,7 @@ import {
 
 import { getNotification } from "./notificationSelectors";
 
-import { selectPosts, selectPage } from "./feedSelectors";
+import { selectPosts, selectPage, selectIsEnd } from "./feedSelectors";
 
 export {
   // display
@@ -124,4 +124,5 @@ export {
   // feed
   selectPosts,
   selectPage,
+  selectIsEnd,
 };

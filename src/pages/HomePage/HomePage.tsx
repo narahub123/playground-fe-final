@@ -1,5 +1,5 @@
 import styles from "./HomePage.module.css";
-import { HomeTab } from "@features/home/ui";
+import { HomeCensor, HomeTab } from "@features/home";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
 import { useEffect, useState } from "react";
@@ -10,7 +10,7 @@ import { Post } from "@shared/pages/ui/Post";
 import { Spinner } from "@shared/@common/ui/components";
 import { fetchWithAuth } from "@shared/pages";
 import { useAppDispatch } from "@app/store";
-import { setPosts } from "@shared/@common/models/slices/feedSlice";
+import { setPage, setPosts } from "@shared/@common/models/slices/feedSlice";
 
 interface IHomeTab {
   text: string;
@@ -44,11 +44,12 @@ const HomePage = () => {
         console.error("포스트 목록 조회 중 에러 발생", error);
       } finally {
         setIsLoading(false);
+        dispatch(setPage(1));
       }
     };
 
     getPosts();
-  }, [page]);
+  }, []);
 
   const classNames = joinClassNames([styles["home__page"]]);
 
@@ -113,6 +114,7 @@ const HomePage = () => {
           })
         )}
       </div>
+      <HomeCensor />
     </div>
   );
 };

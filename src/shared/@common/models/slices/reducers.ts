@@ -73,6 +73,9 @@ import {
   toggleFeedThreadLike,
   toggleFeedThreadBookmark,
   addPage,
+  setPage,
+  setIsEnd,
+  addPosts,
 } from "./feedSlice";
 
 export {
@@ -151,4 +154,7 @@ export {
   toggleFeedThreadLike,
   toggleFeedThreadBookmark,
   addPage,
+  setIsEnd,
+  addPosts,
+  setPage,
 };

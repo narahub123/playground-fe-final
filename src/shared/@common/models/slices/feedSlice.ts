@@ -4,11 +4,13 @@ import { IPost } from "@shared/@common/types";
 interface PostState {
   posts: IPost[];
   page: number;
+  isEnd: boolean;
 }
 
 const initialState: PostState = {
   posts: [],
   page: 0,
+  isEnd: false,
 };
 
 const feedSlice = createSlice({
@@ -17,6 +19,9 @@ const feedSlice = createSlice({
   reducers: {
     setPosts: (state, action: PayloadAction<IPost[]>) => {
       state.posts = action.payload;
+    },
+    addPosts: (state, action: PayloadAction<IPost[]>) => {
+      state.posts = [...state.posts, ...action.payload];
     },
 
     setPost: (state, action: PayloadAction<IPost>) => {
@@ -38,6 +43,12 @@ const feedSlice = createSlice({
     },
     addPage: (state) => {
       state.page = state.page + 1;
+    },
+    setPage: (state, action: PayloadAction<number>) => {
+      state.page = action.payload;
+    },
+    setIsEnd: (state, action: PayloadAction<boolean>) => {
+      state.isEnd = action.payload;
     },
 
     toggleFeedPostLike: (
@@ -161,4 +172,7 @@ export const {
   toggleFeedThreadLike,
   toggleFeedThreadBookmark,
   addPage,
+  setPage,
+  setIsEnd,
+  addPosts,
 } = feedSlice.actions;
