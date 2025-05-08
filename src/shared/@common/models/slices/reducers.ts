@@ -72,6 +72,7 @@ import {
   toggleFeedPostBookmark,
   toggleFeedThreadLike,
   toggleFeedThreadBookmark,
+  addPage,
 } from "./feedSlice";
 
 export {
@@ -140,7 +141,7 @@ export {
   setNotification,
   clearNotificationState,
 
-  // post
+  // feed
   setPosts,
   toggleFeedPostLike,
   setPost,
@@ -149,4 +150,5 @@ export {
   toggleFeedPostBookmark,
   toggleFeedThreadLike,
   toggleFeedThreadBookmark,
+  addPage,
 };

@@ -5,7 +5,7 @@ import { joinClassNames } from "@shared/@common/utils";
 import { useEffect, useState } from "react";
 import { PostEditor } from "@shared/pages/ui";
 import { useSelector } from "react-redux";
-import { selectPosts } from "@shared/@common/models/selectors";
+import { selectPage, selectPosts } from "@shared/@common/models/selectors";
 import { Post } from "@shared/pages/ui/Post";
 import { Spinner } from "@shared/@common/ui/components";
 import { fetchWithAuth } from "@shared/pages";
@@ -24,15 +24,18 @@ const HomePage = () => {
   const [isLoading, setIsLoading] = useState(false);
   // 언어 설정
   const { tabs } = useLanguageContent(["home", "HomePage"]);
+  const page = useSelector(selectPage);
 
   // 포스트 목록 가져오기
   useEffect(() => {
     const getPosts = async () => {
       setIsLoading(true);
       try {
-        const result = await fetchWithAuth("/posts");
+        const result = await fetchWithAuth(`/posts?skip=${page}`);
 
         if (result.success) {
+          console.log(result.data.posts);
+
           dispatch(setPosts(result.data.posts));
         } else {
           console.error("포스트 목록 조회 실패");
@@ -45,7 +48,7 @@ const HomePage = () => {
     };
 
     getPosts();
-  }, []);
+  }, [page]);
 
   const classNames = joinClassNames([styles["home__page"]]);
 

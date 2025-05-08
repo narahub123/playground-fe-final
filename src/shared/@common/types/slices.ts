@@ -203,6 +203,7 @@ interface IPost {
   thread: IPost[];
   comments: IPost[];
   basePostId: string;
+  isRepostedByCurrentUser: boolean;
 }
 
 export type {

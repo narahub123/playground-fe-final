@@ -3,10 +3,12 @@ import { IPost } from "@shared/@common/types";
 
 interface PostState {
   posts: IPost[];
+  page: number;
 }
 
 const initialState: PostState = {
   posts: [],
+  page: 0,
 };
 
 const feedSlice = createSlice({
@@ -33,6 +35,9 @@ const feedSlice = createSlice({
       state.posts = state.posts.map((post) =>
         post._id === postId ? { ...post, pin: !post.pin } : post
       );
+    },
+    addPage: (state) => {
+      state.page = state.page + 1;
     },
 
     toggleFeedPostLike: (
@@ -155,4 +160,5 @@ export const {
   toggleFeedPostBookmark,
   toggleFeedThreadLike,
   toggleFeedThreadBookmark,
+  addPage,
 } = feedSlice.actions;
