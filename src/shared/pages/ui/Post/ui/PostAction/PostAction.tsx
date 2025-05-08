@@ -52,7 +52,7 @@ const PostAction = ({
   const navigate = useNavigate();
   const [isRepostOpen, setIsRepostOpen] = useState(false);
 
-  const { _id: userId, bookmarks, likes } = useSelector(selectUser);
+  const { bookmarks, likes } = useSelector(selectUser);
 
   const {
     actions,
@@ -61,6 +61,7 @@ const PostAction = ({
     basePostId,
     thread,
     postType,
+    isRepostedByCurrentUser,
   } = usePostContext();
 
   // 코멘트 여부
@@ -168,10 +169,6 @@ const PostAction = ({
     }
   };
 
-  const isReposting = (userId: string) => {
-    return false;
-  };
-
   const handleClick: Record<PostActionType, (e: React.MouseEvent) => void> = {
     comments: (e: React.MouseEvent) => {
       e.preventDefault();
@@ -223,7 +220,7 @@ const PostAction = ({
           action === "bookmarks" && isBookmarking(postId)
             ? styles["bookmarking"]
             : "",
-          action === "reposts" && isReposting(userId)
+          action === "reposts" && isRepostedByCurrentUser
             ? styles["reposting"]
             : "",
           action === "bookmarks" && !isPostPage ? styles["irregular"] : "",
@@ -249,7 +246,7 @@ const PostAction = ({
           className={joinClassNames([
             styles["stat"],
             action === "likes" && isLiking(postId) ? styles["liking"] : "",
-            action === "reposts" && isReposting(userId)
+            action === "reposts" && isRepostedByCurrentUser
               ? styles["reposting"]
               : "",
             action === "comments" && isCommenting() ? styles["commenting"] : "",
