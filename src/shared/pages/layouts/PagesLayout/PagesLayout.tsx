@@ -18,7 +18,6 @@ import { checkLogin, joinClassNames } from "@shared/@common/utils";
 import { useSelector } from "react-redux";
 import { selectUserLoading } from "@shared/@common/models/selectors";
 import { Spinner } from "@shared/@common/ui/components";
-import { setPosts } from "@shared/@common/models/slices/feedSlice";
 
 const PagesLayout = () => {
   const dispatch = useAppDispatch();
@@ -39,15 +38,13 @@ const PagesLayout = () => {
 
       console.log(result);
 
-      const { user, display, security, privacy, notification, posts } =
-        result.data;
+      const { user, display, security, privacy, notification } = result.data;
 
       dispatch(setUser(user));
       dispatch(setDisplay(display));
       dispatch(setSecurity(security));
       dispatch(setPrivacy(privacy));
       dispatch(setNotification(notification));
-      dispatch(setPosts(posts));
     };
 
     fetchData();
