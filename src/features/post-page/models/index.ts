@@ -9,6 +9,9 @@ import {
   setIsEnd,
   addComment,
   addActionsComments,
+  togglePostLike,
+  togglePostThreadLike,
+  togglePostCommentLike,
 } from "./slices";
 
 import {
@@ -34,6 +37,9 @@ export {
   setIsEnd,
   addComment,
   addActionsComments,
+  togglePostLike,
+  togglePostThreadLike,
+  togglePostCommentLike,
 
   // selectors
   selectPost,

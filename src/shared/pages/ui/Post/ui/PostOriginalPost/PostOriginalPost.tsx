@@ -16,7 +16,7 @@ const PostOriginalPost = ({ className }: PostOriginalPostProps) => {
 
   return (
     <div className={classNames}>
-      <Post post={originalPost}>
+      <Post post={originalPost} postType="post">
         <Post.Content>
           <Post.Main className={styles["main"]}>
             <Post.Right>

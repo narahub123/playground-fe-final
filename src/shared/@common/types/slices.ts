@@ -236,4 +236,5 @@ export type {
   IPostVote,
   IPostVoteOption,
   IRepostUser,
+  IUserPostAction,
 };

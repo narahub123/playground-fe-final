@@ -46,6 +46,7 @@ import {
   VideoQuality,
   IVideoTime,
   PostActionType,
+  PostType,
 } from "./types";
 import {
   convertToLocalTime,
@@ -153,4 +154,5 @@ export type {
   VideoQuality,
   IVideoTime,
   PostActionType,
+  PostType,
 };

@@ -1,8 +1,11 @@
 import { IPost } from "@shared/@common/types";
 
+type PostType = "post" | "thread" | "comment";
+
 interface IPostContext extends IPost {
   mentions: string[];
   setMentions: React.Dispatch<React.SetStateAction<string[]>>;
+  postType: PostType;
 }
 
 interface IRect {
@@ -65,4 +68,5 @@ export type {
   VideoQuality,
   IVideoTime,
   PostActionType,
+  PostType,
 };

@@ -6,6 +6,7 @@ import {
   IFollowing,
   ILockStatus,
   IUser,
+  IUserPostAction,
   LocationType,
   UserRoleType,
 } from "@shared/@common/types";
@@ -233,6 +234,46 @@ const userSlice = createSlice({
       state.data.recentEmojis = newRecentEmojis;
     },
 
+    setPinnedPost: (state, action: PayloadAction<string>) => {
+      const pinnedPost = state.data.pinnedPost;
+
+      if (pinnedPost && pinnedPost === action.payload) {
+        state.data.pinnedPost = undefined;
+      } else {
+        state.data.pinnedPost = action.payload;
+      }
+    },
+
+    toggleUserLikes: (state, action: PayloadAction<string>) => {
+      const likes = state.data.likes;
+      const postId = action.payload;
+
+      // 존재 여부 확인
+      const isLiking = likes.find((like) => like.postId === postId);
+
+      if (!isLiking) {
+        // 존재하지 않는 경우에는 추가
+        const newLike: IUserPostAction = {
+          _id: postId,
+          type: "like",
+          postId,
+          userId: state.data._id,
+          isDeleted: false,
+          createdAt: new Date().toISOString(),
+          deletedAt: null,
+          updatedAt: new Date().toISOString(),
+        };
+        state.data.likes = [...likes, newLike];
+      } else {
+        state.data.likes = state.data.likes.map((like) => {
+          if (like.postId !== postId) return like;
+          return {
+            ...like,
+            isDeleted: !like.isDeleted,
+          };
+        });
+      }
+    },
     updateUserBookmarks: (state, action: PayloadAction<string>) => {
       const prevBookmarks = state.data.bookmarks;
 
@@ -251,15 +292,6 @@ const userSlice = createSlice({
 
         // 해당 포스트 추가
         state.data.bookmarks = [...state.data.bookmarks, postId];
-      }
-    },
-    setPinnedPost: (state, action: PayloadAction<string>) => {
-      const pinnedPost = state.data.pinnedPost;
-
-      if (pinnedPost && pinnedPost === action.payload) {
-        state.data.pinnedPost = undefined;
-      } else {
-        state.data.pinnedPost = action.payload;
       }
     },
     clearRecentEmojis: (state) => {
@@ -302,4 +334,5 @@ export const {
   updateUserBookmarks,
   clearRecentEmojis,
   setPinnedPost,
+  toggleUserLikes,
 } = userSlice.actions;

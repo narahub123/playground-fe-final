@@ -19,6 +19,9 @@ import {
   selectIsEnd,
   addComment,
   addActionsComments,
+  togglePostLike,
+  togglePostThreadLike,
+  togglePostCommentLike,
 } from "./models";
 
 export {
@@ -48,6 +51,9 @@ export {
   setIsEnd,
   addComment,
   addActionsComments,
+  togglePostLike,
+  togglePostThreadLike,
+  togglePostCommentLike,
 
   // selectors
   selectPost,

@@ -25,7 +25,7 @@ const PostPageMain = ({ className }: PostPageMainProps) => {
   return (
     <div className={classNames}>
       <div className={styles["post"]}>
-        <Post post={post}>
+        <Post post={post} postType="post">
           <Post.Content>
             <Post.Header />
             {(post._id || post.originalPost?._id) && (

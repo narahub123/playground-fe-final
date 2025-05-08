@@ -45,7 +45,7 @@ const HomePage = () => {
       <div>
         {posts.map((post, index) => {
           return (
-            <Post key={`${post._id}${index}`} post={post}>
+            <Post key={`${post._id}${index}`} post={post} postType="post">
               <Post.Top />
               <Post.Content>
                 <Post.Header />

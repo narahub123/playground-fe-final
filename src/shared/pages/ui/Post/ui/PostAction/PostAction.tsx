@@ -17,12 +17,21 @@ import { selectUser } from "@shared/@common/models/selectors";
 import { useDispatch } from "react-redux";
 import {
   setCommentBookmark,
-  setCommentLike,
-  setLike,
+  toggleFeedThreadLike,
+  toggleFeedPostLike,
   updatePostBookmarks,
 } from "@shared/@common/models/slices/feedSlice";
-import { updateUserBookmarks } from "@shared/@common/models/slices/userSlice";
+import {
+  toggleUserLikes,
+  updateUserBookmarks,
+} from "@shared/@common/models/slices/userSlice";
 import { fetchWithAuth } from "@shared/pages/utils";
+import {
+  selectPost,
+  togglePostCommentLike,
+  togglePostLike,
+  togglePostThreadLike,
+} from "@features/post-page";
 
 interface PostActionProps {
   className?: string;
@@ -43,12 +52,15 @@ const PostAction = ({
 
   const { _id: userId, bookmarks, likes } = useSelector(selectUser);
 
+  const orignalPost = useSelector(selectPost);
+
   const {
     actions,
     _id: postId,
     type,
     originalPostId,
     thread,
+    postType,
   } = usePostContext();
 
   // 코멘트 여부
@@ -66,7 +78,9 @@ const PostAction = ({
   };
 
   const isLiking = (postId: string) => {
-    return likes.some((like) => like._id === postId && !like.isDeleted);
+    return likes.some(
+      (like) => like.postId === postId && like.isDeleted === false
+    );
   };
 
   const handleLikes = async (e: React.MouseEvent) => {
@@ -78,12 +92,25 @@ const PostAction = ({
       });
 
       if (result.success) {
-        if (type === "comment") {
+        // userSlice 업데이트
+        dispatch(toggleUserLikes(postId));
+
+        const isAdding = !isLiking(postId);
+
+        if (postType === "post") {
+          dispatch(toggleFeedPostLike({ postId, isAdding }));
+          dispatch(togglePostLike({ isAdding }));
+        } else if (postType === "thread") {
           dispatch(
-            setCommentLike({ originalPostId, commentId: postId, userId })
+            toggleFeedThreadLike({
+              postId: orignalPost?._id || originalPostId,
+              threadCommentId: postId,
+              isAdding,
+            })
           );
+          dispatch(togglePostThreadLike({ threadCommentId: postId, isAdding }));
         } else {
-          dispatch(setLike({ postId, userId }));
+          dispatch(togglePostCommentLike({ commentId: postId, isAdding }));
         }
       } else {
         console.error("좋아요 업데이트 실패");
@@ -95,7 +122,7 @@ const PostAction = ({
 
   const isBookmarking = (postId: string) => {
     return bookmarks.some(
-      (bookmark) => bookmark._id === postId && bookmark.isDeleted
+      (bookmark) => bookmark.postId === postId && bookmark.isDeleted
     );
   };
 
@@ -148,7 +175,7 @@ const PostAction = ({
       : action === "reposts"
       ? "repost"
       : action === "likes"
-      ? isLiking(userId)
+      ? isLiking(postId)
         ? "likeFill"
         : "likeOutline"
       : action === "bookmarks"
@@ -178,7 +205,7 @@ const PostAction = ({
         left={"-0.5rem"}
         className={joinClassNames([
           styles["icon"],
-          action === "likes" && isLiking(userId) ? styles["liking"] : "",
+          action === "likes" && isLiking(postId) ? styles["liking"] : "",
           action === "bookmarks" && isBookmarking(userId)
             ? styles["bookmarking"]
             : "",
@@ -207,7 +234,7 @@ const PostAction = ({
         <Text
           className={joinClassNames([
             styles["stat"],
-            action === "likes" && isLiking(userId) ? styles["liking"] : "",
+            action === "likes" && isLiking(postId) ? styles["liking"] : "",
             action === "reposts" && isReposting(userId)
               ? styles["reposting"]
               : "",

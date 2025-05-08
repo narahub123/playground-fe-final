@@ -19,7 +19,7 @@ const PostActions = ({ className, isPostPage = false }: PostActionsProps) => {
 
   const [isShareOpen, setIsShareOpen] = useState(false);
 
-  const { actions } = usePostContext();
+  const { actions, _id: postId } = usePostContext();
 
   if (!actions) return null;
 
@@ -38,7 +38,7 @@ const PostActions = ({ className, isPostPage = false }: PostActionsProps) => {
       {isShareOpen && <ShareDropdown />}
       {filteredActions.map((action) => (
         <PostAction
-          key={action}
+          key={`${postId}-${action}`}
           action={action as PostActionType}
           isPostPage={isPostPage}
           handleShareOpen={handleShareOpen}

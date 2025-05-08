@@ -38,6 +38,7 @@ import {
   updateUserBookmarks,
   setPinnedPost,
   setUnfollowing,
+  toggleUserLikes,
 } from "./userSlice";
 
 import {
@@ -64,12 +65,12 @@ import { setNotification, clearNotificationState } from "./notificationSlice";
 
 import {
   setPosts,
-  setLike,
+  toggleFeedPostLike,
   setPost,
   deletePost,
   updatePin,
   updatePostBookmarks,
-  setCommentLike,
+  toggleFeedThreadLike,
   setCommentBookmark,
 } from "./feedSlice";
 
@@ -113,6 +114,7 @@ export {
   updateUserBookmarks,
   setPinnedPost,
   setUnfollowing,
+  toggleUserLikes,
 
   // modal
   onParallelModalOpen,
@@ -140,11 +142,11 @@ export {
 
   // post
   setPosts,
-  setLike,
+  toggleFeedPostLike,
   setPost,
   deletePost,
   updatePin,
   updatePostBookmarks,
-  setCommentLike,
+  toggleFeedThreadLike,
   setCommentBookmark,
 };

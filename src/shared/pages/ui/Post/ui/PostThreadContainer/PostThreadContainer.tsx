@@ -38,7 +38,7 @@ const PostThreadContainer = ({
   return (
     <div className={classNames}>
       {filteredEntries.map((entry, index) => (
-        <Post post={entry} key={index}>
+        <Post post={entry} key={index} postType="thread">
           <Post.Content>
             <Post.Header isCommentType={isCommentType} />
             <Post.Main>

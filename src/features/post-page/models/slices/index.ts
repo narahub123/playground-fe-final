@@ -8,6 +8,9 @@ import postSlice, {
   setIsEnd,
   addComment,
   addActionsComments,
+  togglePostLike,
+  togglePostThreadLike,
+  togglePostCommentLike,
 } from "./postSlice";
 
 export {
@@ -21,4 +24,7 @@ export {
   setIsEnd,
   addComment,
   addActionsComments,
+  togglePostLike,
+  togglePostThreadLike,
+  togglePostCommentLike,
 };
