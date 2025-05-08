@@ -16,20 +16,23 @@ import { useSelector } from "react-redux";
 import { selectUser } from "@shared/@common/models/selectors";
 import { useDispatch } from "react-redux";
 import {
-  setCommentBookmark,
+  toggleFeedThreadBookmark,
   toggleFeedThreadLike,
   toggleFeedPostLike,
-  updatePostBookmarks,
+  toggleFeedPostBookmark,
 } from "@shared/@common/models/slices/feedSlice";
 import {
   toggleUserLikes,
-  updateUserBookmarks,
+  toggleUserBookmarks,
 } from "@shared/@common/models/slices/userSlice";
 import { fetchWithAuth } from "@shared/pages/utils";
 import {
   selectPost,
+  togglePostBookmark,
+  togglePostCommentBookmark,
   togglePostCommentLike,
   togglePostLike,
+  togglePostThreadBookmark,
   togglePostThreadLike,
 } from "@features/post-page";
 
@@ -138,13 +141,27 @@ const PostAction = ({
       );
 
       if (result.success) {
-        if (type === "comment") {
+        // userSlice 업데이트
+        dispatch(toggleUserBookmarks(postId));
+
+        const isAdding = !isBookmarking(postId);
+
+        if (postType === "post") {
+          dispatch(toggleFeedPostBookmark({ postId, isAdding }));
+          dispatch(togglePostBookmark({ isAdding }));
+        } else if (postType === "thread") {
           dispatch(
-            setCommentBookmark({ originalPostId, commentId: postId, userId })
+            toggleFeedThreadBookmark({
+              postId: orignalPost?._id || originalPostId,
+              threadCommentId: postId,
+              isAdding,
+            })
+          );
+          dispatch(
+            togglePostThreadBookmark({ threadCommentId: postId, isAdding })
           );
         } else {
-          dispatch(updateUserBookmarks(postId));
-          dispatch(updatePostBookmarks({ postId, userId }));
+          dispatch(togglePostCommentBookmark({ commentId: postId, isAdding }));
         }
       } else {
         console.error("북마크 업데이트 실패");
@@ -179,7 +196,7 @@ const PostAction = ({
         ? "likeFill"
         : "likeOutline"
       : action === "bookmarks"
-      ? isBookmarking(userId)
+      ? isBookmarking(postId)
         ? "bookmarkFill"
         : "bookmarkOutline"
       : "view";
@@ -206,7 +223,7 @@ const PostAction = ({
         className={joinClassNames([
           styles["icon"],
           action === "likes" && isLiking(postId) ? styles["liking"] : "",
-          action === "bookmarks" && isBookmarking(userId)
+          action === "bookmarks" && isBookmarking(postId)
             ? styles["bookmarking"]
             : "",
           action === "reposts" && isReposting(userId)

@@ -34,30 +34,7 @@ const feedSlice = createSlice({
         post._id === postId ? { ...post, pin: !post.pin } : post
       );
     },
-    updatePostBookmarks: (
-      state,
-      action: PayloadAction<{ postId: string; userId: string }>
-    ) => {
-      const { postId, userId } = action.payload;
 
-      state.posts = state.posts.map((post) => {
-        if (post._id === postId) {
-          const bookmarks = post.actions.bookmarks;
-
-          const newBookmarks = bookmarks.includes(userId)
-            ? bookmarks.filter((bookmark) => bookmark !== userId)
-            : [...bookmarks, userId];
-
-          return {
-            ...post,
-            actions: {
-              ...post.actions,
-              bookmarks: newBookmarks,
-            },
-          };
-        } else return post;
-      });
-    },
     toggleFeedPostLike: (
       state,
       action: PayloadAction<{ postId: string; isAdding: boolean }>
@@ -67,11 +44,13 @@ const feedSlice = createSlice({
       state.posts = state.posts.map((post) => {
         if (post._id !== postId) return post;
 
+        const delta = isAdding ? 1 : -1;
+
         return {
           ...post,
           actions: {
             ...post.actions,
-            likes: post.actions.likes + (isAdding ? 1 : -1),
+            likes: Math.max(0, post.actions.likes + delta),
           },
         };
       });
@@ -92,11 +71,13 @@ const feedSlice = createSlice({
         const newThread = post.thread.map((entry) => {
           if (entry._id !== threadCommentId) return entry;
 
+          const delta = isAdding ? 1 : -1;
+
           return {
             ...entry,
             actions: {
               ...entry.actions,
-              likes: Math.max(0, entry.actions.likes + (isAdding ? 1 : -1)),
+              likes: Math.max(0, entry.actions.likes + delta),
             },
           };
         });
@@ -107,39 +88,56 @@ const feedSlice = createSlice({
         };
       });
     },
-    setCommentBookmark: (
+    toggleFeedPostBookmark: (
       state,
-      action: PayloadAction<{
-        originalPostId: string;
-        commentId: string;
-        userId: string;
-      }>
+      action: PayloadAction<{ postId: string; isAdding: boolean }>
     ) => {
-      const { originalPostId, commentId, userId } = action.payload;
+      const { postId, isAdding } = action.payload;
 
       state.posts = state.posts.map((post) => {
-        if (post._id !== originalPostId) return post;
+        if (post._id !== postId) return post;
 
-        const updatedComments = post.comments.map((comment) => {
-          if (comment._id !== commentId) return comment;
+        const delta = isAdding ? 1 : -1;
 
-          const bookmarks = comment.actions.bookmarks;
-          const newBookmarks = bookmarks.includes(userId)
-            ? bookmarks.filter((bookmark) => bookmark !== userId)
-            : [...bookmarks, userId];
+        return {
+          ...post,
+          actions: {
+            ...post.actions,
+            bookmarks: Math.max(0, post.actions.bookmarks + delta),
+          },
+        };
+      });
+    },
+    toggleFeedThreadBookmark: (
+      state,
+      action: PayloadAction<{
+        postId: string;
+        threadCommentId: string;
+        isAdding: boolean;
+      }>
+    ) => {
+      const { postId, threadCommentId, isAdding } = action.payload;
+
+      state.posts = state.posts.map((post) => {
+        if (post._id !== postId) return post;
+
+        const newThread = post.thread.map((entry) => {
+          if (entry._id !== threadCommentId) return entry;
+
+          const delta = isAdding ? 1 : -1;
 
           return {
-            ...comment,
+            ...entry,
             actions: {
-              ...comment.actions,
-              bookmarks: newBookmarks,
+              ...entry.actions,
+              bookmarks: Math.max(0, entry.actions.bookmarks + delta),
             },
           };
         });
 
         return {
           ...post,
-          comments: updatedComments,
+          thread: newThread,
         };
       });
     },
@@ -150,11 +148,11 @@ export default feedSlice.reducer;
 
 export const {
   setPosts,
-  toggleFeedPostLike,
   setPost,
   deletePost,
   updatePin,
-  updatePostBookmarks,
+  toggleFeedPostLike,
+  toggleFeedPostBookmark,
   toggleFeedThreadLike,
-  setCommentBookmark,
+  toggleFeedThreadBookmark,
 } = feedSlice.actions;

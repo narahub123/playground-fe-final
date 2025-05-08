@@ -123,6 +123,65 @@ const postSlice = createSlice({
         };
       });
     },
+    togglePostBookmark: (
+      state,
+      action: PayloadAction<{ isAdding: boolean }>
+    ) => {
+      if (!state.data) return;
+
+      const { isAdding } = action.payload;
+
+      const delta = isAdding ? 1 : -1;
+
+      state.data.actions.bookmarks = Math.max(
+        0,
+        state.data.actions.bookmarks + delta
+      );
+    },
+    togglePostThreadBookmark: (
+      state,
+      action: PayloadAction<{ threadCommentId: String; isAdding: boolean }>
+    ) => {
+      if (!state.data) return;
+
+      const { threadCommentId, isAdding } = action.payload;
+
+      state.data.thread = state.data.thread.map((entry) => {
+        if (entry._id !== threadCommentId) return entry;
+
+        const delta = isAdding ? 1 : -1;
+
+        return {
+          ...entry,
+          actions: {
+            ...entry.actions,
+            bookmarks: Math.max(0, entry.actions.bookmarks + delta),
+          },
+        };
+      });
+    },
+    togglePostCommentBookmark: (
+      state,
+      action: PayloadAction<{ commentId: String; isAdding: boolean }>
+    ) => {
+      if (!state.data) return;
+
+      const { commentId, isAdding } = action.payload;
+
+      state.data.comments = state.data.comments.map((comment) => {
+        if (comment._id !== commentId) return comment;
+
+        const delta = isAdding ? 1 : -1;
+
+        return {
+          ...comment,
+          actions: {
+            ...comment.actions,
+            bookmarks: Math.max(0, comment.actions.bookmarks + delta),
+          },
+        };
+      });
+    },
   },
 });
 
@@ -141,4 +200,7 @@ export const {
   togglePostLike,
   togglePostThreadLike,
   togglePostCommentLike,
+  togglePostBookmark,
+  togglePostThreadBookmark,
+  togglePostCommentBookmark,
 } = postSlice.actions;

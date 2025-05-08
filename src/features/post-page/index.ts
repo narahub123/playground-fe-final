@@ -22,6 +22,9 @@ import {
   togglePostLike,
   togglePostThreadLike,
   togglePostCommentLike,
+  togglePostBookmark,
+  togglePostThreadBookmark,
+  togglePostCommentBookmark,
 } from "./models";
 
 export {
@@ -54,6 +57,9 @@ export {
   togglePostLike,
   togglePostThreadLike,
   togglePostCommentLike,
+  togglePostBookmark,
+  togglePostThreadBookmark,
+  togglePostCommentBookmark,
 
   // selectors
   selectPost,

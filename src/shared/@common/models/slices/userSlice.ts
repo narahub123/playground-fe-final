@@ -245,14 +245,13 @@ const userSlice = createSlice({
     },
 
     toggleUserLikes: (state, action: PayloadAction<string>) => {
-      const likes = state.data.likes;
       const postId = action.payload;
+      const likes = state.data.likes;
 
-      // 존재 여부 확인
-      const isLiking = likes.find((like) => like.postId === postId);
+      const index = likes.findIndex((like) => like.postId === postId);
 
-      if (!isLiking) {
-        // 존재하지 않는 경우에는 추가
+      if (index === -1) {
+        // 존재하지 않는 경우 추가
         const newLike: IUserPostAction = {
           _id: postId,
           type: "like",
@@ -263,37 +262,47 @@ const userSlice = createSlice({
           deletedAt: null,
           updatedAt: new Date().toISOString(),
         };
-        state.data.likes = [...likes, newLike];
+        state.data.likes.push(newLike);
       } else {
-        state.data.likes = state.data.likes.map((like) => {
-          if (like.postId !== postId) return like;
-          return {
-            ...like,
-            isDeleted: !like.isDeleted,
-          };
-        });
+        // 존재하는 경우 isDeleted 토글
+        const existing = likes[index];
+        state.data.likes[index] = {
+          ...existing,
+          isDeleted: !existing.isDeleted,
+          updatedAt: new Date().toISOString(),
+        };
       }
     },
-    updateUserBookmarks: (state, action: PayloadAction<string>) => {
-      const prevBookmarks = state.data.bookmarks;
-
+    toggleUserBookmarks: (state, action: PayloadAction<string>) => {
       const postId = action.payload;
+      const bookmarks = state.data.bookmarks;
 
-      // 이미 존재하는 경우
-      if (prevBookmarks.includes(postId)) {
-        // 해당 포스타 삭제
-        const filteredBookmarks = prevBookmarks.filter(
-          (bookmark) => bookmark !== postId
-        );
+      const index = bookmarks.findIndex((b) => b.postId === postId);
 
-        state.data.bookmarks = filteredBookmarks;
+      if (index === -1) {
+        // 존재하지 않는 경우 추가
+        const newBookmark: IUserPostAction = {
+          _id: postId,
+          type: "bookmark",
+          postId,
+          userId: state.data._id,
+          isDeleted: false,
+          createdAt: new Date().toISOString(),
+          deletedAt: null,
+          updatedAt: new Date().toISOString(),
+        };
+        state.data.bookmarks.push(newBookmark);
       } else {
-        // 존재하지 않는 경우
-
-        // 해당 포스트 추가
-        state.data.bookmarks = [...state.data.bookmarks, postId];
+        // 존재하는 경우 isDeleted 토글
+        const existing = bookmarks[index];
+        state.data.bookmarks[index] = {
+          ...existing,
+          isDeleted: !existing.isDeleted,
+          updatedAt: new Date().toISOString(),
+        };
       }
     },
+
     clearRecentEmojis: (state) => {
       state.data.recentEmojis = [];
     },
@@ -331,7 +340,7 @@ export const {
   setUserRole,
   setSkintoneType,
   setRecentEmojis,
-  updateUserBookmarks,
+  toggleUserBookmarks,
   clearRecentEmojis,
   setPinnedPost,
   toggleUserLikes,

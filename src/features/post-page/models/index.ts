@@ -12,6 +12,9 @@ import {
   togglePostLike,
   togglePostThreadLike,
   togglePostCommentLike,
+  togglePostBookmark,
+  togglePostThreadBookmark,
+  togglePostCommentBookmark,
 } from "./slices";
 
 import {
@@ -40,6 +43,9 @@ export {
   togglePostLike,
   togglePostThreadLike,
   togglePostCommentLike,
+  togglePostBookmark,
+  togglePostThreadBookmark,
+  togglePostCommentBookmark,
 
   // selectors
   selectPost,

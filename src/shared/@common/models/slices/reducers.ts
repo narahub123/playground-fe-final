@@ -35,7 +35,7 @@ import {
   setSkintoneType,
   setRecentEmojis,
   clearRecentEmojis,
-  updateUserBookmarks,
+  toggleUserBookmarks,
   setPinnedPost,
   setUnfollowing,
   toggleUserLikes,
@@ -69,9 +69,9 @@ import {
   setPost,
   deletePost,
   updatePin,
-  updatePostBookmarks,
+  toggleFeedPostBookmark,
   toggleFeedThreadLike,
-  setCommentBookmark,
+  toggleFeedThreadBookmark,
 } from "./feedSlice";
 
 export {
@@ -111,7 +111,7 @@ export {
   setSkintoneType,
   setRecentEmojis,
   clearRecentEmojis,
-  updateUserBookmarks,
+  toggleUserBookmarks,
   setPinnedPost,
   setUnfollowing,
   toggleUserLikes,
@@ -146,7 +146,7 @@ export {
   setPost,
   deletePost,
   updatePin,
-  updatePostBookmarks,
+  toggleFeedPostBookmark,
   toggleFeedThreadLike,
-  setCommentBookmark,
+  toggleFeedThreadBookmark,
 };
