@@ -1,20 +1,20 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IPost } from "@shared/@common/types";
 
-interface PostState {
+interface FeedState {
   posts: IPost[];
   page: number;
   isEnd: boolean;
 }
 
-const initialState: PostState = {
+const initialState: FeedState = {
   posts: [],
   page: 0,
   isEnd: false,
 };
 
 const feedSlice = createSlice({
-  name: "post",
+  name: "feed",
   initialState,
   reducers: {
     setPosts: (state, action: PayloadAction<IPost[]>) => {
@@ -157,6 +157,61 @@ const feedSlice = createSlice({
         };
       });
     },
+    toggleFeedPostRepost: (
+      state,
+      action: PayloadAction<{ postId: string; isAdding: boolean }>
+    ) => {
+      const { postId, isAdding } = action.payload;
+
+      state.posts = state.posts.map((post) => {
+        if (post._id !== postId) return post;
+
+        const delta = isAdding ? 1 : -1;
+
+        return {
+          ...post,
+          actions: {
+            ...post.actions,
+            reposts: Math.max(0, post.actions.reposts + delta),
+          },
+          isRepostedByCurrentUser: isAdding,
+        };
+      });
+    },
+    toggleFeedThreadRepost: (
+      state,
+      action: PayloadAction<{
+        postId: string;
+        threadCommentId: string;
+        isAdding: boolean;
+      }>
+    ) => {
+      const { postId, threadCommentId, isAdding } = action.payload;
+
+      state.posts = state.posts.map((post) => {
+        if (post._id !== postId) return post;
+
+        const newThread = post.thread.map((entry) => {
+          if (entry._id !== threadCommentId) return entry;
+
+          const delta = isAdding ? 1 : -1;
+
+          return {
+            ...entry,
+            actions: {
+              ...entry.actions,
+              reposts: Math.max(0, entry.actions.reposts + delta),
+            },
+            isRepostedByCurrentUser: isAdding,
+          };
+        });
+
+        return {
+          ...post,
+          thread: newThread,
+        };
+      });
+    },
   },
 });
 
@@ -171,6 +226,8 @@ export const {
   toggleFeedPostBookmark,
   toggleFeedThreadLike,
   toggleFeedThreadBookmark,
+  toggleFeedPostRepost,
+  toggleFeedThreadRepost,
   addPage,
   setPage,
   setIsEnd,

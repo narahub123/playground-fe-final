@@ -1,15 +1,29 @@
 import styles from "./RepostDropdown.module.css";
-import { useLanguageContent } from "@shared/@common/models/hooks";
+import {
+  useClickOutside,
+  useLanguageContent,
+} from "@shared/@common/models/hooks";
 import { Text } from "@shared/@common/ui/components";
 import { joinClassNames } from "@shared/@common/utils";
 import PostActionIcon from "../PostActionIcon/PostActionIcon";
 import { postActionIcons, usePostContext } from "../..";
 import { fetchWithAuth } from "@shared/pages/utils";
 import { useAppDispatch } from "@app/store";
-import { setPost } from "@shared/@common/models/slices/feedSlice";
+import {
+  deletePost,
+  setPost,
+  toggleFeedPostRepost,
+  toggleFeedThreadRepost,
+} from "@shared/@common/models/slices/feedSlice";
 import { onParallelModalOpen } from "@shared/@common/models/slices/modalSlice";
 import { useNavigate } from "react-router-dom";
 import { PRIMARY_LINK } from "@shared/@common/constants";
+import { useRef } from "react";
+import {
+  togglePostCommentRepost,
+  togglePostRepost,
+  togglePostThreadRepost,
+} from "@features/post-page";
 
 interface RepostDropdownProps {
   className?: string;
@@ -25,23 +39,67 @@ interface OptionProps {
 const Option = ({ text, option, setIsRepostOpen }: OptionProps) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { _id: postId } = usePostContext();
+  const {
+    _id: postId,
+    isRepostedByCurrentUser,
+    postType,
+    basePostId,
+  } = usePostContext();
   const handleClick = {
     repost: async (e: React.MouseEvent) => {
       e.stopPropagation();
 
       try {
-        const result = await fetchWithAuth(`/posts/${postId}/repost`, {
-          method: "POST",
-        });
+        const result = isRepostedByCurrentUser
+          ? await fetchWithAuth(`/posts/${postId}/repost`, {
+              method: "DELETE",
+            })
+          : await fetchWithAuth(`/posts/${postId}/repost`, {
+              method: "POST",
+            });
 
         if (result.success) {
-          dispatch(setPost(result.data.post));
+          // 현재 포스트의 action.reposts 조작
+          // feed, post 둘 다 조작이 필요함
+          const isAdding = !isRepostedByCurrentUser;
+
+          if (isRepostedByCurrentUser) {
+            dispatch(deletePost(result.data.repost._id));
+          } else {
+            dispatch(setPost(result.data.post));
+          }
+
+          if (postType === "post") {
+            dispatch(togglePostRepost({ isAdding }));
+            dispatch(toggleFeedPostRepost({ postId, isAdding }));
+          } else if (postType === "thread") {
+            dispatch(
+              togglePostThreadRepost({ threadCommentId: postId, isAdding })
+            );
+            dispatch(
+              toggleFeedThreadRepost({
+                postId: basePostId,
+                threadCommentId: postId,
+                isAdding,
+              })
+            );
+          } else {
+            dispatch(togglePostCommentRepost({ commentId: postId, isAdding }));
+          }
         } else {
-          console.error("리포스트 실패");
+          console.error(
+            isRepostedByCurrentUser
+              ? "리포스트 삭제 실패"
+              : "리포스트 생성 실패"
+          );
         }
       } catch (error) {
-        console.error("리포스트 도중 에러 발생", error);
+        console.error(
+          isRepostedByCurrentUser
+            ? "리포스트 삭제 도중 에러 발생"
+            : "리포스트 생성 도중 에러 발생",
+          error
+        );
       } finally {
         setIsRepostOpen(false);
       }
@@ -72,20 +130,26 @@ const Option = ({ text, option, setIsRepostOpen }: OptionProps) => {
 
 const RepostDropdown = ({
   className,
+
   setIsRepostOpen,
 }: RepostDropdownProps) => {
+  const containerRef = useRef<HTMLDivElement>(null);
   // 언어 설정
   const { options } = useLanguageContent(["post", "RepostDropdown"]);
+
+  const { isRepostedByCurrentUser } = usePostContext();
+
+  useClickOutside({ containerRef, toggle: () => setIsRepostOpen(false) });
 
   const classNames = joinClassNames([styles["repost__dropdown"], className]);
 
   return (
-    <div className={classNames}>
+    <div className={classNames} ref={containerRef}>
       {Object.keys(options).map((key) => (
         <Option
           key={key}
           option={key}
-          text={options[key](false)}
+          text={options[key](isRepostedByCurrentUser)}
           setIsRepostOpen={setIsRepostOpen}
         />
       ))}

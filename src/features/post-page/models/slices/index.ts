@@ -14,6 +14,9 @@ import postSlice, {
   togglePostBookmark,
   togglePostThreadBookmark,
   togglePostCommentBookmark,
+  togglePostRepost,
+  togglePostThreadRepost,
+  togglePostCommentRepost,
 } from "./postSlice";
 
 export {
@@ -33,4 +36,7 @@ export {
   togglePostBookmark,
   togglePostThreadBookmark,
   togglePostCommentBookmark,
+  togglePostRepost,
+  togglePostThreadRepost,
+  togglePostCommentRepost,
 };

@@ -25,6 +25,9 @@ import {
   togglePostBookmark,
   togglePostThreadBookmark,
   togglePostCommentBookmark,
+  togglePostRepost,
+  togglePostThreadRepost,
+  togglePostCommentRepost,
 } from "./models";
 
 export {
@@ -60,6 +63,9 @@ export {
   togglePostBookmark,
   togglePostThreadBookmark,
   togglePostCommentBookmark,
+  togglePostRepost,
+  togglePostThreadRepost,
+  togglePostCommentRepost,
 
   // selectors
   selectPost,

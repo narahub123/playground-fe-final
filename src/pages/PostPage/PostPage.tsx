@@ -27,6 +27,7 @@ const PostPage = () => {
 
       if (result.success) {
         const response = result.data.post;
+        console.log(response);
 
         // 포스트 정보 추가
         dispatch(setPost(response));

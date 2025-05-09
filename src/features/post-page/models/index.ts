@@ -15,6 +15,9 @@ import {
   togglePostBookmark,
   togglePostThreadBookmark,
   togglePostCommentBookmark,
+  togglePostRepost,
+  togglePostThreadRepost,
+  togglePostCommentRepost,
 } from "./slices";
 
 import {
@@ -46,6 +49,9 @@ export {
   togglePostBookmark,
   togglePostThreadBookmark,
   togglePostCommentBookmark,
+  togglePostRepost,
+  togglePostThreadRepost,
+  togglePostCommentRepost,
 
   // selectors
   selectPost,

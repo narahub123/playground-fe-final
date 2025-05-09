@@ -188,6 +188,65 @@ const postSlice = createSlice({
         };
       });
     },
+    togglePostRepost: (state, action: PayloadAction<{ isAdding: boolean }>) => {
+      if (!state.data) return;
+
+      const { isAdding } = action.payload;
+
+      const delta = isAdding ? 1 : -1;
+
+      state.data.actions.reposts = Math.max(
+        0,
+        state.data.actions.reposts + delta
+      );
+      state.data.isRepostedByCurrentUser = isAdding;
+    },
+    togglePostThreadRepost: (
+      state,
+      action: PayloadAction<{ threadCommentId: String; isAdding: boolean }>
+    ) => {
+      if (!state.data) return;
+
+      const { threadCommentId, isAdding } = action.payload;
+
+      state.data.thread = state.data.thread.map((entry) => {
+        if (entry._id !== threadCommentId) return entry;
+
+        const delta = isAdding ? 1 : -1;
+
+        return {
+          ...entry,
+          actions: {
+            ...entry.actions,
+            reposts: Math.max(0, entry.actions.reposts + delta),
+          },
+          isRepostedByCurrentUser: isAdding,
+        };
+      });
+    },
+    togglePostCommentRepost: (
+      state,
+      action: PayloadAction<{ commentId: String; isAdding: boolean }>
+    ) => {
+      if (!state.data) return;
+
+      const { commentId, isAdding } = action.payload;
+
+      state.data.comments = state.data.comments.map((comment) => {
+        if (comment._id !== commentId) return comment;
+
+        const delta = isAdding ? 1 : -1;
+
+        return {
+          ...comment,
+          actions: {
+            ...comment.actions,
+            reposts: Math.max(0, comment.actions.reposts + delta),
+          },
+          isRepostedByCurrentUser: isAdding,
+        };
+      });
+    },
   },
 });
 
@@ -209,4 +268,7 @@ export const {
   togglePostBookmark,
   togglePostThreadBookmark,
   togglePostCommentBookmark,
+  togglePostRepost,
+  togglePostThreadRepost,
+  togglePostCommentRepost,
 } = postSlice.actions;
