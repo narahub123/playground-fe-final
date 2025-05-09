@@ -27,7 +27,7 @@ const feedSlice = createSlice({
     setPost: (state, action: PayloadAction<IPost>) => {
       state.posts = [action.payload, ...state.posts];
     },
-    deletePost: (state, action: PayloadAction<string>) => {
+    deleteFeedPost: (state, action: PayloadAction<string>) => {
       const posts = state.posts;
 
       const filtered = posts.filter((post) => post._id !== action.payload);
@@ -220,7 +220,7 @@ export default feedSlice.reducer;
 export const {
   setPosts,
   setPost,
-  deletePost,
+  deleteFeedPost,
   updatePin,
   toggleFeedPostLike,
   toggleFeedPostBookmark,

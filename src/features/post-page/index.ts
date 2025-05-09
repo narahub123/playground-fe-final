@@ -28,6 +28,7 @@ import {
   togglePostRepost,
   togglePostThreadRepost,
   togglePostCommentRepost,
+  clearPost,
 } from "./models";
 
 export {
@@ -66,6 +67,7 @@ export {
   togglePostRepost,
   togglePostThreadRepost,
   togglePostCommentRepost,
+  clearPost,
 
   // selectors
   selectPost,

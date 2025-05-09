@@ -18,6 +18,7 @@ import {
   togglePostRepost,
   togglePostThreadRepost,
   togglePostCommentRepost,
+  clearPost,
 } from "./slices";
 
 import {
@@ -52,6 +53,7 @@ export {
   togglePostRepost,
   togglePostThreadRepost,
   togglePostCommentRepost,
+  clearPost,
 
   // selectors
   selectPost,

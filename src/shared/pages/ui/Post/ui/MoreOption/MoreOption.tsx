@@ -11,7 +11,11 @@ import {
   useUserRelationStatus,
 } from "@shared/pages/ui/Post";
 import { fetchWithAuth } from "@shared/pages/utils";
-import { deletePost } from "@shared/@common/models/slices/feedSlice";
+import {
+  deleteFeedPost,
+  toggleFeedPostRepost,
+  toggleFeedThreadRepost,
+} from "@shared/@common/models/slices/feedSlice";
 import {
   setFollowing,
   setPinnedPost,
@@ -24,6 +28,11 @@ import {
   setMutedUser,
 } from "@shared/@common/models/slices/privacySlice";
 import { useNavigate } from "react-router-dom";
+import {
+  clearPost,
+  togglePostCommentRepost,
+  togglePostThreadRepost,
+} from "@features/post-page";
 
 interface MoreOptionProps {
   className?: string;
@@ -50,7 +59,15 @@ const MoreOption = ({
     className,
   ]);
 
-  const { _id: postId, author, type } = usePostContext();
+  const {
+    _id: postId,
+    author,
+    type,
+    originalPostId,
+    postType,
+    basePostId,
+    isPostPage,
+  } = usePostContext();
   const { _id: user_id, userId } = author;
   const pinnedPost = useSelector(selectPinnedPost);
 
@@ -75,15 +92,47 @@ const MoreOption = ({
         method: "DELETE",
       });
       if (result.success) {
-        const postIds = result.data.postIds;
-        for (const postId of postIds) {
-          dispatch(deletePost(postId));
+        dispatch(deleteFeedPost(postId));
+
+        if (type === "repost") {
+          if (!originalPostId) return;
+
+          const isAdding = false;
+
+          if (postType === "post") {
+            dispatch(
+              toggleFeedPostRepost({ postId: originalPostId, isAdding })
+            );
+            // 포스트 페이지에서 포스트를 삭제한 경우
+            if (isPostPage) {
+              dispatch(clearPost());
+              navigate(-1);
+            }
+          } else if (postType === "thread") {
+            dispatch(
+              toggleFeedThreadRepost({
+                postId: basePostId,
+                threadCommentId: originalPostId,
+                isAdding,
+              })
+            );
+            dispatch(
+              togglePostThreadRepost({
+                threadCommentId: originalPostId,
+                isAdding,
+              })
+            );
+          } else {
+            dispatch(togglePostCommentRepost({ commentId: postId, isAdding }));
+          }
         }
       } else {
         console.error("삭제 실패");
       }
     } catch (error) {
       console.error("삭제 도중 에러 발생", error);
+    } finally {
+      onClose();
     }
   };
 

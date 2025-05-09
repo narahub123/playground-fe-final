@@ -17,6 +17,7 @@ import postSlice, {
   togglePostRepost,
   togglePostThreadRepost,
   togglePostCommentRepost,
+  clearPost,
 } from "./postSlice";
 
 export {
@@ -39,4 +40,5 @@ export {
   togglePostRepost,
   togglePostThreadRepost,
   togglePostCommentRepost,
+  clearPost,
 };

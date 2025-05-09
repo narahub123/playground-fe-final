@@ -6,6 +6,7 @@ interface IPostContext extends IPost {
   mentions: string[];
   setMentions: React.Dispatch<React.SetStateAction<string[]>>;
   postType: PostType;
+  isPostPage: boolean;
 }
 
 interface IRect {

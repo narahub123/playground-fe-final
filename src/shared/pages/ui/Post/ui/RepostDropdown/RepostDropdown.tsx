@@ -10,7 +10,7 @@ import { postActionIcons, usePostContext } from "../..";
 import { fetchWithAuth } from "@shared/pages/utils";
 import { useAppDispatch } from "@app/store";
 import {
-  deletePost,
+  deleteFeedPost,
   setPost,
   toggleFeedPostRepost,
   toggleFeedThreadRepost,
@@ -64,7 +64,7 @@ const Option = ({ text, option, setIsRepostOpen }: OptionProps) => {
           const isAdding = !isRepostedByCurrentUser;
 
           if (isRepostedByCurrentUser) {
-            dispatch(deletePost(result.data.repost._id));
+            dispatch(deleteFeedPost(result.data.repost._id));
           } else {
             dispatch(setPost(result.data.post));
           }

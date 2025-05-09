@@ -12,6 +12,7 @@ interface PostContainerProps {
   children: ReactNode;
   linkDisabled?: boolean;
   postType: PostType;
+  isPostPage?: boolean;
 }
 
 const PostContainer = ({
@@ -20,6 +21,7 @@ const PostContainer = ({
   post,
   linkDisabled = false,
   postType,
+  isPostPage = false,
 }: PostContainerProps) => {
   const classNames = joinClassNames([styles["post__container"], className]);
   const [mentions, setMentions] = useState<string[]>([]);
@@ -27,7 +29,13 @@ const PostContainer = ({
 
   if (!post) return null;
 
-  const value: IPostContext = { ...post, mentions, setMentions, postType };
+  const value: IPostContext = {
+    ...post,
+    mentions,
+    setMentions,
+    postType,
+    isPostPage,
+  };
 
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();

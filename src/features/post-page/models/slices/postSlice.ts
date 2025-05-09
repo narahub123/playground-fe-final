@@ -22,6 +22,7 @@ const postSlice = createSlice({
   name: "post",
   initialState,
   reducers: {
+    clearPost: () => initialState,
     setPost: (state, action: PayloadAction<IPost>) => {
       state.data = action.payload;
       state.skip = 1;
@@ -271,4 +272,5 @@ export const {
   togglePostRepost,
   togglePostThreadRepost,
   togglePostCommentRepost,
+  clearPost,
 } = postSlice.actions;
