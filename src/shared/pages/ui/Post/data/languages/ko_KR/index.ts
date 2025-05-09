@@ -2,7 +2,8 @@ import { MoreMyOptionType, MoreOptionType } from "@shared/pages/ui/Post";
 
 const post_kr = {
   RepostInfo: {
-    text: "님이 재게시함",
+    text: (userId: string, isRepostedByCurrentUser: boolean) =>
+      `${isRepostedByCurrentUser ? "내가" : userId + " 님이"} 재게시함`,
   },
   useRelativeTime: {
     now: "지금",
