@@ -1,2 +1,6 @@
 .profile__page {
 }
+
+.tabs {
+  display: flex;
+}

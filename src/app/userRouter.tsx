@@ -82,6 +82,24 @@ const userRouter = createBrowserRouter([
       {
         path: PRIMARY_LINK.PROFILE,
         element: <ProfilePage />,
+        children: [
+          {
+            index: true,
+            element: <></>,
+          },
+          {
+            path: "with_replies",
+            element: <></>,
+          },
+          {
+            path: "media",
+            element: <></>,
+          },
+          {
+            path: "likes",
+            element: <></>,
+          },
+        ],
       },
       {
         path: PRIMARY_LINK.SETTINGS,

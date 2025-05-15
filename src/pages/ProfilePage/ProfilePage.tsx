@@ -1,6 +1,5 @@
 import { useAppDispatch } from "@app/store";
 import styles from "./ProfilePage.module.css";
-import { useLanguageContent } from "@shared/@common/models/hooks";
 import {
   selectPage,
   selectPosts,
@@ -14,6 +13,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { setPosts } from "@shared/@common/models/slices/feedSlice";
+import { ProfilePageTab, proflieTabLinks } from "@features/profile-page";
 
 interface ProfilePageProps {
   className?: string;
@@ -21,8 +21,7 @@ interface ProfilePageProps {
 
 const ProfilePage = ({ className }: ProfilePageProps) => {
   const dispatch = useAppDispatch();
-  // 언어 설정
-  const {} = useLanguageContent(["pages", "ProfilePage"]);
+
   const { pathname } = useLocation();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -63,6 +62,11 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
 
   return (
     <div className={classNames}>
+      <div className={styles["tabs"]}>
+        {Object.keys(proflieTabLinks).map((key: string) => (
+          <ProfilePageTab key={key} link={key} />
+        ))}
+      </div>
       <div className={styles["feed"]}>
         {isLoading ? (
           <div className={styles["spinner__wrapper"]}>
