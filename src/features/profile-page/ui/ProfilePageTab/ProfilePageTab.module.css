@@ -1,0 +1,29 @@
+.profile__page__tab {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile__page__tab:hover {
+  background-color: #f1f1f1;
+}
+
+.profile__page__tab:focus-visible {
+  background-color: #f1f1f1;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 0.25rem solid transparent;
+}
+
+.selected {
+  border-bottom: 0.25rem solid var(--colorTheme-color-primary);
+}
+
+.text {
+  padding: 0.5rem;
+}
