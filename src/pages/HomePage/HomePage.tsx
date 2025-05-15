@@ -31,7 +31,7 @@ const HomePage = () => {
     const getPosts = async () => {
       setIsLoading(true);
       try {
-        const result = await fetchWithAuth(`/posts?skip=${page}`);
+        const result = await fetchWithAuth(`/posts/me/feed?skip=${page}`);
 
         if (result.success) {
           console.log(result.data.posts);

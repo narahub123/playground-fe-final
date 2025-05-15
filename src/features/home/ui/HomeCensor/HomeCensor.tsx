@@ -34,7 +34,7 @@ const HomeCensor = ({ className }: HomeCensorProps) => {
     setIsLoading(true);
     setIsShowing(false);
     try {
-      const result = await fetchWithAuth(`/posts?skip=${page}`);
+      const result = await fetchWithAuth(`/posts/me/feed?skip=${page}`);
 
       if (result.success) {
         const posts = result.data.posts;
