@@ -11,12 +11,14 @@ import auths from "./auths";
 import { home_lang } from "@features/home/data";
 import { post_lang } from "@shared/pages/ui/Post/data";
 import { postpage_lang } from "@features/post-page";
+import profilepage_lang from "@features/profile-page/data/language";
 
 const settings = settings_lang["tw"];
 const sectionTextMap = sectionTextMap_all["tw"];
 const home = home_lang["tw"];
 const post = post_lang["tw"];
 const postpage = postpage_lang["tw"];
+const profilepage = profilepage_lang["tw"];
 
 const zh_TW = {
   pages,
@@ -30,6 +32,7 @@ const zh_TW = {
   home,
   post,
   postpage,
+  profilepage,
 };
 
 export default zh_TW;

@@ -11,12 +11,14 @@ import { home_lang } from "@features/home/data";
 import auths from "./auths";
 import { post_lang } from "@shared/pages/ui/Post/data";
 import { postpage_lang } from "@features/post-page";
+import profilepage_lang from "@features/profile-page/data/language";
 
 const home = home_lang["kr"];
 const settings = settings_lang["kr"];
 const sectionTextMap = sectionTextMap_all["kr"];
 const post = post_lang["kr"];
 const postpage = postpage_lang["kr"];
+const profilepage = profilepage_lang["kr"];
 
 const ko_kR = {
   pages,
@@ -30,6 +32,7 @@ const ko_kR = {
   home,
   post,
   postpage,
+  profilepage,
 };
 
 export default ko_kR;
