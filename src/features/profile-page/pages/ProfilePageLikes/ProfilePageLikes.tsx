@@ -36,8 +36,8 @@ const ProfilePageLikes = ({ className }: ProfilePageLikesProps) => {
 
     try {
       const api = isCurrentUser
-        ? `/posts/me/ariticles?skip=${page}`
-        : `/posts/${userId}?skip=${page}`;
+        ? `/users/me/likes?skip=${page}`
+        : `/users/${userId}/likes?skip=${page}`;
 
       const result = await fetchWithAuth(api);
 

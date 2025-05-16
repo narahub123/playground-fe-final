@@ -35,8 +35,8 @@ const ProfilePageMedia = ({ className }: ProfilePageMediaProps) => {
 
     try {
       const api = isCurrentUser
-        ? `/posts/me/ariticles?skip=${page}`
-        : `/posts/${userId}?skip=${page}`;
+        ? `/posts/me/media?skip=${page}`
+        : `/posts/${userId}/media?skip=${page}`;
 
       const result = await fetchWithAuth(api);
 
