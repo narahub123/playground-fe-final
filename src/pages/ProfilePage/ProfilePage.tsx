@@ -13,8 +13,6 @@ interface ProfilePageProps {
 const ProfilePage = ({ className }: ProfilePageProps) => {
   const isLoading = useSelector(selectIsFeedLoading);
 
-  console.log(isLoading);
-
   const classNames = joinClassNames([styles["profile__page"], className]);
 
   return (
