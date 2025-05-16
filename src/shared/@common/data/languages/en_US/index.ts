@@ -12,6 +12,7 @@ import { home_lang } from "@features/home/data";
 import { post_lang } from "@shared/pages/ui/Post/data";
 import { postpage_lang } from "@features/post-page";
 import profilepage_lang from "@features/profile-page/data/language";
+import { explore_lang } from "@features/explore";
 
 const settings = settings_lang["us"];
 const sectionTextMap = sectionTextMap_all["us"];
@@ -19,6 +20,7 @@ const home = home_lang["us"];
 const post = post_lang["us"];
 const postpage = postpage_lang["us"];
 const profilepage = profilepage_lang["us"];
+const explore = explore_lang["us"];
 
 const en_US = {
   pages,
@@ -33,6 +35,7 @@ const en_US = {
   post,
   postpage,
   profilepage,
+  explore,
 };
 
 export default en_US;
