@@ -59,7 +59,12 @@ import {
 
 import { getNotification } from "./notificationSelectors";
 
-import { selectPosts, selectPage, selectIsEnd } from "./feedSelectors";
+import {
+  selectPosts,
+  selectPage,
+  selectIsEnd,
+  selectIsFeedLoading,
+} from "./feedSelectors";
 
 export {
   // display
@@ -125,4 +130,5 @@ export {
   selectPosts,
   selectPage,
   selectIsEnd,
+  selectIsFeedLoading,
 };

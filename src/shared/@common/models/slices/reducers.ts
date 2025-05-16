@@ -78,6 +78,7 @@ import {
   setPage,
   setIsEnd,
   addPosts,
+  setIsFeedLoaing,
 } from "./feedSlice";
 
 export {
@@ -161,4 +162,5 @@ export {
   setIsEnd,
   addPosts,
   setPage,
+  setIsFeedLoaing,
 };

@@ -2,4 +2,24 @@ import { profilepage_lang, proflieTabLinks } from "./data";
 
 import { ProfilePageTab } from "./ui";
 
-export { ProfilePageTab, profilepage_lang, proflieTabLinks };
+import {
+  ProfilePageArticles,
+  ProfilePageReplies,
+  ProfilePageMedia,
+  ProfilePageLikes,
+} from "./pages";
+
+export {
+  // ui
+  ProfilePageTab,
+
+  // data
+  profilepage_lang,
+  proflieTabLinks,
+
+  // pages
+  ProfilePageArticles,
+  ProfilePageReplies,
+  ProfilePageMedia,
+  ProfilePageLikes,
+};

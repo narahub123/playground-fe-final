@@ -38,6 +38,12 @@ import {
   PostPageMain,
   PostPageQuotes,
 } from "@features/post-page";
+import {
+  ProfilePageArticles,
+  ProfilePageLikes,
+  ProfilePageMedia,
+  ProfilePageReplies,
+} from "@features/profile-page";
 
 const userRouter = createBrowserRouter([
   {
@@ -85,19 +91,19 @@ const userRouter = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <></>,
+            element: <ProfilePageArticles />,
           },
           {
             path: "with_replies",
-            element: <></>,
+            element: <ProfilePageReplies />,
           },
           {
             path: "media",
-            element: <></>,
+            element: <ProfilePageMedia />,
           },
           {
             path: "likes",
-            element: <></>,
+            element: <ProfilePageLikes />,
           },
         ],
       },

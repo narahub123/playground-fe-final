@@ -5,12 +5,14 @@ interface FeedState {
   posts: IPost[];
   page: number;
   isEnd: boolean;
+  isLoading: boolean;
 }
 
 const initialState: FeedState = {
   posts: [],
   page: 0,
   isEnd: false,
+  isLoading: false,
 };
 
 const feedSlice = createSlice({
@@ -212,6 +214,9 @@ const feedSlice = createSlice({
         };
       });
     },
+    setIsFeedLoaing: (state, action: PayloadAction<boolean>) => {
+      state.isLoading = action.payload;
+    },
   },
 });
 
@@ -232,4 +237,5 @@ export const {
   setPage,
   setIsEnd,
   addPosts,
+  setIsFeedLoaing,
 } = feedSlice.actions;
