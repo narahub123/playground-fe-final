@@ -34,6 +34,7 @@ const ProfilePageReplies = ({ className }: ProfilePageRepliesProps) => {
   const getPosts = async (userId: string) => {
     const isCurrentUser = userId === userHandle;
     dispatch(setIsFeedLoaing(true));
+    dispatch(setPosts([]));
 
     try {
       const api = isCurrentUser

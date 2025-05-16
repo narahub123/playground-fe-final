@@ -25,6 +25,7 @@ const ProfilePageLikes = ({ className }: ProfilePageLikesProps) => {
   const classNames = joinClassNames([styles["profilepagelikes"], className]);
 
   const dispatch = useAppDispatch();
+
   const { pathname } = useLocation();
   const { userId: userHandle } = useSelector(selectUser);
   const posts = useSelector(selectPosts);
@@ -33,6 +34,7 @@ const ProfilePageLikes = ({ className }: ProfilePageLikesProps) => {
   const getPosts = async (userId: string) => {
     const isCurrentUser = userId === userHandle;
     dispatch(setIsFeedLoaing(true));
+    dispatch(setPosts([]));
 
     try {
       const api = isCurrentUser

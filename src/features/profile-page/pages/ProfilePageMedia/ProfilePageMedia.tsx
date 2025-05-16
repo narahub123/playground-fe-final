@@ -32,6 +32,7 @@ const ProfilePageMedia = ({ className }: ProfilePageMediaProps) => {
   const getPosts = async (userId: string) => {
     const isCurrentUser = userId === userHandle;
     dispatch(setIsFeedLoaing(true));
+    dispatch(setPosts([]));
 
     try {
       const api = isCurrentUser
