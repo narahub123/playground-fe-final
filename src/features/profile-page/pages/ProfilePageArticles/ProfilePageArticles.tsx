@@ -26,6 +26,7 @@ const ProfilePageArticles = ({ className }: ProfilePageArticlesProps) => {
   const { userId: userHandle } = useSelector(selectUser);
   const posts = useSelector(selectPosts);
   const page = useSelector(selectPage);
+  99;
 
   const classNames = joinClassNames([
     styles["profile__page__articles"],
@@ -59,7 +60,7 @@ const ProfilePageArticles = ({ className }: ProfilePageArticlesProps) => {
     const userId = pathname.split("/")[1];
 
     getPosts(userId);
-  }, [pathname]);
+  }, []);
 
   return (
     <div className={classNames}>

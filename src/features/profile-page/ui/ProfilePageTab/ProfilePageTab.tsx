@@ -15,8 +15,6 @@ const ProfilePageTab = ({ className, link }: ProfilePageTabProps) => {
   const { tabs } = useLanguageContent(["profilepage", "ProfilePageTab"]);
   const classNames = joinClassNames([styles["profile__page__tab"], className]);
 
-  console.log(pathname.split("/")[2] || "");
-
   return (
     <Link
       className={classNames}
