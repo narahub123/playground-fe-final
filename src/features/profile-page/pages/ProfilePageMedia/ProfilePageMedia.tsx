@@ -14,14 +14,18 @@ import {
 } from "@shared/@common/models/slices/feedSlice";
 import { fetchWithAuth } from "@shared/pages";
 import { useEffect } from "react";
-import { Post } from "@shared/pages/ui/Post";
+import { IPost } from "@shared/@common/types";
+import { MediaRow } from "@features/profile-page/ui";
 
 interface ProfilePageMediaProps {
   className?: string;
 }
 
 const ProfilePageMedia = ({ className }: ProfilePageMediaProps) => {
-  const classNames = joinClassNames([styles["profilepagemedia"], className]);
+  const classNames = joinClassNames([
+    styles["profile__page__media"],
+    className,
+  ]);
 
   const dispatch = useAppDispatch();
   const { pathname } = useLocation();
@@ -59,37 +63,19 @@ const ProfilePageMedia = ({ className }: ProfilePageMediaProps) => {
     getPosts(userId);
   }, [pathname]);
 
+  const rows = posts.reduce<IPost[][]>((acc, row, index) => {
+    const rowIndex = Math.floor(index / 3);
+    if (!acc[rowIndex]) {
+      acc[rowIndex] = [];
+    }
+    acc[rowIndex].push(row);
+    return acc;
+  }, []);
+
   return (
     <div className={classNames}>
-      {posts.map((post, index) => {
-        return (
-          <Post key={`${post._id}${index}`} post={post} postType="post">
-            <Post.Top />
-            <Post.Content>
-              <Post.Header />
-              {(post._id || post.originalPost?._id) && (
-                <Post.Main>
-                  <Post.Left
-                    isShowingConnector={post.thread && post.thread.length > 0}
-                  />
-                  <Post.Right>
-                    <Post.Meta />
-                    <Post.Text />
-                    <Post.Media />
-                    <Post.Vote />
-                    <Post.OriginalPost />
-                    <Post.Actions className={styles["actions"]} />
-                  </Post.Right>
-                </Post.Main>
-              )}
-              <Post.Footer>
-                <Post.MoreThread />
-                <Post.Thread isCommentType={true} isPostPage={false} />
-              </Post.Footer>
-            </Post.Content>
-            <Post.Bottom />
-          </Post>
-        );
+      {rows.map((row, index) => {
+        return <MediaRow key={index} row={row} />;
       })}
     </div>
   );
