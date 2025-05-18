@@ -7,6 +7,7 @@ import React, { useState } from "react";
 import { setPosts } from "@shared/@common/models/slices/feedSlice";
 import { useSelector } from "react-redux";
 import { selectPage } from "@shared/@common/models/selectors";
+import { Icon } from "@shared/@common/ui/icons";
 
 interface ExplorePageProps {
   className?: string;
@@ -45,8 +46,10 @@ const ExplorePage = ({ className }: ExplorePageProps) => {
   return (
     <div className={classNames}>
       <div className={styles["search__wrapper"]}>
-        <div className={styles["wrapper__wrapper"]}>검색</div>
-        <div className={styles["icon__wrapper"]}>아이콘</div>
+        <div className={styles["input__wrapper"]}>검색</div>
+        <div className={styles["settings__wrapper"]}>
+          <Icon iconName="settings" title="설정" />
+        </div>
       </div>
       <div className={styles["nav__wrapper"]}>탭</div>
       <div className={styles["feed__wrapper"]}>피드</div>
