@@ -4,14 +4,27 @@
 .search__wrapper {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 0 1rem;
 }
 
-.input__wrapper {
+.forward__container {
+  position: relative;
+  width: 41.6px;
+  height: 41.6px;
+}
+
+.forward__icon {
+  position: absolute;
+  top: 4.2px;
+  left: -8px;
+}
+
+.input__container {
   flex: 1;
 }
 
-.settings__wrapper {
+.settings__container {
 }
 
 .tabs__wrapper {

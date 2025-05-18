@@ -1,3 +1,11 @@
 import { explore_lang } from "./data";
+import { SearchContainer, Search, SearchDropdown } from "./ui";
 
-export { explore_lang };
+export {
+  // data
+  explore_lang,
+  // ui
+  SearchContainer,
+  Search,
+  SearchDropdown,
+};

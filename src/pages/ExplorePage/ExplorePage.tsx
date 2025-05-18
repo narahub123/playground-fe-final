@@ -8,6 +8,7 @@ import { setPosts } from "@shared/@common/models/slices/feedSlice";
 import { useSelector } from "react-redux";
 import { selectPage } from "@shared/@common/models/selectors";
 import { Icon } from "@shared/@common/ui/icons";
+import { SearchContainer } from "@features/explore";
 
 interface ExplorePageProps {
   className?: string;
@@ -46,9 +47,20 @@ const ExplorePage = ({ className }: ExplorePageProps) => {
   return (
     <div className={classNames}>
       <div className={styles["search__wrapper"]}>
-        <div className={styles["input__wrapper"]}>검색</div>
+        <div className={styles["forward__container"]}>
+          <Icon
+            iconName="arrowLeft"
+            title="돌아가기"
+            onClick={() => {}}
+            className={styles["forward__icon"]}
+          />
+        </div>
+        <div className={styles["input__container"]}>
+          <SearchContainer />
+        </div>
         <div className={styles["settings__wrapper"]}>
           <Icon iconName="settings" title="설정" />
+          {/* <div>설정</div> */}
         </div>
       </div>
       <div className={styles["nav__wrapper"]}>탭</div>
