@@ -44,8 +44,12 @@ const ExplorePage = ({ className }: ExplorePageProps) => {
 
   return (
     <div className={classNames}>
-      <input type="text" onChange={handleChange} />
-      <button onClick={handleSearch}>검색</button>
+      <div className={styles["search__wrapper"]}>
+        <div className={styles["wrapper__wrapper"]}>검색</div>
+        <div className={styles["icon__wrapper"]}>아이콘</div>
+      </div>
+      <div className={styles["nav__wrapper"]}>탭</div>
+      <div className={styles["feed__wrapper"]}>피드</div>
     </div>
   );
 };

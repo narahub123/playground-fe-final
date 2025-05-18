@@ -1,2 +1,15 @@
 .explore__page {
 }
+
+.search__wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tabs__wrapper {
+  width: 100%;
+}
+
+.feed__wrapper {
+  width: 100%;
+}
