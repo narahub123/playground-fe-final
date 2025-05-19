@@ -1,3 +1,7 @@
 .search__dropdown {
   position: absolute;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 1rem;
+  box-shadow: 0px 0px 10px -2px #ccc;
 }
