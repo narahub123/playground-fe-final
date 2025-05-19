@@ -22,11 +22,20 @@ const SearchDropdown = ({ className, rect }: SearchDropdownProps) => {
 
   const saves = ["해린", "안나"];
 
+  const searches = ["해린 생카 해린", "해린 haerin"];
+
   return (
     <div className={classNames} style={{ top: rect.top, left: 0 }}>
       {/* 검색어의 유무에 따라 레이아웃이 달라짐 */}
       {keyword ? (
-        <div className={styles["with__keyword"]}>키워드 있는 경우</div>
+        <div className={styles["with__keyword"]}>
+          <div className={styles["list"]}>
+            {searches.map((search) => (
+              <SearchKeyword type="keyword" option={search} />
+            ))}
+          </div>
+          <div className={styles["list"]}>사용자 리스트</div>
+        </div>
       ) : (
         <div className={styles["no__keyword"]}>
           <div className={styles["heading"]}>
@@ -42,7 +51,7 @@ const SearchDropdown = ({ className, rect }: SearchDropdownProps) => {
           </div>
           <div className={styles["list"]}>
             {recents.map((recent) => (
-              <SearchKeyword type="recent" keyword={recent} key={recent} />
+              <SearchKeyword type="recent" option={recent} key={recent} />
             ))}
           </div>
           <div className={styles["heading"]}>
@@ -50,7 +59,7 @@ const SearchDropdown = ({ className, rect }: SearchDropdownProps) => {
           </div>
           <div className={styles["list"]}>
             {saves.map((save) => (
-              <SearchKeyword type="save" key={save} keyword={save} />
+              <SearchKeyword type="save" key={save} option={save} />
             ))}
           </div>
         </div>
