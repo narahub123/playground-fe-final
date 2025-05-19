@@ -24,14 +24,18 @@ const SearchDropdown = ({ className, rect }: SearchDropdownProps) => {
 
   const searches = ["해린 생카 해린", "해린 haerin"];
 
+  const result = searches.filter((search) => search.includes(keyword));
+
+  const keywordResult = result.length > 0 ? result : [keyword];
+
   return (
     <div className={classNames} style={{ top: rect.top, left: 0 }}>
       {/* 검색어의 유무에 따라 레이아웃이 달라짐 */}
       {keyword ? (
         <div className={styles["with__keyword"]}>
           <div className={styles["list"]}>
-            {searches.map((search) => (
-              <SearchKeyword type="keyword" option={search} />
+            {keywordResult.map((search) => (
+              <SearchKeyword type="keyword" option={search} key={search} />
             ))}
           </div>
           <div className={styles["list"]}>사용자 리스트</div>

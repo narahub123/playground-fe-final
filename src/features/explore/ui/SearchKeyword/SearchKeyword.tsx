@@ -16,11 +16,13 @@ const SearchKeyword = ({ className, type, option }: SearchKeywordProps) => {
   const { keyword } = useSearchContext();
 
   //
-  const splitKeyword = option.split(keyword);
+  const splitKeyword = option !== keyword ? option.split(keyword) : [keyword];
 
   for (let i = 0; i < splitKeyword.length; i++) {
     if (i % 2 !== 0) splitKeyword.splice(i, 0, keyword);
   }
+
+  console.log(splitKeyword);
 
   return (
     <div className={classNames}>
@@ -36,8 +38,9 @@ const SearchKeyword = ({ className, type, option }: SearchKeywordProps) => {
           splitKeyword.length > 1 ? (
             <div className={styles["keyword__wrapper"]}>
               <Text>
-                {splitKeyword.map((divide) => (
+                {splitKeyword.map((divide, index) => (
                   <span
+                    key={index}
                     className={joinClassNames([
                       divide === keyword ? styles["normal"] : styles["bold"],
                     ])}
@@ -46,7 +49,7 @@ const SearchKeyword = ({ className, type, option }: SearchKeywordProps) => {
                   </span>
                 ))}
               </Text>
-              <Text className={styles["trend"]}>실시간 트렌드</Text>
+              {/* <Text className={styles["trend"]}>실시간 트렌드</Text> */}
             </div>
           ) : (
             <Text>{`"${keyword}" 검색`}</Text>
