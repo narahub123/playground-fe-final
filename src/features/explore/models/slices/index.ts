@@ -1,4 +1,7 @@
-import searchSlice, { setSearchHistory } from "./searchSlice";
+import searchSlice, {
+  setSearchHistory,
+  toggleSavedSearches,
+} from "./searchSlice";
 
 export {
   //slice
@@ -6,4 +9,5 @@ export {
 
   // reducers
   setSearchHistory,
+  toggleSavedSearches,
 };

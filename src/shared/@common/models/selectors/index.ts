@@ -33,7 +33,6 @@ import {
   selectRecentEmojis,
   selectBookmarks,
   selectPinnedPost,
-  selectSavedSearches,
 } from "./userSelectors";
 
 import {
@@ -102,7 +101,6 @@ export {
   selectRecentEmojis,
   selectBookmarks,
   selectPinnedPost,
-  selectSavedSearches,
 
   // modal
   getParallelModals,

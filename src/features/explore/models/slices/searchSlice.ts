@@ -17,9 +17,25 @@ const searchSlice = createSlice({
     setSearchHistory: (state, action: PayloadAction<ISearchState>) => {
       return action.payload;
     },
+    toggleSavedSearches: (state, action: PayloadAction<string>) => {
+      const savedSearches = state.savedSearches;
+      const keyword = action.payload.toLowerCase();
+
+      const isExisting = savedSearches.some(
+        (search) => search.toLowerCase() === keyword
+      );
+
+      if (isExisting) {
+        state.savedSearches = savedSearches.filter(
+          (search) => search.toLowerCase() !== keyword
+        );
+      } else {
+        state.savedSearches = [action.payload, ...savedSearches];
+      }
+    },
   },
 });
 
 export default searchSlice.reducer;
 
-export const { setSearchHistory } = searchSlice.actions;
+export const { setSearchHistory, toggleSavedSearches } = searchSlice.actions;

@@ -70,7 +70,7 @@ const SearchDropdown = ({ className, rect }: SearchDropdownProps) => {
             <Text type="heading3">{saved}</Text>
           </div>
           <div className={styles["list"]}>
-            {saves.map((save) => (
+            {savedSearches.map((save) => (
               <SearchKeyword type="save" key={save} option={save} />
             ))}
           </div>

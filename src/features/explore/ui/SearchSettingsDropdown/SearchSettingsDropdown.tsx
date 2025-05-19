@@ -1,12 +1,14 @@
-import { useSearchContext } from "@features/explore/models";
+import {
+  toggleSavedSearches,
+  useSearchContext,
+  selectSavedSearches,
+} from "@features/explore/models";
 import styles from "./SearchSettingsDropdown.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
 import { fetchWithAuth } from "@shared/pages";
 import { useAppDispatch } from "@app/store";
-import { toggleSavedSearches } from "@shared/@common/models/slices/userSlice";
 import { useSelector } from "react-redux";
-import { selectSavedSearches } from "@shared/@common/models/selectors";
 
 interface SearchSettingsDropdownProps {
   className?: string;

@@ -1,6 +1,6 @@
 import { useSearchContext, useSearch } from "./hooks";
-import { searchSlice, setSearchHistory } from "./slices";
-import { getSearchHistory } from "./selectors";
+import { searchSlice, setSearchHistory, toggleSavedSearches } from "./slices";
+import { getSearchHistory, selectSavedSearches } from "./selectors";
 
 export {
   useSearchContext,
@@ -10,7 +10,9 @@ export {
 
   // reducers
   setSearchHistory,
+  toggleSavedSearches,
 
   // selectors
   getSearchHistory,
+  selectSavedSearches,
 };

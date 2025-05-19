@@ -39,7 +39,6 @@ import {
   setPinnedPost,
   setUnfollowing,
   toggleUserLikes,
-  toggleSavedSearches,
 } from "./userSlice";
 
 import {
@@ -123,7 +122,6 @@ export {
   setPinnedPost,
   setUnfollowing,
   toggleUserLikes,
-  toggleSavedSearches,
 
   // modal
   onParallelModalOpen,
