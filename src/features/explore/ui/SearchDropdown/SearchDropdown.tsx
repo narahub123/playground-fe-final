@@ -1,6 +1,6 @@
 import styles from "./SearchDropdown.module.css";
 import { joinClassNames } from "@shared/@common/utils";
-import { IRect, useSearchContext } from "@features/explore";
+import { IRect, SearchKeyword, useSearchContext } from "@features/explore";
 import { Button, Text } from "@shared/@common/ui/components";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 
@@ -17,6 +17,10 @@ const SearchDropdown = ({ className, rect }: SearchDropdownProps) => {
   ]);
 
   const { keyword } = useSearchContext();
+
+  const recents = ["해린", "안나"];
+
+  const saves = ["해린", "안나"];
 
   return (
     <div className={classNames} style={{ top: rect.top, left: 0 }}>
@@ -36,11 +40,19 @@ const SearchDropdown = ({ className, rect }: SearchDropdownProps) => {
               {clear}
             </Button>
           </div>
-          <div className={styles["list"]}></div>
+          <div className={styles["list"]}>
+            {recents.map((recent) => (
+              <SearchKeyword type="recent" keyword={recent} key={recent} />
+            ))}
+          </div>
           <div className={styles["heading"]}>
             <Text type="heading3">{saved}</Text>
           </div>
-          <div className={styles["list"]}></div>
+          <div className={styles["list"]}>
+            {saves.map((save) => (
+              <SearchKeyword type="save" key={save} keyword={save} />
+            ))}
+          </div>
         </div>
       )}
     </div>

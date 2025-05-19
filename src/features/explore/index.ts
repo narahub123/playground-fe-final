@@ -1,7 +1,7 @@
 import { explore_lang } from "./data";
 import { SearchContextProvider, SearchContext } from "./context";
 import { ISearchContext, IRect } from "./types";
-import { SearchContainer, Search, SearchDropdown } from "./ui";
+import { SearchKeyword, SearchContainer, Search, SearchDropdown } from "./ui";
 import { useSearchContext } from "./models";
 
 export {
@@ -19,6 +19,7 @@ export {
   SearchContainer,
   Search,
   SearchDropdown,
+  SearchKeyword,
 };
 
 export type { ISearchContext, IRect };
