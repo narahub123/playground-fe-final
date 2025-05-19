@@ -2,7 +2,12 @@ import { LuSearch, LuTrash2, LuX } from "react-icons/lu";
 import styles from "./SearchKeyword.module.css";
 import { joinClassNames } from "@shared/@common/utils";
 import { Text } from "@shared/@common/ui/components";
-import { useSearchContext } from "@features/explore/models";
+import {
+  toggleSavedSearches,
+  useSearchContext,
+} from "@features/explore/models";
+import { fetchWithAuth } from "@shared/pages";
+import { useAppDispatch } from "@app/store";
 
 interface SearchKeywordProps {
   className?: string;
@@ -11,6 +16,7 @@ interface SearchKeywordProps {
 }
 
 const SearchKeyword = ({ className, type, option }: SearchKeywordProps) => {
+  const dispatch = useAppDispatch();
   const classNames = joinClassNames([styles["search__keyword"], className]);
 
   const { keyword } = useSearchContext();
@@ -22,7 +28,22 @@ const SearchKeyword = ({ className, type, option }: SearchKeywordProps) => {
     if (i % 2 !== 0) splitKeyword.splice(i, 0, keyword);
   }
 
-  console.log(splitKeyword);
+  const handleDeleteSavedSearches = async (option: string) => {
+    try {
+      const result = await fetchWithAuth(
+        `/users/me`,
+        { method: "PATCH" },
+        {
+          keyword: option,
+        }
+      );
+
+      if (result.success) {
+        dispatch(toggleSavedSearches(option));
+      } else {
+      }
+    } catch (error) {}
+  };
 
   return (
     <div className={classNames}>
@@ -72,7 +93,10 @@ const SearchKeyword = ({ className, type, option }: SearchKeywordProps) => {
               {type === "recent" ? (
                 <LuX className={styles["icon"]} />
               ) : (
-                <LuTrash2 className={styles["icon"]} />
+                <LuTrash2
+                  className={styles["icon"]}
+                  onClick={() => handleDeleteSavedSearches(option)}
+                />
               )}
             </div>
           </div>
