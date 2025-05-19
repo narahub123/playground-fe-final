@@ -1,9 +1,15 @@
 import styles from "./SearchDropdown.module.css";
 import { joinClassNames } from "@shared/@common/utils";
-import { IRect, SearchKeyword, useSearchContext } from "@features/explore";
+import {
+  getSearchHistory,
+  IRect,
+  SearchKeyword,
+  useSearchContext,
+} from "@features/explore";
 import { Button, Text } from "@shared/@common/ui/components";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { PostProgressbar } from "@shared/pages/ui/Post";
+import { useSelector } from "react-redux";
 
 interface SearchDropdownProps {
   className?: string;
@@ -17,9 +23,9 @@ const SearchDropdown = ({ className, rect }: SearchDropdownProps) => {
     "SearchDropdown",
   ]);
 
-  const { keyword } = useSearchContext();
+  const { recentSearches, savedSearches } = useSelector(getSearchHistory);
 
-  const recents = ["해린", "안나"];
+  const { keyword } = useSearchContext();
 
   const saves = ["해린", "안나"];
 
@@ -56,7 +62,7 @@ const SearchDropdown = ({ className, rect }: SearchDropdownProps) => {
             </Button>
           </div>
           <div className={styles["list"]}>
-            {recents.map((recent) => (
+            {recentSearches.map((recent) => (
               <SearchKeyword type="recent" option={recent} key={recent} />
             ))}
           </div>

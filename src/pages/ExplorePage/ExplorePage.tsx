@@ -12,7 +12,7 @@ import {
   SearchContainer,
   SearchContextProvider,
   ISearchContext,
-  useSearch,
+  setSearchHistory,
 } from "@features/explore";
 
 interface ExplorePageProps {
@@ -20,6 +20,7 @@ interface ExplorePageProps {
 }
 
 const ExplorePage = ({ className }: ExplorePageProps) => {
+  const classNames = joinClassNames([styles["explore__page"], className]);
   const dispatch = useAppDispatch();
   // 언어 설정
   const {} = useLanguageContent(["pages", "ExplorePage"]);
@@ -29,15 +30,23 @@ const ExplorePage = ({ className }: ExplorePageProps) => {
 
   const [keyword, setKeyword] = useState("");
 
-  const classNames = joinClassNames([styles["explore__page"], className]);
+  const getSearchHistory = async () => {
+    try {
+      const result = await fetchWithAuth(`/search-history/me`);
 
-  // const handleSearch = useSearch();
+      if (result.success) {
+        dispatch(setSearchHistory(result.data.searchHistory));
+      } else {
+        console.error("검색 기록 조회 실패");
+      }
+    } catch (error) {
+      console.error("검색 기록 조회 중 에러 발생", error);
+    }
+  };
 
   useEffect(() => {
-    if (!keyword) return;
-
-    // handleSearch(keyword, page);
-  }, [keyword, page]);
+    getSearchHistory();
+  }, []);
 
   const value: ISearchContext = {
     keyword,

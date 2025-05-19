@@ -1,3 +1,3 @@
-import {} from "./searchSelector";
+import { getSearchHistory } from "./searchSelector";
 
-export {};
+export { getSearchHistory };

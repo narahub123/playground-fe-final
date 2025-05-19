@@ -1,3 +1,5 @@
 import { RootState } from "@app/store";
 
-export {};
+const getSearchHistory = (state: RootState) => state.search;
+
+export { getSearchHistory };
