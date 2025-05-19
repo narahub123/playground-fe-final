@@ -1,10 +1,10 @@
 import { ReactNode } from "react";
 import SearchContext from "./SearchContext";
-import { SearchContextType } from "@features/explore";
+import { ISearchContext } from "@features/explore";
 
 interface SearchContextProviderProps {
   children: ReactNode;
-  value: SearchContextType;
+  value: ISearchContext;
 }
 
 const SearchContextProvider = ({

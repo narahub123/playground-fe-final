@@ -1,7 +1,8 @@
 import { explore_lang } from "./data";
 import { SearchContextProvider, SearchContext } from "./context";
-import { SearchContextType } from "./types";
+import { ISearchContext, IRect } from "./types";
 import { SearchContainer, Search, SearchDropdown } from "./ui";
+import { useSearchContext } from "./models";
 
 export {
   // data
@@ -11,10 +12,13 @@ export {
   SearchContext,
   SearchContextProvider,
 
+  // hooks
+  useSearchContext,
+
   // ui
   SearchContainer,
   Search,
   SearchDropdown,
 };
 
-export type { SearchContextType };
+export type { ISearchContext, IRect };

@@ -1,6 +1,6 @@
 import { createContext } from "react";
-import { SearchContextType } from "../types";
+import { ISearchContext } from "../types";
 
-const SearchContext = createContext<SearchContextType | null>(null);
+const SearchContext = createContext<ISearchContext | null>(null);
 
 export default SearchContext;

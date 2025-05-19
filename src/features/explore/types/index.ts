@@ -1,3 +1,10 @@
-interface SearchContextType {}
+interface ISearchContext {}
 
-export type { SearchContextType };
+interface IRect {
+  top?: number;
+  bottom?: number;
+  left?: number;
+  right?: number;
+}
+
+export type { ISearchContext, IRect };

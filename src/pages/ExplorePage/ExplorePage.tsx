@@ -8,7 +8,11 @@ import { setPosts } from "@shared/@common/models/slices/feedSlice";
 import { useSelector } from "react-redux";
 import { selectPage } from "@shared/@common/models/selectors";
 import { Icon } from "@shared/@common/ui/icons";
-import { SearchContainer, SearchContextProvider, SearchContextType } from "@features/explore";
+import {
+  SearchContainer,
+  SearchContextProvider,
+  ISearchContext,
+} from "@features/explore";
 
 interface ExplorePageProps {
   className?: string;
@@ -44,7 +48,7 @@ const ExplorePage = ({ className }: ExplorePageProps) => {
     } catch (error) {}
   };
 
-  const value: SearchContextType = {};
+  const value: ISearchContext = {};
 
   return (
     <SearchContextProvider value={value}>
