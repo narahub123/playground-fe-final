@@ -1,3 +1,3 @@
-import { useSearchContext } from "./hooks";
+import { useSearchContext, useSearch } from "./hooks";
 
-export { useSearchContext };
+export { useSearchContext, useSearch };

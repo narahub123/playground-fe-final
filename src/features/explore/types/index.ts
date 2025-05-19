@@ -1,6 +1,7 @@
 interface ISearchContext {
   keyword: string;
   setKeyword: React.Dispatch<React.SetStateAction<string>>;
+  page: number;
 }
 
 interface IRect {

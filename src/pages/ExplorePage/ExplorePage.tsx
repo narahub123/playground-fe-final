@@ -3,15 +3,16 @@ import styles from "./ExplorePage.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
 import { fetchWithAuth } from "@shared/pages";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { setPosts } from "@shared/@common/models/slices/feedSlice";
 import { useSelector } from "react-redux";
-import { selectPage } from "@shared/@common/models/selectors";
+import { selectPage, selectPosts } from "@shared/@common/models/selectors";
 import { Icon } from "@shared/@common/ui/icons";
 import {
   SearchContainer,
   SearchContextProvider,
   ISearchContext,
+  useSearch,
 } from "@features/explore";
 
 interface ExplorePageProps {
@@ -24,30 +25,25 @@ const ExplorePage = ({ className }: ExplorePageProps) => {
   const {} = useLanguageContent(["pages", "ExplorePage"]);
 
   const page = useSelector(selectPage);
+  const posts = useSelector(selectPosts);
 
   const [keyword, setKeyword] = useState("");
 
   const classNames = joinClassNames([styles["explore__page"], className]);
 
-  const handleSearch = async () => {
-    try {
-      const result = await fetchWithAuth(
-        `/posts/search?q=${keyword}&skip=${page}`
-      );
+  // const handleSearch = useSearch();
 
-      if (result.success) {
-        dispatch(setPosts(result.data.posts));
-      } else {
-      }
-    } catch (error) {}
-  };
+  useEffect(() => {
+    if (!keyword) return;
+
+    // handleSearch(keyword, page);
+  }, [keyword, page]);
 
   const value: ISearchContext = {
     keyword,
     setKeyword,
+    page,
   };
-
-  console.log("검색어", keyword);
 
   return (
     <SearchContextProvider value={value}>

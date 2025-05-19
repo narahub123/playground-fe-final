@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 import styles from "./Search.module.css";
 import { joinClassNames } from "@shared/@common/utils";
 import { LuSearch, LuX } from "react-icons/lu";
-import { useSearchContext } from "@features/explore/models";
+import { useSearch, useSearchContext } from "@features/explore/models";
 import { debounce } from "@features/explore/utils";
 
 interface SearchProps {
@@ -22,6 +22,17 @@ const Search = forwardRef<HTMLDivElement, SearchProps>(({ className }, ref) => {
 
   const debouncedChange = debounce<typeof handleChange>(handleChange, 500);
 
+  const handleSearch = useSearch();
+
+  const handleKeydown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const key = e.key;
+    if (key === "Enter") {
+      const keyword = e.currentTarget.value;
+
+      handleSearch(keyword, 0);
+    }
+  };
+
   return (
     <div className={classNames} ref={ref}>
       <div className={styles["search__icon__container"]}>
@@ -35,6 +46,7 @@ const Search = forwardRef<HTMLDivElement, SearchProps>(({ className }, ref) => {
           className={styles["search__input"]}
           placeholder="검색"
           onChange={debouncedChange}
+          onKeyDown={handleKeydown}
         />
         <div className={styles["search__clear__container"]}>
           <div className={styles["search__clear__wrapper"]}>

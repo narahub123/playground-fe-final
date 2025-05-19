@@ -1,3 +1,4 @@
 import useSearchContext from "./useSearchContext";
+import useSearch from "./useSearch";
 
-export { useSearchContext };
+export { useSearchContext, useSearch };
