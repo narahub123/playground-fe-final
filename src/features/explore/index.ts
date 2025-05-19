@@ -3,6 +3,7 @@ import { SearchContextProvider, SearchContext } from "./context";
 import { ISearchContext, IRect } from "./types";
 import { SearchKeyword, SearchContainer, Search, SearchDropdown } from "./ui";
 import { useSearchContext } from "./models";
+import { debounce } from "./utils";
 
 export {
   // data
@@ -14,6 +15,9 @@ export {
 
   // hooks
   useSearchContext,
+
+  // utils
+  debounce,
 
   // ui
   SearchContainer,
