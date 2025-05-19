@@ -5,3 +5,16 @@
   border-radius: 1rem;
   box-shadow: 0px 0px 10px -2px #ccc;
 }
+
+.no__keyword {
+  width: 100%;
+}
+
+.heading {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+}
+
+.list {
+}
