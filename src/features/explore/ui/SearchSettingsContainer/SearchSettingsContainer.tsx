@@ -21,7 +21,7 @@ const SearchSettingsContainer = ({
   return (
     <div className={classNames}>
       <SearchSettingsIcon setIsOpen={setIsOpen} />
-      <SearchSettingsDropdown isOpen={isOpen} />
+      <SearchSettingsDropdown isOpen={isOpen} setIsOpen={setIsOpen} />
     </div>
   );
 };

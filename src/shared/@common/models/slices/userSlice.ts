@@ -62,6 +62,7 @@ const initialState: UserState = {
     bookmarks: [],
     createdAt: new Date(),
     likes: [],
+    savedSearches: [],
   },
   loading: true,
 };
@@ -303,6 +304,23 @@ const userSlice = createSlice({
       }
     },
 
+    toggleSavedSearches: (state, action: PayloadAction<string>) => {
+      const savedSearches = state.data.savedSearches;
+      const keyword = action.payload.toLowerCase();
+
+      const isExisting = savedSearches.some(
+        (search) => search.toLowerCase() === keyword
+      );
+
+      if (isExisting) {
+        state.data.savedSearches = savedSearches.filter(
+          (search) => search.toLowerCase() !== keyword
+        );
+      } else {
+        state.data.savedSearches = [action.payload, ...savedSearches];
+      }
+    },
+
     clearRecentEmojis: (state) => {
       state.data.recentEmojis = [];
     },
@@ -344,4 +362,5 @@ export const {
   clearRecentEmojis,
   setPinnedPost,
   toggleUserLikes,
+  toggleSavedSearches,
 } = userSlice.actions;

@@ -138,6 +138,7 @@ interface IUser {
   likes: IUserPostAction[];
   createdAt: Date;
   pinnedPost?: string;
+  savedSearches: string[];
 }
 
 interface IRepost {
