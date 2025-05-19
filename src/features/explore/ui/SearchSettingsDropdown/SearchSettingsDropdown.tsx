@@ -73,15 +73,18 @@ const SearchSettingsDropdown = ({
 
   return (
     <div className={classNames}>
-      {Object.keys(list).map((key) => (
-        <button
-          className={styles["option"]}
-          onClick={() => handleClick(key)}
-          key={key}
-        >
-          {key === "save" ? list[key](isExisting()) : list[key]}
-        </button>
-      ))}
+      {Object.keys(list).map((key) => {
+        if (key === "save" && !keyword) return null;
+        return (
+          <button
+            className={styles["option"]}
+            onClick={() => handleClick(key)}
+            key={key}
+          >
+            {key === "save" ? list[key](isExisting()) : list[key]}
+          </button>
+        );
+      })}
     </div>
   );
 };
