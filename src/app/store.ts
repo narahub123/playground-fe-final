@@ -13,6 +13,7 @@ import {
   notificationSlice as notification,
   feedSlice as feed,
 } from "@shared/@common/models/slices";
+import { searchSlice as search } from "@features/explore";
 
 import { postEditorSlice as postEditor } from "@shared/pages/ui/PostEditor/models/slices";
 import { postSlice as post } from "@features/post-page";
@@ -30,6 +31,7 @@ const store = configureStore({
     postEditor, // 포스트 작성
     feed, // 피드 목록
     post, // 포스트
+    search, // 검색
   },
 
   // serializableCheck 옵션을 false로 설정하여
