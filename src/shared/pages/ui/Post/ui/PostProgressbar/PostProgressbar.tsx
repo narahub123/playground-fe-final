@@ -6,12 +6,13 @@ import { useEffect, useState, useRef } from "react";
 
 interface PostProgressbarProps {
   className?: string;
+  isLoading: boolean;
 }
 
-const PostProgressbar = ({ className }: PostProgressbarProps) => {
+const PostProgressbar = ({ className, isLoading }: PostProgressbarProps) => {
   const classNames = joinClassNames([styles["post__progressbar"], className]);
   const [completed, setCompleted] = useState(0);
-  const isLoading = useSelector(selectIsPostEditorLoading);
+
   const timerRef = useRef<number | null>(null);
 
   useEffect(() => {

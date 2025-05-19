@@ -3,6 +3,7 @@ import { joinClassNames } from "@shared/@common/utils";
 import { IRect, SearchKeyword, useSearchContext } from "@features/explore";
 import { Button, Text } from "@shared/@common/ui/components";
 import { useLanguageContent } from "@shared/@common/models/hooks";
+import { PostProgressbar } from "@shared/pages/ui/Post";
 
 interface SearchDropdownProps {
   className?: string;
@@ -30,6 +31,7 @@ const SearchDropdown = ({ className, rect }: SearchDropdownProps) => {
 
   return (
     <div className={classNames} style={{ top: rect.top, left: 0 }}>
+      <PostProgressbar isLoading={true} />
       {/* 검색어의 유무에 따라 레이아웃이 달라짐 */}
       {keyword ? (
         <div className={styles["with__keyword"]}>

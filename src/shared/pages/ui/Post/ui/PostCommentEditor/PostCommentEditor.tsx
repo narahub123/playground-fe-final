@@ -15,6 +15,7 @@ import {
   TextEditor,
 } from "@shared/pages/ui/PostEditor";
 import {
+  selectIsPostEditorLoading,
   selectPostEditor,
   selectPostEditorTextLength,
 } from "@shared/pages/ui/PostEditor/models/selectors";
@@ -40,6 +41,7 @@ const PostCommentEditor = ({
   const commentEditor = useSelector(selectPostEditor);
   const { post } = commentEditor;
   const { media } = post;
+  const isPostLoading = useSelector(selectIsPostEditorLoading);
 
   const [isValid, setIsValid] = useState(false);
   const [isShowing, setIsShowing] = useState(false);
@@ -138,7 +140,7 @@ const PostCommentEditor = ({
         onClose={onClose}
         profileInfo={profileInfo}
       />
-      <PostProgressbar />
+      <PostProgressbar isLoading={Boolean(isPostLoading)} />
       {isShowing && (
         <div className={styles["mentions__wrapper"]}>
           <div className={styles["empty"]} />
