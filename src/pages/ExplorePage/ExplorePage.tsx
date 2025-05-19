@@ -29,12 +29,6 @@ const ExplorePage = ({ className }: ExplorePageProps) => {
 
   const classNames = joinClassNames([styles["explore__page"], className]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const keyword = e.target.value;
-
-    setKeyword(keyword);
-  };
-
   const handleSearch = async () => {
     try {
       const result = await fetchWithAuth(
@@ -48,7 +42,12 @@ const ExplorePage = ({ className }: ExplorePageProps) => {
     } catch (error) {}
   };
 
-  const value: ISearchContext = {};
+  const value: ISearchContext = {
+    keyword,
+    setKeyword,
+  };
+
+  console.log("검색어", keyword);
 
   return (
     <SearchContextProvider value={value}>
