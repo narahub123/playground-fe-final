@@ -78,6 +78,10 @@ const userRouter = createBrowserRouter([
         element: <ExplorePage />,
       },
       {
+        path: PRIMARY_LINK.SEARCH,
+        element: <ExplorePage />,
+      },
+      {
         path: PRIMARY_LINK.NOTIFICATIONS,
         element: <NotificationsPage />,
       },

@@ -1,9 +1,11 @@
 import { useAppDispatch } from "@app/store";
 import { setPosts } from "@shared/@common/models/slices/feedSlice";
 import { fetchWithAuth } from "@shared/pages";
+import { useNavigate } from "react-router-dom";
 
 const useSearch = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const handleSearch = async (keyword: string, page: number) => {
     try {
@@ -15,6 +17,7 @@ const useSearch = () => {
 
       if (result.success) {
         dispatch(setPosts(result.data.posts));
+        navigate(`/search?q=${keyword}&src=typed_query`);
       } else {
         console.error("검색 실패");
       }

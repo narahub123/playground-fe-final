@@ -21,6 +21,7 @@ const PRIMARY_LINK = {
   POSTPAGE: "/:userId/status/:postId",
   POSTPAGE_QUOTES: "quotes",
   POSTPAGE_ANALYTICS: "analytics",
+  SEARCH: "/search",
 };
 
 export default PRIMARY_LINK;
