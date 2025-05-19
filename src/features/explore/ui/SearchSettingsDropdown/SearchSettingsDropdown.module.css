@@ -1,0 +1,14 @@
+.search__settings__dropdown {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.search__settings__dropdown--visible {
+  z-index: 2;
+  visibility: visible;
+}
+.search__settings__dropdown--invisible {
+  z-index: -1;
+  visibility: hidden;
+}

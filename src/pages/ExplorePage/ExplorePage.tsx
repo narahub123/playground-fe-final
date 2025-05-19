@@ -3,8 +3,7 @@ import styles from "./ExplorePage.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
 import { fetchWithAuth } from "@shared/pages";
-import React, { useEffect, useState } from "react";
-import { setPosts } from "@shared/@common/models/slices/feedSlice";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectPage, selectPosts } from "@shared/@common/models/selectors";
 import { Icon } from "@shared/@common/ui/icons";
@@ -13,6 +12,7 @@ import {
   SearchContextProvider,
   ISearchContext,
   setSearchHistory,
+  SearchSettingsContainer,
 } from "@features/explore";
 
 interface ExplorePageProps {
@@ -70,8 +70,7 @@ const ExplorePage = ({ className }: ExplorePageProps) => {
             <SearchContainer />
           </div>
           <div className={styles["settings__wrapper"]}>
-            <Icon iconName="settings" title="설정" />
-            {/* <div>설정</div> */}
+            <SearchSettingsContainer />
           </div>
         </div>
         <div className={styles["nav__wrapper"]}>탭</div>
