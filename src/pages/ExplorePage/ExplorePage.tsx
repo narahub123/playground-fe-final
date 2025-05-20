@@ -13,15 +13,20 @@ import {
   ISearchContext,
   setSearchHistory,
   SearchSettingsContainer,
+  useSearch,
 } from "@features/explore";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 
 interface ExplorePageProps {
   className?: string;
 }
 
 const ExplorePage = ({ className }: ExplorePageProps) => {
-  const classNames = joinClassNames([styles["explore__page"], className]);
   const dispatch = useAppDispatch();
+  const { pathname } = useLocation();
+  const [query, setQuery] = useSearchParams();
+  const navigate = useNavigate();
+  const classNames = joinClassNames([styles["explore__page"], className]);
   // 언어 설정
   const {} = useLanguageContent(["pages", "ExplorePage"]);
 
@@ -44,9 +49,23 @@ const ExplorePage = ({ className }: ExplorePageProps) => {
     }
   };
 
+  const handleSearch = useSearch();
+
   useEffect(() => {
-    getSearchHistory();
-  }, []);
+    if (pathname.includes("explore")) {
+      getSearchHistory();
+    } else {
+      const keyword = query.get("q");
+
+      if (!keyword) {
+        navigate("/explore");
+        return;
+      }
+
+      setKeyword(keyword);
+      handleSearch(keyword, 0);
+    }
+  }, [pathname]);
 
   const value: ISearchContext = {
     keyword,

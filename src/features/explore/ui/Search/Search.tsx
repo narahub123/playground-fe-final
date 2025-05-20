@@ -5,12 +5,12 @@ import { LuSearch, LuX } from "react-icons/lu";
 import {
   setKeywordResult,
   setSearchLoading,
-  useSearch,
   useSearchContext,
 } from "@features/explore/models";
 import { debounce } from "@features/explore/utils";
 import { useAppDispatch } from "@app/store";
 import { fetchWithAuth } from "@shared/pages";
+import { useNavigate } from "react-router-dom";
 
 interface SearchProps {
   className?: string;
@@ -21,6 +21,7 @@ const Search = forwardRef<HTMLDivElement, SearchProps>(
   ({ className, setIsOpen }, ref) => {
     const classNames = joinClassNames([styles["search__wrapper"], className]);
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
 
     const { keyword, setKeyword } = useSearchContext();
 
@@ -58,14 +59,12 @@ const Search = forwardRef<HTMLDivElement, SearchProps>(
       debouncedHandleKeyword(keyword);
     };
 
-    const handleSearch = useSearch();
-
     const handleKeydown = (e: React.KeyboardEvent<HTMLInputElement>) => {
       const key = e.key;
       if (key === "Enter") {
         const keyword = e.currentTarget.value;
 
-        handleSearch(keyword, 0);
+        navigate(`/search?q=${keyword}&src=typed_query`);
       }
     };
 
