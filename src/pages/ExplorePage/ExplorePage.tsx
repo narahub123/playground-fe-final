@@ -52,9 +52,9 @@ const ExplorePage = ({ className }: ExplorePageProps) => {
   const handleSearch = useSearch();
 
   useEffect(() => {
-    if (pathname.includes("explore")) {
-      getSearchHistory();
-    } else {
+    getSearchHistory();
+
+    if (pathname.includes("search")) {
       const keyword = query.get("q");
 
       if (!keyword) {
@@ -65,7 +65,7 @@ const ExplorePage = ({ className }: ExplorePageProps) => {
       setKeyword(keyword);
       handleSearch(keyword, 0);
     }
-  }, [pathname]);
+  }, [pathname, query.get("q")]);
 
   const value: ISearchContext = {
     keyword,

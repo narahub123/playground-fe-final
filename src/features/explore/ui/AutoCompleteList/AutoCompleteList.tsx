@@ -36,6 +36,8 @@ const AutoCompleteList = ({
     handleKeyword(keyword);
   }, [isOpen]);
 
+  if (!keyword) return null;
+
   return (
     <div className={classNames}>
       <div className={styles["keyword__list"]}>
