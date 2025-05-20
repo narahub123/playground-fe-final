@@ -2,6 +2,9 @@ import { LuSearch, LuTrash2, LuX } from "react-icons/lu";
 import styles from "./SearchSuggestion.module.css";
 import { joinClassNames } from "@shared/@common/utils";
 import React from "react";
+import { fetchWithAuth } from "@shared/pages";
+import { useAppDispatch } from "@app/store";
+import { toggleSavedSearches } from "@features/explore/models";
 
 interface SearchSuggestionProps {
   className?: string;
@@ -14,6 +17,7 @@ const SearchSuggestion = ({
   type,
   option,
 }: SearchSuggestionProps) => {
+  const dispatch = useAppDispatch();
   const classNames = joinClassNames([styles["search__suggestion"], className]);
 
   const handleSelection = () => {
@@ -24,9 +28,27 @@ const SearchSuggestion = ({
     e.stopPropagation();
     console.log(option);
   };
-  const handleDeleteSave = (e: React.MouseEvent, option: string) => {
+
+  // 저장된 검색어 삭제하기 
+  const handleDeleteSave = async (e: React.MouseEvent, option: string) => {
     e.stopPropagation();
-    console.log(option);
+    try {
+      const result = await fetchWithAuth(
+        `/users/me`,
+        { method: "PATCH" },
+        {
+          keyword: option,
+        }
+      );
+
+      if (result.success) {
+        dispatch(toggleSavedSearches(option));
+      } else {
+        console.error("저장된 검색어 삭제");
+      }
+    } catch (error) {
+      console.error("저장된 검색어 삭제 도중 에러 발생", error);
+    }
   };
 
   const handleClick =
