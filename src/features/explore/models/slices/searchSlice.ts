@@ -64,6 +64,9 @@ const searchSlice = createSlice({
         ? recentSearches.filter((search) => search.toLowerCase() !== keyword)
         : [keyword, ...recentSearches];
     },
+    clearRecentSearches: (state) => {
+      state.recentSearches = [];
+    },
   },
 });
 
@@ -75,4 +78,5 @@ export const {
   setSearchLoading,
   setKeywordResult,
   toggleRecentSearches,
+  clearRecentSearches,
 } = searchSlice.actions;

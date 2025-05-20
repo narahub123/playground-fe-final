@@ -11,6 +11,7 @@ import {
   setSearchLoading,
   setKeywordResult,
   toggleRecentSearches,
+  clearRecentSearches,
 } from "./slices";
 import {
   getSearchHistory,
@@ -36,6 +37,7 @@ export {
   setSearchLoading,
   setKeywordResult,
   toggleRecentSearches,
+  clearRecentSearches,
 
   // selectors
   getSearchHistory,

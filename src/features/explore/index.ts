@@ -31,6 +31,7 @@ import {
   toggleRecentSearches,
   selectAutoCompleteList,
   useKeyword,
+  clearRecentSearches,
 } from "./models";
 import { debounce } from "./utils";
 
@@ -57,6 +58,7 @@ export {
   setSearchLoading,
   setKeywordResult,
   toggleRecentSearches,
+  clearRecentSearches,
 
   // selectors
   getSearchHistory,
