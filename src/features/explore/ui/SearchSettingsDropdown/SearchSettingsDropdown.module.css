@@ -5,15 +5,21 @@
   border: 1px solid #ccc;
   border-radius: 0.5rem;
   background-color: #fff;
+  overflow: hidden;
 }
 
 .search__settings__dropdown--visible {
   z-index: 2;
   visibility: visible;
+  max-height: 300px;
+
+  transition-delay: 0.2s;
+  transition: max-height 0.2s ease-in-out;
 }
 .search__settings__dropdown--invisible {
   z-index: -1;
   visibility: hidden;
+  max-height: 0px;
 }
 
 .option {
