@@ -38,6 +38,7 @@ const Search = forwardRef<HTMLDivElement, SearchProps>(
       if (key === "Enter") {
         const keyword = e.currentTarget.value;
 
+        setIsOpen(false);
         navigate(`/search?q=${keyword}&src=typed_query`, {
           state: { from: pathname },
         });
