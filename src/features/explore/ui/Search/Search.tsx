@@ -50,7 +50,15 @@ const Search = forwardRef<HTMLDivElement, SearchProps>(({ className }, ref) => {
           onKeyDown={handleKeydown}
           value={keyword}
         />
-        <div className={styles["search__clear__container"]}>
+
+        <div
+          className={joinClassNames([
+            styles["search__clear__container"],
+            keyword
+              ? styles["search__clear__container--visible"]
+              : styles["search__clear__container--invisible"],
+          ])}
+        >
           <div
             className={styles["search__clear__wrapper"]}
             onClick={handleClearKeyword}

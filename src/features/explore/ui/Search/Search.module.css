@@ -28,10 +28,19 @@
   padding-right: 1rem;
 }
 
-.search__clear__wrapper {
+.search__clear__container {
   position: absolute;
   top: 0.7rem;
   right: 0;
+
+  transition: opacity 0.2s ease-in-out;
+}
+
+.search__clear__container--visible {
+  opacity: 1;
+}
+.search__clear__container--invisible {
+  opacity: 0;
 }
 
 .search__clear__wrapper {
@@ -44,6 +53,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 .icon {
