@@ -1,0 +1,9 @@
+.search__suggestion__list {
+  width: 100%;
+}
+
+.heading {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+}

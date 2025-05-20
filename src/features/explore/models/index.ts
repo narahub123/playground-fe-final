@@ -10,6 +10,7 @@ import {
   getSearchHistory,
   selectSavedSearches,
   selectSearchLoading,
+  selectSearchSuggestion,
 } from "./selectors";
 
 export {
@@ -31,4 +32,5 @@ export {
   getSearchHistory,
   selectSavedSearches,
   selectSearchLoading,
+  selectSearchSuggestion,
 };

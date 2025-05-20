@@ -1,9 +1,5 @@
 const explore_kr = {
-  SearchDropdown: {
-    recent: "최근",
-    saved: "저장된 검색",
-    clear: "모두 지우기",
-  },
+  SearchDropdown: {},
   SearchSettingsIcon: {},
   SearchSettingsDropdown: {
     list: {
@@ -13,6 +9,11 @@ const explore_kr = {
       save: (isExisting: boolean) =>
         isExisting ? "검색어 삭제" : "검색어 저장",
     },
+  },
+  SearchSuggestionList: {
+    recent: "최근",
+    saved: "저장된 검색",
+    clear: "모두 지우기",
   },
 };
 

@@ -4,10 +4,11 @@ import {
   getSearchHistory,
   IRect,
   SearchKeyword,
+  SearchSuggestionList,
   selectSearchLoading,
   useSearchContext,
 } from "@features/explore";
-import { Button, Text } from "@shared/@common/ui/components";
+import { Text } from "@shared/@common/ui/components";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { PostProgressbar } from "@shared/pages/ui/Post";
 import { useSelector } from "react-redux";
@@ -20,15 +21,11 @@ interface SearchDropdownProps {
 
 const SearchDropdown = ({ className, rect, isOpen }: SearchDropdownProps) => {
   const classNames = joinClassNames([styles["search__dropdown"], className]);
-  const { recent, saved, clear } = useLanguageContent([
-    "explore",
-    "SearchDropdown",
-  ]);
+  const {} = useLanguageContent(["explore", "SearchDropdown"]);
 
   const isLoading = useSelector(selectSearchLoading);
 
-  const { recentSearches, savedSearches, keywordSuggestions, userSuggestions } =
-    useSelector(getSearchHistory);
+  const { keywordSuggestions, userSuggestions } = useSelector(getSearchHistory);
 
   const { keyword } = useSearchContext();
 
@@ -61,32 +58,7 @@ const SearchDropdown = ({ className, rect, isOpen }: SearchDropdownProps) => {
           </div>
         </div>
       ) : (
-        <div className={styles["no__keyword"]}>
-          <div className={styles["heading"]}>
-            <Text type="heading3">{recent}</Text>
-            <Button
-              isValid
-              onClick={() => {}}
-              variant="plain"
-              fontColor="colorTheme"
-            >
-              {clear}
-            </Button>
-          </div>
-          <div className={styles["list"]}>
-            {recentSearches.map((recent) => (
-              <SearchKeyword type="recent" option={recent} key={recent} />
-            ))}
-          </div>
-          <div className={styles["heading"]}>
-            <Text type="heading3">{saved}</Text>
-          </div>
-          <div className={styles["list"]}>
-            {savedSearches.map((save) => (
-              <SearchKeyword type="save" key={save} option={save} />
-            ))}
-          </div>
-        </div>
+        <SearchSuggestionList />
       )}
     </div>
   );

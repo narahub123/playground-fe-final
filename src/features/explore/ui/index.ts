@@ -5,6 +5,8 @@ import SearchKeyword from "./SearchKeyword/SearchKeyword";
 import SearchSettingsContainer from "./SearchSettingsContainer/SearchSettingsContainer";
 import SearchSettingsIcon from "./SearchSettingsIcon/SearchSettingsIcon";
 import SearchSettingsDropdown from "./SearchSettingsDropdown/SearchSettingsDropdown";
+import SearchSuggestionList from "./SearchSuggestionList/SearchSuggestionList";
+import SearchSuggestion from "./SearchSuggestion/SearchSuggestion";
 
 export {
   SearchContainer,
@@ -14,4 +16,6 @@ export {
   SearchSettingsContainer,
   SearchSettingsIcon,
   SearchSettingsDropdown,
+  SearchSuggestionList,
+  SearchSuggestion,
 };

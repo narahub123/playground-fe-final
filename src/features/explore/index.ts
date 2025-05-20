@@ -9,6 +9,8 @@ import {
   SearchSettingsContainer,
   SearchSettingsIcon,
   SearchSettingsDropdown,
+  SearchSuggestionList,
+  SearchSuggestion,
 } from "./ui";
 import {
   useSearchContext,
@@ -22,6 +24,7 @@ import {
   setSearchLoading,
   selectSearchLoading,
   setKeywordResult,
+  selectSearchSuggestion,
 } from "./models";
 import { debounce } from "./utils";
 
@@ -51,6 +54,7 @@ export {
   getSearchHistory,
   selectSavedSearches,
   selectSearchLoading,
+  selectSearchSuggestion,
 
   // utils
   debounce,
@@ -63,6 +67,8 @@ export {
   SearchSettingsContainer,
   SearchSettingsIcon,
   SearchSettingsDropdown,
+  SearchSuggestionList,
+  SearchSuggestion,
 };
 
 export type { ISearchContext, IRect };

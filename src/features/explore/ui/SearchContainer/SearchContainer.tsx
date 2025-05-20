@@ -48,7 +48,7 @@ const SearchContainer = ({ className }: SearchContainerProps) => {
   return (
     <div className={classNames} ref={containerRef}>
       <Search ref={searchRef} setIsOpen={setIsOpen} />
-      <SearchDropdown rect={rect} isOpen={isOpen} />
+      <SearchDropdown rect={rect} isOpen={true} />
     </div>
   );
 };
