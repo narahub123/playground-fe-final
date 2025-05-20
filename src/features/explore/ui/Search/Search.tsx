@@ -1,10 +1,11 @@
-import { forwardRef, useCallback } from "react";
 import styles from "./Search.module.css";
 import { joinClassNames } from "@shared/@common/utils";
+import { forwardRef, useCallback } from "react";
 import { LuSearch, LuX } from "react-icons/lu";
 import { useKeyword, useSearchContext } from "@features/explore/models";
 import { debounce } from "@features/explore/utils";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useLanguageContent } from "@shared/@common/models/hooks";
 
 interface SearchProps {
   className?: string;
@@ -16,6 +17,7 @@ const Search = forwardRef<HTMLDivElement, SearchProps>(
     const classNames = joinClassNames([styles["search__wrapper"], className]);
     const navigate = useNavigate();
     const { pathname } = useLocation();
+    const { ph } = useLanguageContent(["explore", "Search"]);
 
     const { keyword, setKeyword, setIsFocused } = useSearchContext();
 
@@ -60,7 +62,7 @@ const Search = forwardRef<HTMLDivElement, SearchProps>(
           <input
             type="text"
             className={styles["search__input"]}
-            placeholder="검색"
+            placeholder={ph}
             onChange={handleChange}
             onKeyDown={handleKeydown}
             value={keyword}
