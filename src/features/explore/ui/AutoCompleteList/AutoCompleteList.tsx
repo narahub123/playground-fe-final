@@ -1,5 +1,6 @@
 import {
   selectAutoCompleteList,
+  useKeyword,
   useSearchContext,
 } from "@features/explore/models";
 import styles from "./AutoCompleteList.module.css";
@@ -27,9 +28,12 @@ const AutoCompleteList = ({
   );
 
   const { keyword } = useSearchContext();
+  const handleKeyword = useKeyword();
 
   useEffect(() => {
-    if (!isOpen) return;
+    if (!isOpen || !keyword) return;
+
+    handleKeyword(keyword);
   }, [isOpen]);
 
   return (

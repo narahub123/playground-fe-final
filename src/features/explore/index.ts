@@ -30,6 +30,7 @@ import {
   selectSearchSuggestion,
   toggleRecentSearches,
   selectAutoCompleteList,
+  useKeyword,
 } from "./models";
 import { debounce } from "./utils";
 
@@ -45,6 +46,7 @@ export {
   useSearchContext,
   useSearch,
   useClickOutside,
+  useKeyword,
 
   // slice
   searchSlice,

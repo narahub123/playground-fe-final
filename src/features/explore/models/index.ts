@@ -1,4 +1,9 @@
-import { useSearchContext, useSearch, useClickOutside } from "./hooks";
+import {
+  useSearchContext,
+  useSearch,
+  useClickOutside,
+  useKeyword,
+} from "./hooks";
 import {
   searchSlice,
   setSearchHistory,
@@ -20,6 +25,7 @@ export {
   useSearchContext,
   useSearch,
   useClickOutside,
+  useKeyword,
 
   //slice
   searchSlice,
