@@ -2,8 +2,15 @@ import { forwardRef, useCallback } from "react";
 import styles from "./Search.module.css";
 import { joinClassNames } from "@shared/@common/utils";
 import { LuSearch, LuX } from "react-icons/lu";
-import { useSearch, useSearchContext } from "@features/explore/models";
+import {
+  setKeywordResult,
+  setSearchLoading,
+  useSearch,
+  useSearchContext,
+} from "@features/explore/models";
 import { debounce } from "@features/explore/utils";
+import { useAppDispatch } from "@app/store";
+import { fetchWithAuth } from "@shared/pages";
 
 interface SearchProps {
   className?: string;
@@ -13,11 +20,30 @@ interface SearchProps {
 const Search = forwardRef<HTMLDivElement, SearchProps>(
   ({ className, setIsOpen }, ref) => {
     const classNames = joinClassNames([styles["search__wrapper"], className]);
+    const dispatch = useAppDispatch();
 
     const { keyword, setKeyword } = useSearchContext();
 
-    const handleKeyword = (keyword: string) => {
-      console.log("handleKeyword 호출", keyword);
+    const handleKeyword = async (keyword: string) => {
+      if (!keyword) return;
+      dispatch(setSearchLoading(true));
+      try {
+        const result = await fetchWithAuth(
+          `/search-history/auto-complete?keyword=${keyword}`
+        );
+        if (result.success) {
+          const { keywordSuggestions, userSuggestions } =
+            result.data.autoComplete;
+
+          dispatch(setKeywordResult({ keywordSuggestions, userSuggestions }));
+        } else {
+          console.error("검색어 조회 실패");
+        }
+      } catch (error) {
+        console.error("검색어 조회 중 에러 발생", error);
+      } finally {
+        dispatch(setSearchLoading(false));
+      }
     };
 
     const debouncedHandleKeyword = useCallback(

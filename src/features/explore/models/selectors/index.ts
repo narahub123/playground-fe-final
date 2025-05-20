@@ -1,3 +1,7 @@
-import { getSearchHistory, selectSavedSearches } from "./searchSelector";
+import {
+  getSearchHistory,
+  selectSavedSearches,
+  selectSearchLoading,
+} from "./searchSelector";
 
-export { getSearchHistory, selectSavedSearches };
+export { getSearchHistory, selectSavedSearches, selectSearchLoading };

@@ -19,6 +19,9 @@ import {
   getSearchHistory,
   toggleSavedSearches,
   selectSavedSearches,
+  setSearchLoading,
+  selectSearchLoading,
+  setKeywordResult,
 } from "./models";
 import { debounce } from "./utils";
 
@@ -41,10 +44,13 @@ export {
   // reducers
   setSearchHistory,
   toggleSavedSearches,
+  setSearchLoading,
+  setKeywordResult,
 
   // selectors
   getSearchHistory,
   selectSavedSearches,
+  selectSearchLoading,
 
   // utils
   debounce,

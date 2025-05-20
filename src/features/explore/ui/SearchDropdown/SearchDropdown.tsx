@@ -4,6 +4,7 @@ import {
   getSearchHistory,
   IRect,
   SearchKeyword,
+  selectSearchLoading,
   useSearchContext,
 } from "@features/explore";
 import { Button, Text } from "@shared/@common/ui/components";
@@ -24,30 +25,40 @@ const SearchDropdown = ({ className, rect, isOpen }: SearchDropdownProps) => {
     "SearchDropdown",
   ]);
 
-  const { recentSearches, savedSearches } = useSelector(getSearchHistory);
+  const isLoading = useSelector(selectSearchLoading);
+
+  const { recentSearches, savedSearches, keywordSuggestions, userSuggestions } =
+    useSelector(getSearchHistory);
 
   const { keyword } = useSearchContext();
 
-  const searches = ["해린 생카 해린", "해린 haerin"];
-
-  const result = searches.filter((search) => search.includes(keyword));
-
-  const keywordResult = result.length > 0 ? result : [keyword];
+  const keywordResult =
+    keywordSuggestions.length > 0 ? keywordSuggestions : [keyword];
 
   if (!isOpen) return null;
 
   return (
     <div className={classNames} style={{ top: rect.top, left: 0 }}>
-      <PostProgressbar isLoading={true} />
+      <PostProgressbar isLoading={isLoading} />
       {/* 검색어의 유무에 따라 레이아웃이 달라짐 */}
       {keyword ? (
         <div className={styles["with__keyword"]}>
           <div className={styles["list"]}>
-            {keywordResult.map((search) => (
-              <SearchKeyword type="keyword" option={search} key={search} />
+            {keywordSuggestions.length > 0 ? (
+              keywordResult.map((search) => (
+                <SearchKeyword type="keyword" option={search} key={search} />
+              ))
+            ) : (
+              <div style={{ padding: "12px 16px" }}>
+                <Text>{`"${keyword}" 검색`}</Text>
+              </div>
+            )}
+          </div>
+          <div className={styles["list"]}>
+            {userSuggestions.map((user) => (
+              <li key={user.userId}>{user.username}</li>
             ))}
           </div>
-          <div className={styles["list"]}>사용자 리스트</div>
         </div>
       ) : (
         <div className={styles["no__keyword"]}>

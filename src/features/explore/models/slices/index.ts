@@ -1,6 +1,8 @@
 import searchSlice, {
   setSearchHistory,
   toggleSavedSearches,
+  setSearchLoading,
+  setKeywordResult,
 } from "./searchSlice";
 
 export {
@@ -10,4 +12,6 @@ export {
   // reducers
   setSearchHistory,
   toggleSavedSearches,
+  setSearchLoading,
+  setKeywordResult,
 };

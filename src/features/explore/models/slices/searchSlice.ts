@@ -1,13 +1,20 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { IAuthor } from "@shared/@common/types";
 
 interface ISearchState {
   recentSearches: string[];
   savedSearches: string[];
+  keywordSuggestions: string[];
+  userSuggestions: IAuthor[];
+  isLoading: boolean;
 }
 
 const initialState: ISearchState = {
   recentSearches: [],
   savedSearches: [],
+  keywordSuggestions: [],
+  userSuggestions: [],
+  isLoading: false,
 };
 
 const searchSlice = createSlice({
@@ -15,7 +22,9 @@ const searchSlice = createSlice({
   initialState,
   reducers: {
     setSearchHistory: (state, action: PayloadAction<ISearchState>) => {
-      return action.payload;
+      const { recentSearches, savedSearches } = action.payload;
+      state.recentSearches = recentSearches;
+      state.savedSearches = savedSearches;
     },
     toggleSavedSearches: (state, action: PayloadAction<string>) => {
       const savedSearches = state.savedSearches;
@@ -33,9 +42,23 @@ const searchSlice = createSlice({
         state.savedSearches = [action.payload, ...savedSearches];
       }
     },
+    setSearchLoading: (state, action: PayloadAction<boolean>) => {
+      state.isLoading = action.payload;
+    },
+    setKeywordResult: (state, action: PayloadAction<Record<string, any>>) => {
+      const { keywordSuggestions, userSuggestions } = action.payload;
+
+      state.keywordSuggestions = keywordSuggestions;
+      state.userSuggestions = userSuggestions;
+    },
   },
 });
 
 export default searchSlice.reducer;
 
-export const { setSearchHistory, toggleSavedSearches } = searchSlice.actions;
+export const {
+  setSearchHistory,
+  toggleSavedSearches,
+  setSearchLoading,
+  setKeywordResult,
+} = searchSlice.actions;

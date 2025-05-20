@@ -56,25 +56,21 @@ const SearchKeyword = ({ className, type, option }: SearchKeywordProps) => {
       )}
       <div className={styles["keyword"]}>
         {type === "keyword" ? (
-          splitKeyword.length > 1 ? (
-            <div className={styles["keyword__wrapper"]}>
-              <Text>
-                {splitKeyword.map((divide, index) => (
-                  <span
-                    key={index}
-                    className={joinClassNames([
-                      divide === keyword ? styles["normal"] : styles["bold"],
-                    ])}
-                  >
-                    {divide}
-                  </span>
-                ))}
-              </Text>
-              {/* <Text className={styles["trend"]}>실시간 트렌드</Text> */}
-            </div>
-          ) : (
-            <Text>{`"${keyword}" 검색`}</Text>
-          )
+          <div className={styles["keyword__wrapper"]}>
+            <Text>
+              {splitKeyword.map((divide, index) => (
+                <span
+                  key={index}
+                  className={joinClassNames([
+                    divide === keyword ? styles["normal"] : styles["bold"],
+                  ])}
+                >
+                  {divide}
+                </span>
+              ))}
+            </Text>
+            {/* <Text className={styles["trend"]}>실시간 트렌드</Text> */}
+          </div>
         ) : (
           <Text>{option}</Text>
         )}

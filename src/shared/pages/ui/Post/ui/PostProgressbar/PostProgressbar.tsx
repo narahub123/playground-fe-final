@@ -1,7 +1,5 @@
-import { useSelector } from "react-redux";
 import styles from "./PostProgressbar.module.css";
 import { joinClassNames } from "@shared/@common/utils";
-import { selectIsPostEditorLoading } from "@shared/pages/ui/PostEditor/models/selectors";
 import { useEffect, useState, useRef } from "react";
 
 interface PostProgressbarProps {
