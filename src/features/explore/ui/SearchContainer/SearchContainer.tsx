@@ -1,6 +1,11 @@
 import styles from "./SearchContainer.module.css";
 import { joinClassNames } from "@shared/@common/utils";
-import { IRect, Search, SearchDropdown } from "@features/explore";
+import {
+  IRect,
+  Search,
+  SearchDropdown,
+  useClickOutside,
+} from "@features/explore";
 import { useEffect, useRef, useState } from "react";
 
 interface SearchContainerProps {
@@ -9,7 +14,9 @@ interface SearchContainerProps {
 
 const SearchContainer = ({ className }: SearchContainerProps) => {
   const searchRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const classNames = joinClassNames([styles["search__container"], className]);
+  const [isOpen, setIsOpen] = useState(false);
   const [rect, setRect] = useState<IRect>({
     top: undefined,
     left: undefined,
@@ -36,10 +43,12 @@ const SearchContainer = ({ className }: SearchContainerProps) => {
     };
   }, []);
 
+  useClickOutside({ containerRef, setIsOpen });
+
   return (
-    <div className={classNames}>
-      <Search ref={searchRef} />
-      <SearchDropdown rect={rect} />
+    <div className={classNames} ref={containerRef}>
+      <Search ref={searchRef} setIsOpen={setIsOpen} />
+      <SearchDropdown rect={rect} isOpen={isOpen} />
     </div>
   );
 };

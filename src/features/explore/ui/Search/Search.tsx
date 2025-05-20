@@ -7,79 +7,86 @@ import { debounce } from "@features/explore/utils";
 
 interface SearchProps {
   className?: string;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Search = forwardRef<HTMLDivElement, SearchProps>(({ className }, ref) => {
-  const classNames = joinClassNames([styles["search__wrapper"], className]);
+const Search = forwardRef<HTMLDivElement, SearchProps>(
+  ({ className, setIsOpen }, ref) => {
+    const classNames = joinClassNames([styles["search__wrapper"], className]);
 
-  const { keyword, setKeyword } = useSearchContext();
+    const { keyword, setKeyword } = useSearchContext();
 
-  const handleKeyword = (keyword: string) => {
-    console.log("handleKeyword 호출", keyword);
-  };
+    const handleKeyword = (keyword: string) => {
+      console.log("handleKeyword 호출", keyword);
+    };
 
-  const debouncedHandleKeyword = useCallback(
-    debounce((keyword: string) => handleKeyword(keyword), 500),
-    []
-  );
+    const debouncedHandleKeyword = useCallback(
+      debounce((keyword: string) => handleKeyword(keyword), 500),
+      []
+    );
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const keyword = e.target.value;
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const keyword = e.target.value;
 
-    setKeyword(keyword);
-    debouncedHandleKeyword(keyword);
-  };
+      setKeyword(keyword);
+      debouncedHandleKeyword(keyword);
+    };
 
-  const handleSearch = useSearch();
+    const handleSearch = useSearch();
 
-  const handleKeydown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    const key = e.key;
-    if (key === "Enter") {
-      const keyword = e.currentTarget.value;
+    const handleKeydown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+      const key = e.key;
+      if (key === "Enter") {
+        const keyword = e.currentTarget.value;
 
-      handleSearch(keyword, 0);
-    }
-  };
+        handleSearch(keyword, 0);
+      }
+    };
 
-  const handleClearKeyword = () => {
-    setKeyword("");
-  };
+    const handleClearKeyword = () => {
+      setKeyword("");
+    };
 
-  return (
-    <div className={classNames} ref={ref}>
-      <div className={styles["search__icon__container"]}>
-        <div className={styles["search__icon__wrapper"]}>
-          <LuSearch className={styles["icon"]} />
+    return (
+      <div className={classNames} ref={ref}>
+        <div className={styles["search__icon__container"]}>
+          <div className={styles["search__icon__wrapper"]}>
+            <LuSearch className={styles["icon"]} />
+          </div>
         </div>
-      </div>
-      <div className={styles["search__input__wrapper"]}>
-        <input
-          type="text"
-          className={styles["search__input"]}
-          placeholder="검색"
-          onChange={handleChange}
-          onKeyDown={handleKeydown}
-          value={keyword}
-        />
+        <div className={styles["search__input__wrapper"]}>
+          <input
+            type="text"
+            className={styles["search__input"]}
+            placeholder="검색"
+            onChange={handleChange}
+            onKeyDown={handleKeydown}
+            value={keyword}
+            onFocus={(e) => {
+              e.stopPropagation();
+              setIsOpen(true);
+            }}
+          />
 
-        <div
-          className={joinClassNames([
-            styles["search__clear__container"],
-            keyword
-              ? styles["search__clear__container--visible"]
-              : styles["search__clear__container--invisible"],
-          ])}
-        >
           <div
-            className={styles["search__clear__wrapper"]}
-            onClick={handleClearKeyword}
+            className={joinClassNames([
+              styles["search__clear__container"],
+              keyword
+                ? styles["search__clear__container--visible"]
+                : styles["search__clear__container--invisible"],
+            ])}
           >
-            <LuX className={styles["icon"]} />
+            <div
+              className={styles["search__clear__wrapper"]}
+              onClick={handleClearKeyword}
+            >
+              <LuX className={styles["icon"]} />
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
-});
+    );
+  }
+);
 
 export default Search;

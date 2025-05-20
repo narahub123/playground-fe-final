@@ -14,9 +14,10 @@ import { useSelector } from "react-redux";
 interface SearchDropdownProps {
   className?: string;
   rect: IRect;
+  isOpen: boolean;
 }
 
-const SearchDropdown = ({ className, rect }: SearchDropdownProps) => {
+const SearchDropdown = ({ className, rect, isOpen }: SearchDropdownProps) => {
   const classNames = joinClassNames([styles["search__dropdown"], className]);
   const { recent, saved, clear } = useLanguageContent([
     "explore",
@@ -27,13 +28,13 @@ const SearchDropdown = ({ className, rect }: SearchDropdownProps) => {
 
   const { keyword } = useSearchContext();
 
-  const saves = ["해린", "안나"];
-
   const searches = ["해린 생카 해린", "해린 haerin"];
 
   const result = searches.filter((search) => search.includes(keyword));
 
   const keywordResult = result.length > 0 ? result : [keyword];
+
+  if (!isOpen) return null;
 
   return (
     <div className={classNames} style={{ top: rect.top, left: 0 }}>
