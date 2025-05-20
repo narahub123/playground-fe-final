@@ -3,7 +3,6 @@ import styles from "./Search.module.css";
 import { joinClassNames } from "@shared/@common/utils";
 import { LuSearch, LuX } from "react-icons/lu";
 import { useSearch, useSearchContext } from "@features/explore/models";
-import { debounce } from "@features/explore/utils";
 
 interface SearchProps {
   className?: string;
@@ -12,15 +11,13 @@ interface SearchProps {
 const Search = forwardRef<HTMLDivElement, SearchProps>(({ className }, ref) => {
   const classNames = joinClassNames([styles["search__wrapper"], className]);
 
-  const { setKeyword } = useSearchContext();
+  const { keyword, setKeyword } = useSearchContext();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const keyword = e.target.value;
 
     setKeyword(keyword);
   };
-
-  const debouncedChange = debounce<typeof handleChange>(handleChange, 500);
 
   const handleSearch = useSearch();
 
@@ -31,6 +28,10 @@ const Search = forwardRef<HTMLDivElement, SearchProps>(({ className }, ref) => {
 
       handleSearch(keyword, 0);
     }
+  };
+
+  const handleClearKeyword = () => {
+    setKeyword("");
   };
 
   return (
@@ -45,11 +46,15 @@ const Search = forwardRef<HTMLDivElement, SearchProps>(({ className }, ref) => {
           type="text"
           className={styles["search__input"]}
           placeholder="검색"
-          onChange={debouncedChange}
+          onChange={handleChange}
           onKeyDown={handleKeydown}
+          value={keyword}
         />
         <div className={styles["search__clear__container"]}>
-          <div className={styles["search__clear__wrapper"]}>
+          <div
+            className={styles["search__clear__wrapper"]}
+            onClick={handleClearKeyword}
+          >
             <LuX className={styles["icon"]} />
           </div>
         </div>
