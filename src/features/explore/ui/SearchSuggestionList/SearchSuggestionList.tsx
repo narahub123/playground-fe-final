@@ -8,9 +8,13 @@ import SearchSuggestion from "../SearchSuggestion/SearchSuggestion";
 
 interface SearchSuggestionListProps {
   className?: string;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const SearchSuggestionList = ({ className }: SearchSuggestionListProps) => {
+const SearchSuggestionList = ({
+  className,
+  setIsOpen,
+}: SearchSuggestionListProps) => {
   // 언어 설정
   const { recent, clear, saved } = useLanguageContent([
     "explore",
@@ -39,7 +43,12 @@ const SearchSuggestionList = ({ className }: SearchSuggestionListProps) => {
       </div>
       <div className={styles["list"]}>
         {recentSearches.map((recent) => (
-          <SearchSuggestion key={recent} type="recent" option={recent} />
+          <SearchSuggestion
+            key={recent}
+            type="recent"
+            option={recent}
+            setIsOpen={setIsOpen}
+          />
         ))}
       </div>
       <div className={styles["heading"]}>
@@ -47,7 +56,12 @@ const SearchSuggestionList = ({ className }: SearchSuggestionListProps) => {
       </div>
       <div className={styles["list"]}>
         {savedSearches.map((save) => (
-          <SearchSuggestion key={save} type="save" option={save} />
+          <SearchSuggestion
+            key={save}
+            type="save"
+            option={save}
+            setIsOpen={setIsOpen}
+          />
         ))}
       </div>
     </div>

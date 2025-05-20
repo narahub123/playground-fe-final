@@ -13,9 +13,14 @@ import { useEffect } from "react";
 interface AutoCompleteListProps {
   className?: string;
   isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const AutoCompleteList = ({ className, isOpen }: AutoCompleteListProps) => {
+const AutoCompleteList = ({
+  className,
+  isOpen,
+  setIsOpen,
+}: AutoCompleteListProps) => {
   const classNames = joinClassNames([styles["autocomplete__list"], className]);
   const { keywordSuggestions, accountSuggestions } = useSelector(
     selectAutoCompleteList
@@ -32,7 +37,11 @@ const AutoCompleteList = ({ className, isOpen }: AutoCompleteListProps) => {
       <div className={styles["keyword__list"]}>
         {keywordSuggestions.length > 0 ? (
           keywordSuggestions.map((keyword) => (
-            <AutoCompleteKeyword key={keyword} option={keyword} />
+            <AutoCompleteKeyword
+              key={keyword}
+              option={keyword}
+              setIsOpen={setIsOpen}
+            />
           ))
         ) : (
           <div style={{ padding: "12px 16px" }}>
@@ -42,7 +51,7 @@ const AutoCompleteList = ({ className, isOpen }: AutoCompleteListProps) => {
       </div>
       <div className={styles["account__list"]}>
         {accountSuggestions.map((user) => (
-          <AutoCompleteAccount key={user._id} />
+          <AutoCompleteAccount key={user.userId} setIsOpen={setIsOpen} />
         ))}
       </div>
     </div>

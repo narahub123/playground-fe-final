@@ -14,18 +14,21 @@ interface SearchSuggestionProps {
   className?: string;
   type: "recent" | "save";
   option: string;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const SearchSuggestion = ({
   className,
   type,
   option,
+  setIsOpen,
 }: SearchSuggestionProps) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const classNames = joinClassNames([styles["search__suggestion"], className]);
 
   const handleSelection = () => {
+    setIsOpen(false);
     navigate(`/search?q=${option}&src=typed_query`);
   };
 

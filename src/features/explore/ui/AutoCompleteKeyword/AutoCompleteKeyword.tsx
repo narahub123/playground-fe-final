@@ -1,22 +1,40 @@
 import styles from "./AutoCompleteKeyword.module.css";
-import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
+import { LuSearch } from "react-icons/lu";
+import { useNavigate } from "react-router-dom";
 
 interface AutoCompleteKeywordProps {
   className?: string;
   option: string;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const AutoCompleteKeyword = ({
   className,
   option,
+  setIsOpen,
 }: AutoCompleteKeywordProps) => {
-  // 언어 설정
-  //   const {} = useLanguageContent(["", "AutoCompleteKeyword"]);
+  const classNames = joinClassNames([
+    styles["autocomplete__keyword"],
+    className,
+  ]);
+  const navigate = useNavigate();
 
-  const classNames = joinClassNames([styles["autocompletekeyword"], className]);
+  const handleSelection = () => {
+    setIsOpen(false);
+    navigate(`/search?q=${option}&src=typed_query`);
+  };
 
-  return <div className={classNames}>AutoCompleteKeyword</div>;
+  return (
+    <div className={classNames} onClick={() => handleSelection()}>
+      <div className={styles["leading__icon"]}>
+        <div className={styles["icon__wrapper"]}>
+          <LuSearch className={styles["icon"]} />
+        </div>
+      </div>
+      <div className={styles["keyword"]}>{option}</div>
+    </div>
+  );
 };
 
 export default AutoCompleteKeyword;

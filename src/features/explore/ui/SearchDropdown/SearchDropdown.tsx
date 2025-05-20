@@ -15,9 +15,15 @@ interface SearchDropdownProps {
   className?: string;
   rect: IRect;
   isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const SearchDropdown = ({ className, rect, isOpen }: SearchDropdownProps) => {
+const SearchDropdown = ({
+  className,
+  rect,
+  isOpen,
+  setIsOpen,
+}: SearchDropdownProps) => {
   const classNames = joinClassNames([styles["search__dropdown"], className]);
   const {} = useLanguageContent(["explore", "SearchDropdown"]);
 
@@ -32,9 +38,9 @@ const SearchDropdown = ({ className, rect, isOpen }: SearchDropdownProps) => {
       <PostProgressbar isLoading={isLoading} />
       {/* 검색어의 유무에 따라 레이아웃이 달라짐 */}
       {keyword ? (
-        <AutoCompleteList isOpen={isOpen} />
+        <AutoCompleteList isOpen={isOpen} setIsOpen={setIsOpen} />
       ) : (
-        <SearchSuggestionList />
+        <SearchSuggestionList setIsOpen={setIsOpen} />
       )}
     </div>
   );
