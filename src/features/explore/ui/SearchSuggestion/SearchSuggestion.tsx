@@ -4,7 +4,10 @@ import { joinClassNames } from "@shared/@common/utils";
 import React from "react";
 import { fetchWithAuth } from "@shared/pages";
 import { useAppDispatch } from "@app/store";
-import { toggleSavedSearches } from "@features/explore/models";
+import {
+  toggleRecentSearches,
+  toggleSavedSearches,
+} from "@features/explore/models";
 
 interface SearchSuggestionProps {
   className?: string;
@@ -24,12 +27,24 @@ const SearchSuggestion = ({
     console.log("이거 눌림");
   };
 
-  const handleDeleteRecent = (e: React.MouseEvent, option: string) => {
+  const handleDeleteRecent = async (e: React.MouseEvent, option: string) => {
     e.stopPropagation();
-    console.log(option);
+    try {
+      const result = await fetchWithAuth(`/search-history?keyword=${option}`, {
+        method: "DELETE",
+      });
+
+      if (result.success) {
+        dispatch(toggleRecentSearches(option));
+      } else {
+        console.error("저장된 검색어 삭제");
+      }
+    } catch (error) {
+      console.error("저장된 검색어 삭제 도중 에러 발생", error);
+    }
   };
 
-  // 저장된 검색어 삭제하기 
+  // 저장된 검색어 삭제하기
   const handleDeleteSave = async (e: React.MouseEvent, option: string) => {
     e.stopPropagation();
     try {

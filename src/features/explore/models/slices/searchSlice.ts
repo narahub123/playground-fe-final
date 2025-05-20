@@ -51,6 +51,19 @@ const searchSlice = createSlice({
       state.keywordSuggestions = keywordSuggestions;
       state.userSuggestions = userSuggestions;
     },
+    toggleRecentSearches: (state, action: PayloadAction<string>) => {
+      const keyword = action.payload.toLowerCase().trim();
+
+      const recentSearches = state.recentSearches;
+
+      const isExisting = recentSearches.some(
+        (search) => search.toLowerCase() === keyword
+      );
+
+      state.recentSearches = isExisting
+        ? recentSearches.filter((search) => search.toLowerCase() !== keyword)
+        : [keyword, ...recentSearches];
+    },
   },
 });
 
@@ -61,4 +74,5 @@ export const {
   toggleSavedSearches,
   setSearchLoading,
   setKeywordResult,
+  toggleRecentSearches,
 } = searchSlice.actions;

@@ -5,6 +5,7 @@ import {
   toggleSavedSearches,
   setSearchLoading,
   setKeywordResult,
+  toggleRecentSearches,
 } from "./slices";
 import {
   getSearchHistory,
@@ -27,6 +28,7 @@ export {
   toggleSavedSearches,
   setSearchLoading,
   setKeywordResult,
+  toggleRecentSearches,
 
   // selectors
   getSearchHistory,
