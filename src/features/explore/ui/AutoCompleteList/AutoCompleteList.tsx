@@ -54,8 +54,12 @@ const AutoCompleteList = ({
         )}
       </div>
       <div className={styles["account__list"]}>
-        {accountSuggestions.map((user) => (
-          <AutoCompleteAccount key={user.userId} setIsOpen={setIsOpen} />
+        {accountSuggestions.map((account) => (
+          <AutoCompleteAccount
+            key={account.userId}
+            setIsOpen={setIsOpen}
+            account={account}
+          />
         ))}
       </div>
     </div>

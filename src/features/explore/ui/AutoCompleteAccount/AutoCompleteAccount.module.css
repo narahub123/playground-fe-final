@@ -1,0 +1,30 @@
+.autocomplete__account {
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.autocomplete__account:hover {
+  background-color: #f1f1f1;
+}
+
+.image__wrapper {
+  margin-right: 0.5rem;
+}
+
+.info__wrapper {
+  flex: 1;
+}
+
+.username__wrapper {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+.userid__wrapper {
+  display: flex;
+  align-items: center;
+  color: #777;
+}
