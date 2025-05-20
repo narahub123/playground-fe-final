@@ -1,7 +1,7 @@
 import styles from "./AutoCompleteKeyword.module.css";
 import { joinClassNames } from "@shared/@common/utils";
 import { LuSearch } from "react-icons/lu";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 interface AutoCompleteKeywordProps {
   className?: string;
@@ -19,10 +19,15 @@ const AutoCompleteKeyword = ({
     className,
   ]);
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   const handleSelection = () => {
     setIsOpen(false);
-    navigate(`/search?q=${option}&src=typed_query`);
+    navigate(`/search?q=${option}&src=typed_query`, {
+      state: {
+        from: pathname,
+      },
+    });
   };
 
   return (

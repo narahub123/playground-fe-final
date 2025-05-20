@@ -8,7 +8,7 @@ import {
   toggleRecentSearches,
   toggleSavedSearches,
 } from "@features/explore/models";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 interface SearchSuggestionProps {
   className?: string;
@@ -25,11 +25,14 @@ const SearchSuggestion = ({
 }: SearchSuggestionProps) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const { pathname } = useLocation();
   const classNames = joinClassNames([styles["search__suggestion"], className]);
 
   const handleSelection = () => {
     setIsOpen(false);
-    navigate(`/search?q=${option}&src=typed_query`);
+    navigate(`/search?q=${option}&src=typed_query`, {
+      state: { from: pathname },
+    });
   };
 
   const handleDeleteRecent = async (e: React.MouseEvent, option: string) => {

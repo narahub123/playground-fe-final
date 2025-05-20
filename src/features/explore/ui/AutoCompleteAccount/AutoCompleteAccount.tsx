@@ -3,7 +3,7 @@ import styles from "./AutoCompleteAccount.module.css";
 import { joinClassNames } from "@shared/@common/utils";
 import { ProfileImage, Text } from "@shared/@common/ui/components";
 import { defaultProfileImage } from "@shared/@common/assets";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 interface AutoCompleteAccountProps {
   className?: string;
@@ -21,10 +21,13 @@ const AutoCompleteAccount = ({
     className,
   ]);
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   const handleSelection = () => {
     setIsOpen(false);
-    navigate(`/${account.userId}`);
+    navigate(`/${account.userId}`, {
+      state: { from: pathname },
+    });
   };
 
   return (

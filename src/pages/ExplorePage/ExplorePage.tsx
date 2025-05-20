@@ -1,7 +1,6 @@
-import { useAppDispatch } from "@app/store";
 import styles from "./ExplorePage.module.css";
-import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
+import { useAppDispatch } from "@app/store";
 import { fetchWithAuth } from "@shared/pages";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -23,12 +22,10 @@ interface ExplorePageProps {
 
 const ExplorePage = ({ className }: ExplorePageProps) => {
   const dispatch = useAppDispatch();
-  const { pathname } = useLocation();
+  const { pathname, state } = useLocation();
   const [query, setQuery] = useSearchParams();
   const navigate = useNavigate();
   const classNames = joinClassNames([styles["explore__page"], className]);
-  // 언어 설정
-  const {} = useLanguageContent(["pages", "ExplorePage"]);
 
   const page = useSelector(selectPage);
   const posts = useSelector(selectPosts);
@@ -77,6 +74,11 @@ const ExplorePage = ({ className }: ExplorePageProps) => {
   };
 
   const handleforward = () => {
+    if (!state?.from) {
+      setIsFocused(false);
+      return;
+    }
+
     navigate(-1);
   };
 

@@ -4,7 +4,7 @@ import { joinClassNames } from "@shared/@common/utils";
 import { LuSearch, LuX } from "react-icons/lu";
 import { useKeyword, useSearchContext } from "@features/explore/models";
 import { debounce } from "@features/explore/utils";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 interface SearchProps {
   className?: string;
@@ -15,6 +15,7 @@ const Search = forwardRef<HTMLDivElement, SearchProps>(
   ({ className, setIsOpen }, ref) => {
     const classNames = joinClassNames([styles["search__wrapper"], className]);
     const navigate = useNavigate();
+    const { pathname } = useLocation();
 
     const { keyword, setKeyword, setIsFocused } = useSearchContext();
 
@@ -37,7 +38,9 @@ const Search = forwardRef<HTMLDivElement, SearchProps>(
       if (key === "Enter") {
         const keyword = e.currentTarget.value;
 
-        navigate(`/search?q=${keyword}&src=typed_query`);
+        navigate(`/search?q=${keyword}&src=typed_query`, {
+          state: { from: pathname },
+        });
       }
     };
 
