@@ -33,10 +33,12 @@ const Search = forwardRef<HTMLDivElement, SearchProps>(
           `/search-history/auto-complete?keyword=${keyword}`
         );
         if (result.success) {
-          const { keywordSuggestions, userSuggestions } =
+          const { keywordSuggestions, accountSuggestions } =
             result.data.autoComplete;
 
-          dispatch(setKeywordResult({ keywordSuggestions, userSuggestions }));
+          dispatch(
+            setKeywordResult({ keywordSuggestions, accountSuggestions })
+          );
         } else {
           console.error("검색어 조회 실패");
         }

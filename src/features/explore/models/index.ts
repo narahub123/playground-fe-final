@@ -12,6 +12,7 @@ import {
   selectSavedSearches,
   selectSearchLoading,
   selectSearchSuggestion,
+  selectAutoCompleteList,
 } from "./selectors";
 
 export {
@@ -35,4 +36,5 @@ export {
   selectSavedSearches,
   selectSearchLoading,
   selectSearchSuggestion,
+  selectAutoCompleteList,
 };

@@ -7,6 +7,9 @@ import SearchSettingsIcon from "./SearchSettingsIcon/SearchSettingsIcon";
 import SearchSettingsDropdown from "./SearchSettingsDropdown/SearchSettingsDropdown";
 import SearchSuggestionList from "./SearchSuggestionList/SearchSuggestionList";
 import SearchSuggestion from "./SearchSuggestion/SearchSuggestion";
+import AutoCompleteList from "./AutoCompleteList/AutoCompleteList";
+import AutoCompleteKeyword from "./AutoCompleteKeyword/AutoCompleteKeyword";
+import AutoCompleteAccount from "./AutoCompleteAccount/AutoCompleteAccount";
 
 export {
   SearchContainer,
@@ -18,4 +21,7 @@ export {
   SearchSettingsDropdown,
   SearchSuggestionList,
   SearchSuggestion,
+  AutoCompleteList,
+  AutoCompleteKeyword,
+  AutoCompleteAccount,
 };

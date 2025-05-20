@@ -11,6 +11,9 @@ import {
   SearchSettingsDropdown,
   SearchSuggestionList,
   SearchSuggestion,
+  AutoCompleteList,
+  AutoCompleteKeyword,
+  AutoCompleteAccount,
 } from "./ui";
 import {
   useSearchContext,
@@ -26,6 +29,7 @@ import {
   setKeywordResult,
   selectSearchSuggestion,
   toggleRecentSearches,
+  selectAutoCompleteList,
 } from "./models";
 import { debounce } from "./utils";
 
@@ -57,6 +61,7 @@ export {
   selectSavedSearches,
   selectSearchLoading,
   selectSearchSuggestion,
+  selectAutoCompleteList,
 
   // utils
   debounce,
@@ -71,6 +76,9 @@ export {
   SearchSettingsDropdown,
   SearchSuggestionList,
   SearchSuggestion,
+  AutoCompleteList,
+  AutoCompleteKeyword,
+  AutoCompleteAccount,
 };
 
 export type { ISearchContext, IRect };

@@ -5,7 +5,7 @@ interface ISearchState {
   recentSearches: string[];
   savedSearches: string[];
   keywordSuggestions: string[];
-  userSuggestions: IAuthor[];
+  accountSuggestions: IAuthor[];
   isLoading: boolean;
 }
 
@@ -13,7 +13,7 @@ const initialState: ISearchState = {
   recentSearches: [],
   savedSearches: [],
   keywordSuggestions: [],
-  userSuggestions: [],
+  accountSuggestions: [],
   isLoading: false,
 };
 
@@ -46,10 +46,10 @@ const searchSlice = createSlice({
       state.isLoading = action.payload;
     },
     setKeywordResult: (state, action: PayloadAction<Record<string, any>>) => {
-      const { keywordSuggestions, userSuggestions } = action.payload;
+      const { keywordSuggestions, accountSuggestions } = action.payload;
 
       state.keywordSuggestions = keywordSuggestions;
-      state.userSuggestions = userSuggestions;
+      state.accountSuggestions = accountSuggestions;
     },
     toggleRecentSearches: (state, action: PayloadAction<string>) => {
       const keyword = action.payload.toLowerCase().trim();

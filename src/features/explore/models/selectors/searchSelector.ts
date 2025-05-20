@@ -12,9 +12,19 @@ const selectSearchSuggestion = (state: RootState) => {
     savedSearches,
   };
 };
+const selectAutoCompleteList = (state: RootState) => {
+  const keywordSuggestions = state.search.keywordSuggestions;
+  const accountSuggestions = state.search.accountSuggestions;
+
+  return {
+    keywordSuggestions,
+    accountSuggestions,
+  };
+};
 export {
   getSearchHistory,
   selectSavedSearches,
   selectSearchLoading,
   selectSearchSuggestion,
+  selectAutoCompleteList,
 };
