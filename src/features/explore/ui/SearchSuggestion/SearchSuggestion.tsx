@@ -8,6 +8,7 @@ import {
   toggleRecentSearches,
   toggleSavedSearches,
 } from "@features/explore/models";
+import { useNavigate } from "react-router-dom";
 
 interface SearchSuggestionProps {
   className?: string;
@@ -21,10 +22,11 @@ const SearchSuggestion = ({
   option,
 }: SearchSuggestionProps) => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const classNames = joinClassNames([styles["search__suggestion"], className]);
 
   const handleSelection = () => {
-    console.log("이거 눌림");
+    navigate(`/search?q=${option}&src=typed_query`);
   };
 
   const handleDeleteRecent = async (e: React.MouseEvent, option: string) => {
