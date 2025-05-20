@@ -16,7 +16,7 @@ const Search = forwardRef<HTMLDivElement, SearchProps>(
     const classNames = joinClassNames([styles["search__wrapper"], className]);
     const navigate = useNavigate();
 
-    const { keyword, setKeyword } = useSearchContext();
+    const { keyword, setKeyword, setIsFocused } = useSearchContext();
 
     const handleKeyword = useKeyword();
 
@@ -63,6 +63,7 @@ const Search = forwardRef<HTMLDivElement, SearchProps>(
             onFocus={(e) => {
               e.stopPropagation();
               setIsOpen(true);
+              setIsFocused(true);
             }}
           />
 

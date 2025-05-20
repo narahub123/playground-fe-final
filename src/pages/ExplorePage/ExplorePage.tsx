@@ -34,6 +34,7 @@ const ExplorePage = ({ className }: ExplorePageProps) => {
   const posts = useSelector(selectPosts);
 
   const [keyword, setKeyword] = useState("");
+  const [isFocused, setIsFocused] = useState(false);
 
   const getSearchHistory = async () => {
     try {
@@ -71,20 +72,28 @@ const ExplorePage = ({ className }: ExplorePageProps) => {
     keyword,
     setKeyword,
     page,
+    isFocused,
+    setIsFocused,
+  };
+
+  const handleforward = () => {
+    navigate(-1);
   };
 
   return (
     <SearchContextProvider value={value}>
       <div className={classNames}>
         <div className={styles["search__wrapper"]}>
-          <div className={styles["forward__container"]}>
-            <Icon
-              iconName="arrowLeft"
-              title="돌아가기"
-              onClick={() => {}}
-              className={styles["forward__icon"]}
-            />
-          </div>
+          {isFocused && (
+            <div className={styles["forward__container"]}>
+              <Icon
+                iconName="arrowLeft"
+                title="돌아가기"
+                onClick={handleforward}
+                className={styles["forward__icon"]}
+              />
+            </div>
+          )}
           <div className={styles["input__container"]}>
             <SearchContainer />
           </div>
