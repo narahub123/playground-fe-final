@@ -79,6 +79,11 @@ const ExplorePage = ({ className }: ExplorePageProps) => {
       return;
     }
 
+    // explore 페이지에서는 keyword 삭제
+    if (state?.from.includes("explore")) {
+      setKeyword("");
+    }
+
     navigate(-1);
   };
 
