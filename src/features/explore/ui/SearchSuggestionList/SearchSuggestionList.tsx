@@ -2,7 +2,6 @@ import styles from "./SearchSuggestionList.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Button, Text } from "@shared/@common/ui/components";
 import { joinClassNames } from "@shared/@common/utils";
-import SearchKeyword from "../SearchKeyword/SearchKeyword";
 import { useSelector } from "react-redux";
 import { selectSearchSuggestion } from "@features/explore/models";
 import SearchSuggestion from "../SearchSuggestion/SearchSuggestion";
