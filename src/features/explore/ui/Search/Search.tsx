@@ -1,8 +1,9 @@
-import { forwardRef } from "react";
+import { forwardRef, useCallback } from "react";
 import styles from "./Search.module.css";
 import { joinClassNames } from "@shared/@common/utils";
 import { LuSearch, LuX } from "react-icons/lu";
 import { useSearch, useSearchContext } from "@features/explore/models";
+import { debounce } from "@features/explore/utils";
 
 interface SearchProps {
   className?: string;
@@ -13,10 +14,20 @@ const Search = forwardRef<HTMLDivElement, SearchProps>(({ className }, ref) => {
 
   const { keyword, setKeyword } = useSearchContext();
 
+  const handleKeyword = (keyword: string) => {
+    console.log("handleKeyword 호출", keyword);
+  };
+
+  const debouncedHandleKeyword = useCallback(
+    debounce((keyword: string) => handleKeyword(keyword), 500),
+    []
+  );
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const keyword = e.target.value;
 
     setKeyword(keyword);
+    debouncedHandleKeyword(keyword);
   };
 
   const handleSearch = useSearch();
