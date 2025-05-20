@@ -31,7 +31,9 @@ const SearchSettingsIcon = ({
     className,
   ]);
 
-  const handleOpen = () => {
+  const handleOpen = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    e.stopPropagation();
+
     setIsOpen((prev) => {
       if (prev !== true) return true;
       else return false;

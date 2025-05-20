@@ -2,6 +2,7 @@ import {
   toggleSavedSearches,
   useSearchContext,
   selectSavedSearches,
+  useClickOutside,
 } from "@features/explore/models";
 import styles from "./SearchSettingsDropdown.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
@@ -9,6 +10,7 @@ import { joinClassNames } from "@shared/@common/utils";
 import { fetchWithAuth } from "@shared/pages";
 import { useAppDispatch } from "@app/store";
 import { useSelector } from "react-redux";
+import { useRef } from "react";
 
 interface SearchSettingsDropdownProps {
   className?: string;
@@ -22,12 +24,15 @@ const SearchSettingsDropdown = ({
   setIsOpen,
 }: SearchSettingsDropdownProps) => {
   const dispatch = useAppDispatch();
+  const containerRef = useRef<HTMLDivElement>(null);
   // 언어 설정
   const { list } = useLanguageContent(["explore", "SearchSettingsDropdown"]);
 
   const { keyword } = useSearchContext();
 
   const savedSearches = useSelector(selectSavedSearches);
+
+  useClickOutside({ containerRef, setIsOpen });
 
   const classNames = joinClassNames([
     styles["search__settings__dropdown"],
@@ -72,7 +77,7 @@ const SearchSettingsDropdown = ({
   };
 
   return (
-    <div className={classNames}>
+    <div className={classNames} ref={containerRef}>
       {Object.keys(list).map((key) => {
         if (key === "save" && !keyword) return null;
         return (

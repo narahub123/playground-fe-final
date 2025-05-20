@@ -13,6 +13,7 @@ import {
 import {
   useSearchContext,
   useSearch,
+  useClickOutside,
   searchSlice,
   setSearchHistory,
   getSearchHistory,
@@ -32,6 +33,7 @@ export {
   // hooks
   useSearchContext,
   useSearch,
+  useClickOutside,
 
   // slice
   searchSlice,

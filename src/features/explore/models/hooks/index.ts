@@ -1,4 +1,5 @@
 import useSearchContext from "./useSearchContext";
 import useSearch from "./useSearch";
+import useClickOutside from "./useClickOutside";
 
-export { useSearchContext, useSearch };
+export { useSearchContext, useSearch, useClickOutside };
