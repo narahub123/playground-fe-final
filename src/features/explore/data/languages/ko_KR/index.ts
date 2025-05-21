@@ -18,6 +18,12 @@ const explore_kr = {
   Search: {
     ph: "검색",
   },
+  ClearKeywordsConfirm: {
+    title: "모든 최근 검색을 삭제할까요?",
+    expl: "이 작업은 취소할 수 없으며 모든 최근 검색이 삭제됩니다.",
+    confirm: "지우기",
+    deny: "취소",
+  },
 };
 
 export default explore_kr;

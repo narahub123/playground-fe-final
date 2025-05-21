@@ -14,6 +14,7 @@ import {
   AutoCompleteList,
   AutoCompleteKeyword,
   AutoCompleteAccount,
+  ClearKeywordsConfirm,
 } from "./ui";
 import {
   useSearchContext,
@@ -83,6 +84,7 @@ export {
   AutoCompleteList,
   AutoCompleteKeyword,
   AutoCompleteAccount,
+  ClearKeywordsConfirm,
 };
 
 export type { ISearchContext, IRect };

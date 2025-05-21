@@ -4,11 +4,10 @@ import { Button, Text } from "@shared/@common/ui/components";
 import { joinClassNames } from "@shared/@common/utils";
 import { useSelector } from "react-redux";
 import {
-  clearRecentSearches,
   selectSearchSuggestion,
+  useSearchContext,
 } from "@features/explore/models";
 import SearchSuggestion from "../SearchSuggestion/SearchSuggestion";
-import { fetchWithAuth } from "@shared/pages";
 import { useAppDispatch } from "@app/store";
 
 interface SearchSuggestionListProps {
@@ -26,8 +25,6 @@ const SearchSuggestionList = ({
     "SearchSuggestionList",
   ]);
 
-  const dispatch = useAppDispatch();
-
   const { recentSearches, savedSearches } = useSelector(selectSearchSuggestion);
 
   const classNames = joinClassNames([
@@ -35,19 +32,10 @@ const SearchSuggestionList = ({
     className,
   ]);
 
-  const handleDeleteAll = async () => {
-    try {
-      const result = await fetchWithAuth(`/search-history/all`, {
-        method: "DELETE",
-      });
-      if (result.success) {
-        dispatch(clearRecentSearches());
-      } else {
-        console.error("최근 검색어 전부 삭제 실패");
-      }
-    } catch (error) {
-      console.error("최근 검색어 전부 삭제 도중 에러 발생", error);
-    }
+  const { onOpen } = useSearchContext();
+
+  const handleOpenConfirm = () => {
+    onOpen();
   };
 
   return (
@@ -58,7 +46,7 @@ const SearchSuggestionList = ({
             <Text type="heading3">{recent}</Text>
             <Button
               isValid
-              onClick={handleDeleteAll}
+              onClick={() => handleOpenConfirm()}
               variant="plain"
               fontColor="colorTheme"
             >

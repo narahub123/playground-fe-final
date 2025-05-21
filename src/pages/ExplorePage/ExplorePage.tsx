@@ -13,8 +13,10 @@ import {
   setSearchHistory,
   SearchSettingsContainer,
   useSearch,
+  ClearKeywordsConfirm,
 } from "@features/explore";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { useDisclosure } from "@shared/@common/models/hooks";
 
 interface ExplorePageProps {
   className?: string;
@@ -65,12 +67,17 @@ const ExplorePage = ({ className }: ExplorePageProps) => {
     }
   }, [pathname, query.get("q")]);
 
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   const value: ISearchContext = {
     keyword,
     setKeyword,
     page,
     isFocused,
     setIsFocused,
+    isOpen,
+    onOpen,
+    onClose,
   };
 
   const handleforward = () => {
@@ -89,6 +96,7 @@ const ExplorePage = ({ className }: ExplorePageProps) => {
 
   return (
     <SearchContextProvider value={value}>
+      <ClearKeywordsConfirm />
       <div className={classNames}>
         <div className={styles["search__wrapper"]}>
           {isFocused && (

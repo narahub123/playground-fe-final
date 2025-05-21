@@ -4,6 +4,9 @@ interface ISearchContext {
   page: number;
   isFocused: boolean;
   setIsFocused: React.Dispatch<React.SetStateAction<boolean>>;
+  isOpen: boolean;
+  onOpen: () => void;
+  onClose: () => void;
 }
 
 interface IRect {

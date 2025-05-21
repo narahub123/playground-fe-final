@@ -10,6 +10,7 @@ import SearchSuggestion from "./SearchSuggestion/SearchSuggestion";
 import AutoCompleteList from "./AutoCompleteList/AutoCompleteList";
 import AutoCompleteKeyword from "./AutoCompleteKeyword/AutoCompleteKeyword";
 import AutoCompleteAccount from "./AutoCompleteAccount/AutoCompleteAccount";
+import ClearKeywordsConfirm from "./ClearKeywordsConfirm/ClearKeywordsConfirm";
 
 export {
   SearchContainer,
@@ -24,4 +25,5 @@ export {
   AutoCompleteList,
   AutoCompleteKeyword,
   AutoCompleteAccount,
+  ClearKeywordsConfirm,
 };
