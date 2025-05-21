@@ -16,6 +16,7 @@ import Select from "./Select";
 import SelectLanguage from "./SelectLanguage/SelectLanguage";
 import Input from "./Input";
 import ProfileImageUploader from "./ProfileImageUploader/ProfileImageUploader";
+import Confirm from "./Confirm/ui";
 
 export {
   Text,
@@ -36,4 +37,5 @@ export {
   SelectLanguage,
   Input,
   ProfileImageUploader,
+  Confirm,
 };

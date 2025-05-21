@@ -1,0 +1,5 @@
+.confirm__container {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
