@@ -14,6 +14,7 @@ import {
   SearchSettingsContainer,
   useSearch,
   ClearKeywordsConfirm,
+  ExploreSettingModal,
 } from "@features/explore";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { useDisclosure } from "@shared/@common/models/hooks";
@@ -97,6 +98,7 @@ const ExplorePage = ({ className }: ExplorePageProps) => {
   return (
     <SearchContextProvider value={value}>
       <ClearKeywordsConfirm />
+      <ExploreSettingModal />
       <div className={classNames}>
         <div className={styles["search__wrapper"]}>
           {isFocused && (

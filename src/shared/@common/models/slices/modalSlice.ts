@@ -18,6 +18,7 @@ interface ModalState {
   standalone: {
     error: boolean; // 독립 모달 상태
     logout: boolean; // 로그아웃 모달 상태
+    explore: boolean;
   };
   verification: {
     ownership: boolean;
@@ -37,6 +38,7 @@ const initialState: ModalState = {
   standalone: {
     error: false,
     logout: false,
+    explore: false,
   },
   verification: {
     ownership: false,

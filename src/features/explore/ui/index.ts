@@ -11,6 +11,7 @@ import AutoCompleteList from "./AutoCompleteList/AutoCompleteList";
 import AutoCompleteKeyword from "./AutoCompleteKeyword/AutoCompleteKeyword";
 import AutoCompleteAccount from "./AutoCompleteAccount/AutoCompleteAccount";
 import ClearKeywordsConfirm from "./ClearKeywordsConfirm/ClearKeywordsConfirm";
+import ExploreSettingModal from "./ExploreSettingModal/ExploreSettingModal";
 
 export {
   SearchContainer,
@@ -26,4 +27,5 @@ export {
   AutoCompleteKeyword,
   AutoCompleteAccount,
   ClearKeywordsConfirm,
+  ExploreSettingModal,
 };

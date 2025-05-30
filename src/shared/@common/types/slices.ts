@@ -47,7 +47,7 @@ type ParallelModals =
   | "ownership"
   | "schedule";
 
-type StandAlonModals = "error" | "logout";
+type StandAlonModals = "error" | "logout" | "explore";
 type VerificationModals = "ownership";
 
 type TwoFactorAuthenticationMethod = "sms" | "app" | "key" | "";

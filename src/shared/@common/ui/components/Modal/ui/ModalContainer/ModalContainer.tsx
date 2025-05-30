@@ -93,13 +93,12 @@ const ModalContainer = ({
    * @type {number}
    */
 
-  const firstFocus = firstFocusIndex !== undefined
-    ? firstFocusIndex
-    : lengthOfList
-    ? 1 + lengthOfList
-    : 1;
-
-  console.log("첫", firstFocus);
+  const firstFocus =
+    firstFocusIndex !== undefined
+      ? firstFocusIndex
+      : lengthOfList
+      ? 1 + lengthOfList
+      : 1;
 
   useFocusTrap({
     containerRef,
