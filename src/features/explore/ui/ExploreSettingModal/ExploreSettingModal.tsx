@@ -28,6 +28,7 @@ const ExploreSettingModal = ({}: ExploreSettingModalProps) => {
     heading2,
     option2,
     description2,
+    exploreLocataion,
   } = useLanguageContent(["explore", "ExploreSettingModal"]);
 
   const [exploreSettings, setExploreSettings] = useState<IExploreSettings>({
@@ -107,7 +108,7 @@ const ExploreSettingModal = ({}: ExploreSettingModalProps) => {
             {!exploreSettings.isShowingCurrentLocationContents && (
               <div className={styles["location"]} onClick={() => {}}>
                 <div>
-                  <Text>{"위치탐색"}</Text>
+                  <Text>{exploreLocataion}</Text>
                   <Text type="expl">{"대한민국"}</Text>
                 </div>
                 <LuChevronRight fontSize={"1.25rem"} />
