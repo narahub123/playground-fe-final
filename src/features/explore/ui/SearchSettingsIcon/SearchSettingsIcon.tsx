@@ -20,9 +20,15 @@ const SearchSettingsIcon = ({
   // 언어 설정
   const {} = useLanguageContent(["explore", "SearchSettingsIcon"]);
 
+  const isInSearch = (pathname: string) => {
+    return pathname.includes("search");
+  };
+
   useEffect(() => {
-    if (pathname.includes("search")) {
+    if (isInSearch(pathname)) {
       setIconName("more");
+    } else {
+      setIconName("settings");
     }
   }, [pathname]);
 
@@ -31,7 +37,7 @@ const SearchSettingsIcon = ({
     className,
   ]);
 
-  const handleOpen = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+  const handleOpenDropdown = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     e.stopPropagation();
 
     setIsOpen((prev) => {
@@ -40,9 +46,18 @@ const SearchSettingsIcon = ({
     });
   };
 
+  const handleOpenModal = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    e.stopPropagation();
+    console.log("모달 열기");
+  };
+
   return (
     <div className={classNames}>
-      <Icon iconName={iconName} title="설정" onClick={handleOpen} />
+      <Icon
+        iconName={iconName}
+        title="설정"
+        onClick={isInSearch(pathname) ? handleOpenDropdown : handleOpenModal}
+      />
     </div>
   );
 };
