@@ -16,3 +16,62 @@
 .body {
   padding: 0;
 }
+
+.heading {
+  padding: 0.75rem 1rem;
+}
+
+.wrapper {
+  padding: 1rem;
+}
+
+.checkbox__wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.checkbox__wrapper:hover .checked {
+  background-color: rgba(100, 149, 237, 0.1);
+}
+
+.checkbox__wrapper:hover .unchecked {
+  background-color: rgb(0, 0, 0, 0.1);
+}
+
+.checked {
+  color: cornflowerblue;
+}
+
+.checked:hover {
+  background-color: rgba(100, 149, 237, 0.1);
+}
+
+.checked:focus-visible {
+  background-color: rgba(100, 149, 237, 0.1);
+  outline: 2px solid hsl(219, 79%, 70%);
+}
+
+.unchecked:hover {
+  background-color: rgb(0, 0, 0, 0.1);
+}
+
+.unchecked:focus-visible {
+  background-color: rgb(0, 0, 0, 0.1);
+  outline: 2px solid #ccc;
+}
+
+.empty {
+  height: 10rem;
+}
+
+.location {
+  padding: 0.75rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.location:hover {
+  background: #f9f9f9;
+}
