@@ -118,6 +118,13 @@ interface IUserPostAction {
   updatedAt: string;
 }
 
+interface IExploreSettings {
+  useDeviceLocation: boolean;
+  selectedLocation: string;
+  personalizeTrends: boolean;
+  interests: string[];
+}
+
 interface IUser {
   _id: string;
   userId: string;
@@ -145,6 +152,7 @@ interface IUser {
   likes: IUserPostAction[];
   createdAt: Date;
   pinnedPost?: string;
+  exploreSettings: IExploreSettings;
 }
 
 interface IRepost {
@@ -247,4 +255,5 @@ export type {
   IRepostUser,
   IUserPostAction,
   ICountry,
+  IExploreSettings,
 };

@@ -32,6 +32,7 @@ import {
   IRepostUser,
   IUserPostAction,
   ICountry,
+  IExploreSettings,
 } from "./slices";
 
 import {
@@ -90,6 +91,7 @@ export type {
   IRepostUser,
   IUserPostAction,
   ICountry,
+  IExploreSettings,
 
   // components
   DropdownItemType, // dropdown item

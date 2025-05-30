@@ -62,6 +62,12 @@ const initialState: UserState = {
     bookmarks: [],
     createdAt: new Date(),
     likes: [],
+    exploreSettings: {
+      useDeviceLocation: true,
+      selectedLocation: "KR",
+      personalizeTrends: true,
+      interests: [],
+    },
   },
   loading: true,
 };
