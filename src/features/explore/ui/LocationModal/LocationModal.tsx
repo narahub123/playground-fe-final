@@ -9,6 +9,7 @@ import { Modal, Text } from "@shared/@common/ui/components";
 import { Icon } from "@shared/@common/ui/icons";
 import { LuSearch } from "react-icons/lu";
 import { ICountry } from "@shared/@common/types";
+import { useEffect, useState } from "react";
 
 interface LocationModalProps {
   className?: string;
@@ -16,8 +17,30 @@ interface LocationModalProps {
 
 const LocationModal = ({ className }: LocationModalProps) => {
   const dispatch = useAppDispatch();
+  const [search, setSearch] = useState("");
+  const [countries, setCountries] = useState<ICountry[]>([]);
   // 언어 설정
   const { countryNames } = useLanguageContent(["explore", "LocationModal"]);
+
+  useEffect(() => {
+    if (!countryNames) return;
+
+    let countries = [];
+
+    if (!search) {
+      countries = countryNames;
+    } else {
+      countries = countryNames.filter((country: ICountry) =>
+        country.name.startsWith(search)
+      );
+    }
+
+    const filter = countries.sort((a: ICountry, b: ICountry) =>
+      a.name.localeCompare(b.name)
+    );
+
+    setCountries(filter);
+  }, [countryNames, search]);
 
   const isOpen = useSelector(getParalleModal("location"));
 
@@ -25,6 +48,12 @@ const LocationModal = ({ className }: LocationModalProps) => {
 
   const onClose = () => {
     dispatch(onParallelModalClose("location"));
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const keyword = e.target.value;
+
+    setSearch(keyword);
   };
 
   return (
@@ -53,21 +82,17 @@ const LocationModal = ({ className }: LocationModalProps) => {
                   type="text"
                   className={styles["input"]}
                   placeholder="위치 검색"
+                  onChange={handleChange}
+                  value={search}
                 />
               </div>
             </div>
             <div>
-              {countryNames
-                .sort((a: ICountry, b: ICountry) =>
-                  a.name.localeCompare(b.name)
-                )
-                .map((country: ICountry) => (
-                  <div>
-                    <button className={styles["country"]}>
-                      {country.name}
-                    </button>
-                  </div>
-                ))}
+              {countries.map((country: ICountry) => (
+                <div>
+                  <button className={styles["country"]}>{country.name}</button>
+                </div>
+              ))}
             </div>
           </Modal.Body>
         </Modal.Content>
