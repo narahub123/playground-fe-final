@@ -4,11 +4,15 @@ import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Modal, Text } from "@shared/@common/ui/components";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "@app/store";
-import { onStandAlonClose } from "@shared/@common/models/slices/modalSlice";
+import {
+  onParallelModalOpen,
+  onStandAlonClose,
+} from "@shared/@common/models/slices/modalSlice";
 import { Icon } from "@shared/@common/ui/icons";
 import { useState } from "react";
 import { joinClassNames } from "@shared/@common/utils";
 import { LuChevronRight } from "react-icons/lu";
+import { useNavigate } from "react-router-dom";
 
 interface ExploreSettingModalProps {}
 
@@ -19,6 +23,7 @@ interface IExploreSettings {
 
 const ExploreSettingModal = ({}: ExploreSettingModalProps) => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   // 언어 설정
   const {
     title,
@@ -106,7 +111,13 @@ const ExploreSettingModal = ({}: ExploreSettingModalProps) => {
               <Text type="expl">{description1}</Text>
             </div>
             {!exploreSettings.isShowingCurrentLocationContents && (
-              <div className={styles["location"]} onClick={() => {}}>
+              <div
+                className={styles["location"]}
+                onClick={() => {
+                  navigate("location");
+                  dispatch(onParallelModalOpen("location"));
+                }}
+              >
                 <div>
                   <Text>{exploreLocataion}</Text>
                   <Text type="expl">{"대한민국"}</Text>

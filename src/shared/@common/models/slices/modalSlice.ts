@@ -14,6 +14,7 @@ interface ModalState {
     account: boolean; // accountmanage 모달 상태
     ownership: boolean; // 계정 소유자 여부 확인 모달 상태
     schedule: boolean; // 포스트 예약 상태
+    location: boolean;
   };
   standalone: {
     error: boolean; // 독립 모달 상태
@@ -34,6 +35,7 @@ const initialState: ModalState = {
     account: false,
     ownership: false,
     schedule: false,
+    location: false,
   },
   standalone: {
     error: false,

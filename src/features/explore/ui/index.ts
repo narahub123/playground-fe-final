@@ -12,6 +12,7 @@ import AutoCompleteKeyword from "./AutoCompleteKeyword/AutoCompleteKeyword";
 import AutoCompleteAccount from "./AutoCompleteAccount/AutoCompleteAccount";
 import ClearKeywordsConfirm from "./ClearKeywordsConfirm/ClearKeywordsConfirm";
 import ExploreSettingModal from "./ExploreSettingModal/ExploreSettingModal";
+import LocationModal from "./LocationModal/LocationModal";
 
 export {
   SearchContainer,
@@ -28,4 +29,5 @@ export {
   AutoCompleteAccount,
   ClearKeywordsConfirm,
   ExploreSettingModal,
+  LocationModal,
 };

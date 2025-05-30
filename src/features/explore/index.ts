@@ -16,6 +16,7 @@ import {
   AutoCompleteAccount,
   ClearKeywordsConfirm,
   ExploreSettingModal,
+  LocationModal,
 } from "./ui";
 import {
   useSearchContext,
@@ -87,6 +88,7 @@ export {
   AutoCompleteAccount,
   ClearKeywordsConfirm,
   ExploreSettingModal,
+  LocationModal,
 };
 
 export type { ISearchContext, IRect };

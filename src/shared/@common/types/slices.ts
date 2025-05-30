@@ -45,7 +45,8 @@ type ParallelModals =
   | "write"
   | "account"
   | "ownership"
-  | "schedule";
+  | "schedule"
+  | "location";
 
 type StandAlonModals = "error" | "logout" | "explore";
 type VerificationModals = "ownership";
@@ -56,6 +57,12 @@ type TagTarget = "all" | "followers";
 type MuteTarget = "all" | "notFollowing";
 type MuteDuration = "forever" | "24h" | "7d" | "30d";
 type MessageAllowSettings = "all" | "authenticated" | "none";
+
+interface ICountry {
+  name: string;
+  code: string;
+  lang: string[];
+}
 
 interface IAccount {
   userId: string;
@@ -239,4 +246,5 @@ export type {
   IPostVoteOption,
   IRepostUser,
   IUserPostAction,
+  ICountry,
 };

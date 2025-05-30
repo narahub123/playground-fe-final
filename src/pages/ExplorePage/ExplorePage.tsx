@@ -15,6 +15,7 @@ import {
   useSearch,
   ClearKeywordsConfirm,
   ExploreSettingModal,
+  LocationModal,
 } from "@features/explore";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { useDisclosure } from "@shared/@common/models/hooks";
@@ -97,6 +98,7 @@ const ExplorePage = ({ className }: ExplorePageProps) => {
 
   return (
     <SearchContextProvider value={value}>
+      <LocationModal />
       <ClearKeywordsConfirm />
       <ExploreSettingModal />
       <div className={classNames}>
