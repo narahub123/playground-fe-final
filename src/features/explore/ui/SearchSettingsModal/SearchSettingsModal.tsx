@@ -1,7 +1,7 @@
-import { getParalleModal } from "@shared/@common/models/selectors";
+import { getParalleModal, getPrivacy } from "@shared/@common/models/selectors";
 import styles from "./SearchSettingsModal.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
-import { Modal } from "@shared/@common/ui/components";
+import { Modal, Text } from "@shared/@common/ui/components";
 import { joinClassNames } from "@shared/@common/utils";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "@app/store";
@@ -12,6 +12,7 @@ import {
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { PRIMARY_LINK } from "@shared/@common/constants";
+import { Icon } from "@shared/@common/ui/icons";
 
 interface SearchSettingsModalProps {
   className?: string;
@@ -36,6 +37,9 @@ const SearchSettingsModal = ({ className }: SearchSettingsModalProps) => {
     className,
   ]);
 
+  const { isSensitiveMediaDisplayed, isMutesAndBlocksRemoved } =
+    useSelector(getPrivacy);
+
   useEffect(() => {
     if (!pathname) return;
 
@@ -54,9 +58,67 @@ const SearchSettingsModal = ({ className }: SearchSettingsModalProps) => {
       <Modal.Overlay />
       <Modal.Container>
         <Modal.Content>
-          <Modal.Header>헤더</Modal.Header>
-          <Modal.Body>바디</Modal.Body>
-          <Modal.Footer>고급 검색</Modal.Footer>
+          <Modal.Header className={styles["header"]}>
+            <div className={styles["icon__wrapper"]}>
+              <Icon
+                className={styles["icon"]}
+                iconName="close"
+                onClick={() => {}}
+              />
+            </div>
+            <Text type="heading3">{title}</Text>
+          </Modal.Header>
+          <Modal.Body className={styles["body"]}>
+            <div className={styles["checkbox__container"]}>
+              <div className={styles["checkbox__wrapper"]}>
+                <Text>민감한 내용의 콘텐츠 숨기기</Text>
+                {isSensitiveMediaDisplayed ? (
+                  <Icon
+                    iconName="rectCheckboxBlank"
+                    iconSize="xl"
+                    className={styles["checkbox__icon"]}
+                    tabIndex={0}
+                  />
+                ) : (
+                  <Icon
+                    iconName="rectCheckboxFill"
+                    iconSize="xl"
+                    iconColor="cornflowerblue"
+                    className={styles["checkbox__icon"]}
+                    tabIndex={0}
+                  />
+                )}
+              </div>
+              <Text type="expl">
+                검색 결과에서 민감한 콘텐츠를 포함할 수 있는 게시물을 숨깁니다.
+              </Text>
+            </div>
+            <div className={styles["checkbox__container"]}>
+              <div className={styles["checkbox__wrapper"]}>
+                <Text>차단 또는 뮤트한 계정 제외하기</Text>
+                {isMutesAndBlocksRemoved ? (
+                  <Icon
+                    iconName="rectCheckboxFill"
+                    iconSize="xl"
+                    iconColor="cornflowerblue"
+                    className={styles["checkbox__icon"]}
+                    tabIndex={0}
+                  />
+                ) : (
+                  <Icon
+                    iconName="rectCheckboxBlank"
+                    iconSize="xl"
+                    className={styles["checkbox__icon"]}
+                    tabIndex={0}
+                  />
+                )}
+              </div>
+              <Text type="expl">
+                검색 결과에서 내가 차단 또는 뮤트한 계정을 제외하려면
+                사용하세요.
+              </Text>
+            </div>
+          </Modal.Body>
         </Modal.Content>
       </Modal.Container>
     </Modal>

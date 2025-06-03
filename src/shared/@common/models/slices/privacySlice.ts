@@ -22,6 +22,7 @@ interface PrivacyState {
 
   // 표시되는 콘텐츠
   isSensitiveMediaDisplayed: boolean;
+  isMutesAndBlocksRemoved: boolean;
   topics: string[];
   interests: string[];
 
@@ -72,7 +73,8 @@ const initialState: PrivacyState = {
   isLocationInfoIncluded: false,
 
   // 표시되는 콘텐츠
-  isSensitiveMediaDisplayed: true,
+  isSensitiveMediaDisplayed: false,
+  isMutesAndBlocksRemoved: true,
   topics: [],
   interests: [],
 
