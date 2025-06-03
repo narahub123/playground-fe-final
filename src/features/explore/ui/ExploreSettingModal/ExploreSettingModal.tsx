@@ -19,6 +19,7 @@ import {
   togglePersonalizeTrends,
   toggleUseDeviceLocation,
 } from "@shared/@common/models/slices/userSlice";
+import { fetchWithAuth } from "@shared/pages";
 
 interface ExploreSettingModalProps {}
 
@@ -47,6 +48,50 @@ const ExploreSettingModal = ({}: ExploreSettingModalProps) => {
     dispatch(onStandAlonClose("explore"));
   };
 
+  const updateUseDeviceLocation = async () => {
+    try {
+      const result = await fetchWithAuth(
+        `/users/me`,
+        {
+          method: "PATCH",
+        },
+        {
+          useDeviceLocation: "do",
+        }
+      );
+
+      if (result.success) {
+        dispatch(toggleUseDeviceLocation());
+      } else {
+        console.error("useDeviceLocation 업데이트 실패");
+      }
+    } catch (error) {
+      console.error("useDeviceLocation 업데이트 도중 에러 발생", error);
+    }
+  };
+
+  const updatePersonalizeTrends = async () => {
+    try {
+      const result = await fetchWithAuth(
+        `/users/me`,
+        {
+          method: "PATCH",
+        },
+        {
+          personalizeTrends: "do",
+        }
+      );
+
+      if (result.success) {
+        dispatch(togglePersonalizeTrends());
+      } else {
+        console.error("personalizeTrends 업데이트 실패");
+      }
+    } catch (error) {
+      console.error("personalizeTrends 업데이트 도중 에러 발생", error);
+    }
+  };
+
   return (
     <Modal domId="explore" isOpen={true} onClose={onClose}>
       <Modal.Overlay />
@@ -70,12 +115,10 @@ const ExploreSettingModal = ({}: ExploreSettingModalProps) => {
             <div className={styles["wrapper"]}>
               <div
                 className={styles["checkbox__wrapper"]}
-                onClick={() => {
-                  dispatch(toggleUseDeviceLocation());
-                }}
-                onKeyDown={(e) => {
+                onClick={updateUseDeviceLocation}
+                onKeyDown={async (e) => {
                   if (e.key === "Enter") {
-                    dispatch(toggleUseDeviceLocation());
+                    await updateUseDeviceLocation();
                   }
                 }}
               >
@@ -116,12 +159,10 @@ const ExploreSettingModal = ({}: ExploreSettingModalProps) => {
             <div className={styles["wrapper"]}>
               <div
                 className={styles["checkbox__wrapper"]}
-                onClick={() => {
-                  dispatch(togglePersonalizeTrends());
-                }}
-                onKeyDown={(e) => {
+                onClick={updatePersonalizeTrends}
+                onKeyDown={async (e) => {
                   if (e.key === "Enter") {
-                    dispatch(togglePersonalizeTrends());
+                    await updatePersonalizeTrends();
                   }
                 }}
               >
