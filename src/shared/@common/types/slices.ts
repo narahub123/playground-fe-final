@@ -46,9 +46,11 @@ type ParallelModals =
   | "account"
   | "ownership"
   | "schedule"
-  | "location";
+  | "location"
+  | "search_settings"
+  | "search_advanced";
 
-type StandAlonModals = "error" | "logout" | "explore";
+type StandAlonModals = "error" | "logout" | "explore" | "search_filter";
 type VerificationModals = "ownership";
 
 type TwoFactorAuthenticationMethod = "sms" | "app" | "key" | "";

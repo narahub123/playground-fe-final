@@ -13,6 +13,10 @@ import { useSelector } from "react-redux";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { PRIMARY_LINK } from "@shared/@common/constants";
+import {
+  onParallelModalOpen,
+  onStandAlonOpen,
+} from "@shared/@common/models/slices/modalSlice";
 
 interface SearchSettingsDropdownProps {
   className?: string;
@@ -78,9 +82,12 @@ const SearchSettingsDropdown = ({
       handleSaveKeyword();
     } else if (type === "settings") {
       navigate(PRIMARY_LINK.SEARCH_SETTINGS);
+      dispatch(onParallelModalOpen("search_settings"));
     } else if (type === "filter") {
+      dispatch(onStandAlonOpen("search_filter"));
     } else {
       navigate(PRIMARY_LINK.SEARCH_ADVANCED);
+      dispatch(onParallelModalOpen("search_advanced"));
     }
   };
 

@@ -15,11 +15,14 @@ interface ModalState {
     ownership: boolean; // 계정 소유자 여부 확인 모달 상태
     schedule: boolean; // 포스트 예약 상태
     location: boolean;
+    search_settings: boolean;
+    search_advanced: boolean;
   };
   standalone: {
     error: boolean; // 독립 모달 상태
     logout: boolean; // 로그아웃 모달 상태
     explore: boolean;
+    search_filter: boolean;
   };
   verification: {
     ownership: boolean;
@@ -36,11 +39,14 @@ const initialState: ModalState = {
     ownership: false,
     schedule: false,
     location: false,
+    search_settings: false,
+    search_advanced: false,
   },
   standalone: {
     error: false,
     logout: false,
     explore: false,
+    search_filter: false,
   },
   verification: {
     ownership: false,
