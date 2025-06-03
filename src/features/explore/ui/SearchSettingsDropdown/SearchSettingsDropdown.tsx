@@ -11,6 +11,8 @@ import { fetchWithAuth } from "@shared/pages";
 import { useAppDispatch } from "@app/store";
 import { useSelector } from "react-redux";
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import { PRIMARY_LINK } from "@shared/@common/constants";
 
 interface SearchSettingsDropdownProps {
   className?: string;
@@ -24,6 +26,7 @@ const SearchSettingsDropdown = ({
   setIsOpen,
 }: SearchSettingsDropdownProps) => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const containerRef = useRef<HTMLDivElement>(null);
   // 언어 설정
   const { list } = useLanguageContent(["explore", "SearchSettingsDropdown"]);
@@ -73,6 +76,11 @@ const SearchSettingsDropdown = ({
   const handleClick = (type: string) => {
     if (type === "save") {
       handleSaveKeyword();
+    } else if (type === "settings") {
+      navigate(PRIMARY_LINK.SEARCH_SETTINGS);
+    } else if (type === "filter") {
+    } else {
+      navigate(PRIMARY_LINK.SEARCH_ADVANCED);
     }
   };
 

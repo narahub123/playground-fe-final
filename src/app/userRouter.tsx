@@ -230,7 +230,15 @@ const userRouter = createBrowserRouter([
             path: SETTINGS_LINKS.DATA,
             element: <></>,
           },
+          {
+            path: PRIMARY_LINK.SEARCH_SETTINGS,
+            element: <></>,
+          },
         ],
+      },
+      {
+        path: PRIMARY_LINK.SEARCH_ADVANCED,
+        element: <></>,
       },
       {
         path: PRIMARY_LINK.COMPOSE_POST,
