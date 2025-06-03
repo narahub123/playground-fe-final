@@ -36,11 +36,11 @@ const ExploreSettingModal = ({}: ExploreSettingModalProps) => {
     option2,
     description2,
     exploreLocataion,
+    countryNames,
   } = useLanguageContent(["explore", "ExploreSettingModal"]);
 
-  const { useDeviceLocation, personalizeTrends } = useSelector(
-    selectExploreSettings
-  );
+  const { useDeviceLocation, personalizeTrends, selectedLocation } =
+    useSelector(selectExploreSettings);
 
   const isOpen = useSelector(getStandAloneModal("explore"));
 
@@ -93,7 +93,7 @@ const ExploreSettingModal = ({}: ExploreSettingModalProps) => {
   };
 
   return (
-    <Modal domId="explore" isOpen={true} onClose={onClose}>
+    <Modal domId="explore" isOpen={isOpen} onClose={onClose}>
       <Modal.Overlay />
       <Modal.Container>
         <Modal.Content>
@@ -147,7 +147,9 @@ const ExploreSettingModal = ({}: ExploreSettingModalProps) => {
               >
                 <div>
                   <Text>{exploreLocataion}</Text>
-                  <Text type="expl">{"대한민국"}</Text>
+                  <Text type="expl">
+                    {countryNames[selectedLocation.toLowerCase()].name}
+                  </Text>
                 </div>
                 <LuChevronRight fontSize={"1.25rem"} />
               </div>

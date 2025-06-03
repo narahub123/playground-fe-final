@@ -4,12 +4,18 @@ import { useLanguageContent } from "@shared/@common/models/hooks";
 import { getParalleModal } from "@shared/@common/models/selectors";
 import { joinClassNames } from "@shared/@common/utils";
 import { useSelector } from "react-redux";
-import { onParallelModalClose } from "@shared/@common/models/slices/modalSlice";
+import {
+  onParallelModalClose,
+  onParallelModalOpen,
+} from "@shared/@common/models/slices/modalSlice";
 import { Modal, Text } from "@shared/@common/ui/components";
 import { Icon } from "@shared/@common/ui/icons";
 import { LuSearch } from "react-icons/lu";
 import { ICountry } from "@shared/@common/types";
 import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { fetchWithAuth } from "@shared/pages";
+import { updateSelectedLocation } from "@shared/@common/models/slices/userSlice";
 
 interface LocationModalProps {
   className?: string;
@@ -17,10 +23,26 @@ interface LocationModalProps {
 
 const LocationModal = ({ className }: LocationModalProps) => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const [search, setSearch] = useState("");
   const [countries, setCountries] = useState<ICountry[]>([]);
+  const { pathname } = useLocation();
   // 언어 설정
-  const { countryNames } = useLanguageContent(["explore", "LocationModal"]);
+  const { title, countryNames } = useLanguageContent([
+    "explore",
+    "LocationModal",
+  ]);
+
+  // 모달 열기
+  useEffect(() => {
+    if (!pathname) return;
+
+    if (pathname.includes("/explore/location")) {
+      dispatch(onParallelModalOpen("location"));
+    } else {
+      dispatch(onParallelModalClose("location"));
+    }
+  }, [pathname]);
 
   useEffect(() => {
     if (!countryNames) return;
@@ -48,12 +70,39 @@ const LocationModal = ({ className }: LocationModalProps) => {
 
   const onClose = () => {
     dispatch(onParallelModalClose("location"));
+    navigate("/explore");
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const keyword = e.target.value;
 
     setSearch(keyword);
+  };
+
+  const handleSelection = async (lang: string) => {
+    const country = lang.split("-")[1];
+
+    try {
+      const result = await fetchWithAuth(
+        `/users/me`,
+        {
+          method: "PATCH",
+        },
+        {
+          selectedLocation: country,
+        }
+      );
+
+      if (result.success) {
+        dispatch(updateSelectedLocation(country));
+        setSearch("");
+        onClose();
+      } else {
+        console.error("위치 지정 도중 에러 발생");
+      }
+    } catch (error) {
+      console.error("위치 지정 도중 에러 발생", error);
+    }
   };
 
   return (
@@ -68,9 +117,9 @@ const LocationModal = ({ className }: LocationModalProps) => {
         <Modal.Content>
           <Modal.Header className={styles["header"]}>
             <div>
-              <Icon iconName="arrowLeft" onClick={() => {}} />
+              <Icon iconName="arrowLeft" onClick={onClose} />
             </div>
-            <Text type="heading3">위치</Text>
+            <Text type="heading3">{title}</Text>
           </Modal.Header>
           <Modal.Body className={styles["body"]}>
             <div className={styles["search__container"]}>
@@ -89,7 +138,11 @@ const LocationModal = ({ className }: LocationModalProps) => {
             </div>
             <div>
               {countries.map((country: ICountry) => (
-                <div>
+                <div
+                  className={styles["item"]}
+                  onClick={() => handleSelection(country.lang[0])}
+                  key={country.name}
+                >
                   <button className={styles["country"]}>{country.name}</button>
                 </div>
               ))}

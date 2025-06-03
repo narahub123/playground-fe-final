@@ -1,8 +1,10 @@
 .location__modal {
+  opacity: 1;
 }
 
 .header {
   padding: 0 1rem;
+  height: 3.5rem;
 }
 
 .body {
@@ -44,4 +46,13 @@
   display: flex;
   width: 100%;
   padding: 1rem;
+}
+
+.item {
+  border-bottom: 1px solid #f1f1f1;
+  cursor: pointer;
+}
+
+.item:hover {
+  background-color: #f9f9f9;
 }

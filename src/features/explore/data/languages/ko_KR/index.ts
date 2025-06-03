@@ -37,8 +37,10 @@ const explore_kr = {
     description2:
       "내 위치와 내가 팔로우하는 사람을 기반으로 트렌드를 맞춤 설정할 수 있습니다.",
     exploreLocataion: "위치탐색",
+    countryNames,
   },
   LocationModal: {
+    title: "지역",
     countryNames: Object.values(countryNames),
   },
 };
