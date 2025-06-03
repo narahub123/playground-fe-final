@@ -1,4 +1,7 @@
-import { getStandAloneModal } from "@shared/@common/models/selectors";
+import {
+  getStandAloneModal,
+  selectExploreSettings,
+} from "@shared/@common/models/selectors";
 import styles from "./ExploreSettingModal.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Modal, Text } from "@shared/@common/ui/components";
@@ -9,17 +12,15 @@ import {
   onStandAlonClose,
 } from "@shared/@common/models/slices/modalSlice";
 import { Icon } from "@shared/@common/ui/icons";
-import { useState } from "react";
 import { joinClassNames } from "@shared/@common/utils";
 import { LuChevronRight } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
+import {
+  togglePersonalizeTrends,
+  toggleUseDeviceLocation,
+} from "@shared/@common/models/slices/userSlice";
 
 interface ExploreSettingModalProps {}
-
-interface IExploreSettings {
-  isShowingCurrentLocationContents: boolean;
-  isShowingTrend: boolean;
-}
 
 const ExploreSettingModal = ({}: ExploreSettingModalProps) => {
   const dispatch = useAppDispatch();
@@ -36,10 +37,9 @@ const ExploreSettingModal = ({}: ExploreSettingModalProps) => {
     exploreLocataion,
   } = useLanguageContent(["explore", "ExploreSettingModal"]);
 
-  const [exploreSettings, setExploreSettings] = useState<IExploreSettings>({
-    isShowingCurrentLocationContents: true,
-    isShowingTrend: true,
-  });
+  const { useDeviceLocation, personalizeTrends } = useSelector(
+    selectExploreSettings
+  );
 
   const isOpen = useSelector(getStandAloneModal("explore"));
 
@@ -71,38 +71,22 @@ const ExploreSettingModal = ({}: ExploreSettingModalProps) => {
               <div
                 className={styles["checkbox__wrapper"]}
                 onClick={() => {
-                  setExploreSettings((prev) => {
-                    return {
-                      ...prev,
-                      isShowingCurrentLocationContents:
-                        !prev.isShowingCurrentLocationContents,
-                    };
-                  });
+                  dispatch(toggleUseDeviceLocation());
                 }}
                 onKeyDown={(e) => {
                   if (e.key === "Enter") {
-                    setExploreSettings((prev) => {
-                      return {
-                        ...prev,
-                        isShowingCurrentLocationContents:
-                          !prev.isShowingCurrentLocationContents,
-                      };
-                    });
+                    dispatch(toggleUseDeviceLocation());
                   }
                 }}
               >
                 <Text>{option1}</Text>
                 <Icon
                   iconName={
-                    exploreSettings.isShowingCurrentLocationContents
-                      ? "rectCheckboxFill"
-                      : "rectCheckboxBlank"
+                    useDeviceLocation ? "rectCheckboxFill" : "rectCheckboxBlank"
                   }
                   className={joinClassNames([
                     styles["checkbox__icon"],
-                    exploreSettings.isShowingCurrentLocationContents
-                      ? styles["checked"]
-                      : styles["unchecked"],
+                    useDeviceLocation ? styles["checked"] : styles["unchecked"],
                   ])}
                   iconSize="2xl"
                   tabIndex={0}
@@ -110,7 +94,7 @@ const ExploreSettingModal = ({}: ExploreSettingModalProps) => {
               </div>
               <Text type="expl">{description1}</Text>
             </div>
-            {!exploreSettings.isShowingCurrentLocationContents && (
+            {!useDeviceLocation && (
               <div
                 className={styles["location"]}
                 onClick={() => {
@@ -133,37 +117,23 @@ const ExploreSettingModal = ({}: ExploreSettingModalProps) => {
               <div
                 className={styles["checkbox__wrapper"]}
                 onClick={() => {
-                  setExploreSettings((prev) => {
-                    return {
-                      ...prev,
-                      isShowingTrend: !prev.isShowingTrend,
-                    };
-                  });
+                  dispatch(togglePersonalizeTrends());
                 }}
                 onKeyDown={(e) => {
                   if (e.key === "Enter") {
-                    setExploreSettings((prev) => {
-                      return {
-                        ...prev,
-                        isShowingTrend: !prev.isShowingTrend,
-                      };
-                    });
+                    dispatch(togglePersonalizeTrends());
                   }
                 }}
               >
                 <Text>{option2}</Text>
                 <Icon
                   iconName={
-                    exploreSettings.isShowingTrend
-                      ? "rectCheckboxFill"
-                      : "rectCheckboxBlank"
+                    personalizeTrends ? "rectCheckboxFill" : "rectCheckboxBlank"
                   }
                   iconSize="2xl"
                   className={joinClassNames([
                     styles["checkbox__icon"],
-                    exploreSettings.isShowingTrend
-                      ? styles["checked"]
-                      : styles["unchecked"],
+                    personalizeTrends ? styles["checked"] : styles["unchecked"],
                   ])}
                   tabIndex={0}
                 />

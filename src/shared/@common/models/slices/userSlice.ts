@@ -312,6 +312,30 @@ const userSlice = createSlice({
     clearRecentEmojis: (state) => {
       state.data.recentEmojis = [];
     },
+    toggleUseDeviceLocation: (state) => {
+      state.data.exploreSettings.useDeviceLocation =
+        !state.data.exploreSettings.useDeviceLocation;
+    },
+    togglePersonalizeTrends: (state) => {
+      state.data.exploreSettings.personalizeTrends =
+        !state.data.exploreSettings.personalizeTrends;
+    },
+    updateSelectedLocation: (state, action: PayloadAction<string>) => {
+      state.data.exploreSettings.selectedLocation = action.payload;
+    },
+    addInterests: (state, action: PayloadAction<string>) => {
+      state.data.exploreSettings.interests = [
+        ...state.data.exploreSettings.interests,
+        action.payload,
+      ];
+    },
+    removeInterests: (state, action: PayloadAction<string>) => {
+      const filteredInterests = state.data.exploreSettings.interests.filter(
+        (interest) => interest !== action.payload
+      );
+
+      state.data.exploreSettings.interests = filteredInterests;
+    },
   },
 });
 
@@ -350,4 +374,9 @@ export const {
   clearRecentEmojis,
   setPinnedPost,
   toggleUserLikes,
+  toggleUseDeviceLocation,
+  togglePersonalizeTrends,
+  updateSelectedLocation,
+  addInterests,
+  removeInterests,
 } = userSlice.actions;

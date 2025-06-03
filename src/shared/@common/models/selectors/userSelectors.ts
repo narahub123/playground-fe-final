@@ -30,6 +30,8 @@ const selectSkintoneType = (state: RootState) => state.user.data.skintoneType;
 const selectRecentEmojis = (state: RootState) => state.user.data.recentEmojis;
 const selectBookmarks = (state: RootState) => state.user.data.bookmarks;
 const selectPinnedPost = (state: RootState) => state.user.data.pinnedPost;
+const selectExploreSettings = (state: RootState) =>
+  state.user.data.exploreSettings;
 
 export {
   selectUser,
@@ -58,4 +60,5 @@ export {
   selectRecentEmojis,
   selectBookmarks,
   selectPinnedPost,
+  selectExploreSettings,
 };

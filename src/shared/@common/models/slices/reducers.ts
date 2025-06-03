@@ -39,6 +39,11 @@ import {
   setPinnedPost,
   setUnfollowing,
   toggleUserLikes,
+  toggleUseDeviceLocation,
+  togglePersonalizeTrends,
+  updateSelectedLocation,
+  addInterests,
+  removeInterests,
 } from "./userSlice";
 
 import {
@@ -122,6 +127,11 @@ export {
   setPinnedPost,
   setUnfollowing,
   toggleUserLikes,
+  toggleUseDeviceLocation,
+  togglePersonalizeTrends,
+  updateSelectedLocation,
+  addInterests,
+  removeInterests,
 
   // modal
   onParallelModalOpen,
