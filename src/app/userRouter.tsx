@@ -44,7 +44,7 @@ import {
   ProfilePageMedia,
   ProfilePageReplies,
 } from "@features/profile-page";
-import { LocationModal } from "@features/explore";
+import { LocationModal, SearchSettingsModal } from "@features/explore";
 
 const userRouter = createBrowserRouter([
   {
@@ -232,7 +232,7 @@ const userRouter = createBrowserRouter([
           },
           {
             path: PRIMARY_LINK.SEARCH_SETTINGS,
-            element: <></>,
+            element: <SearchSettingsModal />,
           },
         ],
       },

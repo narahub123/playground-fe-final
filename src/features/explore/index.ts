@@ -17,6 +17,7 @@ import {
   ClearKeywordsConfirm,
   ExploreSettingModal,
   LocationModal,
+  SearchSettingsModal,
 } from "./ui";
 import {
   useSearchContext,
@@ -89,6 +90,7 @@ export {
   ClearKeywordsConfirm,
   ExploreSettingModal,
   LocationModal,
+  SearchSettingsModal,
 };
 
 export type { ISearchContext, IRect };

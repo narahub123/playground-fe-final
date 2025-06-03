@@ -16,6 +16,7 @@ import {
   ClearKeywordsConfirm,
   ExploreSettingModal,
   LocationModal,
+  SearchSettingsModal,
 } from "@features/explore";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { useDisclosure } from "@shared/@common/models/hooks";
@@ -101,6 +102,7 @@ const ExplorePage = ({ className }: ExplorePageProps) => {
       <LocationModal />
       <ClearKeywordsConfirm />
       <ExploreSettingModal />
+      <SearchSettingsModal />
       <div className={classNames}>
         <div className={styles["search__wrapper"]}>
           {isFocused && (

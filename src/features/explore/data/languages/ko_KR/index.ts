@@ -43,6 +43,9 @@ const explore_kr = {
     title: "지역",
     countryNames: Object.values(countryNames),
   },
+  SearchSettingsModal: {
+    title: "검색 필터",
+  },
 };
 
 export default explore_kr;
