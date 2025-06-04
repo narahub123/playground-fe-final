@@ -5,6 +5,7 @@ import React from "react";
 import { fetchWithAuth } from "@shared/pages";
 import { useAppDispatch } from "@app/store";
 import {
+  setKeyword,
   toggleRecentSearches,
   toggleSavedSearches,
 } from "@features/explore/models";
@@ -30,6 +31,7 @@ const SearchSuggestion = ({
 
   const handleSelection = () => {
     setIsOpen(false);
+    dispatch(setKeyword(option));
     navigate(`/search?q=${option}&src=typed_query`, {
       state: { from: pathname },
     });
