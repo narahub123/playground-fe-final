@@ -5,6 +5,7 @@ import searchSlice, {
   setKeywordResult,
   toggleRecentSearches,
   clearRecentSearches,
+  setKeyword,
 } from "./searchSlice";
 
 export {
@@ -18,4 +19,5 @@ export {
   setKeywordResult,
   toggleRecentSearches,
   clearRecentSearches,
+  setKeyword,
 };

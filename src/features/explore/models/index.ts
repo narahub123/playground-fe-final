@@ -12,6 +12,7 @@ import {
   setKeywordResult,
   toggleRecentSearches,
   clearRecentSearches,
+  setKeyword,
 } from "./slices";
 import {
   getSearchHistory,
@@ -19,6 +20,7 @@ import {
   selectSearchLoading,
   selectSearchSuggestion,
   selectAutoCompleteList,
+  selectKeyword,
 } from "./selectors";
 
 export {
@@ -38,6 +40,7 @@ export {
   setKeywordResult,
   toggleRecentSearches,
   clearRecentSearches,
+  setKeyword,
 
   // selectors
   getSearchHistory,
@@ -45,4 +48,5 @@ export {
   selectSearchLoading,
   selectSearchSuggestion,
   selectAutoCompleteList,
+  selectKeyword,
 };

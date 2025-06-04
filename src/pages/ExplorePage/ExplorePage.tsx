@@ -18,6 +18,7 @@ import {
   LocationModal,
   SearchSettingsModal,
   SearchFilterModal,
+  SearchAdvancedModal,
 } from "@features/explore";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { useDisclosure } from "@shared/@common/models/hooks";
@@ -126,8 +127,6 @@ const ExplorePage = ({ className }: ExplorePageProps) => {
     <SearchContextProvider value={value}>
       <LocationModal />
       <ClearKeywordsConfirm />
-      <ExploreSettingModal />
-      <SearchSettingsModal />
       <SearchFilterModal filter={filter} setFilter={setFilter} />
       <div className={classNames}>
         <div className={styles["search__wrapper"]}>

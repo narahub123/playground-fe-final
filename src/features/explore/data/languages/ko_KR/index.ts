@@ -60,6 +60,19 @@ const explore_kr = {
     radio3: "어디에서나",
     radio4: "현 위치 주변",
   },
+  SearchAdvancedModal: {
+    title: "고급 검색",
+    search__btn: "검색",
+    heading1: "단어",
+    heading2: "계정",
+    heading3: "필터",
+    heading4: "참여",
+    heading5: "날짜",
+  },
+  InputAllWords: {
+    label: "다음 단어 모두 포함",
+    expl: "예: 무슨 일 · '무슨'과 '일' 모두 포함",
+  },
 };
 
 export default explore_kr;

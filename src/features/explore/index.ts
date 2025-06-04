@@ -19,6 +19,7 @@ import {
   LocationModal,
   SearchSettingsModal,
   SearchFilterModal,
+  SearchAdvancedModal,
 } from "./ui";
 import {
   useSearchContext,
@@ -37,6 +38,8 @@ import {
   selectAutoCompleteList,
   useKeyword,
   clearRecentSearches,
+  setKeyword,
+  selectKeyword,
 } from "./models";
 import { debounce } from "./utils";
 
@@ -64,6 +67,7 @@ export {
   setKeywordResult,
   toggleRecentSearches,
   clearRecentSearches,
+  setKeyword,
 
   // selectors
   getSearchHistory,
@@ -71,6 +75,7 @@ export {
   selectSearchLoading,
   selectSearchSuggestion,
   selectAutoCompleteList,
+  selectKeyword,
 
   // utils
   debounce,
@@ -93,6 +98,7 @@ export {
   LocationModal,
   SearchSettingsModal,
   SearchFilterModal,
+  SearchAdvancedModal,
 };
 
 export type { ISearchContext, IRect };

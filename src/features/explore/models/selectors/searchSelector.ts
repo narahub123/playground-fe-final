@@ -21,10 +21,12 @@ const selectAutoCompleteList = (state: RootState) => {
     accountSuggestions,
   };
 };
+const selectKeyword = (state: RootState) => state.search.keyword;
 export {
   getSearchHistory,
   selectSavedSearches,
   selectSearchLoading,
   selectSearchSuggestion,
   selectAutoCompleteList,
+  selectKeyword,
 };

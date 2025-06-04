@@ -4,6 +4,7 @@ import {
   selectSearchLoading,
   selectSearchSuggestion,
   selectAutoCompleteList,
+  selectKeyword,
 } from "./searchSelector";
 
 export {
@@ -12,4 +13,5 @@ export {
   selectSearchLoading,
   selectSearchSuggestion,
   selectAutoCompleteList,
+  selectKeyword,
 };
