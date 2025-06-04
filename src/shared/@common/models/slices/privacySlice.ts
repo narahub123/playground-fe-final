@@ -146,6 +146,12 @@ const privacySlice = createSlice({
         state.blockedUsers = [...state.blockedUsers, opponent];
       }
     },
+    toggleIsSensitiveMediaDisplayed: (state) => {
+      state.isSensitiveMediaDisplayed = !state.isSensitiveMediaDisplayed;
+    },
+    toggleIsMutesAndBlocksRemoved: (state) => {
+      state.isMutesAndBlocksRemoved = !state.isMutesAndBlocksRemoved;
+    },
   },
 });
 
@@ -157,4 +163,6 @@ export const {
   setReplyOption,
   setMutedUser,
   setBlockedUser,
+  toggleIsSensitiveMediaDisplayed,
+  toggleIsMutesAndBlocksRemoved,
 } = privacySlice.actions;

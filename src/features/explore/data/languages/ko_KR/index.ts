@@ -44,7 +44,11 @@ const explore_kr = {
     countryNames: Object.values(countryNames),
   },
   SearchSettingsModal: {
-    title: "검색 필터",
+    title: "검색 설정",
+    heading1: "민감한 내용의 콘텐츠 숨기기",
+    expl1: "검색 결과에서 민감한 콘텐츠를 포함할 수 있는 게시물을 숨깁니다.",
+    heading2: "차단 또는 뮤트한 계정 제외하기",
+    expl2: "검색 결과에서 내가 차단 또는 뮤트한 계정을 제외하려면 사용하세요.",
   },
 };
 

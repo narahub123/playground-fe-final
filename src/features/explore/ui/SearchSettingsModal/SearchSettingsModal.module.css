@@ -33,6 +33,11 @@
   align-items: center;
 }
 
-.checkbox__icon{
-    
+.checkbox__wrapper:hover .checkbox__icon {
+  background-color: rgba(100, 149, 237, 0.1);
+}
+
+.checkbox__icon:focus-visible {
+  background-color: rgba(100, 149, 237, 0.1);
+  outline: 2px solid rgba(100, 149, 237, 0.4);
 }

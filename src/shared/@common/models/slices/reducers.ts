@@ -64,6 +64,8 @@ import {
   setReplyOption,
   setMutedUser,
   setBlockedUser,
+  toggleIsSensitiveMediaDisplayed,
+  toggleIsMutesAndBlocksRemoved,
 } from "./privacySlice";
 
 import { setNotification, clearNotificationState } from "./notificationSlice";
@@ -152,6 +154,8 @@ export {
   setReplyOption,
   setMutedUser,
   setBlockedUser,
+  toggleIsSensitiveMediaDisplayed,
+  toggleIsMutesAndBlocksRemoved,
 
   // notification
   setNotification,
