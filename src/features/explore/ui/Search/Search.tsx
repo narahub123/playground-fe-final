@@ -2,10 +2,17 @@ import styles from "./Search.module.css";
 import { joinClassNames } from "@shared/@common/utils";
 import { forwardRef, useCallback } from "react";
 import { LuSearch, LuX } from "react-icons/lu";
-import { useKeyword, useSearchContext } from "@features/explore/models";
+import {
+  selectKeyword,
+  setKeyword,
+  useKeyword,
+  useSearchContext,
+} from "@features/explore/models";
 import { debounce } from "@features/explore/utils";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useLanguageContent } from "@shared/@common/models/hooks";
+import { useAppDispatch } from "@app/store";
+import { useSelector } from "react-redux";
 
 interface SearchProps {
   className?: string;
@@ -14,12 +21,14 @@ interface SearchProps {
 
 const Search = forwardRef<HTMLDivElement, SearchProps>(
   ({ className, setIsOpen }, ref) => {
+    const dispatch = useAppDispatch();
     const classNames = joinClassNames([styles["search__wrapper"], className]);
     const navigate = useNavigate();
     const { pathname } = useLocation();
     const { ph } = useLanguageContent(["explore", "Search"]);
 
-    const { keyword, setKeyword, setIsFocused } = useSearchContext();
+    const keyword = useSelector(selectKeyword);
+    const { setIsFocused } = useSearchContext();
 
     const handleKeyword = useKeyword();
 
@@ -31,7 +40,7 @@ const Search = forwardRef<HTMLDivElement, SearchProps>(
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const keyword = e.target.value;
 
-      setKeyword(keyword);
+      dispatch(setKeyword(keyword));
       debouncedHandleKeyword(keyword);
     };
 
@@ -48,7 +57,7 @@ const Search = forwardRef<HTMLDivElement, SearchProps>(
     };
 
     const handleClearKeyword = () => {
-      setKeyword("");
+      dispatch(setKeyword(""));
     };
 
     return (

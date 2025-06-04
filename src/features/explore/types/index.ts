@@ -1,6 +1,4 @@
 interface ISearchContext {
-  keyword: string;
-  setKeyword: React.Dispatch<React.SetStateAction<string>>;
   page: number;
   isFocused: boolean;
   setIsFocused: React.Dispatch<React.SetStateAction<boolean>>;

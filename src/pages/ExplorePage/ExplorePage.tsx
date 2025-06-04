@@ -14,11 +14,10 @@ import {
   SearchSettingsContainer,
   useSearch,
   ClearKeywordsConfirm,
-  ExploreSettingModal,
   LocationModal,
-  SearchSettingsModal,
   SearchFilterModal,
-  SearchAdvancedModal,
+  selectKeyword,
+  setKeyword,
 } from "@features/explore";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { useDisclosure } from "@shared/@common/models/hooks";
@@ -42,8 +41,8 @@ const ExplorePage = ({ className }: ExplorePageProps) => {
 
   const page = useSelector(selectPage);
   const posts = useSelector(selectPosts);
+  const keyword = useSelector(selectKeyword);
 
-  const [keyword, setKeyword] = useState("");
   const [isFocused, setIsFocused] = useState(false);
 
   const [tabType, setTabType] = useState<TabType>("");
@@ -99,8 +98,6 @@ const ExplorePage = ({ className }: ExplorePageProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const value: ISearchContext = {
-    keyword,
-    setKeyword,
     page,
     isFocused,
     setIsFocused,
@@ -117,7 +114,7 @@ const ExplorePage = ({ className }: ExplorePageProps) => {
 
     // explore 페이지에서는 keyword 삭제
     if (state?.from.includes("explore")) {
-      setKeyword("");
+      dispatch(setKeyword(""));
     }
 
     navigate(-1);

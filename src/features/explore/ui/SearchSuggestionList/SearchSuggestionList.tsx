@@ -8,7 +8,6 @@ import {
   useSearchContext,
 } from "@features/explore/models";
 import SearchSuggestion from "../SearchSuggestion/SearchSuggestion";
-import { useAppDispatch } from "@app/store";
 
 interface SearchSuggestionListProps {
   className?: string;

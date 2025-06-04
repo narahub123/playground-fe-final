@@ -1,8 +1,8 @@
 import {
   toggleSavedSearches,
-  useSearchContext,
   selectSavedSearches,
   useClickOutside,
+  selectKeyword,
 } from "@features/explore/models";
 import styles from "./SearchSettingsDropdown.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
@@ -35,7 +35,7 @@ const SearchSettingsDropdown = ({
   // 언어 설정
   const { list } = useLanguageContent(["explore", "SearchSettingsDropdown"]);
 
-  const { keyword } = useSearchContext();
+  const keyword = useSelector(selectKeyword);
 
   const savedSearches = useSelector(selectSavedSearches);
 

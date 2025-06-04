@@ -4,8 +4,8 @@ import {
   AutoCompleteList,
   IRect,
   SearchSuggestionList,
+  selectKeyword,
   selectSearchLoading,
-  useSearchContext,
 } from "@features/explore";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { PostProgressbar } from "@shared/pages/ui/Post";
@@ -29,7 +29,7 @@ const SearchDropdown = ({
 
   const isLoading = useSelector(selectSearchLoading);
 
-  const { keyword } = useSearchContext();
+  const keyword = useSelector(selectKeyword);
 
   if (!isOpen) return null;
 

@@ -2,12 +2,10 @@ import { LuSearch, LuTrash2, LuX } from "react-icons/lu";
 import styles from "./SearchKeyword.module.css";
 import { joinClassNames } from "@shared/@common/utils";
 import { Text } from "@shared/@common/ui/components";
-import {
-  toggleSavedSearches,
-  useSearchContext,
-} from "@features/explore/models";
+import { selectKeyword, toggleSavedSearches } from "@features/explore/models";
 import { fetchWithAuth } from "@shared/pages";
 import { useAppDispatch } from "@app/store";
+import { useSelector } from "react-redux";
 
 interface SearchKeywordProps {
   className?: string;
@@ -19,7 +17,7 @@ const SearchKeyword = ({ className, type, option }: SearchKeywordProps) => {
   const dispatch = useAppDispatch();
   const classNames = joinClassNames([styles["search__keyword"], className]);
 
-  const { keyword } = useSearchContext();
+  const keyword = useSelector(selectKeyword);
 
   //
   const splitKeyword = option !== keyword ? option.split(keyword) : [keyword];
