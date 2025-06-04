@@ -31,7 +31,7 @@ const selectHashtag = (state: RootState) => state.search.hashtag;
 
 const selectSearchAdvanced = (state: RootState) => {
   return {
-    keyword: state.search.keyword,
+    allWords: state.search.allWords,
     phrase: state.search.phrase,
     anyWords: state.search.anyWords,
     excludeWords: state.search.excludeWords,

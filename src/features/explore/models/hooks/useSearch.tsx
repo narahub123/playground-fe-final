@@ -7,8 +7,10 @@ const useSearch = () => {
 
   const handleSearch = async (keyword: string, page: number) => {
     try {
+      const encodedKeyword = encodeURIComponent(keyword);
+
       const result = await fetchWithAuth(
-        `/posts/search?q=${keyword}&skip=${page}`
+        `/posts/search?q=${encodedKeyword}&skip=${page}`
       );
 
       console.log("결과", result.data.posts);

@@ -4,7 +4,7 @@ import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Button, Modal, Text } from "@shared/@common/ui/components";
 import { joinClassNames } from "@shared/@common/utils";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useAppDispatch } from "@app/store";
 import { onParallelModalClose } from "@shared/@common/models/slices/modalSlice";
 import { Icon } from "@shared/@common/ui/icons";
@@ -13,7 +13,16 @@ import InputPhrase from "../InputPhrase/InputPhrase";
 import InputAnyWords from "../InputAnyWords/InputAnyWords";
 import InputExcludeWords from "../InputExcludeWords/InputExcludeWords";
 import InputHashtag from "../InputHashtag/InputHashtag";
-import { selectSearchAdvanced, setKeyword } from "@features/explore/models";
+import {
+  selectSearchAdvanced,
+  setAllWords,
+  setAnywords,
+  setExcludeWords,
+  setHashtag,
+  setKeyword,
+  setPhrase,
+} from "@features/explore/models";
+import { useEffect } from "react";
 
 interface SearchAdvancedModalProps {
   className?: string;
@@ -22,6 +31,7 @@ interface SearchAdvancedModalProps {
 const SearchAdvancedModal = ({ className }: SearchAdvancedModalProps) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const [query, setQuery] = useSearchParams();
   // 언어 설정
   const {
     title,
@@ -33,15 +43,60 @@ const SearchAdvancedModal = ({ className }: SearchAdvancedModalProps) => {
     heading5,
   } = useLanguageContent(["explore", "SearchAdvancedModal"]);
 
-  const { keyword, phrase, anyWords, excludeWords, hashtag } =
+  const { allWords, phrase, anyWords, excludeWords, hashtag } =
     useSelector(selectSearchAdvanced);
+
+  const isOpen = useSelector(getParalleModal("search_advanced"));
+
+  useEffect(() => {
+    const keyword = query.get("q");
+
+    if (!keyword) return;
+
+    const extractPhrase = [...keyword.matchAll(/"([^"]+)"/g)]
+      ?.map((m) => m[1])
+      .join(" ");
+
+    const extractAnyWords = [
+      ...keyword.matchAll(/\(([^#][^)]*?\sOR\s[^)]*?)\)/g),
+    ][0]?.[1]
+      .split(/\s+OR\s+/)
+      .join(" ");
+
+    const extractHashtags = [
+      ...keyword.matchAll(/\(\s*(#[^\s()#]+(?:\s+OR\s+#[^\s()#]+)*)\s*\)/g),
+    ][0]?.[1]
+      .split(/\s+OR\s+/)
+      .map((s) => s.trim().slice(1))
+      .join(" ");
+
+    const extractExcludedWords = [...keyword.matchAll(/-\S+/g)]
+      ?.map((m) => m[0].slice(1))
+      .join(" ");
+
+    // 모든 특수 표현 제거
+    const cleaned = keyword
+      .replace(/"[^"]+"/g, "") // phaze
+      .replace(/\([^)]*?\)/g, "") // any + hashtag
+      .replace(/-\S+/g, ""); // exclude
+
+    const extractAllWords = cleaned
+      ?.trim()
+      .split(/\s+/)
+      .filter(Boolean)
+      .join(" ");
+
+    dispatch(setAllWords(extractAllWords));
+    dispatch(setPhrase(extractPhrase));
+    dispatch(setAnywords(extractAnyWords));
+    dispatch(setExcludeWords(extractExcludedWords));
+    dispatch(setHashtag(extractHashtags));
+  }, [query]);
 
   const classNames = joinClassNames([
     styles["search__advanced__modal"],
     className,
   ]);
-
-  const isOpen = useSelector(getParalleModal("search_advanced"));
 
   const onClose = () => {
     dispatch(onParallelModalClose("search_advanced"));
@@ -49,26 +104,28 @@ const SearchAdvancedModal = ({ className }: SearchAdvancedModalProps) => {
   };
 
   const handleSubmit = () => {
-    const modifiedPhrase = `"${phrase}"`;
+    const modifiedPhrase = phrase ? `"${phrase}"` : undefined;
 
     const splitAnyWords = anyWords.split(" ");
 
-    const modifiedAnyWords = `(${splitAnyWords.join(" OR ")})`;
+    const modifiedAnyWords = anyWords
+      ? `(${splitAnyWords.join(" OR ")})`
+      : undefined;
 
     const splitExcludeWords = excludeWords.split(" ");
 
-    const modifiedExcludeWords = splitExcludeWords
-      .map((word) => "-" + word)
-      .join(" ");
+    const modifiedExcludeWords = excludeWords
+      ? splitExcludeWords.map((word) => "-" + word).join(" ")
+      : undefined;
 
     const splitHashtag = hashtag.split(" ");
 
-    const modifiedHashtag = `(${splitHashtag
-      .map((hashtag) => "#" + hashtag)
-      .join(" OR ")})`;
+    const addSharp = splitHashtag.map((hashtag) => "#" + hashtag).join(" OR ");
+
+    const modifiedHashtag = hashtag ? `(${addSharp})` : undefined;
 
     const searchArray = [
-      keyword,
+      allWords || undefined,
       modifiedPhrase,
       modifiedAnyWords,
       modifiedExcludeWords,
@@ -76,6 +133,8 @@ const SearchAdvancedModal = ({ className }: SearchAdvancedModalProps) => {
     ];
 
     const search = searchArray.join(" ");
+
+    console.log(search);
 
     dispatch(setKeyword(search));
 

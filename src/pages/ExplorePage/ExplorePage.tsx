@@ -89,7 +89,9 @@ const ExplorePage = ({ className }: ExplorePageProps) => {
   useEffect(() => {
     if (pathname.includes("/explore")) return;
 
-    const url = `/search?q=${keyword}&src=recent_search_click${
+    const encodeKeyword = encodeURIComponent(keyword);
+
+    const url = `/search?q=${encodeKeyword}&src=recent_search_click${
       tabType ? "&f=" + tabType : ""
     }${filter.people ? "&pf=on" : ""}${filter.location ? "&lf=on" : ""}`;
 
