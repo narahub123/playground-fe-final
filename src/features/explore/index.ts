@@ -18,6 +18,7 @@ import {
   ExploreSettingModal,
   LocationModal,
   SearchSettingsModal,
+  SearchFilterModal,
 } from "./ui";
 import {
   useSearchContext,
@@ -91,6 +92,7 @@ export {
   ExploreSettingModal,
   LocationModal,
   SearchSettingsModal,
+  SearchFilterModal,
 };
 
 export type { ISearchContext, IRect };

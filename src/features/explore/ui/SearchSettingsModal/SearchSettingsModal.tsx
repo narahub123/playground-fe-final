@@ -11,7 +11,6 @@ import {
 } from "@shared/@common/models/slices/modalSlice";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { PRIMARY_LINK } from "@shared/@common/constants";
 import { Icon } from "@shared/@common/ui/icons";
 import { fetchWithAuth } from "@shared/pages";
 import {

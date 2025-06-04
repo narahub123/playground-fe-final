@@ -14,6 +14,7 @@ import ClearKeywordsConfirm from "./ClearKeywordsConfirm/ClearKeywordsConfirm";
 import ExploreSettingModal from "./ExploreSettingModal/ExploreSettingModal";
 import LocationModal from "./LocationModal/LocationModal";
 import SearchSettingsModal from "./SearchSettingsModal/SearchSettingsModal";
+import SearchFilterModal from "./SearchFilterModal/SearchFilterModal";
 
 export {
   SearchContainer,
@@ -32,4 +33,5 @@ export {
   ExploreSettingModal,
   LocationModal,
   SearchSettingsModal,
+  SearchFilterModal,
 };

@@ -50,6 +50,16 @@ const explore_kr = {
     heading2: "차단 또는 뮤트한 계정 제외하기",
     expl2: "검색 결과에서 내가 차단 또는 뮤트한 계정을 제외하려면 사용하세요.",
   },
+  SearchFilterModal: {
+    title: "검색 필터",
+    footer: "고급 검색",
+    heading1: "사용자",
+    radio1: "모든 사용자",
+    radio2: "내가 팔로우하는 사람들",
+    heading2: "위치",
+    radio3: "어디에서나",
+    radio4: "현 위치 주변",
+  },
 };
 
 export default explore_kr;
