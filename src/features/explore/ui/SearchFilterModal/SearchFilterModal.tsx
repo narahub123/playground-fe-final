@@ -69,7 +69,7 @@ const SearchFilterModal = ({
   return (
     <Modal
       domId="search-filter"
-      isOpen={true}
+      isOpen={isOpen}
       onClose={onClose}
       className={classNames}
     >

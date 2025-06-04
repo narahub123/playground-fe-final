@@ -84,6 +84,7 @@ const SearchSettingsDropdown = ({
       navigate(PRIMARY_LINK.SEARCH_SETTINGS);
       dispatch(onParallelModalOpen("search_settings"));
     } else if (type === "filter") {
+      setIsOpen(false);
       dispatch(onStandAlonOpen("search_filter"));
     } else {
       navigate(PRIMARY_LINK.SEARCH_ADVANCED);
