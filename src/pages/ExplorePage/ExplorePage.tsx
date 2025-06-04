@@ -18,6 +18,7 @@ import {
   SearchFilterModal,
   selectKeyword,
   setKeyword,
+  SearchAdvancedModal,
 } from "@features/explore";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { useDisclosure } from "@shared/@common/models/hooks";
@@ -79,7 +80,7 @@ const ExplorePage = ({ className }: ExplorePageProps) => {
         return;
       }
 
-      setKeyword(keyword);
+      dispatch(setKeyword(keyword));
       handleSearch(keyword, 0);
     }
   }, [pathname, query.get("q")]);
@@ -124,6 +125,7 @@ const ExplorePage = ({ className }: ExplorePageProps) => {
     <SearchContextProvider value={value}>
       <LocationModal />
       <ClearKeywordsConfirm />
+      <SearchAdvancedModal />
       <SearchFilterModal filter={filter} setFilter={setFilter} />
       <div className={classNames}>
         <div className={styles["search__wrapper"]}>

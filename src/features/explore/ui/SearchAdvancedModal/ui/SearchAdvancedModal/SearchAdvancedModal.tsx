@@ -40,6 +40,8 @@ const SearchAdvancedModal = ({ className }: SearchAdvancedModalProps) => {
     navigate(-1);
   };
 
+  if (!isOpen) return null;
+
   return (
     <Modal
       className={classNames}

@@ -87,7 +87,7 @@ const SearchSettingsDropdown = ({
       setIsOpen(false);
       dispatch(onStandAlonOpen("search_filter"));
     } else {
-      navigate(PRIMARY_LINK.SEARCH_ADVANCED);
+      navigate(PRIMARY_LINK.SEARCH_ADVANCED + "?q=" + keyword);
       dispatch(onParallelModalOpen("search_advanced"));
     }
   };

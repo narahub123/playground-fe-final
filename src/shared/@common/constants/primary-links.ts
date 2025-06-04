@@ -23,7 +23,7 @@ const PRIMARY_LINK = {
   POSTPAGE_ANALYTICS: "analytics",
   SEARCH: "/search",
   SEARCH_SETTINGS: "/settings/search",
-  SEARCH_ADVANCED: "/search-advanced",
+  SEARCH_ADVANCED: "/search/advanced",
 };
 
 export default PRIMARY_LINK;

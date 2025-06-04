@@ -91,6 +91,12 @@ const userRouter = createBrowserRouter([
       {
         path: PRIMARY_LINK.SEARCH,
         element: <ExplorePage />,
+        children: [
+          {
+            path: PRIMARY_LINK.SEARCH_ADVANCED,
+            element: <SearchAdvancedModal />,
+          },
+        ],
       },
       {
         path: PRIMARY_LINK.NOTIFICATIONS,
@@ -240,10 +246,7 @@ const userRouter = createBrowserRouter([
           },
         ],
       },
-      {
-        path: PRIMARY_LINK.SEARCH_ADVANCED,
-        element: <SearchAdvancedModal />,
-      },
+
       {
         path: PRIMARY_LINK.COMPOSE_POST,
         element: <WritePostModal />,
