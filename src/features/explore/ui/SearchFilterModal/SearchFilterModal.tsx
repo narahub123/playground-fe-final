@@ -1,6 +1,6 @@
-import { getStandAloneModal } from "@shared/@common/models/selectors";
 import styles from "./SearchFilterModal.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
+import { getStandAloneModal } from "@shared/@common/models/selectors";
 import { Modal, Text } from "@shared/@common/ui/components";
 import { joinClassNames } from "@shared/@common/utils";
 import { useSelector } from "react-redux";
@@ -9,10 +9,11 @@ import { onStandAlonClose } from "@shared/@common/models/slices/modalSlice";
 import { Icon } from "@shared/@common/ui/icons";
 import { useNavigate } from "react-router-dom";
 import { PRIMARY_LINK } from "@shared/@common/constants";
-import { useState } from "react";
 
 interface SearchFilterModalProps {
   className?: string;
+  filter: ISearchFilter;
+  setFilter: React.Dispatch<React.SetStateAction<ISearchFilter>>;
 }
 
 interface ISearchFilter {
@@ -20,13 +21,14 @@ interface ISearchFilter {
   location: boolean;
 }
 
-const SearchFilterModal = ({ className }: SearchFilterModalProps) => {
+const SearchFilterModal = ({
+  className,
+  filter,
+  setFilter,
+}: SearchFilterModalProps) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [filter, setFilter] = useState<ISearchFilter>({
-    people: false,
-    location: false,
-  });
+
   // 언어 설정
   const { title, footer, heading1, radio1, radio2, heading2, radio3, radio4 } =
     useLanguageContent(["explore", "SearchFilterModal"]);
@@ -45,6 +47,23 @@ const SearchFilterModal = ({ className }: SearchFilterModalProps) => {
   const moveToSearchAdvanced = () => {
     onClose();
     navigate(PRIMARY_LINK.SEARCH_ADVANCED);
+  };
+
+  const setPeopelFilter = (isOn: boolean) => {
+    setFilter((prev) => ({
+      ...prev,
+      people: isOn,
+    }));
+
+    onClose();
+  };
+  const setLocationFilter = (isOn: boolean) => {
+    setFilter((prev) => ({
+      ...prev,
+      location: isOn,
+    }));
+
+    onClose();
   };
 
   return (
@@ -72,7 +91,10 @@ const SearchFilterModal = ({ className }: SearchFilterModalProps) => {
               <Text status="bold" className={styles["heading"]}>
                 {heading1}
               </Text>
-              <div className={styles["radio__wrapper"]}>
+              <div
+                className={styles["radio__wrapper"]}
+                onClick={() => setPeopelFilter(false)}
+              >
                 <Text>{radio1}</Text>
                 {filter.people ? (
                   <Icon
@@ -97,7 +119,10 @@ const SearchFilterModal = ({ className }: SearchFilterModalProps) => {
                   />
                 )}
               </div>
-              <div className={styles["radio__wrapper"]}>
+              <div
+                className={styles["radio__wrapper"]}
+                onClick={() => setPeopelFilter(true)}
+              >
                 <Text>{radio2}</Text>
                 {filter.people ? (
                   <Icon
@@ -127,7 +152,10 @@ const SearchFilterModal = ({ className }: SearchFilterModalProps) => {
               <Text status="bold" className={styles["heading"]}>
                 {heading2}
               </Text>
-              <div className={styles["radio__wrapper"]}>
+              <div
+                className={styles["radio__wrapper"]}
+                onClick={() => setLocationFilter(false)}
+              >
                 <Text>{radio3}</Text>
                 {filter.location ? (
                   <Icon
@@ -152,7 +180,10 @@ const SearchFilterModal = ({ className }: SearchFilterModalProps) => {
                   />
                 )}
               </div>
-              <div className={styles["radio__wrapper"]}>
+              <div
+                className={styles["radio__wrapper"]}
+                onClick={() => setLocationFilter(true)}
+              >
                 <Text>{radio4}</Text>
                 {filter.location ? (
                   <Icon

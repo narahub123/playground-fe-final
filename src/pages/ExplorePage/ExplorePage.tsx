@@ -25,6 +25,12 @@ import { useDisclosure } from "@shared/@common/models/hooks";
 interface ExplorePageProps {
   className?: string;
 }
+interface ISearchFilter {
+  people: boolean;
+  location: boolean;
+}
+
+type TabType = "" | "live" | "user" | "media" | "list";
 
 const ExplorePage = ({ className }: ExplorePageProps) => {
   const dispatch = useAppDispatch();
@@ -38,6 +44,13 @@ const ExplorePage = ({ className }: ExplorePageProps) => {
 
   const [keyword, setKeyword] = useState("");
   const [isFocused, setIsFocused] = useState(false);
+
+  const [tabType, setTabType] = useState<TabType>("");
+
+  const [filter, setFilter] = useState<ISearchFilter>({
+    people: false,
+    location: false,
+  });
 
   const getSearchHistory = async () => {
     try {
@@ -70,6 +83,17 @@ const ExplorePage = ({ className }: ExplorePageProps) => {
       handleSearch(keyword, 0);
     }
   }, [pathname, query.get("q")]);
+
+  // url 구성
+  useEffect(() => {
+    if (pathname.includes("/explore")) return;
+
+    const url = `/search?q=${keyword}&src=recent_search_click${
+      tabType ? "&f=" + tabType : ""
+    }${filter.people ? "&pf=on" : ""}${filter.location ? "&lf=on" : ""}`;
+
+    navigate(url);
+  }, [keyword, tabType, filter]);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -104,7 +128,7 @@ const ExplorePage = ({ className }: ExplorePageProps) => {
       <ClearKeywordsConfirm />
       <ExploreSettingModal />
       <SearchSettingsModal />
-      <SearchFilterModal />
+      <SearchFilterModal filter={filter} setFilter={setFilter} />
       <div className={classNames}>
         <div className={styles["search__wrapper"]}>
           {isFocused && (
