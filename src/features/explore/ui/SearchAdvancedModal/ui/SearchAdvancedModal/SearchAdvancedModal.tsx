@@ -13,7 +13,7 @@ import InputPhrase from "../InputPhrase/InputPhrase";
 import InputAnyWords from "../InputAnyWords/InputAnyWords";
 import InputExcludeWords from "../InputExcludeWords/InputExcludeWords";
 import InputHashtag from "../InputHashtag/InputHashtag";
-import { selectSearchAdvanced } from "@features/explore/models";
+import { selectSearchAdvanced, setKeyword } from "@features/explore/models";
 
 interface SearchAdvancedModalProps {
   className?: string;
@@ -48,6 +48,40 @@ const SearchAdvancedModal = ({ className }: SearchAdvancedModalProps) => {
     navigate(-1);
   };
 
+  const handleSubmit = () => {
+    const modifiedPhrase = `"${phrase}"`;
+
+    const splitAnyWords = anyWords.split(" ");
+
+    const modifiedAnyWords = `(${splitAnyWords.join(" OR ")})`;
+
+    const splitExcludeWords = excludeWords.split(" ");
+
+    const modifiedExcludeWords = splitExcludeWords
+      .map((word) => "-" + word)
+      .join(" ");
+
+    const splitHashtag = hashtag.split(" ");
+
+    const modifiedHashtag = `(${splitHashtag
+      .map((hashtag) => "#" + hashtag)
+      .join(" OR ")})`;
+
+    const searchArray = [
+      keyword,
+      modifiedPhrase,
+      modifiedAnyWords,
+      modifiedExcludeWords,
+      modifiedHashtag,
+    ];
+
+    const search = searchArray.join(" ");
+
+    dispatch(setKeyword(search));
+
+    dispatch(onParallelModalClose("search_advanced"));
+  };
+
   if (!isOpen) return null;
 
   return (
@@ -74,7 +108,7 @@ const SearchAdvancedModal = ({ className }: SearchAdvancedModalProps) => {
             <div className={styles["right"]}>
               <Button
                 isValid
-                onClick={() => {}}
+                onClick={handleSubmit}
                 rounded="2xl"
                 className={styles["search__button"]}
               >

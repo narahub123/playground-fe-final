@@ -22,6 +22,8 @@ const selectAutoCompleteList = (state: RootState) => {
   };
 };
 const selectKeyword = (state: RootState) => state.search.keyword;
+
+const selectAllWords = (state: RootState) => state.search.allWords;
 const selectPhrase = (state: RootState) => state.search.phrase;
 const selectAnyWords = (state: RootState) => state.search.anyWords;
 const selectExcludeWords = (state: RootState) => state.search.excludeWords;
@@ -44,6 +46,7 @@ export {
   selectSearchSuggestion,
   selectAutoCompleteList,
   selectKeyword,
+  selectAllWords,
   selectPhrase,
   selectAnyWords,
   selectExcludeWords,

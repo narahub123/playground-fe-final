@@ -17,6 +17,7 @@ import {
   setAnywords,
   setExcludeWords,
   setHashtag,
+  setAllWords,
 } from "./slices";
 import {
   getSearchHistory,
@@ -25,6 +26,7 @@ import {
   selectSearchSuggestion,
   selectAutoCompleteList,
   selectKeyword,
+  selectAllWords,
   selectPhrase,
   selectAnyWords,
   selectExcludeWords,
@@ -54,6 +56,7 @@ export {
   setAnywords,
   setExcludeWords,
   setHashtag,
+  setAllWords,
 
   // selectors
   getSearchHistory,
@@ -62,6 +65,7 @@ export {
   selectSearchSuggestion,
   selectAutoCompleteList,
   selectKeyword,
+  selectAllWords,
   selectPhrase,
   selectAnyWords,
   selectExcludeWords,

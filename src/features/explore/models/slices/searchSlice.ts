@@ -8,6 +8,7 @@ interface ISearchState {
   accountSuggestions: IAuthor[];
   isLoading: boolean;
   keyword: string;
+  allWords: string;
   phrase: string;
   anyWords: string;
   excludeWords: string;
@@ -21,6 +22,7 @@ const initialState: ISearchState = {
   accountSuggestions: [],
   isLoading: false,
   keyword: "",
+  allWords: "",
   phrase: "",
   anyWords: "",
   excludeWords: "",
@@ -80,6 +82,9 @@ const searchSlice = createSlice({
     setKeyword: (state, action: PayloadAction<string>) => {
       state.keyword = action.payload;
     },
+    setAllWords: (state, action: PayloadAction<string>) => {
+      state.allWords = action.payload;
+    },
     setPhrase: (state, action: PayloadAction<string>) => {
       state.phrase = action.payload;
     },
@@ -105,6 +110,7 @@ export const {
   toggleRecentSearches,
   clearRecentSearches,
   setKeyword,
+  setAllWords,
   setPhrase,
   setAnywords,
   setExcludeWords,
