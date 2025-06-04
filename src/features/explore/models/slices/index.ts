@@ -6,6 +6,10 @@ import searchSlice, {
   toggleRecentSearches,
   clearRecentSearches,
   setKeyword,
+  setPhrase,
+  setAnywords,
+  setExcludeWords,
+  setHashtag,
 } from "./searchSlice";
 
 export {
@@ -20,4 +24,8 @@ export {
   toggleRecentSearches,
   clearRecentSearches,
   setKeyword,
+  setPhrase,
+  setAnywords,
+  setExcludeWords,
+  setHashtag,
 };

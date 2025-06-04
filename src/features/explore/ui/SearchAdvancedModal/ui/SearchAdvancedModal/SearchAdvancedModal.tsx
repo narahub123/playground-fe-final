@@ -9,6 +9,11 @@ import { useAppDispatch } from "@app/store";
 import { onParallelModalClose } from "@shared/@common/models/slices/modalSlice";
 import { Icon } from "@shared/@common/ui/icons";
 import InputAllWords from "../InputAllWords/InputAllWords";
+import InputPhrase from "../InputPhrase/InputPhrase";
+import InputAnyWords from "../InputAnyWords/InputAnyWords";
+import InputExcludeWords from "../InputExcludeWords/InputExcludeWords";
+import InputHashtag from "../InputHashtag/InputHashtag";
+import { selectSearchAdvanced } from "@features/explore/models";
 
 interface SearchAdvancedModalProps {
   className?: string;
@@ -27,6 +32,9 @@ const SearchAdvancedModal = ({ className }: SearchAdvancedModalProps) => {
     heading4,
     heading5,
   } = useLanguageContent(["explore", "SearchAdvancedModal"]);
+
+  const { keyword, phrase, anyWords, excludeWords, hashtag } =
+    useSelector(selectSearchAdvanced);
 
   const classNames = joinClassNames([
     styles["search__advanced__modal"],
@@ -80,6 +88,10 @@ const SearchAdvancedModal = ({ className }: SearchAdvancedModalProps) => {
             </Text>
             <div className={styles["section"]}>
               <InputAllWords />
+              <InputPhrase />
+              <InputAnyWords />
+              <InputExcludeWords />
+              <InputHashtag />
             </div>
             <Text type="heading3" className={styles["heading"]}>
               {heading2}

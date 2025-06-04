@@ -73,6 +73,22 @@ const explore_kr = {
     label: "다음 단어 모두 포함",
     expl: "예: 무슨 일 · '무슨'과 '일' 모두 포함",
   },
+  InputPhrase: {
+    label: "다음 문구 그대로 포함",
+    expl: "예: 깜짝 할인 · '깜짝 할인'이라는 문구를 그대로 포함",
+  },
+  InputAnyWords: {
+    label: "다음 단어 중 하나 이상 포함",
+    expl: "예: 고양이 개 · '고양이' 또는 '개' 또는 둘 다 포함",
+  },
+  InputExcludeWords: {
+    label: "다음 단어 제외",
+    expl: "예: 고양이 개 · '고양이'를 포함하지 않고 '개'를 포함하지 않음",
+  },
+  InputHashtag: {
+    label: "다음 해시태그",
+    expl: "예: #추억공유 · 해시태그 #추억공유 포함",
+  },
 };
 
 export default explore_kr;

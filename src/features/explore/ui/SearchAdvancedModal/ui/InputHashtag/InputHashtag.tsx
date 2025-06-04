@@ -1,32 +1,31 @@
 import { useAppDispatch } from "@app/store";
-import { selectKeyword, setKeyword } from "@features/explore";
+import { selectHashtag, setHashtag } from "@features/explore/models";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Input, Text } from "@shared/@common/ui/components";
 import { useSelector } from "react-redux";
 
-interface InputAllWordsProps {
-  className?: string;
+interface InputHashtagProps {
   disabled?: boolean;
 }
 
-const InputAllWords = ({ disabled = false }: InputAllWordsProps) => {
+const InputHashtag = ({ disabled = false }: InputHashtagProps) => {
   const dispatch = useAppDispatch();
   // 언어 설정
-  const { label, expl } = useLanguageContent(["explore", "InputAllWords"]);
+  const { label, expl } = useLanguageContent(["explore", "InputHashtag"]);
 
-  const keyword = useSelector(selectKeyword);
+  const hashtag = useSelector(selectHashtag);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const keyword = e.target.value;
+    const hashtag = e.target.value;
 
-    dispatch(setKeyword(keyword));
+    dispatch(setHashtag(hashtag));
   };
 
   return (
     <Input
-      field="keyword"
+      field="hashtag"
       label={label}
-      inputValue={keyword}
+      inputValue={hashtag}
       isValid
       handleChange={handleChange}
       disabled={disabled}
@@ -43,4 +42,4 @@ const InputAllWords = ({ disabled = false }: InputAllWordsProps) => {
   );
 };
 
-export default InputAllWords;
+export default InputHashtag;

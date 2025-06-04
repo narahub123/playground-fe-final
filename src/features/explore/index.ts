@@ -40,6 +40,15 @@ import {
   clearRecentSearches,
   setKeyword,
   selectKeyword,
+  selectPhrase,
+  selectAnyWords,
+  selectExcludeWords,
+  selectHashtag,
+  setPhrase,
+  setAnywords,
+  setExcludeWords,
+  setHashtag,
+  selectSearchAdvanced,
 } from "./models";
 import { debounce } from "./utils";
 
@@ -68,6 +77,10 @@ export {
   toggleRecentSearches,
   clearRecentSearches,
   setKeyword,
+  setPhrase,
+  setAnywords,
+  setExcludeWords,
+  setHashtag,
 
   // selectors
   getSearchHistory,
@@ -76,6 +89,11 @@ export {
   selectSearchSuggestion,
   selectAutoCompleteList,
   selectKeyword,
+  selectPhrase,
+  selectAnyWords,
+  selectExcludeWords,
+  selectHashtag,
+  selectSearchAdvanced,
 
   // utils
   debounce,

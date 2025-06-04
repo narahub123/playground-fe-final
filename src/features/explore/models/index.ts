@@ -13,6 +13,10 @@ import {
   toggleRecentSearches,
   clearRecentSearches,
   setKeyword,
+  setPhrase,
+  setAnywords,
+  setExcludeWords,
+  setHashtag,
 } from "./slices";
 import {
   getSearchHistory,
@@ -21,6 +25,11 @@ import {
   selectSearchSuggestion,
   selectAutoCompleteList,
   selectKeyword,
+  selectPhrase,
+  selectAnyWords,
+  selectExcludeWords,
+  selectHashtag,
+  selectSearchAdvanced,
 } from "./selectors";
 
 export {
@@ -41,6 +50,10 @@ export {
   toggleRecentSearches,
   clearRecentSearches,
   setKeyword,
+  setPhrase,
+  setAnywords,
+  setExcludeWords,
+  setHashtag,
 
   // selectors
   getSearchHistory,
@@ -49,4 +62,9 @@ export {
   selectSearchSuggestion,
   selectAutoCompleteList,
   selectKeyword,
+  selectPhrase,
+  selectAnyWords,
+  selectExcludeWords,
+  selectHashtag,
+  selectSearchAdvanced,
 };

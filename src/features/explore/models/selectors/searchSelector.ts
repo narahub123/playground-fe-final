@@ -22,6 +22,21 @@ const selectAutoCompleteList = (state: RootState) => {
   };
 };
 const selectKeyword = (state: RootState) => state.search.keyword;
+const selectPhrase = (state: RootState) => state.search.phrase;
+const selectAnyWords = (state: RootState) => state.search.anyWords;
+const selectExcludeWords = (state: RootState) => state.search.excludeWords;
+const selectHashtag = (state: RootState) => state.search.hashtag;
+
+const selectSearchAdvanced = (state: RootState) => {
+  return {
+    keyword: state.search.keyword,
+    phrase: state.search.phrase,
+    anyWords: state.search.anyWords,
+    excludeWords: state.search.excludeWords,
+    hashtag: state.search.hashtag,
+  };
+};
+
 export {
   getSearchHistory,
   selectSavedSearches,
@@ -29,4 +44,9 @@ export {
   selectSearchSuggestion,
   selectAutoCompleteList,
   selectKeyword,
+  selectPhrase,
+  selectAnyWords,
+  selectExcludeWords,
+  selectHashtag,
+  selectSearchAdvanced,
 };

@@ -5,6 +5,11 @@ import {
   selectSearchSuggestion,
   selectAutoCompleteList,
   selectKeyword,
+  selectPhrase,
+  selectAnyWords,
+  selectExcludeWords,
+  selectHashtag,
+  selectSearchAdvanced,
 } from "./searchSelector";
 
 export {
@@ -14,4 +19,9 @@ export {
   selectSearchSuggestion,
   selectAutoCompleteList,
   selectKeyword,
+  selectPhrase,
+  selectAnyWords,
+  selectExcludeWords,
+  selectHashtag,
+  selectSearchAdvanced,
 };

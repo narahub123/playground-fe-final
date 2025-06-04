@@ -1,32 +1,31 @@
 import { useAppDispatch } from "@app/store";
-import { selectKeyword, setKeyword } from "@features/explore";
+import { selectPhrase, setPhrase } from "@features/explore";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Input, Text } from "@shared/@common/ui/components";
 import { useSelector } from "react-redux";
 
-interface InputAllWordsProps {
-  className?: string;
+interface InputPhraseProps {
   disabled?: boolean;
 }
 
-const InputAllWords = ({ disabled = false }: InputAllWordsProps) => {
+const InputPhrase = ({ disabled = false }: InputPhraseProps) => {
   const dispatch = useAppDispatch();
   // 언어 설정
-  const { label, expl } = useLanguageContent(["explore", "InputAllWords"]);
+  const { label, expl } = useLanguageContent(["explore", "InputPhrase"]);
 
-  const keyword = useSelector(selectKeyword);
+  const phrase = useSelector(selectPhrase);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const keyword = e.target.value;
+    const phrase = e.target.value;
 
-    dispatch(setKeyword(keyword));
+    dispatch(setPhrase(phrase));
   };
 
   return (
     <Input
-      field="keyword"
+      field="phrase"
       label={label}
-      inputValue={keyword}
+      inputValue={phrase}
       isValid
       handleChange={handleChange}
       disabled={disabled}
@@ -43,4 +42,4 @@ const InputAllWords = ({ disabled = false }: InputAllWordsProps) => {
   );
 };
 
-export default InputAllWords;
+export default InputPhrase;
