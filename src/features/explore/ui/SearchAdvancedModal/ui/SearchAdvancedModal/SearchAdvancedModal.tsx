@@ -8,11 +8,6 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { useAppDispatch } from "@app/store";
 import { onParallelModalClose } from "@shared/@common/models/slices/modalSlice";
 import { Icon } from "@shared/@common/ui/icons";
-import InputAllKeywords from "../InputAllKeywords/InputAllKeywords";
-import InputPhrase from "../InputPhrase/InputPhrase";
-import InputAnyKeywords from "../InputAnyKeywords/InputAnyKeywords";
-import InputExcludeKeywords from "../InputExcludeKeywords/InputExcludeKeywords";
-import InputHashtags from "../InputHashtags/InputHashtags";
 import {
   selectSearchAdvanced,
   setAllKeywords,
@@ -21,7 +16,12 @@ import {
   setHashtags,
   setKeyword,
   setPhrase,
-} from "@features/explore/models";
+} from "@features/explore";
+import {
+  accountArray,
+  InputSearchAdvanced,
+  keywordArray,
+} from "@features/explore/ui/SearchAdvancedModal";
 import { useEffect } from "react";
 
 interface SearchAdvancedModalProps {
@@ -182,19 +182,38 @@ const SearchAdvancedModal = ({ className }: SearchAdvancedModalProps) => {
               {heading1}
             </Text>
             <div className={styles["section"]}>
-              <InputAllKeywords />
-              <InputPhrase />
-              <InputAnyKeywords />
-              <InputExcludeKeywords />
-              <InputHashtags />
+              {keywordArray.map((keyword) => {
+                const { field, reducer, selector } = keyword;
+                return (
+                  <InputSearchAdvanced
+                    key={field}
+                    field={field}
+                    reducer={reducer}
+                    selector={selector}
+                  />
+                );
+              })}
             </div>
             <Text type="heading3" className={styles["heading"]}>
               {heading2}
             </Text>
-            <div className={styles["section"]}></div>
+            <div className={styles["section"]}>
+              {accountArray.map((keyword) => {
+                const { field, reducer, selector } = keyword;
+                return (
+                  <InputSearchAdvanced
+                    key={field}
+                    field={field}
+                    reducer={reducer}
+                    selector={selector}
+                  />
+                );
+              })}
+            </div>
             <Text type="heading3" className={styles["heading"]}>
               {heading3}
             </Text>
+            <div className={styles["filter__container"]}></div>
             <Text type="heading3" className={styles["heading"]}>
               {heading4}
             </Text>

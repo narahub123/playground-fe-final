@@ -1,17 +1,12 @@
-import {
-  SearchAdvancedModal,
-  InputAllKeywords,
-  InputPhrase,
-  InputAnyKeywords,
-  InputExcludeKeywords,
-  InputHashtags,
-} from "./ui";
+import { SearchAdvancedModal, InputSearchAdvanced } from "./ui";
+import { keywordArray, accountArray } from "./data";
 
 export {
+  // data
+  keywordArray,
+  accountArray,
+
+  // ui
   SearchAdvancedModal,
-  InputAllKeywords,
-  InputPhrase,
-  InputAnyKeywords,
-  InputExcludeKeywords,
-  InputHashtags,
+  InputSearchAdvanced,
 };
