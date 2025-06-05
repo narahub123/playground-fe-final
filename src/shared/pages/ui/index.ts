@@ -10,6 +10,7 @@ import AccountManageModal from "./AccountManageModal.tsx/AccountManageModal";
 import { PostEditor } from "./PostEditor";
 import Video from "./Video/Video";
 import WritePost from "./WritePost/WritePost";
+import ToggleButton from "./ToggleButton/ToggleButton";
 
 export {
   Header,
@@ -24,4 +25,5 @@ export {
   PostEditor,
   Video,
   WritePost,
+  ToggleButton,
 };

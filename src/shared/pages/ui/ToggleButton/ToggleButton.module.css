@@ -1,0 +1,58 @@
+.toggle__button {
+  position: relative;
+  width: 40px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  border: none;
+}
+
+.checkbox {
+  appearance: none;
+}
+
+.rail {
+  width: 40px;
+  height: 14px;
+  margin: 3px 0;
+  border: 1px solid #ccc;
+  border-radius: 14px;
+
+  transition: background-color 0.3s ease-in-out;
+}
+
+.rail--unchecked {
+  background-color: #555;
+}
+
+.rail--checked {
+  background-color: cornflowerblue;
+}
+
+.circle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid cornflowerblue;
+  box-shadow: 0 2.5px 5px rgba(0, 0, 0, 0.19), 0 3px 3px rgba(0, 0, 0, 0.23);
+
+  transition: left 0.3s ease-in-out, background-color 0.3s ease-in-out,
+    border 0.3s ease-in-out;
+}
+
+.circle--unchecked {
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+}
+
+.circle--checked {
+  top: 0;
+  left: 20px;
+  background-color: cornflowerblue;
+  border: 1px solid cornflowerblue;
+}
