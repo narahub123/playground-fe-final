@@ -4,6 +4,7 @@ import { joinClassNames } from "@shared/@common/utils";
 interface ToggleButtonProps {
   className?: string;
   disabled?: boolean;
+  field: string;
   isChecked: boolean;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
@@ -11,6 +12,7 @@ interface ToggleButtonProps {
 const ToggleButton = ({
   className,
   disabled = false,
+  field,
   isChecked,
   onChange,
 }: ToggleButtonProps) => {
@@ -18,7 +20,7 @@ const ToggleButton = ({
 
   return (
     <div className={classNames}>
-      <label htmlFor="toggle">
+      <label htmlFor={field}>
         <div
           className={joinClassNames([
             styles["rail"],
@@ -34,8 +36,8 @@ const ToggleButton = ({
       </label>
       <input
         type="checkbox"
-        name="toggle"
-        id="toggle"
+        name={field}
+        id={field}
         role="switch"
         className={styles["checkbox"]}
         onChange={onChange}

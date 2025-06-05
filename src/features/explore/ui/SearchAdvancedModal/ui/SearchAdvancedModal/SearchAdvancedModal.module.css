@@ -41,3 +41,16 @@
 .section {
   padding: 0 1rem;
 }
+
+.filter__container {
+}
+.filter__wrapper {
+}
+.filter__toggle {
+  margin: 0 1rem;
+  padding: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #f1f1f1;
+}

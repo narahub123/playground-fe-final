@@ -9,6 +9,7 @@ import { useAppDispatch } from "@app/store";
 import { onParallelModalClose } from "@shared/@common/models/slices/modalSlice";
 import { Icon } from "@shared/@common/ui/icons";
 import {
+  selectAdvancedFilter,
   selectSearchAdvanced,
   setAllKeywords,
   setAnyKeywords,
@@ -16,6 +17,8 @@ import {
   setHashtags,
   setKeyword,
   setPhrase,
+  toggleFilterComments,
+  toggleFilterLinks,
 } from "@features/explore";
 import {
   accountArray,
@@ -23,6 +26,7 @@ import {
   keywordArray,
 } from "@features/explore/ui/SearchAdvancedModal";
 import { useEffect } from "react";
+import { ToggleButton } from "@shared/pages";
 
 interface SearchAdvancedModalProps {
   className?: string;
@@ -49,6 +53,16 @@ const SearchAdvancedModal = ({ className }: SearchAdvancedModalProps) => {
     keywords;
 
   const isOpen = useSelector(getParalleModal("search_advanced"));
+
+  const { comments, links } = useSelector(selectAdvancedFilter);
+
+  const handleCommentsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(toggleFilterComments());
+  };
+
+  const handleLinksChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(toggleFilterLinks());
+  };
 
   useEffect(() => {
     const keyword = query.get("q");
@@ -143,7 +157,7 @@ const SearchAdvancedModal = ({ className }: SearchAdvancedModalProps) => {
     dispatch(onParallelModalClose("search_advanced"));
   };
 
-  if (!isOpen) return null;
+  // if (!isOpen) return null;
 
   return (
     <Modal
@@ -213,7 +227,30 @@ const SearchAdvancedModal = ({ className }: SearchAdvancedModalProps) => {
             <Text type="heading3" className={styles["heading"]}>
               {heading3}
             </Text>
-            <div className={styles["filter__container"]}></div>
+            <div className={styles["filter__container"]}>
+              <div className={styles["filter__wrapper"]}>
+                <div className={styles["filter__toggle"]}>
+                  <Text>{"답글"}</Text>
+                  <ToggleButton
+                    isChecked={comments.isOn}
+                    onChange={handleCommentsChange}
+                    field="comments"
+                  />
+                </div>
+                <div className={styles["filter__radio"]}></div>
+              </div>
+              <div className={styles["filter__wrapper"]}>
+                <div className={styles["filter__toggle"]}>
+                  <Text>{"링크"}</Text>
+                  <ToggleButton
+                    isChecked={links.isOn}
+                    onChange={handleLinksChange}
+                    field="links"
+                  />
+                </div>
+                <div className={styles["filter__radio"]}></div>
+              </div>
+            </div>
             <Text type="heading3" className={styles["heading"]}>
               {heading4}
             </Text>
