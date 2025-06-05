@@ -1,17 +1,17 @@
 import {
   SearchAdvancedModal,
-  InputAllWords,
+  InputAllKeywords,
   InputPhrase,
-  InputAnyWords,
-  InputExcludeWords,
-  InputHashtag,
+  InputAnyKeywords,
+  InputExcludeKeywords,
+  InputHashtags,
 } from "./ui";
 
 export {
   SearchAdvancedModal,
-  InputAllWords,
+  InputAllKeywords,
   InputPhrase,
-  InputAnyWords,
-  InputExcludeWords,
-  InputHashtag,
+  InputAnyKeywords,
+  InputExcludeKeywords,
+  InputHashtags,
 };

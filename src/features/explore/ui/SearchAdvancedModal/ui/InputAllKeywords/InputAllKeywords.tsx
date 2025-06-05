@@ -1,31 +1,32 @@
 import { useAppDispatch } from "@app/store";
-import { selectAnyKeywords, setAnyKeywords } from "@features/explore/models";
+import { selectAllKeywords, setAllKeywords } from "@features/explore";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Input, Text } from "@shared/@common/ui/components";
 import { useSelector } from "react-redux";
 
-interface InputAnyWordsProps {
+interface InputAllWordsProps {
+  className?: string;
   disabled?: boolean;
 }
 
-const InputAnyWords = ({ disabled = false }: InputAnyWordsProps) => {
+const InputAllKeywords = ({ disabled = false }: InputAllWordsProps) => {
   const dispatch = useAppDispatch();
   // 언어 설정
-  const { label, expl } = useLanguageContent(["explore", "InputAnyWords"]);
+  const { label, expl } = useLanguageContent(["explore", "InputAllKeywords"]);
 
-  const anyWords = useSelector(selectAnyKeywords);
+  const allWords = useSelector(selectAllKeywords);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const anyWords = e.target.value;
+    const keyword = e.target.value;
 
-    dispatch(setAnyKeywords(anyWords));
+    dispatch(setAllKeywords(keyword));
   };
 
   return (
     <Input
-      field="anyWords"
+      field="keyword"
       label={label}
-      inputValue={anyWords}
+      inputValue={allWords}
       isValid
       handleChange={handleChange}
       disabled={disabled}
@@ -42,4 +43,4 @@ const InputAnyWords = ({ disabled = false }: InputAnyWordsProps) => {
   );
 };
 
-export default InputAnyWords;
+export default InputAllKeywords;

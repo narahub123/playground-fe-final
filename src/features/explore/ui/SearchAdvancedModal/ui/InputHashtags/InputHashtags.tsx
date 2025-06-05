@@ -8,10 +8,10 @@ interface InputHashtagProps {
   disabled?: boolean;
 }
 
-const InputHashtag = ({ disabled = false }: InputHashtagProps) => {
+const InputHashtags = ({ disabled = false }: InputHashtagProps) => {
   const dispatch = useAppDispatch();
   // 언어 설정
-  const { label, expl } = useLanguageContent(["explore", "InputHashtag"]);
+  const { label, expl } = useLanguageContent(["explore", "InputHashtags"]);
 
   const hashtag = useSelector(selectHashtags);
 
@@ -42,4 +42,4 @@ const InputHashtag = ({ disabled = false }: InputHashtagProps) => {
   );
 };
 
-export default InputHashtag;
+export default InputHashtags;

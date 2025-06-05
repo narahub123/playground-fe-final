@@ -8,11 +8,11 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { useAppDispatch } from "@app/store";
 import { onParallelModalClose } from "@shared/@common/models/slices/modalSlice";
 import { Icon } from "@shared/@common/ui/icons";
-import InputAllWords from "../InputAllWords/InputAllWords";
+import InputAllKeywords from "../InputAllKeywords/InputAllKeywords";
 import InputPhrase from "../InputPhrase/InputPhrase";
-import InputAnyWords from "../InputAnyWords/InputAnyWords";
-import InputExcludeWords from "../InputExcludeWords/InputExcludeWords";
-import InputHashtag from "../InputHashtag/InputHashtag";
+import InputAnyKeywords from "../InputAnyKeywords/InputAnyKeywords";
+import InputExcludeKeywords from "../InputExcludeKeywords/InputExcludeKeywords";
+import InputHashtags from "../InputHashtags/InputHashtags";
 import {
   selectSearchAdvanced,
   setAllKeywords,
@@ -182,11 +182,11 @@ const SearchAdvancedModal = ({ className }: SearchAdvancedModalProps) => {
               {heading1}
             </Text>
             <div className={styles["section"]}>
-              <InputAllWords />
+              <InputAllKeywords />
               <InputPhrase />
-              <InputAnyWords />
-              <InputExcludeWords />
-              <InputHashtag />
+              <InputAnyKeywords />
+              <InputExcludeKeywords />
+              <InputHashtags />
             </div>
             <Text type="heading3" className={styles["heading"]}>
               {heading2}
