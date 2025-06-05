@@ -24,11 +24,12 @@ import {
 } from "@features/explore";
 import {
   accountArray,
+  engagementArray,
   InputSearchAdvanced,
   keywordArray,
 } from "@features/explore/ui/SearchAdvancedModal";
 import { useEffect } from "react";
-import { RadioGroup, ToggleButton } from "@shared/pages";
+import { InputNumber, RadioGroup, ToggleButton } from "@shared/pages";
 
 interface SearchAdvancedModalProps {
   className?: string;
@@ -53,7 +54,7 @@ const SearchAdvancedModal = ({ className }: SearchAdvancedModalProps) => {
     filterHeading2,
   } = useLanguageContent(["explore", "SearchAdvancedModal"]);
 
-  const { keywords } = useSelector(selectSearchAdvanced);
+  const { keywords, engagement } = useSelector(selectSearchAdvanced);
 
   const { allKeywords, phrase, anyKeywords, excludeKeywords, hashtags } =
     keywords;
@@ -314,7 +315,18 @@ const SearchAdvancedModal = ({ className }: SearchAdvancedModalProps) => {
             <Text type="heading3" className={styles["heading"]}>
               {heading4}
             </Text>
-            <div className={styles["section"]}></div>
+            <div className={styles["section"]}>
+              {engagementArray.map((engagement) => (
+                <InputNumber
+                  field={engagement.field}
+                  selector={engagement.selector}
+                  reducer={engagement.reducer}
+                  min={engagement.min}
+                  max={engagement.max}
+                  key={engagement.field}
+                />
+              ))}
+            </div>
             <Text type="heading3" className={styles["heading"]}>
               {heading5}
             </Text>

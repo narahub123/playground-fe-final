@@ -127,6 +127,22 @@ const explore_kr = {
       },
     },
   },
+  InputNumber: {
+    labelsAndExpls: {
+      min_comments: {
+        label: "최소 답글 수",
+        expl: "예: 280 · 답글이 최소 280개 이상인 게시물",
+      },
+      min_likes: {
+        label: "최소 좋아요 수",
+        expl: "예: 280 · 마음에 들어요 수가 최소 280개 이상인 게시물",
+      },
+      min_reposts: {
+        label: "최소 재게시 수",
+        expl: "예: 280 · 재게시 횟수가 최소 280회 이상인 게시물",
+      },
+    },
+  },
 };
 
 export default explore_kr;

@@ -3,5 +3,13 @@ import InputMain from "./InputMain/InputMain";
 import InputBottom from "./InputBottom/InputBottom";
 import InputField from "./InputField/InputField";
 import InputExtra from "./InputExtra/InputExtra";
+import InputNumber from "./InputNumber/InputNumber";
 
-export { InputContainer, InputMain, InputBottom, InputField, InputExtra };
+export {
+  InputContainer,
+  InputMain,
+  InputBottom,
+  InputField,
+  InputExtra,
+  InputNumber,
+};

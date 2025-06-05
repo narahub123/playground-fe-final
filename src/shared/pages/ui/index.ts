@@ -12,6 +12,7 @@ import Video from "./Video/Video";
 import WritePost from "./WritePost/WritePost";
 import ToggleButton from "./ToggleButton/ToggleButton";
 import RadioGroup from "./RadioGroup/RadioGroup";
+import InputNumber from "./InputNumber/InputNumber";
 
 export {
   Header,
@@ -28,4 +29,5 @@ export {
   WritePost,
   ToggleButton,
   RadioGroup,
+  InputNumber,
 };

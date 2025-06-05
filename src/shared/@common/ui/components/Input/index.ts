@@ -4,6 +4,7 @@ import {
   InputBottom,
   InputField,
   InputExtra,
+  InputNumber,
 } from "./ui";
 import { InputContext, InputContextProvider } from "./context";
 import { useInputContext, useInput, useCompiledInputError } from "./hooks";
@@ -21,6 +22,7 @@ const Input = Object.assign(InputContainer, {
   Bottom: InputBottom,
   Field: InputField,
   Extra: InputExtra,
+  Number: InputNumber,
 });
 
 export default Input;

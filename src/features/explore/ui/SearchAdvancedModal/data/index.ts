@@ -5,10 +5,16 @@ import {
   selectFromAccounts,
   selectHashtags,
   selectMentionToAccounts,
+  selectMinComments,
+  selectMinLikes,
+  selectMinReposts,
   selectPhrase,
   selectToAccounts,
   setAllKeywords,
   setAnyKeywords,
+  setEngageMinComments,
+  setEngageMinLikes,
+  setEngageMinReposts,
   setExcludeKeywords,
   setFromAccounts,
   setHashtags,
@@ -63,6 +69,28 @@ const accountArray = [
   },
 ];
 
-const filterComments = [];
+const engagementArray = [
+  {
+    field: "min_comments",
+    reducer: setEngageMinComments,
+    selector: selectMinComments,
+    min: 0,
+    max: 1000,
+  },
+  {
+    field: "min_likes",
+    reducer: setEngageMinLikes,
+    selector: selectMinLikes,
+    min: 0,
+    max: 1000,
+  },
+  {
+    field: "min_reposts",
+    reducer: setEngageMinReposts,
+    selector: selectMinReposts,
+    min: 0,
+    max: 1000,
+  },
+];
 
-export { keywordArray, accountArray, filterComments };
+export { keywordArray, accountArray, engagementArray };

@@ -1,11 +1,11 @@
 import { SearchAdvancedModal, InputSearchAdvanced } from "./ui";
-import { keywordArray, accountArray, filterComments } from "./data";
+import { keywordArray, accountArray, engagementArray } from "./data";
 
 export {
   // data
   keywordArray,
   accountArray,
-  filterComments,
+  engagementArray,
 
   // ui
   SearchAdvancedModal,

@@ -1,0 +1,8 @@
+.input__number {
+  width: 100%;
+  border: none;
+}
+
+.input__number--disabled {
+  color: #aaa;
+}

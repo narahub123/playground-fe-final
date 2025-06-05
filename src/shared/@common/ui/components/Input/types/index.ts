@@ -8,6 +8,8 @@ type InputContextType = {
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   isValid: boolean;
   maxLength?: number;
+  max: number;
+  min: number;
 };
 
 /**

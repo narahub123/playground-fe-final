@@ -16,6 +16,8 @@ interface InputContainerProps {
   maxLength?: number; // InputValue의 최대 길이
   disabled?: boolean; // disabled 모드 적용
   className?: string; // 스타일 추가
+  min?: number;
+  max?: number;
 }
 
 const InputContainer = ({
@@ -28,6 +30,8 @@ const InputContainer = ({
   className,
   isValid = false,
   disabled = false,
+  min = 0,
+  max = 1000,
 }: InputContainerProps) => {
   const classNames = joinClassNames([styles["input__container"], className]);
 
@@ -45,6 +49,8 @@ const InputContainer = ({
     inputValue,
     handleChange,
     isValid,
+    min,
+    max,
   };
 
   return (
