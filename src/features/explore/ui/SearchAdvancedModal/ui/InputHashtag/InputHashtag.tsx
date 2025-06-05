@@ -1,5 +1,5 @@
 import { useAppDispatch } from "@app/store";
-import { selectHashtag, setHashtag } from "@features/explore/models";
+import { selectHashtags, setHashtags } from "@features/explore/models";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Input, Text } from "@shared/@common/ui/components";
 import { useSelector } from "react-redux";
@@ -13,12 +13,12 @@ const InputHashtag = ({ disabled = false }: InputHashtagProps) => {
   // 언어 설정
   const { label, expl } = useLanguageContent(["explore", "InputHashtag"]);
 
-  const hashtag = useSelector(selectHashtag);
+  const hashtag = useSelector(selectHashtags);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const hashtag = e.target.value;
 
-    dispatch(setHashtag(hashtag));
+    dispatch(setHashtags(hashtag));
   };
 
   return (

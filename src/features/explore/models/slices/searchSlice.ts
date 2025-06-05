@@ -8,11 +8,47 @@ interface ISearchState {
   accountSuggestions: IAuthor[];
   isLoading: boolean;
   keyword: string;
-  allWords: string;
-  phrase: string;
-  anyWords: string;
-  excludeWords: string;
-  hashtag: string;
+  advanced: {
+    keywords: {
+      allKeywords: string;
+      phrase: string;
+      anyKeywords: string;
+      excludeKeywords: string;
+      hashtags: string;
+    };
+    accounts: {
+      fromAccounts: string;
+      toAccounts: string;
+      mentionsToAccounts: string;
+    };
+    filter: {
+      comments: {
+        isOn: boolean;
+        range?: "comments";
+      };
+      links: {
+        isOn: boolean;
+        range?: "links";
+      };
+    };
+    engagement: {
+      min_comments: number;
+      min_likes: number;
+      min_reposts: number;
+    };
+    period: {
+      since: {
+        year?: number;
+        month?: number;
+        date?: number;
+      };
+      until: {
+        year?: number;
+        month?: number;
+        date?: number;
+      };
+    };
+  };
 }
 
 const initialState: ISearchState = {
@@ -22,11 +58,37 @@ const initialState: ISearchState = {
   accountSuggestions: [],
   isLoading: false,
   keyword: "",
-  allWords: "",
-  phrase: "",
-  anyWords: "",
-  excludeWords: "",
-  hashtag: "",
+  advanced: {
+    keywords: {
+      allKeywords: "",
+      phrase: "",
+      anyKeywords: "",
+      excludeKeywords: "",
+      hashtags: "",
+    },
+    accounts: {
+      fromAccounts: "",
+      toAccounts: "",
+      mentionsToAccounts: "",
+    },
+    filter: {
+      comments: {
+        isOn: true,
+      },
+      links: {
+        isOn: true,
+      },
+    },
+    engagement: {
+      min_comments: 0,
+      min_likes: 0,
+      min_reposts: 0,
+    },
+    period: {
+      since: {},
+      until: {},
+    },
+  },
 };
 
 const searchSlice = createSlice({
@@ -82,20 +144,71 @@ const searchSlice = createSlice({
     setKeyword: (state, action: PayloadAction<string>) => {
       state.keyword = action.payload;
     },
-    setAllWords: (state, action: PayloadAction<string>) => {
-      state.allWords = action.payload;
+    setAllKeywords: (state, action: PayloadAction<string>) => {
+      state.advanced.keywords.allKeywords = action.payload;
     },
     setPhrase: (state, action: PayloadAction<string>) => {
-      state.phrase = action.payload;
+      state.advanced.keywords.phrase = action.payload;
     },
-    setAnywords: (state, action: PayloadAction<string>) => {
-      state.anyWords = action.payload;
+    setAnyKeywords: (state, action: PayloadAction<string>) => {
+      state.advanced.keywords.anyKeywords = action.payload;
     },
-    setExcludeWords: (state, action: PayloadAction<string>) => {
-      state.excludeWords = action.payload;
+    setExcludeKeywords: (state, action: PayloadAction<string>) => {
+      state.advanced.keywords.excludeKeywords = action.payload;
     },
-    setHashtag: (state, action: PayloadAction<string>) => {
-      state.hashtag = action.payload;
+    setHashtags: (state, action: PayloadAction<string>) => {
+      state.advanced.keywords.hashtags = action.payload;
+    },
+    setFromAccounts: (state, action: PayloadAction<string>) => {
+      state.advanced.accounts.fromAccounts = action.payload;
+    },
+    setToAccounts: (state, action: PayloadAction<string>) => {
+      state.advanced.accounts.toAccounts = action.payload;
+    },
+    setMentionsToAccounts: (state, action: PayloadAction<string>) => {
+      state.advanced.accounts.mentionsToAccounts = action.payload;
+    },
+    toggleFilterComments: (state) => {
+      state.advanced.filter.comments.isOn =
+        !state.advanced.filter.comments.isOn;
+    },
+    setFilterComments: (state) => {
+      const range = state.advanced.filter.comments.range;
+      state.advanced.filter.comments.range = range ? undefined : "comments";
+    },
+    toggleFilterLinks: (state) => {
+      state.advanced.filter.links.isOn = !state.advanced.filter.links.isOn;
+    },
+    setFilterLinks: (state) => {
+      const range = state.advanced.filter.links.range;
+      state.advanced.filter.links.range = range ? undefined : "links";
+    },
+    setEngageMinComments: (state, action: PayloadAction<number>) => {
+      state.advanced.engagement.min_comments = action.payload;
+    },
+    setEngageMinLikes: (state, action: PayloadAction<number>) => {
+      state.advanced.engagement.min_likes = action.payload;
+    },
+    setEngageMinReposts: (state, action: PayloadAction<number>) => {
+      state.advanced.engagement.min_reposts = action.payload;
+    },
+    setPeriodSinceYear: (state, action: PayloadAction<number>) => {
+      state.advanced.period.since.year = action.payload;
+    },
+    setPeriodSinceMonth: (state, action: PayloadAction<number>) => {
+      state.advanced.period.since.month = action.payload;
+    },
+    setPeriodSinceDate: (state, action: PayloadAction<number>) => {
+      state.advanced.period.since.date = action.payload;
+    },
+    setPeriodUntilYear: (state, action: PayloadAction<number>) => {
+      state.advanced.period.until.year = action.payload;
+    },
+    setPeriodUntilMonth: (state, action: PayloadAction<number>) => {
+      state.advanced.period.until.month = action.payload;
+    },
+    setPeriodUntilDate: (state, action: PayloadAction<number>) => {
+      state.advanced.period.until.date = action.payload;
     },
   },
 });
@@ -110,9 +223,25 @@ export const {
   toggleRecentSearches,
   clearRecentSearches,
   setKeyword,
-  setAllWords,
+  setAllKeywords,
   setPhrase,
-  setAnywords,
-  setExcludeWords,
-  setHashtag,
+  setAnyKeywords,
+  setExcludeKeywords,
+  setHashtags,
+  setFromAccounts,
+  setToAccounts,
+  setMentionsToAccounts,
+  toggleFilterComments,
+  setFilterComments,
+  toggleFilterLinks,
+  setFilterLinks,
+  setEngageMinComments,
+  setEngageMinLikes,
+  setEngageMinReposts,
+  setPeriodSinceYear,
+  setPeriodSinceMonth,
+  setPeriodSinceDate,
+  setPeriodUntilYear,
+  setPeriodUntilMonth,
+  setPeriodUntilDate,
 } = searchSlice.actions;

@@ -15,10 +15,10 @@ import InputExcludeWords from "../InputExcludeWords/InputExcludeWords";
 import InputHashtag from "../InputHashtag/InputHashtag";
 import {
   selectSearchAdvanced,
-  setAllWords,
-  setAnywords,
-  setExcludeWords,
-  setHashtag,
+  setAllKeywords,
+  setAnyKeywords,
+  setExcludeKeywords,
+  setHashtags,
   setKeyword,
   setPhrase,
 } from "@features/explore/models";
@@ -43,8 +43,10 @@ const SearchAdvancedModal = ({ className }: SearchAdvancedModalProps) => {
     heading5,
   } = useLanguageContent(["explore", "SearchAdvancedModal"]);
 
-  const { allWords, phrase, anyWords, excludeWords, hashtag } =
-    useSelector(selectSearchAdvanced);
+  const { keywords } = useSelector(selectSearchAdvanced);
+
+  const { allKeywords, phrase, anyKeywords, excludeKeywords, hashtags } =
+    keywords;
 
   const isOpen = useSelector(getParalleModal("search_advanced"));
 
@@ -77,7 +79,7 @@ const SearchAdvancedModal = ({ className }: SearchAdvancedModalProps) => {
     // 모든 특수 표현 제거
     const cleaned = keyword
       .replace(/"[^"]+"/g, "") // phaze
-      .replace(/\([^)]*?\)/g, "") // any + hashtag
+      .replace(/\([^)]*?\)/g, "") // any + hashtags
       .replace(/-\S+/g, ""); // exclude
 
     const extractAllWords = cleaned
@@ -86,11 +88,11 @@ const SearchAdvancedModal = ({ className }: SearchAdvancedModalProps) => {
       .filter(Boolean)
       .join(" ");
 
-    dispatch(setAllWords(extractAllWords));
+    dispatch(setAllKeywords(extractAllWords));
     dispatch(setPhrase(extractPhrase));
-    dispatch(setAnywords(extractAnyWords));
-    dispatch(setExcludeWords(extractExcludedWords));
-    dispatch(setHashtag(extractHashtags));
+    dispatch(setAnyKeywords(extractAnyWords));
+    dispatch(setExcludeKeywords(extractExcludedWords));
+    dispatch(setHashtags(extractHashtags));
   }, [query]);
 
   const classNames = joinClassNames([
@@ -106,26 +108,26 @@ const SearchAdvancedModal = ({ className }: SearchAdvancedModalProps) => {
   const handleSubmit = () => {
     const modifiedPhrase = phrase ? `"${phrase}"` : undefined;
 
-    const splitAnyWords = anyWords.split(" ");
+    const splitAnyWords = anyKeywords.split(" ");
 
-    const modifiedAnyWords = anyWords
+    const modifiedAnyWords = anyKeywords
       ? `(${splitAnyWords.join(" OR ")})`
       : undefined;
 
-    const splitExcludeWords = excludeWords.split(" ");
+    const splitExcludeWords = excludeKeywords.split(" ");
 
-    const modifiedExcludeWords = excludeWords
+    const modifiedExcludeWords = excludeKeywords
       ? splitExcludeWords.map((word) => "-" + word).join(" ")
       : undefined;
 
-    const splitHashtag = hashtag.split(" ");
+    const splitHashtag = hashtags.split(" ");
 
     const addSharp = splitHashtag.map((hashtag) => "#" + hashtag).join(" OR ");
 
-    const modifiedHashtag = hashtag ? `(${addSharp})` : undefined;
+    const modifiedHashtag = hashtags ? `(${addSharp})` : undefined;
 
     const searchArray = [
-      allWords || undefined,
+      allKeywords || undefined,
       modifiedPhrase,
       modifiedAnyWords,
       modifiedExcludeWords,

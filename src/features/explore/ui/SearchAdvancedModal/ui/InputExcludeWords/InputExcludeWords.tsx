@@ -1,5 +1,8 @@
 import { useAppDispatch } from "@app/store";
-import { selectExcludeWords, setExcludeWords } from "@features/explore/models";
+import {
+  selectExcludeKeywords,
+  setExcludeKeywords,
+} from "@features/explore/models";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Input, Text } from "@shared/@common/ui/components";
 import { useSelector } from "react-redux";
@@ -13,12 +16,12 @@ const InputExcludeWords = ({ disabled = false }: InputExcludeWordsProps) => {
   // 언어 설정
   const { label, expl } = useLanguageContent(["explore", "InputExcludeWords"]);
 
-  const excludeWords = useSelector(selectExcludeWords);
+  const excludeWords = useSelector(selectExcludeKeywords);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const excludeWords = e.target.value;
 
-    dispatch(setExcludeWords(excludeWords));
+    dispatch(setExcludeKeywords(excludeWords));
   };
 
   return (

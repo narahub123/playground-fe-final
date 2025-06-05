@@ -1,5 +1,5 @@
 import { useAppDispatch } from "@app/store";
-import { selectAnyWords, setAnywords } from "@features/explore/models";
+import { selectAnyKeywords, setAnyKeywords } from "@features/explore/models";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Input, Text } from "@shared/@common/ui/components";
 import { useSelector } from "react-redux";
@@ -13,12 +13,12 @@ const InputAnyWords = ({ disabled = false }: InputAnyWordsProps) => {
   // 언어 설정
   const { label, expl } = useLanguageContent(["explore", "InputAnyWords"]);
 
-  const anyWords = useSelector(selectAnyWords);
+  const anyWords = useSelector(selectAnyKeywords);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const anyWords = e.target.value;
 
-    dispatch(setAnywords(anyWords));
+    dispatch(setAnyKeywords(anyWords));
   };
 
   return (

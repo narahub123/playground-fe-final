@@ -23,19 +23,53 @@ const selectAutoCompleteList = (state: RootState) => {
 };
 const selectKeyword = (state: RootState) => state.search.keyword;
 
-const selectAllWords = (state: RootState) => state.search.allWords;
-const selectPhrase = (state: RootState) => state.search.phrase;
-const selectAnyWords = (state: RootState) => state.search.anyWords;
-const selectExcludeWords = (state: RootState) => state.search.excludeWords;
-const selectHashtag = (state: RootState) => state.search.hashtag;
+const selectAllKeywords = (state: RootState) =>
+  state.search.advanced.keywords.allKeywords;
+const selectPhrase = (state: RootState) =>
+  state.search.advanced.keywords.phrase;
+const selectAnyKeywords = (state: RootState) =>
+  state.search.advanced.keywords.anyKeywords;
+const selectExcludeKeywords = (state: RootState) =>
+  state.search.advanced.keywords.excludeKeywords;
+const selectHashtags = (state: RootState) =>
+  state.search.advanced.keywords.hashtags;
+const selectFromAccounts = (state: RootState) =>
+  state.search.advanced.accounts.fromAccounts;
+const selectToAccounts = (state: RootState) =>
+  state.search.advanced.accounts.toAccounts;
+const selectMentionToAccounts = (state: RootState) =>
+  state.search.advanced.accounts.mentionsToAccounts;
+const selectFilterComments = (state: RootState) =>
+  state.search.advanced.filter.comments;
+const selectFilterLinks = (state: RootState) =>
+  state.search.advanced.filter.links;
+const selectMinComments = (state: RootState) =>
+  state.search.advanced.engagement.min_comments;
+const selectMinLikes = (state: RootState) =>
+  state.search.advanced.engagement.min_likes;
+const selectMinReposts = (state: RootState) =>
+  state.search.advanced.engagement.min_reposts;
+const selectPeriodSince = (state: RootState) =>
+  state.search.advanced.period.since;
+const selectPeriodUntil = (state: RootState) =>
+  state.search.advanced.period.until;
+
+const selectAdvancedKeywords = (state: RootState) =>
+  state.search.advanced.keywords;
+const selectAdvancedAccounts = (state: RootState) =>
+  state.search.advanced.accounts;
+const selectAdvancedFilter = (state: RootState) => state.search.advanced.filter;
+const selectAdvancedEngagement = (state: RootState) =>
+  state.search.advanced.engagement;
+const selectAdvancedPeriod = (state: RootState) => state.search.advanced.period;
 
 const selectSearchAdvanced = (state: RootState) => {
   return {
-    allWords: state.search.allWords,
-    phrase: state.search.phrase,
-    anyWords: state.search.anyWords,
-    excludeWords: state.search.excludeWords,
-    hashtag: state.search.hashtag,
+    keywords: state.search.advanced.keywords,
+    accounts: state.search.advanced.accounts,
+    filter: state.search.advanced.filter,
+    engagement: state.search.advanced.engagement,
+    period: state.search.advanced.period,
   };
 };
 
@@ -46,10 +80,25 @@ export {
   selectSearchSuggestion,
   selectAutoCompleteList,
   selectKeyword,
-  selectAllWords,
+  selectAllKeywords,
   selectPhrase,
-  selectAnyWords,
-  selectExcludeWords,
-  selectHashtag,
+  selectAnyKeywords,
+  selectExcludeKeywords,
+  selectHashtags,
   selectSearchAdvanced,
+  selectFromAccounts,
+  selectToAccounts,
+  selectMentionToAccounts,
+  selectFilterComments,
+  selectFilterLinks,
+  selectMinComments,
+  selectMinLikes,
+  selectMinReposts,
+  selectPeriodSince,
+  selectPeriodUntil,
+  selectAdvancedKeywords,
+  selectAdvancedAccounts,
+  selectAdvancedFilter,
+  selectAdvancedEngagement,
+  selectAdvancedPeriod,
 };
