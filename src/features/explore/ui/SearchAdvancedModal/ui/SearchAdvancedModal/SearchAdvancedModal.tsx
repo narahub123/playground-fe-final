@@ -28,6 +28,9 @@ import {
   InputSearchAdvanced,
   keywordArray,
   SelectDateGroup,
+  sinceArray,
+  untilArray,
+  useAdvancedSearch,
 } from "@features/explore/ui/SearchAdvancedModal";
 import { useEffect } from "react";
 import { InputNumber, RadioGroup, ToggleButton } from "@shared/pages";
@@ -54,11 +57,6 @@ const SearchAdvancedModal = ({ className }: SearchAdvancedModalProps) => {
     filterHeading1,
     filterHeading2,
   } = useLanguageContent(["explore", "SearchAdvancedModal"]);
-
-  const { keywords, engagement } = useSelector(selectSearchAdvanced);
-
-  const { allKeywords, phrase, anyKeywords, excludeKeywords, hashtags } =
-    keywords;
 
   const isOpen = useSelector(getParalleModal("search_advanced"));
 
@@ -139,38 +137,10 @@ const SearchAdvancedModal = ({ className }: SearchAdvancedModalProps) => {
     navigate(-1);
   };
 
+  const searchArray = useAdvancedSearch();
+
   const handleSubmit = () => {
-    const modifiedPhrase = phrase ? `"${phrase}"` : undefined;
-
-    const splitAnyWords = anyKeywords.split(" ");
-
-    const modifiedAnyWords = anyKeywords
-      ? `(${splitAnyWords.join(" OR ")})`
-      : undefined;
-
-    const splitExcludeWords = excludeKeywords.split(" ");
-
-    const modifiedExcludeWords = excludeKeywords
-      ? splitExcludeWords.map((word) => "-" + word).join(" ")
-      : undefined;
-
-    const splitHashtag = hashtags.split(" ");
-
-    const addSharp = splitHashtag.map((hashtag) => "#" + hashtag).join(" OR ");
-
-    const modifiedHashtag = hashtags ? `(${addSharp})` : undefined;
-
-    const searchArray = [
-      allKeywords || undefined,
-      modifiedPhrase,
-      modifiedAnyWords,
-      modifiedExcludeWords,
-      modifiedHashtag,
-    ];
-
     const search = searchArray.join(" ");
-
-    console.log(search);
 
     dispatch(setKeyword(search));
 
@@ -332,8 +302,8 @@ const SearchAdvancedModal = ({ className }: SearchAdvancedModalProps) => {
               {heading5}
             </Text>
             <div className={styles["section"]}>
-              <SelectDateGroup field="since" />
-              <SelectDateGroup field="until" />
+              <SelectDateGroup field="since" array={sinceArray} />
+              <SelectDateGroup field="until" array={untilArray} />
             </div>
           </Modal.Body>
         </Modal.Content>

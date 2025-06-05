@@ -27,6 +27,9 @@ import {
   setPeriodSinceDate,
   setPeriodSinceMonth,
   setPeriodSinceYear,
+  setPeriodUntilDate,
+  setPeriodUntilMonth,
+  setPeriodUntilYear,
   setPhrase,
   setToAccounts,
 } from "@features/explore";
@@ -120,4 +123,23 @@ const sinceArray = [
   },
 ];
 
-export { keywordArray, accountArray, engagementArray, sinceArray };
+const untilArray = [
+  {
+    field: "year",
+    optionList: (unit: string) => birthYearList(unit),
+    reducer: setPeriodUntilYear,
+  },
+  {
+    field: "month",
+    optionList: (unit: string) => birthMonthList(unit),
+    reducer: setPeriodUntilMonth,
+  },
+  {
+    field: "date",
+    optionList: (year: number, month: number, unit: string) =>
+      birthDateList(year, month, unit),
+    reducer: setPeriodUntilDate,
+  },
+];
+
+export { keywordArray, accountArray, engagementArray, sinceArray, untilArray };

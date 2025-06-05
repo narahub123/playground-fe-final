@@ -17,9 +17,14 @@ import {
 interface SelectDateGroupProps {
   className?: string;
   field: string;
+  array: {
+    field: string;
+    optionList: any;
+    reducer: any;
+  }[];
 }
 
-const SelectDateGroup = ({ className, field }: SelectDateGroupProps) => {
+const SelectDateGroup = ({ className, field, array }: SelectDateGroupProps) => {
   const [isValid, setIsValid] = useState<
     | {
         [key: string]: boolean;
@@ -41,7 +46,7 @@ const SelectDateGroup = ({ className, field }: SelectDateGroupProps) => {
 
   return (
     <div className={classNames}>
-      {sinceArray.map((unit) => {
+      {array.map((unit) => {
         return (
           <SelectDateUnit
             key={unit.field}
