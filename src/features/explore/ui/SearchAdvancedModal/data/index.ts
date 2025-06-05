@@ -63,4 +63,6 @@ const accountArray = [
   },
 ];
 
-export { keywordArray, accountArray };
+const filterComments = [];
+
+export { keywordArray, accountArray, filterComments };

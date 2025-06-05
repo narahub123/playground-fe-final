@@ -1,0 +1,15 @@
+.radio__group {
+  opacity: 1;
+}
+
+.wrapper {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.radio {
+  position: absolute;
+  appearance: none;
+}

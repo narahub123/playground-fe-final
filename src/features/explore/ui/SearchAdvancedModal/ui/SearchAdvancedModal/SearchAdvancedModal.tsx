@@ -14,6 +14,8 @@ import {
   setAllKeywords,
   setAnyKeywords,
   setExcludeKeywords,
+  setFilterComments,
+  setFilterLinks,
   setHashtags,
   setKeyword,
   setPhrase,
@@ -26,7 +28,7 @@ import {
   keywordArray,
 } from "@features/explore/ui/SearchAdvancedModal";
 import { useEffect } from "react";
-import { ToggleButton } from "@shared/pages";
+import { RadioGroup, ToggleButton } from "@shared/pages";
 
 interface SearchAdvancedModalProps {
   className?: string;
@@ -45,6 +47,10 @@ const SearchAdvancedModal = ({ className }: SearchAdvancedModalProps) => {
     heading3,
     heading4,
     heading5,
+    filterComments,
+    filterLinks,
+    filterHeading1,
+    filterHeading2,
   } = useLanguageContent(["explore", "SearchAdvancedModal"]);
 
   const { keywords } = useSelector(selectSearchAdvanced);
@@ -157,6 +163,14 @@ const SearchAdvancedModal = ({ className }: SearchAdvancedModalProps) => {
     dispatch(onParallelModalClose("search_advanced"));
   };
 
+  const selectComments = (value: string) => {
+    dispatch(setFilterComments());
+  };
+
+  const selectLinks = (value: string) => {
+    dispatch(setFilterLinks());
+  };
+
   // if (!isOpen) return null;
 
   return (
@@ -230,25 +244,39 @@ const SearchAdvancedModal = ({ className }: SearchAdvancedModalProps) => {
             <div className={styles["filter__container"]}>
               <div className={styles["filter__wrapper"]}>
                 <div className={styles["filter__toggle"]}>
-                  <Text>{"답글"}</Text>
+                  <Text>{filterHeading1}</Text>
                   <ToggleButton
                     isChecked={comments.isOn}
                     onChange={handleCommentsChange}
                     field="comments"
                   />
                 </div>
-                <div className={styles["filter__radio"]}></div>
+                <div className={styles["filter__radio"]}>
+                  <RadioGroup
+                    field="comments"
+                    list={filterComments}
+                    selected={comments.range}
+                    onChange={selectComments}
+                  />
+                </div>
               </div>
               <div className={styles["filter__wrapper"]}>
                 <div className={styles["filter__toggle"]}>
-                  <Text>{"링크"}</Text>
+                  <Text>{filterHeading2}</Text>
                   <ToggleButton
                     isChecked={links.isOn}
                     onChange={handleLinksChange}
                     field="links"
                   />
                 </div>
-                <div className={styles["filter__radio"]}></div>
+                <div className={styles["filter__radio"]}>
+                  <RadioGroup
+                    field="links"
+                    list={filterLinks}
+                    selected={links.range}
+                    onChange={selectLinks}
+                  />
+                </div>
               </div>
             </div>
             <Text type="heading3" className={styles["heading"]}>

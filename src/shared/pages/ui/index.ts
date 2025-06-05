@@ -11,6 +11,7 @@ import { PostEditor } from "./PostEditor";
 import Video from "./Video/Video";
 import WritePost from "./WritePost/WritePost";
 import ToggleButton from "./ToggleButton/ToggleButton";
+import RadioGroup from "./RadioGroup/RadioGroup";
 
 export {
   Header,
@@ -26,4 +27,5 @@ export {
   Video,
   WritePost,
   ToggleButton,
+  RadioGroup,
 };

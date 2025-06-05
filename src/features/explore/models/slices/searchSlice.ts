@@ -24,11 +24,11 @@ interface ISearchState {
     filter: {
       comments: {
         isOn: boolean;
-        range?: "comments";
+        range: "" | "comments";
       };
       links: {
         isOn: boolean;
-        range?: "links";
+        range: "" | "links";
       };
     };
     engagement: {
@@ -74,9 +74,11 @@ const initialState: ISearchState = {
     filter: {
       comments: {
         isOn: true,
+        range: "",
       },
       links: {
         isOn: true,
+        range: "",
       },
     },
     engagement: {
@@ -174,14 +176,14 @@ const searchSlice = createSlice({
     },
     setFilterComments: (state) => {
       const range = state.advanced.filter.comments.range;
-      state.advanced.filter.comments.range = range ? undefined : "comments";
+      state.advanced.filter.comments.range = range ? "" : "comments";
     },
     toggleFilterLinks: (state) => {
       state.advanced.filter.links.isOn = !state.advanced.filter.links.isOn;
     },
     setFilterLinks: (state) => {
       const range = state.advanced.filter.links.range;
-      state.advanced.filter.links.range = range ? undefined : "links";
+      state.advanced.filter.links.range = range ? "" : "links";
     },
     setEngageMinComments: (state, action: PayloadAction<number>) => {
       state.advanced.engagement.min_comments = action.payload;
