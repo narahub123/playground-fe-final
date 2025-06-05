@@ -7,6 +7,7 @@ interface ToggleButtonProps {
   field: string;
   isChecked: boolean;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onKeydown: (e: React.KeyboardEvent<HTMLDivElement>) => void;
 }
 
 const ToggleButton = ({
@@ -15,6 +16,7 @@ const ToggleButton = ({
   field,
   isChecked,
   onChange,
+  onKeydown,
 }: ToggleButtonProps) => {
   const classNames = joinClassNames([styles["toggle__button"], className]);
 
@@ -32,6 +34,8 @@ const ToggleButton = ({
             styles["circle"],
             isChecked ? styles["circle--checked"] : styles["circle--unchecked"],
           ])}
+          onKeyDown={onKeydown}
+          tabIndex={0}
         />
       </label>
       <input
@@ -43,6 +47,7 @@ const ToggleButton = ({
         onChange={onChange}
         disabled={disabled}
         checked={isChecked}
+        tabIndex={-1}
       />
     </div>
   );

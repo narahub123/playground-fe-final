@@ -66,8 +66,20 @@ const SearchAdvancedModal = ({ className }: SearchAdvancedModalProps) => {
     dispatch(toggleFilterComments());
   };
 
+  const handleCommentsKeydown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.ctrlKey && e.key === "Enter") {
+      dispatch(toggleFilterComments());
+    }
+  };
+
   const handleLinksChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(toggleFilterLinks());
+  };
+
+  const handleLinksKeydown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.ctrlKey && e.key === "Enter") {
+      dispatch(toggleFilterLinks());
+    }
   };
 
   useEffect(() => {
@@ -248,6 +260,7 @@ const SearchAdvancedModal = ({ className }: SearchAdvancedModalProps) => {
                   <ToggleButton
                     isChecked={comments.isOn}
                     onChange={handleCommentsChange}
+                    onKeydown={handleCommentsKeydown}
                     field="comments"
                   />
                 </div>
@@ -266,6 +279,7 @@ const SearchAdvancedModal = ({ className }: SearchAdvancedModalProps) => {
                   <ToggleButton
                     isChecked={links.isOn}
                     onChange={handleLinksChange}
+                    onKeydown={handleLinksKeydown}
                     field="links"
                   />
                 </div>
