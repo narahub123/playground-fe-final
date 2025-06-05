@@ -1,4 +1,9 @@
 import {
+  birthDateList,
+  birthMonthList,
+  birthYearList,
+} from "@features/auth-email/data";
+import {
   selectAllKeywords,
   selectAnyKeywords,
   selectExcludeKeywords,
@@ -19,6 +24,9 @@ import {
   setFromAccounts,
   setHashtags,
   setMentionsToAccounts,
+  setPeriodSinceDate,
+  setPeriodSinceMonth,
+  setPeriodSinceYear,
   setPhrase,
   setToAccounts,
 } from "@features/explore";
@@ -93,4 +101,23 @@ const engagementArray = [
   },
 ];
 
-export { keywordArray, accountArray, engagementArray };
+const sinceArray = [
+  {
+    field: "year",
+    optionList: (unit: string) => birthYearList(unit),
+    reducer: setPeriodSinceYear,
+  },
+  {
+    field: "month",
+    optionList: (unit: string) => birthMonthList(unit),
+    reducer: setPeriodSinceMonth,
+  },
+  {
+    field: "date",
+    optionList: (year: number, month: number, unit: string) =>
+      birthDateList(year, month, unit),
+    reducer: setPeriodSinceDate,
+  },
+];
+
+export { keywordArray, accountArray, engagementArray, sinceArray };

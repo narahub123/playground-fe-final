@@ -27,6 +27,7 @@ import {
   engagementArray,
   InputSearchAdvanced,
   keywordArray,
+  SelectDateGroup,
 } from "@features/explore/ui/SearchAdvancedModal";
 import { useEffect } from "react";
 import { InputNumber, RadioGroup, ToggleButton } from "@shared/pages";
@@ -330,7 +331,10 @@ const SearchAdvancedModal = ({ className }: SearchAdvancedModalProps) => {
             <Text type="heading3" className={styles["heading"]}>
               {heading5}
             </Text>
-            <div className={styles["section"]}></div>
+            <div className={styles["section"]}>
+              <SelectDateGroup field="since" />
+              <SelectDateGroup field="until" />
+            </div>
           </Modal.Body>
         </Modal.Content>
       </Modal.Container>

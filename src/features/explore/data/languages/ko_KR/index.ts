@@ -143,6 +143,13 @@ const explore_kr = {
       },
     },
   },
+  SelectDateGroup: {
+    labels: {
+      year: "년",
+      month: "월",
+      date: "일",
+    },
+  },
 };
 
 export default explore_kr;
