@@ -9,7 +9,25 @@
   align-items: center;
 }
 
+.wrapper:hover .radio--selected {
+  background-color: rgba(100, 149, 237, 0.1);
+}
+
+.wrapper:hover .radio--unselected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
 .radio {
   position: absolute;
   appearance: none;
+}
+
+.radio--selected:focus-visible {
+  background-color: rgba(100, 149, 237, 0.1);
+  outline: 2px solid rgba(100, 149, 237, 0.3);
+}
+
+.radio--unselected:focus-visible {
+  background-color: rgba(0, 0, 0, 0.1);
+  outline: 2px solid rgba(0, 0, 0, 0.3);                
 }

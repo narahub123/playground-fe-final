@@ -11,6 +11,7 @@ interface RadioGroupProps {
   list: IRadioGroupItem[];
   selected: string;
   onChange: (value: string) => void;
+  onKeydown: (e: React.KeyboardEvent<HTMLDivElement>) => void;
 }
 
 const RadioGroup = ({
@@ -20,6 +21,7 @@ const RadioGroup = ({
   list,
   selected,
   onChange,
+  onKeydown,
 }: RadioGroupProps) => {
   const classNames = joinClassNames([styles["radio__group"], className]);
 
@@ -29,12 +31,8 @@ const RadioGroup = ({
         const modifiedField = `${field}${index}`;
         const isChecked = item.value === selected;
         return (
-          <div>
-            <label
-              className={styles["wrapper"]}
-              htmlFor={modifiedField}
-              key={item.value}
-            >
+          <div key={item.value}>
+            <label className={styles["wrapper"]} htmlFor={modifiedField}>
               <Text>{item.text}</Text>
               {isChecked ? (
                 <Icon
@@ -42,12 +40,16 @@ const RadioGroup = ({
                   iconColor="cornflowerblue"
                   iconSize="2xl"
                   tabIndex={0}
+                  onKeyDown={onKeydown}
+                  className={styles["radio--selected"]}
                 />
               ) : (
                 <Icon
                   iconName="roundCheckboxBlank"
                   iconSize="2xl"
                   tabIndex={0}
+                  onKeyDown={onKeydown}
+                  className={styles["radio--unselected"]}
                 />
               )}
               <input

@@ -179,8 +179,24 @@ const SearchAdvancedModal = ({ className }: SearchAdvancedModalProps) => {
     dispatch(setFilterComments());
   };
 
+  const handleKeydownSelectionOfComments = (
+    e: React.KeyboardEvent<HTMLDivElement>
+  ) => {
+    if (e.ctrlKey && e.key === "Enter") {
+      dispatch(setFilterComments());
+    }
+  };
+
   const selectLinks = (value: string) => {
     dispatch(setFilterLinks());
+  };
+
+  const handleKeydownSelectionOfLinks = (
+    e: React.KeyboardEvent<HTMLDivElement>
+  ) => {
+    if (e.ctrlKey && e.key === "Enter") {
+      dispatch(setFilterLinks());
+    }
   };
 
   // if (!isOpen) return null;
@@ -270,6 +286,7 @@ const SearchAdvancedModal = ({ className }: SearchAdvancedModalProps) => {
                     list={filterComments}
                     selected={comments.range}
                     onChange={selectComments}
+                    onKeydown={handleKeydownSelectionOfComments}
                   />
                 </div>
               </div>
@@ -289,6 +306,7 @@ const SearchAdvancedModal = ({ className }: SearchAdvancedModalProps) => {
                     list={filterLinks}
                     selected={links.range}
                     onChange={selectLinks}
+                    onKeydown={handleKeydownSelectionOfLinks}
                   />
                 </div>
               </div>
