@@ -1,4 +1,4 @@
-const ALLKEYWORDS_REGEXP = /^([^\s()@#-]+)\s+([^\s()@#-]+)/g;
+const ALLKEYWORDS_REGEXP = /^([^\s()@#:\-]+(?:\s+[^\s()@#:\-]+)*)/g;
 const PHRASE_REGEXP = /"([^"]+)"/g;
 const ANYKEYWORDS_REGEXP = /\(((?![#@]|from:|to:)[^)]*?\sOR\s[^)]*?)\)/g;
 const HASHTAGS_REGEXP = /\(\s*(#[^\s()#]+(?:\s+OR\s+#[^\s()#]+)*)\s*\)/g;

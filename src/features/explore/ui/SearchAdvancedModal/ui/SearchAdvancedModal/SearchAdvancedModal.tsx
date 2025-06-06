@@ -4,20 +4,15 @@ import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Button, Modal, Text } from "@shared/@common/ui/components";
 import { joinClassNames } from "@shared/@common/utils";
 import { useSelector } from "react-redux";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "@app/store";
 import { onParallelModalClose } from "@shared/@common/models/slices/modalSlice";
 import { Icon } from "@shared/@common/ui/icons";
 import {
   selectAdvancedFilter,
-  setAllKeywords,
-  setAnyKeywords,
-  setExcludeKeywords,
   setFilterComments,
   setFilterLinks,
-  setHashtags,
   setKeyword,
-  setPhrase,
   toggleFilterComments,
   toggleFilterLinks,
 } from "@features/explore";
@@ -32,7 +27,6 @@ import {
   useAdvancedSearch,
   useStoreSearchParams,
 } from "@features/explore/ui/SearchAdvancedModal";
-import { useEffect } from "react";
 import { InputNumber, RadioGroup, ToggleButton } from "@shared/pages";
 
 interface SearchAdvancedModalProps {
@@ -42,7 +36,6 @@ interface SearchAdvancedModalProps {
 const SearchAdvancedModal = ({ className }: SearchAdvancedModalProps) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [query, setQuery] = useSearchParams();
   // 언어 설정
   const {
     title,
@@ -83,51 +76,6 @@ const SearchAdvancedModal = ({ className }: SearchAdvancedModalProps) => {
   };
 
   useStoreSearchParams();
-
-  useEffect(() => {
-    const keyword = query.get("q");
-
-    if (!keyword) return;
-
-    const extractPhrase = [...keyword.matchAll(/"([^"]+)"/g)]
-      ?.map((m) => m[1])
-      .join(" ");
-
-    const extractAnyWords = [
-      ...keyword.matchAll(/\(([^#][^)]*?\sOR\s[^)]*?)\)/g),
-    ][0]?.[1]
-      .split(/\s+OR\s+/)
-      .join(" ");
-
-    const extractHashtags = [
-      ...keyword.matchAll(/\(\s*(#[^\s()#]+(?:\s+OR\s+#[^\s()#]+)*)\s*\)/g),
-    ][0]?.[1]
-      .split(/\s+OR\s+/)
-      .map((s) => s.trim().slice(1))
-      .join(" ");
-
-    const extractExcludedWords = [...keyword.matchAll(/-\S+/g)]
-      ?.map((m) => m[0].slice(1))
-      .join(" ");
-
-    // 모든 특수 표현 제거
-    const cleaned = keyword
-      .replace(/"[^"]+"/g, "") // phaze
-      .replace(/\([^)]*?\)/g, "") // any + hashtags
-      .replace(/-\S+/g, ""); // exclude
-
-    const extractAllWords = cleaned
-      ?.trim()
-      .split(/\s+/)
-      .filter(Boolean)
-      .join(" ");
-
-    dispatch(setAllKeywords(extractAllWords));
-    dispatch(setPhrase(extractPhrase));
-    dispatch(setAnyKeywords(extractAnyWords));
-    dispatch(setExcludeKeywords(extractExcludedWords));
-    dispatch(setHashtags(extractHashtags));
-  }, [query]);
 
   const classNames = joinClassNames([
     styles["search__advanced__modal"],
