@@ -9,10 +9,7 @@ import {
   birthYearList,
 } from "@features/auth-email/data";
 import { useState } from "react";
-import {
-  sinceArray,
-  SelectDateUnit,
-} from "@features/explore/ui/SearchAdvancedModal";
+import { SelectDateUnit } from "@features/explore/ui/SearchAdvancedModal";
 
 interface SelectDateGroupProps {
   className?: string;

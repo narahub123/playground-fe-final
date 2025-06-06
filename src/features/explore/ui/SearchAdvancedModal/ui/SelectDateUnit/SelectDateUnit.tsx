@@ -47,7 +47,7 @@ const SelectDateUnit = ({
       handleKeyDown={handleKeyDown}
       toggleListbox={toggleListbox}
       onClose={onClose}
-      value={value}
+      value={value === 0 ? "" : value}
       disabled={disabled}
       numberOfOptions={options.length}
     >
