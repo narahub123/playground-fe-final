@@ -35,7 +35,7 @@ const InputNumber = ({
     <Input
       field={field}
       label={labelsAndExpls[field].label}
-      inputValue={value.toString()}
+      inputValue={value === 0 ? "" : value.toString()}
       isValid
       handleChange={handleChange}
       disabled={disabled}
