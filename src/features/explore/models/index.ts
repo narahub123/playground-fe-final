@@ -34,6 +34,7 @@ import {
   setPeriodUntilYear,
   setPeriodUntilMonth,
   setPeriodUntilDate,
+  setAdvancedSearch,
 } from "./slices";
 import {
   getSearchHistory,
@@ -104,6 +105,7 @@ export {
   setPeriodUntilYear,
   setPeriodUntilMonth,
   setPeriodUntilDate,
+  setAdvancedSearch,
 
   // selectors
   getSearchHistory,

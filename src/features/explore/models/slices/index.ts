@@ -27,6 +27,7 @@ import searchSlice, {
   setPeriodUntilYear,
   setPeriodUntilMonth,
   setPeriodUntilDate,
+  setAdvancedSearch,
 } from "./searchSlice";
 
 export {
@@ -62,4 +63,5 @@ export {
   setPeriodUntilYear,
   setPeriodUntilMonth,
   setPeriodUntilDate,
+  setAdvancedSearch,
 };

@@ -10,7 +10,6 @@ import { onParallelModalClose } from "@shared/@common/models/slices/modalSlice";
 import { Icon } from "@shared/@common/ui/icons";
 import {
   selectAdvancedFilter,
-  selectSearchAdvanced,
   setAllKeywords,
   setAnyKeywords,
   setExcludeKeywords,
@@ -31,6 +30,7 @@ import {
   sinceArray,
   untilArray,
   useAdvancedSearch,
+  useStoreSearchParams,
 } from "@features/explore/ui/SearchAdvancedModal";
 import { useEffect } from "react";
 import { InputNumber, RadioGroup, ToggleButton } from "@shared/pages";
@@ -81,6 +81,8 @@ const SearchAdvancedModal = ({ className }: SearchAdvancedModalProps) => {
       dispatch(toggleFilterLinks());
     }
   };
+
+  useStoreSearchParams();
 
   useEffect(() => {
     const keyword = query.get("q");

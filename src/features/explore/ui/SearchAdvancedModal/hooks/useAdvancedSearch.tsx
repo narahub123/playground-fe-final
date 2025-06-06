@@ -64,26 +64,34 @@ const useAdvancedSearch = () => {
     }
 
     if (comments.isOn && comments.range === "comments") {
-      result.push("filter:replies");
+      result.push("filter:comments");
+    }
+
+    if (!comments.isOn) {
+      result.push("-filter:comments");
     }
 
     if (links.isOn && links.range === "links") {
       result.push("filter:links");
     }
 
+    if (!links.isOn) {
+      result.push("-filter:links");
+    }
+
     if (min_comments > 0) {
-      result.push(`min_replies:${min_comments}`);
+      result.push(`min_comments:${min_comments}`);
     }
 
     if (min_likes > 0) {
-      result.push(`min_faves:${min_likes}`);
+      result.push(`min_likes:${min_likes}`);
     }
 
     if (min_reposts > 0) {
-      result.push(`min_retweets:${min_reposts}`);
+      result.push(`min_reposts:${min_reposts}`);
     }
 
-    if (since.year || since.month || since.date) {
+    if (since.year && since.month && since.date) {
       result.push(
         `since:${since.year}-${String(since.month).padStart(2, "0")}-${String(
           since.date
@@ -91,7 +99,7 @@ const useAdvancedSearch = () => {
       );
     }
 
-    if (until.year || until.month || until.date) {
+    if (until.year && until.month && until.date) {
       result.push(
         `until:${until.year}-${String(until.month).padStart(2, "0")}-${String(
           until.date

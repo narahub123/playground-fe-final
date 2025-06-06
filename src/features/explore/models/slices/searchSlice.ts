@@ -1,3 +1,4 @@
+import { IAdvancedSearch } from "@features/explore/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IAuthor } from "@shared/@common/types";
 
@@ -8,47 +9,7 @@ interface ISearchState {
   accountSuggestions: IAuthor[];
   isLoading: boolean;
   keyword: string;
-  advanced: {
-    keywords: {
-      allKeywords: string;
-      phrase: string;
-      anyKeywords: string;
-      excludeKeywords: string;
-      hashtags: string;
-    };
-    accounts: {
-      fromAccounts: string;
-      toAccounts: string;
-      mentionsToAccounts: string;
-    };
-    filter: {
-      comments: {
-        isOn: boolean;
-        range: "" | "comments";
-      };
-      links: {
-        isOn: boolean;
-        range: "" | "links";
-      };
-    };
-    engagement: {
-      min_comments: number;
-      min_likes: number;
-      min_reposts: number;
-    };
-    period: {
-      since: {
-        year?: number;
-        month?: number;
-        date?: number;
-      };
-      until: {
-        year?: number;
-        month?: number;
-        date?: number;
-      };
-    };
-  };
+  advanced: IAdvancedSearch;
 }
 
 const initialState: ISearchState = {
@@ -145,6 +106,9 @@ const searchSlice = createSlice({
     },
     setKeyword: (state, action: PayloadAction<string>) => {
       state.keyword = action.payload;
+    },
+    setAdvancedSearch: (state, action: PayloadAction<IAdvancedSearch>) => {
+      state.advanced = action.payload;
     },
     setAllKeywords: (state, action: PayloadAction<string>) => {
       state.advanced.keywords.allKeywords = action.payload;
@@ -246,4 +210,5 @@ export const {
   setPeriodUntilYear,
   setPeriodUntilMonth,
   setPeriodUntilDate,
+  setAdvancedSearch,
 } = searchSlice.actions;

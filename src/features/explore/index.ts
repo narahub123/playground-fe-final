@@ -1,6 +1,6 @@
 import { explore_lang } from "./data";
 import { SearchContextProvider, SearchContext } from "./context";
-import { ISearchContext, IRect } from "./types";
+import { ISearchContext, IRect, IAdvancedSearch } from "./types";
 import {
   SearchKeyword,
   SearchContainer,
@@ -82,6 +82,7 @@ import {
   selectAdvancedFilter,
   selectAdvancedEngagement,
   selectAdvancedPeriod,
+  setAdvancedSearch,
 } from "./models";
 import { debounce } from "./utils";
 
@@ -131,6 +132,7 @@ export {
   setPeriodUntilYear,
   setPeriodUntilMonth,
   setPeriodUntilDate,
+  setAdvancedSearch,
 
   // selectors
   getSearchHistory,
@@ -185,4 +187,4 @@ export {
   SearchAdvancedModal,
 };
 
-export type { ISearchContext, IRect };
+export type { ISearchContext, IRect, IAdvancedSearch };
