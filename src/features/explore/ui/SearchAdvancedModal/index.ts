@@ -32,6 +32,7 @@ import {
   MIN_REPOSTS_REGEXP,
   SINCE_REGEXP,
   UNTIL_REGEXP,
+  REMOVE_CLOSER_REGEXP,
 } from "./constants";
 
 export {
@@ -72,4 +73,5 @@ export {
   MIN_REPOSTS_REGEXP,
   SINCE_REGEXP,
   UNTIL_REGEXP,
+  REMOVE_CLOSER_REGEXP,
 };

@@ -17,6 +17,7 @@ import {
   UNTIL_REGEXP,
   ALLKEYWORDS_REGEXP,
   extractQuery,
+  REMOVE_CLOSER_REGEXP,
 } from "@features/explore/ui/SearchAdvancedModal";
 import { IAdvancedSearch } from "@features/explore/types";
 import { useAppDispatch } from "@app/store";
@@ -65,7 +66,7 @@ const useStoreSearchParams = () => {
       },
     };
 
-    const cleanedSearchParam = searchParam.replace(/"[^"]*"|\([^)]*\)/g, "");
+    const cleanedSearchParam = searchParam.replace(REMOVE_CLOSER_REGEXP, "");
 
     const extractAllKeywords = extractQuery(
       cleanedSearchParam,

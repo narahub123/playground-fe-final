@@ -1,5 +1,7 @@
 // 정규 표현식을 이용한 추출
 const extractAllMatches = (base: string, regExp: RegExp): string[] => {
+  console.log([...base.matchAll(regExp)].map((m) => m[0]));
+
   return [...base.matchAll(regExp)].map((m) => m[0]);
 };
 

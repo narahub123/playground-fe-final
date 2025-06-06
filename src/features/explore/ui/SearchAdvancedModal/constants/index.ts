@@ -15,6 +15,7 @@ const MIN_LIKES_REGEXP = /\b(min_likes):(\d+)/g;
 const MIN_REPOSTS_REGEXP = /\b(min_reposts):(\d+)/g;
 const SINCE_REGEXP = /\bsince:[^\s)]+/g;
 const UNTIL_REGEXP = /\buntil:[^\s)]+/g;
+const REMOVE_CLOSER_REGEXP = /[^\s()@#:\-]+:[^\s()@#:\-]+/g;
 
 export {
   ALLKEYWORDS_REGEXP,
@@ -32,4 +33,5 @@ export {
   MIN_REPOSTS_REGEXP,
   SINCE_REGEXP,
   UNTIL_REGEXP,
+  REMOVE_CLOSER_REGEXP,
 };
