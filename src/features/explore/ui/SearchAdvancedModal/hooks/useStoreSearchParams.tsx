@@ -32,6 +32,8 @@ const useStoreSearchParams = () => {
 
     if (!searchParam) return;
 
+    console.log(searchParam);
+
     const search: IAdvancedSearch = {
       keywords: {
         allKeywords: "",

@@ -8,7 +8,7 @@ const FROMACCOUNTS_REGEXP = /\(([^)]*from:[^)]*?\sOR\s[^)]*?)\)/g;
 const TOACCOUNTS_REGEXP = /\(([^)]*to:[^)]*?\sOR\s[^)]*?)\)/g;
 const MENTIONSTOACCOUNTS_REGEXP =
   /\(\s*(@[^\s()@]+(?:\s+OR\s+@[^\s()@]+)*)\s*\)/g;
-const FILTERONLY_REGEXP = /\bfilter:[^\s)]+/g;
+const FILTERONLY_REGEXP = /(?<!-)\bfilter:[^\s)]+/g;
 const FILTEREXCLUDE_REGEXP = /-filter:[^\s)]+/g;
 const MIN_COMMENTS_REGEXP = /\b(min_comments):(\d+)/g;
 const MIN_LIKES_REGEXP = /\b(min_likes):(\d+)/g;
