@@ -121,13 +121,13 @@ const SearchAdvancedModal = ({ className }: SearchAdvancedModalProps) => {
     }
   };
 
-  // if (!isOpen) return null;
+  if (!isOpen) return null;
 
   return (
     <Modal
       className={classNames}
       domId="search-advanced"
-      isOpen={true}
+      isOpen={isOpen}
       onClose={onClose}
     >
       <Modal.Overlay />
