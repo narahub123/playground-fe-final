@@ -1,7 +1,5 @@
-import styles from "./ExploreTabList.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
-import { joinClassNames } from "@shared/@common/utils";
-import { ITabItem, Tab } from "@shared/pages";
+import { ITabItem, TabList } from "@shared/pages";
 import { useEffect, useState } from "react";
 import { useLocation, useSearchParams } from "react-router-dom";
 
@@ -11,7 +9,7 @@ interface ExploreTabListProps {
 
 const ExploreTabList = ({ className }: ExploreTabListProps) => {
   const [current, setCurrent] = useState("");
-  const { pathname, search } = useLocation();
+  const { pathname } = useLocation();
   const [searchParams] = useSearchParams();
 
   // 언어 설정
@@ -19,8 +17,6 @@ const ExploreTabList = ({ className }: ExploreTabListProps) => {
     "explore",
     "ExploreTabList",
   ]);
-
-  const classNames = joinClassNames([styles["explore__tablist"], className]);
 
   useEffect(() => {
     if (pathname.includes("/explore")) {
@@ -49,13 +45,7 @@ const ExploreTabList = ({ className }: ExploreTabListProps) => {
         `?q=${searchParams.get("q")}&src=recent_search_click`
       );
 
-  return (
-    <div className={classNames}>
-      {list.map((tab) => (
-        <Tab tab={tab} key={tab.value} isActive={tab.value === current} />
-      ))}
-    </div>
-  );
+  return <TabList curTab={current} list={list} className={className} />;
 };
 
 export default ExploreTabList;

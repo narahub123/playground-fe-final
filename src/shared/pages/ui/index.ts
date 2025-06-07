@@ -14,6 +14,7 @@ import ToggleButton from "./ToggleButton/ToggleButton";
 import RadioGroup from "./RadioGroup/RadioGroup";
 import InputNumber from "./InputNumber/InputNumber";
 import Tab from "./Tab/Tab";
+import TabList from "./TabList/TabList";
 
 export {
   Header,
@@ -32,4 +33,5 @@ export {
   RadioGroup,
   InputNumber,
   Tab,
+  TabList,
 };
