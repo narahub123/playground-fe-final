@@ -13,6 +13,7 @@ import WritePost from "./WritePost/WritePost";
 import ToggleButton from "./ToggleButton/ToggleButton";
 import RadioGroup from "./RadioGroup/RadioGroup";
 import InputNumber from "./InputNumber/InputNumber";
+import Tab from "./Tab/Tab";
 
 export {
   Header,
@@ -30,4 +31,5 @@ export {
   ToggleButton,
   RadioGroup,
   InputNumber,
+  Tab,
 };

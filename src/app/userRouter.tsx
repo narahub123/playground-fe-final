@@ -86,6 +86,21 @@ const userRouter = createBrowserRouter([
             path: "location",
             element: <LocationModal />,
           },
+          {
+            path: PRIMARY_LINK.EXPLORE_FORYOU,
+          },
+          {
+            path: PRIMARY_LINK.EXPLORE_TRENDING,
+          },
+          {
+            path: PRIMARY_LINK.EXPLORE_NEWS,
+          },
+          {
+            path: PRIMARY_LINK.EXPLORE_SPORTS,
+          },
+          {
+            path: PRIMARY_LINK.EXPLORE_ENTERTAINMENT,
+          },
         ],
       },
       {

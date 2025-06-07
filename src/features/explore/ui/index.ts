@@ -16,6 +16,7 @@ import LocationModal from "./LocationModal/LocationModal";
 import SearchSettingsModal from "./SearchSettingsModal/SearchSettingsModal";
 import SearchFilterModal from "./SearchFilterModal/SearchFilterModal";
 import { SearchAdvancedModal } from "./SearchAdvancedModal";
+import ExploreTabList from "./ExploreTabList/ExploreTabList";
 
 export {
   SearchContainer,
@@ -36,4 +37,5 @@ export {
   SearchSettingsModal,
   SearchFilterModal,
   SearchAdvancedModal,
+  ExploreTabList,
 };

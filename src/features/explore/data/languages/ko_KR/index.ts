@@ -1,3 +1,4 @@
+import { PRIMARY_LINK } from "@shared/@common/constants";
 import countryNames from "@shared/@common/data/languages/ko_KR/countryNames";
 
 const explore_kr = {
@@ -149,6 +150,77 @@ const explore_kr = {
       month: "월",
       date: "일",
     },
+  },
+  ExploreTabList: {
+    exploreTabList: [
+      {
+        text: "나를 위한 추천",
+        value: "for_you",
+        to: PRIMARY_LINK.EXPLORE_FORYOU,
+      },
+      {
+        text: "실시간 트렌드",
+        value: "trending",
+        to: PRIMARY_LINK.EXPLORE_TRENDING,
+      },
+      {
+        text: "뉴스",
+        value: "news",
+        to: PRIMARY_LINK.EXPLORE_NEWS,
+      },
+      {
+        text: "스포츠",
+        value: "sports",
+        to: PRIMARY_LINK.EXPLORE_SPORTS,
+      },
+      {
+        text: "엔터테인먼트",
+        value: "entertainment",
+        to: PRIMARY_LINK.EXPLORE_ENTERTAINMENT,
+      },
+    ],
+    searchTabList: (pathname: string, search: string) => [
+      {
+        text: "인기",
+        value: "popular",
+        to: {
+          pathname,
+          search: `${search}`,
+        },
+      },
+      {
+        text: "최신",
+        value: "live",
+        to: {
+          pathname,
+          search: `${search}&f=live`,
+        },
+      },
+      {
+        text: "사용자",
+        value: "user",
+        to: {
+          pathname,
+          search: `${search}&f=user`,
+        },
+      },
+      {
+        text: "미디어",
+        value: "media",
+        to: {
+          pathname,
+          search: `${search}&f=media`,
+        },
+      },
+      {
+        text: "리스트",
+        value: "list",
+        to: {
+          pathname,
+          search: `${search}&f=list`,
+        },
+      },
+    ],
   },
 };
 

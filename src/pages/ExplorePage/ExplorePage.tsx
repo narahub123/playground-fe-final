@@ -20,6 +20,7 @@ import {
   setKeyword,
   SearchAdvancedModal,
   ExploreSettingModal,
+  ExploreTabList,
 } from "@features/explore";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { useDisclosure } from "@shared/@common/models/hooks";
@@ -150,7 +151,7 @@ const ExplorePage = ({ className }: ExplorePageProps) => {
             <SearchSettingsContainer />
           </div>
         </div>
-        <div className={styles["nav__wrapper"]}>탭</div>
+        <ExploreTabList />
         <div className={styles["feed__wrapper"]}>피드</div>
       </div>
     </SearchContextProvider>

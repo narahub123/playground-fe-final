@@ -4,4 +4,10 @@ interface IRadioGroupItem {
   expl?: string;
 }
 
-export type { IRadioGroupItem };
+interface ITabItem {
+  text: string;
+  value: string;
+  to: string;
+}
+
+export type { IRadioGroupItem, ITabItem };

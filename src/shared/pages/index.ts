@@ -1,7 +1,7 @@
 import { fetchWithAuth } from "./utils";
 import { useCofollowers } from "./hooks";
-import { ToggleButton, RadioGroup, InputNumber } from "./ui";
-import { IRadioGroupItem } from "./types";
+import { Tab, ToggleButton, RadioGroup, InputNumber } from "./ui";
+import { IRadioGroupItem, ITabItem } from "./types";
 
 export {
   // utils
@@ -14,6 +14,7 @@ export {
   ToggleButton,
   RadioGroup,
   InputNumber,
+  Tab,
 };
 
-export type { IRadioGroupItem };
+export type { IRadioGroupItem, ITabItem };

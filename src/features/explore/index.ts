@@ -20,6 +20,7 @@ import {
   SearchSettingsModal,
   SearchFilterModal,
   SearchAdvancedModal,
+  ExploreTabList,
 } from "./ui";
 import {
   useSearchContext,
@@ -185,6 +186,7 @@ export {
   SearchSettingsModal,
   SearchFilterModal,
   SearchAdvancedModal,
+  ExploreTabList,
 };
 
 export type { ISearchContext, IRect, IAdvancedSearch };
