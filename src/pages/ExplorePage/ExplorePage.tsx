@@ -33,12 +33,10 @@ interface ISearchFilter {
   location: boolean;
 }
 
-type TabType = "" | "live" | "user" | "media" | "list";
-
 const ExplorePage = ({ className }: ExplorePageProps) => {
   const dispatch = useAppDispatch();
   const { pathname, state } = useLocation();
-  const [query, setQuery] = useSearchParams();
+  const [query] = useSearchParams();
   const navigate = useNavigate();
   const classNames = joinClassNames([styles["explore__page"], className]);
 
@@ -47,8 +45,6 @@ const ExplorePage = ({ className }: ExplorePageProps) => {
   const keyword = useSelector(selectKeyword);
 
   const [isFocused, setIsFocused] = useState(false);
-
-  const [tabType, setTabType] = useState<TabType>("");
 
   const [filter, setFilter] = useState<ISearchFilter>({
     people: false,
@@ -93,12 +89,14 @@ const ExplorePage = ({ className }: ExplorePageProps) => {
 
     const encodeKeyword = encodeURIComponent(keyword);
 
+    const tabType = query.get("f");
+
     const url = `/search?q=${encodeKeyword}&src=recent_search_click${
       tabType ? "&f=" + tabType : ""
     }${filter.people ? "&pf=on" : ""}${filter.location ? "&lf=on" : ""}`;
 
     navigate(url);
-  }, [keyword, tabType, filter]);
+  }, [keyword, query.get("f"), filter]);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
