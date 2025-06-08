@@ -39,7 +39,7 @@ const ProfilePageArticles = ({ className }: ProfilePageArticlesProps) => {
     try {
       const api = isCurrentUser
         ? `/posts/me/ariticles?skip=${page}`
-        : `/posts/${userId}?skip=${page}`;
+        : `/users/${userId}/articles?skip=${page}`;
 
       const result = await fetchWithAuth(api);
 
@@ -57,6 +57,7 @@ const ProfilePageArticles = ({ className }: ProfilePageArticlesProps) => {
 
   useEffect(() => {
     const userId = pathname.split("/")[1];
+    console.log(userId);
 
     getPosts(userId);
   }, [pathname]);
