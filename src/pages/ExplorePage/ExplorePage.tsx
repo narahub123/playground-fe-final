@@ -42,6 +42,7 @@ const ExplorePage = ({ className }: ExplorePageProps) => {
 
   const page = useSelector(selectPage);
   const posts = useSelector(selectPosts);
+
   const keyword = useSelector(selectKeyword);
 
   const [isFocused, setIsFocused] = useState(false);
@@ -72,6 +73,7 @@ const ExplorePage = ({ className }: ExplorePageProps) => {
 
     if (pathname.includes("search")) {
       const keyword = query.get("q");
+      const filter = query.get("f");
 
       if (!keyword) {
         navigate("/explore");
@@ -79,9 +81,9 @@ const ExplorePage = ({ className }: ExplorePageProps) => {
       }
 
       dispatch(setKeyword(keyword));
-      handleSearch(keyword, 0);
+      handleSearch(keyword, 0, filter);
     }
-  }, [pathname, query.get("q")]);
+  }, [pathname, query.get("q"), query.get("f")]);
 
   // url 구성
   useEffect(() => {
@@ -122,6 +124,8 @@ const ExplorePage = ({ className }: ExplorePageProps) => {
 
     navigate(-1);
   };
+
+  console.log("포스트", posts);
 
   return (
     <SearchContextProvider value={value}>

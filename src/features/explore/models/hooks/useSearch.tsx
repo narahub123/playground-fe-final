@@ -5,12 +5,18 @@ import { fetchWithAuth } from "@shared/pages";
 const useSearch = () => {
   const dispatch = useAppDispatch();
 
-  const handleSearch = async (keyword: string, page: number) => {
+  const handleSearch = async (
+    keyword: string,
+    page: number,
+    filter: string | null
+  ) => {
     try {
       const encodedKeyword = encodeURIComponent(keyword);
 
       const result = await fetchWithAuth(
-        `/posts/search?q=${encodedKeyword}&skip=${page}`
+        `/posts/search?q=${encodedKeyword}&skip=${page}${
+          filter ? "&f=" + filter : ""
+        }`
       );
 
       console.log("결과", result.data.posts);

@@ -42,7 +42,9 @@ const ExploreTabList = ({ className }: ExploreTabListProps) => {
     ? exploreTabList
     : searchTabList(
         pathname,
-        `?q=${searchParams.get("q")}&src=recent_search_click`
+        `?q=${encodeURIComponent(
+          searchParams.get("q") || ""
+        )}&src=recent_search_click`
       );
 
   return <TabList curTab={current} list={list} className={className} />;
