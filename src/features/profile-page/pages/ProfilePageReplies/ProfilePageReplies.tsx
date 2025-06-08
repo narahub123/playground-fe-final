@@ -39,7 +39,7 @@ const ProfilePageReplies = ({ className }: ProfilePageRepliesProps) => {
     try {
       const api = isCurrentUser
         ? `/posts/me/with-replies?skip=${page}`
-        : `/posts/${userId}/with-replies?skip=${page}`;
+        : `/users/${userId}/with-replies?skip=${page}`;
 
       const result = await fetchWithAuth(api);
 
