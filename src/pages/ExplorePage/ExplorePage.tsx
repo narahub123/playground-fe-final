@@ -24,6 +24,9 @@ import {
 } from "@features/explore";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { useDisclosure } from "@shared/@common/models/hooks";
+import { Post } from "@shared/pages/ui/Post";
+import { Text } from "@shared/@common/ui/components";
+import { Link } from "react-router-dom";
 
 interface ExplorePageProps {
   className?: string;
@@ -154,7 +157,49 @@ const ExplorePage = ({ className }: ExplorePageProps) => {
           </div>
         </div>
         <ExploreTabList />
-        <div className={styles["feed__wrapper"]}>피드</div>
+        <div className={styles["feed__wrapper"]}>
+          {posts.map((post, index) => {
+            return (
+              <Post key={`${post._id}${index}`} post={post} postType="post">
+                <Post.Top />
+                <Post.Content>
+                  {/* <Post.Header /> */}
+                  {(post._id || post.originalPost?._id) && (
+                    <Post.Main>
+                      <Post.Left />
+                      <Post.Right>
+                        <Post.Meta />
+                        {post.originalPost?.author.userId && (
+                          <div
+                            className={styles["replyTo"]}
+                            style={{ display: "flex" }}
+                          >
+                            <Link
+                              style={{ color: "cornflowerblue" }}
+                              to={`/${post.originalPost?.author.userId}`}
+                              onClick={(e) => e.stopPropagation()}
+                            >{`@${post.originalPost?.author.userId}`}</Link>
+                            <Text>{` 님에게 보내는 답글`}</Text>
+                          </div>
+                        )}
+                        <Post.Text />
+                        <Post.Media />
+                        <Post.Vote />
+                        <Post.OriginalPost />
+                        <Post.Actions className={styles["actions"]} />
+                      </Post.Right>
+                    </Post.Main>
+                  )}
+                  <Post.Footer>
+                    <Post.MoreThread />
+                    <Post.Thread isCommentType={true} isPostPage={false} />
+                  </Post.Footer>
+                </Post.Content>
+                <Post.Bottom />
+              </Post>
+            );
+          })}
+        </div>
       </div>
     </SearchContextProvider>
   );
