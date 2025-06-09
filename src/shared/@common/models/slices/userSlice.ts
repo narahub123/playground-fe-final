@@ -44,6 +44,8 @@ const initialState: UserState = {
       city: "",
       county: "",
     },
+    place: "",
+    website: "",
     profileImage: "",
     profileCoverImage: "",
     intro: "",
@@ -336,6 +338,12 @@ const userSlice = createSlice({
 
       state.data.exploreSettings.interests = filteredInterests;
     },
+    setPlace: (state, action: PayloadAction<string>) => {
+      state.data.place = action.payload;
+    },
+    setWebsite: (state, action: PayloadAction<string>) => {
+      state.data.website = action.payload;
+    },
   },
 });
 
@@ -379,4 +387,6 @@ export const {
   updateSelectedLocation,
   addInterests,
   removeInterests,
+  setPlace,
+  setWebsite,
 } = userSlice.actions;

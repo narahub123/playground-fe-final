@@ -12,6 +12,8 @@ const selectUserRole = (state: RootState) => state.user.data.userRole;
 const selectCountry = (state: RootState) => state.user.data.country;
 const selectIp = (state: RootState) => state.user.data.ip;
 const selectLocation = (state: RootState) => state.user.data.location;
+const selectPlace = (state: RootState) => state.user.data.place;
+const selectWebsite = (state: RootState) => state.user.data.website;
 const selectProfileImage = (state: RootState) => state.user.data.profileImage;
 const selectProfileCoverImage = (state: RootState) =>
   state.user.data.profileCoverImage;
@@ -61,4 +63,6 @@ export {
   selectBookmarks,
   selectPinnedPost,
   selectExploreSettings,
+  selectPlace,
+  selectWebsite,
 };

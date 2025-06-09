@@ -140,6 +140,8 @@ interface IUser {
   country: string;
   ip: string;
   location: ILocation;
+  place: string;
+  website: string;
   profileImage: string;
   profileCoverImage: string;
   intro: string;

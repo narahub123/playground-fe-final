@@ -44,6 +44,8 @@ import {
   updateSelectedLocation,
   addInterests,
   removeInterests,
+  setPlace,
+  setWebsite,
 } from "./userSlice";
 
 import {
@@ -134,6 +136,8 @@ export {
   updateSelectedLocation,
   addInterests,
   removeInterests,
+  setPlace,
+  setWebsite,
 
   // modal
   onParallelModalOpen,

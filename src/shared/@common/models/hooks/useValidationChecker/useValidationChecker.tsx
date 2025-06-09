@@ -5,6 +5,7 @@ import { SignupState } from "@shared/auth/models/slices/signupSlice";
 import { UserState } from "../../slices/userSlice";
 import { ScreenValidationType } from "@shared/@common/ui/components/Modal/types";
 import { DisplayState } from "../../slices/displaySlice";
+import { IUser } from "@shared/@common/types";
 
 /**
  * 각 필드의 유효성을 검사하는 함수입니다.
@@ -41,7 +42,7 @@ interface useValidationCheckerProps {
   /**
    * 유효성 검사를 위한 사용자 데이터
    */
-  sliceState: SignupState | UserState | DisplayState;
+  sliceState: SignupState | UserState | DisplayState | IUser;
 
   /**
    * 화면 유효성 상태를 업데이트하는 선택적 상태 디스패치 함수.

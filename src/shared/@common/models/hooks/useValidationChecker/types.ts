@@ -1,6 +1,6 @@
 import { SignupState } from "@shared/auth/models/slices/signupSlice";
 import { BirthType } from "@shared/auth/types";
-import { UserState } from "../../slices/userSlice";
+import { IUser } from "@shared/@common/types";
 
 /**
  * `SignupState`의 키에서 "birth"를 제외한 키와 `BirthType`의 키를 포함하는 타입입니다.
@@ -14,7 +14,7 @@ import { UserState } from "../../slices/userSlice";
 export type FieldType =
   | Exclude<keyof SignupState, "birth">
   | keyof BirthType
-  | keyof UserState
+  | keyof IUser
   | "password_confirm";
 
 /**

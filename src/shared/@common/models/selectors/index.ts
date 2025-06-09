@@ -34,6 +34,8 @@ import {
   selectBookmarks,
   selectPinnedPost,
   selectExploreSettings,
+  selectPlace,
+  selectWebsite,
 } from "./userSelectors";
 
 import {
@@ -103,6 +105,8 @@ export {
   selectBookmarks,
   selectPinnedPost,
   selectExploreSettings,
+  selectPlace,
+  selectWebsite,
 
   // modal
   getParallelModals,
