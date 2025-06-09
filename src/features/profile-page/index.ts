@@ -1,6 +1,6 @@
 import { profilepage_lang, proflieTabLinks } from "./data";
 
-import { ProfilePageTab, MediaRow, Medium } from "./ui";
+import { ProfilePageTab, MediaRow, Medium, ProfileSettingsModal } from "./ui";
 
 import {
   ProfilePageArticles,
@@ -14,6 +14,7 @@ export {
   ProfilePageTab,
   MediaRow,
   Medium,
+  ProfileSettingsModal,
 
   // data
   profilepage_lang,

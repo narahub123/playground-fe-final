@@ -29,6 +29,7 @@ const PRIMARY_LINK = {
   SEARCH: "/search",
   SEARCH_SETTINGS: "/settings/search",
   SEARCH_ADVANCED: "/search/advanced",
+  PROFILE_SETTINGS: "/settings/profile",
 };
 
 export default PRIMARY_LINK;

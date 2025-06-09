@@ -43,6 +43,7 @@ import {
   ProfilePageLikes,
   ProfilePageMedia,
   ProfilePageReplies,
+  ProfileSettingsModal,
 } from "@features/profile-page";
 import {
   LocationModal,
@@ -258,6 +259,10 @@ const userRouter = createBrowserRouter([
           {
             path: PRIMARY_LINK.SEARCH_SETTINGS,
             element: <SearchSettingsModal />,
+          },
+          {
+            path: PRIMARY_LINK.PROFILE_SETTINGS,
+            element: <ProfileSettingsModal />,
           },
         ],
       },

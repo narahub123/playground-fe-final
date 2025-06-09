@@ -1,5 +1,6 @@
 import styles from "./ProfilePage.module.css";
 import {
+  getParalleModal,
   selectIsFeedLoading,
   selectUser,
 } from "@shared/@common/models/selectors";
@@ -11,31 +12,37 @@ import {
 } from "@shared/@common/ui/components";
 import { joinClassNames } from "@shared/@common/utils";
 import { useSelector } from "react-redux";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { ProfilePageTab, proflieTabLinks } from "@features/profile-page";
 import { Icon } from "@shared/@common/ui/icons";
 import { defaultProfileImage } from "@shared/@common/assets";
 import { Link } from "react-router-dom";
+import { useAppDispatch } from "@app/store";
+import { onParallelModalOpen } from "@shared/@common/models/slices/modalSlice";
+import { PRIMARY_LINK } from "@shared/@common/constants";
 
 interface ProfilePageProps {
   className?: string;
 }
 
 const ProfilePage = ({ className }: ProfilePageProps) => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const isLoading = useSelector(selectIsFeedLoading);
   const user = useSelector(selectUser);
 
   const classNames = joinClassNames([styles["profile__page"], className]);
 
+  const handleModalOpen = () => {
+    dispatch(onParallelModalOpen("profile"));
+    navigate(PRIMARY_LINK.PROFILE_SETTINGS);
+  };
+
   return (
     <div className={classNames}>
       <div className={styles["header"]}>
         <div className={styles["icon__wrapper"]}>
-          <Icon
-            iconName="arrowLeft"
-            className={styles["icon"]}
-            onClick={() => {}}
-          />
+          <Icon iconName="arrowLeft" className={styles["icon"]} />
         </div>
         <div className={styles["username__wrapper"]}>
           <Text type="heading3" status="bold">
@@ -62,7 +69,7 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
           <Button
             variant="outline"
             isValid
-            onClick={() => {}}
+            onClick={handleModalOpen}
             rounded="2xl"
             className={styles["button"]}
           >

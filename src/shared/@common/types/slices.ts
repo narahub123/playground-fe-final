@@ -48,7 +48,8 @@ type ParallelModals =
   | "schedule"
   | "location"
   | "search_settings"
-  | "search_advanced";
+  | "search_advanced"
+  | "profile";
 
 type StandAlonModals = "error" | "logout" | "explore" | "search_filter";
 type VerificationModals = "ownership";

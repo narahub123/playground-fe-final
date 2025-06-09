@@ -17,6 +17,7 @@ interface ModalState {
     location: boolean;
     search_settings: boolean;
     search_advanced: boolean;
+    profile: boolean;
   };
   standalone: {
     error: boolean; // 독립 모달 상태
@@ -41,6 +42,7 @@ const initialState: ModalState = {
     location: false,
     search_settings: false,
     search_advanced: false,
+    profile: false,
   },
   standalone: {
     error: false,

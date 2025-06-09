@@ -7,6 +7,10 @@ const profilepage_kr = {
       likes: "마음에 들어요",
     },
   },
+  ProfileSettingsModal: {
+    title: "프로필 수정",
+    save: "저장",
+  },
 };
 
 export default profilepage_kr;
