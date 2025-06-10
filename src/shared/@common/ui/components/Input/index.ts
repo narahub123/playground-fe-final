@@ -5,6 +5,7 @@ import {
   InputField,
   InputExtra,
   InputNumber,
+  InputTextEditor,
 } from "./ui";
 import { InputContext, InputContextProvider } from "./context";
 import { useInputContext, useInput, useCompiledInputError } from "./hooks";
@@ -23,6 +24,7 @@ const Input = Object.assign(InputContainer, {
   Field: InputField,
   Extra: InputExtra,
   Number: InputNumber,
+  TextEditor: InputTextEditor,
 });
 
 export default Input;

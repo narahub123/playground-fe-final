@@ -4,6 +4,7 @@ import InputBottom from "./InputBottom/InputBottom";
 import InputField from "./InputField/InputField";
 import InputExtra from "./InputExtra/InputExtra";
 import InputNumber from "./InputNumber/InputNumber";
+import InputTextEditor from "./InputTextEditor/InputTextEditor";
 
 export {
   InputContainer,
@@ -12,4 +13,5 @@ export {
   InputField,
   InputExtra,
   InputNumber,
+  InputTextEditor,
 };
