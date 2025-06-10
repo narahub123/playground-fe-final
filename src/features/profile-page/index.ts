@@ -9,6 +9,7 @@ import {
   ProfileSettingsContent,
   InputPlace,
   InputWebsite,
+  InputIntro,
 } from "./ui";
 
 import {
@@ -28,6 +29,7 @@ export {
   ProfileSettingsContent,
   InputPlace,
   InputWebsite,
+  InputIntro,
 
   // data
   profilepage_lang,

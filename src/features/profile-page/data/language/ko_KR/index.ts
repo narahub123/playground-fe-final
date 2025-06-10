@@ -39,6 +39,10 @@ const profilepage_kr = {
     label: "웹사이트",
     error: {},
   },
+  InputIntro: {
+    label: "자기 소개",
+    error: {},
+  },
 };
 
 export default profilepage_kr;

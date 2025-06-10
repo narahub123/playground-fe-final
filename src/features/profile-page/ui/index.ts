@@ -6,6 +6,7 @@ import InputUsername from "./InputUsername/InputUsername";
 import ProfileSettingsContent from "./ProfileSettingsContent/ProfileSettingsContent";
 import InputPlace from "./InputPlace/InputPlace";
 import InputWebsite from "./InputWebsite/InputWebsite";
+import InputIntro from "./InputIntro/InputIntro";
 
 export {
   ProfilePageTab,
@@ -16,4 +17,5 @@ export {
   ProfileSettingsContent,
   InputPlace,
   InputWebsite,
+  InputIntro,
 };

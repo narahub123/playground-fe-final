@@ -17,6 +17,7 @@ import {
   setProfileImage,
 } from "@shared/@common/models/slices/userSlice";
 import {
+  InputIntro,
   InputPlace,
   InputUsername,
   InputWebsite,
@@ -86,7 +87,9 @@ const ProfileSettingsContent = ({}: ProfileSettingsContentProps) => {
         <div className={styles["input__wrapper"]}>
           <InputUsername isValid={isValid} setIsValid={setIsValid} />
         </div>
-        <div className={styles["input__wrapper"]}>자기 소개</div>
+        <div className={styles["input__wrapper"]}>
+          <InputIntro isValid={isValid} setIsValid={setIsValid} />
+        </div>
         <div className={styles["input__wrapper"]}>
           <InputPlace isValid={isValid} setIsValid={setIsValid} />
         </div>
