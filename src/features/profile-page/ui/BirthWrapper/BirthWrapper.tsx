@@ -67,6 +67,7 @@ const BirthWrapper = ({}: BirthWrapperProps) => {
           onClick={() => {}}
           fontColor="red"
           className={styles["remove"]}
+          variant="plain"
         >
           {remove}
         </Button>
