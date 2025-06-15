@@ -1,0 +1,36 @@
+.birth__wrapper {
+  padding: 1rem;
+}
+
+.header__wrapper {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.span {
+  padding: 0 0.25rem;
+}
+
+.btn {
+  padding: 0;
+  padding-block: 0px;
+  padding-inline: 0px;
+  line-height: 0.9rem;
+}
+
+.margin {
+  margin: 0.25rem 0;
+}
+
+.btn__wrapper {
+  width: 100%;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.remove {
+  opacity: 1;
+}

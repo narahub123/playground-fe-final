@@ -17,6 +17,10 @@ import {
   setProfileImage,
 } from "@shared/@common/models/slices/userSlice";
 import {
+  BirthConfirm,
+  BirthTab,
+  BirthWrapper,
+  InputIntro,
   InputPlace,
   InputUsername,
   InputWebsite,
@@ -24,15 +28,21 @@ import {
 import { useSelector } from "react-redux";
 import { useModalContext } from "@shared/@common/ui/components/Modal/hooks";
 import { selectUser } from "@shared/@common/models/selectors";
+import { onStandAlonOpen } from "@shared/@common/models/slices/modalSlice";
+import { useAppDispatch } from "@app/store";
+import { useState } from "react";
 
 interface ProfileSettingsContentProps {}
 
 const ProfileSettingsContent = ({}: ProfileSettingsContentProps) => {
+  const dispatch = useAppDispatch();
   // 언어 설정
   const { title, save } = useLanguageContent([
     "profilepage",
     "ProfileSettingsContent",
   ]);
+
+  const [canModify, setCanModify] = useState(false);
 
   const user = useSelector(selectUser);
   const { setScreenValidations } = useModalContext();
@@ -46,6 +56,7 @@ const ProfileSettingsContent = ({}: ProfileSettingsContentProps) => {
 
   return (
     <Modal.Content>
+      <BirthConfirm setCanModify={setCanModify} />
       <Modal.Header className={styles["header"]}>
         <div className={styles["left"]}>
           <div className={styles["icon__wrapper"]}>
@@ -86,16 +97,25 @@ const ProfileSettingsContent = ({}: ProfileSettingsContentProps) => {
         <div className={styles["input__wrapper"]}>
           <InputUsername isValid={isValid} setIsValid={setIsValid} />
         </div>
-        <div className={styles["input__wrapper"]}>자기 소개</div>
+        <div className={styles["input__wrapper"]}>
+          <InputIntro isValid={isValid} setIsValid={setIsValid} />
+        </div>
         <div className={styles["input__wrapper"]}>
           <InputPlace isValid={isValid} setIsValid={setIsValid} />
         </div>
         <div className={styles["input__wrapper"]}>
           <InputWebsite isValid={isValid} setIsValid={setIsValid} />
         </div>
-        <div className={styles["input__wrapper"]}>생년월일</div>
+        {canModify ? (
+          <BirthWrapper />
+        ) : (
+          <BirthTab
+            onClick={() => {
+              dispatch(onStandAlonOpen("confirm"));
+            }}
+          />
+        )}
       </Modal.Body>
-      <Modal.Footer>푸터</Modal.Footer>
     </Modal.Content>
   );
 };

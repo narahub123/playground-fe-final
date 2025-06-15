@@ -35,7 +35,7 @@ const ProfileSettingsModal = ({ className }: ProfileSettingsModalProps) => {
   };
 
   return (
-    <Modal isOpen={true} onClose={onClose} domId="profile">
+    <Modal isOpen={isOpen} onClose={onClose} domId="profile">
       <Modal.Overlay />
       <Modal.Container>
         <ProfileSettingsContent />

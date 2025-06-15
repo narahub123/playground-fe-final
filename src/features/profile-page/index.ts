@@ -9,6 +9,16 @@ import {
   ProfileSettingsContent,
   InputPlace,
   InputWebsite,
+  InputIntro,
+  BirthTab,
+  BirthConfirm,
+  BirthWrapper,
+  BirthSelectGroup,
+  SelectYear,
+  SelectMonth,
+  SelectDate,
+  SelectBirthMonthAndDateVisibility,
+  SelectBirthYearVisibility,
 } from "./ui";
 
 import {
@@ -28,6 +38,16 @@ export {
   ProfileSettingsContent,
   InputPlace,
   InputWebsite,
+  InputIntro,
+  BirthTab,
+  BirthConfirm,
+  BirthWrapper,
+  BirthSelectGroup,
+  SelectYear,
+  SelectMonth,
+  SelectDate,
+  SelectBirthMonthAndDateVisibility,
+  SelectBirthYearVisibility,
 
   // data
   profilepage_lang,

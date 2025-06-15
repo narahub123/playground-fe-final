@@ -1,6 +1,5 @@
 import styles from "./ProfilePage.module.css";
 import {
-  getParalleModal,
   selectIsFeedLoading,
   selectUser,
 } from "@shared/@common/models/selectors";
