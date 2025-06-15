@@ -106,7 +106,7 @@ const ProfileSettingsContent = ({}: ProfileSettingsContentProps) => {
         <div className={styles["input__wrapper"]}>
           <InputWebsite isValid={isValid} setIsValid={setIsValid} />
         </div>
-        {false ? (
+        {true ? (
           <BirthWrapper />
         ) : (
           <BirthTab

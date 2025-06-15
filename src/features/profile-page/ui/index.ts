@@ -10,6 +10,7 @@ import InputIntro from "./InputIntro/InputIntro";
 import BirthTab from "./BirthTab/BirthTab";
 import BirthConfirm from "./BirthConfirm/BirthConfirm";
 import BirthWrapper from "./BirthWrapper/BirthWrapper";
+import BirthSelectGroup from "./BirthSelectGroup/BirthSelectGroup";
 
 export {
   ProfilePageTab,
@@ -24,4 +25,5 @@ export {
   BirthTab,
   BirthConfirm,
   BirthWrapper,
+  BirthSelectGroup,
 };

@@ -13,6 +13,7 @@ import {
   BirthTab,
   BirthConfirm,
   BirthWrapper,
+  BirthSelectGroup,
 } from "./ui";
 
 import {
@@ -36,6 +37,7 @@ export {
   BirthTab,
   BirthConfirm,
   BirthWrapper,
+  BirthSelectGroup,
 
   // data
   profilepage_lang,

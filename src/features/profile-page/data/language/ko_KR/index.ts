@@ -58,6 +58,18 @@ const profilepage_kr = {
     expl3: "X에서 내 생일을 공개할 대상을 정할 수 있습니다.",
     remove: "생년월일 삭제",
   },
+  SelectYear: {
+    label: "년",
+    unit: "년",
+  },
+  SelectMonth: {
+    label: "월",
+    unit: "월",
+  },
+  SelectDate: {
+    label: "일",
+    unit: "일",
+  },
 };
 
 export default profilepage_kr;

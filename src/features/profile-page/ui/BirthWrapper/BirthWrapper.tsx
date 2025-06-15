@@ -2,6 +2,7 @@ import styles from "./BirthWrapper.module.css";
 import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Button, Text } from "@shared/@common/ui/components";
 import { joinClassNames } from "@shared/@common/utils";
+import BirthSelectGroup from "../BirthSelectGroup/BirthSelectGroup";
 
 interface BirthWrapperProps {}
 
@@ -34,7 +35,7 @@ const BirthWrapper = ({}: BirthWrapperProps) => {
         <Text type="expl" className={styles["margin"]}>
           {expl2}
         </Text>
-        <div>날짜 input</div>
+        <BirthSelectGroup />
       </section>
       <section>
         <Text>{header2}</Text>
