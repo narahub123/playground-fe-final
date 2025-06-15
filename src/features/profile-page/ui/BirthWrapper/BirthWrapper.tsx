@@ -3,6 +3,9 @@ import { useLanguageContent } from "@shared/@common/models/hooks";
 import { Button, Text } from "@shared/@common/ui/components";
 import { joinClassNames } from "@shared/@common/utils";
 import BirthSelectGroup from "../BirthSelectGroup/BirthSelectGroup";
+import SelectBirthMonthAndDateVisibility from "../SelectBirthMonthAndDateVisibility/SelectBirthMonthAndDateVisibility";
+import { useState } from "react";
+import SelectBirthYearVisibility from "../SelectBirthYearVisibility/SelectBirthYearVisibility";
 
 interface BirthWrapperProps {}
 
@@ -12,6 +15,19 @@ const BirthWrapper = ({}: BirthWrapperProps) => {
     useLanguageContent(["profilepage", "BirthWrapper"]);
 
   const classNames = joinClassNames([styles["birth__wrapper"]]);
+
+  const [isValid, setIsValid] = useState<
+    | {
+        [key: string]: boolean;
+      }
+    | boolean
+  >({
+    year: false,
+    month: false,
+    date: false,
+    monthAndDate: false,
+    yearVisibility: false,
+  });
 
   return (
     <div className={classNames}>
@@ -42,8 +58,8 @@ const BirthWrapper = ({}: BirthWrapperProps) => {
         <Text type="expl" className={styles["margin"]}>
           {expl3}
         </Text>
-        <div>input 태어날 달과 날짜</div>
-        <div>input 년</div>
+        <SelectBirthMonthAndDateVisibility setIsValid={setIsValid} />
+        <SelectBirthYearVisibility setIsValid={setIsValid} />
       </section>
       <div className={styles["btn__wrapper"]}>
         <Button

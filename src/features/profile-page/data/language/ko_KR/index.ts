@@ -70,6 +70,8 @@ const profilepage_kr = {
     label: "일",
     unit: "일",
   },
+  SelectBirthMonthAndDateVisibility: {},
+  SelectBirthYearVisibility: {},
 };
 
 export default profilepage_kr;

@@ -14,6 +14,11 @@ import {
   BirthConfirm,
   BirthWrapper,
   BirthSelectGroup,
+  SelectYear,
+  SelectMonth,
+  SelectDate,
+  SelectBirthMonthAndDateVisibility,
+  SelectBirthYearVisibility,
 } from "./ui";
 
 import {
@@ -38,6 +43,11 @@ export {
   BirthConfirm,
   BirthWrapper,
   BirthSelectGroup,
+  SelectYear,
+  SelectMonth,
+  SelectDate,
+  SelectBirthMonthAndDateVisibility,
+  SelectBirthYearVisibility,
 
   // data
   profilepage_lang,

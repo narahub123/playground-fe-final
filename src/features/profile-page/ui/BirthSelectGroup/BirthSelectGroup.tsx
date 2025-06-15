@@ -1,10 +1,7 @@
 import styles from "./BirthSelectGroup.module.css";
-import { useLanguageContent } from "@shared/@common/models/hooks";
 import { joinClassNames } from "@shared/@common/utils";
-import SelectYear from "../SelectYear/SelectYear";
 import { useState } from "react";
-import SelectMonth from "../SelectMonth/SelectMonth";
-import SelectDate from "../SelectDate/SelectDate";
+import { SelectDate, SelectMonth, SelectYear } from "@features/profile-page";
 
 interface BirthSelectGroupProps {
   className?: string;
