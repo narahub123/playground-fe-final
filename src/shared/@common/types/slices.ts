@@ -51,7 +51,12 @@ type ParallelModals =
   | "search_advanced"
   | "profile";
 
-type StandAlonModals = "error" | "logout" | "explore" | "search_filter";
+type StandAlonModals =
+  | "error"
+  | "logout"
+  | "explore"
+  | "search_filter"
+  | "confirm";
 type VerificationModals = "ownership";
 
 type TwoFactorAuthenticationMethod = "sms" | "app" | "key" | "";

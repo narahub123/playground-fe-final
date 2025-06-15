@@ -43,6 +43,21 @@ const profilepage_kr = {
     label: "자기 소개",
     error: {},
   },
+  BirthTab: {
+    label: "생년월일",
+  },
+  BirthConfirm: {},
+  BirthWrapper: {
+    header1: "생년월일",
+    cancel: "취소",
+    expl1:
+      "계정을 사용하는 사람의 생년월일을 입력해 주세요. 비즈니스, 이벤트 또는 고양이를 위한 계정인 경우에도 마찬가지입니다.",
+    expl2:
+      "개인정보 처리방침에 설명되어 있듯이, X는 광고를 포함한 사용자 경험을 맞춤 설정하기 위해 사용자의 연령을 사용합니다.",
+    header2: "공개대상",
+    expl3: "X에서 내 생일을 공개할 대상을 정할 수 있습니다.",
+    remove: "생년월일 삭제",
+  },
 };
 
 export default profilepage_kr;

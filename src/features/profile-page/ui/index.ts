@@ -7,6 +7,9 @@ import ProfileSettingsContent from "./ProfileSettingsContent/ProfileSettingsCont
 import InputPlace from "./InputPlace/InputPlace";
 import InputWebsite from "./InputWebsite/InputWebsite";
 import InputIntro from "./InputIntro/InputIntro";
+import BirthTab from "./BirthTab/BirthTab";
+import BirthConfirm from "./BirthConfirm/BirthConfirm";
+import BirthWrapper from "./BirthWrapper/BirthWrapper";
 
 export {
   ProfilePageTab,
@@ -18,4 +21,7 @@ export {
   InputPlace,
   InputWebsite,
   InputIntro,
+  BirthTab,
+  BirthConfirm,
+  BirthWrapper,
 };

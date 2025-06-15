@@ -24,6 +24,7 @@ interface ModalState {
     logout: boolean; // 로그아웃 모달 상태
     explore: boolean;
     search_filter: boolean;
+    confirm: boolean;
   };
   verification: {
     ownership: boolean;
@@ -49,6 +50,7 @@ const initialState: ModalState = {
     logout: false,
     explore: false,
     search_filter: false,
+    confirm: false,
   },
   verification: {
     ownership: false,

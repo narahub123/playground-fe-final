@@ -10,6 +10,9 @@ import {
   InputPlace,
   InputWebsite,
   InputIntro,
+  BirthTab,
+  BirthConfirm,
+  BirthWrapper,
 } from "./ui";
 
 import {
@@ -30,6 +33,9 @@ export {
   InputPlace,
   InputWebsite,
   InputIntro,
+  BirthTab,
+  BirthConfirm,
+  BirthWrapper,
 
   // data
   profilepage_lang,
